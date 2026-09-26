@@ -2014,14 +2014,42 @@ function clearRankingCaches() {
     delete rankingCache[key];
   });
 
+
   playerMetricsCache.clear();
   injuryOpportunityCache.clear();
+  injuryOpportunityDetailsCache.clear();
 }
+
+function calculateInjuryOpportunityBoost(player) {
+  if (!player || !player.team || snapshotWeek) return 0;
+
+  const injury = String(player.injuryStatus || "")
+    .trim().toUpperCase();
+
+  const rosterStatus = String(player.status || "")
+    .trim().toUpperCase();
+
+  const unavailable =
+    ["OUT", "IR", "PUP"].includes(injury) ||
+    ["INACTIVE", "IR", "INJURED_RESERVE", "PUP",
+      "SUSPENDED"].includes(rosterStatus);
+
+  if (unavailable) return 0;
+
+  if (injuryOpportunityCache.has(player.id)) {
+    return injuryOpportunityCache.get(player.id);
+  }
+
+  const teammates = players.filter((teammate) =>
+    teammate.team === player.team &&
+    teammate.id !== player.id
+  );
 
   let boost = 0;
   const details = [];
 
   teammates.forEach((absentPlayer) => {
+
     const teammateInjury = String(
       absentPlayer.injuryStatus || ""
     ).trim().toUpperCase();
