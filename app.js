@@ -2019,6 +2019,7 @@ function clearRankingCaches() {
 }
 
 
+
 function calculateInjuryOpportunityBoost(player) {
   if (!player || !player.team || snapshotWeek) return 0;
 
@@ -2030,7 +2031,8 @@ function calculateInjuryOpportunityBoost(player) {
     .trim()
     .toUpperCase();
 
-  const unavailable = ["OUT", "IR", "PUP"].includes(injury) ||
+  const unavailable =
+    ["OUT", "IR", "PUP"].includes(injury) ||
     ["INACTIVE", "IR", "INJURED_RESERVE", "PUP",
       "SUSPENDED"].includes(rosterStatus);
 
@@ -2040,29 +2042,38 @@ function calculateInjuryOpportunityBoost(player) {
     return injuryOpportunityCache.get(player.id);
   }
 
-  const teammatesOut = players.filter((teammate) => {
-    if (
-      teammate.team !== player.team ||
-      teammate.id === player.id
-    ) return false;
-
-    const teammateInjury = String(
-      teammate.injuryStatus || ""
-    ).trim().toUpperCase();
-
-    const teammateStatus = String(
-      teammate.status || ""
-    ).trim().toUpperCase();
-
-    return ["OUT", "IR", "PUP"].includes(teammateInjury) ||
-      ["INACTIVE", "IR", "INJURED_RESERVE", "PUP",
-        "SUSPENDED"].includes(teammateStatus);
-  });
+  const teammates = players.filter((teammate) =>
+    teammate.team === player.team &&
+    teammate.id !== player.id
+  );
 
   let boost = 0;
 
-  teammatesOut.forEach((absentPlayer) => {
-    const recentGames = [...getPlayerWeeklyStats(absentPlayer)]
+  teammates.forEach((absentPlayer) => {
+    const teammateInjury = String(
+      absentPlayer.injuryStatus || ""
+    ).trim().toUpperCase();
+
+    const teammateStatus = String(
+      absentPlayer.status || ""
+    ).trim().toUpperCase();
+
+    const fullyUnavailable =
+      ["OUT", "IR", "PUP"].includes(teammateInjury) ||
+      ["INACTIVE", "IR", "INJURED_RESERVE", "PUP",
+        "SUSPENDED"].includes(teammateStatus);
+
+    const multiplier = fullyUnavailable
+      ? 1
+      : teammateInjury === "DOUBTFUL"
+        ? 0.5
+        : 0;
+
+    if (multiplier === 0) return;
+
+    const recentGames = [
+      ...getPlayerWeeklyStats(absentPlayer)
+    ]
       .sort((a, b) =>
         Number(b.season) - Number(a.season) ||
         Number(b.week) - Number(a.week)
@@ -2090,25 +2101,29 @@ function calculateInjuryOpportunityBoost(player) {
       absentPlayer.position === "RB" &&
       player.position === "RB"
     ) {
-      boost += Number(player.depthChartOrder) === 2 ? 6 : 3;
+      boost += (
+        Number(player.depthChartOrder) === 2 ? 6 : 3
+      ) * multiplier;
     }
 
     if (
       ["WR", "TE"].includes(absentPlayer.position) &&
       ["WR", "TE"].includes(player.position)
     ) {
-      boost += 3;
+      boost += 3 * multiplier;
     }
 
     if (
       absentPlayer.position === "RB" &&
       ["WR", "TE"].includes(player.position)
     ) {
-      boost += 1;
+      boost += 1 * multiplier;
     }
   });
 
   boost = Math.min(8, boost);
+  boost = Number(boost.toFixed(1));
+
   injuryOpportunityCache.set(player.id, boost);
 
   return boost;
