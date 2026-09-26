@@ -2006,7 +2006,7 @@ function calculateScore(player, profile) {
 }
 
 const injuryOpportunityCache = new Map();
-
+const injuryOpportunityDetailsCache = new Map();
 const rankingCache = {};
 
 function clearRankingCaches() {
@@ -2018,36 +2018,8 @@ function clearRankingCaches() {
   injuryOpportunityCache.clear();
 }
 
-
-
-function calculateInjuryOpportunityBoost(player) {
-  if (!player || !player.team || snapshotWeek) return 0;
-
-  const injury = String(player.injuryStatus || "")
-    .trim()
-    .toUpperCase();
-
-  const rosterStatus = String(player.status || "")
-    .trim()
-    .toUpperCase();
-
-  const unavailable =
-    ["OUT", "IR", "PUP"].includes(injury) ||
-    ["INACTIVE", "IR", "INJURED_RESERVE", "PUP",
-      "SUSPENDED"].includes(rosterStatus);
-
-  if (unavailable) return 0;
-
-  if (injuryOpportunityCache.has(player.id)) {
-    return injuryOpportunityCache.get(player.id);
-  }
-
-  const teammates = players.filter((teammate) =>
-    teammate.team === player.team &&
-    teammate.id !== player.id
-  );
-
   let boost = 0;
+  const details = [];
 
   teammates.forEach((absentPlayer) => {
     const teammateInjury = String(
@@ -2097,11 +2069,13 @@ function calculateInjuryOpportunityBoost(player) {
 
     if (!significantRole) return;
 
+    let contribution = 0;
+
     if (
       absentPlayer.position === "RB" &&
       player.position === "RB"
     ) {
-      boost += (
+      contribution += (
         Number(player.depthChartOrder) === 2 ? 6 : 3
       ) * multiplier;
     }
@@ -2110,23 +2084,43 @@ function calculateInjuryOpportunityBoost(player) {
       ["WR", "TE"].includes(absentPlayer.position) &&
       ["WR", "TE"].includes(player.position)
     ) {
-      boost += 3 * multiplier;
+      contribution += 3 * multiplier;
     }
 
     if (
       absentPlayer.position === "RB" &&
       ["WR", "TE"].includes(player.position)
     ) {
-      boost += 1 * multiplier;
+      contribution += 1 * multiplier;
     }
+
+    // Respect the existing eight-point total cap.
+    const appliedContribution = Math.min(
+      contribution,
+      Math.max(0, 8 - boost)
+    );
+
+    if (appliedContribution <= 0) return;
+
+    boost += appliedContribution;
+
+    details.push({
+      name: absentPlayer.name,
+      status: teammateInjury ||
+        teammateStatus ||
+        "UNAVAILABLE",
+      points: Number(appliedContribution.toFixed(1)),
+      provisional: multiplier === 0.5
+    });
   });
 
-  boost = Math.min(8, boost);
-  boost = Number(boost.toFixed(1));
+  boost = Number(Math.min(8, boost).toFixed(1));
 
+  injuryOpportunityDetailsCache.set(player.id, details);
   injuryOpportunityCache.set(player.id, boost);
 
   return boost;
+
 }
 
 
@@ -2572,15 +2566,29 @@ function renderPlayerCard(
       ${injuryBoost > 0 && !["OUT", "IR", "PUP"].includes(
         String(player.injuryStatus || "").toUpperCase()
       ) ? `
-        <div class="injury-opportunity-boost">
-          <strong>Injury Opportunity Boost</strong>
-          <span>+${injuryBoost} model points</span>
-          <p>
-            Potential additional opportunities due to
-            an unavailable teammate.
-            Experimental adjustment.
-          </p>
-        </div>
+
+<div class="injury-opportunity-boost">
+  <strong>Injury Opportunity Boost</strong>
+  <span>+${injuryBoost} model points</span>
+
+  ${(injuryOpportunityDetailsCache.get(player.id) || [])
+    .map((detail) => `
+      <div class="injury-boost-detail">
+        <strong>${detail.name}</strong>
+        <span>
+          ${detail.status}
+          ${detail.provisional ? " · Provisional" : ""}
+          · +${detail.points} points
+        </span>
+      </div>
+    `).join("")}
+
+  <p>
+    Experimental adjustment based on teammate
+    availability and recent usage.
+  </p>
+</div>
+
       ` : ""}
 
       <div class="why-section">
