@@ -2018,49 +2018,71 @@ function clearRankingCaches() {
   injuryOpportunityCache.clear();
 }
 
+
 function calculateInjuryOpportunityBoost(player) {
-  if (!player || !player.team) return 0;
+  if (!player || !player.team || snapshotWeek) return 0;
+
+  const injury = String(player.injuryStatus || "")
+    .trim()
+    .toUpperCase();
+
+  const rosterStatus = String(player.status || "")
+    .trim()
+    .toUpperCase();
+
+  const unavailable = ["OUT", "IR", "PUP"].includes(injury) ||
+    ["INACTIVE", "IR", "INJURED_RESERVE", "PUP",
+      "SUSPENDED"].includes(rosterStatus);
+
+  if (unavailable) return 0;
 
   if (injuryOpportunityCache.has(player.id)) {
     return injuryOpportunityCache.get(player.id);
   }
 
-  const teammatesOut = players.filter((teammate) =>
-    teammate.team === player.team &&
-    teammate.id !== player.id &&
-    String(teammate.injuryStatus || "")
-      .trim()
-      .toUpperCase() === "OUT"
-  );
+  const teammatesOut = players.filter((teammate) => {
+    if (
+      teammate.team !== player.team ||
+      teammate.id === player.id
+    ) return false;
+
+    const teammateInjury = String(
+      teammate.injuryStatus || ""
+    ).trim().toUpperCase();
+
+    const teammateStatus = String(
+      teammate.status || ""
+    ).trim().toUpperCase();
+
+    return ["OUT", "IR", "PUP"].includes(teammateInjury) ||
+      ["INACTIVE", "IR", "INJURED_RESERVE", "PUP",
+        "SUSPENDED"].includes(teammateStatus);
+  });
 
   let boost = 0;
 
   teammatesOut.forEach((absentPlayer) => {
-    const recentGames = getPlayerWeeklyStats(absentPlayer)
+    const recentGames = [...getPlayerWeeklyStats(absentPlayer)]
       .sort((a, b) =>
         Number(b.season) - Number(a.season) ||
         Number(b.week) - Number(a.week)
       )
       .slice(0, 4);
 
-    if (recentGames.length === 0) return;
-
-    const averageOpportunities =
-      recentGames.reduce((total, game) => {
-        if (absentPlayer.position === "QB") {
-          return total +
-            Number(game.attempts || 0) +
-            Number(game.carries || 0);
-        }
-
-        return total +
+    const averageOpportunities = recentGames.length
+      ? recentGames.reduce((total, game) =>
+          total +
           Number(game.targets || 0) +
-          Number(game.carries || 0);
-      }, 0) / recentGames.length;
+          Number(game.carries || 0) +
+          (absentPlayer.position === "QB"
+            ? Number(game.attempts || 0)
+            : 0),
+        0) / recentGames.length
+      : 0;
 
     const significantRole =
       averageOpportunities >= 8 ||
-      absentPlayer.depthChartOrder === 1;
+      Number(absentPlayer.depthChartOrder) === 1;
 
     if (!significantRole) return;
 
@@ -2068,7 +2090,7 @@ function calculateInjuryOpportunityBoost(player) {
       absentPlayer.position === "RB" &&
       player.position === "RB"
     ) {
-      boost += player.depthChartOrder === 2 ? 6 : 3;
+      boost += Number(player.depthChartOrder) === 2 ? 6 : 3;
     }
 
     if (
@@ -2087,11 +2109,11 @@ function calculateInjuryOpportunityBoost(player) {
   });
 
   boost = Math.min(8, boost);
-
   injuryOpportunityCache.set(player.id, boost);
 
   return boost;
 }
+
 
 function getPositionRankings(position, profile) {
   const cacheKey = `${profile}-${position}`;
