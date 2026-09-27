@@ -97,7 +97,8 @@ const metricDescriptions = {
 };
 let players = [];
 let weeklyStats = [];
-let fantasyAiScores = {};
+let fantasyAiScores = 
+let nflPlayerLookup = {};
 let defensePositionAllowed = {};
 let teamNextOpponent = {};
 let currentPlayCallerSignals = {};
@@ -139,6 +140,7 @@ const response = await fetch(
 
 weeklyStats = data.players || [];
 fantasyAiScores = data.fantasy_ai_scores || {};
+nflPlayerLookup = data.player_lookup || {};
 
 playerWeeklyStatsCache.clear();
     teamGameStatsCache.clear();
