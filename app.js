@@ -97,7 +97,7 @@ const metricDescriptions = {
 };
 let players = [];
 let weeklyStats = [];
-let fantasyAiScores = 
+let fantasyAiScores = {};
 let nflPlayerLookup = {};
 let defensePositionAllowed = {};
 let teamNextOpponent = {};
