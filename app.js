@@ -1588,7 +1588,30 @@ async function loadPlayers() {
       }
       return a.name.localeCompare(b.name);
     });
+const normalizeLookupName = name =>
+  String(name || "")
+    .toLowerCase()
+    .replace(/[.'’\-]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
 
+const normalizeLookupTeam = team =>
+  ({ LA: "LAR", JAC: "JAX", WSH: "WAS" })[team] || team;
+
+players.forEach(player => {
+  const matches = Object.entries(nflPlayerLookup)
+    .filter(([id, nfl]) =>
+      normalizeLookupName(player.name) ===
+        normalizeLookupName(nfl.name) &&
+      player.position === nfl.position &&
+      normalizeLookupTeam(player.team) ===
+        normalizeLookupTeam(nfl.team)
+    );
+
+  if (matches.length === 1) {
+    player.nflId = matches[0][0];
+  }
+});    
     populatePlayerSelectors();
     
     setupPlayerSearch(playerASearch, playerAResults, playerASelect);
