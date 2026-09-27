@@ -2661,16 +2661,38 @@ function renderPlayerCard(
       ` : ""}
 
       <div class="why-section">
-        <h4>Why this player?</h4>
+  <h4>Why this player?</h4>
 
-      <ul>
+  ${
+    player.nflId &&
+    fantasyAiScores[player.nflId]?.available &&
+    fantasyAiScores[player.nflId]
+      ?.rookie_prior_adjustment?.prior_only
+      ? `
+        <p>
+          <strong>Rookie draft-capital projection</strong>
+        </p>
+        <p>
+          Based on historical performance of rookies
+          drafted in similar positions.
+        </p>
+        <p>
+          No recorded NFL statistical games yet.
+          This is a projection, not demonstrated
+          NFL production.
+        </p>
+      `
+      : `
+        <ul>
           ${topSignals.map(([label, value]) => `
             <li>
               <strong>${label}</strong> ${value}/100
             </li>
           `).join("")}
         </ul>
-      </div>
+      `
+  }
+</div>
 
       <div class="metrics-section">
         ${metricRow("Opportunity", metrics.opportunity)}
