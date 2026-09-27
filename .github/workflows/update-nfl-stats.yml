@@ -2842,6 +2842,8 @@ jobs:
                       "player_id": player_id,
                       "position":
                           prior_result["position"],
+                      "rookie_season":
+                          prior_result["rookie_season"],
                       "predicted_prior_score":
                           prior_result[
                               "predicted_prior_score"
