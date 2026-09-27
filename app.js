@@ -3054,10 +3054,8 @@ compareButton.addEventListener("click", comparePlayers);
 async function initializeApp() {
 
   // Download players and weekly stats simultaneously.
-  await Promise.all([
-    loadPlayers(),
-    loadWeeklyStats()
-  ]);
+  await loadWeeklyStats();
+  await loadPlayers();
   // Display rankings after both data sources load.
   renderPositionRankings();
 
