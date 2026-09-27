@@ -11035,6 +11035,16 @@ jobs:
                   expert_rankings_model_eligible,
 
               "players": rolling_model_rows,
+              "player_lookup": {
+                  player_id: {
+                      "name": context.get("player_name"),
+                      "team": context.get("team"),
+                      "position": context.get("position"),
+                      "is_rookie": context.get("is_rookie", False)
+                  }
+                  for player_id, context in
+                  current_player_context.items()
+              },
               "recent_player_performance":
                   current_recent_performance,
               "opportunity_volume":
