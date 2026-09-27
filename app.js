@@ -2578,7 +2578,11 @@ function renderPlayerCard(
   const injuryBoost = snapshotWeek
     ? 0
     : calculateInjuryOpportunityBoost(player);
-
+  const isPriorOnlyRookie =
+    player.nflId &&
+    fantasyAiScores[player.nflId]?.available === true &&
+    fantasyAiScores[player.nflId]
+      ?.rookie_prior_adjustment?.prior_only === true;  
   return `
 
     <article class="player-result-card">
@@ -2695,7 +2699,32 @@ function renderPlayerCard(
 </div>
 
       <div class="metrics-section">
-        ${metricRow("Opportunity", metrics.opportunity)}
+  ${
+    isPriorOnlyRookie
+      ? `
+        <div class="metric-row">
+          <div class="metric-label-row">
+            <span class="metric-name">
+              Draft-Capital Projection
+            </span>
+            <strong>
+              ${fantasyAiScores[player.nflId].score.toFixed(1)}/100
+            </strong>
+          </div>
+          <div class="metric-track">
+            <div
+              class="metric-fill"
+              style="width:${fantasyAiScores[player.nflId].score}%"
+            ></div>
+          </div>
+          <p>
+            Historical rookie projection.
+            No NFL statistical games recorded.
+          </p>
+        </div>
+      `
+      : `
+  ${metricRow("Opportunity", metrics.opportunity)}
         ${metricRow("Recent Production", metrics.production)}
         ${metricRow("Usage", metrics.usage)}
         ${metricRow("Matchup", metrics.matchup)}
@@ -2755,7 +2784,8 @@ function renderPlayerCard(
           </p>
         </div>
       </div>
-    </article>
+        `}
+      </article>
   `;
 } 
 
