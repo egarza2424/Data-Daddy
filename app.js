@@ -1561,6 +1561,7 @@ async function loadPlayers() {
       ) {
         uniquePlayers.set(player.player_id, {
           id: player.player_id,
+          nflId: player.gsis_id || null,
           name: `${player.first_name} ${player.last_name}`,
           position: player.position,
           team: player.team,
