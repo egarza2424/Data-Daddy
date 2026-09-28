@@ -7753,7 +7753,7 @@ jobs:
                   reverse=True
               )
 
-                current_season_games = [
+              current_season_games = [
                   game
                   for game in player_games
                   if game["season"] == 2026
