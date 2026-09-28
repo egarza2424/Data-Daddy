@@ -6600,6 +6600,13 @@ jobs:
               )
 
               if (
+                  games_2026 >= 3 and
+                  average_2026 is not None
+              ):
+                  expected_blend = average_2026
+                  expected_source = "2026_only"
+
+              elif (
                   average_2025 is not None and
                   average_2026 is not None
               ):
