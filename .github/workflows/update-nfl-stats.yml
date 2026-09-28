@@ -4081,13 +4081,13 @@ jobs:
                 recent_games = matchup_games[:4]
                 
             average_ppr = sum(
-            game["ppr_points"]
-                  for game in recent_games
-              ) / len(recent_games)
+                game["ppr_points"]
+                for game in recent_games
+            ) / len(recent_games)
 
-              key_string = "|".join(
-                  matchup_key
-              )
+            key_string = "|".join(
+                matchup_key
+            )
 
               play_caller_matchups[
                   key_string
