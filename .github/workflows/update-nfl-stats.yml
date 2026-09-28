@@ -3737,15 +3737,34 @@ jobs:
 
                       if held_out_rho is None:
                           continue
+                      held_out_nfl_only_pairs = [
+                          (
+                              test_nfl_ranks[result_index],
+                              result["future_average_ppr"]
+                          )
+                          for result_index, result in enumerate(
+                              nested_test_rows
+                          )
+                      ]
 
+                      held_out_nfl_only_rho = (
+                          calculate_spearman_rank_correlation(
+                              held_out_nfl_only_pairs
+                          )
+                      )
+
+                      if held_out_nfl_only_rho is None:
+                          continue
                       selected_weight_counts[
                           best_nfl_weight
                       ] += 1
 
-                      fold_results.append({
+                        fold_results.append({
                           "season": held_out_season,
                           "n": len(held_out_pairs),
                           "rho": held_out_rho,
+                          "nfl_only_rho":
+                              held_out_nfl_only_rho,
                           "nfl_weight": best_nfl_weight
                       })
 
@@ -3769,8 +3788,14 @@ jobs:
                           fold["rho"] * fold["n"]
                           for fold in fold_results
                       ) / total_fold_players
+
+                      weighted_nfl_only_rho = sum(
+                          fold["nfl_only_rho"] * fold["n"]
+                          for fold in fold_results
+                      ) / total_fold_players
                   else:
                       weighted_fold_rho = None
+                      weighted_nfl_only_rho = None
 
                   weight_summary = ", ".join(
                       (
@@ -3796,8 +3821,12 @@ jobs:
                           f"{evidence_game_count} games "
                           f"{position} nested summary: "
                           f"n={total_fold_players}, "
-                          f"weighted_fold_rho="
+                          f"blend_rho="
                           f"{weighted_fold_rho:.3f}, "
+                          f"nfl_only_rho="
+                          f"{weighted_nfl_only_rho:.3f}, "
+                          f"delta="
+                          f"{weighted_fold_rho - weighted_nfl_only_rho:+.3f}, "
                           f"selected_nfl_weights="
                           f"{weight_summary}."
                       )
