@@ -10336,7 +10336,45 @@ jobs:
               current_fantasy_ai_scores[
                   player_id
               ] = fantasy_ai_result
+          print("2026 ROOKIE PRODUCTION-WEIGHT DIAGNOSTIC:")
 
+          for player_id, fantasy_ai_result in sorted(
+              current_fantasy_ai_scores.items()
+          ):
+              player_context = current_player_context.get(
+                  player_id,
+                  {}
+              )
+
+              if not player_context.get("is_rookie", False):
+                  continue
+
+              rookie_adjustment = fantasy_ai_result.get(
+                  "rookie_prior_adjustment",
+                  {}
+              )
+
+              if not rookie_adjustment.get("eligible", False):
+                  continue
+
+            print(
+                  f"{player_context.get('player_name')} | "
+                  f"{player_context.get('position')} | "
+                  f"games="
+                  f"{rookie_adjustment.get('nfl_games_with_stats')} | "
+                  f"prior="
+                  f"{rookie_adjustment.get('prior_score')} | "
+                  f"weight="
+                  f"{rookie_adjustment.get('weight')} | "
+                  f"base="
+                  f"{fantasy_ai_result.get('base_score')} | "
+                  f"final="
+                  f"{fantasy_ai_result.get('score')} | "
+                  f"prior_only="
+                  f"{rookie_adjustment.get('prior_only')}"
+              )
+
+          print("END ROOKIE PRODUCTION-WEIGHT DIAGNOSTIC")
           print(
               "Created Fantasy AI scores for "
               f"{len(current_fantasy_ai_scores)} "
