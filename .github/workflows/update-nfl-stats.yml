@@ -10091,7 +10091,6 @@ jobs:
 
                   rookie_weight_game_count = min(
                       rookie_games_with_stats,
-                      3
                   )
 
                   rookie_prior_weight = (
