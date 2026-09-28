@@ -3759,7 +3759,7 @@ jobs:
                           best_nfl_weight
                       ] += 1
 
-                        fold_results.append({
+                      fold_results.append({
                           "season": held_out_season,
                           "n": len(held_out_pairs),
                           "rho": held_out_rho,
