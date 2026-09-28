@@ -10354,9 +10354,6 @@ jobs:
                   {}
               )
 
-              if not rookie_adjustment.get("eligible", False):
-                  continue
-
           print(
                   f"{player_context.get('player_name')} | "
                   f"{player_context.get('position')} | "
