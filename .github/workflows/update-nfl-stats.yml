@@ -4542,6 +4542,20 @@ jobs:
                   average_2026 is not None
               ):
                   blended_average = (
+              prior_season_weight_games = 4.0
+
+              if (
+                  games_2026 >= 3 and
+                  average_2026 is not None
+              ):
+                  blended_average = average_2026
+                  blend_source = "2026_only"
+
+              elif (
+                  average_2025 is not None and
+                  average_2026 is not None
+              ):
+                  blended_average = (
                       season_2026["fantasy_points"] +
                       (
                           average_2025 *
