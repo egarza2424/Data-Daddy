@@ -3073,7 +3073,26 @@ jobs:
               0.75,
               1.00
           )
-
+          rookie_production_nfl_weights = {
+              1: {
+                  "QB": 0.50,
+                  "RB": 0.75,
+                  "WR": 0.50,
+                  "TE": 0.75
+              },
+              2: {
+                  "QB": 0.50,
+                  "RB": 0.75,
+                  "WR": 0.75,
+                  "TE": 0.75
+              },
+              3: {
+                  "QB": 0.75,
+                  "RB": 0.75,
+                  "WR": 1.00,
+                  "TE": 1.00
+              }
+          }
           print(
               "Rookie prior + NFL production blend test:"
           )
