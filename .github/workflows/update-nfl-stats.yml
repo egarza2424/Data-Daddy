@@ -4069,8 +4069,16 @@ jobs:
           for matchup_key, matchup_games in (
               play_caller_matchup_history.items()
           ):
-              recent_games = matchup_games[:4]
+            current_season_games = [
+            game
+            for game in matchup_games
+            if game["season"] == 2026
+            ]
 
+            if len(current_season_games) >= 3:
+                recent_games = current_season_games[:4]
+            else:
+                recent_games = matchup_games[:4]
               average_ppr = sum(
                   game["ppr_points"]
                   for game in recent_games
