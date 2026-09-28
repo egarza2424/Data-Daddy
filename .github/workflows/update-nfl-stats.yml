@@ -8738,8 +8738,16 @@ jobs:
                   reverse=True
               )
 
-              recent_games = player_games[:4]
+              current_season_games = [
+                  game
+                  for game in player_games
+                  if game["season"] == 2026
+              ]
 
+              if len(current_season_games) >= 3:
+                  recent_games = current_season_games[:4]
+              else:
+                  recent_games = player_games[:4]
               average_red_zone_opportunity = sum(
                   game["red_zone_opportunity"]
                   for game in recent_games
