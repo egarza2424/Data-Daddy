@@ -730,11 +730,8 @@ function calculateRedZoneScore(player) {
           Number(b.week || 0) -
           Number(a.week || 0)
       )
-      .forEach((game) => {
-        return;
-      }
-
-      const name = normalizeName(
+    .forEach((game) => {
+    const name = normalizeName(
         game.player_display_name ||
         game.player_name ||
         game.name
@@ -746,7 +743,7 @@ function calculateRedZoneScore(player) {
 
       if (!qbTotals[name]) {
         qbTotals[name] = {
-          opportunities: 0,
+          redZoneOpportunities: 0,
           games: 0
         };
       }
