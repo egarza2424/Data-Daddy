@@ -4069,7 +4069,16 @@ jobs:
           for matchup_key, matchup_games in (
               play_caller_matchup_history.items()
           ):
-              recent_games = matchup_games[:4]
+              current_season_games = [
+                  game
+                  for game in matchup_games
+                  if game["season"] == 2026
+              ]
+
+              if current_season_games:
+                  recent_games = current_season_games[:3]
+              else:
+                  recent_games = matchup_games[:4]
 
               average_ppr = sum(
                   game["ppr_points"]
@@ -4170,7 +4179,17 @@ jobs:
           for matchup_key, matchup_games in (
               player_vs_defensive_caller_history.items()
           ):
-              recent_games = matchup_games[:4]
+              current_season_games = [
+                  game
+                  for game in matchup_games
+                  if game["season"] == 2026
+              ]
+
+              if current_season_games:
+                  recent_games = current_season_games[:3]
+              else:
+                  recent_games = matchup_games[:4]
+
               average_ppr = sum(
                   game["ppr_points"]
                   for game in recent_games
@@ -7696,7 +7715,7 @@ jobs:
                   game
                   for game in player_games
                   if game["season"] == 2026
-              ][:4]
+              ][:3]
 
               if not recent_games:
                   continue
@@ -8090,7 +8109,7 @@ jobs:
                   game
                   for game in player_games
                   if game["season"] == 2026
-              ][:4]
+              ][:3]
               if not recent_games:
                   continue
               average_opportunity = sum(
@@ -8287,10 +8306,8 @@ jobs:
                   values
               )
 
-              if sample_size >= 4:
+              if sample_size >= 3:
                   confidence = 1.0
-              elif sample_size == 3:
-                  confidence = 0.8
               elif sample_size == 2:
                   confidence = 0.6
               elif sample_size == 1:
@@ -8478,17 +8495,15 @@ jobs:
                   False
               )
 
-              if sample_size >= 4:
+              if sample_size >= 3:
                   expected_confidence = 1.0
-              elif sample_size == 3:
-                  expected_confidence = 0.8
               elif sample_size == 2:
                   expected_confidence = 0.6
               elif sample_size == 1:
                   expected_confidence = 0.4
               else:
                   expected_confidence = 0.0
-
+                  
               sample_bucket = min(
                   max(sample_size, 0),
                   4
@@ -8671,11 +8686,15 @@ jobs:
                   reverse=True
               )
 
-              recent_games = [
+               recent_games = [
                   game
                   for game in player_games
                   if game["season"] == 2026
-              ][:4]
+              ][:3]
+
+              if not recent_games:
+                  continue
+
               average_red_zone_opportunity = sum(
                   game["red_zone_opportunity"]
                   for game in recent_games
@@ -8874,10 +8893,8 @@ jobs:
                   values
               )
 
-              if sample_size >= 4:
+              if sample_size >= 3:
                   confidence = 1.0
-              elif sample_size == 3:
-                  confidence = 0.8
               elif sample_size == 2:
                   confidence = 0.6
               elif sample_size == 1:
@@ -9066,17 +9083,15 @@ jobs:
                   False
               )
 
-              if sample_size >= 4:
+              if sample_size >= 3:
                   expected_confidence = 1.0
-              elif sample_size == 3:
-                  expected_confidence = 0.8
               elif sample_size == 2:
                   expected_confidence = 0.6
               elif sample_size == 1:
                   expected_confidence = 0.4
               else:
                   expected_confidence = 0.0
-
+                  
               sample_bucket = min(
                   max(sample_size, 0),
                   4
@@ -9689,17 +9704,15 @@ jobs:
                   False
               )
 
-              if sample_size >= 4:
+              if sample_size >= 3:
                   expected_confidence = 1.0
-              elif sample_size == 3:
-                  expected_confidence = 0.8
               elif sample_size == 2:
                   expected_confidence = 0.6
               elif sample_size == 1:
                   expected_confidence = 0.4
               else:
                   expected_confidence = 0.0
-
+                  
               sample_bucket = min(
                   max(sample_size, 0),
                   4
