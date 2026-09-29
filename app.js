@@ -50,7 +50,7 @@ const metricDescriptions = {
   "Recent Production": {
   weight: "20.46%",
   description:
-    "Measures average PPR fantasy production over the player's four most recent games compared with other players at the same position. The highest-scoring player at each position receives 100, with all other players scored proportionally."
+    "Measures average PPR fantasy production over the player's three most recent games compared with other players at the same position. The highest-scoring player at each position receives 100, with all other players scored proportionally."
 },
   
   Usage: {
@@ -62,8 +62,8 @@ const metricDescriptions = {
   Matchup: {
     weight: "9.30%",
     description:
-      "Evaluates the player's next opponent using PPR fantasy points that defense allowed to the player's position last season. Easier matchups receive higher scores."
-  },
+      "Measures how many fantasy points the opposing defense has allowed to the player's position over its three most recent games this season compared with league average."
+},
 
   "Red-Zone Usage": {
     weight: "9.30%",
@@ -80,13 +80,13 @@ const metricDescriptions = {
   "Play Caller Matchup": {
     weight: "6.51%",
     description:
-      "Measures how the player's current offensive play caller has historically produced at this position against the upcoming opponent's defensive play caller. Uses up to the four most recent applicable meetings. No direct history receives a neutral score of 50."
+      "Measures how the player's current offensive play caller has historically produced at this position against the upcoming opponent's defensive play caller. Uses up to the three most recent applicable meetings. No direct history receives a neutral score of 50."
   },
   
   "Player vs Defensive Play Caller": {
     weight: "6.51%",
     description:
-      "Measures how this individual player has historically performed in PPR scoring against defenses called by the upcoming opponent's current defensive play caller. Uses up to the four most recent applicable games. No direct history receives a neutral score of 50."
+      "Measures how this individual player has historically performed in PPR scoring against defenses called by the upcoming opponent's current defensive play caller. Uses up to the three most recent applicable games. No direct history receives a neutral score of 50."
 },  
   
   "Risk Adjustment": {
@@ -304,6 +304,9 @@ function calculateProductionScore(player) {
   function getRecentAverage(playerGames) {
   const recentGames =
     [...playerGames]
+      .filter(
+        game => Number(game.season) === 2026
+      )
       .sort(
         (a, b) =>
           Number(b.season || 0) -
@@ -311,7 +314,7 @@ function calculateProductionScore(player) {
           Number(b.week || 0) -
             Number(a.week || 0)
       )
-      .slice(0, 4);
+      .slice(0, 3);
 
     if (recentGames.length === 0) {
       return 0;
@@ -388,7 +391,16 @@ function calculateProductionScore(player) {
 }
 
 function calculateUsageScore(player) {
-  const games = getPlayerWeeklyStats(player);
+  const games = getPlayerWeeklyStats(player)
+    .filter(
+      game => Number(game.season) === 2026
+    )
+    .sort(
+      (a, b) =>
+        Number(b.week || 0) -
+        Number(a.week || 0)
+    )
+    .slice(0, 3);
 
   if (games.length === 0) {
     return 20;
@@ -400,8 +412,18 @@ function calculateUsageScore(player) {
   if (player.position === "QB") {
     const qbTotals = {};
 
-    weeklyStats.forEach((game) => {
-      if (game.position !== "QB") return;
+     weeklyStats
+      .filter(
+        game =>
+          game.position === "QB" &&
+          Number(game.season) === 2026
+      )
+      .sort(
+        (a, b) =>
+          Number(b.week || 0) -
+          Number(a.week || 0)
+      )
+      .forEach((game) => {
 
       const name = normalizeName(
         game.player_display_name ||
@@ -416,6 +438,10 @@ function calculateUsageScore(player) {
           opportunities: 0,
           games: 0
         };
+      }
+
+      if (qbTotals[name].games >= 3) {
+        return;
       }
 
       const passAttempts = Number(
@@ -565,10 +591,18 @@ function calculateOpportunityScore(player) {
   const position = player.position;
   const playerTotals = {};
 
-  weeklyStats.forEach((game) => {
-    if (game.position !== position) {
-      return;
-    }
+  weeklyStats
+    .filter(
+      game =>
+        game.position === position &&
+        Number(game.season) === 2026
+    )
+    .sort(
+      (a, b) =>
+        Number(b.week || 0) -
+        Number(a.week || 0)
+    )
+    .forEach((game) => {
 
     const name = normalizeName(
       game.player_display_name ||
@@ -585,6 +619,10 @@ function calculateOpportunityScore(player) {
         opportunities: 0,
         games: 0
       };
+    }
+
+    if (playerTotals[name].games >= 3) {
+      return;
     }
 
     const carries = Number(
@@ -663,7 +701,16 @@ function calculateOpportunityScore(player) {
   );
 }
 function calculateRedZoneScore(player) {
-  const games = getPlayerWeeklyStats(player);
+  const games = getPlayerWeeklyStats(player)
+    .filter(
+      game => Number(game.season) === 2026
+    )
+    .sort(
+      (a, b) =>
+        Number(b.week || 0) -
+        Number(a.week || 0)
+    )
+    .slice(0, 3);
 
   if (games.length === 0) {
     return 50;
@@ -672,8 +719,18 @@ function calculateRedZoneScore(player) {
   if (player.position === "QB") {
     const qbTotals = {};
 
-    weeklyStats.forEach((game) => {
-      if (game.position !== "QB") {
+    weeklyStats
+      .filter(
+        game =>
+          game.position === "QB" &&
+          Number(game.season) === 2026
+      )
+      .sort(
+        (a, b) =>
+          Number(b.week || 0) -
+          Number(a.week || 0)
+      )
+      .forEach((game) => {
         return;
       }
 
@@ -689,9 +746,13 @@ function calculateRedZoneScore(player) {
 
       if (!qbTotals[name]) {
         qbTotals[name] = {
-          redZoneOpportunities: 0,
+          opportunities: 0,
           games: 0
         };
+      }
+
+      if (qbTotals[name].games >= 3) {
+        return;
       }
 
       const rzPassAttempts = Number(
@@ -908,10 +969,8 @@ const sampleSize =
 
 let sampleConfidence = 0;
 
-if (sampleSize >= 4) {
+if (sampleSize >= 3) {
   sampleConfidence = 1;
-} else if (sampleSize === 3) {
-  sampleConfidence = 0.8;
 } else if (sampleSize === 2) {
   sampleConfidence = 0.6;
 } else if (sampleSize === 1) {
@@ -969,10 +1028,8 @@ const sampleSize =
 
 let sampleConfidence = 0;
 
-if (sampleSize >= 4) {
+if (sampleSize >= 3) {
   sampleConfidence = 1;
-} else if (sampleSize === 3) {
-  sampleConfidence = 0.8;
 } else if (sampleSize === 2) {
   sampleConfidence = 0.6;
 } else if (sampleSize === 1) {
@@ -1105,14 +1162,15 @@ function calculateModelConfidence(player) {
   }
 
   const recentGames = [...games]
-  .sort(
-    (a, b) =>
-      Number(b.season || 0) -
-        Number(a.season || 0) ||
-      Number(b.week || 0) -
+    .filter(
+      game => Number(game.season) === 2026
+    )
+    .sort(
+      (a, b) =>
+        Number(b.week || 0) -
         Number(a.week || 0)
-  )
-  .slice(0, 4);
+    )
+    .slice(0, 3);
   if (recentGames.length < 2) {
     return 50;
   }
@@ -1321,15 +1379,15 @@ function getModelConfidenceBreakdown(player) {
   }
 
   const recentGames = [...games]
-  .sort(
-    (a, b) =>
-      Number(b.season || 0) -
-        Number(a.season || 0) ||
-      Number(b.week || 0) -
+    .filter(
+      game => Number(game.season) === 2026
+    )
+    .sort(
+      (a, b) =>
+        Number(b.week || 0) -
         Number(a.week || 0)
-  )
-  .slice(0, 4);
-
+    )
+    .slice(0, 3);
   function stabilityScore(values) {
     const validValues = values.filter(
       (value) => Number.isFinite(value)
