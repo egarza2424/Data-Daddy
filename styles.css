@@ -1318,9 +1318,9 @@ footer a {
   }
 }
 @media (min-width: 901px) {
-  .results .player-comparison-header:has(.injury-opportunity-boost) {
-    height: auto;
-    min-height: 390px;
+  .results .player-results-grid:has(.injury-opportunity-boost)
+    .player-comparison-header {
+    height: 520px;
   }
 }
 .player-status span {
