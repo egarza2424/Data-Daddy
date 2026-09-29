@@ -8020,7 +8020,27 @@ jobs:
                   "score_source":
                       "recent_ppr_sample_adjusted"
               }
-              
+        recent_live_season_usage = {}
+
+        for player_id, player_data in current_recent_performance.items():
+            games = player_data.get("games", [])
+            seasons = tuple(
+                sorted(
+                    {
+                        game.get("season")
+                        for game in games
+                    },
+                    reverse=True
+                )
+            )
+            recent_live_season_usage[seasons] = (
+                recent_live_season_usage.get(seasons, 0) + 1
+            )
+
+        print(
+            "LIVE recent-performance selected seasons: "
+            f"{recent_live_season_usage}"
+        )              
           print(
               "Created position-normalized recent-"
               "performance scores for "
