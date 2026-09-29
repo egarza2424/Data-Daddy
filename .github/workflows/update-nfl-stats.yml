@@ -6594,7 +6594,6 @@ jobs:
                       actual_source
                   ] += 1
 
-              if (
               expected_blend_rounded = (
                   round(expected_blend, 2)
                   if expected_blend is not None
