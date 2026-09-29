@@ -2028,7 +2028,14 @@ function calculateScore(player, profile) {
   const rookieScore = player.nflId
     ? fantasyAiScores[player.nflId]
     : null;
-
+  if (player.name === "Jadarian Price") {
+    console.log("JADARIAN ROOKIE DEBUG", {
+      nflId: player.nflId,
+      rookieScore,
+      applied: rookieScore?.rookie_prior_adjustment?.applied,
+      generatedScore: rookieScore?.score
+    });
+  }  
   const useRookieAdjustedScore =
     rookieScore?.available === true &&
     rookieScore.rookie_prior_adjustment?.applied === true &&
