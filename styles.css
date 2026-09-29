@@ -1306,7 +1306,11 @@ footer a {
   gap: 8px;
   margin-top: 12px;
 }
-
+@media (min-width: 901px) {
+  .results .player-status {
+    min-height: 72px;
+  }
+}
 .player-status span {
   padding: 6px 9px;
   background: #29384b;
