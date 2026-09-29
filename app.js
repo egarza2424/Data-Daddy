@@ -855,7 +855,7 @@ function calculateMatchupScore(player) {
   }
 
   const teamCode =
-    player.team === "LAR" ? "LA" : player.team;
+    player.team;
 
   const nextGame =
     teamNextOpponent[teamCode];
