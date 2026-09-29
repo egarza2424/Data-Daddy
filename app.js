@@ -2049,7 +2049,13 @@ function calculateScore(player, profile) {
     100,
     scoringBase + injuryBoost
   );
-
+  if (player.name === "Jadarian Price") {
+    console.log("JADARIAN FINAL SCORE DEBUG", {
+      scoringBase,
+      injuryBoost,
+      adjustedScore
+    });
+  }  
   return Number(adjustedScore.toFixed(1));
 }
 
