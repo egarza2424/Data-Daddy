@@ -128,7 +128,12 @@ jobs:
                   ].head(3).to_string(index=False)
               )                    
               print("Building pregame trench metrics...")
-              rows = build(pbp, schedule)
+              rows = build(
+                  pbp,
+                  schedule,
+                  prior_games=3,
+                  publication_lag_hours=0
+              )
 
               if rows:
                   pd.DataFrame(rows).to_csv(
