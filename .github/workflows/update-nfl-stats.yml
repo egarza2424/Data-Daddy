@@ -4466,11 +4466,13 @@ jobs:
               lambda: {
                   "2025": {
                       "fantasy_points": 0.0,
-                      "games": set()
+                      "games": set(),
+                      "game_points": defaultdict(float)
                   },
                   "2026": {
                       "fantasy_points": 0.0,
-                      "games": set()
+                      "games": set(),
+                      "game_points": defaultdict(float)
                   }
               }
           )
@@ -4514,7 +4516,11 @@ jobs:
               ][
                   "fantasy_points"
               ] += fantasy_points
-
+              defense_position_totals[key][
+                  row_season
+              ][
+                  "game_points"
+              ][game_id] += fantasy_points
               defense_position_totals[key][
                   row_season
               ][
@@ -4535,6 +4541,14 @@ jobs:
                   season_2026["games"]
               )
 
+              recent_2026_game_points = sorted(
+                  season_2026["game_points"].items(),
+                  key=lambda item: int(
+                      item[0].split("-")[-1]
+                  ),
+                  reverse=True
+              )[:3]
+
               average_2025 = (
                   season_2025["fantasy_points"] /
                   games_2025
@@ -4542,13 +4556,18 @@ jobs:
                   else None
               )
 
-              average_2026 = (
-                  season_2026["fantasy_points"] /
-                  games_2026
-                  if games_2026 > 0
+            average_2026 = (
+                  sum(
+                      fantasy_points
+                      for (
+                          game_id,
+                          fantasy_points
+                      ) in recent_2026_game_points
+                  ) /
+                  len(recent_2026_game_points)
+                  if recent_2026_game_points
                   else None
               )
-
               if games_2025 == 0 and games_2026 == 0:
                   continue
 
@@ -4579,7 +4598,9 @@ jobs:
                       else None
                   ),
                   "sample_size_2025": games_2025,
-                  "sample_size_2026": games_2026,
+                  "sample_size_2026": len(
+                      recent_2026_game_points
+                  ),
                   "blend_source": blend_source
               }
           print(
@@ -6550,7 +6571,10 @@ jobs:
 
               if (
                   stored_sample_2025 != games_2025 or
-                  stored_sample_2026 != games_2026
+                  stored_sample_2026 != min(
+                      games_2026,
+                      3
+                  )
               ):
                   invalid_defensive_blends.append(
                       (
@@ -6572,13 +6596,26 @@ jobs:
                   else None
               )
 
+              recent_2026_game_points = sorted(
+                  season_2026["game_points"].items(),
+                  key=lambda item: int(
+                      item[0].split("-")[-1]
+                  ),
+                  reverse=True
+              )[:3]
+
               average_2026 = (
-                  season_2026["fantasy_points"] /
-                  games_2026
-                  if games_2026 > 0
+                  sum(
+                      fantasy_points
+                      for (
+                          game_id,
+                          fantasy_points
+                      ) in recent_2026_game_points
+                  ) /
+                  len(recent_2026_game_points)
+                  if recent_2026_game_points
                   else None
               )
-
               prior_weight = float(
                   stored.get(
                       "prior_season_weight_games",
@@ -7011,10 +7048,8 @@ jobs:
                           values
                       )
 
-                      if sample_size >= 4:
+                       if sample_size >= 3:
                           confidence = 1.0
-                      elif sample_size == 3:
-                          confidence = 0.8
                       elif sample_size == 2:
                           confidence = 0.6
                       elif sample_size == 1:
@@ -7084,10 +7119,8 @@ jobs:
                       values
                   )
 
-                  if sample_size >= 4:
+                   if sample_size >= 3:
                       confidence = 1.0
-                  elif sample_size == 3:
-                      confidence = 0.8
                   elif sample_size == 2:
                       confidence = 0.6
                   elif sample_size == 1:
