@@ -2659,6 +2659,7 @@ function renderPlayerCard(
   return `
 
     <article class="player-result-card">
+      <div class="player-comparison-header">
       <div class="player-result-top">
         <div>
           <h3 class="player-name">${player.name}</h3>
@@ -2770,6 +2771,7 @@ function renderPlayerCard(
       `
   }
 </div>
+      </div>
 
       <div class="metrics-section">
   ${
