@@ -1314,12 +1314,6 @@ footer a {
 
 @media (min-width: 901px) {
   .results .player-comparison-header {
-    height: 390px;
-  }
-}
-@media (min-width: 901px) {
-  .results .player-results-grid:has(.injury-opportunity-boost)
-    .player-comparison-header {
     height: 520px;
   }
 }
