@@ -1311,6 +1311,11 @@ footer a {
     min-height: 72px;
   }
 }
+@media (min-width: 901px) {
+  .results .player-comparison-header {
+    min-height: 390px;
+  }
+}
 .player-status span {
   padding: 6px 9px;
   background: #29384b;
