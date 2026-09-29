@@ -2083,14 +2083,19 @@ function calculateScore(player, profile) {
   const fallbackNflId =
     player.nflId ||
     Object.entries(nflPlayerLookup).find(
-      ([id, nfl]) =>
-        normalizeLookupName(player.name) ===
-          normalizeLookupName(nfl.name) &&
-        player.position === nfl.position &&
-        normalizeLookupTeam(player.team) ===
-          normalizeLookupTeam(nfl.team)
-    )?.[0];
+      ([id, nfl]) => {
+        const normalizeTeam = team =>
+          ({ LA: "LAR", JAC: "JAX", WSH: "WAS" })[team] || team;
 
+        return (
+          normalizeName(player.name) ===
+            normalizeName(nfl.name) &&
+          player.position === nfl.position &&
+          normalizeTeam(player.team) ===
+            normalizeTeam(nfl.team)
+        );
+      }
+    )?.[0];
   const rookieScore = fallbackNflId
     ? fantasyAiScores[fallbackNflId]
     : null;
