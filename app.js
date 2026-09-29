@@ -2828,15 +2828,30 @@ function renderPlayerCard(
           <div class="metric-label-row">
             <span class="metric-name">
               Signal 10 · Trench Matchup
+
+              <button
+                type="button"
+                class="metric-info-button"
+                aria-label="Explain Trench Matchup"
+                onclick="
+                  this.closest('.metric-row')
+                    .querySelector('.metric-explanation')
+                    .classList.toggle('active')
+                "
+              >
+                i
+              </button>
             </span>
+
             <strong>
-                ${trench
+              ${trench
                 ? trench.score.toFixed(1) + "/100"
                 : gameCompleted
                   ? "Game completed"
                   : "Data unavailable"}
             </strong>
           </div>
+
           ${trench
             ? `<div class="metric-track">
                  <div class="metric-fill"
@@ -2844,19 +2859,25 @@ function renderPlayerCard(
                  </div>
                </div>`
             : ""}
-          <p class="trench-note">
-            ${trench
-              ? `Offensive line vs. ${trench.opponent} defensive front.
-                 ${trench.injuryAdjusted
-                   ? "Pregame OL availability adjusted."
-                   : "Team-level matchup only; OL injury adjustment unavailable."}`
-              : gameCompleted
-                ? "This matchup has recorded game statistics; the pregame trench signal is no longer applicable."
-                : "No verified pregame trench matchup data for this opponent."}
-            Experimental team-level signal; 7% model weight when available.
-          </p>
+
+          <div class="metric-explanation">
+            <div class="metric-explanation-heading">
+              <strong>Trench Matchup</strong>
+              <span>7% of Balanced score when available</span>
+            </div>
+
+            <p>
+              ${trench
+                ? `Measures the offensive line matchup against the ${trench.opponent} defensive front.
+                   ${trench.injuryAdjusted
+                     ? "Pregame offensive-line availability is included in the matchup."
+                     : "This is currently a team-level matchup; offensive-line injury adjustment is unavailable."}`
+                : gameCompleted
+                  ? "This matchup has recorded game statistics, so the pregame trench signal is no longer applicable."
+                  : "No verified pregame trench matchup data is available for this opponent."}
+            </p>
+          </div>
         </div>
-      </div>
         `}
       </article>
   `;
