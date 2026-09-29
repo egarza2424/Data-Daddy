@@ -2095,13 +2095,22 @@ function calculateScore(player, profile) {
     ? fantasyAiScores[fallbackNflId]
     : null;
  
-  const useRookieAdjustedScore =
-    rookieScore?.available === true &&
-    rookieScore.rookie_prior_adjustment?.applied === true &&
-    Number.isFinite(rookieScore.score);
+  const rookieAdjustment =
+    rookieScore?.rookie_prior_adjustment;
 
-  const scoringBase = useRookieAdjustedScore
-    ? rookieScore.score
+  const useRookiePrior =
+    rookieScore?.available === true &&
+    rookieAdjustment?.eligible === true &&
+    rookieAdjustment?.applied === true &&
+    Number.isFinite(rookieAdjustment.prior_score) &&
+    Number.isFinite(rookieAdjustment.weight) &&
+    rookieAdjustment.weight > 0;
+
+  const scoringBase = useRookiePrior
+    ? (
+        score * (1 - rookieAdjustment.weight) +
+        rookieAdjustment.prior_score * rookieAdjustment.weight
+      )
     : score;
 
   const adjustedScore = Math.min(
@@ -2220,13 +2229,6 @@ function calculateInjuryOpportunityBoost(player) {
       ["WR", "TE"].includes(player.position)
     ) {
       contribution += 3 * multiplier;
-    }
-
-    if (
-      absentPlayer.position === "RB" &&
-      ["WR", "TE"].includes(player.position)
-    ) {
-      contribution += 1 * multiplier;
     }
 
     // Respect the existing eight-point total cap.
