@@ -4561,8 +4561,6 @@ jobs:
                   ),
                   "sample_size_2025": games_2025,
                   "sample_size_2026": games_2026,
-                  "prior_season_weight_games":
-                      prior_season_weight_games,
                   "blend_source": blend_source
               }
           print(
