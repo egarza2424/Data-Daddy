@@ -7961,10 +7961,8 @@ jobs:
                   values
               )
 
-              if sample_size >= 4:
+              if sample_size >= 3:
                   confidence = 1.0
-              elif sample_size == 3:
-                  confidence = 0.8
               elif sample_size == 2:
                   confidence = 0.6
               elif sample_size == 1:
