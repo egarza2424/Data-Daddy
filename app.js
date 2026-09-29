@@ -2025,16 +2025,16 @@ function calculateScore(player, profile) {
       ? calculateInjuryOpportunityBoost(player)
       : 0;
 
-    const rookieScore = player.nflId
+  const rookieScore = player.nflId
     ? fantasyAiScores[player.nflId]
     : null;
 
-  const useRookiePrior =
+  const useRookieAdjustedScore =
     rookieScore?.available === true &&
-    rookieScore.rookie_prior_adjustment?.prior_only === true &&
+    rookieScore.rookie_prior_adjustment?.applied === true &&
     Number.isFinite(rookieScore.score);
 
-  const scoringBase = useRookiePrior
+  const scoringBase = useRookieAdjustedScore
     ? rookieScore.score
     : score;
 
