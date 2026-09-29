@@ -879,20 +879,24 @@ function calculateMatchupScore(player) {
     return 50;
   }
 
-  const opponentPointsAllowed =
-    Number(
-      opponentDefense[player.position]
-    );
+const opponentPointsAllowed =
+  Number(
+    opponentDefense[player.position]
+      ?.fantasy_points_allowed
+  );
 
-  const positionValues = Object.values(
-    defensePositionAllowed
-  )
-    .map((defense) =>
-      Number(defense[player.position])
+const positionValues = Object.values(
+  defensePositionAllowed
+)
+  .map((defense) =>
+    Number(
+      defense[player.position]
+        ?.fantasy_points_allowed
     )
-    .filter((value) =>
-      Number.isFinite(value)
-    );
+  )
+  .filter((value) =>
+    Number.isFinite(value)
+  );
 
   if (positionValues.length < 2) {
     return 50;
