@@ -4069,16 +4069,7 @@ jobs:
           for matchup_key, matchup_games in (
               play_caller_matchup_history.items()
           ):
-            current_season_games = [
-                game
-                for game in matchup_games
-                if game["season"] == 2026
-            ]
-
-            if len(current_season_games) >= 3:
-                recent_games = current_season_games[:4]
-            else:
-                recent_games = matchup_games[:4]
+              recent_games = matchup_games[:4]
                 
             average_ppr = sum(
                 game["ppr_points"]
@@ -4179,16 +4170,7 @@ jobs:
           for matchup_key, matchup_games in (
               player_vs_defensive_caller_history.items()
           ):
-              current_season_games = [
-                  game
-                  for game in matchup_games
-                  if game["season"] == 2026
-              ]
-
-              if len(current_season_games) >= 3:
-                  recent_games = current_season_games[:4]
-              else:
-                  recent_games = matchup_games[:4]
+              recent_games = matchup_games[:4]
               average_ppr = sum(
                   game["ppr_points"]
                   for game in recent_games
@@ -4551,39 +4533,12 @@ jobs:
               if games_2025 == 0 and games_2026 == 0:
                   continue
 
-              prior_season_weight_games = 4.0
-
-              if (
-                  games_2026 >= 3 and
-                  average_2026 is not None
-              ):
+              if average_2026 is not None:
                   blended_average = average_2026
                   blend_source = "2026_only"
-
-              elif (
-                  average_2025 is not None and
-                  average_2026 is not None
-              ):
-                  blended_average = (
-                      season_2026["fantasy_points"] +
-                      (
-                          average_2025 *
-                          prior_season_weight_games
-                      )
-                  ) / (
-                      games_2026 +
-                      prior_season_weight_games
-                  )
-                  blend_source = "2025_2026_progressive"
-
-              elif average_2026 is not None:
-                  blended_average = average_2026
-                  blend_source = "2026_only"
-
               else:
-                  blended_average = average_2025
-                  blend_source = "2025_only"
-
+                  blended_average = None
+                  blend_source = "unavailable"
               if defense not in defense_position_allowed:
                   defense_position_allowed[defense] = {}
 
@@ -6521,9 +6476,8 @@ jobs:
           # ---------------------------------------------
 
           defensive_blend_source_counts = {
-              "2025_2026_progressive": 0,
               "2026_only": 0,
-              "2025_only": 0
+              "unavailable": 0
           }
 
           defensive_2026_sample_counts = defaultdict(int)
@@ -6615,43 +6569,12 @@ jobs:
                   ) or 0.0
               )
 
-              if (
-                  games_2026 >= 3 and
-                  average_2026 is not None
-              ):
+              if average_2026 is not None:
                   expected_blend = average_2026
                   expected_source = "2026_only"
-
-              elif (
-                  average_2025 is not None and
-                  average_2026 is not None
-              ):
-                  expected_blend = (
-                      season_2026["fantasy_points"] +
-                      (
-                          average_2025 *
-                          prior_weight
-                      )
-                  ) / (
-                      games_2026 +
-                      prior_weight
-                  )
-
-                  expected_source = (
-                      "2025_2026_progressive"
-                  )
-
-              elif average_2026 is not None:
-                  expected_blend = average_2026
-                  expected_source = "2026_only"
-
-              elif average_2025 is not None:
-                  expected_blend = average_2025
-                  expected_source = "2025_only"
-
               else:
-                  continue
-
+                  expected_blend = None
+                  expected_source = "unavailable"
               actual_blend = stored.get(
                   "fantasy_points_allowed"
               )
@@ -6672,10 +6595,14 @@ jobs:
                   ] += 1
 
               if (
-                  actual_blend != round(
-                      expected_blend,
-                      2
-                  ) or
+              expected_blend_rounded = (
+                  round(expected_blend, 2)
+                  if expected_blend is not None
+                  else None
+              )
+
+              if (
+                  actual_blend != expected_blend_rounded or
                   actual_source != expected_source
               ):
                   invalid_defensive_blends.append(
@@ -6683,12 +6610,11 @@ jobs:
                           defense,
                           position,
                           actual_blend,
-                          round(expected_blend, 2),
+                          expected_blend_rounded,
                           actual_source,
                           expected_source
                       )
                   )
-
           if invalid_defensive_blends:
               raise RuntimeError(
                   "Defensive season-blend validation "
@@ -7769,16 +7695,11 @@ jobs:
                   reverse=True
               )
 
-              current_season_games = [
+              recent_games = [
                   game
                   for game in player_games
                   if game["season"] == 2026
-              ]
-
-              if len(current_season_games) >= 3:
-                  recent_games = current_season_games[:4]
-              else:
-                  recent_games = player_games[:4]
+              ][:4]
               average_ppr = sum(
                   game["ppr_points"]
                   for game in recent_games
@@ -8165,17 +8086,11 @@ jobs:
                   reverse=True
               )
 
-              current_season_games = [
+              recent_games = [
                   game
                   for game in player_games
                   if game["season"] == 2026
-              ]
-
-              if len(current_season_games) >= 3:
-                  recent_games = current_season_games[:4]
-              else:
-                  recent_games = player_games[:4]
-
+              ][:4]
               average_opportunity = sum(
                   game["opportunity_value"]
                   for game in recent_games
@@ -8754,16 +8669,11 @@ jobs:
                   reverse=True
               )
 
-              current_season_games = [
+              recent_games = [
                   game
                   for game in player_games
                   if game["season"] == 2026
-              ]
-
-              if len(current_season_games) >= 3:
-                  recent_games = current_season_games[:4]
-              else:
-                  recent_games = player_games[:4]
+              ][:4]
               average_red_zone_opportunity = sum(
                   game["red_zone_opportunity"]
                   for game in recent_games
