@@ -2827,7 +2827,7 @@ function renderPlayerCard(
         <div class="metric-row trench-signal">
           <div class="metric-label-row">
             <span class="metric-name">
-              Signal 10 · Trench Matchup
+              Trench Matchup
 
               <button
                 type="button"
