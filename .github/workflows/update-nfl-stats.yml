@@ -4070,28 +4070,28 @@ jobs:
               play_caller_matchup_history.items()
           ):
               recent_games = matchup_games[:4]
-                
-            average_ppr = sum(
-                game["ppr_points"]
-                for game in recent_games
-            ) / len(recent_games)
 
-            key_string = "|".join(
-                matchup_key
-            )
+              average_ppr = sum(
+                  game["ppr_points"]
+                  for game in recent_games
+              ) / len(recent_games)
 
-            play_caller_matchups[
-                key_string
-            ] = {
+              key_string = "|".join(
+                  matchup_key
+              )
+
+              play_caller_matchups[
+                  key_string
+              ] = {
                   "average_ppr": round(
-                  average_ppr,
-                  2
-            ),
+                      average_ppr,
+                      2
+                  ),
                   "sample_size": len(
                       recent_games
-            ),
+                  ),
                   "games": recent_games
-            }
+              }
           print(
               "Created "
               f"{len(play_caller_matchups)} "
