@@ -2080,8 +2080,19 @@ function calculateScore(player, profile) {
       ? calculateInjuryOpportunityBoost(player)
       : 0;
 
-  const rookieScore = player.nflId
-    ? fantasyAiScores[player.nflId]
+  const fallbackNflId =
+    player.nflId ||
+    Object.entries(nflPlayerLookup).find(
+      ([id, nfl]) =>
+        normalizeLookupName(player.name) ===
+          normalizeLookupName(nfl.name) &&
+        player.position === nfl.position &&
+        normalizeLookupTeam(player.team) ===
+          normalizeLookupTeam(nfl.team)
+    )?.[0];
+
+  const rookieScore = fallbackNflId
+    ? fantasyAiScores[fallbackNflId]
     : null;
  
   const useRookieAdjustedScore =
