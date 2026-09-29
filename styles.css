@@ -1537,11 +1537,9 @@ footer a {
   opacity: 1 !important;
 }
 
-/* Signal 10 — experimental trench matchup */
+/* Trench matchup */
 .results .trench-signal {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid #43536b;
+  margin-top: 13px;
 }
 
 .results .trench-signal .metric-name,
