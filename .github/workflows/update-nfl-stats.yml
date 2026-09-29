@@ -4556,7 +4556,7 @@ jobs:
                   else None
               )
 
-            average_2026 = (
+              average_2026 = (
                   sum(
                       fantasy_points
                       for (
@@ -7048,7 +7048,7 @@ jobs:
                           values
                       )
 
-                       if sample_size >= 3:
+                      if sample_size >= 3:
                           confidence = 1.0
                       elif sample_size == 2:
                           confidence = 0.6
@@ -7119,7 +7119,7 @@ jobs:
                       values
                   )
 
-                   if sample_size >= 3:
+                  if sample_size >= 3:
                       confidence = 1.0
                   elif sample_size == 2:
                       confidence = 0.6
@@ -8717,7 +8717,7 @@ jobs:
                   reverse=True
               )
 
-               recent_games = [
+              recent_games = [
                   game
                   for game in player_games
                   if game["season"] == 2026
