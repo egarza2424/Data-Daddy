@@ -1311,10 +1311,10 @@ footer a {
     min-height: 72px;
   }
 }
-@media (min-width: 901px) {
-  .results .player-comparison-header {
-    height: 390px;
-  }
+.results .player-comparison-header {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 4;
 }
 .player-status span {
   padding: 6px 9px;
