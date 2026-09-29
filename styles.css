@@ -909,6 +909,7 @@ footer a {
 .why-section {
   margin-top: 1.25rem;
   margin-bottom: 1.5rem;
+  min-height: 132px;
 }
 
 .why-section h4 {
