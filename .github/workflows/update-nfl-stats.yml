@@ -7697,11 +7697,14 @@ jobs:
                   for game in player_games
                   if game["season"] == 2026
               ][:4]
+
+              if not recent_games:
+                  continue
+
               average_ppr = sum(
                   game["ppr_points"]
                   for game in recent_games
               ) / len(recent_games)
-
               recent_player_performance[
                   player_id
               ] = {
