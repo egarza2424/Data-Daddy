@@ -5,6 +5,8 @@ on:
 
   schedule:
     - cron: "0 22 * * 2"
+    - cron: "0 1 * * 3"
+    - cron: "0 4 * * 3"
 
 permissions:
   contents: write
@@ -307,11 +309,22 @@ jobs:
           )
 
           if target_week not in available_weeks:
-              raise SystemExit(
+              print(
                   f"Actual stats for NFL Week {target_week} "
-                  "are not available yet. "
-                  f"Available weeks: {available_weeks}"
+                  "are not available yet."
               )
+
+              print(
+                  f"Available completed weeks: "
+                  f"{available_weeks}"
+              )
+
+              print(
+                  "Validation will wait for the next "
+                  "scheduled run."
+              )
+
+              raise SystemExit(0)
 
           actual = weekly[
               weekly["week"].eq(target_week)
