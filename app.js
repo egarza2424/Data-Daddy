@@ -2336,10 +2336,9 @@ if (
     const depthOrder =
       Number(player.depthChartOrder || 0);
 
-    if (position === "QB") {
-      return depthOrder === 1 || hasStats;
-    }
-
+if (position === "QB") {
+  return depthOrder === 1;
+}
     if (position === "RB") {
       return (
         (depthOrder >= 1 && depthOrder <= 3) ||
