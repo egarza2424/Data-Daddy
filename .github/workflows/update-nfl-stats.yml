@@ -4761,6 +4761,46 @@ jobs:
           team_next_opponent = {}
 
           for game in upcoming_games:
+              away_team_raw = game["away_team"]
+              home_team_raw = game["home_team"]
+
+              normalized_away_team = (
+                  "LAR"
+                  if away_team_raw == "LA"
+                  else away_team_raw
+              )
+
+              normalized_home_team = (
+                  "LAR"
+                  if home_team_raw == "LA"
+                  else home_team_raw
+              )
+
+              expected_away_matchup = (
+                  team_next_opponent.get(
+                      normalized_away_team,
+                      {}
+                  )
+              )
+
+              expected_home_matchup = (
+                  team_next_opponent.get(
+                      normalized_home_team,
+                      {}
+                  )
+              )
+
+              if (
+                  expected_away_matchup.get("week")
+                  != game["week"] or
+                  expected_away_matchup.get("opponent")
+                  != normalized_home_team or
+                  expected_home_matchup.get("week")
+                  != game["week"] or
+                  expected_home_matchup.get("opponent")
+                  != normalized_away_team
+              ):
+                  continue
               away_team = game["away_team"]
               home_team = game["home_team"]
 
@@ -4769,6 +4809,9 @@ jobs:
 
               if home_team == "LA":
                   home_team = "LAR"
+              spread_line = game.get(
+                  "spread_line"
+              )                  
 
               if away_team not in team_next_opponent:
                   team_next_opponent[away_team] = {
