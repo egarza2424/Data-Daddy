@@ -43,129 +43,142 @@ jobs:
               headless: true
             });
 
-            const page = await browser.newPage({
-              acceptDownloads: true
-            });
+            try {
+              const page = await browser.newPage({
+                acceptDownloads: true
+              });
 
-            console.log("Opening Fantasy AI Player Lab...");
+              console.log("Opening Fantasy AI Player Lab...");
 
-            await page.goto(
-              "https://egarza2424.github.io/Fantasy-AI-Player-Lab/",
-              {
-                waitUntil: "networkidle",
-                timeout: 120000
-              }
-            );
-            console.log(
-              "Website loaded. Waiting for Export Snapshot button..."
-            );
-
-            await page.waitForSelector(
-              "#exportSnapshotBtn",
-              {
-                state: "visible",
-                timeout: 120000
-              }
-            );
-
-            console.log(
-              "Export Snapshot button is ready."
-            ); 
-
-              "Automatically detected target week:",
-              week
-            );
-            const downloadPromise =
-              page.waitForEvent("download");
-
-            await page.click(
-              "#exportSnapshotBtn"
-            );
-            const download = await downloadPromise;
-
-            const week =
-              new Date().toISOString().slice(0, 10);
-
-            const filename =
-              `2026-${week}-pregame-model-snapshot.csv`;
-
-             const destination = path.join(
-              "model-snapshots",
-              filename
-            );
-
-            if (fs.existsSync(destination)) {
-              throw new Error(
-                `Pregame snapshot already exists for ${week}: ${destination}`
+              await page.goto(
+                "https://egarza2424.github.io/Fantasy-AI-Player-Lab/",
+                {
+                  waitUntil: "networkidle",
+                  timeout: 120000
+                }
               );
-            }
 
-            await download.saveAs(destination);
-
-            console.log(
-              `Snapshot saved to ${destination}`
-            );
-
-            if (!fs.existsSync(destination)) {
-              throw new Error(
-                "Snapshot CSV was not created."
+              console.log(
+                "Website loaded. Waiting for Export Snapshot button..."
               );
-            }
 
-            const csv =
-              fs.readFileSync(destination, "utf8");
-
-            const lines =
-              csv.trim().split(/\r?\n/);
-
-            console.log(
-              "Snapshot player rows:",
-              Math.max(0, lines.length - 1)
-            );
-
-            if (lines.length < 2) {
-              throw new Error(
-                "Snapshot CSV contains no player rows."
+              await page.waitForSelector(
+                "#exportSnapshotBtn",
+                {
+                  state: "visible",
+                  timeout: 120000
+                }
               );
-            }
 
-            const requiredColumns = [
-              "opportunity_score",
-              "production_score",
-              "usage_score",
-              "play_caller_matchup_score",
-              "player_vs_defensive_caller_score",
-              "matchup_score",
-              "redzone_score",
-              "expert_score",
-              "risk_score",
-              "trench_score",
-              "model_score",
-              "position_rank"
-            ];
+              console.log(
+                "Export Snapshot button is ready."
+              );
 
-            const header = lines[0];
+              const downloadPromise =
+                page.waitForEvent("download", {
+                  timeout: 120000
+                });
 
-            for (const column of requiredColumns) {
-              if (!header.includes(column)) {
+              await page.click("#exportSnapshotBtn");
+
+              const download =
+                await downloadPromise;
+
+              const snapshotDate =
+                new Date()
+                  .toISOString()
+                  .slice(0, 10);
+
+              const filename =
+                `2026-${snapshotDate}-pregame-model-snapshot.csv`;
+
+              const destination =
+                path.join(
+                  "model-snapshots",
+                  filename
+                );
+
+              if (fs.existsSync(destination)) {
                 throw new Error(
-                  `Missing required snapshot column: ${column}`
+                  `Pregame snapshot already exists for ${snapshotDate}: ${destination}`
                 );
               }
+
+              await download.saveAs(destination);
+
+              console.log(
+                `Snapshot saved to ${destination}`
+              );
+
+              if (!fs.existsSync(destination)) {
+                throw new Error(
+                  "Snapshot CSV was not created."
+                );
+              }
+
+              const csv =
+                fs.readFileSync(
+                  destination,
+                  "utf8"
+                );
+
+              const lines =
+                csv
+                  .trim()
+                  .split(/\r?\n/);
+
+              console.log(
+                "Snapshot player rows:",
+                Math.max(
+                  0,
+                  lines.length - 1
+                )
+              );
+
+              if (lines.length < 2) {
+                throw new Error(
+                  "Snapshot CSV contains no player rows."
+                );
+              }
+
+              const requiredColumns = [
+                "opportunity_score",
+                "production_score",
+                "usage_score",
+                "play_caller_matchup_score",
+                "player_vs_defensive_caller_score",
+                "matchup_score",
+                "redzone_score",
+                "expert_score",
+                "risk_score",
+                "trench_score",
+                "model_score",
+                "position_rank"
+              ];
+
+              const header = lines[0];
+
+              for (
+                const column of requiredColumns
+              ) {
+                if (!header.includes(column)) {
+                  throw new Error(
+                    `Missing required snapshot column: ${column}`
+                  );
+                }
+              }
+
+              console.log(
+                "Snapshot contains all required model columns."
+              );
+            } finally {
+              await browser.close();
             }
-
-            console.log(
-              "Snapshot contains all required model columns."
-            );
-
-            await browser.close();
-          })().catch(error => {
+          })().catch((error) => {
             console.error(error);
             process.exit(1);
           });
           NODE
-
-      - name: Show generated snapshot
         run: |
           ls -lh model-snapshots/
           head -n 2 model-snapshots/*.csv
