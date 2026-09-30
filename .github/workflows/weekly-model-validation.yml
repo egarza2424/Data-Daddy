@@ -25,63 +25,98 @@ jobs:
       - name: Install validation packages
         run: |
           python -m pip install --upgrade pip
-          pip install pandas scipy nfl_data_py
+          pip install pandas scipy
 
       - name: Find latest frozen pregame snapshot
         id: snapshot
-        run: |
-          python <<'PY'
-          from pathlib import Path
-
-          files = sorted(
-              Path("model-snapshots").glob(
-                  "*-pregame-model-snapshot.csv"
-              )
-          )
-
-          if not files:
-              raise SystemExit(
-                  "No frozen pregame snapshot found."
-              )
-
-          snapshot = files[-1]
-
-          print(
-              f"Using frozen snapshot: {snapshot}"
-          )
-
-          with open(
-              Path(
-                  __import__("os").environ[
-                      "GITHUB_OUTPUT"
-                  ]
-              ),
-              "a"
-          ) as output:
-              output.write(
-                  f"snapshot={snapshot}\n"
-              )
-          PY
-
-      - name: Validate frozen rankings
-        env:
-          SNAPSHOT: ${{ steps.snapshot.outputs.snapshot }}
         run: |
           python <<'PY'
           import os
           import re
           from pathlib import Path
 
+          files = list(
+              Path("model-snapshots").glob(
+                  "2026-week*-pregame-model-snapshot.csv"
+              )
+          )
+
+          if not files:
+              raise SystemExit(
+                  "No week-numbered frozen pregame snapshot found."
+              )
+
+          def snapshot_week(path):
+              match = re.search(
+                  r"2026-week(\d+)-pregame-model-snapshot\.csv$",
+                  path.name
+              )
+
+              if not match:
+                  return -1
+
+              return int(match.group(1))
+
+          snapshot = max(
+              files,
+              key=snapshot_week
+          )
+
+          week = snapshot_week(snapshot)
+
+          if week <= 0:
+              raise SystemExit(
+                  "Could not determine snapshot week."
+              )
+
+          print(
+              f"Using frozen snapshot: {snapshot}"
+          )
+
+          print(
+              f"Frozen NFL Week: {week}"
+          )
+
+          with open(
+              os.environ["GITHUB_OUTPUT"],
+              "a"
+          ) as output:
+              output.write(
+                  f"snapshot={snapshot}\n"
+              )
+              output.write(
+                  f"week={week}\n"
+              )
+          PY
+
+      - name: Validate frozen rankings
+        env:
+          SNAPSHOT: ${{ steps.snapshot.outputs.snapshot }}
+          TARGET_WEEK: ${{ steps.snapshot.outputs.week }}
+        run: |
+          python <<'PY'
+          import io
+          import os
+          import urllib.request
+          from pathlib import Path
+
           import pandas as pd
           from scipy.stats import spearmanr
-          import nfl_data_py as nfl
 
           snapshot_path = Path(
               os.environ["SNAPSHOT"]
           )
 
+          target_week = int(
+              os.environ["TARGET_WEEK"]
+          )
+
           print(
-              f"Loading snapshot: {snapshot_path}"
+              f"Loading frozen snapshot: {snapshot_path}"
+          )
+
+          print(
+              f"Validating NFL Week {target_week}"
           )
 
           predictions = pd.read_csv(
@@ -108,80 +143,145 @@ jobs:
 
           missing = [
               column
-              for column
-              in required_prediction_columns
+              for column in required_prediction_columns
               if column not in predictions.columns
           ]
 
           if missing:
               raise SystemExit(
-                  "Snapshot is missing columns: "
+                  "Snapshot is missing required columns: "
                   + ", ".join(missing)
               )
 
           predictions["player_id"] = (
               predictions["player_id"]
               .astype(str)
-              .str.replace(r"\.0$", "", regex=True)
+              .str.replace(
+                  r"\.0$",
+                  "",
+                  regex=True
+              )
+              .str.strip()
           )
 
           predictions["position"] = (
               predictions["position"]
               .astype(str)
               .str.upper()
+              .str.strip()
           )
 
-          snapshot_name = snapshot_path.name
+          predictions = predictions[
+              predictions["position"].isin(
+                  ["QB", "RB", "WR", "TE"]
+              )
+          ].copy()
 
-          week_match = re.search(
-              r"2026-week(\d+)-pregame-model-snapshot\.csv$",
-              snapshot_name
+          predictions["position_rank"] = (
+              pd.to_numeric(
+                  predictions["position_rank"],
+                  errors="coerce"
+              )
           )
 
-          if not week_match:
+          if predictions["position_rank"].isna().any():
               raise SystemExit(
-                  "Could not determine NFL week "
-                  f"from snapshot filename: {snapshot_name}"
+                  "Snapshot contains invalid position ranks."
               )
 
-          target_week = int(
-              week_match.group(1)
+          predictions["position_rank"] = (
+              predictions["position_rank"]
+              .astype(int)
+          )
+
+          stats_url = (
+              "https://github.com/"
+              "nflverse/nflverse-data/"
+              "releases/download/stats_player/"
+              "stats_player_week_2026.csv"
           )
 
           print(
-              f"Frozen snapshot NFL Week: {target_week}"
+              "Downloading actual 2026 player stats:"
+          )
+
+          print(stats_url)
+
+          try:
+              with urllib.request.urlopen(
+                  stats_url,
+                  timeout=120
+              ) as response:
+                  stats_content = (
+                      response
+                      .read()
+                      .decode("utf-8")
+                  )
+          except Exception as error:
+              raise SystemExit(
+                  "Could not download 2026 player stats: "
+                  f"{error}"
+              )
+
+          weekly = pd.read_csv(
+              io.StringIO(stats_content),
+              low_memory=False
           )
 
           print(
-              "Downloading 2026 weekly stats..."
+              f"Downloaded {len(weekly)} "
+              "2026 player-week rows."
           )
 
-          weekly = nfl.import_weekly_data(
-              [2026]
-          )
+          required_actual_columns = [
+              "player_id",
+              "position",
+              "week",
+              "season_type",
+              "passing_yards",
+              "passing_tds",
+              "interceptions",
+              "rushing_yards",
+              "rushing_tds",
+              "receptions",
+              "receiving_yards",
+              "receiving_tds",
+          ]
 
-          if weekly.empty:
+          missing_actual = [
+              column
+              for column in required_actual_columns
+              if column not in weekly.columns
+          ]
+
+          if missing_actual:
               raise SystemExit(
-                  "No 2026 weekly NFL data returned."
+                  "NFL stats are missing required columns: "
+                  + ", ".join(missing_actual)
               )
 
-          weekly["player_id"] = (
-              weekly["player_id"]
-              .astype(str)
-              .str.replace(r"\.0$", "", regex=True)
+          weekly["week"] = pd.to_numeric(
+              weekly["week"],
+              errors="coerce"
           )
-
-          if "fantasy_points_ppr" not in weekly.columns:
-              raise SystemExit(
-                  "fantasy_points_ppr is missing "
-                  "from weekly stats."
-              )
 
           available_weeks = sorted(
-              weekly["week"]
+              weekly.loc[
+                  weekly["season_type"]
+                  .fillna("REG")
+                  .astype(str)
+                  .isin(["REG", ""]),
+                  "week"
+              ]
               .dropna()
               .astype(int)
               .unique()
+              .tolist()
+          )
+
+          print(
+              "Available 2026 regular-season weeks:",
+              available_weeks
           )
 
           if target_week not in available_weeks:
@@ -191,24 +291,22 @@ jobs:
                   f"Available weeks: {available_weeks}"
               )
 
-          print(
-              f"Validating frozen NFL Week {target_week}"
-          )
           actual = weekly[
-              weekly["week"].astype(int)
-              == target_week
+              weekly["week"].eq(target_week)
           ].copy()
 
           actual = actual[
               actual["season_type"]
+              .fillna("REG")
               .astype(str)
-              .eq("REG")
+              .isin(["REG", ""])
           ].copy()
 
           actual["position"] = (
               actual["position"]
               .astype(str)
               .str.upper()
+              .str.strip()
           )
 
           actual = actual[
@@ -217,10 +315,52 @@ jobs:
               )
           ].copy()
 
+          actual["player_id"] = (
+              actual["player_id"]
+              .astype(str)
+              .str.replace(
+                  r"\.0$",
+                  "",
+                  regex=True
+              )
+              .str.strip()
+          )
+
+          stat_columns = [
+              "passing_yards",
+              "passing_tds",
+              "interceptions",
+              "rushing_yards",
+              "rushing_tds",
+              "receptions",
+              "receiving_yards",
+              "receiving_tds",
+          ]
+
+          for column in stat_columns:
+              actual[column] = (
+                  pd.to_numeric(
+                      actual[column],
+                      errors="coerce"
+                  )
+                  .fillna(0.0)
+              )
+
+          actual["actual_ppr"] = (
+              actual["passing_yards"] / 25.0
+              + actual["passing_tds"] * 4.0
+              - actual["interceptions"] * 2.0
+              + actual["rushing_yards"] / 10.0
+              + actual["rushing_tds"] * 6.0
+              + actual["receptions"]
+              + actual["receiving_yards"] / 10.0
+              + actual["receiving_tds"] * 6.0
+          )
+
           actual = (
               actual
               .sort_values(
-                  "fantasy_points_ppr",
+                  "actual_ppr",
                   ascending=False
               )
               .drop_duplicates(
@@ -229,29 +369,60 @@ jobs:
               )
           )
 
+          print(
+              f"Week {target_week} actual "
+              f"QB/RB/WR/TE rows: {len(actual)}"
+          )
+
           merged = predictions.merge(
               actual[
                   [
                       "player_id",
-                      "fantasy_points_ppr",
+                      "actual_ppr",
                   ]
               ],
               on="player_id",
               how="left",
-              validate="one_to_one",
+              validate="one_to_one"
           )
 
-          merged["actual_ppr"] = (
-              merged["fantasy_points_ppr"]
+          matched_count = int(
+              merged["actual_ppr"]
+              .notna()
+              .sum()
           )
 
+          unmatched_count = int(
+              merged["actual_ppr"]
+              .isna()
+              .sum()
+          )
+
+          print(
+              f"Matched snapshot players: {matched_count}"
+          )
+
+          print(
+              f"Snapshot players without Week "
+              f"{target_week} stats: {unmatched_count}"
+          )
+
+          # A frozen ranking contains players who may not
+          # record a stat in the target week. They remain in
+          # the evaluation population with 0 PPR.
           merged["actual_ppr"] = (
               merged["actual_ppr"]
               .fillna(0.0)
           )
 
+          # Rank actual fantasy performance separately
+          # within QB, RB, WR and TE.
+          #
+          # method="min" preserves ties:
+          # two players with equal PPR receive the same rank.
           merged["actual_rank"] = (
-              merged.groupby("position")[
+              merged
+              .groupby("position")[
                   "actual_ppr"
               ]
               .rank(
@@ -261,6 +432,11 @@ jobs:
               .astype(int)
           )
 
+          # Positive:
+          # model ranked player lower than actual finish.
+          #
+          # Negative:
+          # model ranked player higher than actual finish.
           merged["rank_difference"] = (
               merged["position_rank"]
               - merged["actual_rank"]
@@ -270,6 +446,28 @@ jobs:
               merged["rank_difference"]
               .abs()
           )
+
+          signal_columns = [
+              "opportunity_score",
+              "production_score",
+              "usage_score",
+              "play_caller_matchup_score",
+              "player_vs_defensive_caller_score",
+              "matchup_score",
+              "redzone_score",
+              "expert_score",
+              "risk_score",
+              "trench_score",
+          ]
+
+          for column in (
+              signal_columns
+              + ["model_score"]
+          ):
+              merged[column] = pd.to_numeric(
+                  merged[column],
+                  errors="coerce"
+              )
 
           report_columns = [
               "player_id",
@@ -293,15 +491,15 @@ jobs:
               "trench_score",
           ]
 
-          report = merged[
-              report_columns
-          ].copy()
-
-          report = report.sort_values(
-              [
-                  "position",
-                  "position_rank",
-              ]
+          report = (
+              merged[report_columns]
+              .sort_values(
+                  [
+                      "position",
+                      "position_rank",
+                  ]
+              )
+              .reset_index(drop=True)
           )
 
           output_dir = Path(
@@ -315,7 +513,10 @@ jobs:
 
           detail_path = (
               output_dir
-              / f"2026-week{target_week}-validation.csv"
+              / (
+                  f"2026-week{target_week}"
+                  "-validation.csv"
+              )
           )
 
           report.to_csv(
@@ -324,19 +525,7 @@ jobs:
           )
 
           summary_rows = []
-
-          signal_columns = [
-              "opportunity_score",
-              "production_score",
-              "usage_score",
-              "play_caller_matchup_score",
-              "player_vs_defensive_caller_score",
-              "matchup_score",
-              "redzone_score",
-              "expert_score",
-              "risk_score",
-              "trench_score",
-          ]
+          signal_rows = []
 
           for position in [
               "QB",
@@ -351,23 +540,22 @@ jobs:
               if group.empty:
                   continue
 
-              mae = (
+              mae = float(
                   group[
                       "absolute_rank_error"
-                  ]
-                  .mean()
+                  ].mean()
               )
 
               rank_rho = spearmanr(
                   group["position_rank"],
                   group["actual_rank"],
-                  nan_policy="omit",
+                  nan_policy="omit"
               ).statistic
 
               score_rho = spearmanr(
                   group["model_score"],
                   group["actual_ppr"],
-                  nan_policy="omit",
+                  nan_policy="omit"
               ).statistic
 
               summary_rows.append(
@@ -375,16 +563,24 @@ jobs:
                       "position": position,
                       "players": len(group),
                       "mean_absolute_rank_error":
-                          round(float(mae), 3),
+                          round(mae, 3),
                       "rank_spearman":
-                          round(
-                              float(rank_rho),
-                              3
+                          (
+                              round(
+                                  float(rank_rho),
+                                  3
+                              )
+                              if pd.notna(rank_rho)
+                              else None
                           ),
                       "score_vs_ppr_spearman":
-                          round(
-                              float(score_rho),
-                              3
+                          (
+                              round(
+                                  float(score_rho),
+                                  3
+                              )
+                              if pd.notna(score_rho)
+                              else None
                           ),
                   }
               )
@@ -393,50 +589,82 @@ jobs:
               print(
                   f"===== {position} ====="
               )
+
               print(
                   f"Players: {len(group)}"
               )
+
               print(
-                  f"MAE: {mae:.3f}"
+                  f"Mean absolute rank error: "
+                  f"{mae:.3f}"
               )
+
               print(
-                  "Rank Spearman:",
+                  f"Rank Spearman: "
                   f"{rank_rho:.3f}"
               )
+
               print(
-                  "Score/PPR Spearman:",
+                  f"Model score vs PPR Spearman: "
                   f"{score_rho:.3f}"
               )
 
               print()
               print(
-                  "Signal correlations "
+                  "10-signal correlations "
                   "with actual PPR:"
               )
 
               for signal in signal_columns:
                   valid = group[
-                      [signal, "actual_ppr"]
+                      [
+                          signal,
+                          "actual_ppr",
+                      ]
                   ].dropna()
 
                   if (
                       len(valid) < 3
-                      or valid[signal].nunique() < 2
-                      or valid[
-                          "actual_ppr"
-                      ].nunique() < 2
+                      or
+                      valid[signal].nunique() < 2
+                      or
+                      valid["actual_ppr"].nunique() < 2
                   ):
-                      rho = float("nan")
+                      rho = None
                   else:
-                      rho = spearmanr(
+                      result = spearmanr(
                           valid[signal],
-                          valid["actual_ppr"],
+                          valid["actual_ppr"]
                       ).statistic
 
-                  print(
-                      f"{signal}: "
-                      f"{rho:.3f}"
+                      rho = (
+                          float(result)
+                          if pd.notna(result)
+                          else None
+                      )
+
+                  signal_rows.append(
+                      {
+                          "position": position,
+                          "signal": signal,
+                          "players": len(valid),
+                          "spearman_vs_actual_ppr":
+                              (
+                                  round(rho, 3)
+                                  if rho is not None
+                                  else None
+                              ),
+                      }
                   )
+
+                  if rho is None:
+                      print(
+                          f"{signal}: unavailable"
+                      )
+                  else:
+                      print(
+                          f"{signal}: {rho:.3f}"
+                      )
 
           summary = pd.DataFrame(
               summary_rows
@@ -444,7 +672,10 @@ jobs:
 
           summary_path = (
               output_dir
-              / f"2026-week{target_week}-summary.csv"
+              / (
+                  f"2026-week{target_week}"
+                  "-summary.csv"
+              )
           )
 
           summary.to_csv(
@@ -452,20 +683,85 @@ jobs:
               index=False
           )
 
+          signal_report = pd.DataFrame(
+              signal_rows
+          )
+
+          signal_path = (
+              output_dir
+              / (
+                  f"2026-week{target_week}"
+                  "-signal-analysis.csv"
+              )
+          )
+
+          signal_report.to_csv(
+              signal_path,
+              index=False
+          )
+
+          # Save the largest ranking misses separately
+          # for easier weekly diagnosis.
+          misses = (
+              report
+              .sort_values(
+                  "absolute_rank_error",
+                  ascending=False
+              )
+              .head(50)
+          )
+
+          misses_path = (
+              output_dir
+              / (
+                  f"2026-week{target_week}"
+                  "-largest-misses.csv"
+              )
+          )
+
+          misses.to_csv(
+              misses_path,
+              index=False
+          )
+
           print()
           print(
-              f"Detailed report: {detail_path}"
+              "Validation complete."
           )
+
           print(
-              f"Summary report: {summary_path}"
+              f"Detailed player report: "
+              f"{detail_path}"
+          )
+
+          print(
+              f"Position summary: "
+              f"{summary_path}"
+          )
+
+          print(
+              f"Signal analysis: "
+              f"{signal_path}"
+          )
+
+          print(
+              f"Largest misses: "
+              f"{misses_path}"
           )
           PY
 
       - name: Show validation results
         run: |
+          echo "Generated validation files:"
           ls -lh model-validation/
+
           echo ""
+          echo "Position summary:"
           cat model-validation/*-summary.csv
+
+          echo ""
+          echo "Signal analysis:"
+          cat model-validation/*-signal-analysis.csv
 
       - name: Commit validation results
         run: |
