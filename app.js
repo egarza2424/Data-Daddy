@@ -2157,9 +2157,6 @@ function calculateScore(player, profile) {
   const trench = getTrenchMatchup(player);
   const scoringEnvironment =
     getScoringEnvironment(player);
-  const scoringEnvironment =
-    getScoringEnvironment(player);
-
   const trenchWeight =
     trench ? 0.07 : 0;
 
