@@ -56,9 +56,9 @@ const metricDescriptions = {
   Usage: {
     weight: "13.95%",
     description:
-      "Measures how heavily a player is involved in the offense. WR/TE uses team target share, RB uses team rushing-attempt share, and QB uses team rushing-attempt share."
-  },
-
+      "Measures a player's share of his team's offensive opportunities. QB uses team rushing-attempt share. RB, WR and TE combine team rushing-attempt share and team target share."
+},
+  
   Matchup: {
     weight: "9.30%",
     description:
@@ -414,125 +414,61 @@ function calculateUsageScore(player) {
   // Average rushing share across the QB's
   // three most recent games.
   if (player.position === "QB") {
-    let totalShare = 0;
-    let validGames = 0;
+  let totalShare = 0;
+  let validGames = 0;
 
-    games.forEach((game) => {
-      const season = Number(game.season);
-      const week = Number(game.week);
-      const team = game.team;
-
-      if (!season || !team || !week) {
-        return;
-      }
-
-      const teamGameRows =
-        getTeamGameRows(season, week, team);
-
-      const playerCarries = Number(
-        game.carries ||
-        game.rushing_attempts ||
-        0
-      );
-
-      const teamCarries = teamGameRows.reduce(
-        (total, row) =>
-          total +
-          Number(
-            row.carries ||
-            row.rushing_attempts ||
-            0
-          ),
-        0
-      );
-
-      if (teamCarries > 0) {
-        totalShare +=
-          playerCarries / teamCarries;
-
-        validGames += 1;
-      }
-    });
-
-    if (validGames === 0) {
-      return 50;
-    }
-
-    const averageShare =
-      totalShare / validGames;
-
-    return Math.max(
-      0,
-      Math.min(
-        100,
-        Math.round(averageShare * 100)
-      )
-    );
-  }
   games.forEach((game) => {
-  const season = Number(game.season);
-  const week = Number(game.week);
-  const team = game.team;
+    const season = Number(game.season);
+    const week = Number(game.week);
+    const team = game.team;
 
-  if (!season || !team || !week) {
-    return;
-  }
-
-  // Find everyone from the same team
-  // in the same season and game.
- 
-const teamGameRows =
-  getTeamGameRows(season, week, team);
-    // WR and TE:
-    // Player targets / total team targets.
-    if (
-      player.position === "WR" ||
-      player.position === "TE"
-    ) {
-      const playerTargets =
-        Number(game.targets || 0);
-
-      const teamTargets = teamGameRows.reduce(
-        (total, row) =>
-          total + Number(row.targets || 0),
-        0
-      );
-
-      if (teamTargets > 0) {
-        totalShare +=
-          playerTargets / teamTargets;
-
-        validGames += 1;
-      }
+    if (!season || !team || !week) {
+      return;
     }
 
-    // RB:
-    // Player rush attempts / total team rush attempts.
-    if (player.position === "RB") {
-      const playerCarries = Number(
-        game.carries ||
-        game.rushing_attempts ||
-        0
-      );
+    const teamGameRows =
+      getTeamGameRows(season, week, team);
 
-      const teamCarries = teamGameRows.reduce(
-        (total, row) =>
-          total +
-          Number(
-            row.carries ||
-            row.rushing_attempts ||
-            0
-          ),
-        0
-      );
+    const playerCarries = Number(
+      game.carries ||
+      game.rushing_attempts ||
+      0
+    );
 
-      if (teamCarries > 0) {
-        totalShare +=
-          playerCarries / teamCarries;
+    const playerTargets =
+      Number(game.targets || 0);
 
-        validGames += 1;
-      }
-    }
+    const teamCarries = teamGameRows.reduce(
+      (total, row) =>
+        total +
+        Number(
+          row.carries ||
+          row.rushing_attempts ||
+          0
+        ),
+      0
+    );
+
+    const teamTargets = teamGameRows.reduce(
+      (total, row) =>
+        total + Number(row.targets || 0),
+      0
+    );
+
+    const carryShare =
+      teamCarries > 0
+        ? playerCarries / teamCarries
+        : 0;
+
+    const targetShare =
+      teamTargets > 0
+        ? playerTargets / teamTargets
+        : 0;
+
+    totalShare +=
+      carryShare + targetShare;
+
+    validGames += 1;
   });
 
   if (validGames === 0) {
@@ -544,10 +480,7 @@ const teamGameRows =
 
   return Math.max(
     0,
-    Math.min(
-      100,
-      Math.round(averageShare * 100)
-    )
+    Math.round(averageShare * 100)
   );
 }
 
