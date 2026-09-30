@@ -1,0 +1,195 @@
+name: Pregame Model Snapshot
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Playwright
+        run: |
+          npm install playwright
+          npx playwright install --with-deps chromium
+
+      - name: Create snapshot folder
+        run: |
+          mkdir -p model-snapshots
+
+      - name: Capture website model snapshot
+        run: |
+          node <<'NODE'
+          const { chromium } = require("playwright");
+          const fs = require("fs");
+          const path = require("path");
+
+          (async () => {
+            const browser = await chromium.launch({
+              headless: true
+            });
+
+            const page = await browser.newPage({
+              acceptDownloads: true
+            });
+
+            console.log("Opening Fantasy AI Player Lab...");
+
+            await page.goto(
+              "https://egarza2424.github.io/Fantasy-AI-Player-Lab/",
+              {
+                waitUntil: "networkidle",
+                timeout: 120000
+              }
+            );
+
+            await page.waitForFunction(
+              () =>
+                Array.isArray(window.players) &&
+                window.players.length > 0,
+              {
+                timeout: 120000
+              }
+            );
+
+            console.log(
+              "Players loaded:",
+              await page.evaluate(() => window.players.length)
+            );
+
+            const week = await page.evaluate(() => {
+              const matchups =
+                Object.values(window.teamNextOpponent || {});
+
+              const weeks = matchups
+                .map(game => Number(game?.week))
+                .filter(Number.isFinite);
+
+              return weeks.length
+                ? Math.max(...weeks)
+                : "unknown";
+            });
+
+            console.log("Target week:", week);
+
+            const downloadPromise =
+              page.waitForEvent("download");
+
+            await page.evaluate(() => {
+              if (
+                typeof window.exportModelSnapshot !==
+                "function"
+              ) {
+                throw new Error(
+                  "exportModelSnapshot() is not available."
+                );
+              }
+
+              window.exportModelSnapshot();
+            });
+
+            const download = await downloadPromise;
+
+            const filename =
+              `2026-week${week}-pregame-model-snapshot.csv`;
+
+            const destination = path.join(
+              "model-snapshots",
+              filename
+            );
+
+            await download.saveAs(destination);
+
+            console.log(
+              `Snapshot saved to ${destination}`
+            );
+
+            if (!fs.existsSync(destination)) {
+              throw new Error(
+                "Snapshot CSV was not created."
+              );
+            }
+
+            const csv =
+              fs.readFileSync(destination, "utf8");
+
+            const lines =
+              csv.trim().split(/\r?\n/);
+
+            console.log(
+              "Snapshot player rows:",
+              Math.max(0, lines.length - 1)
+            );
+
+            if (lines.length < 2) {
+              throw new Error(
+                "Snapshot CSV contains no player rows."
+              );
+            }
+
+            const requiredColumns = [
+              "opportunity_score",
+              "production_score",
+              "usage_score",
+              "play_caller_matchup_score",
+              "player_vs_defensive_caller_score",
+              "matchup_score",
+              "redzone_score",
+              "expert_score",
+              "risk_score",
+              "trench_score",
+              "model_score",
+              "position_rank"
+            ];
+
+            const header = lines[0];
+
+            for (const column of requiredColumns) {
+              if (!header.includes(column)) {
+                throw new Error(
+                  `Missing required snapshot column: ${column}`
+                );
+              }
+            }
+
+            console.log(
+              "Snapshot contains all required model columns."
+            );
+
+            await browser.close();
+          })().catch(error => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
+
+      - name: Show generated snapshot
+        run: |
+          ls -lh model-snapshots/
+          head -n 2 model-snapshots/*.csv
+
+      - name: Commit snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add model-snapshots/
+
+          if git diff --cached --quiet; then
+            echo "No new snapshot changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Save pregame model snapshot"
+          git push
