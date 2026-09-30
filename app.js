@@ -3033,6 +3033,9 @@ function exportModelSnapshot() {
       const metrics =
         getMetrics(player);
 
+      const trench =
+        getTrenchMatchup(player);
+
       snapshot.push({
         player_id: player.id,
         player_name: player.name,
@@ -3078,6 +3081,7 @@ function exportModelSnapshot() {
         redzone_score: metrics.redzone,
         expert_score: metrics.expert,
         risk_score: metrics.risk,
+        trench_score: trench ? trench.score : null,
 
         model_score: entry.score,
         position_rank: positionRank,
@@ -3107,6 +3111,7 @@ function exportModelSnapshot() {
     "redzone_score",
     "expert_score",
     "risk_score",
+    "trench_score",
     "model_score",
     "position_rank",
     "recommendation"
@@ -3137,6 +3142,7 @@ function exportModelSnapshot() {
       player.redzone_score,
       player.expert_score,
       player.risk_score,
+      player.trench_score,
       player.model_score,
       player.position_rank,
       player.recommendation
@@ -3256,8 +3262,17 @@ async function initializeApp() {
     exportButton.type = "button";
     exportButton.id = "exportSnapshotBtn";
     exportButton.textContent = "Export Snapshot";
-    exportButton.style.marginLeft = "12px";
-    exportButton.style.padding = "10px 16px";
+      exportButton.style.display = "block";
+    exportButton.style.width = "180px";
+    exportButton.style.maxWidth = "100%";
+    exportButton.style.margin = "12px 0 16px auto";
+    exportButton.style.padding = "10px 14px";
+    exportButton.style.backgroundColor = "#f7c651";
+    exportButton.style.color = "#17212f";
+    exportButton.style.border = "none";
+    exportButton.style.borderRadius = "8px";
+    exportButton.style.fontWeight = "700";
+    exportButton.style.fontSize = "13px";
     exportButton.style.cursor = "pointer";
 
     exportButton.addEventListener(
