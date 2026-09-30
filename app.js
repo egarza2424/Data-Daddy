@@ -3245,7 +3245,31 @@ async function initializeApp() {
   await loadPlayers();
   // Display rankings after both data sources load.
   renderPositionRankings();
+  // Add the snapshot export button.
+  const rankingSelect =
+    document.getElementById("rankingPosition");
 
+  if (rankingSelect) {
+    const exportButton =
+      document.createElement("button");
+
+    exportButton.type = "button";
+    exportButton.id = "exportSnapshotBtn";
+    exportButton.textContent = "Export Snapshot";
+    exportButton.style.marginLeft = "12px";
+    exportButton.style.padding = "10px 16px";
+    exportButton.style.cursor = "pointer";
+
+    exportButton.addEventListener(
+      "click",
+      exportModelSnapshot
+    );
+
+    rankingSelect.insertAdjacentElement(
+      "afterend",
+      exportButton
+    );
+  }
   // Update rankings when the selected position changes.
   document
     .getElementById("rankingPosition")
