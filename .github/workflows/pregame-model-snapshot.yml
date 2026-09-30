@@ -179,6 +179,8 @@ jobs:
             process.exit(1);
           });
           NODE
+
+      - name: Show generated snapshot
         run: |
           ls -lh model-snapshots/
           head -n 2 model-snapshots/*.csv
