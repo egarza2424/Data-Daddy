@@ -157,6 +157,9 @@ playerWeeklyStatsCache.clear();
     trenchSignalWeek =
       data.target_week || null;
 
+    document.documentElement.dataset.targetWeek =
+      data.target_week || "";
+
     currentPlayerVsDefensiveCaller =
       data.current_player_vs_defensive_caller || {};
   
