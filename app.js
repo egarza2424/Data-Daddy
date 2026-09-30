@@ -409,11 +409,69 @@ function calculateUsageScore(player) {
     return 20;
   }
 
-   // QB usage:
+  // QB usage:
   // QB rush attempts / total team rush attempts.
   // Average rushing share across the QB's
   // three most recent games.
   if (player.position === "QB") {
+    let totalShare = 0;
+    let validGames = 0;
+
+    games.forEach((game) => {
+      const season = Number(game.season);
+      const week = Number(game.week);
+      const team = game.team;
+
+      if (!season || !team || !week) {
+        return;
+      }
+
+      const teamGameRows =
+        getTeamGameRows(season, week, team);
+
+      const playerCarries = Number(
+        game.carries ||
+        game.rushing_attempts ||
+        0
+      );
+
+      const teamCarries = teamGameRows.reduce(
+        (total, row) =>
+          total +
+          Number(
+            row.carries ||
+            row.rushing_attempts ||
+            0
+          ),
+        0
+      );
+
+      if (teamCarries > 0) {
+        totalShare +=
+          playerCarries / teamCarries;
+
+        validGames += 1;
+      }
+    });
+
+    if (validGames === 0) {
+      return 50;
+    }
+
+    const averageShare =
+      totalShare / validGames;
+
+    return Math.max(
+      0,
+      Math.min(
+        100,
+        Math.round(averageShare * 100)
+      )
+    );
+  }
+
+  // RB / WR / TE usage:
+  // rushing share + target share.
   let totalShare = 0;
   let validGames = 0;
 
@@ -483,7 +541,6 @@ function calculateUsageScore(player) {
     Math.round(averageShare * 100)
   );
 }
-
 function calculateOpportunityScore(player) {
   const games = getPlayerWeeklyStats(player);
 
