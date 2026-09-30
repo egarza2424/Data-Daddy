@@ -122,10 +122,16 @@ jobs:
             const filename =
               `2026-week${week}-pregame-model-snapshot.csv`;
 
-            const destination = path.join(
+             const destination = path.join(
               "model-snapshots",
               filename
             );
+
+            if (fs.existsSync(destination)) {
+              throw new Error(
+                `Pregame snapshot already exists for Week ${week}: ${destination}`
+              );
+            }
 
             await download.saveAs(destination);
 
