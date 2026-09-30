@@ -55,50 +55,42 @@ jobs:
             );
 
             await page.waitForFunction(
-              () =>
-                Array.isArray(window.players) &&
-                window.players.length > 0,
+              () => {
+                const rankings =
+                  document.getElementById("positionRankings");
+
+                return (
+                  rankings &&
+                  rankings.textContent &&
+                  rankings.textContent.includes("AI Score")
+                );
+              },
               {
                 timeout: 120000
               }
             );
 
             console.log(
-              "Players loaded:",
-              await page.evaluate(() => window.players.length)
+              "Fantasy AI rankings loaded successfully."
             );
-
-            const week = await page.evaluate(() => {
-              const matchups =
-                Object.values(window.teamNextOpponent || {});
-
-              const weeks = matchups
-                .map(game => Number(game?.week))
-                .filter(Number.isFinite);
-
-              return weeks.length
-                ? Math.max(...weeks)
-                : "unknown";
-            });
+             const week = 4;
 
             console.log("Target week:", week);
 
             const downloadPromise =
               page.waitForEvent("download");
 
-            await page.evaluate(() => {
-              if (
-                typeof window.exportModelSnapshot !==
-                "function"
-              ) {
-                throw new Error(
-                  "exportModelSnapshot() is not available."
-                );
+            await page.waitForSelector(
+              "#exportSnapshotBtn",
+              {
+                state: "visible",
+                timeout: 120000
               }
+            );
 
-              window.exportModelSnapshot();
-            });
-
+            await page.click(
+              "#exportSnapshotBtn"
+            );
             const download = await downloadPromise;
 
             const filename =
