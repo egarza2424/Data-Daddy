@@ -3,6 +3,9 @@ name: Pregame Model Snapshot
 on:
   workflow_dispatch:
 
+  schedule:
+    - cron: "0 19 * * 4"
+
 permissions:
   contents: write
 
@@ -68,10 +71,46 @@ jobs:
             console.log(
               "Export Snapshot button is ready."
             ); 
-             const week = 4;
+            const week = await page.evaluate(() => {
+              const params =
+                new URLSearchParams(
+                  window.location.search
+                );
 
-            console.log("Target week:", week);
+              const snapshotWeek =
+                params.get("snapshotWeek");
 
+              if (snapshotWeek) {
+                return Number(snapshotWeek);
+              }
+
+              const rankingRows =
+                document.querySelectorAll(
+                  "[data-week]"
+                );
+
+              for (const row of rankingRows) {
+                const value =
+                  Number(row.dataset.week);
+
+                if (Number.isFinite(value)) {
+                  return value;
+                }
+              }
+
+              return null;
+            });
+
+            if (!Number.isFinite(week)) {
+              throw new Error(
+                "Could not determine the target NFL week."
+              );
+            }
+
+            console.log(
+              "Automatically detected target week:",
+              week
+            );
             const downloadPromise =
               page.waitForEvent("download");
 
