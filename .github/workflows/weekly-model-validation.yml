@@ -32,43 +32,105 @@ jobs:
       - name: Find latest frozen pregame snapshot
         id: snapshot
         run: |
-          python <<'PY'
+                    python <<'PY'
+          import csv
           import os
-          import re
+          from datetime import datetime
           from pathlib import Path
 
+          snapshot_dir = Path(
+              "model-snapshots"
+          )
+
           files = list(
-              Path("model-snapshots").glob(
-                  "2026-week*-pregame-model-snapshot.csv"
+              snapshot_dir.glob(
+                  "*-pregame-model-snapshot.csv"
               )
           )
 
           if not files:
               raise SystemExit(
-                  "No week-numbered frozen pregame snapshot found."
+                  "No frozen pregame snapshot found."
               )
 
-          def snapshot_week(path):
-              match = re.search(
-                  r"2026-week(\d+)-pregame-model-snapshot\.csv$",
-                  path.name
+          dated_files = []
+
+          for path in files:
+              try:
+                  date_text = (
+                      path.name
+                      .replace(
+                          "-pregame-model-snapshot.csv",
+                          ""
+                      )
+                  )
+
+                  snapshot_date = (
+                      datetime.strptime(
+                          date_text,
+                          "%Y-%m-%d"
+                      )
+                  )
+
+                  dated_files.append(
+                      (
+                          snapshot_date,
+                          path
+                      )
+                  )
+              except ValueError:
+                  continue
+
+          if not dated_files:
+              raise SystemExit(
+                  "No date-based frozen pregame "
+                  "snapshot found."
               )
-
-              if not match:
-                  return -1
-
-              return int(match.group(1))
 
           snapshot = max(
-              files,
-              key=snapshot_week
+              dated_files,
+              key=lambda item: item[0]
+          )[1]
+
+          with snapshot.open(
+              "r",
+              encoding="utf-8",
+              newline=""
+          ) as file:
+              reader = csv.DictReader(file)
+
+              first_row = next(
+                  reader,
+                  None
+              )
+
+          if first_row is None:
+              raise SystemExit(
+                  "Frozen snapshot contains no "
+                  "player rows."
+              )
+
+          week_raw = first_row.get(
+              "snapshot_week"
           )
 
-          week = snapshot_week(snapshot)
+          try:
+              week = int(
+                  float(week_raw)
+              )
+          except (
+              TypeError,
+              ValueError
+          ):
+              raise SystemExit(
+                  "Could not determine NFL week "
+                  "from snapshot_week column."
+              )
 
           if week <= 0:
               raise SystemExit(
-                  "Could not determine snapshot week."
+                  "Snapshot contains an invalid "
+                  "snapshot_week."
               )
 
           print(
@@ -86,11 +148,11 @@ jobs:
               output.write(
                   f"snapshot={snapshot}\n"
               )
+
               output.write(
                   f"week={week}\n"
               )
           PY
-
       - name: Validate frozen rankings
         env:
           SNAPSHOT: ${{ steps.snapshot.outputs.snapshot }}
@@ -141,6 +203,10 @@ jobs:
               "expert_score",
               "risk_score",
               "trench_score",
+              "scoring_environment_score",
+              "implied_team_total",
+              "game_total",
+              "spread_line",
           ]
 
           missing = [
@@ -493,6 +559,12 @@ jobs:
               "expert_score",
               "risk_score",
               "trench_score",
+              "scoring_environment_score",
+              "implied_team_total",
+              "game_total",
+              "spread_line",
+          ]
+              "scoring_environment_score",
           ]
 
           for column in (
@@ -646,7 +718,7 @@ jobs:
 
               print()
               print(
-                  "10-signal correlations "
+                  "11-signal correlations "
                   "with actual PPR:"
               )
 
