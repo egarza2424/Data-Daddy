@@ -240,7 +240,6 @@ jobs:
               "season_type",
               "passing_yards",
               "passing_tds",
-              "interceptions",
               "rushing_yards",
               "rushing_tds",
               "receptions",
@@ -254,11 +253,34 @@ jobs:
               if column not in weekly.columns
           ]
 
-          if missing_actual:
+          interception_candidates = [
+              "interceptions",
+              "passing_interceptions",
+          ]
+
+          interception_column = next(
+              (
+                  column
+                  for column in interception_candidates
+                  if column in weekly.columns
+              ),
+              None
+          )
+
+          if interception_column is None:
               raise SystemExit(
-                  "NFL stats are missing required columns: "
-                  + ", ".join(missing_actual)
+                  "Could not find an interception column. "
+                  f"Available columns: {weekly.columns.tolist()}"
               )
+
+          print(
+              "Using interception column:",
+              interception_column
+          )
+
+          weekly["interceptions"] = (
+              weekly[interception_column]
+          )
 
           weekly["week"] = pd.to_numeric(
               weekly["week"],
