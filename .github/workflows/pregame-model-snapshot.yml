@@ -90,7 +90,7 @@ jobs:
                   .slice(0, 10);
 
               const filename =
-                `2026-${snapshotDate}-pregame-model-snapshot.csv`;
+                `${snapshotDate}-pregame-model-snapshot.csv`;
 
               const destination =
                 path.join(
@@ -98,10 +98,12 @@ jobs:
                   filename
                 );
 
-              if (fs.existsSync(destination)) {
-                throw new Error(
-                  `Pregame snapshot already exists for ${snapshotDate}: ${destination}`
+                           if (fs.existsSync(destination)) {
+                console.log(
+                  `Replacing existing pregame snapshot: ${destination}`
                 );
+
+                fs.unlinkSync(destination);
               }
 
               await download.saveAs(destination);
