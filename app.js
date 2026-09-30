@@ -3238,24 +3238,16 @@ function exportModelSnapshot() {
         trench_score: trench ? trench.score : null,
 
         scoring_environment_score:
-          scoringEnvironment
-            ? scoringEnvironment.score
-            : null,
+          getScoringEnvironment(player)?.score ?? null,
 
         implied_team_total:
-          scoringEnvironment
-            ? scoringEnvironment.impliedTeamTotal
-            : null,
+          getScoringEnvironment(player)?.impliedTeamTotal ?? null,
 
         game_total:
-          scoringEnvironment
-            ? scoringEnvironment.gameTotal
-            : null,
+          getScoringEnvironment(player)?.gameTotal ?? null,
 
         spread_line:
-          scoringEnvironment
-            ? scoringEnvironment.spread
-            : null,
+          getScoringEnvironment(player)?.spread ?? null,
 
         model_score: entry.score,
         position_rank: positionRank,
