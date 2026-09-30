@@ -56,7 +56,7 @@ const metricDescriptions = {
   Usage: {
     weight: "13.95%",
     description:
-      "Measures how heavily a player is involved in the offense. WR/TE uses team target share, RB uses team rushing-attempt share, and QB uses passing + rushing attempts."
+      "Measures how heavily a player is involved in the offense. WR/TE uses team target share, RB uses team rushing-attempt share, and QB uses team rushing-attempt share."
   },
 
   Matchup: {
@@ -409,99 +409,66 @@ function calculateUsageScore(player) {
     return 20;
   }
 
-  // QB usage:
-  // Pass attempts + rush attempts per game,
-  // compared with every other QB in the league.
+   // QB usage:
+  // QB rush attempts / total team rush attempts.
+  // Average rushing share across the QB's
+  // three most recent games.
   if (player.position === "QB") {
-    const qbTotals = {};
+    let totalShare = 0;
+    let validGames = 0;
 
-     weeklyStats
-      .filter(
-        game =>
-          game.position === "QB" &&
-          Number(game.season) === 2026
-      )
-      .sort(
-        (a, b) =>
-          Number(b.week || 0) -
-          Number(a.week || 0)
-      )
-      .forEach((game) => {
+    games.forEach((game) => {
+      const season = Number(game.season);
+      const week = Number(game.week);
+      const team = game.team;
 
-      const name = normalizeName(
-        game.player_display_name ||
-        game.player_name ||
-        game.name
-      );
-
-      if (!name) return;
-
-      if (!qbTotals[name]) {
-        qbTotals[name] = {
-          opportunities: 0,
-          games: 0
-        };
-      }
-
-      if (qbTotals[name].games >= 3) {
+      if (!season || !team || !week) {
         return;
       }
 
-      const passAttempts = Number(
-        game.attempts ||
-        game.passing_attempts ||
-        0
-      );
+      const teamGameRows =
+        getTeamGameRows(season, week, team);
 
-      const rushAttempts = Number(
+      const playerCarries = Number(
         game.carries ||
         game.rushing_attempts ||
         0
       );
 
-      qbTotals[name].opportunities +=
-        passAttempts + rushAttempts;
-
-      qbTotals[name].games += 1;
-    });
-
-    const qbAverages = Object.values(qbTotals)
-      .filter((qb) => qb.games > 0)
-      .map(
-        (qb) =>
-          qb.opportunities / qb.games
+      const teamCarries = teamGameRows.reduce(
+        (total, row) =>
+          total +
+          Number(
+            row.carries ||
+            row.rushing_attempts ||
+            0
+          ),
+        0
       );
 
-    const leagueHigh =
-      qbAverages.length > 0
-        ? Math.max(...qbAverages)
-        : 1;
+      if (teamCarries > 0) {
+        totalShare +=
+          playerCarries / teamCarries;
 
-    const playerName = normalizeName(player.name);
-    const playerData = qbTotals[playerName];
+        validGames += 1;
+      }
+    });
 
-    if (!playerData || playerData.games === 0) {
+    if (validGames === 0) {
       return 50;
     }
 
-    const playerAverage =
-      playerData.opportunities /
-      playerData.games;
+    const averageShare =
+      totalShare / validGames;
 
     return Math.max(
       0,
       Math.min(
         100,
-        Math.round(
-          (playerAverage / leagueHigh) * 100
-        )
+        Math.round(averageShare * 100)
       )
     );
   }
-
-  let totalShare = 0;
-  let validGames = 0;
-
   games.forEach((game) => {
   const season = Number(game.season);
   const week = Number(game.week);
@@ -1303,10 +1270,25 @@ function calculateModelConfidence(player) {
           Number(row.week) === week
       );
       if (player.position === "QB") {
-        return (
-          Number(game.attempts || 0) +
-          Number(game.carries || 0)
-        );
+        const teamCarries =
+          teamGameRows.reduce(
+            (total, row) =>
+              total +
+              Number(
+                row.carries ||
+                row.rushing_attempts ||
+                0
+              ),
+            0
+          );
+
+        return teamCarries > 0
+          ? Number(
+              game.carries ||
+              game.rushing_attempts ||
+              0
+            ) / teamCarries
+          : 0;
       }
 
       if (
@@ -1486,10 +1468,25 @@ function getModelConfidenceBreakdown(player) {
       );
     
       if (player.position === "QB") {
-        return (
-          Number(game.attempts || 0) +
-          Number(game.carries || 0)
-        );
+        const teamCarries =
+          teamGameRows.reduce(
+            (total, row) =>
+              total +
+              Number(
+                row.carries ||
+                row.rushing_attempts ||
+                0
+              ),
+            0
+          );
+
+        return teamCarries > 0
+          ? Number(
+              game.carries ||
+              game.rushing_attempts ||
+              0
+            ) / teamCarries
+          : 0;
       }
 
       if (
