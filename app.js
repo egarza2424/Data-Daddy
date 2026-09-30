@@ -53,10 +53,10 @@ const metricDescriptions = {
     "Measures average PPR fantasy production over the player's three most recent games compared with other players at the same position. The highest-scoring player at each position receives 100, with all other players scored proportionally."
 },
   
-  Usage: {
-    weight: "13.95%",
-    description:
-      "Measures a player's share of his team's offensive opportunities. QB uses team rushing-attempt share. RB, WR and TE combine team rushing-attempt share and team target share."
+Usage: {
+  weight: "13.95%",
+  description:
+    "Measures a player's share of his team's offensive opportunities. QB combines team passing-attempt share and team rushing-attempt share. RB, WR and TE combine team rushing-attempt share and team target share."
 },
   
   Matchup: {
@@ -409,10 +409,10 @@ function calculateUsageScore(player) {
     return 20;
   }
 
-  // QB usage:
-  // QB rush attempts / total team rush attempts.
-  // Average rushing share across the QB's
-  // three most recent games.
+   // QB usage:
+  // passing-attempt share + rushing-attempt share.
+  // This measures how much of the team's passing
+  // and rushing offense flows through the QB.
   if (player.position === "QB") {
     let totalShare = 0;
     let validGames = 0;
@@ -429,29 +429,58 @@ function calculateUsageScore(player) {
       const teamGameRows =
         getTeamGameRows(season, week, team);
 
+      const playerPassAttempts = Number(
+        game.attempts ||
+        game.passing_attempts ||
+        0
+      );
+
       const playerCarries = Number(
         game.carries ||
         game.rushing_attempts ||
         0
       );
 
-      const teamCarries = teamGameRows.reduce(
-        (total, row) =>
-          total +
-          Number(
-            row.carries ||
-            row.rushing_attempts ||
-            0
-          ),
-        0
-      );
+      const teamPassAttempts =
+        teamGameRows.reduce(
+          (total, row) =>
+            total +
+            Number(
+              row.attempts ||
+              row.passing_attempts ||
+              0
+            ),
+          0
+        );
 
-      if (teamCarries > 0) {
-        totalShare +=
-          playerCarries / teamCarries;
+      const teamCarries =
+        teamGameRows.reduce(
+          (total, row) =>
+            total +
+            Number(
+              row.carries ||
+              row.rushing_attempts ||
+              0
+            ),
+          0
+        );
 
-        validGames += 1;
-      }
+      const passingShare =
+        teamPassAttempts > 0
+          ? playerPassAttempts /
+            teamPassAttempts
+          : 0;
+
+      const rushingShare =
+        teamCarries > 0
+          ? playerCarries /
+            teamCarries
+          : 0;
+
+      totalShare +=
+        passingShare + rushingShare;
+
+      validGames += 1;
     });
 
     if (validGames === 0) {
@@ -463,13 +492,9 @@ function calculateUsageScore(player) {
 
     return Math.max(
       0,
-      Math.min(
-        100,
-        Math.round(averageShare * 100)
-      )
+      Math.round(averageShare * 100)
     );
   }
-
   // RB / WR / TE usage:
   // rushing share + target share.
   let totalShare = 0;
