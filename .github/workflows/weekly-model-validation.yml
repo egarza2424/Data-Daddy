@@ -133,24 +133,23 @@ jobs:
 
           snapshot_name = snapshot_path.name
 
-          date_match = re.search(
-              r"2026-(\d{4}-\d{2}-\d{2})-pregame",
+          week_match = re.search(
+              r"2026-week(\d+)-pregame-model-snapshot\.csv$",
               snapshot_name
           )
 
-          if not date_match:
+          if not week_match:
               raise SystemExit(
-                  "Could not read snapshot date "
-                  "from filename."
+                  "Could not determine NFL week "
+                  f"from snapshot filename: {snapshot_name}"
               )
 
-          snapshot_date = pd.Timestamp(
-              date_match.group(1)
+          target_week = int(
+              week_match.group(1)
           )
 
           print(
-              "Snapshot date:",
-              snapshot_date.date()
+              f"Frozen snapshot NFL Week: {target_week}"
           )
 
           print(
@@ -185,19 +184,16 @@ jobs:
               .unique()
           )
 
-          if not available_weeks:
+          if target_week not in available_weeks:
               raise SystemExit(
-                  "No completed NFL weeks found."
+                  f"Actual stats for NFL Week {target_week} "
+                  "are not available yet. "
+                  f"Available weeks: {available_weeks}"
               )
 
-          target_week = max(
-              available_weeks
-          )
-
           print(
-              f"Validating NFL Week {target_week}"
+              f"Validating frozen NFL Week {target_week}"
           )
-
           actual = weekly[
               weekly["week"].astype(int)
               == target_week
