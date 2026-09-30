@@ -88,6 +88,11 @@ Usage: {
     description:
       "Measures how this individual player has historically performed in PPR scoring against defenses called by the upcoming opponent's current defensive play caller. Uses up to the three most recent applicable games. No direct history receives a neutral score of 50."
 },  
+  "Scoring Environment": {
+    weight: "7.00%",
+    description:
+      "Measures the offense's expected scoring environment for the upcoming game using the betting market's implied team total. Higher implied team totals indicate more expected scoring opportunities for touchdowns, yards and fantasy production."
+  },
   
   "Risk Adjustment": {
     weight: "4.65%",
@@ -105,6 +110,7 @@ let currentPlayCallerSignals = {};
 let currentTrenchSignals = {};
 let trenchSignalWeek = null;
 let currentPlayerVsDefensiveCaller = {};
+let currentScoringEnvironment = {};
 const playerASelect = document.getElementById("playerA");
 const playerBSelect = document.getElementById("playerB");
 const riskSelect = document.getElementById("riskTolerance");
@@ -150,18 +156,23 @@ playerWeeklyStatsCache.clear();
     teamNextOpponent =
       data.team_next_opponent || {};
  
-    currentPlayCallerSignals =
-      data.current_play_caller_signals || {};
-    currentTrenchSignals =
-      data.current_trench_signals || {};
-    trenchSignalWeek =
-      data.target_week || null;
+currentPlayCallerSignals =
+  data.current_play_caller_signals || {};
 
-    document.documentElement.dataset.targetWeek =
-      data.target_week || "";
+currentTrenchSignals =
+  data.current_trench_signals || {};
 
-    currentPlayerVsDefensiveCaller =
-      data.current_player_vs_defensive_caller || {};
+trenchSignalWeek =
+  data.target_week || null;
+
+currentScoringEnvironment =
+  data.current_scoring_environment || {};
+
+document.documentElement.dataset.targetWeek =
+  data.target_week || "";
+
+currentPlayerVsDefensiveCaller =
+  data.current_player_vs_defensive_caller || {};
   
   console.log(
   `NFL stats loaded: ${data.season}, ${weeklyStats.length} rows`
@@ -1907,8 +1918,108 @@ function calculatePlayerRisk(player) {
 
   return Math.max(0, Math.min(100, Math.round(risk)));
 }
+function getScoringEnvironment(player) {
+  if (!player || !player.team) {
+    return null;
+  }
 
+  const normalizeTeam = team =>
+    ({
+      LA: "LAR",
+      JAC: "JAX",
+      WSH: "WAS"
+    })[team] || team;
 
+  const team = normalizeTeam(player.team);
+
+  const record =
+    currentScoringEnvironment[team] ||
+    currentScoringEnvironment[player.team];
+
+  if (
+    !record ||
+    record.available !== true
+  ) {
+    return null;
+  }
+
+  const nextGame =
+    teamNextOpponent[team] ||
+    teamNextOpponent[player.team];
+
+  if (
+    nextGame?.opponent &&
+    normalizeTeam(record.opponent) !==
+      normalizeTeam(nextGame.opponent)
+  ) {
+    return null;
+  }
+
+  if (
+    nextGame?.week &&
+    record.week &&
+    Number(record.week) !==
+      Number(nextGame.week)
+  ) {
+    return null;
+  }
+
+  const score =
+    Number(record.score);
+
+  const impliedTeamTotal =
+    Number(record.implied_team_total);
+
+  const gameTotal =
+    Number(record.game_total);
+
+  const spread =
+    Number(record.spread_line);
+
+  if (!Number.isFinite(score)) {
+    return null;
+  }
+
+  return {
+    score: Math.max(
+      0,
+      Math.min(100, score)
+    ),
+
+    impliedTeamTotal:
+      Number.isFinite(impliedTeamTotal)
+        ? impliedTeamTotal
+        : null,
+
+    gameTotal:
+      Number.isFinite(gameTotal)
+        ? gameTotal
+        : null,
+
+    spread:
+      Number.isFinite(spread)
+        ? spread
+        : null,
+
+    opponent:
+      record.opponent || null,
+
+    week:
+      Number(record.week) || null,
+
+    source:
+      record.source || "unknown"
+  };
+}
+
+function calculateScoringEnvironmentScore(player) {
+  const environment =
+    getScoringEnvironment(player);
+
+  return environment
+    ? environment.score
+    : 50;
+}
 const playerMetricsCache = new Map();
 
 function getMetrics(player) {
@@ -1943,6 +2054,9 @@ function getMetrics(player) {
   const risk =
     calculatePlayerRisk(player);
 
+  const scoringEnvironment =
+    calculateScoringEnvironmentScore(player);
+
   const metrics = {
     opportunity,
     production,
@@ -1952,9 +2066,9 @@ function getMetrics(player) {
     playerVsDefensiveCaller,
     redzone,
     expert,
-    risk
+    risk,
+    scoringEnvironment
   };
-
  
   playerMetricsCache.set(player.id, metrics);
 
@@ -2041,9 +2155,21 @@ function calculateScore(player, profile) {
   const metrics = getMetrics(player);
   const weights = riskProfiles[profile] || BASE_WEIGHTS;
   const trench = getTrenchMatchup(player);
+  const scoringEnvironment =
+    getScoringEnvironment(player);
+  const scoringEnvironment =
+    getScoringEnvironment(player);
 
-  const trenchWeight = 0.07;
-  const originalWeightScale = 1 - trenchWeight;
+  const trenchWeight =
+    trench ? 0.07 : 0;
+
+  const scoringEnvironmentWeight =
+    scoringEnvironment ? 0.07 : 0;
+
+  const originalWeightScale =
+    1 -
+    trenchWeight -
+    scoringEnvironmentWeight;
 
   const baseScore =
     metrics.opportunity * weights.opportunity +
@@ -2071,10 +2197,16 @@ function calculateScore(player, profile) {
     baseScore / originalWeightTotal;
 
  
-  const score = trench
-    ? normalizedBaseScore * originalWeightScale +
-      trench.score * trenchWeight
-    : normalizedBaseScore;
+  const score =
+    normalizedBaseScore *
+      originalWeightScale +
+    (trench
+      ? trench.score * trenchWeight
+      : 0) +
+    (scoringEnvironment
+      ? scoringEnvironment.score *
+        scoringEnvironmentWeight
+      : 0);
 
   const injury = String(player.injuryStatus || "")
     .trim()
@@ -2465,6 +2597,7 @@ function getTopSignals(player) {
   ["Usage", metrics.usage],
   ["Red-Zone Usage", metrics.redzone],
   ["Matchup", metrics.matchup],
+  ["Scoring Environment", metrics.scoringEnvironment],
   ["Play Caller Matchup", metrics.playCallerMatchup],
   [
     "Player vs Defensive Play Caller",
@@ -2836,12 +2969,19 @@ function renderPlayerCard(
           playerVsCallerDetails
         )}
         ${metricRow("Red-Zone Usage", metrics.redzone)}
+
+        ${metricRow(
+          "Scoring Environment",
+          metrics.scoringEnvironment
+        )}
+
         ${metricRow(
           "Model Confidence",
           metrics.expert,
           false,
           confidenceBreakdown
         )}
+
         ${metricRow("Risk Adjustment", riskAdjustment, true)}
 
         <div class="metric-row trench-signal">
@@ -2987,7 +3127,7 @@ function comparePlayers() {
 
       <p>
         Scores reflect the current ${profileName.toLowerCase()}
-        risk profile, including Signal 10 when available.
+        risk profile, including Trench Matchup and Scoring Environment when available.
       </p>
 
       <div class="verdict-scores">
@@ -3097,6 +3237,26 @@ function exportModelSnapshot() {
         risk_score: metrics.risk,
         trench_score: trench ? trench.score : null,
 
+        scoring_environment_score:
+          scoringEnvironment
+            ? scoringEnvironment.score
+            : null,
+
+        implied_team_total:
+          scoringEnvironment
+            ? scoringEnvironment.impliedTeamTotal
+            : null,
+
+        game_total:
+          scoringEnvironment
+            ? scoringEnvironment.gameTotal
+            : null,
+
+        spread_line:
+          scoringEnvironment
+            ? scoringEnvironment.spread
+            : null,
+
         model_score: entry.score,
         position_rank: positionRank,
         recommendation: recommendation
@@ -3126,6 +3286,10 @@ function exportModelSnapshot() {
     "expert_score",
     "risk_score",
     "trench_score",
+    "scoring_environment_score",
+    "implied_team_total",
+    "game_total",
+    "spread_line",
     "model_score",
     "position_rank",
     "recommendation"
@@ -3157,6 +3321,10 @@ function exportModelSnapshot() {
       player.expert_score,
       player.risk_score,
       player.trench_score,
+      player.scoring_environment_score,
+      player.implied_team_total,
+      player.game_total,
+      player.spread_line,
       player.model_score,
       player.position_rank,
       player.recommendation
