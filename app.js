@@ -3071,6 +3071,14 @@ function exportModelSnapshot() {
         player_vs_defensive_caller_sample_size:
           playerVsCallerDetails?.sampleSize ?? 0,
 
+        opportunity_score: metrics.opportunity,
+        production_score: metrics.production,
+        usage_score: metrics.usage,
+        matchup_score: metrics.matchup,
+        redzone_score: metrics.redzone,
+        expert_score: metrics.expert,
+        risk_score: metrics.risk,
+
         model_score: entry.score,
         position_rank: positionRank,
         recommendation: recommendation
@@ -3092,6 +3100,13 @@ function exportModelSnapshot() {
     "player_vs_defensive_caller_score",
     "player_vs_defensive_caller_ppr",
     "player_vs_defensive_caller_sample_size",
+    "opportunity_score",
+    "production_score",
+    "usage_score",
+    "matchup_score",
+    "redzone_score",
+    "expert_score",
+    "risk_score",
     "model_score",
     "position_rank",
     "recommendation"
@@ -3115,6 +3130,13 @@ function exportModelSnapshot() {
       player.player_vs_defensive_caller_score,
       player.player_vs_defensive_caller_ppr,
       player.player_vs_defensive_caller_sample_size,
+      player.opportunity_score,
+      player.production_score,
+      player.usage_score,
+      player.matchup_score,
+      player.redzone_score,
+      player.expert_score,
+      player.risk_score,
       player.model_score,
       player.position_rank,
       player.recommendation
