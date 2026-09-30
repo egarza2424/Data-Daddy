@@ -3187,6 +3187,9 @@ function exportModelSnapshot() {
       const trench =
         getTrenchMatchup(player);
 
+      const scoringEnvironment =
+        getScoringEnvironment(player);
+
       snapshot.push({
         player_id: player.id,
         player_name: player.name,
