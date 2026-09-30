@@ -53,32 +53,9 @@ jobs:
                 timeout: 120000
               }
             );
-
-            await page.waitForFunction(
-              () => {
-                const rankings =
-                  document.getElementById("positionRankings");
-
-                return (
-                  rankings &&
-                  rankings.textContent &&
-                  rankings.textContent.includes("AI Score")
-                );
-              },
-              {
-                timeout: 120000
-              }
-            );
-
             console.log(
-              "Fantasy AI rankings loaded successfully."
+              "Website loaded. Waiting for Export Snapshot button..."
             );
-             const week = 4;
-
-            console.log("Target week:", week);
-
-            const downloadPromise =
-              page.waitForEvent("download");
 
             await page.waitForSelector(
               "#exportSnapshotBtn",
@@ -87,6 +64,16 @@ jobs:
                 timeout: 120000
               }
             );
+
+            console.log(
+              "Export Snapshot button is ready."
+            ); 
+             const week = 4;
+
+            console.log("Target week:", week);
+
+            const downloadPromise =
+              page.waitForEvent("download");
 
             await page.click(
               "#exportSnapshotBtn"
