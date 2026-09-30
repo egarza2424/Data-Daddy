@@ -4721,11 +4721,35 @@ jobs:
               if not away_team or not home_team:
                   continue
 
+              spread_line_raw = game.get(
+                  "spread_line"
+              )
+
+              total_line_raw = game.get(
+                  "total_line"
+              )
+
+              try:
+                  spread_line = float(
+                      spread_line_raw
+                  )
+              except (TypeError, ValueError):
+                  spread_line = None
+
+              try:
+                  total_line = float(
+                      total_line_raw
+                  )
+              except (TypeError, ValueError):
+                  total_line = None
+
               upcoming_games.append({
                   "date": game_date,
                   "week": game_week,
                   "away_team": away_team,
-                  "home_team": home_team
+                  "home_team": home_team,
+                  "spread_line": spread_line,
+                  "total_line": total_line
               })
           upcoming_games.sort(
               key=lambda game: (
@@ -4766,6 +4790,175 @@ jobs:
               f"Created next-opponent data for "
               f"{len(team_next_opponent)} teams."
           )
+          # -------------------------------------------------
+          # SIGNAL 11: SCORING ENVIRONMENT
+          # Sportsbook-implied team scoring expectation.
+          # nflverse spread_line is positive when the
+          # home team is favored.
+          # -------------------------------------------------
+
+          current_scoring_environment = {}
+
+          scoring_environment_rows = []
+
+          for game in upcoming_games:
+              away_team = game["away_team"]
+              home_team = game["home_team"]
+
+              if away_team == "LA":
+                  away_team = "LAR"
+
+              if home_team == "LA":
+                  home_team = "LAR"
+
+              spread_line = game.get(
+                  "spread_line"
+              )
+
+              total_line = game.get(
+                  "total_line"
+              )
+
+              if (
+                  spread_line is None or
+                  total_line is None
+              ):
+                  continue
+
+              # nflverse spread_line is expressed from the
+              # home team's perspective:
+              # positive = home favorite.
+              home_implied_total = (
+                  total_line + spread_line
+              ) / 2.0
+
+              away_implied_total = (
+                  total_line - spread_line
+              ) / 2.0
+
+              scoring_environment_rows.extend([
+                  {
+                      "team": home_team,
+                      "opponent": away_team,
+                      "week": game["week"],
+                      "location": "home",
+                      "game_total": total_line,
+                      "spread_line": spread_line,
+                      "implied_team_total":
+                          home_implied_total
+                  },
+                  {
+                      "team": away_team,
+                      "opponent": home_team,
+                      "week": game["week"],
+                      "location": "away",
+                      "game_total": total_line,
+                      "spread_line": spread_line,
+                      "implied_team_total":
+                          away_implied_total
+                  }
+              ])
+
+          implied_totals = [
+              row["implied_team_total"]
+              for row in scoring_environment_rows
+          ]
+
+          if implied_totals:
+              minimum_implied_total = min(
+                  implied_totals
+              )
+
+              maximum_implied_total = max(
+                  implied_totals
+              )
+
+              for row in scoring_environment_rows:
+                  implied_total = row[
+                      "implied_team_total"
+                  ]
+
+                  if (
+                      maximum_implied_total >
+                      minimum_implied_total
+                  ):
+                      normalized = (
+                          (
+                              implied_total -
+                              minimum_implied_total
+                          ) /
+                          (
+                              maximum_implied_total -
+                              minimum_implied_total
+                          )
+                      )
+
+                      scoring_environment_score = round(
+                          25 + normalized * 75
+                      )
+                  else:
+                      scoring_environment_score = 50
+
+                  current_scoring_environment[
+                      row["team"]
+                  ] = {
+                      "opponent":
+                          row["opponent"],
+                      "week":
+                          row["week"],
+                      "location":
+                          row["location"],
+                      "game_total":
+                          round(
+                              row["game_total"],
+                              1
+                          ),
+                      "spread_line":
+                          round(
+                              row["spread_line"],
+                              1
+                          ),
+                      "implied_team_total":
+                          round(
+                              implied_total,
+                              1
+                          ),
+                      "score":
+                          max(
+                              0,
+                              min(
+                                  100,
+                                  scoring_environment_score
+                              )
+                          ),
+                      "available": True,
+                      "source":
+                          "nflverse_betting_lines"
+                  }
+
+          print(
+              "Created scoring-environment data for "
+              f"{len(current_scoring_environment)} teams."
+          )
+
+          if current_scoring_environment:
+              print(
+                  "Scoring-environment implied-total range: "
+                  f"{minimum_implied_total:.1f}-"
+                  f"{maximum_implied_total:.1f}."
+              )
+
+              scoring_environment_leaders = sorted(
+                  current_scoring_environment.items(),
+                  key=lambda item:
+                      item[1]["implied_team_total"],
+                  reverse=True
+              )[:5]
+
+              print(
+                  "Top scoring environments: "
+                  f"{[(team, data['implied_team_total'], data['score']) for team, data in scoring_environment_leaders]}"
+              )          
           # -------------------------------------------------
           # 2026 PLAY-CALLER MATCHUP SIGNALS
           # -------------------------------------------------
@@ -11155,6 +11348,8 @@ jobs:
                   defense_position_allowed,
               "team_next_opponent":
                   team_next_opponent,
+              "current_scoring_environment":
+                  current_scoring_environment,
               "current_play_caller_signals":
                   current_play_caller_signals,
               "play_caller_matchup":
