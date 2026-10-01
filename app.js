@@ -1296,6 +1296,32 @@ function calculateModelConfidence(player) {
           Number(row.week) === week
       );
       if (player.position === "QB") {
+        const playerPassAttempts =
+          Number(
+            game.attempts ||
+            game.passing_attempts ||
+            0
+          );
+
+        const playerCarries =
+          Number(
+            game.carries ||
+            game.rushing_attempts ||
+            0
+          );
+
+        const teamPassAttempts =
+          teamGameRows.reduce(
+            (total, row) =>
+              total +
+              Number(
+                row.attempts ||
+                row.passing_attempts ||
+                0
+              ),
+            0
+          );
+
         const teamCarries =
           teamGameRows.reduce(
             (total, row) =>
@@ -1308,15 +1334,23 @@ function calculateModelConfidence(player) {
             0
           );
 
-        return teamCarries > 0
-          ? Number(
-              game.carries ||
-              game.rushing_attempts ||
-              0
-            ) / teamCarries
-          : 0;
-      }
+        const passingShare =
+          teamPassAttempts > 0
+            ? playerPassAttempts /
+              teamPassAttempts
+            : 0;
 
+        const rushingShare =
+          teamCarries > 0
+            ? playerCarries /
+              teamCarries
+            : 0;
+
+        return (
+          passingShare +
+          rushingShare
+        );
+      }
       if (
         player.position === "WR" ||
         player.position === "TE"
@@ -1494,6 +1528,32 @@ function getModelConfidenceBreakdown(player) {
       );
     
       if (player.position === "QB") {
+        const playerPassAttempts =
+          Number(
+            game.attempts ||
+            game.passing_attempts ||
+            0
+          );
+
+        const playerCarries =
+          Number(
+            game.carries ||
+            game.rushing_attempts ||
+            0
+          );
+
+        const teamPassAttempts =
+          teamGameRows.reduce(
+            (total, row) =>
+              total +
+              Number(
+                row.attempts ||
+                row.passing_attempts ||
+                0
+              ),
+            0
+          );
+
         const teamCarries =
           teamGameRows.reduce(
             (total, row) =>
@@ -1506,15 +1566,23 @@ function getModelConfidenceBreakdown(player) {
             0
           );
 
-        return teamCarries > 0
-          ? Number(
-              game.carries ||
-              game.rushing_attempts ||
-              0
-            ) / teamCarries
-          : 0;
-      }
+        const passingShare =
+          teamPassAttempts > 0
+            ? playerPassAttempts /
+              teamPassAttempts
+            : 0;
 
+        const rushingShare =
+          teamCarries > 0
+            ? playerCarries /
+              teamCarries
+            : 0;
+
+        return (
+          passingShare +
+          rushingShare
+        );
+      }
       if (
         player.position === "WR" ||
         player.position === "TE"
