@@ -3419,18 +3419,34 @@ function exportModelSnapshot() {
       : `Live model snapshot exported: ${snapshot.length} players`
   );
 }
+const RANKINGS_PER_PAGE = 24;
+let currentRankingPage = 1;
 
 function renderPositionRankings() {
-  const positionSelect = document.getElementById("rankingPosition");
-  const searchInput = document.getElementById("rankingSearch");
-  const tableBody = document.getElementById("rankingTableBody");
-  const weekLabel = document.getElementById("rankingWeek");
+  const positionSelect =
+    document.getElementById("rankingPosition");
+
+  const searchInput =
+    document.getElementById("rankingSearch");
+
+  const tableBody =
+    document.getElementById("rankingTableBody");
+
+  const weekLabel =
+    document.getElementById("rankingWeek");
+
+  const pagination =
+    document.getElementById("rankingPagination");
 
   if (!positionSelect || !tableBody) return;
 
   const position = positionSelect.value;
   const profile = riskSelect.value;
-  const query = (searchInput?.value || "").trim().toLowerCase();
+
+  const query =
+    (searchInput?.value || "")
+      .trim()
+      .toLowerCase();
 
   if (weekLabel) {
     weekLabel.textContent = snapshotWeek
@@ -3438,42 +3454,186 @@ function renderPositionRankings() {
       : "Live positional rankings";
   }
 
-  delete rankingCache[`${profile}-${position}`];
-  
-  const rankings = getPositionRankings(position, profile)
-    .filter(({ player }) =>
-      player.name.toLowerCase().includes(query)
-    );
+  delete rankingCache[
+    `${profile}-${position}`
+  ];
+
+  const rankings =
+    getPositionRankings(position, profile)
+      .filter(({ player }) =>
+        player.name
+          .toLowerCase()
+          .includes(query)
+      );
 
   tableBody.innerHTML = "";
 
   if (rankings.length === 0) {
     tableBody.innerHTML =
       '<tr><td colspan="5">No ranked players found.</td></tr>';
+
+    if (pagination) {
+      pagination.innerHTML = "";
+    }
+
     return;
   }
 
-  rankings.forEach(({ player, score }) => {
-    const rank = getPlayerPositionRank(player, profile);
-    const matchup = teamNextOpponent[player.team];
-    const opponent = matchup?.opponent || "TBD";
+  const totalPages =
+    Math.ceil(
+      rankings.length /
+      RANKINGS_PER_PAGE
+    );
 
-    const row = document.createElement("tr");
+  if (currentRankingPage > totalPages) {
+    currentRankingPage = totalPages;
+  }
 
-    [
-      `${player.position}${rank}`,
-      player.name,
-      opponent,
-      score.toFixed(1),
-      player.injuryStatus || "Available"
-    ].forEach((value) => {
-      const cell = document.createElement("td");
-      cell.textContent = value;
-      row.appendChild(cell);
-    });
+  if (currentRankingPage < 1) {
+    currentRankingPage = 1;
+  }
 
-    tableBody.appendChild(row);
-  });
+  const startIndex =
+    (currentRankingPage - 1) *
+    RANKINGS_PER_PAGE;
+
+  const endIndex =
+    startIndex + RANKINGS_PER_PAGE;
+
+  const visibleRankings =
+    rankings.slice(
+      startIndex,
+      endIndex
+    );
+
+  visibleRankings.forEach(
+    ({ player, score }) => {
+
+      const rank =
+        getPlayerPositionRank(
+          player,
+          profile
+        );
+
+      const matchup =
+        teamNextOpponent[player.team];
+
+      const opponent =
+        matchup?.opponent || "TBD";
+
+      const row =
+        document.createElement("tr");
+
+      [
+        `${player.position}${rank}`,
+        player.name,
+        opponent,
+        score.toFixed(1),
+        player.injuryStatus ||
+          "Available"
+      ].forEach((value) => {
+
+        const cell =
+          document.createElement("td");
+
+        cell.textContent = value;
+
+        row.appendChild(cell);
+      });
+
+      tableBody.appendChild(row);
+    }
+  );
+
+  if (!pagination) return;
+
+  pagination.innerHTML = "";
+
+  if (totalPages <= 1) {
+    return;
+  }
+
+  const previousButton =
+    document.createElement("button");
+
+  previousButton.type = "button";
+  previousButton.textContent = "← Previous";
+
+  previousButton.disabled =
+    currentRankingPage === 1;
+
+  previousButton.addEventListener(
+    "click",
+    () => {
+      if (currentRankingPage <= 1) {
+        return;
+      }
+
+      currentRankingPage -= 1;
+      renderPositionRankings();
+
+      document
+        .getElementById("rankings")
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+    }
+  );
+
+  pagination.appendChild(
+    previousButton
+  );
+
+
+  const pageStatus =
+    document.createElement("span");
+
+  pageStatus.className =
+    "ranking-page-status";
+
+  pageStatus.textContent =
+    `Page ${currentRankingPage} of ${totalPages}`;
+
+  pagination.appendChild(
+    pageStatus
+  );
+
+
+  const nextButton =
+    document.createElement("button");
+
+  nextButton.type = "button";
+  nextButton.textContent = "Next →";
+
+  nextButton.disabled =
+    currentRankingPage === totalPages;
+
+  nextButton.addEventListener(
+    "click",
+    () => {
+      if (
+        currentRankingPage >=
+        totalPages
+      ) {
+        return;
+      }
+
+      currentRankingPage += 1;
+      renderPositionRankings();
+
+      document
+        .getElementById("rankings")
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+    }
+  );
+
+  pagination.appendChild(
+    nextButton
+  );
 }
 compareButton.addEventListener("click", comparePlayers);
 
@@ -3519,15 +3679,26 @@ async function initializeApp() {
     );
   }
   // Update rankings when the selected position changes.
-  document
-    .getElementById("rankingPosition")
-    ?.addEventListener("change", renderPositionRankings);
+ document
+  .getElementById("rankingPosition")
+  ?.addEventListener(
+    "change",
+    () => {
+      currentRankingPage = 1;
+      renderPositionRankings();
+    }
+  );
 
   // Filter rankings as the user searches.
-  document
-    .getElementById("rankingSearch")
-    ?.addEventListener("input", renderPositionRankings);
-
+ document
+  .getElementById("rankingSearch")
+  ?.addEventListener(
+    "input",
+    () => {
+      currentRankingPage = 1;
+      renderPositionRankings();
+    }
+  );
   
   // Refresh rankings when risk tolerance changes.
   riskSelect.addEventListener("change", renderPositionRankings);
