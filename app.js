@@ -419,12 +419,10 @@ function calculateUsageScore(player) {
   if (games.length === 0) {
     return 20;
   }
-
   // QB usage:
   // Measures fantasy-relevant rushing involvement.
   // Passing volume is already represented by Opportunity,
-  // so QB Usage focuses on the part of workload that
-  // differentiates fantasy QB profiles: rushing share.
+  // so QB Usage focuses on rushing share.
   if (player.position === "QB") {
     let totalRushingShare = 0;
     let validGames = 0;
@@ -495,7 +493,8 @@ function calculateUsageScore(player) {
         )
       )
     );
-  }
+  }  
+
   // RB / WR / TE usage:
   // rushing share + target share.
   let totalShare = 0;
