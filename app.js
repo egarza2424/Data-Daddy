@@ -56,7 +56,7 @@ const metricDescriptions = {
 Usage: {
   weight: "13.95%",
   description:
-    "Measures a player's share of his team's offensive opportunities. QB combines team passing-attempt share and team rushing-attempt share. RB, WR and TE combine team rushing-attempt share and team target share."
+    "Measures a player's share of his team's offensive opportunities. QB measures recent rushing involvement relative to team rushing volume. RB, WR and TE combine team rushing-attempt share and team target share."
 },
   
   Matchup: {
@@ -420,12 +420,13 @@ function calculateUsageScore(player) {
     return 20;
   }
 
-   // QB usage:
-  // passing-attempt share + rushing-attempt share.
-  // This measures how much of the team's passing
-  // and rushing offense flows through the QB.
+  // QB usage:
+  // Measures fantasy-relevant rushing involvement.
+  // Passing volume is already represented by Opportunity,
+  // so QB Usage focuses on the part of workload that
+  // differentiates fantasy QB profiles: rushing share.
   if (player.position === "QB") {
-    let totalShare = 0;
+    let totalRushingShare = 0;
     let validGames = 0;
 
     games.forEach((game) => {
@@ -438,29 +439,16 @@ function calculateUsageScore(player) {
       }
 
       const teamGameRows =
-        getTeamGameRows(season, week, team);
+        getTeamGameRows(
+          season,
+          week,
+          team
+        );
 
-      const playerPassAttempts = Number(
-        game.attempts ||
-        game.passing_attempts ||
-        0
-      );
-
-      const playerCarries = Number(
-        game.carries ||
-        game.rushing_attempts ||
-        0
-      );
-
-      const teamPassAttempts =
-        teamGameRows.reduce(
-          (total, row) =>
-            total +
-            Number(
-              row.attempts ||
-              row.passing_attempts ||
-              0
-            ),
+      const playerCarries =
+        Number(
+          game.carries ||
+          game.rushing_attempts ||
           0
         );
 
@@ -476,20 +464,16 @@ function calculateUsageScore(player) {
           0
         );
 
-      const passingShare =
-        teamPassAttempts > 0
-          ? playerPassAttempts /
-            teamPassAttempts
-          : 0;
+      if (teamCarries <= 0) {
+        return;
+      }
 
       const rushingShare =
-        teamCarries > 0
-          ? playerCarries /
-            teamCarries
-          : 0;
+        playerCarries /
+        teamCarries;
 
-      totalShare +=
-        passingShare + rushingShare;
+      totalRushingShare +=
+        rushingShare;
 
       validGames += 1;
     });
@@ -498,12 +482,18 @@ function calculateUsageScore(player) {
       return 50;
     }
 
-    const averageShare =
-      totalShare / validGames;
+    const averageRushingShare =
+      totalRushingShare /
+      validGames;
 
     return Math.max(
       0,
-      Math.round(averageShare * 100)
+      Math.min(
+        100,
+        Math.round(
+          averageRushingShare * 400
+        )
+      )
     );
   }
   // RB / WR / TE usage:
