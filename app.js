@@ -3188,6 +3188,10 @@ function exportModelSnapshot() {
         getTrenchMatchup(player);
 
       snapshot.push({
+        snapshot_week:
+          Number(
+            document.documentElement.dataset.targetWeek
+          ) || null,
         player_id: player.id,
         player_name: player.name,
         position: player.position,
@@ -3254,6 +3258,7 @@ function exportModelSnapshot() {
   });
 
   const header = [
+    "snapshot_week",
     "player_id",
     "player_name",
     "position",
