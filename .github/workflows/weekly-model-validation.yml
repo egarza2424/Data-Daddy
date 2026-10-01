@@ -856,25 +856,23 @@ jobs:
         run: |
           echo "Generated validation files:"
 
-          if [ -d "model-validation" ]; then
-            ls -lh model-validation/
-          else
+          if [ ! -d "model-validation" ]; then
             echo "No validation files were generated."
             echo "This is expected when actual NFL results for the snapshot week are not available yet."
+            exit 0
           fi
+
+          ls -lh model-validation/
+
           echo ""
           echo "Position summary:"
-          cat model-validation/*-summary.csv
 
-          echo ""
-          echo "Signal analysis:"
-          cat model-validation/*-signal-analysis.csv
+          SUMMARY_FILE=$(find model-validation -maxdepth 1 -name "*-summary.csv" -print -quit)
 
-      - name: Commit validation results
-        run: |
-          if [ ! -d "model-validation" ]; then
-            echo "No validation results to commit."
-            exit 0
+          if [ -n "$SUMMARY_FILE" ]; then
+            cat "$SUMMARY_FILE"
+          else
+            echo "No position summary file was generated."
           fi
 
           git config user.name "github-actions[bot]"
