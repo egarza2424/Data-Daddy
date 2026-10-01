@@ -110,8 +110,9 @@ jobs:
                   "player rows."
               )
 
-          week_raw = first_row.get(
-              "snapshot_week"
+          week_raw = (
+              first_row.get("snapshot_week")
+              or first_row.get("week")
           )
 
           try:
@@ -124,9 +125,8 @@ jobs:
           ):
               raise SystemExit(
                   "Could not determine NFL week "
-                  "from snapshot_week column."
+                  "from snapshot week data."
               )
-
           if week <= 0:
               raise SystemExit(
                   "Snapshot contains an invalid "
