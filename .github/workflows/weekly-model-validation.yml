@@ -32,7 +32,7 @@ jobs:
       - name: Find latest frozen pregame snapshot
         id: snapshot
         run: |
-                    python <<'PY'
+          python <<'PY'
           import csv
           import os
           from datetime import datetime
