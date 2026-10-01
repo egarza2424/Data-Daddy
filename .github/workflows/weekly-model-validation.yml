@@ -560,11 +560,6 @@ jobs:
               "risk_score",
               "trench_score",
               "scoring_environment_score",
-              "implied_team_total",
-              "game_total",
-              "spread_line",
-          ]
-              "scoring_environment_score",
           ]
 
           for column in (
