@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Fantasy AI Player Lab — an explainable fantasy football decision-support prototype.">
+  <meta name="description" content="Fantasy AI Player Lab — weekly data-driven NFL fantasy rankings, player comparisons, and transparent model scoring powered by 11 explainable signals.">
   <title>Fantasy AI Player Lab</title>
 
   <link rel="stylesheet" href="styles.css?v=23">
@@ -48,21 +48,37 @@
   <div class="hero-content">
 
     <div class="eyebrow hero-eyebrow">
-      WELCOME TO DATA DADDY
+      FANTASY AI PLAYER LAB
     </div>
 
     <h2 class="hero-title">
-      Your fantasy football command center.
+      Make smarter fantasy football decisions.
     </h2>
 
+    <p class="hero-copy">
+      Compare players, explore weekly positional rankings, and see
+      exactly why the model favors one player over another.
+      Fantasy AI Player Lab analyzes 11 data-driven signals to help
+      you make more informed lineup decisions.
+    </p>
 
-<p class="hero-copy">
-  Compare three NFL players using ten fantasy-football signals,
-  including our experimental offensive-line vs. defensive-line
-  matchup grade. Signal 10 contributes 7% to the model when
-  verified matchup data is available. Explore weekly positional
-  rankings and make data-driven lineup decisions.
-</p>
+    <p class="hero-update-note">
+      Updated weekly as NFL performance, usage, matchups, injuries,
+      and scoring environments change.
+    </p>
+
+    <div class="hero-actions">
+      <a class="primary-btn" href="#compare">
+        Compare Players
+      </a>
+
+      <a class="secondary-btn" href="#rankings">
+        View Weekly Rankings
+      </a>
+    </div>
+
+  </div>
+</section>
 
 
 
@@ -257,19 +273,19 @@
   <div>
 
     <div class="eyebrow">
-      PRODUCT THINKING
+      WHY FANTASY AI PLAYER LAB?
     </div>
 
     <h3>
-      Why this prototype?
+      Built to explain the ranking — not just give you one.
     </h3>
 
     <p>
-      Fantasy managers rarely lack information. The challenge is turning
-      performance, usage, matchup, coaching context and player availability
-      into a decision they can trust. This MVP combines nine explainable
-      signals into a transparent comparison model instead of hiding the
-      recommendation behind a black box.
+      Fantasy rankings are everywhere. Fantasy AI Player Lab is built
+      differently: every player score can be traced back to the data
+      driving it. Instead of giving you a ranking with no explanation,
+      the model shows the signals behind each recommendation so you can
+      understand the reasoning and make your own lineup decision.
     </p>
 
   </div>
@@ -279,9 +295,11 @@
 
     <div>
       <span>01</span>
-      <strong>Explainable</strong>
+      <strong>Transparent</strong>
       <p>
-        Nine weighted signals drive each recommendation, with an experimental trench matchup displayed separately at 0% model weight.
+        See the individual signals behind every player score, including
+        opportunity, recent production, usage, matchup, red-zone
+        involvement, scoring environment, coaching context, and more.
       </p>
     </div>
 
@@ -290,16 +308,20 @@
       <span>02</span>
       <strong>Data-driven</strong>
       <p>
-        Real NFL performance, usage, matchup and coaching-context data power the model.
+        Rankings respond to what is happening in the NFL now — recent
+        performance, changing roles, team usage, upcoming opponents,
+        player availability, scoring expectations, and matchup conditions.
       </p>
     </div>
 
 
     <div>
       <span>03</span>
-      <strong>Iterative</strong>
+      <strong>Tested every week</strong>
       <p>
-        The model is designed to be tested against real outcomes and improved over time.
+        Pregame rankings are frozen before games and compared with actual
+        fantasy results afterward, helping identify which signals are
+        working, where the model misses, and what should improve.
       </p>
     </div>
 
@@ -311,60 +333,73 @@
 <section class="panel roadmap">
 
   <div class="eyebrow">
-    ROADMAP
+    INSIDE THE MODEL
   </div>
 
   <h3>
-    From prototype to production
+    What goes into the score?
   </h3>
+
+  <p>
+    The model combines 11 explainable signals designed to capture player
+    performance, opportunity, matchup context, game environment, and
+    uncertainty. Each signal contributes to a transparent weekly score
+    that changes as the NFL season changes.
+  </p>
 
 
   <div class="roadmap-grid">
 
     <div>
       <b>01</b>
-      <strong>League integration</strong>
+      <strong>Performance &amp; Opportunity</strong>
       <p>
-        Connect league scoring, rosters and lineup context for personalized recommendations.
+        Recent fantasy production, offensive opportunity, usage trends,
+        and red-zone involvement help identify players whose roles are
+        translating into fantasy value.
       </p>
     </div>
 
 
     <div>
       <b>02</b>
-      <strong>Expert consensus</strong>
+      <strong>Matchup Intelligence</strong>
       <p>
-        Add external rankings and consensus data as another explainable model signal.
+        Defensive matchup, offensive and defensive play-caller history,
+        player-versus-defensive-caller performance, and trench conditions
+        add context beyond the box score.
       </p>
     </div>
 
 
     <div>
       <b>03</b>
-      <strong>AI explanations</strong>
+      <strong>Game Environment</strong>
       <p>
-        Natural-language weekly reasoning grounded in structured signals.
+        Market-implied team totals and expected game scoring help identify
+        offenses positioned for stronger fantasy opportunities each week.
       </p>
     </div>
 
 
     <div>
       <b>04</b>
-      <strong>Model validation</strong>
+      <strong>Weekly Validation</strong>
       <p>
-        Compare pregame recommendations with actual weekly outcomes and use the results to improve future weights.
+        Pregame rankings are compared with actual fantasy results so the
+        model can be evaluated and refined as new NFL performance trends
+        emerge.
       </p>
     </div>
 
   </div>
 
 </section>
-
-
+  
 <footer>
 
 <p>
-  Fantasy AI Player Lab • Product prototype • Real NFL data • Explainable scoring
+  Fantasy AI Player Lab • 11 Explainable Signals • Weekly NFL Rankings • Data-Driven Decisions
 </p>
 
   <a href="docs/case-study.md">
