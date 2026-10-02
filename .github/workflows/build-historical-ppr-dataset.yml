@@ -190,22 +190,14 @@ jobs:
 
       - name: Commit historical dataset
         run: |
-          if git diff --quiet -- projection-model/; then
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add projection-model/2025-historical-ppr-dataset.csv
+
+          if git diff --cached --quiet; then
             echo "No historical dataset changes to commit."
-            exit 0
+          else
+            git commit -m "Update 2025 historical PPR dataset"
+            git push
           fi
-
-          git config \
-            user.name \
-            "github-actions[bot]"
-
-          git config \
-            user.email \
-            "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add projection-model/
-
-          git commit \
-            -m "Build 2025 historical PPR dataset"
-
-          git push
