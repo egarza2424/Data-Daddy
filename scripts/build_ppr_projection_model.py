@@ -37,6 +37,14 @@ MODEL_C_FEATURES = [
     "model_confidence_score",
     "scoring_environment_score",
 ]
+MODEL_D_FEATURES = [
+    "opportunity_score",
+    "production_score",
+    "usage_score",
+    "redzone_score",
+    "model_confidence_score",
+    "matchup_score",
+]
 def fit_linear_regression(
     train_x,
     train_y,
@@ -448,7 +456,8 @@ def validate_input(data):
         "actual_ppr",
         *MODEL_A_FEATURES,
         *MODEL_B_FEATURES,
-        *MODEL_C_FEATURES,    
+        *MODEL_C_FEATURES,
+        *MODEL_D_FEATURES,
     }
 
     missing = sorted(
