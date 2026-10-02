@@ -45,6 +45,15 @@ MODEL_D_FEATURES = [
     "model_confidence_score",
     "matchup_score",
 ]
+MODEL_E_FEATURES = [
+    "opportunity_score",
+    "production_score",
+    "usage_score",
+    "redzone_score",
+    "model_confidence_score",
+    "matchup_score",
+    "scoring_environment_score",
+]
 def fit_linear_regression(
     train_x,
     train_y,
@@ -458,6 +467,7 @@ def validate_input(data):
         *MODEL_B_FEATURES,
         *MODEL_C_FEATURES,
         *MODEL_D_FEATURES,
+        *MODEL_E_FEATURES,
     }
 
     missing = sorted(
@@ -566,15 +576,28 @@ def main():
             model_name=(
                 "D_normalized_plus_matchup"
             ),
-        )        
+        )   
+        model_e = walk_forward_model(
+            data=data,
+            position=position,
+            feature_columns=(
+                MODEL_E_FEATURES
+            ),
+            model_name=(
+                "E_normalized_plus_matchup_and_environment"
+            ),
+        )
+        
         prediction_frames.extend(
             [
                 model_a,
                 model_b,
                 model_c,
                 model_d,
+                model_e,
             ]
         )
+    
     predictions = pd.concat(
         [
             frame
