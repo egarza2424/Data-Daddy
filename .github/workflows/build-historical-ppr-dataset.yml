@@ -79,12 +79,38 @@ jobs:
               "Columns:",
               list(df.columns)
           )
+          pbp_url = (
+              "https://github.com/nflverse/"
+              "nflverse-data/releases/download/"
+              "pbp/"
+              "play_by_play_2025.csv.gz"
+          )
+
+          pbp_output = (
+              "historical-data/"
+              "play_by_play_2025.csv.gz"
+          )
+
+          print(
+              f"Downloading {pbp_url}"
+          )
+
+          urllib.request.urlretrieve(
+              pbp_url,
+              pbp_output
+          )
+
+          print(
+              "Saved 2025 play-by-play to "
+              f"{pbp_output}"
+          )          
           PY
 
       - name: Build 2025 historical PPR dataset
         run: |
           python scripts/build_historical_ppr_dataset.py \
-            --stats historical-data/player_stats.csv \
+            --stats historical-data/player_stats.csv 
+            --pbp historical-data/play_by_play_2025.csv.gz \
             --season 2025 \
             --first-week 4 \
             --last-week 18 \
