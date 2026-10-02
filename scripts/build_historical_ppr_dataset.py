@@ -1717,7 +1717,7 @@ def build_dataset(
     result = add_scoring_environment_score(
         result
     )
-        result = add_matchup_scores(
+    result = add_matchup_scores(
         result,
         season_stats,
         schedule,
