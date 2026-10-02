@@ -556,12 +556,23 @@ def main():
             model_name=(
                 "C_normalized_plus_scoring_environment"
             ),
+        )
+        model_d = walk_forward_model(
+            data=data,
+            position=position,
+            feature_columns=(
+                MODEL_D_FEATURES
+            ),
+            model_name=(
+                "D_normalized_plus_matchup"
+            ),
         )        
         prediction_frames.extend(
             [
                 model_a,
                 model_b,
                 model_c,
+                model_d,
             ]
         )
     predictions = pd.concat(
