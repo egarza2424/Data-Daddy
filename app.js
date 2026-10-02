@@ -111,6 +111,9 @@ let currentTrenchSignals = {};
 let trenchSignalWeek = null;
 let currentPlayerVsDefensiveCaller = {};
 let currentScoringEnvironment = {};
+let weeklyPprProjections = [];
+const pprProjectionByPlayerId = new Map();
+const pprProjectionByPlayerKey = new Map();
 const playerASelect = document.getElementById("playerA");
 const playerBSelect = document.getElementById("playerB");
 const riskSelect = document.getElementById("riskTolerance");
@@ -202,6 +205,229 @@ console.log(
   console.error("Local NFL stats error:", error);
   weeklyStats = [];
 }
+}
+async function loadWeeklyPprProjections() {
+  try {
+    const targetWeek =
+      Number(
+        document.documentElement.dataset.targetWeek
+      );
+
+    if (!Number.isFinite(targetWeek) || targetWeek <= 0) {
+      throw new Error(
+        "Could not determine target NFL week for PPR projections."
+      );
+    }
+
+    const projectionFile =
+      `./projection-model/2026-week${targetWeek}-ppr-projections.csv`;
+
+    const response = await fetch(
+      `${projectionFile}?v=1`,
+      { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        `Could not load ${projectionFile}: ${response.status}`
+      );
+    }
+
+    const csvText = await response.text();
+
+    const lines = csvText
+      .trim()
+      .split(/\r?\n/);
+
+    if (lines.length < 2) {
+      throw new Error(
+        "PPR projection CSV contains no player rows."
+      );
+    }
+
+    function parseCsvLine(line) {
+      const values = [];
+      let current = "";
+      let insideQuotes = false;
+
+      for (let index = 0; index < line.length; index += 1) {
+        const character = line[index];
+
+        if (character === '"') {
+          if (
+            insideQuotes &&
+            line[index + 1] === '"'
+          ) {
+            current += '"';
+            index += 1;
+          } else {
+            insideQuotes = !insideQuotes;
+          }
+
+          continue;
+        }
+
+        if (
+          character === "," &&
+          !insideQuotes
+        ) {
+          values.push(current);
+          current = "";
+          continue;
+        }
+
+        current += character;
+      }
+
+      values.push(current);
+
+      return values;
+    }
+
+    const headers =
+      parseCsvLine(lines[0])
+        .map(header => header.trim());
+
+    const requiredColumns = [
+      "snapshot_week",
+      "player_id",
+      "player_name",
+      "position",
+      "team",
+      "projected_ppr",
+      "projected_position_rank",
+      "projection_model"
+    ];
+
+    const missingColumns =
+      requiredColumns.filter(
+        column => !headers.includes(column)
+      );
+
+    if (missingColumns.length > 0) {
+      throw new Error(
+        "PPR projection CSV is missing columns: " +
+        missingColumns.join(", ")
+      );
+    }
+
+    weeklyPprProjections =
+      lines
+        .slice(1)
+        .filter(line => line.trim())
+        .map((line) => {
+          const values =
+            parseCsvLine(line);
+
+          const row = {};
+
+          headers.forEach(
+            (header, index) => {
+              row[header] =
+                values[index] ?? "";
+            }
+          );
+
+          row.snapshot_week =
+            Number(row.snapshot_week);
+
+          row.projected_ppr =
+            Number(row.projected_ppr);
+
+          row.projected_position_rank =
+            Number(
+              row.projected_position_rank
+            );
+
+          row.model_score =
+            Number(row.model_score);
+
+          return row;
+        });
+
+    pprProjectionByPlayerId.clear();
+    pprProjectionByPlayerKey.clear();
+
+    weeklyPprProjections.forEach(
+      (projection) => {
+        const playerId =
+          String(
+            projection.player_id || ""
+          ).trim();
+
+        if (playerId) {
+          pprProjectionByPlayerId.set(
+            playerId,
+            projection
+          );
+        }
+
+        const playerKey = [
+          normalizeName(
+            projection.player_name
+          ),
+          String(
+            projection.position || ""
+          ).toUpperCase()
+        ].join("|");
+
+        pprProjectionByPlayerKey.set(
+          playerKey,
+          projection
+        );
+      }
+    );
+
+    console.log(
+      `Week ${targetWeek} PPR projections loaded:`,
+      weeklyPprProjections.length
+    );
+  } catch (error) {
+    console.error(
+      "PPR projection loading error:",
+      error
+    );
+
+    weeklyPprProjections = [];
+    pprProjectionByPlayerId.clear();
+    pprProjectionByPlayerKey.clear();
+  }
+}
+
+
+function getPlayerPprProjection(player) {
+  if (!player) {
+    return null;
+  }
+
+  const ids = [
+    player.nflId,
+    player.id
+  ]
+    .filter(Boolean)
+    .map(id => String(id));
+
+  for (const id of ids) {
+    const projection =
+      pprProjectionByPlayerId.get(id);
+
+    if (projection) {
+      return projection;
+    }
+  }
+
+  const playerKey = [
+    normalizeName(player.name),
+    String(
+      player.position || ""
+    ).toUpperCase()
+  ].join("|");
+
+  return (
+    pprProjectionByPlayerKey.get(
+      playerKey
+    ) || null
+  );
 }
 function normalizeName(name) {
   return String(name || "")
@@ -3640,10 +3866,50 @@ compareButton.addEventListener("click", comparePlayers);
 
 async function initializeApp() {
 
-  // Download players and weekly stats simultaneously.
+  // Load weekly NFL data first so the current
+  // target week is known.
   await loadWeeklyStats();
+
+  // Load Model F PPR projections for that week.
+  await loadWeeklyPprProjections();
+
+  // Load the current NFL player pool and connect
+  // Sleeper players to NFL/GSIS IDs.
   await loadPlayers();
-  // Display rankings after both data sources load.
+
+  console.log(
+    "PPR projection mapping check:",
+    {
+      projections:
+        weeklyPprProjections.length,
+
+      matchedPlayers:
+        players.filter(
+          player =>
+            getPlayerPprProjection(player)
+        ).length,
+
+      bryceYoung:
+        getPlayerPprProjection(
+          players.find(
+            player =>
+              player.name ===
+              "Bryce Young"
+          )
+        ),
+
+      jahmyrGibbs:
+        getPlayerPprProjection(
+          players.find(
+            player =>
+              player.name ===
+              "Jahmyr Gibbs"
+          )
+        )
+    }
+  );
+
+  // Display rankings after all data sources load.
   renderPositionRankings();
   // Add the snapshot export button.
   const rankingSelect =
