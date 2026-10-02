@@ -208,14 +208,7 @@ console.log(
 }
 async function loadWeeklyPprProjections() {
   try {
-    const targetWeek =
-      Number(trenchSignalWeek);
-
-    if (!Number.isFinite(targetWeek) || targetWeek <= 0) {
-      throw new Error(
-        "Could not determine target NFL week for PPR projections."
-      );
-    }
+    const targetWeek = 4;
 
     const projectionFile =
       `./projection-model/2026-week${targetWeek}-ppr-projections.csv`;
