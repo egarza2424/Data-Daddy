@@ -497,7 +497,6 @@ def usage_value(
     )
 
     return carry_share + target_share
-return carry_share + target_share
 
 def redzone_raw(row):
     position = row["position"]
