@@ -107,8 +107,8 @@ jobs:
           games_url = (
               "https://github.com/nflverse/"
               "nflverse-data/releases/download/"
-              "games/games.csv"
-          )
+              "schedules/games.csv"
+          )    
 
           games_output = (
               "historical-data/games.csv"
