@@ -736,7 +736,376 @@ def add_scoring_environment_score(
             * 75.0
         ).round()
 
+       return dataset
+
+
+def build_matchup_lookup(
+    season_stats,
+    target_week,
+):
+    """
+    Build leakage-safe opponent positional PPR allowed.
+
+    For target week W, only games from weeks < W are used.
+
+    Returns:
+        matchup_lookup:
+            (defense, position) -> prior PPR allowed per game
+
+        matchup_score_lookup:
+            (defense, position) -> 20-80 normalized score
+    """
+
+    history = season_stats[
+        season_stats["week"] < target_week
+    ].copy()
+
+    if history.empty:
+        return {}, {}
+
+    history["team"] = (
+        history["team"]
+        .map(normalize_team)
+    )
+
+    # -------------------------------------------------
+    # Identify each team's opponent in each prior week.
+    #
+    # Weekly player stats tell us the offensive team,
+    # but defensive PPR allowed must be credited to
+    # that team's opponent.
+    # -------------------------------------------------
+
+    teams_by_week = {}
+
+    for week in sorted(
+        history["week"].dropna().unique()
+    ):
+        week_rows = history[
+            history["week"] == week
+        ]
+
+        teams = sorted(
+            week_rows["team"]
+            .dropna()
+            .unique()
+            .tolist()
+        )
+
+        teams_by_week[int(week)] = teams
+
+    # -------------------------------------------------
+    # We cannot infer the opponent safely from player
+    # stats alone, so opponent values will be supplied
+    # from the target-game schedule information later.
+    #
+    # Build offense totals first:
+    # (week, offense team, position) -> total PPR.
+    # -------------------------------------------------
+
+    offense_totals = (
+        history.groupby(
+            [
+                "week",
+                "team",
+                "position",
+            ],
+            as_index=False,
+        )["actual_ppr"]
+        .sum()
+    )
+
+    return offense_totals, {}
+
+
+def add_matchup_scores(
+    dataset,
+    season_stats,
+    scoring_environment,
+):
+    """
+    Add the live-style historical Matchup signal.
+
+    For each target player-week:
+      1. Find the player's target opponent.
+      2. Look only at weeks before the target week.
+      3. Find games previously played by that opponent.
+      4. Calculate PPR allowed to the player's position.
+      5. Average those prior games.
+      6. Normalize defenses within position to 20-80.
+
+    No target-week player performance is used.
+    """
+
+    dataset = dataset.copy()
+
+    dataset["matchup_raw"] = np.nan
+    dataset["matchup_score"] = np.nan
+
+    stats = season_stats.copy()
+
+    stats["team"] = (
+        stats["team"]
+        .map(normalize_team)
+    )
+
+    environment = scoring_environment.copy()
+
+    environment["team"] = (
+        environment["team"]
+        .map(normalize_team)
+    )
+
+    environment["opponent"] = (
+        environment["opponent"]
+        .map(normalize_team)
+    )
+
+    # -------------------------------------------------
+    # Schedule lookup:
+    # (week, team) -> opponent
+    # -------------------------------------------------
+
+    opponent_lookup = {
+        (
+            int(row.week),
+            row.team,
+        ): row.opponent
+        for row in environment.itertuples(
+            index=False
+        )
+    }
+
+    # -------------------------------------------------
+    # Calculate matchup separately for every target
+    # week so future games can never enter the signal.
+    # -------------------------------------------------
+
+    for target_week in sorted(
+        dataset["week"].dropna().unique()
+    ):
+        target_week = int(target_week)
+
+        history = stats[
+            stats["week"] < target_week
+        ].copy()
+
+        if history.empty:
+            continue
+
+        # ---------------------------------------------
+        # Total fantasy points scored by each offense
+        # position in each historical game.
+        # ---------------------------------------------
+
+        game_position_ppr = (
+            history.groupby(
+                [
+                    "week",
+                    "team",
+                    "position",
+                ],
+                as_index=False,
+            )["actual_ppr"]
+            .sum()
+        )
+
+        defense_records = []
+
+        for row in game_position_ppr.itertuples(
+            index=False
+        ):
+            game_week = int(row.week)
+            offense_team = normalize_team(
+                row.team
+            )
+
+            defense = opponent_lookup.get(
+                (
+                    game_week,
+                    offense_team,
+                )
+            )
+
+            if not defense:
+                continue
+
+            defense_records.append(
+                {
+                    "defense":
+                        normalize_team(defense),
+
+                    "position":
+                        row.position,
+
+                    "ppr_allowed":
+                        float(row.actual_ppr),
+                }
+            )
+
+        if not defense_records:
+            continue
+
+        defense_df = pd.DataFrame(
+            defense_records
+        )
+
+        # ---------------------------------------------
+        # Average PPR allowed per game by defense and
+        # fantasy position BEFORE the target week.
+        # ---------------------------------------------
+
+        defense_allowed = (
+            defense_df.groupby(
+                [
+                    "defense",
+                    "position",
+                ],
+                as_index=False,
+            )["ppr_allowed"]
+            .mean()
+            .rename(
+                columns={
+                    "ppr_allowed":
+                        "matchup_raw"
+                }
+            )
+        )
+
+        # ---------------------------------------------
+        # Match the live Matchup normalization:
+        #
+        # easiest defense at a position -> 80
+        # hardest defense at a position -> 20
+        # ---------------------------------------------
+
+        defense_allowed[
+            "matchup_score"
+        ] = 50.0
+
+        for position in POSITIONS:
+            position_mask = (
+                defense_allowed[
+                    "position"
+                ] == position
+            )
+
+            position_rows = (
+                defense_allowed.loc[
+                    position_mask
+                ]
+            )
+
+            if position_rows.empty:
+                continue
+
+            low = float(
+                position_rows[
+                    "matchup_raw"
+                ].min()
+            )
+
+            high = float(
+                position_rows[
+                    "matchup_raw"
+                ].max()
+            )
+
+            if high <= low:
+                defense_allowed.loc[
+                    position_mask,
+                    "matchup_score",
+                ] = 50.0
+
+                continue
+
+            defense_allowed.loc[
+                position_mask,
+                "matchup_score",
+            ] = (
+                20.0
+                + (
+                    (
+                        position_rows[
+                            "matchup_raw"
+                        ]
+                        - low
+                    )
+                    / (high - low)
+                )
+                * 60.0
+            ).round()
+
+        raw_lookup = {
+            (
+                row.defense,
+                row.position,
+            ): float(row.matchup_raw)
+            for row in defense_allowed.itertuples(
+                index=False
+            )
+        }
+
+        score_lookup = {
+            (
+                row.defense,
+                row.position,
+            ): float(row.matchup_score)
+            for row in defense_allowed.itertuples(
+                index=False
+            )
+        }
+
+        target_mask = (
+            dataset["week"] == target_week
+        )
+
+        for index in dataset.index[
+            target_mask
+        ]:
+            opponent = normalize_team(
+                dataset.at[
+                    index,
+                    "opponent",
+                ]
+            )
+
+            position = dataset.at[
+                index,
+                "position",
+            ]
+
+            key = (
+                opponent,
+                position,
+            )
+
+            if key in raw_lookup:
+                dataset.at[
+                    index,
+                    "matchup_raw",
+                ] = raw_lookup[key]
+
+                dataset.at[
+                    index,
+                    "matchup_score",
+                ] = score_lookup[key]
+
+    matched = int(
+        dataset[
+            "matchup_score"
+        ].notna().sum()
+    )
+
+    print(
+        "Matched historical Matchup signal to "
+        f"{matched} of {len(dataset)} "
+        "player-week rows."
+    )
+
     return dataset
+
+
 def recent_player_games(
     history,
     player_id,
