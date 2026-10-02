@@ -36,7 +36,7 @@ jobs:
               "https://github.com/nflverse/"
               "nflverse-data/releases/download/"
               "player_stats/"
-              "player_stats.csv"
+              "player_stats_2025.csv"
           )
 
           output = (
