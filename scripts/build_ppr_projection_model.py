@@ -54,6 +54,12 @@ MODEL_E_FEATURES = [
     "matchup_score",
     "scoring_environment_score",
 ]
+MODEL_F_FEATURES_BY_POSITION = {
+    "QB": MODEL_D_FEATURES,
+    "RB": MODEL_A_FEATURES,
+    "WR": MODEL_A_FEATURES,
+    "TE": MODEL_E_FEATURES,
+}
 def fit_linear_regression(
     train_x,
     train_y,
@@ -587,6 +593,19 @@ def main():
                 "E_normalized_plus_matchup_and_environment"
             ),
         )
+        model_f = walk_forward_model(
+            data=data,
+            position=position,
+            feature_columns=(
+                MODEL_F_FEATURES_BY_POSITION[
+                    position
+                ]
+            ),
+            model_name=(
+                "F_position_specific"
+            ),
+        )
+
         
         prediction_frames.extend(
             [
@@ -595,6 +614,7 @@ def main():
                 model_c,
                 model_d,
                 model_e,
+                model_f,
             ]
         )
     
