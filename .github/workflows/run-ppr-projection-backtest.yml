@@ -1,0 +1,268 @@
+name: Run PPR Projection Backtest
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  ppr-projection-backtest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy
+
+      - name: Verify historical dataset
+        run: |
+          python - <<'PY'
+          import pandas as pd
+
+          path = (
+              "projection-model/"
+              "2025-historical-ppr-dataset.csv"
+          )
+
+          df = pd.read_csv(path)
+
+          print(f"Dataset: {path}")
+          print(f"Rows: {len(df)}")
+          print(
+              "Weeks:",
+              sorted(df["week"].unique())
+          )
+          print(
+              "\nRows by position:"
+          )
+          print(
+              df["position"]
+              .value_counts()
+              .to_string()
+          )
+
+          required = [
+              "opportunity_score",
+              "production_score",
+              "usage_score",
+              "redzone_score",
+              "model_confidence_score",
+              "production_raw",
+              "opportunity_raw",
+              "usage_raw",
+              "redzone_raw",
+              "actual_ppr",
+          ]
+
+          missing = [
+              column
+              for column in required
+              if column not in df.columns
+          ]
+
+          if missing:
+              raise SystemExit(
+                  "Missing required columns: "
+                  f"{missing}"
+              )
+
+          print(
+              "\nHistorical dataset "
+              "validation passed."
+          )
+          PY
+
+      - name: Run walk-forward PPR backtest
+        run: python scripts/build_ppr_projection_model.py
+
+      - name: Inspect backtest results
+        run: |
+          python - <<'PY'
+          import pandas as pd
+
+          base = "projection-model"
+
+          summary_path = (
+              f"{base}/"
+              "2025-ppr-walkforward-summary.csv"
+          )
+
+          weekly_path = (
+              f"{base}/"
+              "2025-ppr-walkforward-weekly.csv"
+          )
+
+          predictions_path = (
+              f"{base}/"
+              "2025-ppr-walkforward-predictions.csv"
+          )
+
+          summary = pd.read_csv(
+              summary_path
+          )
+
+          weekly = pd.read_csv(
+              weekly_path
+          )
+
+          predictions = pd.read_csv(
+              predictions_path
+          )
+
+          print(
+              "\n"
+              "================================"
+          )
+          print(
+              "OVERALL MODEL RESULTS"
+          )
+          print(
+              "================================"
+          )
+
+          print(
+              summary.to_string(
+                  index=False
+              )
+          )
+
+          print(
+              "\n"
+              "================================"
+          )
+          print(
+              "OBSERVATIONS BY MODEL/POSITION"
+          )
+          print(
+              "================================"
+          )
+
+          print(
+              predictions.groupby(
+                  ["model", "position"]
+              )
+              .size()
+              .to_string()
+          )
+
+          print(
+              "\n"
+              "================================"
+          )
+          print(
+              "TEST WEEKS"
+          )
+          print(
+              "================================"
+          )
+
+          print(
+              sorted(
+                  predictions[
+                      "week"
+                  ].unique()
+              )
+          )
+
+          expected_models = {
+              "A_normalized_signals",
+              "B_raw_features",
+          }
+
+          actual_models = set(
+              predictions[
+                  "model"
+              ].unique()
+          )
+
+          if (
+              actual_models
+              != expected_models
+          ):
+              raise SystemExit(
+                  "Unexpected models: "
+                  f"{actual_models}"
+              )
+
+          expected_positions = {
+              "QB",
+              "RB",
+              "WR",
+              "TE",
+          }
+
+          actual_positions = set(
+              predictions[
+                  "position"
+              ].unique()
+          )
+
+          if (
+              actual_positions
+              != expected_positions
+          ):
+              raise SystemExit(
+                  "Missing positions: "
+                  f"{expected_positions - actual_positions}"
+              )
+
+          test_weeks = sorted(
+              predictions[
+                  "week"
+              ].unique()
+          )
+
+          if test_weeks != list(
+              range(7, 19)
+          ):
+              raise SystemExit(
+                  "Unexpected test weeks: "
+                  f"{test_weeks}"
+              )
+
+          if predictions[
+              "projected_ppr"
+          ].isna().any():
+              raise SystemExit(
+                  "Projected PPR contains "
+                  "missing values."
+              )
+
+          print(
+              "\nBacktest output "
+              "validation passed."
+          )
+          PY
+
+      - name: Commit PPR backtest results
+        run: |
+          git config user.name \
+            "github-actions[bot]"
+
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add \
+            projection-model/2025-ppr-walkforward-predictions.csv \
+            projection-model/2025-ppr-walkforward-summary.csv \
+            projection-model/2025-ppr-walkforward-weekly.csv
+
+          if git diff --cached --quiet; then
+            echo \
+              "No PPR backtest changes to commit."
+          else
+            git commit \
+              -m "Update PPR projection backtest results"
+
+            git push
+          fi
