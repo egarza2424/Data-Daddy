@@ -24,7 +24,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas numpy pyarrow
 
-      - name: Download 2025 nflverse weekly player stats
+           - name: Download 2025 nflverse weekly player stats
         run: |
           mkdir -p historical-data
 
@@ -53,8 +53,35 @@ jobs:
           print(
               f"Saved historical stats to {output}"
           )
-          PY
 
+          import pandas as pd
+
+          df = pd.read_csv(output)
+
+          print(
+              "Downloaded rows:",
+              len(df)
+          )
+
+          print(
+              "Available seasons:",
+              sorted(
+                  pd.to_numeric(
+                      df["season"],
+                      errors="coerce"
+                  )
+                  .dropna()
+                  .astype(int)
+                  .unique()
+                  .tolist()
+              )
+          )
+
+          print(
+              "Columns:",
+              list(df.columns)
+          )
+          PY
       - name: Build 2025 historical PPR dataset
         run: |
           python scripts/build_historical_ppr_dataset.py \
