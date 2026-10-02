@@ -140,7 +140,7 @@ jobs:
               "2025-historical-ppr-dataset.csv"
           )
 
-          df = (path)
+          df = pd.read_csv(path)
 
           print()
           print("Dataset shape:")
