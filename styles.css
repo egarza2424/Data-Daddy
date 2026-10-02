@@ -1842,3 +1842,131 @@ footer a {
     grid-template-columns: 1fr;
   }
 }
+/* DATA DADDY — WEEKLY PPR PROJECTIONS */
+
+.projections-panel {
+  margin-top: 32px;
+}
+
+.projections-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.projections-heading p {
+  max-width: 760px;
+}
+
+.projection-week-badge {
+  flex: 0 0 auto;
+  padding: 10px 14px;
+  border: 1px solid rgba(245, 196, 81, 0.45);
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #f5c451;
+}
+
+.projection-controls {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 24px 0 18px;
+}
+
+.projection-position-filter {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.projection-position-filter > span {
+  margin-right: 4px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.projection-filter-btn {
+  min-width: 48px;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 7px;
+  background: #1a2432;
+  color: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.projection-filter-btn.active {
+  border-color: #f5c451;
+  color: #f5c451;
+}
+
+.projection-search-control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.projection-search-control label {
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.projection-search-control input {
+  min-width: 240px;
+}
+
+.projection-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.projection-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.projection-table th,
+.projection-table td {
+  padding: 12px 10px;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.projection-table th {
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  opacity: 0.72;
+}
+
+.projection-table td {
+  font-size: 0.9rem;
+}
+
+.projection-ppr-value {
+  font-weight: 800;
+  color: #f5c451;
+}
+
+@media (max-width: 700px) {
+  .projections-heading {
+    flex-direction: column;
+  }
+
+  .projection-controls {
+    align-items: stretch;
+  }
+
+  .projection-search-control,
+  .projection-search-control input {
+    width: 100%;
+  }
+}
