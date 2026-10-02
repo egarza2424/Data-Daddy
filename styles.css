@@ -1800,3 +1800,45 @@ footer a {
     padding: 10px 12px;
   }
 }
+.player-score-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.player-score-block {
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.player-score-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+}
+
+.player-projected-ppr {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.player-score-rank {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+@media (max-width: 520px) {
+  .player-score-summary {
+    grid-template-columns: 1fr;
+  }
+}
