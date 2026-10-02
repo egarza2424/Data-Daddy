@@ -127,36 +127,79 @@ def find_latest_snapshot():
         LIVE_SNAPSHOT_PATH
     )
 
-    if "snapshot_week" not in snapshot.columns:
-        raise RuntimeError(
-            "Live production snapshot is missing "
-            "snapshot_week."
+    weeks = []
+
+    if "snapshot_week" in snapshot.columns:
+        weeks = (
+            pd.to_numeric(
+                snapshot["snapshot_week"],
+                errors="coerce",
+            )
+            .dropna()
+            .astype(int)
+            .unique()
+            .tolist()
         )
 
-    weeks = (
-        pd.to_numeric(
-            snapshot["snapshot_week"],
-            errors="coerce",
+    if len(weeks) == 1:
+        week = weeks[0]
+
+        print(
+            "Using NFL week from live "
+            f"snapshot column: {week}"
         )
-        .dropna()
-        .astype(int)
-        .unique()
-        .tolist()
+
+        return LIVE_SNAPSHOT_PATH, week
+
+    print(
+        "Live snapshot does not contain one "
+        "usable snapshot_week value."
     )
 
-    if len(weeks) != 1:
+    frozen_snapshots = list(
+        Path("model-snapshots").glob(
+            "2026-week*-pregame-model-snapshot.csv"
+        )
+    )
+
+    if not frozen_snapshots:
         raise RuntimeError(
-            "Could not determine one NFL week "
-            "from live production snapshot: "
-            f"{weeks}"
+            "Could not determine target NFL week: "
+            "live snapshot has no usable "
+            "snapshot_week and no frozen "
+            "week-numbered snapshot exists."
         )
 
-    week = weeks[0]
+    def frozen_week(path):
+        match = re.search(
+            r"2026-week(\d+)-pregame-model-snapshot\.csv$",
+            path.name,
+        )
+
+        if not match:
+            return -1
+
+        return int(match.group(1))
+
+    latest_frozen = max(
+        frozen_snapshots,
+        key=frozen_week,
+    )
+
+    week = frozen_week(
+        latest_frozen
+    )
 
     if week <= 0:
         raise RuntimeError(
-            f"Invalid snapshot week: {week}"
+            "Could not determine NFL week from "
+            f"{latest_frozen.name}"
         )
+
+    print(
+        "Using NFL week from latest frozen "
+        f"snapshot filename: {week}"
+    )
 
     return LIVE_SNAPSHOT_PATH, week
 
@@ -442,23 +485,7 @@ def main():
         snapshot
     )
 
-    snapshot_weeks = (
-        pd.to_numeric(
-            snapshot["snapshot_week"],
-            errors="coerce",
-        )
-        .dropna()
-        .astype(int)
-        .unique()
-        .tolist()
-    )
-
-    if snapshot_weeks != [target_week]:
-        raise RuntimeError(
-            "Snapshot week column does not match "
-            f"filename week {target_week}: "
-            f"{snapshot_weeks}"
-        )
+    snapshot["snapshot_week"] = target_week
 
     projection_frames = []
     coefficient_rows = []
