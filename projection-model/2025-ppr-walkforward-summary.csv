@@ -15,3 +15,7 @@ D_normalized_plus_matchup,QB,420,6.3762,8.0343,0.5055,8.0357
 D_normalized_plus_matchup,RB,1012,4.6323,6.4916,0.6298,14.1255
 D_normalized_plus_matchup,TE,827,3.7594,5.37,0.5412,13.8319
 D_normalized_plus_matchup,WR,1609,4.3057,5.9149,0.5864,25.6383
+E_normalized_plus_matchup_and_environment,QB,420,6.4177,8.066,0.5024,8.0643
+E_normalized_plus_matchup_and_environment,RB,1012,4.662,6.4726,0.6337,14.1275
+E_normalized_plus_matchup_and_environment,TE,827,3.7645,5.3519,0.5461,13.7533
+E_normalized_plus_matchup_and_environment,WR,1609,4.3165,5.9076,0.5882,25.6917
