@@ -11,3 +11,7 @@ C_normalized_plus_scoring_environment,QB,420,6.5006,8.1476,0.4887,8.3119
 C_normalized_plus_scoring_environment,RB,1012,4.6705,6.4701,0.6344,14.1225
 C_normalized_plus_scoring_environment,TE,827,3.7964,5.3529,0.547,13.6687
 C_normalized_plus_scoring_environment,WR,1609,4.3041,5.8972,0.59,25.6805
+D_normalized_plus_matchup,QB,420,6.3762,8.0343,0.5055,8.0357
+D_normalized_plus_matchup,RB,1012,4.6323,6.4916,0.6298,14.1255
+D_normalized_plus_matchup,TE,827,3.7594,5.37,0.5412,13.8319
+D_normalized_plus_matchup,WR,1609,4.3057,5.9149,0.5864,25.6383
