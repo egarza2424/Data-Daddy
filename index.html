@@ -266,6 +266,132 @@
   </div>
 
 </section>
+
+
+<section class="panel projections-panel" id="projections">
+
+  <div class="eyebrow">
+    MODEL F WEEKLY PROJECTIONS
+  </div>
+
+  <div class="projections-heading">
+    <div>
+      <h3>Weekly PPR Projections</h3>
+
+      <p>
+        Position-specific PPR projections calibrated against
+        historical NFL fantasy results. AI Rank and Projected
+        PPR Rank are shown separately so you can see where the
+        two models agree — and where they differ.
+      </p>
+    </div>
+
+    <div
+      id="projectionWeekBadge"
+      class="projection-week-badge"
+    >
+      WEEK —
+    </div>
+  </div>
+
+  <div class="projection-controls">
+
+    <div class="projection-position-filter">
+      <span>Position</span>
+
+      <button
+        type="button"
+        class="projection-filter-btn active"
+        data-projection-position="ALL"
+      >
+        ALL
+      </button>
+
+      <button
+        type="button"
+        class="projection-filter-btn"
+        data-projection-position="QB"
+      >
+        QB
+      </button>
+
+      <button
+        type="button"
+        class="projection-filter-btn"
+        data-projection-position="RB"
+      >
+        RB
+      </button>
+
+      <button
+        type="button"
+        class="projection-filter-btn"
+        data-projection-position="WR"
+      >
+        WR
+      </button>
+
+      <button
+        type="button"
+        class="projection-filter-btn"
+        data-projection-position="TE"
+      >
+        TE
+      </button>
+    </div>
+
+    <div class="projection-search-control">
+      <label for="projectionSearch">
+        Find a player
+      </label>
+
+      <input
+        id="projectionSearch"
+        type="search"
+        placeholder="Search projections..."
+      >
+    </div>
+
+  </div>
+
+  <div class="projection-table-wrapper">
+
+    <table class="projection-table">
+
+      <thead>
+        <tr>
+          <th>PPR Rank</th>
+          <th>Player</th>
+          <th>Pos</th>
+          <th>Team</th>
+          <th>Opp</th>
+          <th>AI Score</th>
+          <th>AI Rank</th>
+          <th>Projected PPR</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody id="projectionTableBody">
+        <tr>
+          <td colspan="9">
+            Loading weekly projections...
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <div
+    id="projectionPagination"
+    class="ranking-pagination"
+    aria-label="Projection pages"
+  >
+  </div>
+
+</section>
   
 <section class="panel product-thinking">
 
