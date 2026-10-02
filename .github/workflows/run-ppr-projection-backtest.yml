@@ -180,6 +180,7 @@ jobs:
               "C_normalized_plus_scoring_environment",
               "D_normalized_plus_matchup",
               "E_normalized_plus_matchup_and_environment",
+              "F_position_specific",
           }
 
           actual_models = set(
