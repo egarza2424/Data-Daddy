@@ -115,14 +115,6 @@ jobs:
             --first-week 4 \
             --last-week 18 \
             --output projection-model/2025-historical-ppr-dataset.csv
-      - name: Build 2025 historical PPR dataset
-        run: |
-          python scripts/build_historical_ppr_dataset.py \
-            --stats historical-data/player_stats.csv \
-            --season 2025 \
-            --first-week 4 \
-            --last-week 18 \
-            --output projection-model/2025-historical-ppr-dataset.csv
 
       - name: Inspect generated dataset
         run: |
