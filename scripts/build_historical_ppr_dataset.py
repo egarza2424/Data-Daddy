@@ -957,7 +957,15 @@ def main():
             "CSV or parquet"
         ),
     )
-
+    parser.add_argument(
+        "--pbp",
+        required=True,
+        help=(
+            "nflverse play-by-play CSV "
+            "or CSV.GZ for red-zone usage"
+        ),
+    )
+    
     parser.add_argument(
         "--season",
         type=int,
