@@ -497,6 +497,78 @@ def usage_value(
     )
 
     return carry_share + target_share
+def confidence_usage_value(
+    player_row,
+    team_rows,
+):
+    """
+    Match the live app.js usage calculation used
+    specifically inside Model Confidence.
+
+    This intentionally differs from the standalone
+    Usage signal.
+    """
+
+    position = player_row["position"]
+
+    carries = float(
+        player_row.get("carries", 0) or 0
+    )
+
+    targets = float(
+        player_row.get("targets", 0) or 0
+    )
+
+    attempts = float(
+        player_row.get(
+            "attempts",
+            player_row.get(
+                "passing_attempts",
+                0
+            )
+        ) or 0
+    )
+
+    team_carries = numeric(
+        team_rows["carries"]
+    ).sum()
+
+    if position == "QB":
+        team_attempts = numeric(
+            team_rows["attempts"]
+        ).sum()
+
+        passing_share = (
+            attempts / team_attempts
+            if team_attempts > 0
+            else 0.0
+        )
+
+        rushing_share = (
+            carries / team_carries
+            if team_carries > 0
+            else 0.0
+        )
+
+        return (
+            passing_share
+            + rushing_share
+        )
+
+    if position in {"WR", "TE"}:
+        team_targets = numeric(
+            team_rows["targets"]
+        ).sum()
+
+        if team_targets <= 0:
+            return 0.0
+
+        return targets / team_targets
+
+    if team_carries <= 0:
+        return 0.0
+
+    return carries / team_carries
 
 def redzone_raw(row):
     position = row["position"]
