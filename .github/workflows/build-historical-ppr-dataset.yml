@@ -103,12 +103,33 @@ jobs:
           print(
               "Saved 2025 play-by-play to "
               f"{pbp_output}"
+          )
+          games_url = (
+              "https://github.com/nflverse/"
+              "nflverse-data/releases/download/"
+              "games/games.csv"
+          )
+
+          games_output = (
+              "historical-data/games.csv"
+          )
+
+          print(f"Downloading {games_url}")
+
+          urllib.request.urlretrieve(
+              games_url,
+              games_output,
+          )
+
+          print(
+              "Saved nflverse games data to "
+              f"{games_output}"
           )          
           PY
 
       - name: Build 2025 historical PPR dataset
-        run: python scripts/build_historical_ppr_dataset.py --stats historical-data/player_stats.csv --pbp historical-data/play_by_play_2025.csv.gz --season 2025 --first-week 4 --last-week 18 --output projection-model/2025-historical-ppr-dataset.csv
-      
+        run: python scripts/build_historical_ppr_dataset.py --stats historical-data/player_stats.csv --pbp historical-data/play_by_play_2025.csv.gz --games historical-data/games.csv --season 2025 --first-week 4 --last-week 18 --output projection-model/2025-historical-ppr-dataset.csv
+
       - name: Inspect generated dataset
         run: |
           python <<'PY'
@@ -119,7 +140,7 @@ jobs:
               "2025-historical-ppr-dataset.csv"
           )
 
-          df = pd.read_csv(path)
+          df = (path)
 
           print()
           print("Dataset shape:")
@@ -197,6 +218,89 @@ jobs:
               "Historical PPR dataset "
               "validation passed."
           )
+          required_scoring_columns = [
+              "scoring_environment_score",
+              "implied_team_total",
+              "game_total",
+              "spread_line",
+              "opponent",
+          ]
+          missing_scoring_columns = [
+              column
+              for column in required_scoring_columns
+              if column not in df.columns
+          ]
+
+          if missing_scoring_columns:
+              raise SystemExit(
+              "Missing scoring-environment columns: "
+              f"{missing_scoring_columns}"
+          )
+
+          missing_environment = (
+              df["scoring_environment_score"]
+              .isna()
+              .sum()
+          )
+
+          print(
+              "\nScoring-environment missing rows:",
+              missing_environment,
+          )
+
+          if missing_environment:
+              missing_rows = df[
+                  df["scoring_environment_score"].isna()
+          ][
+                  [
+                      "week",
+                      "player_name",
+                      "team",
+                  ]
+              ]
+
+              print(
+                  missing_rows
+                  .head(25)
+                  .to_string(index=False)
+              )
+
+              raise SystemExit(
+                  "Historical scoring environment "
+                  "did not match every player-week row."
+              )
+
+          if not (
+              df["scoring_environment_score"]
+              .between(25, 100)
+              .all()
+          ):
+              raise SystemExit(
+                  "Scoring-environment scores "
+                  "outside expected 25-100 range."
+              )
+
+          print(
+              "\nScoring Environment summary:"
+          )
+
+          print(
+              df[
+                  [
+                      "scoring_environment_score",
+                      "implied_team_total",
+                      "game_total",
+                      "spread_line",
+                  ]
+              ]
+              .describe()
+              .to_string()
+          )
+
+          print(
+              "\nScoring Environment validation passed."
+          )
+
           PY
 
       - name: Commit historical dataset
