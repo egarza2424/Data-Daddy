@@ -1,0 +1,177 @@
+name: Build Historical PPR Dataset
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-historical-ppr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy pyarrow
+
+      - name: Download 2025 nflverse weekly player stats
+        run: |
+          mkdir -p historical-data
+
+          python <<'PY'
+          import urllib.request
+
+          url = (
+              "https://github.com/nflverse/"
+              "nflverse-data/releases/download/"
+              "player_stats/"
+              "player_stats.csv"
+          )
+
+          output = (
+              "historical-data/"
+              "player_stats.csv"
+          )
+
+          print(f"Downloading {url}")
+
+          urllib.request.urlretrieve(
+              url,
+              output
+          )
+
+          print(
+              f"Saved historical stats to {output}"
+          )
+          PY
+
+      - name: Build 2025 historical PPR dataset
+        run: |
+          python scripts/build_historical_ppr_dataset.py \
+            --stats historical-data/player_stats.csv \
+            --season 2025 \
+            --first-week 4 \
+            --last-week 18 \
+            --output projection-model/2025-historical-ppr-dataset.csv
+
+      - name: Inspect generated dataset
+        run: |
+          python <<'PY'
+          import pandas as pd
+
+          path = (
+              "projection-model/"
+              "2025-historical-ppr-dataset.csv"
+          )
+
+          df = pd.read_csv(path)
+
+          print()
+          print("Dataset shape:")
+          print(df.shape)
+
+          print()
+          print("Columns:")
+          for column in df.columns:
+              print(f"  {column}")
+
+          print()
+          print("Rows by position:")
+          print(
+              df.groupby("position")
+              .size()
+              .sort_index()
+          )
+
+          print()
+          print("Rows by week:")
+          print(
+              df.groupby("week")
+              .size()
+              .sort_index()
+          )
+
+          print()
+          print("Actual PPR summary:")
+          print(
+              df.groupby("position")[
+                  "actual_ppr"
+              ].describe()
+          )
+
+          required = {
+              "season",
+              "week",
+              "player_id",
+              "player_name",
+              "position",
+              "team",
+              "opportunity_score",
+              "production_score",
+              "usage_score",
+              "redzone_score",
+              "model_confidence_score",
+              "actual_ppr",
+          }
+
+          missing = (
+              required - set(df.columns)
+          )
+
+          if missing:
+              raise RuntimeError(
+                  "Missing required columns: "
+                  f"{sorted(missing)}"
+              )
+
+          if df.empty:
+              raise RuntimeError(
+                  "Historical dataset is empty."
+              )
+
+          if (
+              df["week"].min() < 4
+              or df["week"].max() > 18
+          ):
+              raise RuntimeError(
+                  "Unexpected week range."
+              )
+
+          print()
+          print(
+              "Historical PPR dataset "
+              "validation passed."
+          )
+          PY
+
+      - name: Commit historical dataset
+        run: |
+          if git diff --quiet -- projection-model/; then
+            echo "No historical dataset changes to commit."
+            exit 0
+          fi
+
+          git config \
+            user.name \
+            "github-actions[bot]"
+
+          git config \
+            user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add projection-model/
+
+          git commit \
+            -m "Build 2025 historical PPR dataset"
+
+          git push
