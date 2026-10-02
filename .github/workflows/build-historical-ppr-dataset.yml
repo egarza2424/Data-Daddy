@@ -24,12 +24,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas numpy pyarrow
 
-           - name: Download 2025 nflverse weekly player stats
+      - name: Download 2025 nflverse weekly player stats
         run: |
           mkdir -p historical-data
 
           python <<'PY'
           import urllib.request
+          import pandas as pd
 
           url = (
               "https://github.com/nflverse/"
@@ -53,8 +54,6 @@ jobs:
           print(
               f"Saved historical stats to {output}"
           )
-
-          import pandas as pd
 
           df = pd.read_csv(output)
 
@@ -82,6 +81,15 @@ jobs:
               list(df.columns)
           )
           PY
+
+      - name: Build 2025 historical PPR dataset
+        run: |
+          python scripts/build_historical_ppr_dataset.py \
+            --stats historical-data/player_stats.csv \
+            --season 2025 \
+            --first-week 4 \
+            --last-week 18 \
+            --output projection-model/2025-historical-ppr-dataset.csv
       - name: Build 2025 historical PPR dataset
         run: |
           python scripts/build_historical_ppr_dataset.py \
