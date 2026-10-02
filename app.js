@@ -3688,7 +3688,7 @@ function renderPositionRankings() {
 
   if (rankings.length === 0) {
     tableBody.innerHTML =
-      '<tr><td colspan="5">No ranked players found.</td></tr>';
+      '<tr><td colspan="7">No ranked players found.</td></tr>';
 
     if (pagination) {
       pagination.innerHTML = "";
@@ -3739,14 +3739,34 @@ function renderPositionRankings() {
       const opponent =
         matchup?.opponent || "TBD";
 
+      const projection =
+        getPlayerPprProjection(player);
+
+      const projectedPpr =
+        projection &&
+        Number.isFinite(
+          projection.projected_ppr
+        )
+          ? projection.projected_ppr.toFixed(2)
+          : "—";
+
+      const projectedRank =
+        projection &&
+        Number.isFinite(
+          projection.projected_position_rank
+        )
+          ? `${player.position}${projection.projected_position_rank}`
+          : "—";
+
       const row =
         document.createElement("tr");
-
       [
         `${player.position}${rank}`,
         player.name,
         opponent,
         score.toFixed(1),
+        projectedPpr,
+        projectedRank,
         player.injuryStatus ||
           "Available"
       ].forEach((value) => {
