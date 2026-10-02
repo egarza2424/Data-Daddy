@@ -26,6 +26,9 @@ Later phases will join:
 """
 
 import argparse
+import csv
+import gzip
+import io
 from pathlib import Path
 
 import numpy as np
@@ -238,6 +241,192 @@ def prepare_stats(stats):
     return stats
 
 
+def load_red_zone_pbp(
+    pbp_path,
+    season,
+):
+    """
+    Build player-week red-zone usage from nflverse
+    play-by-play.
+
+    Red zone = offense at opponent 20-yard line or closer.
+    """
+
+    pbp_path = Path(pbp_path)
+
+    if not pbp_path.exists():
+        raise FileNotFoundError(
+            f"Play-by-play file not found: {pbp_path}"
+        )
+
+    opener = (
+        gzip.open
+        if pbp_path.suffix.lower() == ".gz"
+        else open
+    )
+
+    red_zone_stats = {}
+
+    with opener(
+        pbp_path,
+        "rt",
+        encoding="utf-8",
+        newline="",
+    ) as handle:
+        reader = csv.DictReader(handle)
+
+        for play in reader:
+            if play.get("season_type") != "REG":
+                continue
+
+            try:
+                play_season = int(
+                    float(
+                        play.get("season")
+                        or season
+                    )
+                )
+            except (TypeError, ValueError):
+                continue
+
+            if play_season != season:
+                continue
+
+            try:
+                yardline = float(
+                    play.get("yardline_100")
+                    or 999
+                )
+            except (TypeError, ValueError):
+                continue
+
+            if yardline > 20:
+                continue
+
+            try:
+                week = int(
+                    float(
+                        play.get("week")
+                        or 0
+                    )
+                )
+            except (TypeError, ValueError):
+                continue
+
+            if week <= 0:
+                continue
+
+            passer_id = play.get(
+                "passer_player_id"
+            )
+
+            rusher_id = play.get(
+                "rusher_player_id"
+            )
+
+            receiver_id = play.get(
+                "receiver_player_id"
+            )
+
+            pass_attempt = (
+                play.get("pass_attempt") == "1"
+            )
+
+            rush_attempt = (
+                play.get("rush_attempt") == "1"
+            )
+
+            def get_record(player_id):
+                key = (
+                    str(player_id),
+                    week,
+                )
+
+                if key not in red_zone_stats:
+                    red_zone_stats[key] = {
+                        "red_zone_pass_attempts": 0,
+                        "red_zone_carries": 0,
+                        "red_zone_targets": 0,
+                    }
+
+                return red_zone_stats[key]
+
+            if pass_attempt and passer_id:
+                get_record(passer_id)[
+                    "red_zone_pass_attempts"
+                ] += 1
+
+            if rush_attempt and rusher_id:
+                get_record(rusher_id)[
+                    "red_zone_carries"
+                ] += 1
+
+            if pass_attempt and receiver_id:
+                get_record(receiver_id)[
+                    "red_zone_targets"
+                ] += 1
+
+    print(
+        "Built red-zone play-by-play records "
+        f"for {len(red_zone_stats)} "
+        "player-week combinations."
+    )
+
+    return red_zone_stats
+
+
+def attach_red_zone_stats(
+    stats,
+    red_zone_stats,
+):
+    """
+    Attach player-week red-zone PBP counts to the
+    nflverse weekly player-stat rows.
+    """
+
+    stats = stats.copy()
+
+    for column in [
+        "red_zone_pass_attempts",
+        "red_zone_carries",
+        "red_zone_targets",
+    ]:
+        stats[column] = 0.0
+
+    matched = 0
+
+    for index, row in stats.iterrows():
+        try:
+            week = int(row["week"])
+        except (TypeError, ValueError):
+            continue
+
+        key = (
+            str(row["player_id"]),
+            week,
+        )
+
+        values = red_zone_stats.get(key)
+
+        if values is None:
+            continue
+
+        matched += 1
+
+        for column, value in values.items():
+            stats.at[
+                index,
+                column
+            ] = float(value)
+
+    print(
+        "Matched red-zone play-by-play to "
+        f"{matched} weekly player-stat rows."
+    )
+
+    return stats
+
+
 def recent_player_games(
     history,
     player_id,
@@ -308,7 +497,7 @@ def usage_value(
     )
 
     return carry_share + target_share
-
+return carry_share + target_share
 
 def redzone_raw(row):
     position = row["position"]
@@ -390,6 +579,7 @@ def build_week(
         )
 
         usage_values = []
+        confidence_usage_values = []
 
         for game in recent.itertuples(index=False):
             game_dict = game._asdict()
@@ -402,6 +592,13 @@ def build_week(
 
             usage_values.append(
                 usage_value(
+                    game_dict,
+                    team_rows,
+                )
+            )
+
+            confidence_usage_values.append(
+                confidence_usage_value(
                     game_dict,
                     team_rows,
                 )
@@ -447,9 +644,10 @@ def build_week(
         )
 
         usage_stability = (
-            stability_score(usage_values)
+            stability_score(
+                confidence_usage_values
+            )
         )
-
         # Historical injury/availability information
         # is not yet joined in Phase 1.
         availability = 95.0
@@ -796,13 +994,22 @@ def main():
     else:
         stats = pd.read_csv(path)
 
+    red_zone_stats = load_red_zone_pbp(
+        args.pbp,
+        args.season,
+    )
+
+    stats = attach_red_zone_stats(
+        stats,
+        red_zone_stats,
+    )
+
     result = build_dataset(
         stats,
         args.season,
         args.first_week,
         args.last_week,
     )
-
     output = Path(args.output)
 
     output.parent.mkdir(
