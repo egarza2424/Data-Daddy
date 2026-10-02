@@ -9,8 +9,9 @@ HISTORICAL_PATH = Path(
     "projection-model/2025-historical-ppr-dataset.csv"
 )
 
-SNAPSHOT_DIR = Path("model-snapshots")
-
+LIVE_SNAPSHOT_PATH = Path(
+    "projection-model/current-live-model-snapshot.csv"
+)
 OUTPUT_DIR = Path("projection-model")
 
 POSITIONS = ["QB", "RB", "WR", "TE"]
@@ -116,31 +117,48 @@ def snapshot_week(path):
 
 
 def find_latest_snapshot():
-    snapshots = list(
-        SNAPSHOT_DIR.glob(
-            "2026-week*-pregame-model-snapshot.csv"
-        )
-    )
-
-    if not snapshots:
+    if not LIVE_SNAPSHOT_PATH.exists():
         raise RuntimeError(
-            "No week-numbered 2026 pregame snapshot found."
+            "Live production snapshot not found: "
+            f"{LIVE_SNAPSHOT_PATH}"
         )
 
-    latest = max(
-        snapshots,
-        key=snapshot_week,
+    snapshot = pd.read_csv(
+        LIVE_SNAPSHOT_PATH
     )
 
-    week = snapshot_week(latest)
+    if "snapshot_week" not in snapshot.columns:
+        raise RuntimeError(
+            "Live production snapshot is missing "
+            "snapshot_week."
+        )
+
+    weeks = (
+        pd.to_numeric(
+            snapshot["snapshot_week"],
+            errors="coerce",
+        )
+        .dropna()
+        .astype(int)
+        .unique()
+        .tolist()
+    )
+
+    if len(weeks) != 1:
+        raise RuntimeError(
+            "Could not determine one NFL week "
+            "from live production snapshot: "
+            f"{weeks}"
+        )
+
+    week = weeks[0]
 
     if week <= 0:
         raise RuntimeError(
-            "Could not determine snapshot week."
+            f"Invalid snapshot week: {week}"
         )
 
-    return latest, week
-
+    return LIVE_SNAPSHOT_PATH, week
 
 def validate_historical(
     historical,
