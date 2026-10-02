@@ -300,7 +300,121 @@ jobs:
           print(
               "\nScoring Environment validation passed."
           )
+          required_matchup_columns = [
+    "matchup_score",
+    "matchup_raw",
+]
 
+missing_matchup_columns = [
+    column
+    for column in required_matchup_columns
+    if column not in df.columns
+]
+
+if missing_matchup_columns:
+    raise SystemExit(
+        "Missing historical Matchup columns: "
+        f"{missing_matchup_columns}"
+    )
+
+missing_matchup = (
+    df["matchup_score"]
+    .isna()
+    .sum()
+)
+
+print()
+print(
+    "Historical Matchup missing rows:",
+    missing_matchup,
+)
+
+if missing_matchup:
+    missing_rows = df[
+        df["matchup_score"].isna()
+    ][
+        [
+            "week",
+            "player_name",
+            "position",
+            "team",
+            "opponent",
+        ]
+    ]
+
+    print()
+    print(
+        "First missing Matchup rows:"
+    )
+
+    print(
+        missing_rows
+        .head(25)
+        .to_string(index=False)
+    )
+
+    raise SystemExit(
+        "Historical Matchup did not match "
+        "every player-week row."
+    )
+
+if not (
+    df["matchup_score"]
+    .between(20, 80)
+    .all()
+):
+    raise SystemExit(
+        "Historical Matchup scores outside "
+        "expected 20-80 range."
+    )
+
+if df["matchup_raw"].isna().any():
+    raise SystemExit(
+        "Historical matchup_raw contains "
+        "missing values."
+    )
+
+print()
+print("Historical Matchup summary:")
+
+print(
+    df[
+        [
+            "matchup_score",
+            "matchup_raw",
+        ]
+    ]
+    .describe()
+    .to_string()
+)
+
+print()
+print(
+    "Historical Matchup by position:"
+)
+
+print(
+    df.groupby("position")[
+        [
+            "matchup_score",
+            "matchup_raw",
+        ]
+    ]
+    .agg(
+        [
+            "count",
+            "mean",
+            "min",
+            "max",
+        ]
+    )
+    .to_string()
+)
+
+print()
+print(
+    "Historical Matchup validation passed."
+)
           PY
 
       - name: Commit historical dataset
