@@ -35,10 +35,9 @@ jobs:
           url = (
               "https://github.com/nflverse/"
               "nflverse-data/releases/download/"
-              "player_stats/"
-              "player_stats_2025.csv"
+              "stats_player/"
+              "stats_player_week_2025.csv"
           )
-
           output = (
               "historical-data/"
               "player_stats.csv"
