@@ -144,6 +144,10 @@ def prepare_stats(stats):
             "player_display_name",
             "player_name",
         ],
+        "team": [
+            "team",
+            "recent_team",
+        ],
         "attempts": [
             "attempts",
             "passing_attempts",
@@ -153,7 +157,6 @@ def prepare_stats(stats):
             "rushing_attempts",
         ],
     }
-
     for target, choices in aliases.items():
         if target in stats.columns:
             continue
