@@ -29,8 +29,14 @@ MODEL_B_FEATURES = [
     "redzone_raw",
     "model_confidence_score",
 ]
-
-
+MODEL_C_FEATURES = [
+    "opportunity_score",
+    "production_score",
+    "usage_score",
+    "redzone_score",
+    "model_confidence_score",
+    "scoring_environment_score",
+]
 def fit_linear_regression(
     train_x,
     train_y,
@@ -442,6 +448,7 @@ def validate_input(data):
         "actual_ppr",
         *MODEL_A_FEATURES,
         *MODEL_B_FEATURES,
+        *MODEL_C_FEATURES,    
     }
 
     missing = sorted(
@@ -531,14 +538,23 @@ def main():
                 "B_raw_features"
             ),
         )
-
+        model_c = walk_forward_model(
+            data=data,
+            position=position,
+            feature_columns=(
+                MODEL_C_FEATURES
+            ),
+            model_name=(
+                "C_normalized_plus_scoring_environment"
+            ),
+        )        
         prediction_frames.extend(
             [
                 model_a,
                 model_b,
+                model_c,
             ]
         )
-
     predictions = pd.concat(
         [
             frame
