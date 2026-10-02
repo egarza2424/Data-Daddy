@@ -3069,6 +3069,25 @@ function renderPlayerCard(
   getPlayerVsDefensiveCallerDetails(player);
   const trench = getTrenchMatchup(player);
   const gameCompleted = isPlayerMatchupCompleted(player);
+
+  const projection =
+    getPlayerPprProjection(player);
+
+  const projectedPpr =
+    projection &&
+    Number.isFinite(
+      projection.projected_ppr
+    )
+      ? projection.projected_ppr.toFixed(2)
+      : "—";
+
+  const projectedRank =
+    projection &&
+    Number.isFinite(
+      projection.projected_position_rank
+    )
+      ? `${player.position}${projection.projected_position_rank}`
+      : "—";
   
   const injuryBoost = snapshotWeek
     ? 0
@@ -3127,8 +3146,36 @@ function renderPlayerCard(
         </div>
       </div>
 
-      <div class="player-score">
-        ${score}<span>/100</span>
+      <div class="player-score-summary">
+        <div class="player-score-block">
+          <span class="player-score-label">
+            AI SCORE
+          </span>
+
+          <div class="player-score">
+            ${score}<span>/100</span>
+          </div>
+
+          <span class="player-score-rank">
+            ${positionRank
+              ? `${player.position}${positionRank}`
+              : "—"}
+          </span>
+        </div>
+
+        <div class="player-score-block">
+          <span class="player-score-label">
+            PROJECTED PPR
+          </span>
+
+          <div class="player-projected-ppr">
+            ${projectedPpr}
+          </div>
+
+          <span class="player-score-rank">
+            ${projectedRank}
+          </span>
+        </div>
       </div>
 
 
