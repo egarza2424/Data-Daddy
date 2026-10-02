@@ -3351,6 +3351,7 @@ function exportModelSnapshot() {
 
   const rows = snapshot.map((player) =>
     [
+      player.snapshot_week,
       player.player_id,
       escapeCsv(player.player_name),
       player.position,
