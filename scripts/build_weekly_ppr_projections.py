@@ -357,25 +357,49 @@ def build_position_projection(
     missing_current = (
         current[features]
         .isna()
-        .any(axis=1)
     )
 
-    if missing_current.any():
-        problem_players = (
+    if missing_current.any().any():
+        affected_players = (
             current.loc[
-                missing_current,
+                missing_current.any(axis=1),
                 "player_name",
             ]
             .astype(str)
             .tolist()
         )
 
-        raise RuntimeError(
-            f"{position} snapshot has missing "
-            "Model F features for: "
-            + ", ".join(problem_players[:20])
+        missing_counts = (
+            missing_current
+            .sum()
         )
 
+        print(
+            f"{position}: neutralizing missing "
+            "live features to 50."
+        )
+
+        print(
+            "Affected players: "
+            + ", ".join(
+                affected_players[:20]
+            )
+        )
+
+        print(
+            "Missing feature counts:"
+        )
+
+        print(
+            missing_counts[
+                missing_counts > 0
+            ].to_string()
+        )
+
+        current[features] = (
+            current[features]
+            .fillna(50.0)
+        )
     coefficients = fit_linear_regression(
         train[features],
         train["actual_ppr"],
