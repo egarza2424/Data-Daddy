@@ -7,3 +7,7 @@ B_raw_features,QB,420,6.5289,8.1731,0.4867,8.3548
 B_raw_features,RB,1012,4.6604,6.5215,0.6264,13.9229
 B_raw_features,TE,827,3.8108,5.4025,0.5368,13.6602
 B_raw_features,WR,1609,4.3023,5.9102,0.5871,25.2262
+C_normalized_plus_scoring_environment,QB,420,6.5006,8.1476,0.4887,8.3119
+C_normalized_plus_scoring_environment,RB,1012,4.6705,6.4701,0.6344,14.1225
+C_normalized_plus_scoring_environment,TE,827,3.7964,5.3529,0.547,13.6687
+C_normalized_plus_scoring_environment,WR,1609,4.3041,5.8972,0.59,25.6805
