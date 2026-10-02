@@ -406,7 +406,435 @@ function getPlayerPprProjection(player) {
       return projection;
     }
   }
+const PROJECTIONS_PER_PAGE = 24;
 
+let currentProjectionPage = 1;
+let currentProjectionPosition = "ALL";
+
+
+function getProjectionPlayer(projection) {
+  if (!projection) {
+    return null;
+  }
+
+  const projectionId =
+    String(
+      projection.player_id || ""
+    ).trim();
+
+  if (projectionId) {
+    const idMatch =
+      players.find((player) => {
+        return [
+          player.nflId,
+          player.id
+        ]
+          .filter(Boolean)
+          .map(id => String(id))
+          .includes(projectionId);
+      });
+
+    if (idMatch) {
+      return idMatch;
+    }
+  }
+
+  const projectionName =
+    normalizeName(
+      projection.player_name
+    );
+
+  const projectionPosition =
+    String(
+      projection.position || ""
+    ).toUpperCase();
+
+  return (
+    players.find((player) => {
+      return (
+        normalizeName(player.name) ===
+          projectionName &&
+        String(
+          player.position || ""
+        ).toUpperCase() ===
+          projectionPosition
+      );
+    }) || null
+  );
+}
+
+
+function renderProjectionBoard() {
+  const tableBody =
+    document.getElementById(
+      "projectionTableBody"
+    );
+
+  if (!tableBody) {
+    return;
+  }
+
+  const searchInput =
+    document.getElementById(
+      "projectionSearch"
+    );
+
+  const searchTerm =
+    String(
+      searchInput?.value || ""
+    )
+      .trim()
+      .toLowerCase();
+
+  let projections =
+    weeklyPprProjections
+      .map((projection) => {
+        return {
+          projection,
+          player:
+            getProjectionPlayer(
+              projection
+            )
+        };
+      })
+      .filter(({ projection }) => {
+        const position =
+          String(
+            projection.position || ""
+          ).toUpperCase();
+
+        if (
+          currentProjectionPosition !==
+            "ALL" &&
+          position !==
+            currentProjectionPosition
+        ) {
+          return false;
+        }
+
+        if (!searchTerm) {
+          return true;
+        }
+
+        const searchableText = [
+          projection.player_name,
+          projection.position,
+          projection.team,
+          projection.opponent
+        ]
+          .join(" ")
+          .toLowerCase();
+
+        return searchableText.includes(
+          searchTerm
+        );
+      });
+
+  /*
+   * When ALL is selected, players are sorted
+   * directly by projected PPR.
+   *
+   * When a position is selected, the existing
+   * position-specific PPR rank controls order.
+   */
+  projections.sort((a, b) => {
+    if (
+      currentProjectionPosition === "ALL"
+    ) {
+      return (
+        Number(
+          b.projection.projected_ppr
+        ) -
+        Number(
+          a.projection.projected_ppr
+        )
+      );
+    }
+
+    return (
+      Number(
+        a.projection
+          .projected_position_rank
+      ) -
+      Number(
+        b.projection
+          .projected_position_rank
+      )
+    );
+  });
+
+  const totalPages =
+    Math.max(
+      1,
+      Math.ceil(
+        projections.length /
+          PROJECTIONS_PER_PAGE
+      )
+    );
+
+  if (
+    currentProjectionPage >
+    totalPages
+  ) {
+    currentProjectionPage =
+      totalPages;
+  }
+
+  const startIndex =
+    (
+      currentProjectionPage - 1
+    ) * PROJECTIONS_PER_PAGE;
+
+  const visibleProjections =
+    projections.slice(
+      startIndex,
+      startIndex +
+        PROJECTIONS_PER_PAGE
+    );
+
+  tableBody.innerHTML = "";
+
+  if (
+    visibleProjections.length === 0
+  ) {
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="9">
+          No projections found.
+        </td>
+      </tr>
+    `;
+
+    renderProjectionPagination(
+      1,
+      1
+    );
+
+    return;
+  }
+
+  visibleProjections.forEach(
+    ({ projection, player }) => {
+
+      const position =
+        String(
+          projection.position || ""
+        ).toUpperCase();
+
+      const projectedRank =
+        Number(
+          projection
+            .projected_position_rank
+        );
+
+      const projectedPpr =
+        Number(
+          projection.projected_ppr
+        );
+
+      const aiScore =
+        Number(
+          projection.model_score
+        );
+
+      const aiRank =
+        player
+          ? getPlayerPositionRank(
+              player
+            )
+          : null;
+
+      const matchup =
+        player
+          ? teamNextOpponent[
+              player.team
+            ]
+          : null;
+
+      const opponent =
+        matchup?.opponent ||
+        projection.opponent ||
+        "TBD";
+
+      const status =
+        player?.injuryStatus ||
+        "Available";
+
+      const row =
+        document.createElement("tr");
+
+      const values = [
+        Number.isFinite(
+          projectedRank
+        )
+          ? `${position}${projectedRank}`
+          : "—",
+
+        projection.player_name ||
+          "Unknown",
+
+        position || "—",
+
+        projection.team || "—",
+
+        opponent,
+
+        Number.isFinite(aiScore)
+          ? aiScore.toFixed(1)
+          : "—",
+
+        aiRank
+          ? `${position}${aiRank}`
+          : "—",
+
+        Number.isFinite(
+          projectedPpr
+        )
+          ? projectedPpr.toFixed(2)
+          : "—",
+
+        status
+      ];
+
+      values.forEach(
+        (value, index) => {
+          const cell =
+            document.createElement("td");
+
+          cell.textContent =
+            String(value);
+
+          if (index === 7) {
+            cell.classList.add(
+              "projection-ppr-value"
+            );
+          }
+
+          row.appendChild(cell);
+        }
+      );
+
+      tableBody.appendChild(row);
+    }
+  );
+
+  renderProjectionPagination(
+    currentProjectionPage,
+    totalPages
+  );
+
+  const weekBadge =
+    document.getElementById(
+      "projectionWeekBadge"
+    );
+
+  if (weekBadge) {
+    const weeks =
+      weeklyPprProjections
+        .map(
+          projection =>
+            Number(
+              projection.snapshot_week
+            )
+        )
+        .filter(
+          week =>
+            Number.isFinite(week)
+        );
+
+    const projectionWeek =
+      weeks.length > 0
+        ? weeks[0]
+        : null;
+
+    weekBadge.textContent =
+      projectionWeek
+        ? `WEEK ${projectionWeek}`
+        : "WEEK —";
+  }
+}
+
+
+function renderProjectionPagination(
+  page,
+  totalPages
+) {
+  const pagination =
+    document.getElementById(
+      "projectionPagination"
+    );
+
+  if (!pagination) {
+    return;
+  }
+
+  pagination.innerHTML = "";
+
+  if (totalPages <= 1) {
+    return;
+  }
+
+  const previousButton =
+    document.createElement("button");
+
+  previousButton.type = "button";
+  previousButton.textContent =
+    "Previous";
+
+  previousButton.disabled =
+    page <= 1;
+
+  previousButton.addEventListener(
+    "click",
+    () => {
+      if (
+        currentProjectionPage <= 1
+      ) {
+        return;
+      }
+
+      currentProjectionPage -= 1;
+      renderProjectionBoard();
+    }
+  );
+
+  const pageLabel =
+    document.createElement("span");
+
+  pageLabel.textContent =
+    `Page ${page} of ${totalPages}`;
+
+  const nextButton =
+    document.createElement("button");
+
+  nextButton.type = "button";
+  nextButton.textContent =
+    "Next";
+
+  nextButton.disabled =
+    page >= totalPages;
+
+  nextButton.addEventListener(
+    "click",
+    () => {
+      if (
+        currentProjectionPage >=
+        totalPages
+      ) {
+        return;
+      }
+
+      currentProjectionPage += 1;
+      renderProjectionBoard();
+    }
+  );
+
+  pagination.append(
+    previousButton,
+    pageLabel,
+    nextButton
+  );
+}  
   const playerKey = [
     normalizeName(player.name),
     String(
@@ -3967,8 +4395,10 @@ async function initializeApp() {
     }
   );
 
-  // Display rankings after all data sources load.
+  // Display rankings and projections after
+  // all data sources load.
   renderPositionRankings();
+  renderProjectionBoard();
   // Add the snapshot export button.
   const rankingSelect =
     document.getElementById("rankingPosition");
@@ -3980,7 +4410,7 @@ async function initializeApp() {
     exportButton.type = "button";
     exportButton.id = "exportSnapshotBtn";
     exportButton.textContent = "Export Snapshot";
-      exportButton.style.display = "block";
+    exportButton.style.display = "block";
     exportButton.style.width = "180px";
     exportButton.style.maxWidth = "100%";
     exportButton.style.margin = "12px 0 16px auto";
@@ -4015,16 +4445,67 @@ async function initializeApp() {
   );
 
   // Filter rankings as the user searches.
- document
-  .getElementById("rankingSearch")
-  ?.addEventListener(
-    "input",
-    () => {
-      currentRankingPage = 1;
-      renderPositionRankings();
-    }
-  );
-  
+  document
+    .getElementById("rankingSearch")
+    ?.addEventListener(
+      "input",
+      () => {
+        currentRankingPage = 1;
+        renderPositionRankings();
+      }
+    );
+
+  const projectionSearch =
+    document.getElementById(
+      "projectionSearch"
+    );
+
+  if (projectionSearch) {
+    projectionSearch.addEventListener(
+      "input",
+      () => {
+        currentProjectionPage = 1;
+        renderProjectionBoard();
+      }
+    );
+  }
+
+  document
+    .querySelectorAll(
+      "[data-projection-position]"
+    )
+    .forEach((button) => {
+      button.addEventListener(
+        "click",
+        () => {
+          currentProjectionPosition =
+            button.dataset
+              .projectionPosition ||
+            "ALL";
+
+          currentProjectionPage = 1;
+
+          document
+            .querySelectorAll(
+              "[data-projection-position]"
+            )
+            .forEach(
+              filterButton => {
+                filterButton
+                  .classList
+                  .toggle(
+                    "active",
+                    filterButton ===
+                      button
+                  );
+              }
+            );
+
+          renderProjectionBoard();
+        }
+      );
+    });
+
   // Refresh rankings when risk tolerance changes.
   riskSelect.addEventListener("change", renderPositionRankings);
 
