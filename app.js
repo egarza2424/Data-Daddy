@@ -209,9 +209,7 @@ console.log(
 async function loadWeeklyPprProjections() {
   try {
     const targetWeek =
-      Number(
-        document.documentElement.dataset.targetWeek
-      );
+      Number(trenchSignalWeek);
 
     if (!Number.isFinite(targetWeek) || targetWeek <= 0) {
       throw new Error(
