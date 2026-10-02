@@ -1,0 +1,374 @@
+name: Run Weekly PPR Projections
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install projection packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy
+
+      - name: Run weekly PPR projection model
+        run: |
+          python scripts/build_weekly_ppr_projections.py
+
+      - name: Validate projection output
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import re
+
+          import pandas as pd
+
+
+          files = list(
+              Path("projection-model").glob(
+                  "2026-week*-ppr-projections.csv"
+              )
+          )
+
+          if not files:
+              raise SystemExit(
+                  "No weekly PPR projection file was created."
+              )
+
+
+          def get_week(path):
+              match = re.search(
+                  r"2026-week(\d+)-ppr-projections\.csv$",
+                  path.name,
+              )
+
+              if not match:
+                  return -1
+
+              return int(match.group(1))
+
+
+          projection_path = max(
+              files,
+              key=get_week,
+          )
+
+          week = get_week(
+              projection_path
+          )
+
+          if week <= 0:
+              raise SystemExit(
+                  "Could not determine projection week."
+              )
+
+          coefficient_path = Path(
+              "projection-model"
+          ) / (
+              f"2026-week{week}-"
+              "ppr-model-coefficients.csv"
+          )
+
+          if not coefficient_path.exists():
+              raise SystemExit(
+                  "Coefficient audit file was not created: "
+                  f"{coefficient_path}"
+              )
+
+          projections = pd.read_csv(
+              projection_path
+          )
+
+          coefficients = pd.read_csv(
+              coefficient_path
+          )
+
+          required_projection_columns = {
+              "snapshot_week",
+              "player_id",
+              "player_name",
+              "position",
+              "team",
+              "opponent",
+              "model_score",
+              "position_rank",
+              "projected_ppr",
+              "projected_position_rank",
+              "opportunity_score",
+              "production_score",
+              "usage_score",
+              "redzone_score",
+              "model_confidence_score",
+              "matchup_score",
+              "scoring_environment_score",
+              "projection_model",
+              "projection_training_season",
+          }
+
+          missing = sorted(
+              required_projection_columns
+              - set(projections.columns)
+          )
+
+          if missing:
+              raise SystemExit(
+                  "Projection file is missing columns: "
+                  + ", ".join(missing)
+              )
+
+          required_coefficient_columns = {
+              "position",
+              "feature",
+              "coefficient",
+              "training_rows",
+          }
+
+          missing_coefficients = sorted(
+              required_coefficient_columns
+              - set(coefficients.columns)
+          )
+
+          if missing_coefficients:
+              raise SystemExit(
+                  "Coefficient file is missing columns: "
+                  + ", ".join(
+                      missing_coefficients
+                  )
+              )
+
+          if projections.empty:
+              raise SystemExit(
+                  "Projection output is empty."
+              )
+
+          positions = set(
+              projections[
+                  "position"
+              ]
+              .astype(str)
+              .str.upper()
+          )
+
+          expected_positions = {
+              "QB",
+              "RB",
+              "WR",
+              "TE",
+          }
+
+          if positions != expected_positions:
+              raise SystemExit(
+                  "Projection positions are incorrect. "
+                  f"Found: {sorted(positions)}"
+              )
+
+          snapshot_weeks = set(
+              pd.to_numeric(
+                  projections[
+                      "snapshot_week"
+                  ],
+                  errors="coerce",
+              )
+              .dropna()
+              .astype(int)
+          )
+
+          if snapshot_weeks != {week}:
+              raise SystemExit(
+                  "Projection snapshot_week values "
+                  f"do not equal Week {week}: "
+                  f"{sorted(snapshot_weeks)}"
+              )
+
+          if (
+              projections[
+                  "projected_ppr"
+              ].isna().any()
+          ):
+              raise SystemExit(
+                  "projected_ppr contains missing values."
+              )
+
+          if (
+              projections[
+                  "projected_ppr"
+              ] < 0
+          ).any():
+              raise SystemExit(
+                  "projected_ppr contains negative values."
+              )
+
+          if (
+              projections[
+                  "projected_position_rank"
+              ].isna().any()
+          ):
+              raise SystemExit(
+                  "Projected ranks contain missing values."
+              )
+
+          models = set(
+              projections[
+                  "projection_model"
+              ].astype(str)
+          )
+
+          if models != {
+              "F_position_specific"
+          }:
+              raise SystemExit(
+                  "Unexpected projection model: "
+                  f"{sorted(models)}"
+              )
+
+          coefficient_positions = set(
+              coefficients[
+                  "position"
+              ]
+              .astype(str)
+              .str.upper()
+          )
+
+          if (
+              coefficient_positions
+              != expected_positions
+          ):
+              raise SystemExit(
+                  "Coefficient positions are incorrect: "
+                  f"{sorted(coefficient_positions)}"
+              )
+
+          expected_features = {
+              "QB": {
+                  "intercept",
+                  "opportunity_score",
+                  "production_score",
+                  "usage_score",
+                  "redzone_score",
+                  "model_confidence_score",
+                  "matchup_score",
+              },
+              "RB": {
+                  "intercept",
+                  "opportunity_score",
+                  "production_score",
+                  "usage_score",
+                  "redzone_score",
+                  "model_confidence_score",
+              },
+              "WR": {
+                  "intercept",
+                  "opportunity_score",
+                  "production_score",
+                  "usage_score",
+                  "redzone_score",
+                  "model_confidence_score",
+              },
+              "TE": {
+                  "intercept",
+                  "opportunity_score",
+                  "production_score",
+                  "usage_score",
+                  "redzone_score",
+                  "model_confidence_score",
+                  "matchup_score",
+                  "scoring_environment_score",
+              },
+          }
+
+          for position, expected in (
+              expected_features.items()
+          ):
+              actual = set(
+                  coefficients.loc[
+                      coefficients[
+                          "position"
+                      ].astype(str).str.upper()
+                      == position,
+                      "feature",
+                  ].astype(str)
+              )
+
+              if actual != expected:
+                  raise SystemExit(
+                      f"{position} coefficient "
+                      "features are incorrect. "
+                      f"Found: {sorted(actual)}"
+                  )
+
+          print()
+          print(
+              "Weekly PPR projection validation passed."
+          )
+
+          print(
+              f"Projection file: {projection_path}"
+          )
+
+          print(
+              f"Coefficient file: {coefficient_path}"
+          )
+
+          print(
+              f"Projection rows: {len(projections)}"
+          )
+
+          print()
+          print("Rows by position:")
+
+          print(
+              projections[
+                  "position"
+              ]
+              .value_counts()
+              .sort_index()
+              .to_string()
+          )
+
+          print()
+          print("Projected PPR summary:")
+
+          print(
+              projections.groupby(
+                  "position"
+              )["projected_ppr"]
+              .agg(
+                  [
+                      "count",
+                      "mean",
+                      "min",
+                      "max",
+                  ]
+              )
+              .round(2)
+              .to_string()
+          )
+          PY
+
+      - name: Commit weekly PPR projections
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add projection-model/
+
+          if git diff --cached --quiet; then
+            echo "No projection changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update weekly PPR projections"
+          git push
