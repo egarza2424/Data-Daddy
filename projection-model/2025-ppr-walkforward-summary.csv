@@ -1,0 +1,9 @@
+model,position,observations,mae,rmse,correlation,mean_absolute_rank_error
+A_normalized_signals,QB,420,6.4852,8.1252,0.4889,8.3214
+A_normalized_signals,RB,1012,4.6429,6.497,0.6293,13.9407
+A_normalized_signals,TE,827,3.7894,5.3734,0.5412,13.7376
+A_normalized_signals,WR,1609,4.2976,5.9073,0.5877,25.22
+B_raw_features,QB,420,6.5289,8.1731,0.4867,8.3548
+B_raw_features,RB,1012,4.6604,6.5215,0.6264,13.9229
+B_raw_features,TE,827,3.8108,5.4025,0.5368,13.6602
+B_raw_features,WR,1609,4.3023,5.9102,0.5871,25.2262
