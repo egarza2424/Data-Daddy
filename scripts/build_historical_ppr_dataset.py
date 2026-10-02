@@ -426,7 +426,317 @@ def attach_red_zone_stats(
 
     return stats
 
+def normalize_team(team):
+    """
+    Normalize team abbreviations to the aliases used
+    throughout Fantasy AI Player Lab.
+    """
 
+    aliases = {
+        "LAR": "LA",
+        "JAX": "JAC",
+        "WAS": "WSH",
+    }
+
+    team = str(team or "").strip().upper()
+
+    return aliases.get(team, team)
+
+
+def load_scoring_environment(
+    games_path,
+    season,
+):
+    """
+    Build pregame scoring-environment records from
+    nflverse schedule/betting-line data.
+
+    Uses only information attached to the target game:
+    total_line and spread_line.
+
+    nflverse convention used by the live site:
+    positive spread_line means the home team is favored.
+    """
+
+    games_path = Path(games_path)
+
+    if not games_path.exists():
+        raise FileNotFoundError(
+            "Games file not found: "
+            f"{games_path}"
+        )
+
+    games = pd.read_csv(games_path)
+
+    required = {
+        "season",
+        "week",
+        "game_type",
+        "home_team",
+        "away_team",
+        "spread_line",
+        "total_line",
+    }
+
+    missing = sorted(
+        required - set(games.columns)
+    )
+
+    if missing:
+        raise ValueError(
+            "Games file missing required columns: "
+            f"{missing}"
+        )
+
+    games["season"] = pd.to_numeric(
+        games["season"],
+        errors="coerce",
+    )
+
+    games["week"] = pd.to_numeric(
+        games["week"],
+        errors="coerce",
+    )
+
+    games["spread_line"] = pd.to_numeric(
+        games["spread_line"],
+        errors="coerce",
+    )
+
+    games["total_line"] = pd.to_numeric(
+        games["total_line"],
+        errors="coerce",
+    )
+
+    games = games[
+        (games["season"] == season)
+        & games["game_type"].eq("REG")
+    ].copy()
+
+    records = []
+
+    for game in games.itertuples(index=False):
+        if pd.isna(game.week):
+            continue
+
+        if pd.isna(game.total_line):
+            continue
+
+        if pd.isna(game.spread_line):
+            continue
+
+        week = int(game.week)
+
+        home_team = normalize_team(
+            game.home_team
+        )
+
+        away_team = normalize_team(
+            game.away_team
+        )
+
+        game_total = float(
+            game.total_line
+        )
+
+        spread_line = float(
+            game.spread_line
+        )
+
+        home_implied_total = (
+            game_total + spread_line
+        ) / 2.0
+
+        away_implied_total = (
+            game_total - spread_line
+        ) / 2.0
+
+        records.append(
+            {
+                "week": week,
+                "team": home_team,
+                "opponent": away_team,
+                "game_total": game_total,
+                "spread_line": spread_line,
+                "implied_team_total":
+                    home_implied_total,
+            }
+        )
+
+        records.append(
+            {
+                "week": week,
+                "team": away_team,
+                "opponent": home_team,
+                "game_total": game_total,
+                "spread_line": -spread_line,
+                "implied_team_total":
+                    away_implied_total,
+            }
+        )
+
+    environment = pd.DataFrame(records)
+
+    if environment.empty:
+        raise RuntimeError(
+            "No scoring-environment records "
+            f"created for {season}."
+        )
+
+    duplicate_count = (
+        environment.duplicated(
+            subset=[
+                "week",
+                "team",
+            ]
+        ).sum()
+    )
+
+    if duplicate_count:
+        raise RuntimeError(
+            "Scoring-environment data contains "
+            f"{duplicate_count} duplicate "
+            "team-week rows."
+        )
+
+    environment = environment.sort_values(
+        [
+            "week",
+            "team",
+        ]
+    ).reset_index(drop=True)
+
+    print(
+        "Built scoring-environment records "
+        f"for {len(environment)} "
+        "team-week combinations."
+    )
+
+    return environment
+
+
+def attach_scoring_environment(
+    dataset,
+    scoring_environment,
+):
+    """
+    Attach target-week sportsbook environment to each
+    historical player-week row.
+
+    This information is known before the game and does
+    not use target-week player performance.
+    """
+
+    dataset = dataset.copy()
+
+    dataset["team"] = (
+        dataset["team"]
+        .map(normalize_team)
+    )
+
+    environment = (
+        scoring_environment.copy()
+    )
+
+    dataset = dataset.merge(
+        environment,
+        on=[
+            "week",
+            "team",
+        ],
+        how="left",
+        validate="many_to_one",
+    )
+
+    matched = int(
+        dataset[
+            "implied_team_total"
+        ].notna().sum()
+    )
+
+    print(
+        "Matched scoring environment to "
+        f"{matched} of {len(dataset)} "
+        "historical player-week rows."
+    )
+
+    return dataset
+
+
+def add_scoring_environment_score(
+    dataset,
+):
+    """
+    Match the live site's weekly normalization:
+
+    lowest implied team total = 25
+    highest implied team total = 100.
+    """
+
+    dataset = dataset.copy()
+
+    dataset[
+        "scoring_environment_score"
+    ] = np.nan
+
+    for week in sorted(
+        dataset["week"].dropna().unique()
+    ):
+        mask = (
+            dataset["week"] == week
+        )
+
+        week_rows = dataset.loc[
+            mask
+        ]
+
+        valid = week_rows[
+            "implied_team_total"
+        ].dropna()
+
+        if valid.empty:
+            continue
+
+        low = float(valid.min())
+        high = float(valid.max())
+
+        if high <= low:
+            dataset.loc[
+                mask
+                & dataset[
+                    "implied_team_total"
+                ].notna(),
+                "scoring_environment_score",
+            ] = 50.0
+
+            continue
+
+        valid_mask = (
+            mask
+            & dataset[
+                "implied_team_total"
+            ].notna()
+        )
+
+        dataset.loc[
+            valid_mask,
+            "scoring_environment_score",
+        ] = (
+            25.0
+            + (
+                (
+                    dataset.loc[
+                        valid_mask,
+                        "implied_team_total",
+                    ]
+                    - low
+                )
+                / (high - low)
+            )
+            * 75.0
+        ).round()
+
+    return dataset
 def recent_player_games(
     history,
     player_id,
@@ -947,6 +1257,7 @@ def build_week(
 
 def build_dataset(
     stats,
+    scoring_environment,
     season,
     first_week,
     last_week,
@@ -996,6 +1307,14 @@ def build_dataset(
         ignore_index=True,
     )
 
+    result = attach_scoring_environment(
+        result,
+        scoring_environment,
+    )
+
+    result = add_scoring_environment_score(
+        result
+    )    
     columns = [
         "season",
         "week",
@@ -1008,6 +1327,11 @@ def build_dataset(
         "usage_score",
         "redzone_score",
         "model_confidence_score",
+        "scoring_environment_score",
+        "implied_team_total",
+        "game_total",
+        "spread_line",
+        "opponent",
         "production_raw",
         "opportunity_raw",
         "usage_raw",
@@ -1021,6 +1345,15 @@ def build_dataset(
 def main():
     parser = argparse.ArgumentParser()
 
+    parser.add_argument(
+        "--games",
+        required=True,
+        help=(
+            "nflverse games.csv containing "
+            "pregame spread and total lines"
+        ),
+    )
+    
     parser.add_argument(
         "--stats",
         required=True,
@@ -1073,6 +1406,13 @@ def main():
     else:
         stats = pd.read_csv(path)
 
+    scoring_environment = (
+        load_scoring_environment(
+            args.games,
+            args.season,
+        )
+    )
+    
     red_zone_stats = load_red_zone_pbp(
         args.pbp,
         args.season,
@@ -1085,6 +1425,7 @@ def main():
 
     result = build_dataset(
         stats,
+        scoring_environment,
         args.season,
         args.first_week,
         args.last_week,
