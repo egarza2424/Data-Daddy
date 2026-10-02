@@ -178,6 +178,7 @@ jobs:
               "A_normalized_signals",
               "B_raw_features",
               "C_normalized_plus_scoring_environment",
+              "D_normalized_plus_matchup"
           }
 
           actual_models = set(
