@@ -406,6 +406,19 @@ function getPlayerPprProjection(player) {
       return projection;
     }
   }
+  const playerKey = [
+    normalizeName(player.name),
+    String(
+      player.position || ""
+    ).toUpperCase()
+  ].join("|");
+
+  return (
+    pprProjectionByPlayerKey.get(
+      playerKey
+    ) || null
+  );
+}  
 const PROJECTIONS_PER_PAGE = 24;
 
 let currentProjectionPage = 1;
