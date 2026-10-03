@@ -848,6 +848,489 @@ function renderProjectionPagination(
     nextButton
   );
 }  
+const lineupRoster = [];
+
+
+function getLineupProjectionKey(projection) {
+  if (!projection) {
+    return "";
+  }
+
+  const playerId =
+    String(
+      projection.player_id || ""
+    ).trim();
+
+  if (playerId) {
+    return `id:${playerId}`;
+  }
+
+  return [
+    "player",
+    normalizeName(
+      projection.player_name
+    ),
+    String(
+      projection.position || ""
+    ).toUpperCase()
+  ].join(":");
+}
+
+
+function renderLineupPlayerResults() {
+  const searchInput =
+    document.getElementById(
+      "lineupPlayerSearch"
+    );
+
+  const resultsContainer =
+    document.getElementById(
+      "lineupPlayerResults"
+    );
+
+  if (
+    !searchInput ||
+    !resultsContainer
+  ) {
+    return;
+  }
+
+  const searchTerm =
+    String(searchInput.value || "")
+      .trim()
+      .toLowerCase();
+
+  resultsContainer.innerHTML = "";
+
+  if (searchTerm.length < 2) {
+    return;
+  }
+
+  const rosterKeys =
+    new Set(
+      lineupRoster.map(
+        getLineupProjectionKey
+      )
+    );
+
+  const matches =
+    weeklyPprProjections
+      .filter((projection) => {
+        const searchableText = [
+          projection.player_name,
+          projection.position,
+          projection.team
+        ]
+          .join(" ")
+          .toLowerCase();
+
+        return (
+          searchableText.includes(
+            searchTerm
+          ) &&
+          !rosterKeys.has(
+            getLineupProjectionKey(
+              projection
+            )
+          )
+        );
+      })
+      .sort((a, b) => {
+        return (
+          Number(b.projected_ppr) -
+          Number(a.projected_ppr)
+        );
+      })
+      .slice(0, 10);
+
+  if (matches.length === 0) {
+    const empty =
+      document.createElement("div");
+
+    empty.className =
+      "lineup-empty-state";
+
+    empty.textContent =
+      "No matching projected players found.";
+
+    resultsContainer.appendChild(
+      empty
+    );
+
+    return;
+  }
+
+  matches.forEach((projection) => {
+    const button =
+      document.createElement("button");
+
+    button.type = "button";
+    button.className =
+      "lineup-player-result";
+
+    const playerInfo =
+      document.createElement("span");
+
+    const playerName =
+      document.createElement("strong");
+
+    playerName.textContent =
+      projection.player_name;
+
+    const playerMeta =
+      document.createElement("span");
+
+    playerMeta.className =
+      "lineup-player-result-meta";
+
+    playerMeta.textContent =
+      `${projection.position} • ` +
+      `${projection.team || "—"}`;
+
+    playerInfo.append(
+      playerName,
+      document.createElement("br"),
+      playerMeta
+    );
+
+    const projectionValue =
+      document.createElement("strong");
+
+    const projectedPpr =
+      Number(
+        projection.projected_ppr
+      );
+
+    projectionValue.textContent =
+      Number.isFinite(projectedPpr)
+        ? `${projectedPpr.toFixed(2)} PPR`
+        : "—";
+
+    button.append(
+      playerInfo,
+      projectionValue
+    );
+
+    button.addEventListener(
+      "click",
+      () => {
+        addPlayerToLineupRoster(
+          projection
+        );
+      }
+    );
+
+    resultsContainer.appendChild(
+      button
+    );
+  });
+}
+
+
+function addPlayerToLineupRoster(
+  projection
+) {
+  if (!projection) {
+    return;
+  }
+
+  const projectionKey =
+    getLineupProjectionKey(
+      projection
+    );
+
+  const alreadyAdded =
+    lineupRoster.some(
+      rosterPlayer =>
+        getLineupProjectionKey(
+          rosterPlayer
+        ) === projectionKey
+    );
+
+  if (alreadyAdded) {
+    return;
+  }
+
+  lineupRoster.push(projection);
+
+  const searchInput =
+    document.getElementById(
+      "lineupPlayerSearch"
+    );
+
+  if (searchInput) {
+    searchInput.value = "";
+  }
+
+  const resultsContainer =
+    document.getElementById(
+      "lineupPlayerResults"
+    );
+
+  if (resultsContainer) {
+    resultsContainer.innerHTML = "";
+  }
+
+  renderLineupRoster();
+}
+
+
+function removePlayerFromLineupRoster(
+  projectionKey
+) {
+  const playerIndex =
+    lineupRoster.findIndex(
+      projection =>
+        getLineupProjectionKey(
+          projection
+        ) === projectionKey
+    );
+
+  if (playerIndex === -1) {
+    return;
+  }
+
+  lineupRoster.splice(
+    playerIndex,
+    1
+  );
+
+  renderLineupRoster();
+}
+
+
+function renderLineupRoster() {
+  const rosterContainer =
+    document.getElementById(
+      "lineupRoster"
+    );
+
+  const rosterCount =
+    document.getElementById(
+      "lineupRosterCount"
+    );
+
+  const optimizeButton =
+    document.getElementById(
+      "optimizeLineupBtn"
+    );
+
+  if (!rosterContainer) {
+    return;
+  }
+
+  rosterContainer.innerHTML = "";
+
+  if (rosterCount) {
+    rosterCount.textContent =
+      `${lineupRoster.length} ` +
+      (
+        lineupRoster.length === 1
+          ? "player"
+          : "players"
+      );
+  }
+
+  if (optimizeButton) {
+    optimizeButton.disabled =
+      lineupRoster.length === 0;
+  }
+
+  if (lineupRoster.length === 0) {
+    const emptyState =
+      document.createElement("div");
+
+    emptyState.className =
+      "lineup-empty-state";
+
+    emptyState.textContent =
+      "Search for players above to build your fantasy roster.";
+
+    rosterContainer.appendChild(
+      emptyState
+    );
+
+    return;
+  }
+
+  const sortedRoster =
+    [...lineupRoster].sort(
+      (a, b) => {
+        const positionOrder = {
+          QB: 1,
+          RB: 2,
+          WR: 3,
+          TE: 4
+        };
+
+        const aPosition =
+          positionOrder[
+            String(
+              a.position || ""
+            ).toUpperCase()
+          ] || 99;
+
+        const bPosition =
+          positionOrder[
+            String(
+              b.position || ""
+            ).toUpperCase()
+          ] || 99;
+
+        if (aPosition !== bPosition) {
+          return aPosition - bPosition;
+        }
+
+        return (
+          Number(b.projected_ppr) -
+          Number(a.projected_ppr)
+        );
+      }
+    );
+
+  sortedRoster.forEach(
+    (projection) => {
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "lineup-roster-player";
+
+      const info =
+        document.createElement("div");
+
+      info.className =
+        "lineup-roster-player-info";
+
+      const name =
+        document.createElement("span");
+
+      name.className =
+        "lineup-roster-player-name";
+
+      name.textContent =
+        projection.player_name;
+
+      const meta =
+        document.createElement("span");
+
+      meta.className =
+        "lineup-roster-player-meta";
+
+      const projectedPpr =
+        Number(
+          projection.projected_ppr
+        );
+
+      meta.textContent =
+        `${projection.position} • ` +
+        `${projection.team || "—"} • ` +
+        (
+          Number.isFinite(
+            projectedPpr
+          )
+            ? `${projectedPpr.toFixed(2)} PPR`
+            : "—"
+        );
+
+      info.append(
+        name,
+        meta
+      );
+
+      const removeButton =
+        document.createElement("button");
+
+      removeButton.type = "button";
+      removeButton.className =
+        "lineup-remove-player";
+
+      removeButton.setAttribute(
+        "aria-label",
+        `Remove ${projection.player_name}`
+      );
+
+      removeButton.textContent = "×";
+
+      removeButton.addEventListener(
+        "click",
+        () => {
+          removePlayerFromLineupRoster(
+            getLineupProjectionKey(
+              projection
+            )
+          );
+        }
+      );
+
+      card.append(
+        info,
+        removeButton
+      );
+
+      rosterContainer.appendChild(
+        card
+      );
+    }
+  );
+}
+
+
+function clearLineupRoster() {
+  lineupRoster.length = 0;
+
+  const resultsContainer =
+    document.getElementById(
+      "lineupPlayerResults"
+    );
+
+  const searchInput =
+    document.getElementById(
+      "lineupPlayerSearch"
+    );
+
+  const result =
+    document.getElementById(
+      "lineupAnalyzerResult"
+    );
+
+  if (resultsContainer) {
+    resultsContainer.innerHTML = "";
+  }
+
+  if (searchInput) {
+    searchInput.value = "";
+  }
+
+  if (result) {
+    result.innerHTML = "";
+  }
+
+  renderLineupRoster();
+}
+
+
+function updateLineupFormatControls() {
+  const formatSelect =
+    document.getElementById(
+      "lineupFormat"
+    );
+
+  const customSettings =
+    document.getElementById(
+      "customLineupSettings"
+    );
+
+  if (
+    !formatSelect ||
+    !customSettings
+  ) {
+    return;
+  }
+
+  customSettings.hidden =
+    formatSelect.value !== "custom";
+}
 
 function normalizeName(name) {
   return String(name || "")
@@ -4506,7 +4989,48 @@ async function initializeApp() {
         }
       );
     });
+  const lineupPlayerSearch =
+    document.getElementById(
+      "lineupPlayerSearch"
+    );
 
+  if (lineupPlayerSearch) {
+    lineupPlayerSearch.addEventListener(
+      "input",
+      renderLineupPlayerResults
+    );
+  }
+
+
+  const clearLineupButton =
+    document.getElementById(
+      "clearLineupRoster"
+    );
+
+  if (clearLineupButton) {
+    clearLineupButton.addEventListener(
+      "click",
+      clearLineupRoster
+    );
+  }
+
+
+  const lineupFormat =
+    document.getElementById(
+      "lineupFormat"
+    );
+
+  if (lineupFormat) {
+    lineupFormat.addEventListener(
+      "change",
+      updateLineupFormatControls
+    );
+  }
+
+
+  updateLineupFormatControls();
+  renderLineupRoster();
+  
   // Refresh rankings when risk tolerance changes.
   riskSelect.addEventListener("change", renderPositionRankings);
 
