@@ -1860,6 +1860,8 @@ function getLineupPlayerAiData(
         ? Number(rank)
         : null
   };
+}
+
 function isPlayerEligibleForSlot(
   player,
   slot
