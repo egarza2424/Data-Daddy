@@ -974,9 +974,15 @@ function renderLineupPlayerResults() {
     const playerName =
       document.createElement("strong");
 
-    playerName.textContent =
-      projection.player_name;
+    const matchedPlayer =
+      getProjectionPlayer(
+        projection
+      );
 
+    playerName.textContent =
+      projection.player_name ||
+      matchedPlayer?.name ||
+      "Unknown Player";
     const playerMeta =
       document.createElement("span");
 
@@ -1208,8 +1214,15 @@ function renderLineupRoster() {
       name.className =
         "lineup-roster-player-name";
 
+      const matchedPlayer =
+        getProjectionPlayer(
+          projection
+        );
+
       name.textContent =
-        projection.player_name;
+        projection.player_name ||
+        matchedPlayer?.name ||
+        "Unknown Player";
 
       const meta =
         document.createElement("span");
