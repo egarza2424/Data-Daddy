@@ -2342,3 +2342,9 @@ footer a {
     grid-column: 2;
   }
 }
+.optimized-lineup-ai {
+  color: #fac243;
+  font-size: 0.72rem !important;
+  font-weight: 800;
+  opacity: 1 !important;
+}
