@@ -1795,8 +1795,82 @@ function getMissingLineupNeeds(
 
   return missing;
 }
+function getLineupPlayerAiData(
+  projection
+) {
+  const matchedPlayer =
+    getProjectionPlayer(
+      projection
+    );
 
+  if (!matchedPlayer) {
+    return {
+      score: null,
+      rank: null
+    };
+  }
 
+  const score =
+    Number(
+      getDisplayScore(
+        matchedPlayer
+      )
+    );
+
+  const position =
+    String(
+      projection.position || ""
+    ).toUpperCase();
+
+  const rankedPlayers =
+    players
+      .filter(
+        player =>
+          String(
+            player.position || ""
+          ).toUpperCase() ===
+          position
+      )
+      .map(
+        player => ({
+          player,
+          score: Number(
+            getDisplayScore(
+              player
+            )
+          )
+        })
+      )
+      .filter(
+        entry =>
+          Number.isFinite(
+            entry.score
+          )
+      )
+      .sort(
+        (a, b) =>
+          b.score - a.score
+      );
+
+  const playerIndex =
+    rankedPlayers.findIndex(
+      entry =>
+        entry.player ===
+        matchedPlayer
+    );
+
+  return {
+    score:
+      Number.isFinite(score)
+        ? score
+        : null,
+
+    rank:
+      playerIndex >= 0
+        ? playerIndex + 1
+        : null
+  };
+}
 function renderOptimizedLineup(
   lineup,
   rules
@@ -1895,6 +1969,23 @@ function renderOptimizedLineup(
           player.projected_ppr
         );
 
+      const aiData =
+        getLineupPlayerAiData(
+          player
+        );
+
+      const aiScoreText =
+        Number.isFinite(
+          aiData.score
+        )
+          ? aiData.score.toFixed(1)
+          : "—";
+
+      const aiRankText =
+        aiData.rank
+          ? `${player.position}${aiData.rank}`
+          : "—";
+
       card.innerHTML = `
         <span class="optimized-lineup-slot">
           ${slot}
@@ -1909,6 +2000,12 @@ function renderOptimizedLineup(
             ${player.position}
             •
             ${player.team || "—"}
+          </span>
+
+          <span class="optimized-lineup-ai">
+            AI Score ${aiScoreText}
+            •
+            ${aiRankText}
           </span>
         </div>
 
@@ -1969,16 +2066,39 @@ function renderOptimizedLineup(
             player.projected_ppr
           );
 
+        const aiData =
+          getLineupPlayerAiData(
+            player
+          );
+
+        const aiScoreText =
+          Number.isFinite(
+            aiData.score
+          )
+            ? aiData.score.toFixed(1)
+            : "—";
+
+        const aiRankText =
+          aiData.rank
+            ? `${player.position}${aiData.rank}`
+            : "—";
+
         card.innerHTML = `
           <div>
             <strong>
               ${player.player_name}
             </strong>
 
-            <span>
+             <span>
               ${player.position}
               •
               ${player.team || "—"}
+            </span>
+
+            <span class="optimized-lineup-ai">
+              AI Score ${aiScoreText}
+              •
+              ${aiRankText}
             </span>
           </div>
 
