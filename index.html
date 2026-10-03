@@ -391,6 +391,239 @@
   >
   </div>
 
+
+  <div class="lineup-analyzer">
+
+    <div class="lineup-analyzer-heading">
+
+      <div>
+        <div class="eyebrow">
+          LINEUP OPTIMIZER
+        </div>
+
+        <h3>
+          Lineup Analyzer
+        </h3>
+
+        <p>
+          Add your fantasy roster and let Fantasy AI Player Lab
+          find the highest-projected legal starting lineup using
+          this week's Projected PPR.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="lineup-format-control">
+
+      <label for="lineupFormat">
+        League lineup
+      </label>
+
+      <select id="lineupFormat">
+
+        <option value="standard">
+          Standard Flex — 1 QB, 2 RB, 2 WR, 1 TE, 1 FLEX
+        </option>
+
+        <option value="threeWR">
+          3-WR Flex — 1 QB, 2 RB, 3 WR, 1 TE, 1 FLEX
+        </option>
+
+        <option value="superflex">
+          Superflex — 1 QB, 2 RB, 2 WR, 1 TE, 1 FLEX, 1 SUPERFLEX
+        </option>
+
+        <option value="custom">
+          Custom Lineup
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div
+      id="customLineupSettings"
+      class="custom-lineup-settings"
+      hidden
+    >
+
+      <div class="custom-lineup-field">
+        <label for="customQB">
+          QB
+        </label>
+
+        <input
+          id="customQB"
+          type="number"
+          min="0"
+          max="2"
+          value="1"
+        >
+      </div>
+
+
+      <div class="custom-lineup-field">
+        <label for="customRB">
+          RB
+        </label>
+
+        <input
+          id="customRB"
+          type="number"
+          min="0"
+          max="3"
+          value="2"
+        >
+      </div>
+
+
+      <div class="custom-lineup-field">
+        <label for="customWR">
+          WR
+        </label>
+
+        <input
+          id="customWR"
+          type="number"
+          min="0"
+          max="4"
+          value="2"
+        >
+      </div>
+
+
+      <div class="custom-lineup-field">
+        <label for="customTE">
+          TE
+        </label>
+
+        <input
+          id="customTE"
+          type="number"
+          min="0"
+          max="2"
+          value="1"
+        >
+      </div>
+
+
+      <div class="custom-lineup-field">
+        <label for="customFlex">
+          FLEX
+        </label>
+
+        <input
+          id="customFlex"
+          type="number"
+          min="0"
+          max="3"
+          value="1"
+        >
+      </div>
+
+
+      <div class="custom-lineup-field">
+        <label for="customSuperflex">
+          SUPERFLEX
+        </label>
+
+        <input
+          id="customSuperflex"
+          type="number"
+          min="0"
+          max="2"
+          value="0"
+        >
+      </div>
+
+    </div>
+
+
+    <div class="lineup-roster-builder">
+
+      <div class="lineup-roster-input">
+
+        <label for="lineupPlayerSearch">
+          Add players to your roster
+        </label>
+
+        <div class="lineup-player-search">
+
+          <input
+            id="lineupPlayerSearch"
+            type="search"
+            placeholder="Search NFL player..."
+            autocomplete="off"
+          >
+
+          <div
+            id="lineupPlayerResults"
+            class="lineup-player-results"
+          >
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="lineup-roster-summary">
+
+        <span>
+          Roster
+        </span>
+
+        <strong id="lineupRosterCount">
+          0 players
+        </strong>
+
+        <button
+          id="clearLineupRoster"
+          type="button"
+          class="lineup-clear-btn"
+        >
+          Clear roster
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div
+      id="lineupRoster"
+      class="lineup-roster"
+    >
+
+      <div class="lineup-empty-state">
+        Search for players above to build your fantasy roster.
+      </div>
+
+    </div>
+
+
+    <button
+      id="optimizeLineupBtn"
+      type="button"
+      class="primary-btn lineup-optimize-btn"
+      disabled
+    >
+      Optimize Lineup
+    </button>
+
+
+    <div
+      id="lineupAnalyzerResult"
+      class="lineup-analyzer-result"
+      aria-live="polite"
+    >
+    </div>
+
+  </div>
+
 </section>
   
 <section class="panel product-thinking">
