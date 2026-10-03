@@ -2204,3 +2204,6 @@ footer a {
     justify-content: space-between;
   }
 }
+.custom-lineup-settings[hidden] {
+  display: none;
+}
