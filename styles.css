@@ -2125,9 +2125,9 @@ footer a {
 }
 
 .lineup-roster-player {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
   padding: 12px 14px;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -2136,11 +2136,9 @@ footer a {
 }
 
 .lineup-roster-player-info {
-  flex: 1 1 0;
   min-width: 0;
-  width: calc(100% - 32px);
+  width: 100%;
 }
-
 .lineup-roster-player-name {
   display: block;
   overflow: hidden;
