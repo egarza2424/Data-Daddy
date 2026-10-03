@@ -1970,3 +1970,237 @@ footer a {
     width: 100%;
   }
 }
+/* DATA DADDY — LINEUP ANALYZER */
+
+.lineup-analyzer {
+  margin-top: 42px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lineup-analyzer-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.lineup-analyzer-heading p {
+  max-width: 760px;
+}
+
+.lineup-format-control {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 20px;
+}
+
+.lineup-format-control label {
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.lineup-format-control select {
+  width: 100%;
+  max-width: 620px;
+}
+
+.custom-lineup-settings {
+  display: grid;
+  grid-template-columns:
+    repeat(6, minmax(80px, 1fr));
+  gap: 12px;
+  margin: 0 0 24px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.custom-lineup-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.custom-lineup-field label {
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.custom-lineup-field input {
+  width: 100%;
+}
+
+.lineup-roster-builder {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.lineup-roster-input {
+  flex: 1 1 420px;
+}
+
+.lineup-roster-input > label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.lineup-player-search {
+  position: relative;
+}
+
+.lineup-player-search input {
+  width: 100%;
+}
+
+.lineup-player-results {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 5px);
+  left: 0;
+  right: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  border-radius: 8px;
+  background: #172231;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+.lineup-player-result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  padding: 11px 13px;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.lineup-player-result:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.lineup-player-result-meta {
+  opacity: 0.72;
+  font-size: 0.8rem;
+}
+
+.lineup-roster-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lineup-roster-summary > span {
+  opacity: 0.7;
+}
+
+.lineup-clear-btn {
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 7px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.lineup-roster {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fill, minmax(230px, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.lineup-roster-player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.lineup-roster-player-info {
+  min-width: 0;
+}
+
+.lineup-roster-player-name {
+  display: block;
+  overflow: hidden;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lineup-roster-player-meta {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.78rem;
+  opacity: 0.72;
+}
+
+.lineup-remove-player {
+  flex: 0 0 auto;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.lineup-empty-state {
+  grid-column: 1 / -1;
+  padding: 20px;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 9px;
+  text-align: center;
+  opacity: 0.65;
+}
+
+.lineup-optimize-btn {
+  margin-top: 6px;
+}
+
+.lineup-optimize-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.lineup-analyzer-result {
+  margin-top: 24px;
+}
+
+@media (max-width: 850px) {
+  .custom-lineup-settings {
+    grid-template-columns:
+      repeat(3, minmax(80px, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .custom-lineup-settings {
+    grid-template-columns:
+      repeat(2, minmax(80px, 1fr));
+  }
+
+  .lineup-roster-summary {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
