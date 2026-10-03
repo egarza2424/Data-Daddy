@@ -1344,6 +1344,722 @@ function updateLineupFormatControls() {
   customSettings.hidden =
     formatSelect.value !== "custom";
 }
+function getLineupRules() {
+  const formatSelect =
+    document.getElementById(
+      "lineupFormat"
+    );
+
+  const format =
+    formatSelect?.value || "standard";
+
+  const presets = {
+    standard: {
+      QB: 1,
+      RB: 2,
+      WR: 2,
+      TE: 1,
+      FLEX: 1,
+      SUPERFLEX: 0
+    },
+
+    threeWR: {
+      QB: 1,
+      RB: 2,
+      WR: 3,
+      TE: 1,
+      FLEX: 1,
+      SUPERFLEX: 0
+    },
+
+    superflex: {
+      QB: 1,
+      RB: 2,
+      WR: 2,
+      TE: 1,
+      FLEX: 1,
+      SUPERFLEX: 1
+    }
+  };
+
+  if (format !== "custom") {
+    return presets[format] || presets.standard;
+  }
+
+  function readCount(id) {
+    const input =
+      document.getElementById(id);
+
+    const value =
+      Number(input?.value);
+
+    if (!Number.isFinite(value)) {
+      return 0;
+    }
+
+    return Math.max(
+      0,
+      Math.floor(value)
+    );
+  }
+
+  return {
+    QB: readCount("customQB"),
+    RB: readCount("customRB"),
+    WR: readCount("customWR"),
+    TE: readCount("customTE"),
+    FLEX: readCount("customFlex"),
+    SUPERFLEX:
+      readCount("customSuperflex")
+  };
+}
+
+
+function getLineupPlayersByPosition() {
+  const groups = {
+    QB: [],
+    RB: [],
+    WR: [],
+    TE: []
+  };
+
+  lineupRoster.forEach(
+    (projection) => {
+      const position =
+        String(
+          projection.position || ""
+        ).toUpperCase();
+
+      if (!groups[position]) {
+        return;
+      }
+
+      groups[position].push(
+        projection
+      );
+    }
+  );
+
+  Object.values(groups).forEach(
+    (players) => {
+      players.sort(
+        (a, b) =>
+          Number(
+            b.projected_ppr
+          ) -
+          Number(
+            a.projected_ppr
+          )
+      );
+    }
+  );
+
+  return groups;
+}
+
+
+function getLineupDistributions(
+  count,
+  positions
+) {
+  const distributions = [];
+
+  function buildDistribution(
+    index,
+    remaining,
+    current
+  ) {
+    if (
+      index ===
+      positions.length - 1
+    ) {
+      distributions.push({
+        ...current,
+        [positions[index]]:
+          remaining
+      });
+
+      return;
+    }
+
+    const position =
+      positions[index];
+
+    for (
+      let amount = 0;
+      amount <= remaining;
+      amount += 1
+    ) {
+      buildDistribution(
+        index + 1,
+        remaining - amount,
+        {
+          ...current,
+          [position]: amount
+        }
+      );
+    }
+  }
+
+  buildDistribution(
+    0,
+    count,
+    {}
+  );
+
+  return distributions;
+}
+
+
+function findBestLegalLineup(
+  rules,
+  groups
+) {
+  const flexDistributions =
+    getLineupDistributions(
+      rules.FLEX,
+      ["RB", "WR", "TE"]
+    );
+
+  const superflexDistributions =
+    getLineupDistributions(
+      rules.SUPERFLEX,
+      ["QB", "RB", "WR", "TE"]
+    );
+
+  let bestLineup = null;
+
+  flexDistributions.forEach(
+    (flexAllocation) => {
+      superflexDistributions.forEach(
+        (superflexAllocation) => {
+          const required = {
+            QB:
+              rules.QB +
+              (
+                superflexAllocation.QB ||
+                0
+              ),
+
+            RB:
+              rules.RB +
+              (
+                flexAllocation.RB ||
+                0
+              ) +
+              (
+                superflexAllocation.RB ||
+                0
+              ),
+
+            WR:
+              rules.WR +
+              (
+                flexAllocation.WR ||
+                0
+              ) +
+              (
+                superflexAllocation.WR ||
+                0
+              ),
+
+            TE:
+              rules.TE +
+              (
+                flexAllocation.TE ||
+                0
+              ) +
+              (
+                superflexAllocation.TE ||
+                0
+              )
+          };
+
+          const legal =
+            Object.entries(
+              required
+            ).every(
+              ([position, count]) =>
+                groups[position].length >=
+                count
+            );
+
+          if (!legal) {
+            return;
+          }
+
+          const selected = {
+            QB:
+              groups.QB.slice(
+                0,
+                required.QB
+              ),
+
+            RB:
+              groups.RB.slice(
+                0,
+                required.RB
+              ),
+
+            WR:
+              groups.WR.slice(
+                0,
+                required.WR
+              ),
+
+            TE:
+              groups.TE.slice(
+                0,
+                required.TE
+              )
+          };
+
+          const starters =
+            Object.values(
+              selected
+            ).flat();
+
+          const total =
+            starters.reduce(
+              (sum, player) =>
+                sum +
+                Number(
+                  player.projected_ppr ||
+                  0
+                ),
+              0
+            );
+
+          if (
+            !bestLineup ||
+            total >
+              bestLineup.total
+          ) {
+            bestLineup = {
+              total,
+              selected,
+              flexAllocation,
+              superflexAllocation
+            };
+          }
+        }
+      );
+    }
+  );
+
+  return bestLineup;
+}
+
+
+function buildLineupSlots(
+  lineup,
+  rules
+) {
+  const slots = [];
+
+  const remaining = {
+    QB: [...lineup.selected.QB],
+    RB: [...lineup.selected.RB],
+    WR: [...lineup.selected.WR],
+    TE: [...lineup.selected.TE]
+  };
+
+  function takePlayer(
+    position,
+    slotLabel
+  ) {
+    const player =
+      remaining[position].shift();
+
+    if (!player) {
+      return;
+    }
+
+    slots.push({
+      slot: slotLabel,
+      player
+    });
+  }
+
+  ["QB", "RB", "WR", "TE"].forEach(
+    (position) => {
+      for (
+        let index = 0;
+        index < rules[position];
+        index += 1
+      ) {
+        takePlayer(
+          position,
+          position
+        );
+      }
+    }
+  );
+
+  ["RB", "WR", "TE"].forEach(
+    (position) => {
+      const count =
+        lineup.flexAllocation[
+          position
+        ] || 0;
+
+      for (
+        let index = 0;
+        index < count;
+        index += 1
+      ) {
+        takePlayer(
+          position,
+          "FLEX"
+        );
+      }
+    }
+  );
+
+  ["QB", "RB", "WR", "TE"].forEach(
+    (position) => {
+      const count =
+        lineup.superflexAllocation[
+          position
+        ] || 0;
+
+      for (
+        let index = 0;
+        index < count;
+        index += 1
+      ) {
+        takePlayer(
+          position,
+          "SUPERFLEX"
+        );
+      }
+    }
+  );
+
+  return slots;
+}
+
+
+function getMissingLineupNeeds(
+  rules,
+  groups
+) {
+  const missing = [];
+
+  ["QB", "RB", "WR", "TE"].forEach(
+    (position) => {
+      const required =
+        rules[position];
+
+      const available =
+        groups[position].length;
+
+      if (available < required) {
+        missing.push(
+          `${position}: need ${
+            required - available
+          } more`
+        );
+      }
+    }
+  );
+
+  const baseRequired =
+    rules.QB +
+    rules.RB +
+    rules.WR +
+    rules.TE;
+
+  const totalRequired =
+    baseRequired +
+    rules.FLEX +
+    rules.SUPERFLEX;
+
+  if (
+    lineupRoster.length <
+    totalRequired
+  ) {
+    missing.push(
+      `Roster: need ${
+        totalRequired -
+        lineupRoster.length
+      } more player${
+        totalRequired -
+          lineupRoster.length ===
+        1
+          ? ""
+          : "s"
+      }`
+    );
+  }
+
+  return missing;
+}
+
+
+function renderOptimizedLineup(
+  lineup,
+  rules
+) {
+  const result =
+    document.getElementById(
+      "lineupAnalyzerResult"
+    );
+
+  if (!result) {
+    return;
+  }
+
+  result.innerHTML = "";
+
+  const slots =
+    buildLineupSlots(
+      lineup,
+      rules
+    );
+
+  const starterKeys =
+    new Set(
+      slots.map(({ player }) =>
+        getLineupProjectionKey(
+          player
+        )
+      )
+    );
+
+  const bench =
+    lineupRoster
+      .filter(
+        player =>
+          !starterKeys.has(
+            getLineupProjectionKey(
+              player
+            )
+          )
+      )
+      .sort(
+        (a, b) =>
+          Number(
+            b.projected_ppr
+          ) -
+          Number(
+            a.projected_ppr
+          )
+      );
+
+  const heading =
+    document.createElement("div");
+
+  heading.className =
+    "optimized-lineup-heading";
+
+  heading.innerHTML = `
+    <div>
+      <span class="eyebrow">
+        BEST PROJECTED LINEUP
+      </span>
+      <h3>
+        Optimal Starting Lineup
+      </h3>
+    </div>
+
+    <div class="optimized-lineup-total">
+      <span>Projected Total</span>
+      <strong>
+        ${lineup.total.toFixed(2)}
+        PPR
+      </strong>
+    </div>
+  `;
+
+  result.appendChild(
+    heading
+  );
+
+  const startersGrid =
+    document.createElement("div");
+
+  startersGrid.className =
+    "optimized-lineup-grid";
+
+  slots.forEach(
+    ({ slot, player }) => {
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "optimized-lineup-player";
+
+      const projectedPpr =
+        Number(
+          player.projected_ppr
+        );
+
+      card.innerHTML = `
+        <span class="optimized-lineup-slot">
+          ${slot}
+        </span>
+
+        <div class="optimized-lineup-player-info">
+          <strong>
+            ${player.player_name}
+          </strong>
+
+          <span>
+            ${player.position}
+            •
+            ${player.team || "—"}
+          </span>
+        </div>
+
+        <strong class="optimized-lineup-ppr">
+          ${
+            Number.isFinite(
+              projectedPpr
+            )
+              ? projectedPpr.toFixed(2)
+              : "—"
+          }
+          PPR
+        </strong>
+      `;
+
+      startersGrid.appendChild(
+        card
+      );
+    }
+  );
+
+  result.appendChild(
+    startersGrid
+  );
+
+  if (bench.length > 0) {
+    const benchHeading =
+      document.createElement("h4");
+
+    benchHeading.className =
+      "optimized-bench-heading";
+
+    benchHeading.textContent =
+      "Bench";
+
+    result.appendChild(
+      benchHeading
+    );
+
+    const benchGrid =
+      document.createElement("div");
+
+    benchGrid.className =
+      "optimized-bench-grid";
+
+    bench.forEach(
+      (player) => {
+        const card =
+          document.createElement(
+            "div"
+          );
+
+        card.className =
+          "optimized-bench-player";
+
+        const projectedPpr =
+          Number(
+            player.projected_ppr
+          );
+
+        card.innerHTML = `
+          <div>
+            <strong>
+              ${player.player_name}
+            </strong>
+
+            <span>
+              ${player.position}
+              •
+              ${player.team || "—"}
+            </span>
+          </div>
+
+          <strong>
+            ${
+              Number.isFinite(
+                projectedPpr
+              )
+                ? projectedPpr.toFixed(2)
+                : "—"
+            }
+            PPR
+          </strong>
+        `;
+
+        benchGrid.appendChild(
+          card
+        );
+      }
+    );
+
+    result.appendChild(
+      benchGrid
+    );
+  }
+}
+
+
+function optimizeLineup() {
+  const result =
+    document.getElementById(
+      "lineupAnalyzerResult"
+    );
+
+  if (!result) {
+    return;
+  }
+
+  const rules =
+    getLineupRules();
+
+  const groups =
+    getLineupPlayersByPosition();
+
+  const bestLineup =
+    findBestLegalLineup(
+      rules,
+      groups
+    );
+
+  if (!bestLineup) {
+    const missing =
+      getMissingLineupNeeds(
+        rules,
+        groups
+      );
+
+    result.innerHTML = `
+      <div class="lineup-validation-message">
+        <strong>
+          Roster is not complete yet.
+        </strong>
+
+        <span>
+          ${
+            missing.length > 0
+              ? missing.join(" • ")
+              : "Add more eligible players to build a legal lineup."
+          }
+        </span>
+      </div>
+    `;
+
+    return;
+  }
+
+  renderOptimizedLineup(
+    bestLineup,
+    rules
+  );
+}
 
 function normalizeName(name) {
   return String(name || "")
@@ -5039,8 +5755,17 @@ async function initializeApp() {
       updateLineupFormatControls
     );
   }
+  const optimizeLineupButton =
+    document.getElementById(
+      "optimizeLineupBtn"
+    );
 
-
+  if (optimizeLineupButton) {
+    optimizeLineupButton.addEventListener(
+      "click",
+      optimizeLineup
+    );
+  }
   updateLineupFormatControls();
   renderLineupRoster();
   
