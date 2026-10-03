@@ -848,19 +848,7 @@ function renderProjectionPagination(
     nextButton
   );
 }  
-  const playerKey = [
-    normalizeName(player.name),
-    String(
-      player.position || ""
-    ).toUpperCase()
-  ].join("|");
 
-  return (
-    pprProjectionByPlayerKey.get(
-      playerKey
-    ) || null
-  );
-}
 function normalizeName(name) {
   return String(name || "")
     .toLowerCase()
