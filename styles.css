@@ -2136,8 +2136,9 @@ footer a {
 }
 
 .lineup-roster-player-info {
-  flex: 1 1 auto;
+  flex: 1 1 0;
   min-width: 0;
+  width: calc(100% - 32px);
 }
 
 .lineup-roster-player-name {
