@@ -1810,53 +1810,41 @@ function getLineupPlayerAiData(
     };
   }
 
-  const score =
-    Number(
-      getDisplayScore(
-        matchedPlayer
-      )
-    );
+  const profile = "balanced";
 
   const position =
     String(
       projection.position || ""
     ).toUpperCase();
 
-  const rankedPlayers =
-    players
-      .filter(
-        player =>
-          String(
-            player.position || ""
-          ).toUpperCase() ===
-          position
-      )
-      .map(
-        player => ({
-          player,
-          score: Number(
-            getDisplayScore(
-              player
-            )
-          )
-        })
-      )
-      .filter(
-        entry =>
-          Number.isFinite(
-            entry.score
-          )
-      )
-      .sort(
-        (a, b) =>
-          b.score - a.score
-      );
+  const rankings =
+    getPositionRankings(
+      position,
+      profile
+    );
 
-  const playerIndex =
-    rankedPlayers.findIndex(
+  const matchingEntry =
+    rankings.find(
       entry =>
         entry.player ===
-        matchedPlayer
+        matchedPlayer ||
+        normalizeName(
+          entry.player?.name
+        ) ===
+        normalizeName(
+          matchedPlayer.name
+        )
+    );
+
+  const rank =
+    getPlayerPositionRank(
+      matchedPlayer,
+      profile
+    );
+
+  const score =
+    Number(
+      matchingEntry?.score
     );
 
   return {
@@ -1866,8 +1854,10 @@ function getLineupPlayerAiData(
         : null,
 
     rank:
-      playerIndex >= 0
-        ? playerIndex + 1
+      Number.isFinite(
+        Number(rank)
+      )
+        ? Number(rank)
         : null
   };
 }
