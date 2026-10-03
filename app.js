@@ -1860,7 +1860,313 @@ function getLineupPlayerAiData(
         ? Number(rank)
         : null
   };
+function isPlayerEligibleForSlot(
+  player,
+  slot
+) {
+  const position =
+    String(
+      player.position || ""
+    ).toUpperCase();
+
+  if (
+    ["QB", "RB", "WR", "TE"].includes(
+      slot
+    )
+  ) {
+    return position === slot;
+  }
+
+  if (slot === "FLEX") {
+    return ["RB", "WR", "TE"].includes(
+      position
+    );
+  }
+
+  if (slot === "SUPERFLEX") {
+    return [
+      "QB",
+      "RB",
+      "WR",
+      "TE"
+    ].includes(position);
+  }
+
+  return false;
 }
+
+
+function getStartSitInsights(
+  slots,
+  bench
+) {
+  const insights = [];
+
+  slots.forEach(
+    ({ slot, player: starter }) => {
+      const starterPpr =
+        Number(
+          starter.projected_ppr
+        );
+
+      const starterAi =
+        getLineupPlayerAiData(
+          starter
+        );
+
+      if (
+        !Number.isFinite(starterPpr) ||
+        !Number.isFinite(
+          starterAi.score
+        )
+      ) {
+        return;
+      }
+
+      bench.forEach(
+        (benchPlayer) => {
+          if (
+            !isPlayerEligibleForSlot(
+              benchPlayer,
+              slot
+            )
+          ) {
+            return;
+          }
+
+          const benchPpr =
+            Number(
+              benchPlayer.projected_ppr
+            );
+
+          const benchAi =
+            getLineupPlayerAiData(
+              benchPlayer
+            );
+
+          if (
+            !Number.isFinite(benchPpr) ||
+            !Number.isFinite(
+              benchAi.score
+            )
+          ) {
+            return;
+          }
+
+          const projectionEdge =
+            starterPpr - benchPpr;
+
+          const aiEdge =
+            benchAi.score -
+            starterAi.score;
+
+          if (
+            projectionEdge < 0 ||
+            projectionEdge > 3 ||
+            aiEdge < 5
+          ) {
+            return;
+          }
+
+          insights.push({
+            slot,
+            starter,
+            benchPlayer,
+            starterPpr,
+            benchPpr,
+            starterAi,
+            benchAi,
+            projectionEdge,
+            aiEdge
+          });
+        }
+      );
+    }
+  );
+
+  insights.sort(
+    (a, b) => {
+      if (
+        b.aiEdge !== a.aiEdge
+      ) {
+        return (
+          b.aiEdge - a.aiEdge
+        );
+      }
+
+      return (
+        a.projectionEdge -
+        b.projectionEdge
+      );
+    }
+  );
+
+  const usedBenchPlayers =
+    new Set();
+
+  return insights
+    .filter(
+      insight => {
+        const key =
+          getLineupProjectionKey(
+            insight.benchPlayer
+          );
+
+        if (
+          usedBenchPlayers.has(key)
+        ) {
+          return false;
+        }
+
+        usedBenchPlayers.add(key);
+
+        return true;
+      }
+    )
+    .slice(0, 3);
+}
+
+
+function renderStartSitInsights(
+  slots,
+  bench
+) {
+  const insights =
+    getStartSitInsights(
+      slots,
+      bench
+    );
+
+  if (insights.length === 0) {
+    return null;
+  }
+
+  const section =
+    document.createElement(
+      "section"
+    );
+
+  section.className =
+    "start-sit-insights";
+
+  const heading =
+    document.createElement("div");
+
+  heading.className =
+    "start-sit-insights-heading";
+
+  heading.innerHTML = `
+    <span class="eyebrow">
+      AI SECOND OPINION
+    </span>
+
+    <h4>
+      Start/Sit Insights
+    </h4>
+
+    <p>
+      Projected PPR determines the optimal lineup.
+      These alerts highlight close decisions where
+      the underlying AI Score favors a bench player.
+    </p>
+  `;
+
+  section.appendChild(
+    heading
+  );
+
+  insights.forEach(
+    (insight) => {
+      const card =
+        document.createElement(
+          "div"
+        );
+
+      card.className =
+        "start-sit-insight-card";
+
+      const starterName =
+        insight.starter.player_name;
+
+      const benchName =
+        insight.benchPlayer.player_name;
+
+      card.innerHTML = `
+        <div class="start-sit-insight-label">
+          AI EDGE • ${insight.slot}
+        </div>
+
+        <div class="start-sit-insight-title">
+          Review ${starterName}
+          vs. ${benchName}
+        </div>
+
+        <p>
+          The PPR model starts
+          <strong>${starterName}</strong>,
+          but the underlying AI Score favors
+          <strong>${benchName}</strong>.
+        </p>
+
+        <div class="start-sit-comparison">
+          <div>
+            <span>PROJECTED STARTER</span>
+
+            <strong>
+              ${starterName}
+            </strong>
+
+            <small>
+              ${insight.starterPpr.toFixed(2)}
+              PPR • AI
+              ${insight.starterAi.score.toFixed(1)}
+            </small>
+          </div>
+
+          <div>
+            <span>AI ALTERNATIVE</span>
+
+            <strong>
+              ${benchName}
+            </strong>
+
+            <small>
+              ${insight.benchPpr.toFixed(2)}
+              PPR • AI
+              ${insight.benchAi.score.toFixed(1)}
+            </small>
+          </div>
+        </div>
+
+        <div class="start-sit-edge-summary">
+          <span>
+            Projection edge:
+            <strong>
+              +${insight.projectionEdge.toFixed(2)}
+              PPR ${starterName}
+            </strong>
+          </span>
+
+          <span>
+            AI Score edge:
+            <strong>
+              +${insight.aiEdge.toFixed(1)}
+              ${benchName}
+            </strong>
+          </span>
+        </div>
+      `;
+
+      section.appendChild(
+        card
+      );
+    }
+  );
+
+  return section;
+}
+
+  
 function renderOptimizedLineup(
   lineup,
   rules
@@ -2020,6 +2326,18 @@ function renderOptimizedLineup(
   result.appendChild(
     startersGrid
   );
+
+  const insightsSection =
+    renderStartSitInsights(
+      slots,
+      bench
+    );
+
+  if (insightsSection) {
+    result.appendChild(
+      insightsSection
+    );
+  }
 
   if (bench.length > 0) {
     const benchHeading =
