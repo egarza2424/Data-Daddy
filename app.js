@@ -2301,10 +2301,12 @@ function renderOptimizedLineup(
           </span>
 
           <span class="optimized-lineup-ai">
-            AI Score ${aiScoreText}
-            •
-            ${aiRankText}
-          </span>
+  ${
+    Number.isFinite(aiData.score)
+      ? `AI Score ${aiScoreText} • ${aiRankText}`
+      : "AI Score unavailable • Not currently ranked"
+  }
+</span>
         </div>
 
         <strong class="optimized-lineup-ppr">
