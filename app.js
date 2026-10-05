@@ -687,15 +687,14 @@ function getWeeklySleeperCandidates() {
             );
 
           /*
-           * Stage 1 Sleeper Score
+           * Sleeper Score
            *
            * 45% AI conviction
            * 35% weekly PPR projection
            * 20% AI-vs-PPR rank disagreement
            *
-           * External market consensus will
-           * eventually become an additional
-           * component.
+           * This is a standalone model-derived
+           * discovery score.
            */
           candidate.sleeperScore =
             (
@@ -1361,9 +1360,11 @@ function renderProjectionPagination(
   const pageLabel =
     document.createElement("span");
 
+  pageLabel.className =
+    "ranking-page-status";
+
   pageLabel.textContent =
     `Page ${page} of ${totalPages}`;
-
   const nextButton =
     document.createElement("button");
 
