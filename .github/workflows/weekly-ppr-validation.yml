@@ -1,0 +1,914 @@
+name: Weekly PPR Validation
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: "0 22 * * 2"
+    - cron: "0 1 * * 3"
+    - cron: "0 4 * * 3"
+
+permissions:
+  contents: write
+
+jobs:
+  validate-ppr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy scipy
+
+      - name: Validate latest Model F projections
+        run: |
+          python <<'PY'
+          import io
+          import re
+          import urllib.request
+          from pathlib import Path
+
+          import numpy as np
+          import pandas as pd
+          from scipy.stats import pearsonr, spearmanr
+
+
+          # -----------------------------------------
+          # Find newest weekly Model F projection
+          # -----------------------------------------
+
+          projection_dir = Path(
+              "projection-model"
+          )
+
+          projection_files = list(
+              projection_dir.glob(
+                  "2026-week*-ppr-projections.csv"
+              )
+          )
+
+          if not projection_files:
+              raise SystemExit(
+                  "No 2026 weekly PPR projection "
+                  "files were found."
+              )
+
+
+          def get_week(path):
+              match = re.search(
+                  r"2026-week(\d+)"
+                  r"-ppr-projections\.csv$",
+                  path.name
+              )
+
+              if match is None:
+                  return None
+
+              return int(match.group(1))
+
+
+          week_files = []
+
+          for path in projection_files:
+              week = get_week(path)
+
+              if week is not None:
+                  week_files.append(
+                      (week, path)
+                  )
+
+          if not week_files:
+              raise SystemExit(
+                  "Could not determine a week from "
+                  "the PPR projection filenames."
+              )
+
+          target_week, projection_path = max(
+              week_files,
+              key=lambda item: item[0]
+          )
+
+          print(
+              f"Using projections: {projection_path}"
+          )
+
+          print(
+              f"Validating NFL Week {target_week}"
+          )
+
+
+          # -----------------------------------------
+          # Load frozen weekly projections
+          # -----------------------------------------
+
+          predictions = pd.read_csv(
+              projection_path
+          )
+
+          required_projection_columns = [
+              "player_id",
+              "player_name",
+              "position",
+              "projected_ppr",
+              "projected_position_rank",
+          ]
+
+          missing = [
+              column
+              for column
+              in required_projection_columns
+              if column not in predictions.columns
+          ]
+
+          if missing:
+              raise SystemExit(
+                  "Projection file is missing "
+                  "required columns: "
+                  + ", ".join(missing)
+              )
+
+          predictions["player_id"] = (
+              predictions["player_id"]
+              .astype(str)
+              .str.replace(
+                  r"\.0$",
+                  "",
+                  regex=True
+              )
+              .str.strip()
+          )
+
+          predictions["position"] = (
+              predictions["position"]
+              .astype(str)
+              .str.upper()
+              .str.strip()
+          )
+
+          predictions = predictions[
+              predictions["position"].isin(
+                  ["QB", "RB", "WR", "TE"]
+              )
+          ].copy()
+
+          predictions["projected_ppr"] = (
+              pd.to_numeric(
+                  predictions["projected_ppr"],
+                  errors="coerce"
+              )
+          )
+
+          predictions[
+              "projected_position_rank"
+          ] = pd.to_numeric(
+              predictions[
+                  "projected_position_rank"
+              ],
+              errors="coerce"
+          )
+
+          if (
+              predictions["projected_ppr"]
+              .isna()
+              .any()
+          ):
+              raise SystemExit(
+                  "Projection file contains "
+                  "invalid projected PPR values."
+              )
+
+          if (
+              predictions[
+                  "projected_position_rank"
+              ]
+              .isna()
+              .any()
+          ):
+              raise SystemExit(
+                  "Projection file contains "
+                  "invalid PPR position ranks."
+              )
+
+          predictions[
+              "projected_position_rank"
+          ] = (
+              predictions[
+                  "projected_position_rank"
+              ]
+              .astype(int)
+          )
+
+
+          # -----------------------------------------
+          # Download actual 2026 NFL statistics
+          # -----------------------------------------
+
+          stats_url = (
+              "https://github.com/"
+              "nflverse/nflverse-data/"
+              "releases/download/stats_player/"
+              "stats_player_week_2026.csv"
+          )
+
+          print(
+              "Downloading actual 2026 "
+              "player statistics."
+          )
+
+          try:
+              with urllib.request.urlopen(
+                  stats_url,
+                  timeout=120
+              ) as response:
+                  stats_content = (
+                      response
+                      .read()
+                      .decode("utf-8")
+                  )
+
+          except Exception as error:
+              raise SystemExit(
+                  "Could not download 2026 "
+                  "player stats: "
+                  f"{error}"
+              )
+
+          weekly = pd.read_csv(
+              io.StringIO(stats_content),
+              low_memory=False
+          )
+
+
+          # -----------------------------------------
+          # Verify target week is available
+          # -----------------------------------------
+
+          weekly["week"] = pd.to_numeric(
+              weekly["week"],
+              errors="coerce"
+          )
+
+          regular_mask = (
+              weekly["season_type"]
+              .fillna("REG")
+              .astype(str)
+              .isin(["REG", ""])
+          )
+
+          available_weeks = sorted(
+              weekly.loc[
+                  regular_mask,
+                  "week"
+              ]
+              .dropna()
+              .astype(int)
+              .unique()
+              .tolist()
+          )
+
+          print(
+              "Available 2026 regular-season "
+              f"weeks: {available_weeks}"
+          )
+
+          if target_week not in available_weeks:
+              print(
+                  f"Actual Week {target_week} "
+                  "statistics are not available yet."
+              )
+
+              print(
+                  "Validation will wait for the "
+                  "next scheduled run."
+              )
+
+              raise SystemExit(0)
+
+
+          # -----------------------------------------
+          # Build actual PPR
+          # -----------------------------------------
+
+          actual = weekly[
+              weekly["week"].eq(
+                  target_week
+              )
+          ].copy()
+
+          actual = actual[
+              actual["season_type"]
+              .fillna("REG")
+              .astype(str)
+              .isin(["REG", ""])
+          ].copy()
+
+          actual["position"] = (
+              actual["position"]
+              .astype(str)
+              .str.upper()
+              .str.strip()
+          )
+
+          actual = actual[
+              actual["position"].isin(
+                  ["QB", "RB", "WR", "TE"]
+              )
+          ].copy()
+
+          actual["player_id"] = (
+              actual["player_id"]
+              .astype(str)
+              .str.replace(
+                  r"\.0$",
+                  "",
+                  regex=True
+              )
+              .str.strip()
+          )
+
+          interception_candidates = [
+              "interceptions",
+              "passing_interceptions",
+          ]
+
+          interception_column = next(
+              (
+                  column
+                  for column
+                  in interception_candidates
+                  if column in actual.columns
+              ),
+              None
+          )
+
+          if interception_column is None:
+              raise SystemExit(
+                  "Could not locate an "
+                  "interception column."
+              )
+
+          actual["interceptions"] = (
+              actual[interception_column]
+          )
+
+          stat_columns = [
+              "passing_yards",
+              "passing_tds",
+              "interceptions",
+              "rushing_yards",
+              "rushing_tds",
+              "receptions",
+              "receiving_yards",
+              "receiving_tds",
+          ]
+
+          missing_stats = [
+              column
+              for column in stat_columns
+              if column not in actual.columns
+          ]
+
+          if missing_stats:
+              raise SystemExit(
+                  "Actual stats are missing: "
+                  + ", ".join(missing_stats)
+              )
+
+          for column in stat_columns:
+              actual[column] = (
+                  pd.to_numeric(
+                      actual[column],
+                      errors="coerce"
+                  )
+                  .fillna(0.0)
+              )
+
+          actual["actual_ppr"] = (
+              actual["passing_yards"] / 25.0
+              + actual["passing_tds"] * 4.0
+              - actual["interceptions"] * 2.0
+              + actual["rushing_yards"] / 10.0
+              + actual["rushing_tds"] * 6.0
+              + actual["receptions"]
+              + actual["receiving_yards"] / 10.0
+              + actual["receiving_tds"] * 6.0
+          )
+
+          actual = (
+              actual
+              .sort_values(
+                  "actual_ppr",
+                  ascending=False
+              )
+              .drop_duplicates(
+                  subset=["player_id"],
+                  keep="first"
+              )
+          )
+
+
+          # -----------------------------------------
+          # Join predictions to actual performance
+          # -----------------------------------------
+
+          report = predictions.merge(
+              actual[
+                  [
+                      "player_id",
+                      "actual_ppr",
+                  ]
+              ],
+              on="player_id",
+              how="left",
+              validate="one_to_one"
+          )
+
+          matched = int(
+              report["actual_ppr"]
+              .notna()
+              .sum()
+          )
+
+          unmatched = int(
+              report["actual_ppr"]
+              .isna()
+              .sum()
+          )
+
+          print(
+              f"Matched projection players: "
+              f"{matched}"
+          )
+
+          print(
+              f"Players without Week "
+              f"{target_week} stats: "
+              f"{unmatched}"
+          )
+
+          # Players in the frozen projection pool
+          # who record no fantasy statistics remain
+          # part of the evaluation population.
+          report["actual_ppr"] = (
+              report["actual_ppr"]
+              .fillna(0.0)
+          )
+
+
+          # -----------------------------------------
+          # Calculate errors and actual ranks
+          # -----------------------------------------
+
+          report["ppr_error"] = (
+              report["projected_ppr"]
+              - report["actual_ppr"]
+          )
+
+          report["absolute_ppr_error"] = (
+              report["ppr_error"].abs()
+          )
+
+          report["squared_ppr_error"] = (
+              report["ppr_error"] ** 2
+          )
+
+          report["actual_position_rank"] = (
+              report
+              .groupby("position")[
+                  "actual_ppr"
+              ]
+              .rank(
+                  method="min",
+                  ascending=False
+              )
+              .astype(int)
+          )
+
+          report["rank_difference"] = (
+              report[
+                  "projected_position_rank"
+              ]
+              - report[
+                  "actual_position_rank"
+              ]
+          )
+
+          report["absolute_rank_error"] = (
+              report[
+                  "rank_difference"
+              ].abs()
+          )
+
+          report["week"] = target_week
+
+
+          # -----------------------------------------
+          # Position-level metrics
+          # -----------------------------------------
+
+          summary_rows = []
+
+          for position in [
+              "QB",
+              "RB",
+              "WR",
+              "TE",
+          ]:
+              group = report[
+                  report["position"].eq(
+                      position
+                  )
+              ].copy()
+
+              if group.empty:
+                  continue
+
+              mae = float(
+                  group[
+                      "absolute_ppr_error"
+                  ].mean()
+              )
+
+              rmse = float(
+                  np.sqrt(
+                      group[
+                          "squared_ppr_error"
+                      ].mean()
+                  )
+              )
+
+              mean_error = float(
+                  group["ppr_error"].mean()
+              )
+
+              rank_mae = float(
+                  group[
+                      "absolute_rank_error"
+                  ].mean()
+              )
+
+              if (
+                  len(group) >= 3
+                  and group[
+                      "projected_ppr"
+                  ].nunique() >= 2
+                  and group[
+                      "actual_ppr"
+                  ].nunique() >= 2
+              ):
+                  pearson = pearsonr(
+                      group["projected_ppr"],
+                      group["actual_ppr"]
+                  ).statistic
+
+                  spearman = spearmanr(
+                      group["projected_ppr"],
+                      group["actual_ppr"]
+                  ).statistic
+              else:
+                  pearson = np.nan
+                  spearman = np.nan
+
+              summary_rows.append(
+                  {
+                      "week": target_week,
+                      "position": position,
+                      "players": len(group),
+                      "mae": round(mae, 3),
+                      "rmse": round(rmse, 3),
+                      "mean_error": round(
+                          mean_error,
+                          3
+                      ),
+                      "pearson": (
+                          round(
+                              float(pearson),
+                              3
+                          )
+                          if pd.notna(pearson)
+                          else None
+                      ),
+                      "spearman": (
+                          round(
+                              float(spearman),
+                              3
+                          )
+                          if pd.notna(spearman)
+                          else None
+                      ),
+                      "mean_absolute_rank_error":
+                          round(
+                              rank_mae,
+                              3
+                          ),
+                  }
+              )
+
+          summary = pd.DataFrame(
+              summary_rows
+          )
+
+
+          # -----------------------------------------
+          # Save weekly outputs
+          # -----------------------------------------
+
+          output_dir = Path(
+              "projection-model/validation"
+          )
+
+          output_dir.mkdir(
+              parents=True,
+              exist_ok=True
+          )
+
+          detail_path = (
+              output_dir
+              / (
+                  f"2026-week{target_week}"
+                  "-ppr-validation.csv"
+              )
+          )
+
+          summary_path = (
+              output_dir
+              / (
+                  f"2026-week{target_week}"
+                  "-ppr-summary.csv"
+              )
+          )
+
+          misses_path = (
+              output_dir
+              / (
+                  f"2026-week{target_week}"
+                  "-ppr-largest-misses.csv"
+              )
+          )
+
+          report.to_csv(
+              detail_path,
+              index=False
+          )
+
+          summary.to_csv(
+              summary_path,
+              index=False
+          )
+
+          misses = (
+              report
+              .sort_values(
+                  "absolute_ppr_error",
+                  ascending=False
+              )
+              .head(50)
+          )
+
+          misses.to_csv(
+              misses_path,
+              index=False
+          )
+
+
+          # -----------------------------------------
+          # Build season-to-date summary
+          # -----------------------------------------
+
+          completed_files = sorted(
+              output_dir.glob(
+                  "2026-week*-ppr-validation.csv"
+              )
+          )
+
+          season_frames = []
+
+          for path in completed_files:
+              frame = pd.read_csv(path)
+
+              if not frame.empty:
+                  season_frames.append(
+                      frame
+                  )
+
+          if season_frames:
+              season = pd.concat(
+                  season_frames,
+                  ignore_index=True
+              )
+
+              season_summary_rows = []
+
+              for position in [
+                  "QB",
+                  "RB",
+                  "WR",
+                  "TE",
+              ]:
+                  group = season[
+                      season["position"].eq(
+                          position
+                      )
+                  ].copy()
+
+                  if group.empty:
+                      continue
+
+                  mae = float(
+                      group[
+                          "absolute_ppr_error"
+                      ].mean()
+                  )
+
+                  rmse = float(
+                      np.sqrt(
+                          group[
+                              "squared_ppr_error"
+                          ].mean()
+                      )
+                  )
+
+                  mean_error = float(
+                      group[
+                          "ppr_error"
+                      ].mean()
+                  )
+
+                  rank_mae = float(
+                      group[
+                          "absolute_rank_error"
+                      ].mean()
+                  )
+
+                  if (
+                      len(group) >= 3
+                      and group[
+                          "projected_ppr"
+                      ].nunique() >= 2
+                      and group[
+                          "actual_ppr"
+                      ].nunique() >= 2
+                  ):
+                      pearson = pearsonr(
+                          group[
+                              "projected_ppr"
+                          ],
+                          group[
+                              "actual_ppr"
+                          ]
+                      ).statistic
+
+                      spearman = spearmanr(
+                          group[
+                              "projected_ppr"
+                          ],
+                          group[
+                              "actual_ppr"
+                          ]
+                      ).statistic
+                  else:
+                      pearson = np.nan
+                      spearman = np.nan
+
+                  season_summary_rows.append(
+                      {
+                          "position": position,
+                          "weeks": (
+                              group["week"]
+                              .nunique()
+                          ),
+                          "players": len(group),
+                          "mae": round(
+                              mae,
+                              3
+                          ),
+                          "rmse": round(
+                              rmse,
+                              3
+                          ),
+                          "mean_error": round(
+                              mean_error,
+                              3
+                          ),
+                          "pearson": (
+                              round(
+                                  float(pearson),
+                                  3
+                              )
+                              if pd.notna(
+                                  pearson
+                              )
+                              else None
+                          ),
+                          "spearman": (
+                              round(
+                                  float(spearman),
+                                  3
+                              )
+                              if pd.notna(
+                                  spearman
+                              )
+                              else None
+                          ),
+                          "mean_absolute_rank_error":
+                              round(
+                                  rank_mae,
+                                  3
+                              ),
+                      }
+                  )
+
+              season_summary = pd.DataFrame(
+                  season_summary_rows
+              )
+
+              season_summary_path = (
+                  output_dir
+                  / "2026-ppr-season-summary.csv"
+              )
+
+              season_summary.to_csv(
+                  season_summary_path,
+                  index=False
+              )
+
+              print()
+              print(
+                  "Season-to-date Model F results:"
+              )
+
+              print(
+                  season_summary.to_string(
+                      index=False
+                  )
+              )
+
+
+          # -----------------------------------------
+          # Console report
+          # -----------------------------------------
+
+          print()
+          print(
+              "================================"
+          )
+          print(
+              f"WEEK {target_week} MODEL F RESULTS"
+          )
+          print(
+              "================================"
+          )
+
+          print(
+              summary.to_string(
+                  index=False
+              )
+          )
+
+          print()
+          print(
+              f"Detailed report: {detail_path}"
+          )
+
+          print(
+              f"Summary: {summary_path}"
+          )
+
+          print(
+              f"Largest misses: {misses_path}"
+          )
+          PY
+
+      - name: Commit Model F validation results
+        run: |
+          if [ ! -d "projection-model/validation" ]; then
+            echo "No Model F validation files generated."
+            exit 0
+          fi
+
+          git config user.name \
+            "github-actions[bot]"
+
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add projection-model/validation/
+
+          if git diff --cached --quiet; then
+            echo "No Model F validation changes to commit."
+            exit 0
+          fi
+
+          git commit \
+            -m "Save weekly Model F PPR validation"
+
+          git push
