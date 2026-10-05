@@ -36,7 +36,9 @@ jobs:
 
       - name: Commit market consensus snapshot
         run: |
-          if git diff --quiet -- projection-model/; then
+          git add projection-model/
+
+          if git diff --cached --quiet; then
             echo "No market consensus changes to commit."
             exit 0
           fi
@@ -44,6 +46,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add projection-model/
           git commit -m "Update Week 4 market consensus"
           git push
