@@ -875,15 +875,37 @@ function renderWeeklySleepers() {
 
   grid.innerHTML = "";
 
-  if (sleepers.length === 0) {
+    if (sleepers.length === 0) {
     const empty =
       document.createElement("div");
 
     empty.className =
       "sleepers-loading";
 
+    const projectionsUnavailable =
+      weeklyPprProjections.length === 0;
+
     empty.textContent =
-      "No qualifying sleepers found for this position.";
+      projectionsUnavailable
+        ? "Weekly sleepers will populate when this week's PPR projections are available."
+        : "No qualifying sleepers found for this position.";
+
+    if (
+      weekBadge &&
+      projectionsUnavailable
+    ) {
+      const targetWeek =
+        Number(
+          document.documentElement
+            .dataset.targetWeek
+        );
+
+      weekBadge.textContent =
+        Number.isFinite(targetWeek) &&
+        targetWeek > 0
+          ? `WEEK ${targetWeek} • UPDATING`
+          : "NEXT WEEK • UPDATING";
+    }
 
     grid.appendChild(empty);
 
@@ -1163,16 +1185,45 @@ function renderProjectionBoard() {
 
   tableBody.innerHTML = "";
 
-  if (
+   if (
     visibleProjections.length === 0
   ) {
+    const projectionsUnavailable =
+      weeklyPprProjections.length === 0;
+
     tableBody.innerHTML = `
       <tr>
         <td colspan="9">
-          No projections found.
+          ${
+            projectionsUnavailable
+              ? "Next week's projections are being prepared. Weekly PPR projections will appear here when the new matchup data is finalized."
+              : "No projections match your current filters."
+          }
         </td>
       </tr>
     `;
+
+    const weekBadge =
+      document.getElementById(
+        "projectionWeekBadge"
+      );
+
+    if (
+      weekBadge &&
+      projectionsUnavailable
+    ) {
+      const targetWeek =
+        Number(
+          document.documentElement
+            .dataset.targetWeek
+        );
+
+      weekBadge.textContent =
+        Number.isFinite(targetWeek) &&
+        targetWeek > 0
+          ? `WEEK ${targetWeek} • UPDATING`
+          : "NEXT WEEK • UPDATING";
+    }
 
     renderProjectionPagination(
       1,
@@ -1181,7 +1232,6 @@ function renderProjectionBoard() {
 
     return;
   }
-
   visibleProjections.forEach(
     ({ projection, player }) => {
 
