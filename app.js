@@ -475,8 +475,541 @@ function getProjectionPlayer(projection) {
     }) || null
   );
 }
+let currentSleeperPosition = "ALL";
+
+const SLEEPER_ELITE_CUTOFFS = {
+  QB: 10,
+  RB: 18,
+  WR: 24,
+  TE: 10
+};
 
 
+function getWeeklySleeperCandidates() {
+  const candidates =
+    weeklyPprProjections
+      .map((projection) => {
+        const player =
+          getProjectionPlayer(
+            projection
+          );
+
+        if (!player) {
+          return null;
+        }
+
+        const position =
+          String(
+            projection.position || ""
+          ).toUpperCase();
+
+        if (
+          !["QB", "RB", "WR", "TE"]
+            .includes(position)
+        ) {
+          return null;
+        }
+
+        const projectedPpr =
+          Number(
+            projection.projected_ppr
+          );
+
+        const pprRank =
+          Number(
+            projection
+              .projected_position_rank
+          );
+
+        const aiData =
+          getLineupPlayerAiData(
+            projection
+          );
+
+        const aiScore =
+          Number(aiData.score);
+
+        const aiRank =
+          Number(aiData.rank);
+
+        if (
+          !Number.isFinite(projectedPpr) ||
+          !Number.isFinite(pprRank) ||
+          !Number.isFinite(aiScore) ||
+          !Number.isFinite(aiRank)
+        ) {
+          return null;
+        }
+
+        /*
+         * Do not call obvious elite weekly
+         * options sleepers.
+         */
+        const eliteCutoff =
+          SLEEPER_ELITE_CUTOFFS[
+            position
+          ];
+
+        if (
+          Number.isFinite(eliteCutoff) &&
+          pprRank <= eliteCutoff
+        ) {
+          return null;
+        }
+
+        const rankAdvantage =
+          pprRank - aiRank;
+
+        return {
+          projection,
+          player,
+          position,
+          projectedPpr,
+          pprRank,
+          aiScore,
+          aiRank,
+          rankAdvantage
+        };
+      })
+      .filter(Boolean);
+
+  if (candidates.length === 0) {
+    return [];
+  }
+
+  /*
+   * Compare each candidate only with other
+   * sleeper-eligible players at his position.
+   *
+   * This prevents raw QB/RB/WR/TE scoring
+   * differences from distorting Sleeper Score.
+   */
+  const positionGroups = {
+    QB: [],
+    RB: [],
+    WR: [],
+    TE: []
+  };
+
+  candidates.forEach(
+    candidate => {
+      positionGroups[
+        candidate.position
+      ].push(candidate);
+    }
+  );
+
+  Object.values(
+    positionGroups
+  ).forEach(
+    group => {
+      if (group.length === 0) {
+        return;
+      }
+
+      const aiScores =
+        group.map(
+          candidate =>
+            candidate.aiScore
+        );
+
+      const pprValues =
+        group.map(
+          candidate =>
+            candidate.projectedPpr
+        );
+
+      const rankAdvantages =
+        group.map(
+          candidate =>
+            candidate.rankAdvantage
+        );
+
+      const minAi =
+        Math.min(...aiScores);
+
+      const maxAi =
+        Math.max(...aiScores);
+
+      const minPpr =
+        Math.min(...pprValues);
+
+      const maxPpr =
+        Math.max(...pprValues);
+
+      const minRankAdvantage =
+        Math.min(
+          ...rankAdvantages
+        );
+
+      const maxRankAdvantage =
+        Math.max(
+          ...rankAdvantages
+        );
+
+      group.forEach(
+        candidate => {
+          const aiComponent =
+            normalizeSleeperMetric(
+              candidate.aiScore,
+              minAi,
+              maxAi
+            );
+
+          const pprComponent =
+            normalizeSleeperMetric(
+              candidate.projectedPpr,
+              minPpr,
+              maxPpr
+            );
+
+          const disagreementComponent =
+            normalizeSleeperMetric(
+              candidate.rankAdvantage,
+              minRankAdvantage,
+              maxRankAdvantage
+            );
+
+          /*
+           * Stage 1 Sleeper Score
+           *
+           * 45% AI conviction
+           * 35% weekly PPR projection
+           * 20% AI-vs-PPR rank disagreement
+           *
+           * External market consensus will
+           * eventually become an additional
+           * component.
+           */
+          candidate.sleeperScore =
+            (
+              aiComponent * 0.45 +
+              pprComponent * 0.35 +
+              disagreementComponent *
+                0.20
+            ) * 100;
+        }
+      );
+    }
+  );
+
+  return candidates
+    .filter(
+      candidate =>
+        Number.isFinite(
+          candidate.sleeperScore
+        )
+    )
+    .sort(
+      (a, b) =>
+        b.sleeperScore -
+        a.sleeperScore
+    );
+}
+
+
+function normalizeSleeperMetric(
+  value,
+  minimum,
+  maximum
+) {
+  if (
+    !Number.isFinite(value) ||
+    !Number.isFinite(minimum) ||
+    !Number.isFinite(maximum)
+  ) {
+    return 0;
+  }
+
+  if (maximum === minimum) {
+    return 0.5;
+  }
+
+  return Math.max(
+    0,
+    Math.min(
+      1,
+      (
+        value - minimum
+      ) /
+      (
+        maximum - minimum
+      )
+    )
+  );
+}
+
+
+function getSleeperReason(
+  sleeper
+) {
+  const {
+    position,
+    aiRank,
+    pprRank,
+    rankAdvantage,
+    projectedPpr
+  } = sleeper;
+
+  if (rankAdvantage >= 10) {
+    return (
+      `Fantasy AI ranks him ${position}${aiRank}, ` +
+      `${rankAdvantage} spots ahead of his ` +
+      `${position}${pprRank} PPR projection rank. ` +
+      `That is one of the stronger model ` +
+      `disagreements at the position this week.`
+    );
+  }
+
+  if (rankAdvantage >= 5) {
+    return (
+      `His underlying AI signals place him at ` +
+      `${position}${aiRank}, ${rankAdvantage} spots ` +
+      `ahead of his ${position}${pprRank} projected ` +
+      `PPR rank, creating an under-the-radar ` +
+      `weekly opportunity.`
+    );
+  }
+
+  if (rankAdvantage > 0) {
+    return (
+      `Fantasy AI is slightly more optimistic ` +
+      `than the PPR model, ranking him ` +
+      `${position}${aiRank} compared with ` +
+      `${position}${pprRank} by projected PPR. ` +
+      `He still carries ${projectedPpr.toFixed(2)} ` +
+      `projected PPR this week.`
+    );
+  }
+
+  return (
+    `He remains outside the elite weekly tier, ` +
+    `but his combination of AI Score and ` +
+    `${projectedPpr.toFixed(2)} projected PPR ` +
+    `gives him one of the stronger profiles ` +
+    `among the remaining ${position} options.`
+  );
+}
+
+
+function renderWeeklySleepers() {
+  const grid =
+    document.getElementById(
+      "sleepersGrid"
+    );
+
+  if (!grid) {
+    return;
+  }
+
+  const weekBadge =
+    document.getElementById(
+      "sleepersWeekBadge"
+    );
+
+  const allSleepers =
+    getWeeklySleeperCandidates();
+
+  const filteredSleepers =
+    allSleepers.filter(
+      sleeper =>
+        currentSleeperPosition ===
+          "ALL" ||
+        sleeper.position ===
+          currentSleeperPosition
+    );
+
+  /*
+   * Top 10 overall or Top 10 within the
+   * selected position.
+   */
+  const sleepers =
+    filteredSleepers.slice(0, 10);
+
+  const projectionWeek =
+    weeklyPprProjections
+      .map(
+        projection =>
+          Number(
+            projection.snapshot_week
+          )
+      )
+      .find(
+        week =>
+          Number.isFinite(week)
+      );
+
+  if (weekBadge) {
+    weekBadge.textContent =
+      Number.isFinite(
+        projectionWeek
+      )
+        ? `WEEK ${projectionWeek}`
+        : "WEEK —";
+  }
+
+  grid.innerHTML = "";
+
+  if (sleepers.length === 0) {
+    const empty =
+      document.createElement("div");
+
+    empty.className =
+      "sleepers-loading";
+
+    empty.textContent =
+      "No qualifying sleepers found for this position.";
+
+    grid.appendChild(empty);
+
+    return;
+  }
+
+  sleepers.forEach(
+    (sleeper, index) => {
+      const {
+        projection,
+        player,
+        position,
+        projectedPpr,
+        pprRank,
+        aiScore,
+        aiRank,
+        rankAdvantage,
+        sleeperScore
+      } = sleeper;
+
+      const card =
+        document.createElement(
+          "article"
+        );
+
+      card.className =
+        "sleeper-card";
+
+      const matchup =
+        teamNextOpponent[
+          player.team
+        ];
+
+      const opponent =
+        matchup?.opponent ||
+        projection.opponent ||
+        "TBD";
+
+      const status =
+        player.injuryStatus ||
+        "Available";
+
+      const rankDifferenceText =
+        rankAdvantage > 0
+          ? `AI +${rankAdvantage} spots`
+          : rankAdvantage < 0
+            ? `PPR +${Math.abs(
+                rankAdvantage
+              )} spots`
+            : "Ranks aligned";
+
+      card.innerHTML = `
+        <div class="sleeper-card-top">
+          <div class="sleeper-number">
+            #${index + 1}
+          </div>
+
+          <div class="sleeper-score">
+            <span>
+              SLEEPER SCORE
+            </span>
+
+            <strong>
+              ${sleeperScore.toFixed(1)}
+            </strong>
+          </div>
+        </div>
+
+        <div class="sleeper-player-heading">
+          <div>
+            <span class="sleeper-position">
+              ${position}
+            </span>
+
+            <h3>
+              ${projection.player_name}
+            </h3>
+
+            <p>
+              ${projection.team || "—"}
+              • vs ${opponent}
+              • ${status}
+            </p>
+          </div>
+        </div>
+
+        <div class="sleeper-metrics">
+          <div>
+            <span>
+              AI SCORE
+            </span>
+
+            <strong>
+              ${aiScore.toFixed(1)}
+            </strong>
+
+            <small>
+              ${position}${aiRank}
+            </small>
+          </div>
+
+          <div>
+            <span>
+              PROJECTED PPR
+            </span>
+
+            <strong>
+              ${projectedPpr.toFixed(2)}
+            </strong>
+
+            <small>
+              ${position}${pprRank}
+            </small>
+          </div>
+
+          <div>
+            <span>
+              MODEL EDGE
+            </span>
+
+            <strong>
+              ${
+                rankAdvantage > 0
+                  ? `+${rankAdvantage}`
+                  : rankAdvantage
+              }
+            </strong>
+
+            <small>
+              ${rankDifferenceText}
+            </small>
+          </div>
+        </div>
+
+        <div class="sleeper-reason">
+          <span>
+            WHY THE MODEL LIKES HIM
+          </span>
+
+          <p>
+            ${getSleeperReason(
+              sleeper
+            )}
+          </p>
+        </div>
+      `;
+
+      grid.appendChild(card);
+    }
+  );
+}
 function renderProjectionBoard() {
   const tableBody =
     document.getElementById(
@@ -6044,6 +6577,7 @@ async function initializeApp() {
   // all data sources load.
   renderPositionRankings();
   renderProjectionBoard();
+  renderWeeklySleepers();
   // Add the snapshot export button.
   const rankingSelect =
     document.getElementById("rankingPosition");
@@ -6150,6 +6684,40 @@ async function initializeApp() {
         }
       );
     });
+  document
+    .querySelectorAll(
+      "[data-sleeper-position]"
+    )
+    .forEach((button) => {
+      button.addEventListener(
+        "click",
+        () => {
+          currentSleeperPosition =
+            button.dataset
+              .sleeperPosition ||
+            "ALL";
+
+          document
+            .querySelectorAll(
+              "[data-sleeper-position]"
+            )
+            .forEach(
+              filterButton => {
+                filterButton
+                  .classList
+                  .toggle(
+                    "active",
+                    filterButton ===
+                      button
+                  );
+              }
+            );
+
+          renderWeeklySleepers();
+        }
+      );
+    });
+  
   const lineupPlayerSearch =
     document.getElementById(
       "lineupPlayerSearch"
