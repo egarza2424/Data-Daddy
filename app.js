@@ -560,6 +560,22 @@ function getWeeklySleeperCandidates() {
         const rankAdvantage =
           pprRank - aiRank;
 
+        /*
+         * A model-derived sleeper must be
+         * ranked higher by the Model Score
+         * than by the PPR projection model.
+         *
+         * Example:
+         * Model RB26 vs PPR RB32 = +6
+         * qualifies.
+         *
+         * Model RB45 vs PPR RB22 = -23
+         * does not qualify.
+         */
+        if (rankAdvantage <= 0) {
+          return null;
+        }
+
         return {
           projection,
           player,
