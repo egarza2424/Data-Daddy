@@ -4094,3 +4094,305 @@ html {
   }
 
 }
+/* =========================================================
+   DATA DADDY — TIKTOK MOBILE LAUNCH POLISH
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* =======================================================
+     HEADER
+     ======================================================= */
+
+  .site-header {
+    background: rgba(9, 13, 18, 0.97);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid rgba(245, 196, 81, 0.55);
+  }
+
+  .site-header .container {
+    width: 100%;
+    max-width: none;
+  }
+
+  .site-header .nav {
+    display: block;
+
+    min-height: 0;
+
+    padding: 16px 0 0;
+  }
+
+
+  /* ---------- BRAND ---------- */
+
+  .site-brand {
+    width: calc(100% - 32px);
+
+    margin: 0 auto 12px;
+
+    align-items: center;
+    text-align: center;
+  }
+
+  .brand-name {
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: 0.04em;
+  }
+
+  .brand-subtitle {
+    margin-top: 5px;
+
+    font-size: 8px;
+    letter-spacing: 0.16em;
+  }
+
+
+  /* =======================================================
+     SWIPEABLE NAVIGATION
+     ======================================================= */
+
+  .main-nav {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    gap: 2px;
+
+    padding: 0 10px 9px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scrollbar-width: none;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .main-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .main-nav a {
+    flex: 0 0 auto;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 34px;
+
+    padding: 0 10px;
+
+    border-radius: 8px;
+
+    color: #c7d0dc;
+
+    font-size: 11.5px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    text-decoration: none;
+  }
+
+  .main-nav a:hover,
+  .main-nav a:focus-visible {
+    color: #f5c451;
+
+    background: rgba(245, 196, 81, 0.08);
+  }
+
+
+  /* =======================================================
+     HERO
+     ======================================================= */
+
+  .launch-hero {
+    padding-top: 28px;
+    padding-bottom: 24px;
+  }
+
+  .launch-hero .hero-title {
+    max-width: 100%;
+
+    margin-bottom: 16px;
+
+    font-size: clamp(2rem, 9.5vw, 2.65rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+  }
+
+  .launch-hero .hero-copy {
+    max-width: 100%;
+
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .launch-status {
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 11px 13px;
+  }
+
+  .launch-status div span {
+    font-size: 11.5px;
+  }
+
+  .launch-hero .hero-actions {
+    margin-top: 20px;
+
+    gap: 9px;
+  }
+
+  .launch-hero .hero-actions a {
+    min-height: 48px;
+  }
+
+
+  /* =======================================================
+     EXPLORE THE LAB
+     ======================================================= */
+
+  .launch-tools {
+    margin-top: 4px;
+  }
+
+
+  /* =======================================================
+     MOBILE SECTION SPACING
+     ======================================================= */
+
+  #compare,
+  #rankings,
+  #projections,
+  #sleepers {
+    scroll-margin-top: 100px;
+  }
+
+  #rankings,
+  #projections,
+  #sleepers {
+    margin-top: 20px;
+  }
+
+
+  /* =======================================================
+     RANKINGS MOBILE
+     ======================================================= */
+
+  .position-rankings {
+    position: relative;
+  }
+
+  .ranking-controls {
+    margin-bottom: 12px;
+  }
+
+  .ranking-control label {
+    margin-bottom: 7px;
+  }
+
+  #rankingWeek {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+
+  /* ---------- TABLE SWIPE CUE ---------- */
+
+  .ranking-table-wrapper {
+    position: relative;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ranking-table {
+    min-width: 850px;
+  }
+
+  .ranking-table-wrapper::after {
+    content: "Swipe →";
+
+    position: sticky;
+    right: 10px;
+
+    display: block;
+
+    width: max-content;
+
+    margin:
+      -1px
+      10px
+      8px
+      auto;
+
+    padding: 5px 9px;
+
+    background: rgba(13, 20, 29, 0.94);
+
+    border: 1px solid rgba(245, 196, 81, 0.45);
+    border-radius: 999px;
+
+    color: #f5c451;
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    pointer-events: none;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL PHONE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+  .site-header .nav {
+    padding-top: 13px;
+  }
+
+  .site-brand {
+    margin-bottom: 9px;
+  }
+
+  .brand-name {
+    font-size: 19px;
+  }
+
+  .main-nav {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  .main-nav a {
+    min-height: 32px;
+
+    padding-left: 9px;
+    padding-right: 9px;
+
+    font-size: 11px;
+  }
+
+  .launch-hero .hero-title {
+    font-size: clamp(1.95rem, 9.2vw, 2.45rem);
+  }
+
+}
