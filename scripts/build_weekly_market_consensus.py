@@ -129,7 +129,27 @@ def fetch_position_rankings(
             f"FantasyPros returned invalid "
             f"JSON for {position}."
         ) from error
+    if position == "QB":
+        print(
+            "  FantasyPros response keys:",
+            list(payload.keys())
+            if isinstance(payload, dict)
+            else type(payload).__name__,
+        )
 
+        if isinstance(payload, dict):
+            for key, value in payload.items():
+                if key == "players":
+                    continue
+
+                if isinstance(
+                    value,
+                    (str, int, float, bool)
+                ) or value is None:
+                    print(
+                        f"  {key}: {value}"
+                    )
+    
     return payload
 
 
