@@ -4795,6 +4795,49 @@ jobs:
               f"{len(team_next_opponent)} teams."
           )
           # -------------------------------------------------
+          # CURRENT PROJECTION WEEK
+          # -------------------------------------------------
+          # Manual fixed-week runs keep their requested week.
+          # Live next-opponent runs use the week represented
+          # by the largest number of teams' next matchups.
+          # This prevents one unfinished prior-week game from
+          # keeping the weekly projection pipeline behind.
+          # -------------------------------------------------
+
+          if target_week is not None:
+              projection_week = target_week
+          else:
+              next_matchup_week_counts = defaultdict(int)
+
+              for matchup in team_next_opponent.values():
+                  matchup_week = matchup.get("week")
+
+                  if matchup_week is None:
+                      continue
+
+                  next_matchup_week_counts[
+                      int(matchup_week)
+                  ] += 1
+
+              if not next_matchup_week_counts:
+                  raise RuntimeError(
+                      "Unable to determine current "
+                      "projection week from next matchups."
+                  )
+
+              projection_week = max(
+                  next_matchup_week_counts,
+                  key=lambda week: (
+                      next_matchup_week_counts[week],
+                      week
+                  )
+              )
+
+          print(
+              "Current projection week: "
+              f"2026 Week {projection_week}."
+          )          
+          # -------------------------------------------------
           # SIGNAL 11: SCORING ENVIRONMENT
           # Sportsbook-implied team scoring expectation.
           # nflverse spread_line is positive when the
@@ -11369,7 +11412,7 @@ jobs:
                   )          
           output = {
               "season": season_used,
-              "target_week": target_week,
+              "target_week": projection_week,
               "schedule_mode": (
                   "fixed_week"
                   if target_week is not None
