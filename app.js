@@ -976,7 +976,7 @@ function renderWeeklySleepers() {
 
           <div>
             <span>
-              MODEL EDGE
+              AI vs PPR
             </span>
 
             <strong>
