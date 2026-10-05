@@ -3861,3 +3861,189 @@ html {
   }
 
 }
+/* =========================================================
+   DATA DADDY — LAUNCH RANKINGS POLISH
+   ========================================================= */
+
+.position-rankings {
+  padding: 30px;
+}
+
+
+/* Keep the automated snapshot control available to the
+   model pipeline without displaying it to site visitors. */
+
+#exportSnapshotBtn {
+  position: absolute !important;
+
+  width: 1px !important;
+  height: 1px !important;
+
+  padding: 0 !important;
+  margin: -1px !important;
+
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+
+  border: 0 !important;
+}
+
+
+/* ---------- RANKINGS INTRO ---------- */
+
+.position-rankings > .eyebrow {
+  margin-bottom: 7px;
+
+  color: #f5c451;
+}
+
+.position-rankings > h3 {
+  margin-bottom: 7px;
+
+  color: #f5f7fb;
+
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  line-height: 1.15;
+}
+
+.position-rankings > p {
+  max-width: 700px;
+
+  margin-bottom: 24px;
+
+  color: #b4c0d0;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* ---------- RANKINGS TOOLBAR ---------- */
+
+.ranking-controls {
+  display: grid;
+
+  grid-template-columns:
+    minmax(220px, 0.7fr)
+    minmax(280px, 1.3fr);
+
+  gap: 16px 20px;
+
+  align-items: end;
+
+  margin-bottom: 16px;
+}
+
+.ranking-controls label {
+  align-self: end;
+
+  color: #b4c0d0;
+
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ranking-controls select,
+.ranking-controls input {
+  width: 100%;
+  height: 46px;
+
+  padding: 0 14px;
+
+  background: #0d141d;
+  color: #f5f7fb;
+
+  border: 1px solid #344256;
+  border-radius: 10px;
+
+  font: inherit;
+}
+
+.ranking-controls select {
+  grid-column: 1;
+}
+
+.ranking-controls input {
+  grid-column: 2;
+}
+
+.ranking-controls select:focus,
+.ranking-controls input:focus {
+  outline: none;
+
+  border-color: #f5c451;
+
+  box-shadow:
+    0 0 0 3px rgba(245, 196, 81, 0.10);
+}
+
+.ranking-controls input::placeholder {
+  color: #7f8b9c;
+}
+
+
+/* ---------- WEEK STATUS ---------- */
+
+#rankingWeek {
+  min-height: 0;
+
+  margin: 10px 0 14px;
+
+  color: #f5c451;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+
+/* ---------- TABLE ---------- */
+
+.ranking-table-wrapper {
+  margin-top: 0;
+
+  border: 1px solid #344256;
+  border-radius: 14px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.ranking-table {
+  margin-top: 0;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 700px) {
+
+  .position-rankings {
+    padding: 20px 16px;
+  }
+
+  .ranking-controls {
+    grid-template-columns: 1fr;
+
+    gap: 7px;
+
+    margin-bottom: 14px;
+  }
+
+  .ranking-controls label,
+  .ranking-controls select,
+  .ranking-controls input {
+    grid-column: 1;
+  }
+
+  .ranking-controls label[for="rankingSearch"] {
+    margin-top: 9px;
+  }
+
+  .ranking-table-wrapper {
+    -webkit-overflow-scrolling: touch;
+  }
+
+}
