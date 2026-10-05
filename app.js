@@ -207,12 +207,22 @@ console.log(
 }
 }
 async function loadWeeklyPprProjections() {
+  const targetWeek = Number(
+    document.documentElement.dataset.targetWeek
+  );
+
+  if (!Number.isFinite(targetWeek) || targetWeek <= 0) {
+    console.warn(
+      "PPR projections not loaded: target week is unavailable."
+    );
+    weeklyPprProjections = [];
+    return;
+  }
+
+  const projectionFile =
+    `./projection-model/2026-week${targetWeek}-ppr-projections.csv`;
+
   try {
-    const targetWeek = 4;
-
-    const projectionFile =
-      `./projection-model/2026-week${targetWeek}-ppr-projections.csv`;
-
     const response = await fetch(
       `${projectionFile}?v=1`,
       { cache: "no-store" }
