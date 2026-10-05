@@ -310,83 +310,104 @@
     WEEKLY FANTASY AI RANKINGS
   </div>
 
-  <h3>Position Rankings</h3>
+  <h3>
+    Position Rankings
+  </h3>
 
   <p>
     Explore weekly Fantasy AI scores by position.
     Players ruled out are excluded from active rankings.
   </p>
 
+
   <div class="ranking-controls">
 
-  <div class="ranking-control">
+    <div class="ranking-control">
 
-    <label for="rankingPosition">
-      Position
-    </label>
+      <label for="rankingPosition">
+        Position
+      </label>
 
-    <select id="rankingPosition">
-      <option value="QB">Quarterbacks</option>
-      <option value="RB">Running Backs</option>
-      <option value="WR" selected>Wide Receivers</option>
-      <option value="TE">Tight Ends</option>
-    </select>
+      <select id="rankingPosition">
+        <option value="QB">
+          Quarterbacks
+        </option>
+
+        <option value="RB">
+          Running Backs
+        </option>
+
+        <option value="WR" selected>
+          Wide Receivers
+        </option>
+
+        <option value="TE">
+          Tight Ends
+        </option>
+      </select>
+
+    </div>
+
+
+    <div class="ranking-control">
+
+      <label for="rankingSearch">
+        Find a player
+      </label>
+
+      <input
+        id="rankingSearch"
+        type="search"
+        placeholder="Search rankings..."
+      >
+
+    </div>
 
   </div>
 
 
-  <div class="ranking-control">
+  <div
+    id="rankingWeek"
+    aria-live="polite"
+  ></div>
 
-    <label for="rankingSearch">
-      Find a player
-    </label>
 
-    <input
-      id="rankingSearch"
-      type="search"
-      placeholder="Search rankings..."
-    >
+  <div class="ranking-table-wrapper">
 
-  </div>
-
-</div>
-
-<div id="rankingWeek" aria-live="polite"></div>
-
-<div class="ranking-table-wrapper">
     <table class="ranking-table">
-      <thead>
-      <tr>
-        <th>AI Rank</th>
-        <th>Player</th>
-        <th>Opp</th>
-        <th>AI Score</th>
-        <th>Projected PPR</th>
-        <th>PPR Rank</th>
-        <th>Status</th>
-      </tr>
 
+      <thead>
+        <tr>
+          <th>AI Rank</th>
+          <th>Player</th>
+          <th>Opp</th>
+          <th>AI Score</th>
+          <th>Projected PPR</th>
+          <th>PPR Rank</th>
+          <th>Status</th>
+        </tr>
       </thead>
 
       <tbody id="rankingTableBody">
         <tr>
-          <td colspan="7">Loading rankings...</td>
+          <td colspan="7">
+            Loading rankings...
+          </td>
         </tr>
       </tbody>
+
     </table>
+
   </div>
+
 
   <div
     id="rankingPagination"
     class="ranking-pagination"
     aria-label="Ranking pages"
-  >
-  </div>
+  ></div>
 
 </section>
-
-
-<section class="panel projections-panel" id="projections">
 
   <div class="eyebrow">
     MODEL F WEEKLY PROJECTIONS
