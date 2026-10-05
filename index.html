@@ -318,9 +318,42 @@
   </p>
 
   <div class="ranking-controls">
-  <div id="rankingWeek" aria-live="polite"></div>
 
-  <div class="ranking-table-wrapper">
+  <div class="ranking-control">
+
+    <label for="rankingPosition">
+      Position
+    </label>
+
+    <select id="rankingPosition">
+      <option value="QB">Quarterbacks</option>
+      <option value="RB">Running Backs</option>
+      <option value="WR" selected>Wide Receivers</option>
+      <option value="TE">Tight Ends</option>
+    </select>
+
+  </div>
+
+
+  <div class="ranking-control">
+
+    <label for="rankingSearch">
+      Find a player
+    </label>
+
+    <input
+      id="rankingSearch"
+      type="search"
+      placeholder="Search rankings..."
+    >
+
+  </div>
+
+</div>
+
+<div id="rankingWeek" aria-live="polite"></div>
+
+<div class="ranking-table-wrapper">
     <table class="ranking-table">
       <thead>
       <tr>
