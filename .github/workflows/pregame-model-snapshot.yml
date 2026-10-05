@@ -74,7 +74,106 @@ jobs:
               console.log(
                 "Export Snapshot button is ready."
               );
+              // ---------------------------------------------
+              // Verify deployed projection week before freeze
+              // ---------------------------------------------
 
+              const deployedWeek =
+                await page.evaluate(() => {
+                  const rawWeek =
+                    document.documentElement
+                      .dataset
+                      .targetWeek;
+
+                  const parsedWeek =
+                    Number(rawWeek);
+
+                  return Number.isFinite(parsedWeek)
+                    ? parsedWeek
+                    : null;
+                });
+
+              console.log(
+                "Website projection week:",
+                deployedWeek
+              );
+
+              if (
+                !Number.isInteger(deployedWeek) ||
+                deployedWeek <= 0
+              ) {
+                throw new Error(
+                  "Snapshot blocked: deployed website " +
+                  "does not have a valid target week."
+                );
+              }
+
+              const statsMetadata =
+                await page.evaluate(async () => {
+                  const response =
+                    await fetch(
+                      "./nfl-stats.json",
+                      {
+                        cache: "no-store"
+                      }
+                    );
+
+                  if (!response.ok) {
+                    throw new Error(
+                      `Unable to load nfl-stats.json: ` +
+                      `${response.status}`
+                    );
+                  }
+
+                  const data =
+                    await response.json();
+
+                  return {
+                    targetWeek:
+                      Number(data.target_week),
+                    updated:
+                      data.updated || null
+                  };
+                });
+
+              console.log(
+                "Deployed nfl-stats.json target week:",
+                statsMetadata.targetWeek
+              );
+
+              console.log(
+                "Deployed nfl-stats.json updated:",
+                statsMetadata.updated
+              );
+
+              if (
+                !Number.isInteger(
+                  statsMetadata.targetWeek
+                ) ||
+                statsMetadata.targetWeek <= 0
+              ) {
+                throw new Error(
+                  "Snapshot blocked: deployed " +
+                  "nfl-stats.json has no valid target_week."
+                );
+              }
+
+              if (
+                deployedWeek !==
+                statsMetadata.targetWeek
+              ) {
+                throw new Error(
+                  "Snapshot blocked: website week " +
+                  `${deployedWeek} does not match ` +
+                  "nfl-stats.json target_week " +
+                  `${statsMetadata.targetWeek}.`
+                );
+              }
+
+              console.log(
+                `Snapshot freshness check passed: ` +
+                `Week ${deployedWeek}.`
+              );
               const downloadPromise =
                 page.waitForEvent("download", {
                   timeout: 120000
@@ -160,6 +259,7 @@ jobs:
               }
 
               const requiredColumns = [
+                "snapshot_week",
                 "opportunity_score",
                 "production_score",
                 "usage_score",
@@ -188,7 +288,45 @@ jobs:
                   );
                 }
               }
+              const snapshotWeekIndex =
+                header
+                  .split(",")
+                  .indexOf("snapshot_week");
 
+              const snapshotWeeks =
+                new Set(
+                  lines
+                    .slice(1)
+                    .map((line) => {
+                      const values =
+                        line.split(",");
+
+                      return Number(
+                        values[snapshotWeekIndex]
+                      );
+                    })
+                    .filter(
+                      (week) =>
+                        Number.isInteger(week) &&
+                        week > 0
+                    )
+                );
+
+              if (
+                snapshotWeeks.size !== 1 ||
+                !snapshotWeeks.has(deployedWeek)
+              ) {
+                throw new Error(
+                  "Snapshot blocked: exported " +
+                  "snapshot_week does not match " +
+                  `deployed Week ${deployedWeek}.`
+                );
+              }
+
+              console.log(
+                `Exported snapshot confirmed as ` +
+                `Week ${deployedWeek}.`
+              );
               console.log(
                 "Snapshot contains all required model columns."
               );
