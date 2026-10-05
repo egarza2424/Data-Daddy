@@ -976,7 +976,7 @@ function renderWeeklySleepers() {
 
           <div>
             <span>
-              AI vs PPR
+              AI SCORE vs PPR
             </span>
 
             <strong>
