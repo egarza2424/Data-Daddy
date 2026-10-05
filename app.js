@@ -753,7 +753,7 @@ function getSleeperReason(
 
   if (rankAdvantage >= 10) {
     return (
-      `Fantasy AI ranks him ${position}${aiRank}, ` +
+      `The model ranks him ${position}${aiRank}, ` +
       `${rankAdvantage} spots ahead of his ` +
       `${position}${pprRank} PPR projection rank. ` +
       `That is one of the stronger model ` +
@@ -763,7 +763,7 @@ function getSleeperReason(
 
   if (rankAdvantage >= 5) {
     return (
-      `His underlying AI signals place him at ` +
+      `His underlying model signals place him at ` +
       `${position}${aiRank}, ${rankAdvantage} spots ` +
       `ahead of his ${position}${pprRank} projected ` +
       `PPR rank, creating an under-the-radar ` +
@@ -773,7 +773,7 @@ function getSleeperReason(
 
   if (rankAdvantage > 0) {
     return (
-      `Fantasy AI is slightly more optimistic ` +
+      `The model is slightly more optimistic ` +
       `than the PPR model, ranking him ` +
       `${position}${aiRank} compared with ` +
       `${position}${pprRank} by projected PPR. ` +
@@ -903,13 +903,12 @@ function renderWeeklySleepers() {
 
       const rankDifferenceText =
         rankAdvantage > 0
-          ? `AI +${rankAdvantage} spots`
+          ? `Model +${rankAdvantage} spots`
           : rankAdvantage < 0
             ? `PPR +${Math.abs(
                 rankAdvantage
               )} spots`
             : "Ranks aligned";
-
       card.innerHTML = `
         <div class="sleeper-card-top">
           <div class="sleeper-number">
