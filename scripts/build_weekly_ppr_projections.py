@@ -290,6 +290,7 @@ def prepare_snapshot(
             "NAN",
             "NONE",
             "NULL",
+            "UNKNOWN",
             "BYE",
             "TBD",
         ]
