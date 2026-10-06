@@ -272,6 +272,54 @@ def prepare_snapshot(
         snapshot["position"].isin(POSITIONS)
     ].copy()
 
+    # Exclude players whose teams do not have a game
+    # in the target week. Bye-week players can remain
+    # in the live player snapshot, but they must not
+    # receive weekly fantasy projections.
+    opponent = (
+        snapshot["opponent"]
+        .fillna("")
+        .astype(str)
+        .str.strip()
+        .str.upper()
+    )
+
+    bye_week_mask = opponent.isin(
+        [
+            "",
+            "NAN",
+            "NONE",
+            "NULL",
+            "BYE",
+            "TBD",
+        ]
+    )
+
+    bye_week_players = snapshot.loc[
+        bye_week_mask,
+        [
+            "player_name",
+            "position",
+            "team",
+        ],
+    ].copy()
+
+    if not bye_week_players.empty:
+        print(
+            "Excluding players without a "
+            "target-week opponent:"
+        )
+
+        print(
+            bye_week_players.to_string(
+                index=False
+            )
+        )
+
+    snapshot = snapshot.loc[
+        ~bye_week_mask
+    ].copy()
+
     # Historical Model F uses model_confidence_score.
     # The live snapshot currently exports this signal
     # under expert_score.
