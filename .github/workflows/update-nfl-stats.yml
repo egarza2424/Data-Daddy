@@ -5329,6 +5329,25 @@ jobs:
               "stats-based pool: "
               f"{len(missing_rostered_skill_player_ids)}."
           )
+          historical_player_ids = {
+              row.get("player_id")
+              for row in rows
+              if (
+                  row.get("player_id") and
+                  str(row.get("season") or "").strip() == "2025"
+              )
+          }
+
+          missing_rostered_veterans_with_history = (
+              missing_rostered_skill_player_ids &
+              historical_player_ids
+          )
+
+          print(
+              "Missing rostered QB/RB/WR/TE players with "
+              "2025 history: "
+              f"{len(missing_rostered_veterans_with_history)}."
+          )
 
           rostered_rookie_ids = {
               player_id
