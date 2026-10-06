@@ -4836,7 +4836,38 @@ jobs:
           print(
               "Current projection week: "
               f"2026 Week {projection_week}."
-          )          
+          )
+# -------------------------------------------------
+# PROJECTION-WEEK MATCHUP FILTER
+# -------------------------------------------------
+# team_next_opponent may contain a later-week game
+# for teams that are on bye during projection_week.
+# The fantasy model must only use matchups from the
+# actual projection week.
+
+projection_week_matchups = {
+    team: matchup
+    for team, matchup in team_next_opponent.items()
+    if int(matchup.get("week") or 0) == projection_week
+}
+
+bye_week_teams = sorted(
+    set(team_next_opponent.keys()) -
+    set(projection_week_matchups.keys())
+)
+
+print(
+    f"Teams playing in Week {projection_week}: "
+    f"{len(projection_week_matchups)}."
+)
+
+print(
+    f"Teams without a Week {projection_week} game: "
+    f"{bye_week_teams}"
+)
+
+team_next_opponent = projection_week_matchups
+          
           # -------------------------------------------------
           # SIGNAL 11: SCORING ENVIRONMENT
           # Sportsbook-implied team scoring expectation.
@@ -5335,8 +5366,8 @@ jobs:
               )
 
               player_team = (
-                  latest_player_row.get("team") or
-                  roster_player.get("team")
+                  roster_player.get("team") or
+                  latest_player_row.get("team")
               )
 
               if player_team == "LA":
