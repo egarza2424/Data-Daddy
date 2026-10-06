@@ -5305,6 +5305,30 @@ jobs:
               for row in player_signal_source_rows
               if row.get("player_id")
           }
+          rostered_skill_player_ids = {
+              player_id
+              for player_id, roster_player in (
+                  roster_players_by_id.items()
+              )
+              if (
+                  player_id and
+                  str(
+                      roster_player.get("position") or ""
+                  ).strip().upper()
+                  in {"QB", "RB", "WR", "TE"}
+              )
+          }
+
+          missing_rostered_skill_player_ids = (
+              rostered_skill_player_ids -
+              current_player_ids
+          )
+
+          print(
+              "Rostered QB/RB/WR/TE players missing from "
+              "stats-based pool: "
+              f"{len(missing_rostered_skill_player_ids)}."
+          )
 
           rostered_rookie_ids = {
               player_id
