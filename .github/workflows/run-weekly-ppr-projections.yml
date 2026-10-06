@@ -24,8 +24,10 @@ jobs:
       }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout latest main
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v5
