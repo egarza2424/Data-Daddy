@@ -174,15 +174,6 @@ jobs:
                 `Snapshot freshness check passed: ` +
                 `Week ${deployedWeek}.`
               );
-              const downloadPromise =
-                page.waitForEvent("download", {
-                  timeout: 120000
-                });
-
-              await page.click("#exportSnapshotBtn");
-
-              const download =
-                await downloadPromise;
 
               const snapshotDate =
                 new Date()
@@ -206,7 +197,288 @@ jobs:
                 fs.unlinkSync(destination);
               }
 
-              await download.saveAs(destination);
+                            const csv =
+                await page.evaluate(() => {
+                  const profile = "balanced";
+                  const positions = [
+                    "QB",
+                    "RB",
+                    "WR",
+                    "TE"
+                  ];
+
+                  const snapshot = [];
+
+                  positions.forEach((position) => {
+                    const rankings =
+                      getPositionRankings(
+                        position,
+                        profile
+                      );
+
+                    rankings.forEach(
+                      (entry, index) => {
+                        const player =
+                          entry.player;
+
+                        const positionRank =
+                          index + 1;
+
+                        const recommendation =
+                          getRecommendation(
+                            player,
+                            positionRank
+                          );
+
+                        const playCallerDetails =
+                          getPlayCallerMatchupDetails(
+                            player
+                          );
+
+                        const playerVsCallerDetails =
+                          getPlayerVsDefensiveCallerDetails(
+                            player
+                          );
+
+                        const metrics =
+                          getMetrics(player);
+
+                        const trench =
+                          getTrenchMatchup(player);
+
+                        const scoringEnvironment =
+                          getScoringEnvironment(
+                            player
+                          );
+
+                        snapshot.push({
+                          snapshot_week:
+                            Number(
+                              document
+                                .documentElement
+                                .dataset
+                                .targetWeek
+                            ) || null,
+
+                          player_id:
+                            player.id,
+
+                          player_name:
+                            player.name,
+
+                          position:
+                            player.position,
+
+                          team:
+                            player.team === "LAR"
+                              ? "LA"
+                              : player.team,
+
+                          opponent:
+                            playCallerDetails
+                              ?.opponent ||
+                            playerVsCallerDetails
+                              ?.opponent ||
+                            "Unknown",
+
+                          offensive_play_caller:
+                            playCallerDetails
+                              ?.offensivePlayCaller ||
+                            "Unknown",
+
+                          defensive_play_caller:
+                            playCallerDetails
+                              ?.defensivePlayCaller ||
+                            playerVsCallerDetails
+                              ?.defensivePlayCaller ||
+                            "Unknown",
+
+                          play_caller_matchup_score:
+                            metrics
+                              .playCallerMatchup,
+
+                          play_caller_historical_ppr:
+                            playCallerDetails
+                              ?.averagePpr ?? "",
+
+                          play_caller_sample_size:
+                            playCallerDetails
+                              ?.sampleSize ?? 0,
+
+                          player_vs_defensive_caller_score:
+                            metrics
+                              .playerVsDefensiveCaller,
+
+                          player_vs_defensive_caller_ppr:
+                            playerVsCallerDetails
+                              ?.averagePpr ?? "",
+
+                          player_vs_defensive_caller_sample_size:
+                            playerVsCallerDetails
+                              ?.sampleSize ?? 0,
+
+                          opportunity_score:
+                            metrics.opportunity,
+
+                          production_score:
+                            metrics.production,
+
+                          usage_score:
+                            metrics.usage,
+
+                          matchup_score:
+                            metrics.matchup,
+
+                          redzone_score:
+                            metrics.redzone,
+
+                          expert_score:
+                            metrics.expert,
+
+                          risk_score:
+                            metrics.risk,
+
+                          trench_score:
+                            trench
+                              ? trench.score
+                              : null,
+
+                          scoring_environment_score:
+                            scoringEnvironment
+                              ?.score ?? null,
+
+                          implied_team_total:
+                            scoringEnvironment
+                              ?.impliedTeamTotal ??
+                            null,
+
+                          game_total:
+                            scoringEnvironment
+                              ?.gameTotal ?? null,
+
+                          spread_line:
+                            scoringEnvironment
+                              ?.spread ?? null,
+
+                          model_score:
+                            entry.score,
+
+                          position_rank:
+                            positionRank,
+
+                          recommendation:
+                            recommendation
+                        });
+                      }
+                    );
+                  });
+
+                  const header = [
+                    "snapshot_week",
+                    "player_id",
+                    "player_name",
+                    "position",
+                    "team",
+                    "opponent",
+                    "offensive_play_caller",
+                    "defensive_play_caller",
+                    "play_caller_matchup_score",
+                    "play_caller_historical_ppr",
+                    "play_caller_sample_size",
+                    "player_vs_defensive_caller_score",
+                    "player_vs_defensive_caller_ppr",
+                    "player_vs_defensive_caller_sample_size",
+                    "opportunity_score",
+                    "production_score",
+                    "usage_score",
+                    "matchup_score",
+                    "redzone_score",
+                    "expert_score",
+                    "risk_score",
+                    "trench_score",
+                    "scoring_environment_score",
+                    "implied_team_total",
+                    "game_total",
+                    "spread_line",
+                    "model_score",
+                    "position_rank",
+                    "recommendation"
+                  ];
+
+                  const escapeCsv =
+                    (value) =>
+                      `"${String(
+                        value ?? ""
+                      ).replace(
+                        /"/g,
+                        '""'
+                      )}"`;
+
+                  const rows =
+                    snapshot.map(
+                      (player) =>
+                        [
+                          player.snapshot_week,
+                          player.player_id,
+                          escapeCsv(
+                            player.player_name
+                          ),
+                          player.position,
+                          player.team,
+                          player.opponent,
+                          escapeCsv(
+                            player
+                              .offensive_play_caller
+                          ),
+                          escapeCsv(
+                            player
+                              .defensive_play_caller
+                          ),
+                          player
+                            .play_caller_matchup_score,
+                          player
+                            .play_caller_historical_ppr,
+                          player
+                            .play_caller_sample_size,
+                          player
+                            .player_vs_defensive_caller_score,
+                          player
+                            .player_vs_defensive_caller_ppr,
+                          player
+                            .player_vs_defensive_caller_sample_size,
+                          player
+                            .opportunity_score,
+                          player
+                            .production_score,
+                          player.usage_score,
+                          player.matchup_score,
+                          player.redzone_score,
+                          player.expert_score,
+                          player.risk_score,
+                          player.trench_score,
+                          player
+                            .scoring_environment_score,
+                          player
+                            .implied_team_total,
+                          player.game_total,
+                          player.spread_line,
+                          player.model_score,
+                          player.position_rank,
+                          player.recommendation
+                        ].join(",")
+                    );
+
+                  return [
+                    header.join(","),
+                    ...rows
+                  ].join("\n");
+                });
+
+              fs.writeFileSync(
+                destination,
+                csv,
+                "utf8"
+              );
 
               console.log(
                 `Snapshot saved to ${destination}`
@@ -233,14 +505,14 @@ jobs:
                 );
               }
 
-              const csv =
+              const savedCsv =
                 fs.readFileSync(
                   destination,
                   "utf8"
                 );
 
               const lines =
-                csv
+                savedCsv
                   .trim()
                   .split(/\r?\n/);
 
