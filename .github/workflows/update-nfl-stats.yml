@@ -5409,6 +5409,54 @@ jobs:
               f"Week {projection_week}: "
               f"{len(eligible_missing_veterans)}."
           )
+          chase_matches = [
+              (player_id, roster_player)
+              for player_id, roster_player
+              in roster_players_by_id.items()
+              if "chase" in str(
+                  roster_player.get("player_name") or ""
+              ).lower()
+          ]
+
+          print("=== JA'MARR CHASE DIAGNOSTIC ===")
+
+          for player_id, roster_player in chase_matches:
+              print(
+                  {
+                      "player_id": player_id,
+                      "player_name": roster_player.get(
+                          "player_name"
+                      ),
+                      "team": roster_player.get("team"),
+                      "position": roster_player.get(
+                          "position"
+                      ),
+                      "status": roster_player.get("status"),
+                      "status_description_abbr":
+                          roster_player.get(
+                              "status_description_abbr"
+                          ),
+                      "in_stats_pool":
+                          player_id in current_player_ids,
+                      "missing_from_stats":
+                          player_id
+                          in missing_rostered_skill_player_ids,
+                      "has_2025_history":
+                          player_id
+                          in historical_2025_player_ids,
+                      "missing_veteran_with_history":
+                          player_id
+                          in missing_rostered_veterans_with_history,
+                      "team_has_week_matchup":
+                          roster_player.get("team")
+                          in team_next_opponent,
+                      "eligible_restored_veteran":
+                          player_id
+                          in eligible_missing_veterans,
+                  }
+              )
+
+          print("=== END JA'MARR CHASE DIAGNOSTIC ===")
 
           current_player_ids |= (
               eligible_missing_veterans
