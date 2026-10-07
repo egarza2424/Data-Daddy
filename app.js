@@ -4631,6 +4631,7 @@ const normalizeLookupName = name =>
   String(name || "")
     .toLowerCase()
     .replace(/[.'’\-]/g, "")
+    .replace(/\s+(jr|sr|ii|iii|iv|v)$/i, "")
     .replace(/\s+/g, " ")
     .trim();
 
