@@ -1457,8 +1457,178 @@ function renderProjectionPagination(
   );
 }  
 const lineupRoster = [];
+let lineupScreenshotFiles = [];
 
 
+function setLineupRosterMethod(method) {
+  const manualTab =
+    document.getElementById(
+      "manualRosterTab"
+    );
+
+  const screenshotTab =
+    document.getElementById(
+      "screenshotRosterTab"
+    );
+
+  const screenshotPanel =
+    document.getElementById(
+      "lineupScreenshotPanel"
+    );
+
+  const manualRosterBuilder =
+    document.querySelector(
+      ".lineup-roster-builder"
+    );
+
+  const useScreenshot =
+    method === "screenshot";
+
+  if (manualTab) {
+    manualTab.classList.toggle(
+      "active",
+      !useScreenshot
+    );
+  }
+
+  if (screenshotTab) {
+    screenshotTab.classList.toggle(
+      "active",
+      useScreenshot
+    );
+  }
+
+  if (screenshotPanel) {
+    screenshotPanel.hidden =
+      !useScreenshot;
+  }
+
+  if (manualRosterBuilder) {
+    manualRosterBuilder.hidden =
+      useScreenshot;
+  }
+}
+
+
+function renderLineupScreenshotPreview() {
+  const preview =
+    document.getElementById(
+      "lineupScreenshotPreview"
+    );
+
+  const status =
+    document.getElementById(
+      "lineupScreenshotStatus"
+    );
+
+  const detectedPlayers =
+    document.getElementById(
+      "lineupDetectedPlayers"
+    );
+
+  if (!preview) {
+    return;
+  }
+
+  preview.innerHTML = "";
+
+  if (!lineupScreenshotFiles.length) {
+    preview.hidden = true;
+
+    if (status) {
+      status.textContent = "";
+    }
+
+    if (detectedPlayers) {
+      detectedPlayers.hidden = true;
+    }
+
+    return;
+  }
+
+  lineupScreenshotFiles.forEach(
+    (file) => {
+      const item =
+        document.createElement("div");
+
+      item.className =
+        "lineup-screenshot-preview-item";
+
+      const image =
+        document.createElement("img");
+
+      image.alt =
+        `Roster screenshot: ${file.name}`;
+
+      const objectUrl =
+        URL.createObjectURL(file);
+
+      image.src = objectUrl;
+
+      image.addEventListener(
+        "load",
+        () => {
+          URL.revokeObjectURL(
+            objectUrl
+          );
+        },
+        { once: true }
+      );
+
+      const fileName =
+        document.createElement("span");
+
+      fileName.className =
+        "lineup-screenshot-preview-name";
+
+      fileName.textContent =
+        file.name;
+
+      item.append(
+        image,
+        fileName
+      );
+
+      preview.appendChild(item);
+    }
+  );
+
+  preview.hidden = false;
+
+  if (status) {
+    const count =
+      lineupScreenshotFiles.length;
+
+    status.textContent =
+      `${count} roster screenshot${
+        count === 1 ? "" : "s"
+      } ready for player detection.`;
+  }
+
+  if (detectedPlayers) {
+    detectedPlayers.hidden = true;
+  }
+}
+
+
+function handleLineupScreenshotSelection(
+  event
+) {
+  const selectedFiles =
+    Array.from(
+      event.target.files || []
+    ).filter(
+      file =>
+        file.type.startsWith(
+          "image/"
+        )
+    );
+
+  lineupScreenshotFiles =
+    selectedFiles;
+
+  renderLineupScreenshotPreview();
+}
 function getLineupProjectionKey(projection) {
   if (!projection) {
     return "";
@@ -6986,6 +7156,80 @@ async function initializeApp() {
         }
       );
     });
+  const manualRosterTab =
+    document.getElementById(
+      "manualRosterTab"
+    );
+
+  const screenshotRosterTab =
+    document.getElementById(
+      "screenshotRosterTab"
+    );
+
+  const lineupScreenshotInput =
+    document.getElementById(
+      "lineupScreenshotInput"
+    );
+
+  const lineupScreenshotSelectBtn =
+    document.getElementById(
+      "lineupScreenshotSelectBtn"
+    );
+
+
+  if (manualRosterTab) {
+    manualRosterTab.addEventListener(
+      "click",
+      () => {
+        setLineupRosterMethod(
+          "manual"
+        );
+      }
+    );
+  }
+
+
+  if (screenshotRosterTab) {
+    screenshotRosterTab.addEventListener(
+      "click",
+      () => {
+        setLineupRosterMethod(
+          "screenshot"
+        );
+      }
+    );
+  }
+
+
+  if (
+    lineupScreenshotSelectBtn &&
+    lineupScreenshotInput
+  ) {
+    lineupScreenshotSelectBtn
+      .addEventListener(
+        "click",
+        () => {
+          lineupScreenshotInput.click();
+        }
+      );
+  }
+
+
+  if (lineupScreenshotInput) {
+    lineupScreenshotInput.addEventListener(
+      "change",
+      handleLineupScreenshotSelection
+    );
+  }
+
+
+  setLineupRosterMethod("manual");
+
+
+  const lineupPlayerSearch =
+    document.getElementById(
+      "lineupPlayerSearch"
+    );
   
   const lineupPlayerSearch =
     document.getElementById(
