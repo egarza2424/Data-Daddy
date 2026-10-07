@@ -4620,14 +4620,13 @@ async function loadPlayers() {
       }
     });
 
-    const positionOrder = { QB: 1, RB: 2, WR: 3, TE: 4 };
+const positionOrder = {
+  QB: 1,
+  RB: 2,
+  WR: 3,
+  TE: 4
+};
 
-    players = Array.from(uniquePlayers.values()).sort((a, b) => {
-      if (a.position !== b.position) {
-        return positionOrder[a.position] - positionOrder[b.position];
-      }
-      return a.name.localeCompare(b.name);
-    });
 const normalizeLookupName = name =>
   String(name || "")
     .toLowerCase()
@@ -4636,22 +4635,133 @@ const normalizeLookupName = name =>
     .trim();
 
 const normalizeLookupTeam = team =>
-  ({ LA: "LAR", JAC: "JAX", WSH: "WAS" })[team] || team;
+  ({
+    LA: "LAR",
+    JAC: "JAX",
+    WSH: "WAS"
+  })[team] || team;
 
+/*
+ * Start with Sleeper players because Sleeper
+ * supplies injury, practice and depth-chart
+ * metadata used by the UI.
+ */
+players = Array.from(
+  uniquePlayers.values()
+);
+
+/*
+ * Match Sleeper records to the authoritative
+ * NFL/GSIS IDs produced by our backend.
+ */
 players.forEach(player => {
-  const matches = Object.entries(nflPlayerLookup)
-    .filter(([id, nfl]) =>
-      normalizeLookupName(player.name) ===
-        normalizeLookupName(nfl.name) &&
-      player.position === nfl.position &&
-      normalizeLookupTeam(player.team) ===
-        normalizeLookupTeam(nfl.team)
-    );
+  const matches =
+    Object.entries(nflPlayerLookup)
+      .filter(([id, nfl]) =>
+        normalizeLookupName(player.name) ===
+          normalizeLookupName(nfl.name) &&
+        player.position === nfl.position &&
+        normalizeLookupTeam(player.team) ===
+          normalizeLookupTeam(nfl.team)
+      );
 
   if (matches.length === 1) {
     player.nflId = matches[0][0];
   }
-});    
+});
+
+/*
+ * The backend weekly model is authoritative
+ * for the weekly player universe.
+ *
+ * If Update NFL Stats produced a Fantasy AI
+ * score for a QB/RB/WR/TE, make sure that
+ * player exists in the frontend even when
+ * Sleeper does not return him.
+ */
+Object.entries(nflPlayerLookup)
+  .forEach(([nflId, nfl]) => {
+    const position =
+      String(
+        nfl.position || ""
+      ).toUpperCase();
+
+    if (
+      !["QB", "RB", "WR", "TE"]
+        .includes(position)
+    ) {
+      return;
+    }
+
+    const hasBackendScore =
+      fantasyAiScores[nflId] !== undefined &&
+      fantasyAiScores[nflId] !== null;
+
+    if (!hasBackendScore) {
+      return;
+    }
+
+    const alreadyExists =
+      players.some(player =>
+        String(player.nflId || "") ===
+          String(nflId)
+      );
+
+    if (alreadyExists) {
+      return;
+    }
+
+    players.push({
+      id: nflId,
+      nflId: nflId,
+      name:
+        nfl.name ||
+        `NFL Player ${nflId}`,
+      position: position,
+      team:
+        normalizeLookupTeam(
+          nfl.team || ""
+        ),
+      status: "ACT",
+      injuryStatus: null,
+      injuryStartDate: null,
+      practiceParticipation: null,
+      depthChartPosition: null,
+      depthChartOrder: null,
+      age: null,
+      yearsExp: null,
+      number: null,
+      backendAdded: true
+    });
+  });
+
+players.sort((a, b) => {
+  if (a.position !== b.position) {
+    return (
+      positionOrder[a.position] -
+      positionOrder[b.position]
+    );
+  }
+
+  return a.name.localeCompare(
+    b.name
+  );
+});
+
+console.log(
+  "Frontend player universe:",
+  {
+    totalPlayers: players.length,
+    backendScoredPlayers:
+      Object.keys(
+        fantasyAiScores
+      ).length,
+    backendAddedPlayers:
+      players.filter(
+        player => player.backendAdded
+      ).length
+  }
+);
     populatePlayerSelectors();
     
     setupPlayerSearch(playerASearch, playerAResults, playerASelect);
