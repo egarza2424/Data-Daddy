@@ -5509,7 +5509,32 @@ const relevantPlayers = players.filter((player) => {
   )
     .trim()
     .toUpperCase();
+/*
+ * Exclude players whose team does not have
+ * a matchup in the current target week.
+ *
+ * teamNextOpponent only contains teams that
+ * are actually playing this week, so a missing
+ * matchup represents a bye.
+ */
+const playerTeam =
+  player.team === "LA"
+    ? "LAR"
+    : player.team;
 
+const weeklyMatchup =
+  teamNextOpponent[playerTeam];
+
+if (
+  !weeklyMatchup ||
+  !weeklyMatchup.opponent ||
+  String(weeklyMatchup.opponent)
+    .trim()
+    .toUpperCase() === "BYE"
+) {
+  return false;
+}
+  
   const unavailableRosterStatuses = [
     "INACTIVE",
     "INJURED_RESERVE",
