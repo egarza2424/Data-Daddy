@@ -5389,9 +5389,15 @@ jobs:
                       {}
                   ).get("team")
                   in team_next_opponent
+                  and
+                  str(
+                      roster_players_by_id.get(
+                          player_id,
+                          {}
+                      ).get("status") or ""
+                  ).strip().upper() == "ACT"
               )
           }
-
           print(
               "Missing rostered QB/RB/WR/TE players with "
               "2025 history: "
