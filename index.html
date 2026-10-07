@@ -679,8 +679,143 @@
       </div>
 
     </div>
+    <div class="lineup-roster-methods">
+
+      <div class="lineup-method-heading">
+        <strong>Build your roster</strong>
+        <span>
+          Add players manually or upload screenshots from your fantasy app.
+        </span>
+      </div>
+
+      <div class="lineup-method-tabs">
+
+        <button
+          id="manualRosterTab"
+          type="button"
+          class="lineup-method-tab active"
+          data-lineup-method="manual"
+        >
+          Add Manually
+        </button>
+
+        <button
+          id="screenshotRosterTab"
+          type="button"
+          class="lineup-method-tab"
+          data-lineup-method="screenshot"
+        >
+          Upload Roster Screenshot
+        </button>
+
+      </div>
+
+    </div>
 
 
+    <div
+      id="lineupScreenshotPanel"
+      class="lineup-screenshot-panel"
+      hidden
+    >
+
+      <div class="lineup-upload-box">
+
+        <div class="lineup-upload-copy">
+
+          <strong>
+            Upload your fantasy roster
+          </strong>
+
+          <span>
+            Upload one or more screenshots showing the players on your roster.
+            You will review detected players before they are added.
+          </span>
+
+        </div>
+
+        <input
+          id="lineupScreenshotInput"
+          type="file"
+          accept="image/png,image/jpeg,image/webp"
+          multiple
+          hidden
+        >
+
+        <button
+          id="lineupScreenshotSelectBtn"
+          type="button"
+          class="lineup-upload-btn"
+        >
+          Choose Screenshot
+        </button>
+
+        <span class="lineup-upload-formats">
+          PNG, JPG or WEBP • Multiple screenshots supported
+        </span>
+
+      </div>
+
+
+      <div
+        id="lineupScreenshotPreview"
+        class="lineup-screenshot-preview"
+        hidden
+      >
+      </div>
+
+
+      <div
+        id="lineupScreenshotStatus"
+        class="lineup-screenshot-status"
+        aria-live="polite"
+      >
+      </div>
+
+
+      <div
+        id="lineupDetectedPlayers"
+        class="lineup-detected-players"
+        hidden
+      >
+
+        <div class="lineup-detected-heading">
+
+          <div>
+            <strong>Detected Players</strong>
+
+            <span>
+              Review the matches before adding them to your roster.
+            </span>
+          </div>
+
+          <strong id="lineupDetectedCount">
+            0 players
+          </strong>
+
+        </div>
+
+        <div id="lineupDetectedPlayerList">
+        </div>
+
+        <button
+          id="addDetectedPlayersBtn"
+          type="button"
+          class="primary-btn lineup-add-detected-btn"
+          disabled
+        >
+          Add Confirmed Players
+        </button>
+
+      </div>
+
+
+      <p class="lineup-upload-privacy">
+        Roster screenshots are used only to identify players for your
+        lineup analysis.
+      </p>
+
+    </div>
     <div class="lineup-roster-builder">
 
       <div class="lineup-roster-input">
