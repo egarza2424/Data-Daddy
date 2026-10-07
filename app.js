@@ -5536,27 +5536,26 @@ const hasBackendModelScore =
   );
 
 /*
- * Backend weekly eligibility is authoritative.
- * If the weekly model produced a valid score,
- * keep the player in rankings/snapshots even
- * when the live injury feed lists him OUT.
+ * The backend model determines whether a player
+ * belongs in the weekly player universe.
  *
- * Injury status remains visible to the user
- * but does not delete an otherwise eligible
- * player from the weekly model.
+ * Confirmed unavailable players must still be
+ * removed from weekly rankings and snapshots.
+ * Questionable/Doubtful players remain eligible
+ * so their injury risk can be reflected by the
+ * model instead of deleting them completely.
  */
-if (!hasBackendModelScore) {
-  if (
-    injury === "OUT" ||
-    injury === "PUP" ||
-    injury === "IR" ||
-    injury === "INJURED_RESERVE" ||
-    unavailableRosterStatuses.includes(
-      rosterStatus
-    )
-  ) {
-    return false;
-  }
+const confirmedUnavailable =
+  injury === "OUT" ||
+  injury === "PUP" ||
+  injury === "IR" ||
+  injury === "INJURED_RESERVE" ||
+  unavailableRosterStatuses.includes(
+    rosterStatus
+  );
+
+if (confirmedUnavailable) {
+  return false;
 }
 
   /*
