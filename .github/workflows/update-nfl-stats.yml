@@ -5338,10 +5338,23 @@ jobs:
               )
           }
 
-          missing_rostered_veterans_with_history = (
+                    missing_rostered_veterans_with_history = (
               missing_rostered_skill_player_ids &
               historical_2025_player_ids
           )
+
+          eligible_missing_veterans = {
+              player_id
+              for player_id
+              in missing_rostered_veterans_with_history
+              if (
+                  roster_players_by_id.get(
+                      player_id,
+                      {}
+                  ).get("team")
+                  in team_next_opponent
+              )
+          }
 
           print(
               "Missing rostered QB/RB/WR/TE players with "
@@ -5349,10 +5362,15 @@ jobs:
               f"{len(missing_rostered_veterans_with_history)}."
           )
 
-          current_player_ids |= (
-              missing_rostered_veterans_with_history
+          print(
+              "Missing established veterans eligible for "
+              f"Week {projection_week}: "
+              f"{len(eligible_missing_veterans)}."
           )
 
+          current_player_ids |= (
+              eligible_missing_veterans
+          )
           print(
               "Stats + established-veteran model pool: "
               f"{len(current_player_ids)} players."
