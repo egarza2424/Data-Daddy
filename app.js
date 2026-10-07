@@ -5449,20 +5449,6 @@ if (!hasBackendModelScore) {
   }
 }
 
-  const playerIds = [
-    player.nflId,
-    player.id
-  ]
-    .filter(Boolean)
-    .map(id => String(id));
-
-  const hasBackendModelScore =
-    playerIds.some(
-      id =>
-        fantasyAiScores[id] !== undefined &&
-        fantasyAiScores[id] !== null
-    );
-
   /*
    * The backend model is now authoritative for
    * weekly player eligibility.
