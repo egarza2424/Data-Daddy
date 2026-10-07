@@ -571,6 +571,14 @@ jobs:
                   ),
                   "position": roster_position,
                   "team": roster_team,
+                  "status": (
+                      roster_player.get("status") or ""
+                  ),
+                  "status_description_abbr": (
+                      roster_player.get(
+                          "status_description_abbr"
+                      ) or ""
+                  ),
                   "years_exp": roster_player.get("years_exp"),
                   "rookie_year": roster_player.get("rookie_year"),
                   "entry_year": roster_player.get("entry_year"),
@@ -582,7 +590,35 @@ jobs:
               f"{len(roster_players_by_id)} "
               "2026 rostered QB/RB/WR/TE players."
           )
+          roster_status_counts = {}
 
+          for roster_player in roster_players_by_id.values():
+              roster_status = str(
+                  roster_player.get("status") or "UNKNOWN"
+              ).strip()
+
+              status_abbr = str(
+                  roster_player.get(
+                      "status_description_abbr"
+                  ) or ""
+              ).strip()
+
+              status_key = (
+                  roster_status,
+                  status_abbr
+              )
+
+              roster_status_counts[status_key] = (
+                  roster_status_counts.get(
+                      status_key,
+                      0
+                  ) + 1
+              )
+
+          print(
+              "2026 roster status counts: "
+              f"{dict(sorted(roster_status_counts.items()))}"
+          )
           roster_rookie_ids = {
               player_id
               for player_id, roster_player in (
