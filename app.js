@@ -5411,6 +5411,31 @@ const relevantPlayers = players.filter((player) => {
     "NON_FOOTBALL_ILLNESS"
   ];
 
+ const playerIds = [
+  player.nflId,
+  player.id
+]
+  .filter(Boolean)
+  .map(id => String(id));
+
+const hasBackendModelScore =
+  playerIds.some(
+    id =>
+      fantasyAiScores[id] !== undefined &&
+      fantasyAiScores[id] !== null
+  );
+
+/*
+ * Backend weekly eligibility is authoritative.
+ * If the weekly model produced a valid score,
+ * keep the player in rankings/snapshots even
+ * when the live injury feed lists him OUT.
+ *
+ * Injury status remains visible to the user
+ * but does not delete an otherwise eligible
+ * player from the weekly model.
+ */
+if (!hasBackendModelScore) {
   if (
     injury === "OUT" ||
     injury === "PUP" ||
@@ -5422,6 +5447,7 @@ const relevantPlayers = players.filter((player) => {
   ) {
     return false;
   }
+}
 
   const playerIds = [
     player.nflId,
