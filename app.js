@@ -5375,77 +5375,118 @@ function getPositionRankings(position, profile) {
   if (rankingCache[cacheKey]) {
     return rankingCache[cacheKey];
   }
-
 const relevantPlayers = players.filter((player) => {
   if (player.position !== position) {
     return false;
   }
-// Week 3 availability override
-if (
-  snapshotWeek === "3" &&
-  player.name === "Josh Jacobs"
-) {
-  return false;
-}  
-  const injury = String(player.injuryStatus || "")
+
+  // Preserve the frozen Week 3 availability override.
+  if (
+    snapshotWeek === "3" &&
+    player.name === "Josh Jacobs"
+  ) {
+    return false;
+  }
+
+  const injury = String(
+    player.injuryStatus || ""
+  )
     .trim()
     .toUpperCase();
 
-  const rosterStatus = String(player.status || "")
+  const rosterStatus = String(
+    player.status || ""
+  )
     .trim()
     .toUpperCase();
 
- const unavailableRosterStatuses = [
-  "INACTIVE",
-  "INJURED_RESERVE",
-  "IR",
-  "SUSPENDED",
-  "PUP",
-  "PHYSICALLY_UNABLE_TO_PERFORM",
-  "NON_FOOTBALL_INJURY",
-  "NON_FOOTBALL_ILLNESS"
-];
+  const unavailableRosterStatuses = [
+    "INACTIVE",
+    "INJURED_RESERVE",
+    "IR",
+    "SUSPENDED",
+    "PUP",
+    "PHYSICALLY_UNABLE_TO_PERFORM",
+    "NON_FOOTBALL_INJURY",
+    "NON_FOOTBALL_ILLNESS"
+  ];
 
-if (
-  injury === "OUT" ||
-  injury === "PUP" ||
-  injury === "IR" ||
-  injury === "INJURED_RESERVE" ||
-  unavailableRosterStatuses.includes(rosterStatus)
-) {
-  return false;
-}
+  if (
+    injury === "OUT" ||
+    injury === "PUP" ||
+    injury === "IR" ||
+    injury === "INJURED_RESERVE" ||
+    unavailableRosterStatuses.includes(
+      rosterStatus
+    )
+  ) {
+    return false;
+  }
+
+  const playerIds = [
+    player.nflId,
+    player.id
+  ]
+    .filter(Boolean)
+    .map(id => String(id));
+
+  const hasBackendModelScore =
+    playerIds.some(
+      id =>
+        fantasyAiScores[id] !== undefined &&
+        fantasyAiScores[id] !== null
+    );
+
+  /*
+   * The backend model is now authoritative for
+   * weekly player eligibility.
+   *
+   * If Update NFL Stats produced a Fantasy AI
+   * score for this player, keep him in rankings.
+   * This prevents missing current-week veterans
+   * from being removed again by Sleeper depth
+   * chart or current-stat requirements.
+   */
+  if (hasBackendModelScore) {
+    return true;
+  }
+
   const hasStats =
     getPlayerWeeklyStats(player).length > 0;
-    const depthOrder =
-      Number(player.depthChartOrder || 0);
 
-if (position === "QB") {
-  return depthOrder === 1;
-}
-    if (position === "RB") {
-      return (
-        (depthOrder >= 1 && depthOrder <= 3) ||
-        hasStats
-      );
-    }
+  const depthOrder =
+    Number(player.depthChartOrder || 0);
 
-    if (position === "WR") {
-  return (
-    (depthOrder >= 1 && depthOrder <= 3) ||
-    hasStats
-  );
-}
-    if (position === "TE") {
-      return (
-        (depthOrder >= 1 && depthOrder <= 2) ||
-        hasStats
-      );
-    }
+  if (position === "QB") {
+    return depthOrder === 1;
+  }
 
-    return false;
-  });
+  if (position === "RB") {
+    return (
+      (depthOrder >= 1 &&
+        depthOrder <= 3) ||
+      hasStats
+    );
+  }
 
+  if (position === "WR") {
+    return (
+      (depthOrder >= 1 &&
+        depthOrder <= 3) ||
+      hasStats
+    );
+  }
+
+  if (position === "TE") {
+    return (
+      (depthOrder >= 1 &&
+        depthOrder <= 2) ||
+      hasStats
+    );
+  }
+
+  return false;
+});
   const rankings = relevantPlayers
     .map((player) => ({
       player,
