@@ -6357,7 +6357,8 @@ function exportModelSnapshot() {
           Number(
             document.documentElement.dataset.targetWeek
           ) || null,
-        player_id: player.id,
+        player_id:
+          player.nflId || player.id,
         player_name: player.name,
         position: player.position,
         team: player.team === "LAR" ? "LA" : player.team,
