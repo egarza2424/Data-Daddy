@@ -5329,7 +5329,7 @@ jobs:
               "stats-based pool: "
               f"{len(missing_rostered_skill_player_ids)}."
           )
-                    historical_2025_player_ids = {
+          historical_2025_player_ids = {
               row.get("player_id")
               for row in historical_rows
               if (
