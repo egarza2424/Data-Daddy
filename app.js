@@ -5593,20 +5593,33 @@ if (confirmedUnavailable) {
    * from being removed again by Sleeper depth
    * chart or current-stat requirements.
    */
-  if (hasBackendModelScore) {
-    return true;
-  }
+ const hasStats =
+  getPlayerWeeklyStats(player).length > 0;
 
-  const hasStats =
-    getPlayerWeeklyStats(player).length > 0;
+const depthOrder =
+  Number(player.depthChartOrder || 0);
 
-  const depthOrder =
-    Number(player.depthChartOrder || 0);
+/*
+ * QB is different from the other fantasy
+ * positions. Only the current starting QB
+ * should appear in weekly QB rankings.
+ *
+ * A backend model score alone must not allow
+ * backup/developmental QBs to bypass the
+ * depth-chart requirement.
+ */
+if (position === "QB") {
+  return depthOrder === 1;
+}
 
-  if (position === "QB") {
-    return depthOrder === 1;
-  }
-
+/*
+ * For RB/WR/TE, the backend weekly model
+ * remains authoritative after bye-week and
+ * confirmed-unavailable checks have passed.
+ */
+if (hasBackendModelScore) {
+  return true;
+}
   if (position === "RB") {
     return (
       (depthOrder >= 1 &&
