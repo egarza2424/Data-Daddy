@@ -5608,18 +5608,10 @@ const depthOrder =
  * backup/developmental QBs to bypass the
  * depth-chart requirement.
  */
-if (position === "QB") {
-  return depthOrder === 1;
-}
+  if (position === "QB") {
+    return depthOrder === 1;
+  }
 
-/*
- * For RB/WR/TE, the backend weekly model
- * remains authoritative after bye-week and
- * confirmed-unavailable checks have passed.
- */
-if (hasBackendModelScore) {
-  return true;
-}
   if (position === "RB") {
     return (
       (depthOrder >= 1 &&
