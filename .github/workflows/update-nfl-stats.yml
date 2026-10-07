@@ -10836,6 +10836,40 @@ jobs:
               current_fantasy_ai_scores[
                   player_id
               ] = fantasy_ai_result
+          chase_player_id = "00-0036900"
+
+          print("=== JA'MARR CHASE FANTASY AI DIAGNOSTIC ===")
+          print(
+              {
+                  "in_current_player_ids":
+                      chase_player_id in current_player_ids,
+                  "in_fantasy_ai_player_ids":
+                      chase_player_id in fantasy_ai_player_ids,
+                  "in_current_player_context":
+                      chase_player_id in current_player_context,
+                  "in_recent_performance":
+                      chase_player_id
+                      in current_recent_performance,
+                  "in_opportunity":
+                      chase_player_id
+                      in current_player_opportunity,
+                  "in_red_zone":
+                      chase_player_id
+                      in current_player_red_zone,
+                  "in_defensive_matchup":
+                      chase_player_id
+                      in current_player_defensive_matchup,
+                  "in_play_caller_matchup":
+                      chase_player_id
+                      in current_player_play_caller_matchup,
+                  "fantasy_ai_score":
+                      current_fantasy_ai_scores.get(
+                          chase_player_id
+                      ),
+              }
+          )
+          print("=== END JA'MARR CHASE FANTASY AI DIAGNOSTIC ===")
+              
           print("2026 ROOKIE PRODUCTION-WEIGHT DIAGNOSTIC:")
 
           for player_id, fantasy_ai_result in sorted(
