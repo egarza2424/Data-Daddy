@@ -7225,16 +7225,11 @@ async function initializeApp() {
 
   setLineupRosterMethod("manual");
 
+  const lineupPlayerSearch =
+    document.getElementById(
+      "lineupPlayerSearch"
+    );
 
-  const lineupPlayerSearch =
-    document.getElementById(
-      "lineupPlayerSearch"
-    );
-  
-  const lineupPlayerSearch =
-    document.getElementById(
-      "lineupPlayerSearch"
-    );
 
   if (lineupPlayerSearch) {
     lineupPlayerSearch.addEventListener(
