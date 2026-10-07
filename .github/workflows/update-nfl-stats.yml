@@ -5329,9 +5329,9 @@ jobs:
               "stats-based pool: "
               f"{len(missing_rostered_skill_player_ids)}."
           )
-          historical_player_ids = {
+                    historical_2025_player_ids = {
               row.get("player_id")
-              for row in rows
+              for row in historical_rows
               if (
                   row.get("player_id") and
                   str(row.get("season") or "").strip() == "2025"
@@ -5340,7 +5340,7 @@ jobs:
 
           missing_rostered_veterans_with_history = (
               missing_rostered_skill_player_ids &
-              historical_player_ids
+              historical_2025_player_ids
           )
 
           print(
@@ -5349,6 +5349,14 @@ jobs:
               f"{len(missing_rostered_veterans_with_history)}."
           )
 
+          current_player_ids |= (
+              missing_rostered_veterans_with_history
+          )
+
+          print(
+              "Stats + established-veteran model pool: "
+              f"{len(current_player_ids)} players."
+          )
           rostered_rookie_ids = {
               player_id
               for player_id, roster_player in (
