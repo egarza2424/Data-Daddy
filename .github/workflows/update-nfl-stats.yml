@@ -5338,7 +5338,7 @@ jobs:
               )
           }
 
-                    missing_rostered_veterans_with_history = (
+          missing_rostered_veterans_with_history = (
               missing_rostered_skill_player_ids &
               historical_2025_player_ids
           )
