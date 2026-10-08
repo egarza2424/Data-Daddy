@@ -5469,15 +5469,24 @@ function calculateScore(player, profile) {
     .toUpperCase();
 
   const isUnavailable =
-    ["OUT", "IR", "INJURED_RESERVE", "PUP"].includes(injury) ||
+    [
+      "OUT",
+      "IR",
+      "INJURED_RESERVE",
+      "PUP",
+      "EXEMPT"
+    ].includes(injury) ||
     [
       "INACTIVE",
       "INJURED_RESERVE",
       "IR",
       "SUSPENDED",
-      "PUP"
+      "PUP",
+      "EXEMPT",
+      "EXEMPT_LIST",
+      "RESERVE/EXEMPT",
+      "RESERVE_EXEMPT"
     ].includes(rosterStatus);
-
   const injuryBoost =
     !snapshotWeek && !isUnavailable
       ? calculateInjuryOpportunityBoost(player)
