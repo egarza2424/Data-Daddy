@@ -4825,21 +4825,40 @@ players = Array.from(
  * Match Sleeper records to the authoritative
  * NFL/GSIS IDs produced by our backend.
  */
+
 players.forEach(player => {
-  const matches =
-    Object.entries(nflPlayerLookup)
-      .filter(([id, nfl]) =>
-        normalizeLookupName(player.name) ===
-          normalizeLookupName(nfl.name) &&
-        player.position === nfl.position &&
-        normalizeLookupTeam(player.team) ===
-          normalizeLookupTeam(nfl.team)
-      );
+  const entries = Object.entries(nflPlayerLookup);
+
+  const idMatches = entries.filter(
+    ([id]) =>
+      player.nflId &&
+      String(player.nflId) === String(id)
+  );
+
+  const nameTeamMatches = entries.filter(
+    ([id, nfl]) =>
+      normalizeLookupName(player.name) ===
+        normalizeLookupName(nfl.name) &&
+      normalizeLookupTeam(player.team) ===
+        normalizeLookupTeam(nfl.team)
+  );
+
+  const matches = idMatches.length
+    ? idMatches
+    : nameTeamMatches;
 
   if (matches.length === 1) {
     player.nflId = matches[0][0];
+  } else if (matches.length > 1) {
+    console.warn(
+      "Ambiguous NFL player identity:",
+      player.name,
+      player.team,
+      matches.map(([id]) => id)
+    );
   }
 });
+
 
 /*
  * The backend weekly model is authoritative
