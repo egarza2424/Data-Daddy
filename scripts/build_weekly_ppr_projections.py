@@ -341,6 +341,59 @@ def prepare_snapshot(
             errors="coerce",
         )
 
+        # Pregame review: identify generic feature profiles.
+    # This is diagnostic only. Do not remove players
+    # or modify their projected PPR values.
+    core_columns = [
+        "opportunity_score",
+        "production_score",
+        "usage_score",
+        "redzone_score",
+        "model_confidence_score",
+    ]
+
+    generic_profile = {
+        "opportunity_score": 50.0,
+        "production_score": 0.0,
+        "usage_score": 20.0,
+        "redzone_score": 50.0,
+        "model_confidence_score": 50.0,
+    }
+
+    numeric_core = snapshot[core_columns].apply(
+        pd.to_numeric,
+        errors="coerce",
+    )
+
+    review_mask = snapshot["position"].isin(
+        ["RB", "WR"]
+    )
+
+    for column, expected in generic_profile.items():
+        review_mask &= numeric_core[column].eq(expected)
+
+    review_players = snapshot.loc[
+        review_mask,
+        [
+            "player_name",
+            "position",
+            "team",
+            "opponent",
+        ],
+    ].copy()
+
+    print(
+        "Pregame low-information review: "
+        f"{len(review_players)} players flagged."
+    )
+
+    if not review_players.empty:
+        print(
+            review_players.to_string(
+                index=False
+            )
+        )
+
     return snapshot
 
 
