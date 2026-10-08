@@ -320,7 +320,66 @@ def prepare_snapshot(
     snapshot = snapshot.loc[
         ~bye_week_mask
     ].copy()
+    # Exclude confirmed unavailable players when
+    # roster status is present in the snapshot.
+    # Older snapshots remain supported.
+    unavailable_statuses = {
+        "OUT",
+        "IR",
+        "INJURED_RESERVE",
+        "INACTIVE",
+        "SUSPENDED",
+        "PUP",
+        "EXEMPT",
+        "EXEMPT_LIST",
+        "RESERVE/EXEMPT",
+        "RESERVE_EXEMPT",
+    }
 
+    unavailable_mask = pd.Series(
+        False,
+        index=snapshot.index,
+    )
+
+    for column in ("roster_status", "injury_status"):
+        if column not in snapshot.columns:
+            continue
+
+        statuses = (
+            snapshot[column]
+            .fillna("")
+            .astype(str)
+            .str.strip()
+            .str.upper()
+        )
+
+        unavailable_mask |= statuses.isin(
+            unavailable_statuses
+        )
+
+    unavailable_players = snapshot.loc[
+        unavailable_mask,
+        [
+            "player_name",
+            "position",
+            "team",
+        ],
+    ].copy()
+
+    if not unavailable_players.empty:
+        print(
+            "Excluding confirmed unavailable players:"
+        )
+        print(
+            unavailable_players.to_string(
+                index=False
+            )
+        )
+
+    snapshot = snapshot.loc[
+        ~unavailable_mask
+    ].copy()
+    
     # Historical Model F uses model_confidence_score.
     # The live snapshot currently exports this signal
     # under expert_score.
@@ -703,6 +762,22 @@ def main():
         drop=True
     )
 
+    # Preserve availability metadata in the output.
+    # Old snapshots may not contain these columns.
+    for column, default in {
+        "roster_status": "UNKNOWN",
+        "injury_status": "",
+    }.items():
+        if column not in projections.columns:
+            projections[column] = default
+
+        projections[column] = (
+            projections[column]
+            .fillna(default)
+            .astype(str)
+            .str.strip()
+        )
+
     output_columns = [
         "snapshot_week",
         "player_id",
@@ -710,6 +785,8 @@ def main():
         "position",
         "team",
         "opponent",
+        "roster_status",
+        "injury_status",
         "model_score",
         "position_rank",
         "projected_ppr",
@@ -724,7 +801,6 @@ def main():
         "projection_model",
         "projection_training_season",
     ]
-
     projections = projections[
         output_columns
     ]
@@ -771,11 +847,34 @@ def main():
     )
 
     print()
+    print()
+    print("Projection availability audit:")
+
     print(
-        f"Wrote {len(projections)} projections "
-        f"to {projection_path}"
+        "Available/unknown players projected: "
+        f"{len(projections)}"
     )
 
+    print(
+        "Roster status breakdown:"
+    )
+
+    print(
+        projections["roster_status"]
+        .value_counts(dropna=False)
+        .to_string()
+    )
+
+    print(
+        "Injury status breakdown:"
+    )
+
+    print(
+        projections["injury_status"]
+        .replace("", "NOT_REPORTED")
+        .value_counts(dropna=False)
+        .to_string()
+    )
     print(
         f"Wrote coefficient audit to "
         f"{coefficient_path}"
