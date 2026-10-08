@@ -4912,7 +4912,7 @@ Object.entries(nflPlayerLookup)
         normalizeLookupTeam(
           nfl.team || ""
         ),
-      status: "ACT",
+      status: "UNKNOWN",
       injuryStatus: null,
       injuryStartDate: null,
       practiceParticipation: null,
