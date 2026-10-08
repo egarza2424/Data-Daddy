@@ -6590,6 +6590,8 @@ function exportModelSnapshot() {
         player_name: player.name,
         position: player.position,
         team: player.team === "LAR" ? "LA" : player.team,
+        roster_status: player.status || "UNKNOWN",
+        injury_status: player.injuryStatus || "",
 
         opponent:
           playCallerDetails?.opponent ||
@@ -6657,6 +6659,8 @@ function exportModelSnapshot() {
     "player_name",
     "position",
     "team",
+    "roster_status",
+    "injury_status",
     "opponent",
     "offensive_play_caller",
     "defensive_play_caller",
@@ -6693,6 +6697,8 @@ function exportModelSnapshot() {
       escapeCsv(player.player_name),
       player.position,
       player.team,
+      escapeCsv(player.roster_status),
+      escapeCsv(player.injury_status),
       player.opponent,
       escapeCsv(player.offensive_play_caller),
       escapeCsv(player.defensive_play_caller),
