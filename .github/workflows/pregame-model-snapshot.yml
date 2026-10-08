@@ -308,6 +308,12 @@ jobs:
                               ? "LA"
                               : player.team,
 
+                          roster_status:
+                            player.status || "UNKNOWN",
+
+                          injury_status:
+                            player.injuryStatus || "",
+
                           opponent:
                             playCallerDetails
                               ?.opponent ||
@@ -413,6 +419,8 @@ jobs:
                     "player_name",
                     "position",
                     "team",
+                    "roster_status",
+                    "injury_status",
                     "opponent",
                     "offensive_play_caller",
                     "defensive_play_caller",
@@ -459,6 +467,8 @@ jobs:
                           ),
                           player.position,
                           player.team,
+                          escapeCsv(player.roster_status),
+                          escapeCsv(player.injury_status),
                           player.opponent,
                           escapeCsv(
                             player
@@ -566,6 +576,8 @@ jobs:
 
               const requiredColumns = [
                 "snapshot_week",
+                "roster_status",
+                "injury_status",
                 "opportunity_score",
                 "production_score",
                 "usage_score",
@@ -584,6 +596,51 @@ jobs:
                 "position_rank"
               ];
               const header = lines[0];
+              const columns = header.split(",");
+              const rosterStatusIndex =
+                columns.indexOf("roster_status");
+              const injuryStatusIndex =
+                columns.indexOf("injury_status");
+
+              if (
+                rosterStatusIndex === -1 ||
+                injuryStatusIndex === -1
+              ) {
+                throw new Error(
+                  "Snapshot missing player availability columns."
+                );
+              }
+
+              const statusCounts = {};
+              const injuryCounts = {};
+
+              for (const line of lines.slice(1)) {
+                const values = line.split(",");
+
+                const rosterStatus =
+                  values[rosterStatusIndex]
+                    ?.replace(/^"|"$/g, "") || "UNKNOWN";
+
+                const injuryStatus =
+                  values[injuryStatusIndex]
+                    ?.replace(/^"|"$/g, "") || "NOT_REPORTED";
+
+                statusCounts[rosterStatus] =
+                  (statusCounts[rosterStatus] || 0) + 1;
+
+                injuryCounts[injuryStatus] =
+                  (injuryCounts[injuryStatus] || 0) + 1;
+              }
+
+              console.log(
+                "Snapshot roster status counts:",
+                statusCounts
+              );
+
+              console.log(
+                "Snapshot injury status counts:",
+                injuryCounts
+              );              
 
               for (
                 const column of requiredColumns
