@@ -51,8 +51,9 @@ jobs:
 
               console.log("Opening Fantasy AI Player Lab...");
 
+
               await page.goto(
-                "https://egarza2424.github.io/Fantasy-AI-Player-Lab/",
+                "https://egarza2424.github.io/Data-Daddy/",
                 {
                   waitUntil: "networkidle",
                   timeout: 120000
