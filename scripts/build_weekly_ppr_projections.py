@@ -393,7 +393,48 @@ def prepare_snapshot(
                 index=False
             )
         )
+    # Diagnostic: detect duplicate player identities.
+    # Preserve all rows until identity is verified.
+    normalized_names = (
+        snapshot["player_name"]
+        .astype(str)
+        .str.lower()
+        .str.replace(
+            r"\s+(jr\.?|sr\.?|ii|iii|iv)$",
+            "",
+            regex=True,
+        )
+        .str.replace(
+            r"[^a-z0-9]",
+            "",
+            regex=True,
+        )
+    )
 
+    identity_key = (
+        normalized_names
+        + "|"
+        + snapshot["team"].astype(str).str.upper()
+    )
+
+    duplicate_mask = identity_key.duplicated(
+        keep=False
+    )
+
+    duplicates = snapshot.loc[
+        duplicate_mask,
+        ["player_id", "player_name", "position", "team"],
+    ]
+
+    print(
+        "Pregame identity review: "
+        f"{len(duplicates)} rows flagged."
+    )
+
+    if not duplicates.empty:
+        print(
+            duplicates.to_string(index=False)
+        )    
     return snapshot
 
 
