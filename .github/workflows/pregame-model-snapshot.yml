@@ -79,6 +79,20 @@ jobs:
                 "Current URL:",
                 page.url()
               );
+              console.log(
+                "Page title:",
+                await page.title()
+              );
+
+              console.log(
+                "HTML length:",
+                (await page.content()).length
+              );
+
+              console.log(
+                "Page text preview:",
+                (await page.locator("body").innerText()).slice(0, 500)
+              );
 
 
 
