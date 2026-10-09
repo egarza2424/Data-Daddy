@@ -293,6 +293,46 @@ def injury_screening(report):
                 if flagged else 'ESPN fantasy feed does not establish game-day availability')}
 
 
+
+def build_provisional_shortlist(eligible, limit=10):
+    """Keep evidence ranks unchanged; skip ESPN-flagged unavailable players.
+
+    This is a review shortlist only, not an official injury clearance or
+    published pickup recommendation. Consider the full eligible pool so
+    excluded top-ranked players can be replaced fairly.
+    """
+    selected = []
+    excluded = []
+    for candidate in eligible:
+        if candidate.get('injury_screening') == 'flagged_unavailable':
+            if candidate.get('preliminary_waiver_rank', 10**9) <= limit:
+                excluded.append({
+                    'player_id': candidate['player_id'],
+                    'name': candidate['name'],
+                    'original_rank': candidate['preliminary_waiver_rank'],
+                    'injury_feed_status': candidate.get('injury_feed_status'),
+                    'reason': candidate.get('injury_screening_reason'),
+                })
+            continue
+        if len(selected) < limit:
+            selected.append({
+                'player_id': candidate['player_id'],
+                'name': candidate['name'],
+                'team': candidate['team'],
+                'position': candidate['position'],
+                'original_rank': candidate['preliminary_waiver_rank'],
+                'provisional_rank': len(selected) + 1,
+                'waiver_evidence_score': candidate['waiver_evidence_score'],
+                'average_rostered': candidate['average_rostered'],
+                'injury_feed_status': candidate.get('injury_feed_status'),
+                'injury_screening': candidate.get('injury_screening'),
+                'verification_status': 'official_injury_role_matchup_pending',
+            })
+        if len(selected) >= limit and candidate['preliminary_waiver_rank'] > limit:
+            break
+    return selected, excluded
+
+
 def main():
     data = json.loads(SOURCE.read_text(encoding='utf-8'))
     players = data.get('player_lookup', {})
@@ -351,6 +391,7 @@ def main():
     # Keep a 50-player review pool for the existing website. Only players
     # with verified ownership below 65% enter the ranked portion.
     review_pool = eligible[:50]
+    provisional_top_10, excluded_top_10 = build_provisional_shortlist(eligible)
     result = {
         'season': data['season'],
         'target_week': data['target_week'],
@@ -374,6 +415,9 @@ def main():
         'unverified_ownership_count': len(unverified),
         'above_cutoff_count': len(above_cutoff),
         'candidates': review_pool,
+        'provisional_top_10_status': 'review_only_not_officially_verified_or_published',
+        'provisional_top_10': provisional_top_10,
+        'excluded_from_original_top_10_by_espn_injury_screen': excluded_top_10,
     }
     OUTPUT.write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')
     print(f'Full opportunity candidate pool: {len(candidates)}')
@@ -387,6 +431,10 @@ def main():
     print('Top 10 position counts: ' + ', '.join(
         f'{pos}={sum(c["position"] == pos for c in review_pool[:10])}'
         for pos in ('QB', 'RB', 'WR', 'TE')))
+    print('Injury-screened provisional Top 10: ' + str(len(provisional_top_10)))
+    print('Original Top 10 flagged unavailable: ' + str(len(excluded_top_10)))
+    print('Provisional Top 10 original ranks: ' + ', '.join(
+        str(c['original_rank']) for c in provisional_top_10))
     print('Top 50 ESPN injury flags: ' + str(sum(
         c['injury_screening'] == 'flagged_unavailable' for c in review_pool)))
     print('Top 50 missing ESPN injury status: ' + str(sum(
