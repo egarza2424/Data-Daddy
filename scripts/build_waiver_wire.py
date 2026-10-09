@@ -34,7 +34,60 @@ def normalized_name(value):
     text = text.lower().replace('’', "'")
     text = re.sub(r'[^a-z0-9]', '', text)
     return text
+def fetch_nfl_schedule(season):
+    """Return regular-season team/week schedule coverage."""
+    request = urllib.request.Request(
+        NFLVERSE_SCHEDULE_URL,
+        headers={'User-Agent': 'Mozilla/5.0'},
+    )
 
+    with urllib.request.urlopen(request, timeout=45) as response:
+        payload = response.read().decode('utf-8-sig')
+
+    reader = csv.DictReader(io.StringIO(payload))
+    required = {
+        'season', 'week', 'game_type',
+        'home_team', 'away_team',
+    }
+
+    if not required.issubset(set(reader.fieldnames or [])):
+        raise ValueError('NFL schedule is missing required columns')
+
+    team_weeks = defaultdict(set)
+    game_count = 0
+
+    for row in reader:
+        try:
+            row_season = int(row['season'])
+            row_week = int(row['week'])
+        except (TypeError, ValueError):
+            continue
+
+        if row_season != int(season):
+            continue
+
+        if row['game_type'] != 'REG':
+            continue
+
+        if row_week < 1:
+            continue
+
+        home_team = str(row['home_team'] or '').strip().upper()
+        away_team = str(row['away_team'] or '').strip().upper()
+
+        if not home_team or not away_team:
+            continue
+
+        team_weeks[home_team].add(row_week)
+        team_weeks[away_team].add(row_week)
+        game_count += 1
+
+    if game_count < 200:
+        raise ValueError(
+            'NFL schedule coverage insufficient for requested season'
+        )
+
+    return team_weeks, game_count
 
 def fetch_espn_ownership(players):
     params = {
