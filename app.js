@@ -1173,12 +1173,63 @@ async function loadWaiverWire() {
           ? `RECENT USAGE: ${usageParts.join(" • ")}`
           : "RECENT USAGE: Detailed workload pending.";
 
+        
         const assessment = document.createElement("p");
+
+        const recentPpr = Number(player.recent_average_ppr);
+        const opportunityChange = Number(player.opportunity_change);
+        const recentAverages =
+          player.role_usage_evidence?.usage_recent_3_game_averages || {};
+
+        const metric = player.position === "QB"
+          ? "pass_attempts"
+          : player.position === "RB"
+            ? "carries"
+            : "targets";
+
+        const metricLabel = metric === "pass_attempts"
+          ? "pass attempts"
+          : metric;
+
+        const latestMetric = latest ? Number(latest[metric]) : NaN;
+        const averageMetric = Number(recentAverages[metric]);
+
+        let trendDescription = "Recent opportunity data is limited.";
+
+        if (Number.isFinite(latestMetric) &&
+            Number.isFinite(averageMetric)) {
+          const difference = latestMetric - averageMetric;
+
+          if (difference >= 2) {
+            trendDescription =
+              `Usage is trending upward: ${latestMetric} ${metricLabel} ` +
+              `last week versus a three-game average of ` +
+              `${averageMetric.toFixed(1)}.`;
+          } else if (difference <= -2) {
+            trendDescription =
+              `Usage declined last week: ${latestMetric} ${metricLabel} ` +
+              `versus a three-game average of ` +
+              `${averageMetric.toFixed(1)}.`;
+          } else {
+            trendDescription =
+              `Recent workload is relatively steady at ` +
+              `${averageMetric.toFixed(1)} ${metricLabel} per game.`;
+          }
+        }
+
+        const pprDescription = Number.isFinite(recentPpr)
+          ? `Recent three-game average: ${recentPpr.toFixed(1)} PPR points.`
+          : "Recent PPR production is unavailable.";
+
+        const growthDescription = Number.isFinite(opportunityChange)
+          ? `Model opportunity change: ${opportunityChange > 0 ? "+" : ""}${opportunityChange.toFixed(1)}.`
+          : "Opportunity growth has not been measured.";
+
         assessment.textContent =
-          "MODEL ASSESSMENT: This player ranks among the top " +
-          "available candidates based on the current waiver " +
-          "evidence model. Opportunity sustainability still " +
-          "requires review.";
+          `MODEL ASSESSMENT: ${trendDescription} ` +
+          `${pprDescription} ${growthDescription} ` +
+          "Future role and workload sustainability remain unverified.";
+
 
         const risk = document.createElement("p");
         risk.textContent =
