@@ -702,6 +702,141 @@ jobs:
           });
           NODE
 
+      - name: Verify roster availability with nflverse
+        run: |
+          python <<'PY'
+          import csv
+          import io
+          import shutil
+          import urllib.request
+          from collections import Counter
+          from pathlib import Path
+
+          url = (
+              "https://github.com/nflverse/nflverse-data/"
+              "releases/download/rosters/roster_2026.csv"
+          )
+
+          with urllib.request.urlopen(url, timeout=60) as response:
+              roster_text = response.read().decode("utf-8-sig")
+
+          roster_rows = list(csv.DictReader(io.StringIO(roster_text)))
+
+          def key(name, position, team):
+              normalized_name = "".join(
+                  char for char in str(name).lower()
+                  if char.isalnum()
+              )
+              normalized_team = str(team).strip().upper()
+              if normalized_team == "LAR":
+                  normalized_team = "LA"
+              return (
+                  normalized_name,
+                  str(position).strip().upper(),
+                  normalized_team
+              )
+
+          roster_lookup = {}
+          for player in roster_rows:
+              player_key = key(
+                  player.get("full_name") or player.get("player_name"),
+                  player.get("position"),
+                  player.get("team")
+              )
+              roster_lookup.setdefault(player_key, []).append(player)
+
+          snapshot_path = Path(
+              "projection-model/current-live-model-snapshot.csv"
+          )
+
+          with snapshot_path.open(newline="", encoding="utf-8") as file:
+              reader = csv.DictReader(file)
+              columns = reader.fieldnames
+              snapshot_rows = list(reader)
+
+          if not columns or "roster_status" not in columns:
+              raise RuntimeError("Snapshot roster_status column missing")
+
+          blocked_statuses = {
+              "EXE": "EXEMPT",
+              "EXEMPT": "EXEMPT",
+              "RES": "INACTIVE",
+              "IR": "IR",
+              "PUP": "PUP",
+              "SUS": "SUSPENDED"
+          }
+
+          corrections = []
+          ambiguous = []
+          for row in snapshot_rows:
+              player_key = key(
+                  row.get("player_name"),
+                  row.get("position"),
+                  row.get("team")
+              )
+              matches = roster_lookup.get(player_key, [])
+
+              if len(matches) > 1:
+                  ambiguous.append(row.get("player_name"))
+                  continue
+
+              if len(matches) != 1:
+                  continue
+
+              raw_status = str(
+                  matches[0].get("status") or ""
+              ).strip().upper()
+
+              new_status = blocked_statuses.get(raw_status)
+              if not new_status:
+                  continue
+
+              previous_status = row.get("roster_status", "")
+              if previous_status.upper() == new_status:
+                  continue
+
+              row["roster_status"] = new_status
+              corrections.append((
+                  row.get("player_name"),
+                  previous_status,
+                  new_status,
+                  raw_status
+              ))
+
+          if ambiguous:
+              print("Ambiguous roster matches:", ambiguous[:20])
+
+          print("Roster availability corrections:", len(corrections))
+          for correction in corrections:
+              print("STATUS CORRECTION:", correction)
+
+          print(
+              "Corrected roster status counts:",
+              dict(Counter(
+                  row["roster_status"] for row in snapshot_rows
+              ))
+          )
+
+          with snapshot_path.open(
+              "w", newline="", encoding="utf-8"
+          ) as file:
+              writer = csv.DictWriter(file, fieldnames=columns)
+              writer.writeheader()
+              writer.writerows(snapshot_rows)
+
+          snapshots = sorted(
+              Path("model-snapshots").glob(
+                  "*-pregame-model-snapshot.csv"
+              )
+          )
+          if not snapshots:
+              raise RuntimeError("Dated snapshot not found")
+
+          shutil.copyfile(snapshot_path, snapshots[-1])
+          PY
+
+
+
       - name: Show generated snapshot
         run: |
           ls -lh model-snapshots/
