@@ -201,41 +201,65 @@ def percentile_scores(candidates, field):
 
 
 def rank_eligible_candidates(candidates):
-    """Preliminary evidence ranking, not injury-verified waiver recommendations."""
+    """Position-relative evidence ranking; not final pickup recommendations."""
     eligible = [c for c in candidates if c['ownership_eligible'] is True]
-    # All metrics are normalized within the same eligible population.
-    # Opportunity change gets the most weight; production and volume follow.
     weights = {
         'opportunity_change': 0.45,
         'recent_average_ppr': 0.35,
         'latest_opportunity': 0.20,
     }
-    score_maps = {field: percentile_scores(eligible, field) for field in weights}
+    by_position = defaultdict(list)
+    for candidate in eligible:
+        by_position[candidate['position']].append(candidate)
+    position_maps = {
+        position: {
+            field: percentile_scores(group, field)
+            for field in weights
+        }
+        for position, group in by_position.items()
+    }
     for candidate in eligible:
         evidence = {}
+        missing = []
         for field, weight in weights.items():
             value = finite_number(candidate.get(field))
-            if value is not None:
-                evidence[field] = {'value': round(value, 2),
-                                   'percentile': score_maps[field][value],
-                                   'weight': weight}
-        available_weight = sum(item['weight'] for item in evidence.values())
-        candidate['waiver_evidence_score'] = (
-            round(sum(item['percentile'] * item['weight']
-                      for item in evidence.values()) / available_weight, 2)
-            if available_weight else None
-        )
+            if value is None:
+                missing.append(field)
+                continue
+            percentile = position_maps[candidate['position']][field][value]
+            evidence[field] = {
+                'value': round(value, 2),
+                'percentile': percentile,
+                'weight': weight,
+            }
+        # Fixed denominator: missing evidence receives no credit rather than
+        # allowing strong known metrics to inflate the overall score.
+        score = sum(item['percentile'] * item['weight']
+                    for item in evidence.values())
+        candidate['waiver_evidence_score'] = round(score, 2)
         candidate['waiver_evidence'] = evidence
+        candidate['waiver_missing_evidence'] = missing
+        candidate['waiver_evidence_coverage'] = round(
+            sum(item['weight'] for item in evidence.values()), 2
+        )
         candidate['waiver_rank_status'] = 'preliminary_not_injury_verified'
+        candidate['waiver_scoring_scope'] = 'within_position'
 
     eligible.sort(key=lambda c: (
-        c['waiver_evidence_score'] is not None,
-        c['waiver_evidence_score'] if c['waiver_evidence_score'] is not None else -1,
-        finite_number(c.get('opportunity_change')) or 0,
-        str(c.get('name') or ''),
-    ), reverse=True)
+        -c['waiver_evidence_score'],
+        -c['waiver_evidence_coverage'],
+        -(finite_number(c.get('opportunity_change')) or 0),
+        str(c.get('name') or '').lower(),
+        str(c.get('player_id') or ''),
+    ))
     for index, candidate in enumerate(eligible, 1):
         candidate['preliminary_waiver_rank'] = index
+        candidate['preliminary_position_rank'] = 0
+    for position in POSITION_IDS.values():
+        for index, candidate in enumerate(
+            (c for c in eligible if c['position'] == position), 1
+        ):
+            candidate['preliminary_position_rank'] = index
     return eligible
 
 
@@ -303,12 +327,14 @@ def main():
         'ownership_cutoff': OWNERSHIP_CUTOFF,
         'ownership_rule': 'available_verified_average',
         'ownership_minimum_sources': 1,
-        'ranking_method': 'relative_evidence_percentiles',
+        'ranking_method': 'within_position_percentiles_fixed_missing_denominator',
         'ranking_weights': {
             'opportunity_change': 0.45,
             'recent_average_ppr': 0.35,
             'latest_opportunity': 0.20,
         },
+        'missing_evidence_policy': 'zero_contribution_fixed_denominator',
+        'cross_position_rank_status': 'preliminary_not_role_or_injury_adjusted',
         'injury_analysis_status': 'pending',
         'full_candidate_count': len(candidates),
         'eligible_candidate_count': len(eligible),
@@ -322,6 +348,12 @@ def main():
     print(f'Players with unverified ownership: {len(unverified)}')
     print(f'Players at or above {OWNERSHIP_CUTOFF}%: {len(above_cutoff)}')
     print(f'Preliminary ranked candidates saved: {len(review_pool)}')
+    print('Top 50 position counts: ' + ', '.join(
+        f'{pos}={sum(c["position"] == pos for c in review_pool)}'
+        for pos in ('QB', 'RB', 'WR', 'TE')))
+    print('Top 10 position counts: ' + ', '.join(
+        f'{pos}={sum(c["position"] == pos for c in review_pool[:10])}'
+        for pos in ('QB', 'RB', 'WR', 'TE')))
     print('No final Top 10 published: injury and matchup evaluation remain pending.')
 
 
