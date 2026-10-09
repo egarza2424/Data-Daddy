@@ -3,7 +3,8 @@
   "target_week": 5,
   "status": "candidates_only",
   "ownership_cutoff": 65,
-  "ownership_rule": "three_platform_average",
+  "ownership_rule": "available_verified_average",
+  "ownership_minimum_sources": 1,
   "candidates": [
     {
       "player_id": "00-0038416",
@@ -20,6 +21,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -37,6 +40,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -54,6 +59,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -71,6 +78,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -88,6 +97,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -105,6 +116,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -122,6 +135,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -139,6 +154,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -156,6 +173,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -173,6 +192,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -190,6 +211,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -207,6 +230,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -224,6 +249,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -241,6 +268,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -258,6 +287,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -275,6 +306,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -292,6 +325,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -309,6 +344,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -326,6 +363,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -343,6 +382,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -360,6 +401,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -377,6 +420,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -394,6 +439,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -411,6 +458,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -428,6 +477,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -445,6 +496,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -462,6 +515,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -479,6 +534,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -496,6 +553,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -513,6 +572,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -530,6 +591,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -547,6 +610,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -564,6 +629,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -581,6 +648,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -598,6 +667,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -615,6 +686,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -632,6 +705,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -649,6 +724,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -666,6 +743,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -683,23 +762,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0038104",
-      "name": "Tyquan Thornton",
-      "team": "KC",
-      "position": "WR",
-      "latest_opportunity": 8.0,
-      "previous_opportunity_average": 3.0,
-      "opportunity_change": 5.0,
-      "recent_average_ppr": 14.97,
-      "red_zone_score": 42.0,
-      "espn_rostered": null,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -717,6 +781,27 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
+      "injury_opportunity": null
+    },
+    {
+      "player_id": "00-0038104",
+      "name": "Tyquan Thornton",
+      "team": "KC",
+      "position": "WR",
+      "latest_opportunity": 8.0,
+      "previous_opportunity_average": 3.0,
+      "opportunity_change": 5.0,
+      "recent_average_ppr": 14.97,
+      "red_zone_score": 42.0,
+      "espn_rostered": null,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": null,
+      "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -734,6 +819,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -751,6 +838,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -768,23 +857,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0039811",
-      "name": "MarShawn Lloyd",
-      "team": "GB",
-      "position": "RB",
-      "latest_opportunity": 12.0,
-      "previous_opportunity_average": 7.5,
-      "opportunity_change": 4.5,
-      "recent_average_ppr": 8.1,
-      "red_zone_score": 61.0,
-      "espn_rostered": null,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -802,23 +876,27 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
-      "player_id": "00-0041040",
-      "name": "Antonio Williams",
-      "team": "WAS",
-      "position": "WR",
-      "latest_opportunity": 8.0,
-      "previous_opportunity_average": 3.5,
+      "player_id": "00-0039811",
+      "name": "MarShawn Lloyd",
+      "team": "GB",
+      "position": "RB",
+      "latest_opportunity": 12.0,
+      "previous_opportunity_average": 7.5,
       "opportunity_change": 4.5,
-      "recent_average_ppr": 4.67,
-      "red_zone_score": 25.0,
+      "recent_average_ppr": 8.1,
+      "red_zone_score": 61.0,
       "espn_rostered": null,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -836,6 +914,27 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
+      "injury_opportunity": null
+    },
+    {
+      "player_id": "00-0041040",
+      "name": "Antonio Williams",
+      "team": "WAS",
+      "position": "WR",
+      "latest_opportunity": 8.0,
+      "previous_opportunity_average": 3.5,
+      "opportunity_change": 4.5,
+      "recent_average_ppr": 4.67,
+      "red_zone_score": 25.0,
+      "espn_rostered": null,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": null,
+      "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     },
     {
@@ -853,6 +952,8 @@
       "sleeper_rostered": null,
       "average_rostered": null,
       "ownership_eligible": null,
+      "ownership_sources": {},
+      "ownership_source_count": 0,
       "injury_opportunity": null
     }
   ]
