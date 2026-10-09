@@ -26,9 +26,23 @@ def normalized_name(value):
 
 
 def fetch_espn_ownership(players):
+    params = {
+        "players": {
+            "limit": 2000,
+            "sortPercOwned": {
+                "sortPriority": 1,
+                "sortAsc": False,
+            },
+        },
+    }
+
     request = urllib.request.Request(
         ESPN_URL,
-        headers={'Accept': 'application/json', 'User-Agent': 'Mozilla/5.0'},
+        headers={
+            "Accept": "application/json",
+            "X-Fantasy-Filter": json.dumps(params),
+            "User-Agent": "Mozilla/5.0",
+        },
     )
     with urllib.request.urlopen(request, timeout=45) as response:
         espn_players = json.load(response)
