@@ -11819,6 +11819,86 @@ jobs:
               "pregame trench signals."
           )
           PY
+
+      - name: Test ESPN ownership player pool
+        run: |
+          python <<'PY'
+          import json
+          import urllib.request
+
+          base_url = (
+              "https://lm-api-reads.fantasy.espn.com/apis/v3/"
+              "games/ffl/seasons/2026/players"
+          )
+
+          for limit in (50, 500, 2000):
+              params = {
+                  "players": {
+                      "limit": limit,
+                      "sortPercOwned": {
+                          "sortPriority": 1,
+                          "sortAsc": False
+                      }
+                  }
+              }
+
+              request = urllib.request.Request(
+                  base_url,
+                  headers={
+                      "Accept": "application/json",
+                      "X-Fantasy-Filter": json.dumps(params),
+                      "User-Agent": "Mozilla/5.0"
+                  }
+              )
+
+              try:
+                  with urllib.request.urlopen(
+                      request,
+                      timeout=30
+                  ) as response:
+                      players = json.load(response)
+
+                  if not isinstance(players, list):
+                      print(
+                          f"Limit {limit}: unexpected response "
+                          f"type {type(players).__name__}"
+                      )
+                      continue
+
+                  owned = [
+                      p for p in players
+                      if isinstance(p, dict)
+                      and isinstance(p.get("ownership"), dict)
+                      and isinstance(
+                          p["ownership"].get("percentOwned"),
+                          (int, float)
+                      )
+                  ]
+
+                  print(
+                      f"Limit {limit}: "
+                      f"{len(players)} players returned; "
+                      f"{len(owned)} with ownership data."
+                  )
+
+                  print(
+                      "Sample:",
+                      [
+                          {
+                              "name": p.get("fullName"),
+                              "owned": p["ownership"]["percentOwned"]
+                          }
+                          for p in owned[:3]
+                      ]
+                  )
+
+              except Exception as error:
+                  print(
+                      f"Limit {limit}: request failed: "
+                      f"{type(error).__name__}: {error}"
+                  )
+          PY
+          
       - name: Test waiver wire generator
         run: |
           python -m py_compile scripts/build_waiver_wire.py
