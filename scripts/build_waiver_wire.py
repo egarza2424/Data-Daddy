@@ -294,6 +294,18 @@ def injury_screening(report):
 
 
 
+def injury_review_priority(candidate):
+    """Prioritize manual verification without claiming official clearance."""
+    status = str(candidate.get('injury_feed_status') or '').upper()
+    if candidate.get('injury_screening') == 'flagged_unavailable':
+        return 'blocked_by_espn_screen'
+    if status in {'QUESTIONABLE', 'DOUBTFUL', 'GTD', 'DAY_TO_DAY'}:
+        return 'high_injury_verification_priority'
+    if not status or status in {'UNKNOWN', 'UNVERIFIED'}:
+        return 'high_missing_status_verification_priority'
+    return 'standard_official_verification_pending'
+
+
 def build_provisional_shortlist(eligible, limit=10):
     """Keep evidence ranks unchanged; skip ESPN-flagged unavailable players.
 
@@ -326,6 +338,15 @@ def build_provisional_shortlist(eligible, limit=10):
                 'average_rostered': candidate['average_rostered'],
                 'injury_feed_status': candidate.get('injury_feed_status'),
                 'injury_screening': candidate.get('injury_screening'),
+                'injury_review_priority': injury_review_priority(candidate),
+                'injury_feed_source': candidate.get('injury_feed_source'),
+                'injury_feed_checked_at': candidate.get('injury_feed_checked_at'),
+                'official_game_status': None,
+                'official_game_status_source': None,
+                'official_game_status_checked_at': None,
+                'starting_role_verified': None,
+                'injury_opportunity_verified': None,
+                'matchup_verified': None,
                 'verification_status': 'official_injury_role_matchup_pending',
             })
         if len(selected) >= limit and candidate['preliminary_waiver_rank'] > limit:
@@ -416,6 +437,7 @@ def main():
         'above_cutoff_count': len(above_cutoff),
         'candidates': review_pool,
         'provisional_top_10_status': 'review_only_not_officially_verified_or_published',
+        'provisional_verification_policy': 'ESPN statuses only prioritize review; official clearance, role, injury opportunity, and matchup remain unverified',
         'provisional_top_10': provisional_top_10,
         'excluded_from_original_top_10_by_espn_injury_screen': excluded_top_10,
     }
@@ -435,6 +457,10 @@ def main():
     print('Original Top 10 flagged unavailable: ' + str(len(excluded_top_10)))
     print('Provisional Top 10 original ranks: ' + ', '.join(
         str(c['original_rank']) for c in provisional_top_10))
+    print('Provisional Top 10 high-priority injury reviews: ' + str(sum(
+        c['injury_review_priority'].startswith('high_') for c in provisional_top_10)))
+    print('Provisional Top 10 questionable statuses: ' + str(sum(
+        c['injury_feed_status'] == 'QUESTIONABLE' for c in provisional_top_10)))
     print('Top 50 ESPN injury flags: ' + str(sum(
         c['injury_screening'] == 'flagged_unavailable' for c in review_pool)))
     print('Top 50 missing ESPN injury status: ' + str(sum(
