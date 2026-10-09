@@ -594,7 +594,7 @@ def main():
         missed_scheduled_weeks = [
             week
             for week in range(latest_recorded_week + 1, latest_completed_week + 1)
-            if week in team_weeks.get(schedule_team, set()))
+            if week in team_weeks.get(schedule_team, set())
         ]
 
         if missed_scheduled_weeks:
