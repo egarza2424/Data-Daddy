@@ -555,6 +555,17 @@ def main():
             'freshness': 'unavailable', 'week_record_count': 0,
         }
 
+    try:
+        team_weeks, schedule_game_count = fetch_nfl_schedule(data['season'])
+        print(
+            f"NFL schedule loaded: {schedule_game_count} games, "
+            f"{len(team_weeks)} teams."
+        )
+    except Exception as error:
+        raise RuntimeError(
+            f"NFL schedule verification failed: {error}"
+        ) from error
+
     candidates = []
     for player_id, player in players.items():
         position = player.get('position')
