@@ -559,7 +559,7 @@ def main():
         }
 
     try:
-        team_weeks, schedule_game_count = fetch_nfl_schedule(data['season'])
+        team_weeks, team_opponents, schedule_game_count = fetch_nfl_schedule(data['season'])
         print(
             f"NFL schedule loaded: {schedule_game_count} games, "
             f"{len(team_weeks)} teams."
@@ -612,6 +612,8 @@ def main():
         candidates.append({
             'player_id': player_id, 'name': player.get('name'),
             'team': player.get('team'), 'position': position,
+            'next_opponent': team_opponents.get(schedule_team, {}).get(int(data['target_week'])),
+            'matchup_week': int(data['target_week']),
             'latest_opportunity': latest,
             'previous_opportunity_average': (round(baseline, 2)
                                              if baseline is not None else None),
