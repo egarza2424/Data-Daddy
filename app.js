@@ -1138,8 +1138,50 @@ async function loadWaiverWire() {
           `• Evidence score: ${Number.isFinite(score) ? score.toFixed(1) : "—"} ` +
           `• Injury verification pending`;
 
-        row.append(title, details);
+        
+        const intelligence = document.createElement("div");
+        intelligence.className = "waiver-intelligence";
+
+        const heading = document.createElement("strong");
+        heading.textContent = "DATA DADDY — PLAYER INTELLIGENCE";
+
+        const usage = document.createElement("p");
+        const carries = Number(player.latest_week_carries);
+        const targets = Number(player.latest_week_targets);
+        const attempts = Number(player.latest_week_pass_attempts);
+
+        const usageParts = [];
+
+        if (Number.isFinite(carries) && carries > 0) {
+          usageParts.push(`${carries} carries`);
+        }
+        if (Number.isFinite(targets) && targets > 0) {
+          usageParts.push(`${targets} targets`);
+        }
+        if (Number.isFinite(attempts) && attempts > 0) {
+          usageParts.push(`${attempts} pass attempts`);
+        }
+
+        usage.textContent = usageParts.length
+          ? `RECENT USAGE: ${usageParts.join(" • ")}`
+          : "RECENT USAGE: Detailed workload pending.";
+
+        const assessment = document.createElement("p");
+        assessment.textContent =
+          "MODEL ASSESSMENT: This player ranks among the top " +
+          "available candidates based on the current waiver " +
+          "evidence model. Opportunity sustainability still " +
+          "requires review.";
+
+        const risk = document.createElement("p");
+        risk.textContent =
+          "RISK WATCH: Official injury availability, depth-chart " +
+          "role, and upcoming matchup have not been fully verified.";
+
+        intelligence.append(heading, usage, assessment, risk);
+        row.append(title, details, intelligence);
         container.appendChild(row);
+
       });
 
       return;
