@@ -11901,7 +11901,7 @@ jobs:
           PY
       - name: Test NFL schedule coverage
         run: |
-          python -c "from scripts.build_waiver_wire import fetch_nfl_schedule; teams, games = fetch_nfl_schedule(2026); print('2026 games:', games); print('Teams:', len(teams)); print('Week 4 bye teams:', sorted(set(teams) - {team for team, weeks in teams.items() if 4 in weeks})); assert len(teams) == 32 and games >= 200"
+          python -c "from scripts.build_waiver_wire import fetch_nfl_schedule; teams, opponents, games = fetch_nfl_schedule(2026); print('2026 games:', games); print('Teams:', len(teams)); print('Week 4 bye teams:', sorted(set(teams) - {team for team, weeks in teams.items() if 4 in weeks})); assert len(teams) == 32 and games >= 200"
       - name: Test waiver wire generator
         run: |
           python -m py_compile scripts/build_waiver_wire.py
