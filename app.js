@@ -1294,13 +1294,7 @@ async function loadWaiverWire() {
           `FANTASY OUTLOOK: ${trendDescription} ` +
           "Future role and workload sustainability remain unverified.";
 
-
-        const risk = document.createElement("p");
-        risk.textContent =
-          "RISK WATCH: Official injury availability, depth-chart " +
-          "role, and upcoming matchup have not been fully verified.";
-
-        intelligence.append(heading, usage, metrics, assessment, risk);
+        intelligence.append(heading, usage, metrics, assessment);
         row.append(title, details, intelligence);
         container.appendChild(row);
 
