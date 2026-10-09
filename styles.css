@@ -4749,3 +4749,12 @@ html {
     padding: 20px;
   }
 }
+/* DATA DADDY — WAIVER WIRE SECTION SPACING */
+
+#waiverWireList {
+  margin-top: 24px;
+}
+
+section:has(#waiverWireList) {
+  margin-top: 40px;
+}
