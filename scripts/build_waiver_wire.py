@@ -489,6 +489,8 @@ def build_provisional_shortlist(eligible, limit=10):
                 'name': candidate['name'],
                 'team': candidate['team'],
                 'position': candidate['position'],
+                'next_opponent': candidate.get('next_opponent'),
+                'matchup_week': candidate.get('matchup_week'),
                 'original_rank': candidate['preliminary_waiver_rank'],
                 'provisional_rank': len(selected) + 1,
                 'role_usage_evidence': candidate.get('role_usage_evidence'),
