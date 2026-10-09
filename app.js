@@ -1113,11 +1113,15 @@ async function loadWaiverWire() {
     if (provisional.length > 0) {
       container.replaceChildren();
 
-      const notice = document.createElement("p");
+    const notice = document.createElement("p");
       notice.textContent =
-        `Week ${data.target_week} — Provisional Top 10. ` +
-        "These are model-ranked candidates, not final pickup recommendations. " +
-        "Official injury availability, player roles, and matchups remain under review.";
+        `DATA DADDY — WEEK ${data.target_week} WAIVER WIRE TOP 10. ` +
+        "Our AI-powered rankings identify promising waiver pickups " +
+        "using recent player usage, fantasy production, opportunity trends, " +
+        "and verified roster availability. " +
+        "This is a running weekly watchlist, not a one-time waiver report. " +
+        "Rankings are designed to refresh daily as new data becomes available, " +
+        "helping you identify emerging opportunities throughout the week.";
       container.appendChild(notice);
 
       provisional.forEach((player) => {
