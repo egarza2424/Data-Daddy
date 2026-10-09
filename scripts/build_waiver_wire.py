@@ -568,6 +568,9 @@ def main():
             continue
         latest_recorded_week = int(current_games[0].get('week', 0))
         latest_completed_week = int(data['target_week']) - 1
+
+        team = str(player.get('team') or '').strip().upper()
+
         if latest_recorded_week < latest_completed_week:
             continue
         latest = float(current_games[0].get('opportunity_value') or 0)
