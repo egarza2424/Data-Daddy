@@ -509,6 +509,10 @@ def main():
         current_games.sort(key=lambda game: int(game.get('week', 0)), reverse=True)
         if not current_games:
             continue
+        latest_recorded_week = int(current_games[0].get('week', 0))
+        latest_completed_week = int(data['target_week']) - 1
+        if latest_recorded_week < latest_completed_week:
+            continue
         latest = float(current_games[0].get('opportunity_value') or 0)
         previous = [float(game.get('opportunity_value') or 0)
                     for game in current_games[1:4]]
