@@ -345,6 +345,34 @@ def rank_eligible_candidates(candidates):
     return eligible
 
 
+def usage_role_evidence(games, position):
+    """Measured recent usage only; never infer official starting status."""
+    recent = games[:3]
+    fields = ('pass_attempts', 'carries', 'targets', 'receptions')
+    history = []
+    for game in recent:
+        metrics = {}
+        for field in fields:
+            value = finite_number(game.get(field))
+            metrics[field] = round(value, 2) if value is not None else None
+        history.append({'season': game.get('season'), 'week': game.get('week'), **metrics})
+    averages = {}
+    for field in fields:
+        values = [entry[field] for entry in history if entry[field] is not None]
+        averages[field] = round(sum(values) / len(values), 2) if values else None
+    return {
+        'usage_evidence_status': 'measured_usage_only_not_role_verified',
+        'usage_sample_games': len(history),
+        'usage_weekly_history': history,
+        'usage_recent_3_game_averages': averages,
+        'usage_primary_metric': 'pass_attempts' if position == 'QB' else ('carries' if position == 'RB' else 'targets'),
+        'offensive_snap_share': None,
+        'official_depth_chart_role': None,
+        'starting_role_verified': None,
+        'injury_replacement_role_verified': None,
+    }
+
+
 def injury_screening(report):
     """Flag explicit negative fantasy injury statuses; never assert cleared."""
     if not isinstance(report, dict) or not report.get('status'):
@@ -403,6 +431,7 @@ def build_provisional_shortlist(eligible, limit=10):
                 'position': candidate['position'],
                 'original_rank': candidate['preliminary_waiver_rank'],
                 'provisional_rank': len(selected) + 1,
+                'role_usage_evidence': candidate.get('role_usage_evidence'),
                 'waiver_evidence_score': candidate['waiver_evidence_score'],
                 'average_rostered': candidate['average_rostered'],
                 'injury_feed_status': candidate.get('injury_feed_status'),
@@ -496,6 +525,7 @@ def main():
             'opportunity_change': change,
             'recent_average_ppr': performance.get('average_ppr'),
             'red_zone_score': red_zone_data.get('score'),
+            'role_usage_evidence': usage_role_evidence(current_games, position),
             **ownership_summary(ownership.get(player_id, {})),
             'injury_opportunity': None,
             **injury_screening(injury_reports.get(player_id)),
@@ -527,6 +557,7 @@ def main():
         },
         'missing_evidence_policy': 'zero_contribution_fixed_denominator',
         'cross_position_rank_status': 'preliminary_not_role_or_injury_adjusted',
+        'role_evidence_policy': 'observed_last_three_games_only_no_official_starter_or_snap_share_inference',
         'injury_analysis_status': 'fantasy_feed_screening_only_official_verification_pending',
         'injury_screening_source': 'ESPN fantasy player API injuryStatus (when provided)',
         'injury_screening_not_official_clearance': True,
@@ -554,6 +585,9 @@ def main():
     print('Top 10 position counts: ' + ', '.join(
         f'{pos}={sum(c["position"] == pos for c in review_pool[:10])}'
         for pos in ('QB', 'RB', 'WR', 'TE')))
+    print('Provisional Top 10 with measured role usage: ' + str(sum(
+        bool(c.get('role_usage_evidence', {}).get('usage_sample_games'))
+        for c in provisional_top_10)))
     print('Injury-screened provisional Top 10: ' + str(len(provisional_top_10)))
     print('Original Top 10 flagged unavailable: ' + str(len(excluded_top_10)))
     print('Provisional Top 10 original ranks: ' + ', '.join(
