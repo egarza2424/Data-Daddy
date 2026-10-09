@@ -566,8 +566,6 @@ def main():
             f"NFL schedule verification failed: {error}"
         ) from error
 
-        ) from error
-
     unknown_team_codes = sorted({
         str(player.get('team') or '').strip().upper()
         for player in players.values()
