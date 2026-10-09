@@ -20,6 +20,10 @@ POSITION_IDS = {1: 'QB', 2: 'RB', 3: 'WR', 4: 'TE'}
 FRESHNESS_HOURS = 36
 NFLVERSE_INJURIES_URL = ('https://github.com/nflverse/nflverse-data/releases/'
                           'download/injuries/injuries_{season}.csv')
+NFLVERSE_SCHEDULE_URL = (
+    'https://raw.githubusercontent.com/'
+    'nflverse/nfldata/master/data/games.csv'
+)
 # ESPN fantasy injuryStatus is an early warning, NOT official game-day clearance.
 ESPN_UNAVAILABLE_STATUSES = {'OUT', 'DOUBTFUL', 'INJURY_RESERVE', 'IR', 'SUSPENSION', 'SUSPENDED', 'PUP', 'NFI'}
 
