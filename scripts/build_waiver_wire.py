@@ -582,7 +582,13 @@ def main():
 
         team = str(player.get('team') or '').strip().upper()
 
-        if latest_recorded_week < latest_completed_week:
+        missed_scheduled_weeks = [
+            week
+            for week in range(latest_recorded_week + 1, latest_completed_week + 1)
+            if week in team_weeks.get(team, set())
+        ]
+
+        if missed_scheduled_weeks:
             continue
         latest = float(current_games[0].get('opportunity_value') or 0)
         previous = [float(game.get('opportunity_value') or 0)
