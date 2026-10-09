@@ -663,6 +663,7 @@ def main():
         'provisional_top_10': provisional_top_10,
         'excluded_from_original_top_10_by_espn_injury_screen': excluded_top_10,
     }
+    result['last_updated'] = datetime.now(timezone.utc).isoformat()        
     OUTPUT.write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')
     print(f'Full opportunity candidate pool: {len(candidates)}')
     print(f'Players with verified ownership below {OWNERSHIP_CUTOFF}%: {len(eligible)}')
