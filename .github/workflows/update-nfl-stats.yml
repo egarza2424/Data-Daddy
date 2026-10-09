@@ -11819,6 +11819,11 @@ jobs:
               "pregame trench signals."
           )
           PY
+      - name: Test waiver wire generator
+        run: |
+          python -m py_compile scripts/build_waiver_wire.py
+          python scripts/build_waiver_wire.py
+          python -m json.tool waiver_wire_candidates.json > /dev/null
           
       - name: Commit updated stats
         run: |
