@@ -16,13 +16,19 @@
       "opportunity_change": 29.0,
       "recent_average_ppr": 6.49,
       "red_zone_score": 71.6,
-      "espn_rostered": null,
+      "espn_rostered": 2.78,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 2.78,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 2.78,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -35,13 +41,19 @@
       "opportunity_change": 24.0,
       "recent_average_ppr": 8.51,
       "red_zone_score": 45.0,
-      "espn_rostered": null,
+      "espn_rostered": 59.2,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 59.2,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 59.2,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -54,13 +66,19 @@
       "opportunity_change": 21.5,
       "recent_average_ppr": 22.83,
       "red_zone_score": 52.0,
-      "espn_rostered": null,
+      "espn_rostered": 98.36,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 98.36,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 98.36,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -73,13 +91,19 @@
       "opportunity_change": 20.0,
       "recent_average_ppr": 12.97,
       "red_zone_score": 75.0,
-      "espn_rostered": null,
+      "espn_rostered": 80.68,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 80.68,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 80.68,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -92,13 +116,19 @@
       "opportunity_change": 17.5,
       "recent_average_ppr": 22.35,
       "red_zone_score": 68.0,
-      "espn_rostered": null,
+      "espn_rostered": 35.41,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 35.41,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 35.41,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -111,13 +141,19 @@
       "opportunity_change": 17.5,
       "recent_average_ppr": 15.98,
       "red_zone_score": 66.0,
-      "espn_rostered": null,
+      "espn_rostered": 91.89,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 91.89,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 91.89,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -130,13 +166,19 @@
       "opportunity_change": 13.5,
       "recent_average_ppr": 23.21,
       "red_zone_score": 89.0,
-      "espn_rostered": null,
+      "espn_rostered": 90.8,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 90.8,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 90.8,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -149,13 +191,19 @@
       "opportunity_change": 13.0,
       "recent_average_ppr": 26.46,
       "red_zone_score": 61.0,
-      "espn_rostered": null,
+      "espn_rostered": 96.8,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 96.8,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 96.8,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -168,13 +216,19 @@
       "opportunity_change": 13.0,
       "recent_average_ppr": 7.4,
       "red_zone_score": 44.6,
-      "espn_rostered": null,
+      "espn_rostered": 21.58,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 21.58,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 21.58,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -187,13 +241,19 @@
       "opportunity_change": 12.5,
       "recent_average_ppr": 10.06,
       "red_zone_score": 43.0,
-      "espn_rostered": null,
+      "espn_rostered": 1.52,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 1.52,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 1.52,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -206,13 +266,19 @@
       "opportunity_change": 11.0,
       "recent_average_ppr": 25.4,
       "red_zone_score": 64.0,
-      "espn_rostered": null,
+      "espn_rostered": 99.14,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 99.14,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 99.14,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -225,13 +291,19 @@
       "opportunity_change": 9.5,
       "recent_average_ppr": 12.53,
       "red_zone_score": 71.0,
-      "espn_rostered": null,
+      "espn_rostered": 79.92,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 79.92,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 79.92,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -244,13 +316,19 @@
       "opportunity_change": 9.5,
       "recent_average_ppr": 7.3,
       "red_zone_score": 50.0,
-      "espn_rostered": null,
+      "espn_rostered": 72.99,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 72.99,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 72.99,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -263,13 +341,19 @@
       "opportunity_change": 9.0,
       "recent_average_ppr": 9.6,
       "red_zone_score": 36.0,
-      "espn_rostered": null,
+      "espn_rostered": 89.5,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 89.5,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 89.5,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -282,13 +366,19 @@
       "opportunity_change": 9.0,
       "recent_average_ppr": 12.7,
       "red_zone_score": 32.0,
-      "espn_rostered": null,
+      "espn_rostered": 76.24,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 76.24,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 76.24,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -301,13 +391,19 @@
       "opportunity_change": 9.0,
       "recent_average_ppr": 11.3,
       "red_zone_score": 57.0,
-      "espn_rostered": null,
+      "espn_rostered": 69.54,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 69.54,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 69.54,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -320,13 +416,19 @@
       "opportunity_change": 9.0,
       "recent_average_ppr": 10.65,
       "red_zone_score": 42.8,
-      "espn_rostered": null,
+      "espn_rostered": 23.03,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 23.03,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 23.03,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -339,13 +441,19 @@
       "opportunity_change": 8.5,
       "recent_average_ppr": 21.33,
       "red_zone_score": 67.0,
-      "espn_rostered": null,
+      "espn_rostered": 98.21,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 98.21,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 98.21,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -358,32 +466,19 @@
       "opportunity_change": 8.0,
       "recent_average_ppr": 22.52,
       "red_zone_score": 73.0,
-      "espn_rostered": null,
+      "espn_rostered": 90.21,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0036410",
-      "name": "Tee Higgins",
-      "team": "CIN",
-      "position": "WR",
-      "latest_opportunity": 16.0,
-      "previous_opportunity_average": 8.5,
-      "opportunity_change": 7.5,
-      "recent_average_ppr": 20.73,
-      "red_zone_score": 42.0,
-      "espn_rostered": null,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 90.21,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 90.21,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -396,13 +491,44 @@
       "opportunity_change": 7.5,
       "recent_average_ppr": 9.97,
       "red_zone_score": 32.0,
-      "espn_rostered": null,
+      "espn_rostered": 24.87,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 24.87,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 24.87,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null
+    },
+    {
+      "player_id": "00-0036410",
+      "name": "Tee Higgins",
+      "team": "CIN",
+      "position": "WR",
+      "latest_opportunity": 16.0,
+      "previous_opportunity_average": 8.5,
+      "opportunity_change": 7.5,
+      "recent_average_ppr": 20.73,
+      "red_zone_score": 42.0,
+      "espn_rostered": 96.87,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 96.87,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 96.87,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -415,13 +541,19 @@
       "opportunity_change": 7.5,
       "recent_average_ppr": 15.67,
       "red_zone_score": 100.0,
-      "espn_rostered": null,
+      "espn_rostered": 96.72,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 96.72,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 96.72,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -434,13 +566,19 @@
       "opportunity_change": 7.0,
       "recent_average_ppr": 22.71,
       "red_zone_score": 77.0,
-      "espn_rostered": null,
+      "espn_rostered": 84.31,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 84.31,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 84.31,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -453,13 +591,19 @@
       "opportunity_change": 7.0,
       "recent_average_ppr": 17.27,
       "red_zone_score": 77.0,
-      "espn_rostered": null,
+      "espn_rostered": 74.05,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 74.05,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 74.05,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -472,13 +616,19 @@
       "opportunity_change": 7.0,
       "recent_average_ppr": 6.27,
       "red_zone_score": 39.0,
-      "espn_rostered": null,
+      "espn_rostered": 10.12,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 10.12,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 10.12,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -491,13 +641,19 @@
       "opportunity_change": 6.5,
       "recent_average_ppr": 15.13,
       "red_zone_score": 68.0,
-      "espn_rostered": null,
+      "espn_rostered": 96.5,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 96.5,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 96.5,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -510,13 +666,19 @@
       "opportunity_change": 6.5,
       "recent_average_ppr": 4.93,
       "red_zone_score": 36.0,
-      "espn_rostered": null,
+      "espn_rostered": 20.98,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 20.98,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 20.98,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -529,13 +691,19 @@
       "opportunity_change": 6.5,
       "recent_average_ppr": 11.23,
       "red_zone_score": 36.0,
-      "espn_rostered": null,
+      "espn_rostered": 17.8,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 17.8,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 17.8,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -548,13 +716,19 @@
       "opportunity_change": 6.0,
       "recent_average_ppr": 17.57,
       "red_zone_score": 58.0,
-      "espn_rostered": null,
+      "espn_rostered": 99.04,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 99.04,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 99.04,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -567,13 +741,19 @@
       "opportunity_change": 6.0,
       "recent_average_ppr": 7.03,
       "red_zone_score": 25.0,
-      "espn_rostered": null,
+      "espn_rostered": 12.58,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 12.58,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 12.58,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -586,13 +766,19 @@
       "opportunity_change": 6.0,
       "recent_average_ppr": 4.87,
       "red_zone_score": 32.0,
-      "espn_rostered": null,
+      "espn_rostered": 1.89,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 1.89,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 1.89,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -605,13 +791,19 @@
       "opportunity_change": 5.5,
       "recent_average_ppr": 13.77,
       "red_zone_score": 61.0,
-      "espn_rostered": null,
+      "espn_rostered": 95.75,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 95.75,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 95.75,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -624,13 +816,19 @@
       "opportunity_change": 5.5,
       "recent_average_ppr": 6.7,
       "red_zone_score": 79.0,
-      "espn_rostered": null,
+      "espn_rostered": 91.12,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 91.12,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 91.12,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -662,13 +860,19 @@
       "opportunity_change": 5.5,
       "recent_average_ppr": 9.63,
       "red_zone_score": 58.0,
-      "espn_rostered": null,
+      "espn_rostered": 7.84,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 7.84,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 7.84,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -700,13 +904,19 @@
       "opportunity_change": 5.0,
       "recent_average_ppr": 15.3,
       "red_zone_score": 46.0,
-      "espn_rostered": null,
+      "espn_rostered": 92.55,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 92.55,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 92.55,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -719,13 +929,19 @@
       "opportunity_change": 5.0,
       "recent_average_ppr": 13.67,
       "red_zone_score": 33.0,
-      "espn_rostered": null,
+      "espn_rostered": 88.88,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 88.88,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 88.88,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -738,13 +954,19 @@
       "opportunity_change": 5.0,
       "recent_average_ppr": 14.77,
       "red_zone_score": 58.0,
-      "espn_rostered": null,
+      "espn_rostered": 70.64,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 70.64,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 70.64,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -757,13 +979,19 @@
       "opportunity_change": 5.0,
       "recent_average_ppr": 12.67,
       "red_zone_score": 58.0,
-      "espn_rostered": null,
+      "espn_rostered": 97.42,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 97.42,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 97.42,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -776,13 +1004,19 @@
       "opportunity_change": 5.0,
       "recent_average_ppr": 14.97,
       "red_zone_score": 42.0,
-      "espn_rostered": null,
+      "espn_rostered": 0.78,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 0.78,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 0.78,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -795,13 +1029,19 @@
       "opportunity_change": 5.0,
       "recent_average_ppr": 2.07,
       "red_zone_score": 36.0,
-      "espn_rostered": null,
+      "espn_rostered": 1.05,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 1.05,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 1.05,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -814,13 +1054,19 @@
       "opportunity_change": 5.0,
       "recent_average_ppr": 2.95,
       "red_zone_score": 35.0,
-      "espn_rostered": null,
+      "espn_rostered": 0.11,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 0.11,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 0.11,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -833,13 +1079,19 @@
       "opportunity_change": 5.0,
       "recent_average_ppr": 1.65,
       "red_zone_score": 44.6,
-      "espn_rostered": null,
+      "espn_rostered": 0.97,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 0.97,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 0.97,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -852,13 +1104,19 @@
       "opportunity_change": 4.5,
       "recent_average_ppr": 15.68,
       "red_zone_score": 66.0,
-      "espn_rostered": null,
+      "espn_rostered": 5.63,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 5.63,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 5.63,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -871,13 +1129,19 @@
       "opportunity_change": 4.5,
       "recent_average_ppr": 8.1,
       "red_zone_score": 61.0,
-      "espn_rostered": null,
+      "espn_rostered": 47.94,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 47.94,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 47.94,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -890,32 +1154,19 @@
       "opportunity_change": 4.5,
       "recent_average_ppr": 8.4,
       "red_zone_score": 47.0,
-      "espn_rostered": null,
+      "espn_rostered": 89.82,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0041040",
-      "name": "Antonio Williams",
-      "team": "WAS",
-      "position": "WR",
-      "latest_opportunity": 8.0,
-      "previous_opportunity_average": 3.5,
-      "opportunity_change": 4.5,
-      "recent_average_ppr": 4.67,
-      "red_zone_score": 25.0,
-      "espn_rostered": null,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 89.82,
+      "ownership_eligible": false,
+      "ownership_sources": {
+        "espn": {
+          "percent": 89.82,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -928,13 +1179,44 @@
       "opportunity_change": 4.5,
       "recent_average_ppr": 8.8,
       "red_zone_score": 36.0,
-      "espn_rostered": null,
+      "espn_rostered": 26.66,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 26.66,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 26.66,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null
+    },
+    {
+      "player_id": "00-0041040",
+      "name": "Antonio Williams",
+      "team": "WAS",
+      "position": "WR",
+      "latest_opportunity": 8.0,
+      "previous_opportunity_average": 3.5,
+      "opportunity_change": 4.5,
+      "recent_average_ppr": 4.67,
+      "red_zone_score": 25.0,
+      "espn_rostered": 6.35,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 6.35,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 6.35,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     },
     {
@@ -947,13 +1229,19 @@
       "opportunity_change": 4.5,
       "recent_average_ppr": 6.0,
       "red_zone_score": 47.0,
-      "espn_rostered": null,
+      "espn_rostered": 1.45,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
+      "average_rostered": 1.45,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 1.45,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:48:31+00:00"
+        }
+      },
+      "ownership_source_count": 1,
       "injury_opportunity": null
     }
   ]
