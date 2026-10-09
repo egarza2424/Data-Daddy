@@ -1096,38 +1096,14 @@ async function loadWaiverWire() {
           : "WEEK —";
     }
 
-    const hasVerifiedOwnership = (player) => {
-      const values = [
-        player.espn_rostered,
-        player.yahoo_rostered,
-        player.sleeper_rostered
-      ];
-
-      return values.every(
-        value =>
-          value !== null &&
-          value !== undefined &&
-          value !== "" &&
-          Number.isFinite(Number(value)) &&
-          Number(value) >= 0 &&
-          Number(value) <= 100
-      );
-    };
-
+    
     const eligible = candidates.filter((player) => {
-      if (!hasVerifiedOwnership(player)) {
-        return false;
-      }
-
-      const average = (
-        Number(player.espn_rostered) +
-        Number(player.yahoo_rostered) +
-        Number(player.sleeper_rostered)
-      ) / 3;
-
-      return average < 65 &&
-        player.injury_opportunity !== null &&
-        player.injury_opportunity !== undefined;
+      return (
+        player.ownership_eligible === true &&
+        Number.isFinite(Number(player.average_rostered)) &&
+        Number(player.average_rostered) < 65 &&
+        player.injury_screening !== "flagged_unavailable"
+      );
     });
 
     if (eligible.length === 0) {
