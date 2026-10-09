@@ -1249,8 +1249,21 @@ async function loadWaiverWire() {
 
         metrics.append(pprMetric, growthMetric);
 
+        
+        const positionOutlooks = {
+          QB: "Passing volume creates opportunities for completions, yards, and touchdowns. Evaluate whether the offense can sustain this workload before treating him as a reliable starter.",
+          RB: "Carries support rushing production, while targets can increase PPR value. A larger workload could improve his fantasy outlook if his role continues.",
+          WR: "Targets create opportunities for receptions, yards, and touchdowns. Consistent target volume is important before relying on him as a weekly starter.",
+          TE: "Targets are especially valuable when evaluating tight-end streaming options. Continued passing-game involvement could make him useful in PPR formats."
+        };
+
+        const positionOutlook =
+          positionOutlooks[player.position] ||
+          "Recent opportunities may create fantasy value, but future usage remains uncertain.";
+
         assessment.textContent =
           `FANTASY OUTLOOK: ${trendDescription} ` +
+          `${positionOutlook} ` +
           "Future role and workload sustainability remain unverified.";
 
 
