@@ -1140,8 +1140,6 @@ async function loadWaiverWire() {
         details.textContent =
           `Rostered: ${Number.isFinite(ownership) ? ownership.toFixed(1) + "%" : "Unverified"} ` +
           `• Evidence score: ${Number.isFinite(score) ? score.toFixed(1) : "—"} ` +
-          `• Injury verification pending`;
-
         
         const intelligence = document.createElement("div");
         intelligence.className = "waiver-intelligence";
