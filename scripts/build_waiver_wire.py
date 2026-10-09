@@ -1,3 +1,5 @@
+import csv
+import io
 import json
 import math
 import re
@@ -16,6 +18,8 @@ ESPN_URL = ('https://lm-api-reads.fantasy.espn.com/apis/v3/'
             'games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info')
 POSITION_IDS = {1: 'QB', 2: 'RB', 3: 'WR', 4: 'TE'}
 FRESHNESS_HOURS = 36
+NFLVERSE_INJURIES_URL = ('https://github.com/nflverse/nflverse-data/releases/'
+                          'download/injuries/injuries_{season}.csv')
 # ESPN fantasy injuryStatus is an early warning, NOT official game-day clearance.
 ESPN_UNAVAILABLE_STATUSES = {'OUT', 'DOUBTFUL', 'INJURY_RESERVE', 'IR', 'SUSPENSION', 'SUSPENDED', 'PUP', 'NFI'}
 
@@ -137,6 +141,71 @@ def fetch_espn_ownership(players):
     if len(team_map) < 20 or len(verified) < 100:
         raise RuntimeError('ESPN coverage insufficient; refusing to publish ownership.')
     return verified, injury_reports, checked_at
+
+
+def fetch_nflverse_injuries(season, week):
+    """Read third-party injury evidence; never treat it as official clearance.
+
+    The CSV has no publication or report timestamp. Retrieval time only proves
+    when this script downloaded it, not when its observations were updated.
+    """
+    url = NFLVERSE_INJURIES_URL.format(season=int(season))
+    request = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    with urllib.request.urlopen(request, timeout=45) as response:
+        payload = response.read()
+    reader = csv.DictReader(io.StringIO(payload.decode('utf-8-sig')))
+    required = {'season', 'week', 'gsis_id', 'team', 'report_status',
+                'practice_status', 'report_primary_injury', 'practice_primary_injury'}
+    if not required.issubset(set(reader.fieldnames or [])):
+        raise ValueError('nflverse injury CSV is missing required columns')
+    matched_week = []
+    for row in reader:
+        try:
+            if int(row['season']) == int(season) and int(row['week']) == int(week):
+                matched_week.append(row)
+        except (TypeError, ValueError):
+            continue
+    if not matched_week:
+        raise ValueError('nflverse injury CSV has no rows for requested season/week')
+    by_id = defaultdict(list)
+    for row in matched_week:
+        if row.get('gsis_id'):
+            by_id[row['gsis_id']].append(row)
+    retrieved_at = datetime.now(timezone.utc).isoformat(timespec='seconds')
+    return by_id, {'source': url, 'retrieved_at': retrieved_at,
+                   'report_updated_at': None, 'freshness': 'unverified_no_report_timestamp',
+                   'week_record_count': len(matched_week)}
+
+
+def nflverse_injury_evidence(player_id, team, reports, metadata):
+    """Attach evidence only for unique ID and team matches; do not infer health."""
+    rows = reports.get(player_id, [])
+    matches = [row for row in rows if row.get('team') == team]
+    result = {
+        'nflverse_injury_match': 'not_listed',
+        'nflverse_practice_status': None,
+        'nflverse_practice_injury': None,
+        'nflverse_game_status': None,
+        'nflverse_report_injury': None,
+        'nflverse_source': metadata.get('source'),
+        'nflverse_retrieved_at': metadata.get('retrieved_at'),
+        'nflverse_report_updated_at': None,
+        'nflverse_freshness': metadata.get('freshness', 'unavailable'),
+    }
+    if not rows:
+        return result
+    if len(matches) != 1 or len(rows) != 1:
+        result['nflverse_injury_match'] = 'ambiguous_or_team_mismatch'
+        return result
+    row = matches[0]
+    result.update({
+        'nflverse_injury_match': 'matched',
+        'nflverse_practice_status': row.get('practice_status') or None,
+        'nflverse_practice_injury': row.get('practice_primary_injury') or None,
+        'nflverse_game_status': row.get('report_status') or None,
+        'nflverse_report_injury': row.get('report_primary_injury') or None,
+    })
+    return result
 
 
 def load_ownership():
@@ -339,6 +408,20 @@ def build_provisional_shortlist(eligible, limit=10):
                 'injury_feed_status': candidate.get('injury_feed_status'),
                 'injury_screening': candidate.get('injury_screening'),
                 'injury_review_priority': injury_review_priority(candidate),
+                'nflverse_injury_match': candidate.get('nflverse_injury_match'),
+                'nflverse_practice_status': candidate.get('nflverse_practice_status'),
+                'nflverse_practice_injury': candidate.get('nflverse_practice_injury'),
+                'nflverse_game_status': candidate.get('nflverse_game_status'),
+                'nflverse_report_injury': candidate.get('nflverse_report_injury'),
+                'nflverse_source': candidate.get('nflverse_source'),
+                'nflverse_retrieved_at': candidate.get('nflverse_retrieved_at'),
+                'nflverse_report_updated_at': None,
+                'nflverse_freshness': candidate.get('nflverse_freshness'),
+                'injury_source_conflict_review': bool(
+                    candidate.get('nflverse_game_status') and
+                    candidate.get('injury_feed_status') and
+                    candidate['nflverse_game_status'].strip().upper() !=
+                    candidate['injury_feed_status'].strip().upper()),
                 'injury_feed_source': candidate.get('injury_feed_source'),
                 'injury_feed_checked_at': candidate.get('injury_feed_checked_at'),
                 'official_game_status': None,
@@ -372,6 +455,20 @@ def main():
         'players': ownership,
     }, indent=2) + '\n', encoding='utf-8')
 
+    try:
+        nflverse_reports, nflverse_metadata = fetch_nflverse_injuries(
+            data['season'], data['target_week'])
+        print('nflverse injury records for target week: ' +
+              str(nflverse_metadata['week_record_count']))
+    except Exception as error:
+        print(f'nflverse injuries unavailable: {type(error).__name__}: {error}')
+        nflverse_reports = {}
+        nflverse_metadata = {
+            'source': NFLVERSE_INJURIES_URL.format(season=int(data['season'])),
+            'retrieved_at': None, 'report_updated_at': None,
+            'freshness': 'unavailable', 'week_record_count': 0,
+        }
+
     candidates = []
     for player_id, player in players.items():
         position = player.get('position')
@@ -402,6 +499,8 @@ def main():
             **ownership_summary(ownership.get(player_id, {})),
             'injury_opportunity': None,
             **injury_screening(injury_reports.get(player_id)),
+            **nflverse_injury_evidence(player_id, player.get('team'),
+                                       nflverse_reports, nflverse_metadata),
         })
     # Do not truncate before filtering: eligible players outside the first
     # 50 opportunity-growth records must remain eligible for consideration.
@@ -431,6 +530,8 @@ def main():
         'injury_analysis_status': 'fantasy_feed_screening_only_official_verification_pending',
         'injury_screening_source': 'ESPN fantasy player API injuryStatus (when provided)',
         'injury_screening_not_official_clearance': True,
+        'nflverse_injury_metadata': nflverse_metadata,
+        'nflverse_injury_policy': 'supplemental_unverified_freshness_never_official_clearance',
         'full_candidate_count': len(candidates),
         'eligible_candidate_count': len(eligible),
         'unverified_ownership_count': len(unverified),
@@ -465,6 +566,11 @@ def main():
         c['injury_screening'] == 'flagged_unavailable' for c in review_pool)))
     print('Top 50 missing ESPN injury status: ' + str(sum(
         c['injury_screening'] == 'unverified' for c in review_pool)))
+    print('Provisional Top 10 nflverse ID/team matches: ' + str(sum(
+        c['nflverse_injury_match'] == 'matched' for c in provisional_top_10)))
+    print('Provisional Top 10 nflverse source conflicts to review: ' + str(sum(
+        c['injury_source_conflict_review'] for c in provisional_top_10)))
+    print('nflverse injury report freshness: ' + nflverse_metadata['freshness'])
     print('No final Top 10 published: official injuries, role and matchup evaluation remain pending.')
 
 
