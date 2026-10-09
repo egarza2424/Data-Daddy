@@ -4647,3 +4647,105 @@ html {
   }
 
 }
+
+/* ==========================================
+   DATA DADDY — WAIVER WIRE PLAYER CARDS
+   ========================================== */
+
+#waiverWireList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+  margin-top: 24px;
+}
+
+#waiverWireList > p {
+  grid-column: 1 / -1;
+  margin: 0 0 8px;
+  padding: 14px 18px;
+  border: 1px solid rgba(212, 170, 72, 0.3);
+  border-radius: 10px;
+  background: rgba(212, 170, 72, 0.06);
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+#waiverWireList .waiver-player {
+  min-width: 0;
+  padding: 24px;
+  background: linear-gradient(
+    145deg,
+    #202d40 0%,
+    #141e2e 100%
+  );
+  border: 1px solid #35445a;
+  border-top: 3px solid #d4aa48;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease,
+              border-color 0.2s ease;
+}
+
+#waiverWireList .waiver-player:hover {
+  transform: translateY(-3px);
+  border-color: #d4aa48;
+}
+
+#waiverWireList .waiver-player > strong {
+  display: block;
+  color: #f8fafc;
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+#waiverWireList .waiver-player > p {
+  color: #d4aa48;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.7;
+  margin: 0 0 18px;
+}
+
+#waiverWireList .waiver-intelligence {
+  padding-top: 18px;
+  border-top: 1px solid #35445a;
+}
+
+#waiverWireList .waiver-intelligence > strong {
+  display: block;
+  margin-bottom: 14px;
+  color: #d4aa48;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+#waiverWireList .waiver-intelligence p {
+  margin: 0 0 12px;
+  color: #cbd5e1;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+#waiverWireList .waiver-intelligence p:last-child {
+  margin-bottom: 0;
+  padding: 12px;
+  background: rgba(245, 158, 11, 0.07);
+  border-left: 3px solid #d4aa48;
+  border-radius: 4px;
+}
+
+@media (max-width: 850px) {
+  #waiverWireList {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  #waiverWireList .waiver-player {
+    padding: 20px;
+  }
+}
