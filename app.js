@@ -1140,10 +1140,10 @@ async function loadWaiverWire() {
         const details = document.createElement("p");
         const ownership = Number(player.average_rostered);
         const score = Number(player.waiver_evidence_score);
-
+        
         details.textContent =
-          `Rostered: ${Number.isFinite(ownership) ? ownership.toFixed(1) + "%" : "Unverified"} ` +
-          `• Evidence score: ${Number.isFinite(score) ? score.toFixed(1) : "—"} ` +
+          `Rostered: ${Number.isFinite(ownership) ? ownership.toFixed(1) + "%" : "Unverified"}` +
+          ` • Evidence score: ${Number.isFinite(score) ? score.toFixed(1) : "—"}`;
         
         const intelligence = document.createElement("div");
         intelligence.className = "waiver-intelligence";
