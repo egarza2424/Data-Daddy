@@ -1122,9 +1122,34 @@ async function loadWaiverWire() {
         "This is a running weekly watchlist, not a one-time waiver report. " +
         "Rankings are designed to refresh daily as new data becomes available, " +
         "helping you identify emerging opportunities throughout the week.";
-      container.appendChild(notice);
+      
+        container.appendChild(notice);
 
-      provisional.forEach((player) => {
+        if (data.last_updated) {
+          const updated = document.createElement("p");
+          updated.className = "waiver-last-updated";
+
+          const updatedDate = new Date(data.last_updated);
+
+          if (!Number.isNaN(updatedDate.getTime())) {
+            updated.textContent =
+              "LAST UPDATED: " +
+              updatedDate.toLocaleString("en-US", {
+                timeZone: "America/Los_Angeles",
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                timeZoneName: "short"
+              });
+
+            container.appendChild(updated);
+          }
+        }
+
+        provisional.forEach((player) => {
+
         const fullPlayer = candidates.find(
           (candidate) => candidate.player_id === player.player_id
         ) || player;
