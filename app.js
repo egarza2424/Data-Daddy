@@ -1229,9 +1229,28 @@ async function loadWaiverWire() {
           ? `Model opportunity change: ${opportunityChange > 0 ? "+" : ""}${opportunityChange.toFixed(1)}.`
           : "Opportunity growth has not been measured.";
 
+        
+        const metrics = document.createElement("div");
+        metrics.className = "waiver-metrics";
+
+        const pprMetric = document.createElement("div");
+        const growthMetric = document.createElement("div");
+
+        const pprValue = Number.isFinite(recentPpr)
+          ? recentPpr.toFixed(1)
+          : "—";
+
+        const growthValue = Number.isFinite(opportunityChange)
+          ? `${opportunityChange > 0 ? "+" : ""}${opportunityChange.toFixed(1)}`
+          : "—";
+
+        pprMetric.textContent = `3-GAME AVG PPR: ${pprValue}`;
+        growthMetric.textContent = `OPPORTUNITY CHANGE: ${growthValue}`;
+
+        metrics.append(pprMetric, growthMetric);
+
         assessment.textContent =
-          `MODEL ASSESSMENT: ${trendDescription} ` +
-          `${pprDescription} ${growthDescription} ` +
+          `FANTASY OUTLOOK: ${trendDescription} ` +
           "Future role and workload sustainability remain unverified.";
 
 
@@ -1240,7 +1259,7 @@ async function loadWaiverWire() {
           "RISK WATCH: Official injury availability, depth-chart " +
           "role, and upcoming matchup have not been fully verified.";
 
-        intelligence.append(heading, usage, assessment, risk);
+        intelligence.append(heading, usage, metrics, assessment, risk);
         row.append(title, details, intelligence);
         container.appendChild(row);
 
