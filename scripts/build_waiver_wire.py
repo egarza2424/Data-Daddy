@@ -16,6 +16,8 @@ ESPN_URL = ('https://lm-api-reads.fantasy.espn.com/apis/v3/'
             'games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info')
 POSITION_IDS = {1: 'QB', 2: 'RB', 3: 'WR', 4: 'TE'}
 FRESHNESS_HOURS = 36
+# ESPN fantasy injuryStatus is an early warning, NOT official game-day clearance.
+ESPN_UNAVAILABLE_STATUSES = {'OUT', 'DOUBTFUL', 'INJURY_RESERVE', 'IR', 'SUSPENSION', 'SUSPENDED', 'PUP', 'NFI'}
 
 
 def normalized_name(value):
@@ -93,6 +95,7 @@ def fetch_espn_ownership(players):
 
     checked_at = datetime.now(timezone.utc).isoformat(timespec='seconds')
     verified = {}
+    injury_reports = {}
     unmatched = 0
     ambiguous = 0
     for player_id, player in players.items():
@@ -106,7 +109,17 @@ def fetch_espn_ownership(players):
         if not matches:
             unmatched += 1
             continue
-        record = matches[0].get('ownership')
+        espn_record = matches[0]
+        raw_status = espn_record.get('injuryStatus')
+        if isinstance(raw_status, str) and raw_status.strip():
+            status = raw_status.strip().upper()
+            injury_reports[player_id] = {
+                'status': status,
+                'source': ESPN_URL,
+                'checked_at': checked_at,
+                'source_type': 'fantasy_player_feed_not_official_inactives',
+            }
+        record = espn_record.get('ownership')
         if not isinstance(record, dict):
             continue
         value = record.get('percentOwned')
@@ -123,7 +136,7 @@ def fetch_espn_ownership(players):
           f'{unmatched} unmatched, {ambiguous} ambiguous.')
     if len(team_map) < 20 or len(verified) < 100:
         raise RuntimeError('ESPN coverage insufficient; refusing to publish ownership.')
-    return verified, checked_at
+    return verified, injury_reports, checked_at
 
 
 def load_ownership():
@@ -263,6 +276,23 @@ def rank_eligible_candidates(candidates):
     return eligible
 
 
+def injury_screening(report):
+    """Flag explicit negative fantasy injury statuses; never assert cleared."""
+    if not isinstance(report, dict) or not report.get('status'):
+        return {'injury_feed_status': None, 'injury_feed_source': None,
+                'injury_feed_checked_at': None, 'injury_screening': 'unverified',
+                'injury_screening_reason': 'No matched ESPN injury status'}
+    status = report['status']
+    flagged = status in ESPN_UNAVAILABLE_STATUSES
+    return {'injury_feed_status': status,
+            'injury_feed_source': report['source'],
+            'injury_feed_checked_at': report['checked_at'],
+            'injury_screening': 'flagged_unavailable' if flagged else 'requires_official_verification',
+            'injury_screening_reason': (
+                'ESPN fantasy feed lists an unavailable status; verify official report'
+                if flagged else 'ESPN fantasy feed does not establish game-day availability')}
+
+
 def main():
     data = json.loads(SOURCE.read_text(encoding='utf-8'))
     players = data.get('player_lookup', {})
@@ -272,10 +302,10 @@ def main():
 
     # Fetch fresh public ownership each run. On failure, do not use old data.
     try:
-        ownership, checked_at = fetch_espn_ownership(players)
+        ownership, injury_reports, checked_at = fetch_espn_ownership(players)
     except Exception as error:
         print(f'ESPN ownership unavailable: {type(error).__name__}: {error}')
-        ownership, checked_at = {}, None
+        ownership, injury_reports, checked_at = {}, {}, None
     OWNERSHIP_SOURCE.write_text(json.dumps({
         'checked_at': checked_at, 'source': 'ESPN public fantasy player API',
         'players': ownership,
@@ -310,6 +340,7 @@ def main():
             'red_zone_score': red_zone_data.get('score'),
             **ownership_summary(ownership.get(player_id, {})),
             'injury_opportunity': None,
+            **injury_screening(injury_reports.get(player_id)),
         })
     # Do not truncate before filtering: eligible players outside the first
     # 50 opportunity-growth records must remain eligible for consideration.
@@ -335,7 +366,9 @@ def main():
         },
         'missing_evidence_policy': 'zero_contribution_fixed_denominator',
         'cross_position_rank_status': 'preliminary_not_role_or_injury_adjusted',
-        'injury_analysis_status': 'pending',
+        'injury_analysis_status': 'fantasy_feed_screening_only_official_verification_pending',
+        'injury_screening_source': 'ESPN fantasy player API injuryStatus (when provided)',
+        'injury_screening_not_official_clearance': True,
         'full_candidate_count': len(candidates),
         'eligible_candidate_count': len(eligible),
         'unverified_ownership_count': len(unverified),
@@ -354,7 +387,11 @@ def main():
     print('Top 10 position counts: ' + ', '.join(
         f'{pos}={sum(c["position"] == pos for c in review_pool[:10])}'
         for pos in ('QB', 'RB', 'WR', 'TE')))
-    print('No final Top 10 published: injury and matchup evaluation remain pending.')
+    print('Top 50 ESPN injury flags: ' + str(sum(
+        c['injury_screening'] == 'flagged_unavailable' for c in review_pool)))
+    print('Top 50 missing ESPN injury status: ' + str(sum(
+        c['injury_screening'] == 'unverified' for c in review_pool)))
+    print('No final Top 10 published: official injuries, role and matchup evaluation remain pending.')
 
 
 
