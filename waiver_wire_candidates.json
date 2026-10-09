@@ -1,35 +1,106 @@
 {
   "season": 2026,
   "target_week": 5,
-  "status": "candidates_only",
+  "status": "preliminary_ownership_filtered_not_injury_verified",
   "ownership_cutoff": 65,
   "ownership_rule": "available_verified_average",
   "ownership_minimum_sources": 1,
+  "ranking_method": "relative_evidence_percentiles",
+  "ranking_weights": {
+    "opportunity_change": 0.45,
+    "recent_average_ppr": 0.35,
+    "latest_opportunity": 0.2
+  },
+  "injury_analysis_status": "pending",
+  "full_candidate_count": 474,
+  "eligible_candidate_count": 335,
+  "unverified_ownership_count": 26,
+  "above_cutoff_count": 113,
   "candidates": [
     {
-      "player_id": "00-0038416",
-      "name": "Tyson Bagent",
-      "team": "CHI",
+      "player_id": "00-0029604",
+      "name": "Kirk Cousins",
+      "team": "LV",
       "position": "QB",
-      "latest_opportunity": 38.0,
-      "previous_opportunity_average": 9.0,
-      "opportunity_change": 29.0,
-      "recent_average_ppr": 6.49,
-      "red_zone_score": 71.6,
-      "espn_rostered": 2.78,
+      "latest_opportunity": 52.0,
+      "previous_opportunity_average": 34.5,
+      "opportunity_change": 17.5,
+      "recent_average_ppr": 22.35,
+      "red_zone_score": 68.0,
+      "espn_rostered": 35.41,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": 2.78,
+      "average_rostered": 35.41,
       "ownership_eligible": true,
       "ownership_sources": {
         "espn": {
-          "percent": 2.78,
+          "percent": 35.41,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
+          "checked_at": "2026-10-09T18:53:52+00:00"
         }
       },
       "ownership_source_count": 1,
-      "injury_opportunity": null
+      "injury_opportunity": null,
+      "waiver_evidence_score": 97.58,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 17.5,
+          "percentile": 95.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 22.35,
+          "percentile": 99.51,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 52.0,
+          "percentile": 100.0,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 1
+    },
+    {
+      "player_id": "00-0028986",
+      "name": "Case Keenum",
+      "team": "CHI",
+      "position": "QB",
+      "latest_opportunity": 38.0,
+      "previous_opportunity_average": null,
+      "opportunity_change": null,
+      "recent_average_ppr": 24.48,
+      "red_zone_score": 70.0,
+      "espn_rostered": 1.19,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 1.19,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 1.19,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 95.59,
+      "waiver_evidence": {
+        "recent_average_ppr": {
+          "value": 24.48,
+          "percentile": 100.0,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 38.0,
+          "percentile": 87.88,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 2
     },
     {
       "player_id": "00-0035228",
@@ -50,186 +121,116 @@
         "espn": {
           "percent": 59.2,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
+          "checked_at": "2026-10-09T18:53:52+00:00"
         }
       },
       "ownership_source_count": 1,
-      "injury_opportunity": null
+      "injury_opportunity": null,
+      "waiver_evidence_score": 89.86,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 24.0,
+          "percentile": 97.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 8.51,
+          "percentile": 75.98,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 43.0,
+          "percentile": 96.97,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 3
     },
     {
-      "player_id": "00-0036442",
-      "name": "Joe Burrow",
-      "team": "CIN",
+      "player_id": "00-0041117",
+      "name": "Athan Kaliakmanis",
+      "team": "WAS",
       "position": "QB",
-      "latest_opportunity": 57.0,
-      "previous_opportunity_average": 35.5,
-      "opportunity_change": 21.5,
-      "recent_average_ppr": 22.83,
-      "red_zone_score": 52.0,
-      "espn_rostered": 98.36,
+      "latest_opportunity": 36.0,
+      "previous_opportunity_average": null,
+      "opportunity_change": null,
+      "recent_average_ppr": 13.04,
+      "red_zone_score": 40.0,
+      "espn_rostered": 0.05,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": 98.36,
-      "ownership_eligible": false,
+      "average_rostered": 0.05,
+      "ownership_eligible": true,
       "ownership_sources": {
         "espn": {
-          "percent": 98.36,
+          "percent": 0.05,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
+          "checked_at": "2026-10-09T18:53:52+00:00"
         }
       },
       "ownership_source_count": 1,
-      "injury_opportunity": null
+      "injury_opportunity": null,
+      "waiver_evidence_score": 87.15,
+      "waiver_evidence": {
+        "recent_average_ppr": {
+          "value": 13.04,
+          "percentile": 90.2,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 36.0,
+          "percentile": 81.82,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 4
     },
     {
-      "player_id": "00-0040236",
-      "name": "Kyle Monangai",
+      "player_id": "00-0038416",
+      "name": "Tyson Bagent",
       "team": "CHI",
-      "position": "RB",
-      "latest_opportunity": 31.0,
-      "previous_opportunity_average": 11.0,
-      "opportunity_change": 20.0,
-      "recent_average_ppr": 12.97,
-      "red_zone_score": 75.0,
-      "espn_rostered": 80.68,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 80.68,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 80.68,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0029604",
-      "name": "Kirk Cousins",
-      "team": "LV",
       "position": "QB",
-      "latest_opportunity": 52.0,
-      "previous_opportunity_average": 34.5,
-      "opportunity_change": 17.5,
-      "recent_average_ppr": 22.35,
-      "red_zone_score": 68.0,
-      "espn_rostered": 35.41,
+      "latest_opportunity": 38.0,
+      "previous_opportunity_average": 9.0,
+      "opportunity_change": 29.0,
+      "recent_average_ppr": 6.49,
+      "red_zone_score": 71.6,
+      "espn_rostered": 2.78,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": 35.41,
+      "average_rostered": 2.78,
       "ownership_eligible": true,
       "ownership_sources": {
         "espn": {
-          "percent": 35.41,
+          "percent": 2.78,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
+          "checked_at": "2026-10-09T18:53:52+00:00"
         }
       },
       "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0039851",
-      "name": "Drake Maye",
-      "team": "NE",
-      "position": "QB",
-      "latest_opportunity": 45.0,
-      "previous_opportunity_average": 27.5,
-      "opportunity_change": 17.5,
-      "recent_average_ppr": 15.98,
-      "red_zone_score": 66.0,
-      "espn_rostered": 91.89,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 91.89,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 91.89,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
+      "injury_opportunity": null,
+      "waiver_evidence_score": 83.85,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 29.0,
+          "percentile": 100.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 6.49,
+          "percentile": 60.78,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 38.0,
+          "percentile": 87.88,
+          "weight": 0.2
         }
       },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0033106",
-      "name": "Jared Goff",
-      "team": "DET",
-      "position": "QB",
-      "latest_opportunity": 52.0,
-      "previous_opportunity_average": 38.5,
-      "opportunity_change": 13.5,
-      "recent_average_ppr": 23.21,
-      "red_zone_score": 89.0,
-      "espn_rostered": 90.8,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 90.8,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 90.8,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0037834",
-      "name": "Brock Purdy",
-      "team": "SF",
-      "position": "QB",
-      "latest_opportunity": 40.0,
-      "previous_opportunity_average": 27.0,
-      "opportunity_change": 13.0,
-      "recent_average_ppr": 26.46,
-      "red_zone_score": 61.0,
-      "espn_rostered": 96.8,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 96.8,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 96.8,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0041496",
-      "name": "Jonah Coleman",
-      "team": "DEN",
-      "position": "RB",
-      "latest_opportunity": 13.0,
-      "previous_opportunity_average": 0.0,
-      "opportunity_change": 13.0,
-      "recent_average_ppr": 7.4,
-      "red_zone_score": 44.6,
-      "espn_rostered": 21.58,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 21.58,
-      "ownership_eligible": true,
-      "ownership_sources": {
-        "espn": {
-          "percent": 21.58,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 5
     },
     {
       "player_id": "00-0041251",
@@ -250,849 +251,31 @@
         "espn": {
           "percent": 1.52,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
+          "checked_at": "2026-10-09T18:53:52+00:00"
         }
       },
       "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0037840",
-      "name": "Kyren Williams",
-      "team": "LAR",
-      "position": "RB",
-      "latest_opportunity": 29.0,
-      "previous_opportunity_average": 18.0,
-      "opportunity_change": 11.0,
-      "recent_average_ppr": 25.4,
-      "red_zone_score": 64.0,
-      "espn_rostered": 99.14,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 99.14,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 99.14,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
+      "injury_opportunity": null,
+      "waiver_evidence_score": 83.43,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 12.5,
+          "percentile": 90.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 10.06,
+          "percentile": 82.84,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 32.0,
+          "percentile": 69.7,
+          "weight": 0.2
         }
       },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0038797",
-      "name": "Emanuel Wilson",
-      "team": "SEA",
-      "position": "RB",
-      "latest_opportunity": 25.0,
-      "previous_opportunity_average": 15.5,
-      "opportunity_change": 9.5,
-      "recent_average_ppr": 12.53,
-      "red_zone_score": 71.0,
-      "espn_rostered": 79.92,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 79.92,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 79.92,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0039794",
-      "name": "Braelon Allen",
-      "team": "NYJ",
-      "position": "RB",
-      "latest_opportunity": 16.0,
-      "previous_opportunity_average": 6.5,
-      "opportunity_change": 9.5,
-      "recent_average_ppr": 7.3,
-      "red_zone_score": 50.0,
-      "espn_rostered": 72.99,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 72.99,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 72.99,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0036875",
-      "name": "Rhamondre Stevenson",
-      "team": "NE",
-      "position": "RB",
-      "latest_opportunity": 18.0,
-      "previous_opportunity_average": 9.0,
-      "opportunity_change": 9.0,
-      "recent_average_ppr": 9.6,
-      "red_zone_score": 36.0,
-      "espn_rostered": 89.5,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 89.5,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 89.5,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0040730",
-      "name": "RJ Harvey",
-      "team": "DEN",
-      "position": "RB",
-      "latest_opportunity": 17.0,
-      "previous_opportunity_average": 8.0,
-      "opportunity_change": 9.0,
-      "recent_average_ppr": 12.7,
-      "red_zone_score": 32.0,
-      "espn_rostered": 76.24,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 76.24,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 76.24,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0035229",
-      "name": "T.J. Hockenson",
-      "team": "MIN",
-      "position": "TE",
-      "latest_opportunity": 13.0,
-      "previous_opportunity_average": 4.0,
-      "opportunity_change": 9.0,
-      "recent_average_ppr": 11.3,
-      "red_zone_score": 57.0,
-      "espn_rostered": 69.54,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 69.54,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 69.54,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0039890",
-      "name": "Adonai Mitchell",
-      "team": "NYJ",
-      "position": "WR",
-      "latest_opportunity": 12.0,
-      "previous_opportunity_average": 3.0,
-      "opportunity_change": 9.0,
-      "recent_average_ppr": 10.65,
-      "red_zone_score": 42.8,
-      "espn_rostered": 23.03,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 23.03,
-      "ownership_eligible": true,
-      "ownership_sources": {
-        "espn": {
-          "percent": 23.03,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0040124",
-      "name": "Tetairoa McMillan",
-      "team": "CAR",
-      "position": "WR",
-      "latest_opportunity": 16.0,
-      "previous_opportunity_average": 7.5,
-      "opportunity_change": 8.5,
-      "recent_average_ppr": 21.33,
-      "red_zone_score": 67.0,
-      "espn_rostered": 98.21,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 98.21,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 98.21,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0026498",
-      "name": "Matthew Stafford",
-      "team": "LAR",
-      "position": "QB",
-      "latest_opportunity": 54.0,
-      "previous_opportunity_average": 46.0,
-      "opportunity_change": 8.0,
-      "recent_average_ppr": 22.52,
-      "red_zone_score": 73.0,
-      "espn_rostered": 90.21,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 90.21,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 90.21,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0038454",
-      "name": "Keaton Mitchell",
-      "team": "LAC",
-      "position": "RB",
-      "latest_opportunity": 16.0,
-      "previous_opportunity_average": 8.5,
-      "opportunity_change": 7.5,
-      "recent_average_ppr": 9.97,
-      "red_zone_score": 32.0,
-      "espn_rostered": 24.87,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 24.87,
-      "ownership_eligible": true,
-      "ownership_sources": {
-        "espn": {
-          "percent": 24.87,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0036410",
-      "name": "Tee Higgins",
-      "team": "CIN",
-      "position": "WR",
-      "latest_opportunity": 16.0,
-      "previous_opportunity_average": 8.5,
-      "opportunity_change": 7.5,
-      "recent_average_ppr": 20.73,
-      "red_zone_score": 42.0,
-      "espn_rostered": 96.87,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 96.87,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 96.87,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0039065",
-      "name": "Sam LaPorta",
-      "team": "DET",
-      "position": "TE",
-      "latest_opportunity": 13.0,
-      "previous_opportunity_average": 5.5,
-      "opportunity_change": 7.5,
-      "recent_average_ppr": 15.67,
-      "red_zone_score": 100.0,
-      "espn_rostered": 96.72,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 96.72,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 96.72,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0040743",
-      "name": "Tyler Shough",
-      "team": "NO",
-      "position": "QB",
-      "latest_opportunity": 50.0,
-      "previous_opportunity_average": 43.0,
-      "opportunity_change": 7.0,
-      "recent_average_ppr": 22.71,
-      "red_zone_score": 77.0,
-      "espn_rostered": 84.31,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 84.31,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 84.31,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0039732",
-      "name": "Bo Nix",
-      "team": "DEN",
-      "position": "QB",
-      "latest_opportunity": 44.0,
-      "previous_opportunity_average": 37.0,
-      "opportunity_change": 7.0,
-      "recent_average_ppr": 17.27,
-      "red_zone_score": 77.0,
-      "espn_rostered": 74.05,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 74.05,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 74.05,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0038555",
-      "name": "Tank Bigsby",
-      "team": "PHI",
-      "position": "RB",
-      "latest_opportunity": 15.0,
-      "previous_opportunity_average": 8.0,
-      "opportunity_change": 7.0,
-      "recent_average_ppr": 6.27,
-      "red_zone_score": 39.0,
-      "espn_rostered": 10.12,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 10.12,
-      "ownership_eligible": true,
-      "ownership_sources": {
-        "espn": {
-          "percent": 10.12,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0039361",
-      "name": "Bucky Irving",
-      "team": "TB",
-      "position": "RB",
-      "latest_opportunity": 24.0,
-      "previous_opportunity_average": 17.5,
-      "opportunity_change": 6.5,
-      "recent_average_ppr": 15.13,
-      "red_zone_score": 68.0,
-      "espn_rostered": 96.5,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 96.5,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 96.5,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0040878",
-      "name": "Mike Washington Jr.",
-      "team": "LV",
-      "position": "RB",
-      "latest_opportunity": 11.0,
-      "previous_opportunity_average": 4.5,
-      "opportunity_change": 6.5,
-      "recent_average_ppr": 4.93,
-      "red_zone_score": 36.0,
-      "espn_rostered": 20.98,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 20.98,
-      "ownership_eligible": true,
-      "ownership_sources": {
-        "espn": {
-          "percent": 20.98,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0039066",
-      "name": "Michael Mayer",
-      "team": "LV",
-      "position": "TE",
-      "latest_opportunity": 10.0,
-      "previous_opportunity_average": 3.5,
-      "opportunity_change": 6.5,
-      "recent_average_ppr": 11.23,
-      "red_zone_score": 36.0,
-      "espn_rostered": 17.8,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 17.8,
-      "ownership_eligible": true,
-      "ownership_sources": {
-        "espn": {
-          "percent": 17.8,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0037247",
-      "name": "George Pickens",
-      "team": "DAL",
-      "position": "WR",
-      "latest_opportunity": 13.0,
-      "previous_opportunity_average": 7.0,
-      "opportunity_change": 6.0,
-      "recent_average_ppr": 17.57,
-      "red_zone_score": 58.0,
-      "espn_rostered": 99.04,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 99.04,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 99.04,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0040785",
-      "name": "Dohnte Meyers",
-      "team": "CIN",
-      "position": "WR",
-      "latest_opportunity": 9.0,
-      "previous_opportunity_average": 3.0,
-      "opportunity_change": 6.0,
-      "recent_average_ppr": 7.03,
-      "red_zone_score": 25.0,
-      "espn_rostered": 12.58,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 12.58,
-      "ownership_eligible": true,
-      "ownership_sources": {
-        "espn": {
-          "percent": 12.58,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0039391",
-      "name": "Kimani Vidal",
-      "team": "LAC",
-      "position": "RB",
-      "latest_opportunity": 8.0,
-      "previous_opportunity_average": 2.0,
-      "opportunity_change": 6.0,
-      "recent_average_ppr": 4.87,
-      "red_zone_score": 32.0,
-      "espn_rostered": 1.89,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 1.89,
-      "ownership_eligible": true,
-      "ownership_sources": {
-        "espn": {
-          "percent": 1.89,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0040784",
-      "name": "Quinshon Judkins",
-      "team": "CLE",
-      "position": "RB",
-      "latest_opportunity": 24.0,
-      "previous_opportunity_average": 18.5,
-      "opportunity_change": 5.5,
-      "recent_average_ppr": 13.77,
-      "red_zone_score": 61.0,
-      "espn_rostered": 95.75,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 95.75,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 95.75,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0040126",
-      "name": "Colston Loveland",
-      "team": "CHI",
-      "position": "TE",
-      "latest_opportunity": 9.0,
-      "previous_opportunity_average": 3.5,
-      "opportunity_change": 5.5,
-      "recent_average_ppr": 6.7,
-      "red_zone_score": 79.0,
-      "espn_rostered": 91.12,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 91.12,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 91.12,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0040189",
-      "name": "Oronde Gadsden II",
-      "team": "LAC",
-      "position": "TE",
-      "latest_opportunity": 8.0,
-      "previous_opportunity_average": 2.5,
-      "opportunity_change": 5.5,
-      "recent_average_ppr": 6.2,
-      "red_zone_score": 57.0,
-      "espn_rostered": null,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0040024",
-      "name": "Darius Cooper",
-      "team": "PHI",
-      "position": "WR",
-      "latest_opportunity": 7.0,
-      "previous_opportunity_average": 1.5,
-      "opportunity_change": 5.5,
-      "recent_average_ppr": 9.63,
-      "red_zone_score": 58.0,
-      "espn_rostered": 7.84,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 7.84,
-      "ownership_eligible": true,
-      "ownership_sources": {
-        "espn": {
-          "percent": 7.84,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0033293",
-      "name": "Aaron Jones",
-      "team": "MIN",
-      "position": "RB",
-      "latest_opportunity": 28.0,
-      "previous_opportunity_average": 23.0,
-      "opportunity_change": 5.0,
-      "recent_average_ppr": 13.83,
-      "red_zone_score": 39.0,
-      "espn_rostered": null,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": null,
-      "ownership_eligible": null,
-      "ownership_sources": {},
-      "ownership_source_count": 0,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0037228",
-      "name": "Jaylen Warren",
-      "team": "PIT",
-      "position": "RB",
-      "latest_opportunity": 23.0,
-      "previous_opportunity_average": 18.0,
-      "opportunity_change": 5.0,
-      "recent_average_ppr": 15.3,
-      "red_zone_score": 46.0,
-      "espn_rostered": 92.55,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 92.55,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 92.55,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0041438",
-      "name": "Carnell Tate",
-      "team": "TEN",
-      "position": "WR",
-      "latest_opportunity": 12.0,
-      "previous_opportunity_average": 7.0,
-      "opportunity_change": 5.0,
-      "recent_average_ppr": 13.67,
-      "red_zone_score": 33.0,
-      "espn_rostered": 88.88,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 88.88,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 88.88,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0037816",
-      "name": "Romeo Doubs",
-      "team": "NE",
-      "position": "WR",
-      "latest_opportunity": 9.0,
-      "previous_opportunity_average": 4.0,
-      "opportunity_change": 5.0,
-      "recent_average_ppr": 14.77,
-      "red_zone_score": 58.0,
-      "espn_rostered": 70.64,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 70.64,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 70.64,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0039067",
-      "name": "Rashee Rice",
-      "team": "KC",
-      "position": "WR",
-      "latest_opportunity": 9.0,
-      "previous_opportunity_average": 4.0,
-      "opportunity_change": 5.0,
-      "recent_average_ppr": 12.67,
-      "red_zone_score": 58.0,
-      "espn_rostered": 97.42,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 97.42,
-      "ownership_eligible": false,
-      "ownership_sources": {
-        "espn": {
-          "percent": 97.42,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0038104",
-      "name": "Tyquan Thornton",
-      "team": "KC",
-      "position": "WR",
-      "latest_opportunity": 8.0,
-      "previous_opportunity_average": 3.0,
-      "opportunity_change": 5.0,
-      "recent_average_ppr": 14.97,
-      "red_zone_score": 42.0,
-      "espn_rostered": 0.78,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 0.78,
-      "ownership_eligible": true,
-      "ownership_sources": {
-        "espn": {
-          "percent": 0.78,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0041125",
-      "name": "Seth McGowan",
-      "team": "IND",
-      "position": "RB",
-      "latest_opportunity": 8.0,
-      "previous_opportunity_average": 3.0,
-      "opportunity_change": 5.0,
-      "recent_average_ppr": 2.07,
-      "red_zone_score": 36.0,
-      "espn_rostered": 1.05,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 1.05,
-      "ownership_eligible": true,
-      "ownership_sources": {
-        "espn": {
-          "percent": 1.05,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0035021",
-      "name": "Ashton Dulin",
-      "team": "IND",
-      "position": "WR",
-      "latest_opportunity": 6.0,
-      "previous_opportunity_average": 1.0,
-      "opportunity_change": 5.0,
-      "recent_average_ppr": 2.95,
-      "red_zone_score": 35.0,
-      "espn_rostered": 0.11,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 0.11,
-      "ownership_eligible": true,
-      "ownership_sources": {
-        "espn": {
-          "percent": 0.11,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
-    },
-    {
-      "player_id": "00-0039021",
-      "name": "Roschon Johnson",
-      "team": "CHI",
-      "position": "RB",
-      "latest_opportunity": 5.0,
-      "previous_opportunity_average": 0.0,
-      "opportunity_change": 5.0,
-      "recent_average_ppr": 1.65,
-      "red_zone_score": 44.6,
-      "espn_rostered": 0.97,
-      "yahoo_rostered": null,
-      "sleeper_rostered": null,
-      "average_rostered": 0.97,
-      "ownership_eligible": true,
-      "ownership_sources": {
-        "espn": {
-          "percent": 0.97,
-          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
-        }
-      },
-      "ownership_source_count": 1,
-      "injury_opportunity": null
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 6
     },
     {
       "player_id": "00-0040676",
@@ -1113,11 +296,791 @@
         "espn": {
           "percent": 5.63,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
+          "checked_at": "2026-10-09T18:53:52+00:00"
         }
       },
       "ownership_source_count": 1,
-      "injury_opportunity": null
+      "injury_opportunity": null,
+      "waiver_evidence_score": 80.54,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 4.5,
+          "percentile": 70.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 15.68,
+          "percentile": 95.1,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 35.0,
+          "percentile": 78.79,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 7
+    },
+    {
+      "player_id": "00-0023459",
+      "name": "Aaron Rodgers",
+      "team": "PIT",
+      "position": "QB",
+      "latest_opportunity": 40.0,
+      "previous_opportunity_average": 38.5,
+      "opportunity_change": 1.5,
+      "recent_average_ppr": 18.87,
+      "red_zone_score": 66.0,
+      "espn_rostered": 17.68,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 17.68,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 17.68,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 78.19,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 1.5,
+          "percentile": 55.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 18.87,
+          "percentile": 99.02,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 40.0,
+          "percentile": 93.94,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 8
+    },
+    {
+      "player_id": "00-0036355",
+      "name": "Justin Herbert",
+      "team": "LAC",
+      "position": "QB",
+      "latest_opportunity": 37.0,
+      "previous_opportunity_average": 34.0,
+      "opportunity_change": 3.0,
+      "recent_average_ppr": 14.06,
+      "red_zone_score": 52.0,
+      "espn_rostered": 62.02,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 62.02,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 62.02,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 77.69,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 3.0,
+          "percentile": 62.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 14.06,
+          "percentile": 93.14,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 37.0,
+          "percentile": 84.85,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 9
+    },
+    {
+      "player_id": "00-0033537",
+      "name": "Deshaun Watson",
+      "team": "CLE",
+      "position": "QB",
+      "latest_opportunity": 40.0,
+      "previous_opportunity_average": 39.0,
+      "opportunity_change": 1.0,
+      "recent_average_ppr": 18.3,
+      "red_zone_score": 61.0,
+      "espn_rostered": 18.19,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 18.19,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 18.19,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 76.9,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 1.0,
+          "percentile": 52.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 18.3,
+          "percentile": 98.53,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 40.0,
+          "percentile": 93.94,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 10
+    },
+    {
+      "player_id": "00-0039890",
+      "name": "Adonai Mitchell",
+      "team": "NYJ",
+      "position": "WR",
+      "latest_opportunity": 12.0,
+      "previous_opportunity_average": 3.0,
+      "opportunity_change": 9.0,
+      "recent_average_ppr": 10.65,
+      "red_zone_score": 42.8,
+      "espn_rostered": 23.03,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 23.03,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 23.03,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 76.33,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 9.0,
+          "percentile": 87.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 10.65,
+          "percentile": 84.8,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 12.0,
+          "percentile": 36.36,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 11
+    },
+    {
+      "player_id": "00-0038454",
+      "name": "Keaton Mitchell",
+      "team": "LAC",
+      "position": "RB",
+      "latest_opportunity": 16.0,
+      "previous_opportunity_average": 8.5,
+      "opportunity_change": 7.5,
+      "recent_average_ppr": 9.97,
+      "red_zone_score": 32.0,
+      "espn_rostered": 24.87,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 24.87,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 24.87,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 75.99,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 7.5,
+          "percentile": 85.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 9.97,
+          "percentile": 81.86,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 16.0,
+          "percentile": 45.45,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 12
+    },
+    {
+      "player_id": "00-0035710",
+      "name": "Daniel Jones",
+      "team": "IND",
+      "position": "QB",
+      "latest_opportunity": 38.0,
+      "previous_opportunity_average": 36.5,
+      "opportunity_change": 1.5,
+      "recent_average_ppr": 13.07,
+      "red_zone_score": 61.0,
+      "espn_rostered": 19.46,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 19.46,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 19.46,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 74.07,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 1.5,
+          "percentile": 55.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 13.07,
+          "percentile": 90.69,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 38.0,
+          "percentile": 87.88,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 13
+    },
+    {
+      "player_id": "00-0041496",
+      "name": "Jonah Coleman",
+      "team": "DEN",
+      "position": "RB",
+      "latest_opportunity": 13.0,
+      "previous_opportunity_average": 0.0,
+      "opportunity_change": 13.0,
+      "recent_average_ppr": 7.4,
+      "red_zone_score": 44.6,
+      "espn_rostered": 21.58,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 21.58,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 21.58,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 73.69,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 13.0,
+          "percentile": 92.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 7.4,
+          "percentile": 69.12,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 13.0,
+          "percentile": 39.39,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 14
+    },
+    {
+      "player_id": "00-0035704",
+      "name": "Drew Lock",
+      "team": "SEA",
+      "position": "QB",
+      "latest_opportunity": 26.0,
+      "previous_opportunity_average": 24.0,
+      "opportunity_change": 2.0,
+      "recent_average_ppr": 17.09,
+      "red_zone_score": 55.4,
+      "espn_rostered": 0.86,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 0.86,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 0.86,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 72.75,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 2.0,
+          "percentile": 57.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 17.09,
+          "percentile": 97.55,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 26.0,
+          "percentile": 63.64,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 15
+    },
+    {
+      "player_id": "00-0037525",
+      "name": "Jordan Mason",
+      "team": "MIN",
+      "position": "RB",
+      "latest_opportunity": 15.0,
+      "previous_opportunity_average": null,
+      "opportunity_change": null,
+      "recent_average_ppr": 11.9,
+      "red_zone_score": 57.2,
+      "espn_rostered": 52.1,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 52.1,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 52.1,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 72.51,
+      "waiver_evidence": {
+        "recent_average_ppr": {
+          "value": 11.9,
+          "percentile": 89.71,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 15.0,
+          "percentile": 42.42,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 16
+    },
+    {
+      "player_id": "00-0039066",
+      "name": "Michael Mayer",
+      "team": "LV",
+      "position": "TE",
+      "latest_opportunity": 10.0,
+      "previous_opportunity_average": 3.5,
+      "opportunity_change": 6.5,
+      "recent_average_ppr": 11.23,
+      "red_zone_score": 36.0,
+      "espn_rostered": 17.8,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 17.8,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 17.8,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 72.25,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 6.5,
+          "percentile": 80.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 11.23,
+          "percentile": 86.27,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 10.0,
+          "percentile": 30.3,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 17
+    },
+    {
+      "player_id": "00-0034855",
+      "name": "Baker Mayfield",
+      "team": "TB",
+      "position": "QB",
+      "latest_opportunity": 36.0,
+      "previous_opportunity_average": 35.5,
+      "opportunity_change": 0.5,
+      "recent_average_ppr": 15.03,
+      "red_zone_score": 75.0,
+      "espn_rostered": 30.16,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 30.16,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 30.16,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 71.98,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 0.5,
+          "percentile": 50.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 15.03,
+          "percentile": 94.61,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 36.0,
+          "percentile": 81.82,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 18
+    },
+    {
+      "player_id": "00-0038104",
+      "name": "Tyquan Thornton",
+      "team": "KC",
+      "position": "WR",
+      "latest_opportunity": 8.0,
+      "previous_opportunity_average": 3.0,
+      "opportunity_change": 5.0,
+      "recent_average_ppr": 14.97,
+      "red_zone_score": 42.0,
+      "espn_rostered": 0.78,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 0.78,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 0.78,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 70.42,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 5.0,
+          "percentile": 72.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 14.97,
+          "percentile": 94.12,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 8.0,
+          "percentile": 24.24,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 19
+    },
+    {
+      "player_id": "00-0031503",
+      "name": "Jameis Winston",
+      "team": "NYG",
+      "position": "QB",
+      "latest_opportunity": 29.0,
+      "previous_opportunity_average": 26.5,
+      "opportunity_change": 2.5,
+      "recent_average_ppr": 10.89,
+      "red_zone_score": 43.0,
+      "espn_rostered": 3.9,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 3.9,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 3.9,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 70.36,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 2.5,
+          "percentile": 60.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 10.89,
+          "percentile": 85.78,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 29.0,
+          "percentile": 66.67,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 20
+    },
+    {
+      "player_id": "00-0034869",
+      "name": "Sam Darnold",
+      "team": "SEA",
+      "position": "QB",
+      "latest_opportunity": 25.0,
+      "previous_opportunity_average": 24.0,
+      "opportunity_change": 1.0,
+      "recent_average_ppr": 15.83,
+      "red_zone_score": 57.0,
+      "espn_rostered": 48.99,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 48.99,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 48.99,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 69.2,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 1.0,
+          "percentile": 52.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 15.83,
+          "percentile": 95.59,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 25.0,
+          "percentile": 60.61,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 21
+    },
+    {
+      "player_id": "00-0038555",
+      "name": "Tank Bigsby",
+      "team": "PHI",
+      "position": "RB",
+      "latest_opportunity": 15.0,
+      "previous_opportunity_average": 8.0,
+      "opportunity_change": 7.0,
+      "recent_average_ppr": 6.27,
+      "red_zone_score": 39.0,
+      "espn_rostered": 10.12,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 10.12,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 10.12,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 66.37,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 7.0,
+          "percentile": 82.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 6.27,
+          "percentile": 59.31,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 15.0,
+          "percentile": 42.42,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 22
+    },
+    {
+      "player_id": "00-0040024",
+      "name": "Darius Cooper",
+      "team": "PHI",
+      "position": "WR",
+      "latest_opportunity": 7.0,
+      "previous_opportunity_average": 1.5,
+      "opportunity_change": 5.5,
+      "recent_average_ppr": 9.63,
+      "red_zone_score": 58.0,
+      "espn_rostered": 7.84,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 7.84,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 7.84,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 65.79,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 5.5,
+          "percentile": 75.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 9.63,
+          "percentile": 79.41,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 7.0,
+          "percentile": 21.21,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 23
+    },
+    {
+      "player_id": "00-0033119",
+      "name": "Jacoby Brissett",
+      "team": "ARI",
+      "position": "QB",
+      "latest_opportunity": 39.0,
+      "previous_opportunity_average": 42.5,
+      "opportunity_change": -3.5,
+      "recent_average_ppr": 16.85,
+      "red_zone_score": 82.0,
+      "espn_rostered": 44.54,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 44.54,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 44.54,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 65.65,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": -3.5,
+          "percentile": 30.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 16.85,
+          "percentile": 97.06,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 39.0,
+          "percentile": 90.91,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 24
     },
     {
       "player_id": "00-0039811",
@@ -1138,36 +1101,121 @@
         "espn": {
           "percent": 47.94,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
+          "checked_at": "2026-10-09T18:53:52+00:00"
         }
       },
       "ownership_source_count": 1,
-      "injury_opportunity": null
+      "injury_opportunity": null,
+      "waiver_evidence_score": 65.02,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 4.5,
+          "percentile": 70.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 8.1,
+          "percentile": 75.0,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 12.0,
+          "percentile": 36.36,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 25
     },
     {
-      "player_id": "00-0037838",
-      "name": "Isaiah Likely",
-      "team": "NYG",
-      "position": "TE",
-      "latest_opportunity": 12.0,
-      "previous_opportunity_average": 7.5,
-      "opportunity_change": 4.5,
-      "recent_average_ppr": 8.4,
-      "red_zone_score": 47.0,
-      "espn_rostered": 89.82,
+      "player_id": "00-0039901",
+      "name": "Keon Coleman",
+      "team": "BUF",
+      "position": "WR",
+      "latest_opportunity": 7.0,
+      "previous_opportunity_average": 4.0,
+      "opportunity_change": 3.0,
+      "recent_average_ppr": 13.53,
+      "red_zone_score": 42.0,
+      "espn_rostered": 34.53,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": 89.82,
-      "ownership_eligible": false,
+      "average_rostered": 34.53,
+      "ownership_eligible": true,
       "ownership_sources": {
         "espn": {
-          "percent": 89.82,
+          "percent": 34.53,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
+          "checked_at": "2026-10-09T18:53:52+00:00"
         }
       },
       "ownership_source_count": 1,
-      "injury_opportunity": null
+      "injury_opportunity": null,
+      "waiver_evidence_score": 64.62,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 3.0,
+          "percentile": 62.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 13.53,
+          "percentile": 92.16,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 7.0,
+          "percentile": 21.21,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 26
+    },
+    {
+      "player_id": "00-0038563",
+      "name": "Tre Tucker",
+      "team": "LV",
+      "position": "WR",
+      "latest_opportunity": 8.0,
+      "previous_opportunity_average": 5.5,
+      "opportunity_change": 2.5,
+      "recent_average_ppr": 13.2,
+      "red_zone_score": 25.0,
+      "espn_rostered": 32.85,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 32.85,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 32.85,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 63.76,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 2.5,
+          "percentile": 60.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 13.2,
+          "percentile": 91.18,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 8.0,
+          "percentile": 24.24,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 27
     },
     {
       "player_id": "00-0038935",
@@ -1188,36 +1236,616 @@
         "espn": {
           "percent": 26.66,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
+          "checked_at": "2026-10-09T18:53:52+00:00"
         }
       },
       "ownership_source_count": 1,
-      "injury_opportunity": null
+      "injury_opportunity": null,
+      "waiver_evidence_score": 63.28,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 4.5,
+          "percentile": 70.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 8.8,
+          "percentile": 76.96,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 8.0,
+          "percentile": 24.24,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 28
     },
     {
-      "player_id": "00-0041040",
-      "name": "Antonio Williams",
-      "team": "WAS",
+      "player_id": "00-0040785",
+      "name": "Dohnte Meyers",
+      "team": "CIN",
       "position": "WR",
-      "latest_opportunity": 8.0,
-      "previous_opportunity_average": 3.5,
-      "opportunity_change": 4.5,
-      "recent_average_ppr": 4.67,
+      "latest_opportunity": 9.0,
+      "previous_opportunity_average": 3.0,
+      "opportunity_change": 6.0,
+      "recent_average_ppr": 7.03,
       "red_zone_score": 25.0,
-      "espn_rostered": 6.35,
+      "espn_rostered": 12.58,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": 6.35,
+      "average_rostered": 12.58,
       "ownership_eligible": true,
       "ownership_sources": {
         "espn": {
-          "percent": 6.35,
+          "percent": 12.58,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
+          "checked_at": "2026-10-09T18:53:52+00:00"
         }
       },
       "ownership_source_count": 1,
-      "injury_opportunity": null
+      "injury_opportunity": null,
+      "waiver_evidence_score": 63.15,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 6.0,
+          "percentile": 77.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 7.03,
+          "percentile": 65.2,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 9.0,
+          "percentile": 27.27,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 29
+    },
+    {
+      "player_id": "00-0040669",
+      "name": "Isaac TeSlaa",
+      "team": "DET",
+      "position": "WR",
+      "latest_opportunity": 8.0,
+      "previous_opportunity_average": 4.0,
+      "opportunity_change": 4.0,
+      "recent_average_ppr": 9.23,
+      "red_zone_score": 50.0,
+      "espn_rostered": 3.16,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 3.16,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 3.16,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 62.84,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 4.0,
+          "percentile": 67.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 9.23,
+          "percentile": 78.92,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 8.0,
+          "percentile": 24.24,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 30
+    },
+    {
+      "player_id": "00-0030279",
+      "name": "Keenan Allen",
+      "team": "IND",
+      "position": "WR",
+      "latest_opportunity": 9.0,
+      "previous_opportunity_average": 5.5,
+      "opportunity_change": 3.5,
+      "recent_average_ppr": 9.67,
+      "red_zone_score": 50.0,
+      "espn_rostered": 37.71,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 37.71,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 37.71,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 62.67,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 3.5,
+          "percentile": 65.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 9.67,
+          "percentile": 79.9,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 9.0,
+          "percentile": 27.27,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 31
+    },
+    {
+      "player_id": "00-0032950",
+      "name": "Carson Wentz",
+      "team": "MIN",
+      "position": "QB",
+      "latest_opportunity": 23.0,
+      "previous_opportunity_average": 24.0,
+      "opportunity_change": -1.0,
+      "recent_average_ppr": 11.77,
+      "red_zone_score": 49.4,
+      "espn_rostered": 1.05,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 1.05,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 1.05,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 61.87,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": -1.0,
+          "percentile": 42.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 11.77,
+          "percentile": 89.22,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 23.0,
+          "percentile": 57.58,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 32
+    },
+    {
+      "player_id": "00-0040878",
+      "name": "Mike Washington Jr.",
+      "team": "LV",
+      "position": "RB",
+      "latest_opportunity": 11.0,
+      "previous_opportunity_average": 4.5,
+      "opportunity_change": 6.5,
+      "recent_average_ppr": 4.93,
+      "red_zone_score": 36.0,
+      "espn_rostered": 20.98,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 20.98,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 20.98,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 60.68,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 6.5,
+          "percentile": 80.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 4.93,
+          "percentile": 51.47,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 11.0,
+          "percentile": 33.33,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 33
+    },
+    {
+      "player_id": "00-0037261",
+      "name": "Khalil Shakir",
+      "team": "BUF",
+      "position": "WR",
+      "latest_opportunity": 8.0,
+      "previous_opportunity_average": 4.5,
+      "opportunity_change": 3.5,
+      "recent_average_ppr": 7.87,
+      "red_zone_score": 42.0,
+      "espn_rostered": 60.78,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 60.78,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 60.78,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 59.66,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 3.5,
+          "percentile": 65.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 7.87,
+          "percentile": 73.04,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 8.0,
+          "percentile": 24.24,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 34
+    },
+    {
+      "player_id": "00-0037263",
+      "name": "Tyler Allgeier",
+      "team": "ARI",
+      "position": "RB",
+      "latest_opportunity": 10.0,
+      "previous_opportunity_average": 6.5,
+      "opportunity_change": 3.5,
+      "recent_average_ppr": 7.23,
+      "red_zone_score": 39.0,
+      "espn_rostered": 36.68,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 36.68,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 36.68,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 58.64,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 3.5,
+          "percentile": 65.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 7.23,
+          "percentile": 66.67,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 10.0,
+          "percentile": 30.3,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 35
+    },
+    {
+      "player_id": "00-0039391",
+      "name": "Kimani Vidal",
+      "team": "LAC",
+      "position": "RB",
+      "latest_opportunity": 8.0,
+      "previous_opportunity_average": 2.0,
+      "opportunity_change": 6.0,
+      "recent_average_ppr": 4.87,
+      "red_zone_score": 32.0,
+      "espn_rostered": 1.89,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 1.89,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 1.89,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 57.22,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 6.0,
+          "percentile": 77.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 4.87,
+          "percentile": 50.0,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 8.0,
+          "percentile": 24.24,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 36
+    },
+    {
+      "player_id": "00-0034829",
+      "name": "Mike Gesicki",
+      "team": "CIN",
+      "position": "TE",
+      "latest_opportunity": 5.0,
+      "previous_opportunity_average": 5.0,
+      "opportunity_change": 0.0,
+      "recent_average_ppr": 14.83,
+      "red_zone_score": 57.0,
+      "espn_rostered": 24.94,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 24.94,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 24.94,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 57.18,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 0.0,
+          "percentile": 47.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 14.83,
+          "percentile": 93.63,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 5.0,
+          "percentile": 15.15,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 37
+    },
+    {
+      "player_id": "00-0031610",
+      "name": "Darren Waller",
+      "team": "CAR",
+      "position": "TE",
+      "latest_opportunity": 6.0,
+      "previous_opportunity_average": 5.5,
+      "opportunity_change": 0.5,
+      "recent_average_ppr": 11.67,
+      "red_zone_score": 68.0,
+      "espn_rostered": 22.41,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 22.41,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 22.41,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 57.02,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 0.5,
+          "percentile": 50.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 11.67,
+          "percentile": 88.24,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 6.0,
+          "percentile": 18.18,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 38
+    },
+    {
+      "player_id": "00-0032951",
+      "name": "Laquon Treadwell",
+      "team": "IND",
+      "position": "WR",
+      "latest_opportunity": 6.0,
+      "previous_opportunity_average": 2.0,
+      "opportunity_change": 4.0,
+      "recent_average_ppr": 7.1,
+      "red_zone_score": 42.0,
+      "espn_rostered": 0.15,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 0.15,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 0.15,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 57.0,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 4.0,
+          "percentile": 67.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 7.1,
+          "percentile": 65.69,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 6.0,
+          "percentile": 18.18,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 39
+    },
+    {
+      "player_id": "00-0039739",
+      "name": "Roman Wilson",
+      "team": "PIT",
+      "position": "WR",
+      "latest_opportunity": 6.0,
+      "previous_opportunity_average": 6.0,
+      "opportunity_change": 0.0,
+      "recent_average_ppr": 13.07,
+      "red_zone_score": 42.0,
+      "espn_rostered": 27.15,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 27.15,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 27.15,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 56.75,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 0.0,
+          "percentile": 47.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 13.07,
+          "percentile": 90.69,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 6.0,
+          "percentile": 18.18,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 40
+    },
+    {
+      "player_id": "00-0035891",
+      "name": "Cody White",
+      "team": "LV",
+      "position": "WR",
+      "latest_opportunity": 4.0,
+      "previous_opportunity_average": 2.5,
+      "opportunity_change": 1.5,
+      "recent_average_ppr": 9.8,
+      "red_zone_score": 67.0,
+      "espn_rostered": 0.27,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 0.27,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 0.27,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 55.65,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 1.5,
+          "percentile": 55.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 9.8,
+          "percentile": 81.37,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 4.0,
+          "percentile": 12.12,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 41
     },
     {
       "player_id": "00-0037252",
@@ -1238,11 +1866,386 @@
         "espn": {
           "percent": 1.45,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-09T18:48:31+00:00"
+          "checked_at": "2026-10-09T18:53:52+00:00"
         }
       },
       "ownership_source_count": 1,
-      "injury_opportunity": null
+      "injury_opportunity": null,
+      "waiver_evidence_score": 55.64,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 4.5,
+          "percentile": 70.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 6.0,
+          "percentile": 56.86,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 7.0,
+          "percentile": 21.21,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 42
+    },
+    {
+      "player_id": "00-0036264",
+      "name": "Jordan Love",
+      "team": "GB",
+      "position": "QB",
+      "latest_opportunity": 34.0,
+      "previous_opportunity_average": 41.5,
+      "opportunity_change": -7.5,
+      "recent_average_ppr": 16.45,
+      "red_zone_score": 66.0,
+      "espn_rostered": 48.32,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 48.32,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 48.32,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 55.53,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": -7.5,
+          "percentile": 15.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 16.45,
+          "percentile": 96.08,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 34.0,
+          "percentile": 75.76,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 43
+    },
+    {
+      "player_id": "00-0033110",
+      "name": "Tyler Higbee",
+      "team": "LAR",
+      "position": "TE",
+      "latest_opportunity": 6.0,
+      "previous_opportunity_average": 6.5,
+      "opportunity_change": -0.5,
+      "recent_average_ppr": 11.7,
+      "red_zone_score": 47.0,
+      "espn_rostered": 3.29,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 3.29,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 3.29,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 54.94,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": -0.5,
+          "percentile": 45.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 11.7,
+          "percentile": 88.73,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 6.0,
+          "percentile": 18.18,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 44
+    },
+    {
+      "player_id": "00-0038839",
+      "name": "Mitchell Tinsley",
+      "team": "CIN",
+      "position": "WR",
+      "latest_opportunity": 7.0,
+      "previous_opportunity_average": null,
+      "opportunity_change": null,
+      "recent_average_ppr": 7.9,
+      "red_zone_score": 70.0,
+      "espn_rostered": 0.12,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 0.12,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 0.12,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 54.5,
+      "waiver_evidence": {
+        "recent_average_ppr": {
+          "value": 7.9,
+          "percentile": 73.53,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 7.0,
+          "percentile": 21.21,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 45
+    },
+    {
+      "player_id": "00-0039163",
+      "name": "C.J. Stroud",
+      "team": "HOU",
+      "position": "QB",
+      "latest_opportunity": 33.0,
+      "previous_opportunity_average": 43.5,
+      "opportunity_change": -10.5,
+      "recent_average_ppr": 17.26,
+      "red_zone_score": 57.0,
+      "espn_rostered": 41.59,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 41.59,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 41.59,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 54.48,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": -10.5,
+          "percentile": 12.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 17.26,
+          "percentile": 98.04,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 33.0,
+          "percentile": 72.73,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 46
+    },
+    {
+      "player_id": "00-0038558",
+      "name": "Darnell Washington",
+      "team": "PIT",
+      "position": "TE",
+      "latest_opportunity": 5.0,
+      "previous_opportunity_average": 3.0,
+      "opportunity_change": 2.0,
+      "recent_average_ppr": 7.7,
+      "red_zone_score": 47.0,
+      "espn_rostered": 1.62,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 1.62,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 1.62,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 54.13,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 2.0,
+          "percentile": 57.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 7.7,
+          "percentile": 72.06,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 5.0,
+          "percentile": 15.15,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 47
+    },
+    {
+      "player_id": "00-0035644",
+      "name": "Noah Fant",
+      "team": "NO",
+      "position": "TE",
+      "latest_opportunity": 4.0,
+      "previous_opportunity_average": 4.0,
+      "opportunity_change": 0.0,
+      "recent_average_ppr": 10.87,
+      "red_zone_score": 57.0,
+      "espn_rostered": 0.99,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 0.99,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 0.99,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 53.65,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 0.0,
+          "percentile": 47.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 10.87,
+          "percentile": 85.29,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 4.0,
+          "percentile": 12.12,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 48
+    },
+    {
+      "player_id": "00-0041040",
+      "name": "Antonio Williams",
+      "team": "WAS",
+      "position": "WR",
+      "latest_opportunity": 8.0,
+      "previous_opportunity_average": 3.5,
+      "opportunity_change": 4.5,
+      "recent_average_ppr": 4.67,
+      "red_zone_score": 25.0,
+      "espn_rostered": 6.35,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 6.35,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 6.35,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 53.33,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": 4.5,
+          "percentile": 70.0,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 4.67,
+          "percentile": 48.53,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 8.0,
+          "percentile": 24.24,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 49
+    },
+    {
+      "player_id": "00-0039917",
+      "name": "Michael Penix Jr.",
+      "team": "ATL",
+      "position": "QB",
+      "latest_opportunity": 22.0,
+      "previous_opportunity_average": 27.0,
+      "opportunity_change": -5.0,
+      "recent_average_ppr": 13.38,
+      "red_zone_score": 47.0,
+      "espn_rostered": 7.8,
+      "yahoo_rostered": null,
+      "sleeper_rostered": null,
+      "average_rostered": 7.8,
+      "ownership_eligible": true,
+      "ownership_sources": {
+        "espn": {
+          "percent": 7.8,
+          "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
+          "checked_at": "2026-10-09T18:53:52+00:00"
+        }
+      },
+      "ownership_source_count": 1,
+      "injury_opportunity": null,
+      "waiver_evidence_score": 53.12,
+      "waiver_evidence": {
+        "opportunity_change": {
+          "value": -5.0,
+          "percentile": 22.5,
+          "weight": 0.45
+        },
+        "recent_average_ppr": {
+          "value": 13.38,
+          "percentile": 91.67,
+          "weight": 0.35
+        },
+        "latest_opportunity": {
+          "value": 22.0,
+          "percentile": 54.55,
+          "weight": 0.2
+        }
+      },
+      "waiver_rank_status": "preliminary_not_injury_verified",
+      "preliminary_waiver_rank": 50
     }
   ]
 }
