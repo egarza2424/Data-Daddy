@@ -1,4 +1,5 @@
 import json
+import math
 import re
 import unicodedata
 import urllib.request
@@ -179,6 +180,65 @@ def ownership_summary(record):
             'ownership_sources': verified, 'ownership_source_count': len(verified)}
 
 
+
+def finite_number(value):
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return None
+    number = float(value)
+    return number if math.isfinite(number) else None
+
+
+def percentile_scores(candidates, field):
+    """Relative 0-100 evidence score; missing data stays missing."""
+    available = sorted({value for candidate in candidates
+                        if (value := finite_number(candidate.get(field))) is not None})
+    if not available:
+        return {}
+    if len(available) == 1:
+        return {available[0]: 50.0}
+    return {value: round(100 * index / (len(available) - 1), 2)
+            for index, value in enumerate(available)}
+
+
+def rank_eligible_candidates(candidates):
+    """Preliminary evidence ranking, not injury-verified waiver recommendations."""
+    eligible = [c for c in candidates if c['ownership_eligible'] is True]
+    # All metrics are normalized within the same eligible population.
+    # Opportunity change gets the most weight; production and volume follow.
+    weights = {
+        'opportunity_change': 0.45,
+        'recent_average_ppr': 0.35,
+        'latest_opportunity': 0.20,
+    }
+    score_maps = {field: percentile_scores(eligible, field) for field in weights}
+    for candidate in eligible:
+        evidence = {}
+        for field, weight in weights.items():
+            value = finite_number(candidate.get(field))
+            if value is not None:
+                evidence[field] = {'value': round(value, 2),
+                                   'percentile': score_maps[field][value],
+                                   'weight': weight}
+        available_weight = sum(item['weight'] for item in evidence.values())
+        candidate['waiver_evidence_score'] = (
+            round(sum(item['percentile'] * item['weight']
+                      for item in evidence.values()) / available_weight, 2)
+            if available_weight else None
+        )
+        candidate['waiver_evidence'] = evidence
+        candidate['waiver_rank_status'] = 'preliminary_not_injury_verified'
+
+    eligible.sort(key=lambda c: (
+        c['waiver_evidence_score'] is not None,
+        c['waiver_evidence_score'] if c['waiver_evidence_score'] is not None else -1,
+        finite_number(c.get('opportunity_change')) or 0,
+        str(c.get('name') or ''),
+    ), reverse=True)
+    for index, candidate in enumerate(eligible, 1):
+        candidate['preliminary_waiver_rank'] = index
+    return eligible
+
+
 def main():
     data = json.loads(SOURCE.read_text(encoding='utf-8'))
     players = data.get('player_lookup', {})
@@ -227,21 +287,43 @@ def main():
             **ownership_summary(ownership.get(player_id, {})),
             'injury_opportunity': None,
         })
-    candidates.sort(key=lambda player: (
-        player['opportunity_change'] is not None,
-        player['opportunity_change'] if player['opportunity_change'] is not None
-        else float('-inf'), player['latest_opportunity']), reverse=True)
-    result = {'season': data['season'], 'target_week': data['target_week'],
-              'status': 'candidates_only', 'ownership_cutoff': OWNERSHIP_CUTOFF,
-              'ownership_rule': 'available_verified_average',
-              'ownership_minimum_sources': 1, 'candidates': candidates[:50]}
+    # Do not truncate before filtering: eligible players outside the first
+    # 50 opportunity-growth records must remain eligible for consideration.
+    eligible = rank_eligible_candidates(candidates)
+    unverified = [c for c in candidates if c['ownership_eligible'] is None]
+    above_cutoff = [c for c in candidates if c['ownership_eligible'] is False]
+
+    # Keep a 50-player review pool for the existing website. Only players
+    # with verified ownership below 65% enter the ranked portion.
+    review_pool = eligible[:50]
+    result = {
+        'season': data['season'],
+        'target_week': data['target_week'],
+        'status': 'preliminary_ownership_filtered_not_injury_verified',
+        'ownership_cutoff': OWNERSHIP_CUTOFF,
+        'ownership_rule': 'available_verified_average',
+        'ownership_minimum_sources': 1,
+        'ranking_method': 'relative_evidence_percentiles',
+        'ranking_weights': {
+            'opportunity_change': 0.45,
+            'recent_average_ppr': 0.35,
+            'latest_opportunity': 0.20,
+        },
+        'injury_analysis_status': 'pending',
+        'full_candidate_count': len(candidates),
+        'eligible_candidate_count': len(eligible),
+        'unverified_ownership_count': len(unverified),
+        'above_cutoff_count': len(above_cutoff),
+        'candidates': review_pool,
+    }
     OUTPUT.write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')
-    verified_count = sum(c['ownership_source_count'] > 0 for c in result['candidates'])
-    eligible_count = sum(c['ownership_eligible'] is True for c in result['candidates'])
-    print(f'Generated {len(result["candidates"])} waiver candidates.')
-    print(f'Candidates with verified ownership: {verified_count}')
-    print(f'Candidates below {OWNERSHIP_CUTOFF}% ownership: {eligible_count}')
-    print('Final waiver recommendations remain pending injury analysis.')
+    print(f'Full opportunity candidate pool: {len(candidates)}')
+    print(f'Players with verified ownership below {OWNERSHIP_CUTOFF}%: {len(eligible)}')
+    print(f'Players with unverified ownership: {len(unverified)}')
+    print(f'Players at or above {OWNERSHIP_CUTOFF}%: {len(above_cutoff)}')
+    print(f'Preliminary ranked candidates saved: {len(review_pool)}')
+    print('No final Top 10 published: injury and matchup evaluation remain pending.')
+
 
 
 if __name__ == '__main__':
