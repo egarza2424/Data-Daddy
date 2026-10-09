@@ -54,6 +54,7 @@ def fetch_nfl_schedule(season):
         raise ValueError('NFL schedule is missing required columns')
 
     team_weeks = defaultdict(set)
+    team_opponents = defaultdict(dict)
     game_count = 0
 
     for row in reader:
@@ -80,6 +81,8 @@ def fetch_nfl_schedule(season):
 
         team_weeks[home_team].add(row_week)
         team_weeks[away_team].add(row_week)
+        team_opponents[home_team][row_week] = away_team
+        team_opponents[away_team][row_week] = home_team
         game_count += 1
 
     if game_count < 200:
@@ -87,7 +90,7 @@ def fetch_nfl_schedule(season):
             'NFL schedule coverage insufficient for requested season'
         )
 
-    return team_weeks, game_count
+    return team_weeks, team_opponents, game_count
 
 def fetch_espn_ownership(players):
     params = {
