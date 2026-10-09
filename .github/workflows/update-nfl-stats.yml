@@ -619,6 +619,21 @@ jobs:
               "2026 roster status counts: "
               f"{dict(sorted(roster_status_counts.items()))}"
           )
+          print("=== JOSH JACOBS ROSTER DIAGNOSTIC ===")
+
+          for player_id, roster_player in roster_players_by_id.items():
+              if "josh jacobs" in str(
+                  roster_player.get("player_name") or ""
+              ).lower():
+                  print({
+                      "player_id": player_id,
+                      "player_name": roster_player.get("player_name"),
+                      "team": roster_player.get("team"),
+                      "status": roster_player.get("status"),
+                      "status_description_abbr":
+                          roster_player.get("status_description_abbr")
+                  })
+          
           roster_rookie_ids = {
               player_id
               for player_id, roster_player in (
