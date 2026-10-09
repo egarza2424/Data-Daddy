@@ -589,11 +589,12 @@ def main():
         latest_completed_week = int(data['target_week']) - 1
 
         team = str(player.get('team') or '').strip().upper()
+        schedule_team = 'LA' if team == 'LAR' else team
 
         missed_scheduled_weeks = [
             week
             for week in range(latest_recorded_week + 1, latest_completed_week + 1)
-            if week in team_weeks.get(team, set())
+            if week in team_weeks.get(schedule_team, set()))
         ]
 
         if missed_scheduled_weeks:
