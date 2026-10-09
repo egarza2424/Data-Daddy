@@ -1055,6 +1055,111 @@ function renderWeeklySleepers() {
     }
   );
 }
+
+async function loadWaiverWire() {
+  const container = document.getElementById("waiverWireList");
+  const weekBadge = document.getElementById("waiverWeekBadge");
+
+  if (!container) {
+    return;
+  }
+
+  const showMessage = (message) => {
+    container.replaceChildren();
+    const paragraph = document.createElement("p");
+    paragraph.textContent = message;
+    container.appendChild(paragraph);
+  };
+
+  try {
+    const response = await fetch(
+      "./waiver_wire_candidates.json",
+      { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        `Waiver data request failed: ${response.status}`
+      );
+    }
+
+    const data = await response.json();
+    const candidates = Array.isArray(data.candidates)
+      ? data.candidates
+      : [];
+
+    if (weekBadge) {
+      const week = Number(data.target_week);
+      weekBadge.textContent =
+        Number.isInteger(week) && week > 0
+          ? `WEEK ${week}`
+          : "WEEK —";
+    }
+
+    const hasVerifiedOwnership = (player) => {
+      const values = [
+        player.espn_rostered,
+        player.yahoo_rostered,
+        player.sleeper_rostered
+      ];
+
+      return values.every(
+        value =>
+          value !== null &&
+          value !== undefined &&
+          value !== "" &&
+          Number.isFinite(Number(value)) &&
+          Number(value) >= 0 &&
+          Number(value) <= 100
+      );
+    };
+
+    const eligible = candidates.filter((player) => {
+      if (!hasVerifiedOwnership(player)) {
+        return false;
+      }
+
+      const average = (
+        Number(player.espn_rostered) +
+        Number(player.yahoo_rostered) +
+        Number(player.sleeper_rostered)
+      ) / 3;
+
+      return average < 65 &&
+        player.injury_opportunity !== null &&
+        player.injury_opportunity !== undefined;
+    });
+
+    if (eligible.length === 0) {
+      showMessage(
+        `${candidates.length} preliminary waiver candidates loaded. ` +
+        "The official Top 10 is pending verified ESPN, Yahoo, " +
+        "and Sleeper roster percentages and injury-opportunity data. " +
+        "No unverified players will be published as recommendations."
+      );
+      return;
+    }
+
+    showMessage(
+      `${eligible.length} candidates meet the preliminary ` +
+      "ownership and injury-data requirements. " +
+      "Final waiver scoring and ranking are still being prepared."
+    );
+
+  } catch (error) {
+    console.error("Waiver Wire loading error:", error);
+
+    if (weekBadge) {
+      weekBadge.textContent = "WEEK —";
+    }
+
+    showMessage(
+      "Waiver Wire data is temporarily unavailable. " +
+      "Recommendations will appear when verified data is ready."
+    );
+  }
+}
+
 function renderProjectionBoard() {
   const tableBody =
     document.getElementById(
@@ -7051,6 +7156,7 @@ async function initializeApp() {
   renderPositionRankings();
   renderProjectionBoard();
   renderWeeklySleepers();
+  await loadWaiverWire();
   // Add the snapshot export button.
   const rankingSelect =
     document.getElementById("rankingPosition");
