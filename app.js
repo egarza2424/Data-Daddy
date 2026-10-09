@@ -1146,9 +1146,16 @@ async function loadWaiverWire() {
         heading.textContent = "DATA DADDY — PLAYER INTELLIGENCE";
 
         const usage = document.createElement("p");
-        const carries = Number(player.latest_week_carries);
-        const targets = Number(player.latest_week_targets);
-        const attempts = Number(player.latest_week_pass_attempts);
+        
+        const history = player.role_usage_evidence?.usage_weekly_history;
+        const latest = Array.isArray(history)
+          ? history.find((game) => game.week === data.target_week - 1)
+          : null;
+
+        const carries = latest ? Number(latest.carries) : NaN;
+        const targets = latest ? Number(latest.targets) : NaN;
+        const attempts = latest ? Number(latest.pass_attempts) : NaN;
+
 
         const usageParts = [];
 
