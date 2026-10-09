@@ -567,13 +567,13 @@ def main():
         ) from error
 
     unknown_team_codes = sorted({
-        str(player.get('team') or '').strip().upper()
+        team
         for player in players.values()
         if player.get('position') in {'QB', 'RB', 'WR', 'TE'}
-        and str(player.get('team') or '').strip().upper() not in team_weeks
+        for team in [str(player.get('team') or '').strip().upper()]
+        if ('LA' if team == 'LAR' else team) not in team_weeks
     })
-    print(f"Player team codes missing from NFL schedule: {unknown_team_codes}")
-
+    print(f"Unrecognized NFL schedule team codes: {unknown_team_codes}")
     candidates = []
     for player_id, player in players.items():
         position = player.get('position')
