@@ -1121,6 +1121,10 @@ async function loadWaiverWire() {
       container.appendChild(notice);
 
       provisional.forEach((player) => {
+        const fullPlayer = candidates.find(
+          (candidate) => candidate.player_id === player.player_id
+        ) || player;
+
         const row = document.createElement("div");
         row.className = "waiver-player";
 
@@ -1176,8 +1180,8 @@ async function loadWaiverWire() {
         
         const assessment = document.createElement("p");
 
-        const recentPpr = Number(player.recent_average_ppr);
-        const opportunityChange = Number(player.opportunity_change);
+        const recentPpr = Number(fullPlayer.recent_average_ppr);
+        const opportunityChange = Number(fullPlayer.opportunity_change);
         const recentAverages =
           player.role_usage_evidence?.usage_recent_3_game_averages || {};
 
