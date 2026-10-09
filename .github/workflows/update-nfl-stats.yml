@@ -11899,7 +11899,29 @@ jobs:
                       f"{type(error).__name__}: {error}"
                   )
           PY
-          
+      - name: Test NFL schedule coverage
+        run: |
+          python - <<'PY'
+          from scripts.build_waiver_wire import fetch_nfl_schedule
+
+          team_weeks, game_count = fetch_nfl_schedule(2026)
+
+          print(f"2026 regular-season games: {game_count}")
+          print(f"Teams with schedule data: {len(team_weeks)}")
+
+          assert len(team_weeks) == 32
+          assert game_count >= 200
+
+          week_4_teams = sorted(
+              team for team, weeks in team_weeks.items()
+              if 4 in weeks
+          )
+
+          bye_teams = sorted(set(team_weeks) - set(week_4_teams))
+
+          print(f"Week 4 scheduled teams: {len(week_4_teams)}")
+          print(f"Week 4 bye teams: {bye_teams}")
+          PY          
       - name: Test waiver wire generator
         run: |
           python -m py_compile scripts/build_waiver_wire.py
