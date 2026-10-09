@@ -1106,6 +1106,46 @@ async function loadWaiverWire() {
       );
     });
 
+    const provisional = Array.isArray(data.provisional_top_10)
+      ? data.provisional_top_10
+      : [];
+
+    if (provisional.length > 0) {
+      container.replaceChildren();
+
+      const notice = document.createElement("p");
+      notice.textContent =
+        `Week ${data.target_week} — Provisional Top 10. ` +
+        "These are model-ranked candidates, not final pickup recommendations. " +
+        "Official injury availability, player roles, and matchups remain under review.";
+      container.appendChild(notice);
+
+      provisional.forEach((player) => {
+        const row = document.createElement("div");
+        row.className = "waiver-player";
+
+        const title = document.createElement("strong");
+        title.textContent =
+          `#${player.provisional_rank} ${player.name} ` +
+          `(${player.position} • ${player.team})`;
+
+        const details = document.createElement("p");
+        const ownership = Number(player.average_rostered);
+        const score = Number(player.waiver_evidence_score);
+
+        details.textContent =
+          `Rostered: ${Number.isFinite(ownership) ? ownership.toFixed(1) + "%" : "Unverified"} ` +
+          `• Evidence score: ${Number.isFinite(score) ? score.toFixed(1) : "—"} ` +
+          `• Injury verification pending`;
+
+        row.append(title, details);
+        container.appendChild(row);
+      });
+
+      return;
+    }
+
+    
     if (eligible.length === 0) {
       showMessage(
         `${candidates.length} preliminary waiver candidates loaded. ` +
