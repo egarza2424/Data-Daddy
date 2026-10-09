@@ -1261,9 +1261,37 @@ async function loadWaiverWire() {
           positionOutlooks[player.position] ||
           "Recent opportunities may create fantasy value, but future usage remains uncertain.";
 
+               let playerValue = "";
+
+        if (player.position === "RB") {
+          playerValue =
+            "Carries provide rushing opportunities, while targets " +
+            "add PPR upside. Increased involvement could make " +
+            "him a useful waiver addition if the workload continues.";
+        } else if (player.position === "WR") {
+          playerValue =
+            "Targets create opportunities for receptions and " +
+            "receiving production. Consistent target volume " +
+            "could increase his weekly PPR value.";
+        } else if (player.position === "TE") {
+          playerValue =
+            "Passing-game involvement is particularly important " +
+            "at tight end. Sustained targets could make him " +
+            "a useful weekly streaming option.";
+        } else if (player.position === "QB") {
+          playerValue =
+            "Passing volume creates opportunities for yards " +
+            "and touchdowns. Continued offensive involvement " +
+            "could improve his weekly fantasy outlook.";
+        } else {
+          playerValue =
+            "Recent workload provides a potential path " +
+            "to additional fantasy production.";
+        }
+
         assessment.textContent =
+          `WHY ADD HIM? ${playerValue} ` +
           `FANTASY OUTLOOK: ${trendDescription} ` +
-          `${positionOutlook} ` +
           "Future role and workload sustainability remain unverified.";
 
 
