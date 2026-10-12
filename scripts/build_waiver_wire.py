@@ -270,7 +270,70 @@ def nflverse_injury_evidence(player_id, team, reports, metadata):
     })
     return result
 def teammate_injury_evidence(player_id, team, position, players,
-                             injury_reports, nflverse_reports):
+                             injury_reports, nflverse_reports,
+                             opportunities, season, target_week):
+    """Collect injury signals and measured teammate usage, not assumed roles."""
+    evidence = []
+
+    for teammate_id, teammate in players.items():
+        if teammate_id == player_id:
+            continue
+
+        if str(teammate.get('team') or '').strip().upper() != team:
+            continue
+
+        if teammate.get('position') != position:
+            continue
+
+        espn_report = injury_reports.get(teammate_id, {})
+        nflverse_rows = nflverse_reports.get(teammate_id, [])
+
+        matched_rows = [
+            row for row in nflverse_rows
+            if str(row.get('team') or '').strip().upper() == team
+        ]
+
+        if not espn_report and not matched_rows:
+            continue
+
+        games = opportunities.get(teammate_id, {}).get('games', [])
+        recent_games = sorted(
+            [
+                game for game in games
+                if int(game.get('season') or 0) == int(season)
+                and int(game.get('week') or 0) < int(target_week)
+            ],
+            key=lambda game: int(game.get('week') or 0),
+            reverse=True
+        )[:3]
+
+        usage = usage_role_evidence(recent_games, position)
+
+        evidence.append({
+            'player_id': teammate_id,
+            'name': teammate.get('name'),
+            'position': position,
+            'team': team,
+            'espn_status': espn_report.get('status'),
+            'espn_checked_at': espn_report.get('checked_at'),
+            'nflverse_reports': [
+                {
+                    'game_status': row.get('report_status'),
+                    'practice_status': row.get('practice_status'),
+                    'injury': (
+                        row.get('report_primary_injury')
+                        or row.get('practice_primary_injury')
+                    ),
+                }
+                for row in matched_rows
+            ],
+            'recent_usage': usage,
+            'starter_role_verified': False,
+            'expected_games_missed': None,
+            'return_timetable_verified': False,
+        })
+
+    return evidence
     """Collect teammate injury signals without inferring depth-chart roles."""
     evidence = []
 
@@ -695,6 +758,9 @@ def main():
                 players,
                 injury_reports,
                 nflverse_reports,
+                opportunities,
+                data['season'],
+                data['target_week'],
             ),
             **injury_screening(injury_reports.get(player_id)),
             **nflverse_injury_evidence(player_id, player.get('team'),
