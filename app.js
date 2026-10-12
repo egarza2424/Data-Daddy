@@ -1466,17 +1466,64 @@ async function loadWaiverWire() {
 
           injuryWatch.textContent =
             "INJURY WATCH\n" +
-            injuryLines.join("\n\n") +
-            "\n\nINJURY OPPORTUNITY SIGNAL: " +
-            opportunityLevel +
-            "\n" +
-            opportunityExplanation +
-            "\n\nThis signal classifies historical workload associated with a flagged teammate. " +
-            "It does not establish a replacement role or predict transferred opportunities." +
-            "\n\nSource: ESPN fantasy injury feed. " +
-            "Workload is historical, not a projection. " +
-            "Starting roles, injury diagnoses, and return timelines remain unverified.";
+            injuryLines.join("\n\n");
 
+          const opportunitySection = document.createElement("div");
+          opportunitySection.style.marginTop = "16px";
+          opportunitySection.style.paddingTop = "12px";
+          opportunitySection.style.borderTop = "1px solid rgba(255,255,255,0.15)";
+
+          const opportunityHeading = document.createElement("div");
+          opportunityHeading.style.display = "flex";
+          opportunityHeading.style.alignItems = "center";
+          opportunityHeading.style.flexWrap = "wrap";
+          opportunityHeading.style.gap = "10px";
+
+          const opportunityTitle = document.createElement("strong");
+          opportunityTitle.textContent = "INJURY OPPORTUNITY SIGNAL";
+          opportunityTitle.style.fontSize = "12px";
+          opportunityTitle.style.letterSpacing = "0.5px";
+
+          const opportunityBadge = document.createElement("span");
+          opportunityBadge.textContent = opportunityLevel;
+          opportunityBadge.style.fontSize = "12px";
+          opportunityBadge.style.fontWeight = "700";
+          opportunityBadge.style.padding = "4px 10px";
+          opportunityBadge.style.borderRadius = "999px";
+
+          const signalColors = {
+            High: { background: "#194c39", color: "#a5f3c5" },
+            Moderate: { background: "#574315", color: "#f5d37a" },
+            Low: { background: "#203e59", color: "#a7d8ff" },
+            Unverified: { background: "#3b414b", color: "#d0d5dd" }
+          };
+
+          const signalColor = signalColors[opportunityLevel];
+          opportunityBadge.style.backgroundColor = signalColor.background;
+          opportunityBadge.style.color = signalColor.color;
+
+          opportunityHeading.append(opportunityTitle, opportunityBadge);
+
+          const opportunityDetails = document.createElement("p");
+          opportunityDetails.textContent = opportunityExplanation;
+          opportunityDetails.style.margin = "10px 0";
+
+          const opportunityNote = document.createElement("p");
+          opportunityNote.textContent =
+            "Historical teammate workload only. Replacement role, transferred " +
+            "opportunities, and return timeline are not verified. " +
+            "Injury statuses sourced from ESPN.";
+          opportunityNote.style.fontSize = "12px";
+          opportunityNote.style.opacity = "0.8";
+          opportunityNote.style.margin = "8px 0 0";
+
+          opportunitySection.append(
+            opportunityHeading,
+            opportunityDetails,
+            opportunityNote
+          );
+
+          injuryWatch.appendChild(opportunitySection);
           intelligence.appendChild(injuryWatch);
         }
         row.append(title, details, intelligence);
