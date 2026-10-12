@@ -1541,55 +1541,92 @@ async function loadWaiverWire() {
         assessmentHeading.textContent = "OPPORTUNITY ASSESSMENT";
         assessmentHeading.style.color = "#f5d37a";
 
-        const recordedHistory = Array.isArray(history)
-          ? history
-              .filter((game) =>
-                Number.isFinite(Number(game.week)) &&
-                Number.isFinite(Number(game[metric]))
-              )
-              .sort((a, b) =>
-                Number(b.season || data.season) - Number(a.season || data.season) ||
-                Number(b.week) - Number(a.week)
-              )
-          : [];
+        
+        const backendAssessment =
+          fullPlayer.candidate_injury_opportunity_assessment ||
+          player.candidate_injury_opportunity_assessment ||
+          null;
 
-        const currentGame = recordedHistory[0];
-        const previousGames = recordedHistory.slice(1, 3);
+        const assessmentLabels = {
+          injury_flag_and_observed_usage_growth:
+            "POTENTIAL OPPORTUNITY — INJURY FLAG + USAGE GROWTH",
+          injury_flag_without_material_usage_growth:
+            "INJURY FLAG — USAGE RELATIVELY STABLE",
+          injury_flag_with_declining_usage:
+            "INJURY FLAG — USAGE DECLINING",
+          injury_flag_usage_trend_unverified:
+            "INJURY FLAG — USAGE TREND UNVERIFIED",
+          usage_growth_without_qualifying_injury_flag:
+            "USAGE TRENDING UP",
+          no_combined_injury_usage_signal:
+            "NO COMBINED INJURY / USAGE SIGNAL"
+        };
 
         const assessmentText = document.createElement("p");
         assessmentText.style.margin = "8px 0 0";
 
-        if (currentGame && previousGames.length === 2) {
-          const currentValue = Number(currentGame[metric]);
-          const previousAverage = previousGames.reduce(
-            (total, game) => total + Number(game[metric]),
-            0
-          ) / previousGames.length;
+        if (backendAssessment) {
+          const usageData = backendAssessment.candidate_usage || {};
+          const assessmentLabel =
+            assessmentLabels[backendAssessment.signal] ||
+            "UNVERIFIED / MIXED EVIDENCE";
 
-          const change = currentValue - previousAverage;
-          const growing = change >= 2;
+          const usageMetric = usageData.metric === "pass_attempts"
+            ? "pass attempts"
+            : usageData.metric === "carries"
+              ? "carries"
+              : usageData.metric === "targets"
+                ? "targets"
+                : "opportunities";
 
-          const assessmentLabel = growing
-            ? injuredTeammates.length > 0
-              ? "POTENTIAL OPPORTUNITY — INJURY FLAG + USAGE GROWTH"
-              : "USAGE TRENDING UP"
-            : "UNVERIFIED / MIXED EVIDENCE";
+          const hasLatest =
+            usageData.latest !== null &&
+            usageData.latest !== undefined &&
+            Number.isFinite(Number(usageData.latest));
+
+          const hasBaseline =
+            usageData.previous_average !== null &&
+            usageData.previous_average !== undefined &&
+            Number.isFinite(Number(usageData.previous_average));
+
+          const hasChange =
+            usageData.change !== null &&
+            usageData.change !== undefined &&
+            Number.isFinite(Number(usageData.change));
+
+          const sample = Number(usageData.previous_sample_games);
+
+          const usageExplanation = hasLatest && hasBaseline && hasChange
+            ? `Latest recorded game: ${Number(usageData.latest).toFixed(1)} ${usageMetric}. ` +
+              `Previous ${sample} recorded games: ` +
+              `${Number(usageData.previous_average).toFixed(1)} ${usageMetric}/game. ` +
+              `Change: ${Number(usageData.change) >= 0 ? "+" : ""}` +
+              `${Number(usageData.change).toFixed(1)}.`
+            : "Insufficient recorded workload evidence to establish a usage trend.";
+
+          const flagged = Array.isArray(backendAssessment.flagged_teammates)
+            ? backendAssessment.flagged_teammates
+            : [];
+
+          const injuryExplanation = flagged.length > 0
+            ? `ESPN injury flags: ${flagged.map((teammate) =>
+                `${teammate.name} (${String(teammate.espn_status || "UNKNOWN").replaceAll("_", " ")})`
+              ).join("; ")}.`
+            : "No qualifying teammate injury flag in this assessment.";
 
           assessmentText.textContent =
             `${assessmentLabel}\n` +
-            `Latest recorded game: ${currentValue.toFixed(1)} ${metricLabel}. ` +
-            `Previous two recorded games: ${previousAverage.toFixed(1)} ${metricLabel}/game. ` +
-            `Change: ${change >= 0 ? "+" : ""}${change.toFixed(1)}.\n` +
-            (injuredTeammates.length > 0
-              ? "Same-position teammate injury flags are present. "
-              : "No qualifying same-position teammate injury flags were found. ") +
-            "Future workload and replacement roles are not verified.";
+            `${usageExplanation}\n` +
+            `${injuryExplanation}\n` +
+            "Injury-related opportunity transfer, replacement role, " +
+            "and future workload are not verified.";
         } else {
           assessmentText.textContent =
-            "UNVERIFIED / MIXED EVIDENCE\n" +
-            "Insufficient recorded games to compare the latest workload " +
-            "against the preceding two games. Future role is unverified.";
+            "ASSESSMENT DATA UNAVAILABLE\n" +
+            "The backend opportunity assessment is not available " +
+            "for this player. No replacement role is inferred.";
         }
+
 
         opportunityAssessment.append(
           assessmentHeading,
