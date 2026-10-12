@@ -334,53 +334,63 @@ def teammate_injury_evidence(player_id, team, position, players,
         })
 
     return evidence
-    """Collect teammate injury signals without inferring depth-chart roles."""
-    evidence = []
+def classify_teammate_injury_opportunity(teammates, position):
+    """Classify flagged teammate workload, not projected replacement volume."""
+    metric = (
+        'pass_attempts' if position == 'QB'
+        else 'carries' if position == 'RB'
+        else 'targets'
+    )
+    high_threshold = 25 if position == 'QB' else (10 if position == 'RB' else 6)
+    moderate_threshold = 15 if position == 'QB' else (5 if position == 'RB' else 3)
 
-    for teammate_id, teammate in players.items():
-        if teammate_id == player_id:
+    considered = []
+    for teammate in teammates:
+        status = str(teammate.get('espn_status') or '').upper()
+        if status not in ESPN_UNAVAILABLE_STATUSES:
             continue
 
-        if teammate.get('team') != team:
+        usage = teammate.get('recent_usage') or {}
+        sample = usage.get('usage_sample_games') or 0
+        averages = usage.get('usage_recent_3_game_averages') or {}
+        average = finite_number(averages.get(metric))
+
+        if sample < 2 or average is None:
             continue
 
-        if teammate.get('position') != position:
-            continue
-
-        espn_report = injury_reports.get(teammate_id, {})
-        nflverse_rows = nflverse_reports.get(teammate_id, [])
-
-        matched_rows = [
-            row for row in nflverse_rows
-            if row.get('team') == team
-        ]
-
-        if not espn_report and not matched_rows:
-            continue
-
-        evidence.append({
-            'player_id': teammate_id,
+        considered.append({
             'name': teammate.get('name'),
-            'position': position,
-            'team': team,
-            'espn_status': espn_report.get('status'),
-            'nflverse_reports': [
-                {
-                    'game_status': row.get('report_status'),
-                    'practice_status': row.get('practice_status'),
-                    'injury': (
-                        row.get('report_primary_injury')
-                        or row.get('practice_primary_injury')
-                    ),
-                }
-                for row in matched_rows
-            ],
-            'starter_role_verified': False,
-            'expected_games_missed': None,
-            'return_timetable_verified': False,
+            'status': status,
+            'average': average,
+            'sample_games': sample,
         })
 
-    return evidence
+    strongest = max(
+        considered,
+        key=lambda item: item['average'],
+        default=None,
+    )
+
+    if strongest is None:
+        level = 'Unverified'
+    elif strongest['average'] >= high_threshold:
+        level = 'High'
+    elif strongest['average'] >= moderate_threshold:
+        level = 'Moderate'
+    else:
+        level = 'Low'
+
+    return {
+        'level': level,
+        'metric': metric,
+        'basis': strongest,
+        'method': 'largest_flagged_teammate_recent_average',
+        'minimum_sample_games': 2,
+        'verified_replacement_role': False,
+        'projected_transferred_opportunities': None,
+        'interpretation': 'Historical teammate usage only; opportunity transfer unverified',
+    }
+
 def load_ownership():
     if not OWNERSHIP_SOURCE.exists():
         return {}
@@ -610,6 +620,7 @@ def build_provisional_shortlist(eligible, limit=10):
                 'provisional_rank': len(selected) + 1,
                 'role_usage_evidence': candidate.get('role_usage_evidence'),
                 'teammate_injury_evidence': candidate.get('teammate_injury_evidence', []),
+                'injury_opportunity': candidate.get('injury_opportunity'),
                 'waiver_evidence_score': candidate['waiver_evidence_score'],
                 'average_rostered': candidate['average_rostered'],
                 'injury_feed_status': candidate.get('injury_feed_status'),
@@ -735,6 +746,22 @@ def main():
             and defensive_matchup.get('position') == position
             and scheduled_opponent is not None
         )
+        teammate_evidence = teammate_injury_evidence(
+            player_id,
+            team,
+            position,
+            players,
+            injury_reports,
+            nflverse_reports,
+            opportunities,
+            data['season'],
+            data['target_week'],
+        )
+        injury_opportunity_assessment = classify_teammate_injury_opportunity(
+            teammate_evidence,
+            position,
+        )
+
         candidates.append({
             'player_id': player_id, 'name': player.get('name'),
             'team': player.get('team'), 'position': position,
@@ -750,18 +777,8 @@ def main():
             'red_zone_score': red_zone_data.get('score'),
             'role_usage_evidence': usage_role_evidence(current_games, position),
             **ownership_summary(ownership.get(player_id, {})),
-            'injury_opportunity': None,
-            'teammate_injury_evidence': teammate_injury_evidence(
-                player_id,
-                team,
-                position,
-                players,
-                injury_reports,
-                nflverse_reports,
-                opportunities,
-                data['season'],
-                data['target_week'],
-            ),
+            'injury_opportunity': injury_opportunity_assessment,
+            'teammate_injury_evidence': teammate_evidence,
             **injury_screening(injury_reports.get(player_id)),
             **nflverse_injury_evidence(player_id, player.get('team'),
                                        nflverse_reports, nflverse_metadata),
