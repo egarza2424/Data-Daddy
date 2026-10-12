@@ -390,6 +390,100 @@ def classify_teammate_injury_opportunity(teammates, position):
         'projected_transferred_opportunities': None,
         'interpretation': 'Historical teammate usage only; opportunity transfer unverified',
     }
+def assess_candidate_injury_opportunity(games, position, teammates):
+    """Separate teammate injury flags from observed candidate usage growth."""
+    metric = (
+        'pass_attempts' if position == 'QB'
+        else 'carries' if position == 'RB'
+        else 'targets'
+    )
+
+    flagged = [
+        teammate for teammate in teammates
+        if str(teammate.get('espn_status') or '').upper()
+        in ESPN_UNAVAILABLE_STATUSES
+    ]
+
+    latest = None
+    baseline = None
+    change = None
+    previous_sample = 0
+
+    if games:
+        latest = finite_number(games[0].get(metric))
+        previous_values = [
+            value
+            for game in games[1:4]
+            if (value := finite_number(game.get(metric))) is not None
+        ]
+        previous_sample = len(previous_values)
+
+        if latest is not None and previous_sample >= 2:
+            baseline = sum(previous_values) / previous_sample
+            change = latest - baseline
+
+    if change is None:
+        usage_trend = 'insufficient_data'
+    elif change >= 1:
+        usage_trend = 'increasing'
+    elif change <= -1:
+        usage_trend = 'decreasing'
+    else:
+        usage_trend = 'stable'
+
+    if flagged:
+        availability = 'espn_unavailable_flag_requires_verification'
+    elif teammates:
+        availability = 'no_qualifying_espn_unavailable_flag'
+    else:
+        availability = 'no_matched_teammate_injury_evidence'
+
+    if flagged and usage_trend == 'increasing':
+        signal = 'injury_flag_and_observed_usage_growth'
+    elif flagged and usage_trend == 'stable':
+        signal = 'injury_flag_without_material_usage_growth'
+    elif flagged and usage_trend == 'decreasing':
+        signal = 'injury_flag_with_declining_usage'
+    elif flagged:
+        signal = 'injury_flag_usage_trend_unverified'
+    elif usage_trend == 'increasing':
+        signal = 'usage_growth_without_qualifying_injury_flag'
+    else:
+        signal = 'no_combined_injury_usage_signal'
+
+    return {
+        'signal': signal,
+        'availability_evidence': availability,
+        'flagged_teammates': [
+            {
+                'name': teammate.get('name'),
+                'espn_status': teammate.get('espn_status'),
+            }
+            for teammate in flagged
+        ],
+        'candidate_usage': {
+            'metric': metric,
+            'latest': round(latest, 2) if latest is not None else None,
+            'previous_average': (
+                round(baseline, 2) if baseline is not None else None
+            ),
+            'change': round(change, 2) if change is not None else None,
+            'previous_sample_games': previous_sample,
+            'trend': usage_trend,
+        },
+        'role_evidence': 'usage_trend_only_replacement_role_unverified',
+        'official_availability_verified': False,
+        'replacement_role_verified': False,
+        'injury_caused_usage_change_verified': False,
+        'projected_transferred_opportunities': None,
+        'interpretation': (
+            'ESPN teammate injury flags and candidate usage trends are '
+            'separate observations; causation and future role are unverified.'
+        ),
+    }
+
+
+
 
 def load_ownership():
     if not OWNERSHIP_SOURCE.exists():
@@ -621,6 +715,9 @@ def build_provisional_shortlist(eligible, limit=10):
                 'role_usage_evidence': candidate.get('role_usage_evidence'),
                 'teammate_injury_evidence': candidate.get('teammate_injury_evidence', []),
                 'injury_opportunity': candidate.get('injury_opportunity'),
+                'candidate_injury_opportunity_assessment': candidate.get(
+                    'candidate_injury_opportunity_assessment'
+                ),
                 'waiver_evidence_score': candidate['waiver_evidence_score'],
                 'average_rostered': candidate['average_rostered'],
                 'injury_feed_status': candidate.get('injury_feed_status'),
@@ -761,6 +858,11 @@ def main():
             teammate_evidence,
             position,
         )
+        candidate_injury_assessment = assess_candidate_injury_opportunity(
+            current_games,
+            position,
+            teammate_evidence,
+        )
 
         candidates.append({
             'player_id': player_id, 'name': player.get('name'),
@@ -778,6 +880,7 @@ def main():
             'role_usage_evidence': usage_role_evidence(current_games, position),
             **ownership_summary(ownership.get(player_id, {})),
             'injury_opportunity': injury_opportunity_assessment,
+            'candidate_injury_opportunity_assessment': candidate_injury_assessment,
             'teammate_injury_evidence': teammate_evidence,
             **injury_screening(injury_reports.get(player_id)),
             **nflverse_injury_evidence(player_id, player.get('team'),
