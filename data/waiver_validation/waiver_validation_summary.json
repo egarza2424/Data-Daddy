@@ -4,8 +4,11 @@
   "recorded_game_rows": 0,
   "missing_or_unavailable_rows": 10,
   "conflicting_stat_records": 0,
+  "verified_pregame_rows": 8,
+  "post_kickoff_rows": 0,
+  "timing_unavailable_rows": 2,
   "predictive_accuracy_eligible_rows": 0,
   "eligible_average_ppr": null,
   "eligible_average_ppr_by_position": {},
-  "note": "No unverified snapshots count toward predictive accuracy; absent game records are not zeroes. PPR is read from nfl-stats.json, not recalculated."
+  "note": "Only player-level verified pregame recommendations count toward predictive accuracy; absent game records are not zeroes. PPR is read from nfl-stats.json, not recalculated."
 }
