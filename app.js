@@ -1398,15 +1398,47 @@ async function loadWaiverWire() {
           const injuryWatch = document.createElement("p");
           injuryWatch.className = "waiver-injury-watch";
           injuryWatch.style.marginTop = "16px";
+          injuryWatch.style.whiteSpace = "pre-line";
+
+          const injuryLines = injuredTeammates.map((teammate) => {
+            const status = String(teammate.espn_status || "UNKNOWN")
+              .replaceAll("_", " ");
+
+            const averages = teammate.recent_usage_averages || {};
+            const sample = Number(teammate.recent_usage_games);
+
+            const metric = player.position === "QB"
+              ? "pass_attempts"
+              : player.position === "RB"
+                ? "carries"
+                : "targets";
+
+            const metricLabel = metric === "pass_attempts"
+              ? "pass attempts"
+              : metric;
+
+            const average = averages[metric];
+
+            const workload = average !== null &&
+              average !== undefined &&
+              Number.isFinite(Number(average)) &&
+              Number.isInteger(sample) &&
+              sample > 0
+                ? `${Number(average).toFixed(1)} ${metricLabel}/game (${sample} recorded games)`
+                : "Recent workload unavailable";
+
+            return `${teammate.name} — ${status}\nRecent workload: ${workload}`;
+          });
 
           injuryWatch.textContent =
-            `INJURY WATCH: ${injurySummary}. ` +
-            "Source: ESPN fantasy injury feed. " +
-            "Official availability, starting roles, and return timelines require verification.";
+            "INJURY WATCH\n" +
+            injuryLines.join("\n\n") +
+            "\n\nSource: ESPN fantasy injury feed. " +
+            "Workload is historical, not a projection. " +
+            "Starting roles, injury diagnoses, and return timelines remain unverified.";
 
           intelligence.appendChild(injuryWatch);
         }
-
         row.append(title, details, intelligence);
         container.appendChild(row);
 
