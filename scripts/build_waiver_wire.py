@@ -495,6 +495,7 @@ def build_provisional_shortlist(eligible, limit=10):
                 'next_opponent': candidate.get('next_opponent'),
                 'matchup_week': candidate.get('matchup_week'),
                 'matchup_location': candidate.get('matchup_location'),
+                'defensive_matchup': candidate.get('defensive_matchup'),
                 'original_rank': candidate['preliminary_waiver_rank'],
                 'provisional_rank': len(selected) + 1,
                 'role_usage_evidence': candidate.get('role_usage_evidence'),
@@ -629,6 +630,7 @@ def main():
             'next_opponent': team_opponents.get(schedule_team, {}).get(int(data['target_week'])),
             'matchup_week': int(data['target_week']),
             'matchup_location': team_home_away.get(schedule_team, {}).get(int(data['target_week'])),
+            'defensive_matchup': defensive_matchup if matchup_matches_schedule else None,
             'latest_opportunity': latest,
             'previous_opportunity_average': (round(baseline, 2)
                                              if baseline is not None else None),
