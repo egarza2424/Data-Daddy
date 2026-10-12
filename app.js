@@ -1154,6 +1154,33 @@ async function loadWaiverWire() {
           (candidate) => candidate.player_id === player.player_id
         ) || player;
 
+        const teammateReports = Array.isArray(fullPlayer.teammate_injury_evidence)
+          ? fullPlayer.teammate_injury_evidence
+          : [];
+
+        const relevantStatuses = new Set([
+          "OUT",
+          "DOUBTFUL",
+          "QUESTIONABLE",
+          "INJURY_RESERVE",
+          "IR",
+          "PUP",
+          "GTD",
+          "DAY_TO_DAY"
+        ]);
+
+        const injuredTeammates = teammateReports.filter((teammate) => {
+          return relevantStatuses.has(
+            String(teammate.espn_status || "").toUpperCase()
+          );
+        });
+
+        const injurySummary = injuredTeammates
+          .map((teammate) =>
+            `${teammate.name} (${String(teammate.espn_status).replaceAll("_", " ")})`
+          )
+          .join("; ");
+
         const row = document.createElement("div");
         row.className = "waiver-player";
 
@@ -1348,12 +1375,35 @@ async function loadWaiverWire() {
             "to additional fantasy production.";
         }
 
+        const injuryContext = injuredTeammates.length > 0
+          ? ` Same-position teammates with ESPN injury flags: ${injurySummary}. ` +
+            "These statuses may affect future opportunity, but a direct replacement role is not verified."
+          : "";
+
+        const injuryOutlook = injuredTeammates.length > 0
+          ? " Additional opportunities are possible if affected teammates miss time. " +
+            "Their return timetables have not been verified."
+          : "";
+
         assessment.textContent =
-          `WHY ADD HIM? ${playerValue} ` +
-          `FANTASY OUTLOOK: ${trendDescription} ` +
+          `WHY ADD HIM? ${playerValue}${injuryContext} ` +
+          `FANTASY OUTLOOK: ${trendDescription}${injuryOutlook} ` +
           "Future role and workload sustainability remain unverified.";
 
         intelligence.append(heading, usage, metrics, assessment);
+
+        if (injuredTeammates.length > 0) {
+          const injuryWatch = document.createElement("p");
+          injuryWatch.className = "waiver-injury-watch";
+
+          injuryWatch.textContent =
+            `INJURY WATCH: ${injurySummary}. ` +
+            "Source: ESPN fantasy injury feed. " +
+            "Official availability, starting roles, and return timelines require verification.";
+
+          intelligence.appendChild(injuryWatch);
+        }
+
         row.append(title, details, intelligence);
         container.appendChild(row);
 
