@@ -11926,7 +11926,7 @@ jobs:
           fi
 
           
-          git add "$OUTPUT_FILE" waiver_wire_candidates.json data/waiver_snapshots/
+          git add "$OUTPUT_FILE" waiver_wire_candidates.json data/waiver_snapshots/ data/waiver_validation/
 
           if git diff --cached --quiet; then
             echo "No stats changes to commit."
