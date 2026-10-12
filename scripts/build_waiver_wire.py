@@ -9,9 +9,12 @@ from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+
 SOURCE = Path('nfl-stats.json')
 OWNERSHIP_SOURCE = Path('waiver_wire_ownership.json')
 OUTPUT = Path('waiver_wire_candidates.json')
+SNAPSHOT_DIR = Path('data/waiver_snapshots')
+
 OWNERSHIP_CUTOFF = 65
 VALID_PLATFORMS = ('espn', 'yahoo', 'sleeper')
 ESPN_URL = ('https://lm-api-reads.fantasy.espn.com/apis/v3/'
@@ -927,9 +930,28 @@ def main():
         'provisional_top_10': provisional_top_10,
         'excluded_from_original_top_10_by_espn_injury_screen': excluded_top_10,
     }
-    result['last_updated'] = datetime.now(timezone.utc).isoformat()        
+    
+    result['last_updated'] = datetime.now(timezone.utc).isoformat()
     OUTPUT.write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')
+
+    # Preserve the first successful prediction snapshot for each week.
+    # Never overwrite it with later information.
+    SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
+    snapshot_path = SNAPSHOT_DIR / (
+        f"waiver_{int(data['season'])}_week_{int(data['target_week']):02d}.json"
+    )
+
+    if snapshot_path.exists():
+        print(f'Existing weekly snapshot preserved: {snapshot_path}')
+    else:
+        snapshot_path.write_text(
+            json.dumps(result, indent=2) + '\n',
+            encoding='utf-8'
+        )
+        print(f'Weekly prediction snapshot created: {snapshot_path}')
+
     print(f'Full opportunity candidate pool: {len(candidates)}')
+
     print(f'Players with verified ownership below {OWNERSHIP_CUTOFF}%: {len(eligible)}')
     print(f'Players with unverified ownership: {len(unverified)}')
     print(f'Players at or above {OWNERSHIP_CUTOFF}%: {len(above_cutoff)}')
