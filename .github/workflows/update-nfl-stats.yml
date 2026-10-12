@@ -11907,7 +11907,13 @@ jobs:
           python -m py_compile scripts/build_waiver_wire.py
           python scripts/build_waiver_wire.py
           python -m json.tool waiver_wire_candidates.json > /dev/null
-          
+
+      - name: Validate frozen waiver predictions
+        run: |
+          python -m py_compile scripts/validate_waiver_predictions.py
+          python scripts/validate_waiver_predictions.py
+          python -m json.tool data/waiver_validation/waiver_validation_summary.json > /dev/null
+
       - name: Commit updated stats
         run: |
           git config user.name "github-actions[bot]"
