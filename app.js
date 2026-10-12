@@ -1330,10 +1330,17 @@ async function loadWaiverWire() {
           ? `${opportunityChange > 0 ? "+" : ""}${opportunityChange.toFixed(1)}`
           : "—";
 
+        
         pprMetric.textContent = `3-GAME AVG PPR: ${pprValue}`;
         growthMetric.textContent = `OPPORTUNITY CHANGE: ${growthValue}`;
 
+        growthMetric.title =
+          "Model-derived opportunity change across recent games. " +
+          "This is separate from the position-specific workload comparison " +
+          "shown in Opportunity Assessment below.";
+
         metrics.append(pprMetric, growthMetric);
+
 
         
         const positionOutlooks = {
@@ -1537,9 +1544,20 @@ async function loadWaiverWire() {
         opportunityAssessment.style.borderRadius = "8px";
         opportunityAssessment.style.whiteSpace = "pre-line";
 
+        
         const assessmentHeading = document.createElement("strong");
         assessmentHeading.textContent = "OPPORTUNITY ASSESSMENT";
         assessmentHeading.style.color = "#f5d37a";
+
+        const assessmentDescription = document.createElement("p");
+        assessmentDescription.textContent =
+          "Compares the latest recorded game with previous games using " +
+          "carries (RB), targets (WR/TE), or pass attempts (QB). " +
+          "Separate from the model's Opportunity Change metric.";
+        assessmentDescription.style.fontSize = "12px";
+        assessmentDescription.style.opacity = "0.8";
+        assessmentDescription.style.margin = "8px 0";
+
 
         
         const backendAssessment =
@@ -1626,10 +1644,10 @@ async function loadWaiverWire() {
             "The backend opportunity assessment is not available " +
             "for this player. No replacement role is inferred.";
         }
-
-
+        
         opportunityAssessment.append(
           assessmentHeading,
+          assessmentDescription,
           assessmentText
         );
 
