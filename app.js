@@ -1178,10 +1178,30 @@ async function loadWaiverWire() {
               ? `@ ${nextOpponent}`
               : `Opponent: ${nextOpponent}`;
 
+        const defensiveScore = player.defensive_matchup_score;
+        const defensivePpr = player.defensive_fantasy_points_allowed;
+        const defensiveSample = player.defensive_sample_size_2026;
+
+        const hasDefensiveMatchup =
+          nextOpponent &&
+          defensiveScore !== null &&
+          defensiveScore !== undefined &&
+          defensivePpr !== null &&
+          defensivePpr !== undefined &&
+          Number.isFinite(Number(defensiveScore)) &&
+          Number.isFinite(Number(defensivePpr));
+
+        const defensiveLabel = hasDefensiveMatchup
+          ? ` • Matchup: ${Number(defensiveScore).toFixed(0)}/100` +
+            ` • Defense allows: ${Number(defensivePpr).toFixed(1)} PPR/game` +
+            ` (${Number(defensiveSample) || 0} games)`
+          : " • Defensive matchup: N/A";
+
         details.textContent =
           `Rostered: ${Number.isFinite(ownership) ? ownership.toFixed(1) + "%" : "Unverified"}` +
           ` • Evidence score: ${Number.isFinite(score) ? score.toFixed(1) : "—"}` +
-          ` • Week ${matchupWeek}: ${matchupLabel}`;
+          ` • Week ${matchupWeek}: ${matchupLabel}` +
+          defensiveLabel;
         
         const intelligence = document.createElement("div");
         intelligence.className = "waiver-intelligence";
