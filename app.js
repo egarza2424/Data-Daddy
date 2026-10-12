@@ -1178,10 +1178,9 @@ async function loadWaiverWire() {
               ? `@ ${nextOpponent}`
               : `Opponent: ${nextOpponent}`;
 
-        const defensiveScore = player.defensive_matchup_score;
-        const defensivePpr = player.defensive_fantasy_points_allowed;
-        const defensiveSample = player.defensive_sample_size_2026;
-
+        const defensiveScore = player.defensive_matchup?.score;
+        const defensivePpr = player.defensive_matchup?.fantasy_points_allowed;
+        const defensiveSample = player.defensive_matchup?.sample_size_2026;
         const hasDefensiveMatchup =
           nextOpponent &&
           defensiveScore !== null &&
