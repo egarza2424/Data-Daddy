@@ -1404,8 +1404,8 @@ async function loadWaiverWire() {
             const status = String(teammate.espn_status || "UNKNOWN")
               .replaceAll("_", " ");
 
-            const averages = teammate.recent_usage_averages || {};
-            const sample = Number(teammate.recent_usage_games);
+            const averages = teammate.recent_usage?.usage_recent_3_game_averages || {};
+            const sample = Number(teammate.recent_usage?.usage_sample_games);
 
             const metric = player.position === "QB"
               ? "pass_attempts"
