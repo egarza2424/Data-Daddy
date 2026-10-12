@@ -1523,11 +1523,84 @@ async function loadWaiverWire() {
             opportunityNote
           );
 
+          
           injuryWatch.appendChild(opportunitySection);
           intelligence.appendChild(injuryWatch);
         }
+
+        // Separate opportunity assessment based on recorded usage.
+        const opportunityAssessment = document.createElement("div");
+        opportunityAssessment.className = "waiver-opportunity-assessment";
+        opportunityAssessment.style.marginTop = "16px";
+        opportunityAssessment.style.padding = "12px";
+        opportunityAssessment.style.border = "1px solid rgba(212,175,55,0.35)";
+        opportunityAssessment.style.borderRadius = "8px";
+        opportunityAssessment.style.whiteSpace = "pre-line";
+
+        const assessmentHeading = document.createElement("strong");
+        assessmentHeading.textContent = "OPPORTUNITY ASSESSMENT";
+        assessmentHeading.style.color = "#f5d37a";
+
+        const recordedHistory = Array.isArray(history)
+          ? history
+              .filter((game) =>
+                Number.isFinite(Number(game.week)) &&
+                Number.isFinite(Number(game[metric]))
+              )
+              .sort((a, b) =>
+                Number(b.season || data.season) - Number(a.season || data.season) ||
+                Number(b.week) - Number(a.week)
+              )
+          : [];
+
+        const currentGame = recordedHistory[0];
+        const previousGames = recordedHistory.slice(1, 3);
+
+        const assessmentText = document.createElement("p");
+        assessmentText.style.margin = "8px 0 0";
+
+        if (currentGame && previousGames.length === 2) {
+          const currentValue = Number(currentGame[metric]);
+          const previousAverage = previousGames.reduce(
+            (total, game) => total + Number(game[metric]),
+            0
+          ) / previousGames.length;
+
+          const change = currentValue - previousAverage;
+          const growing = change >= 2;
+
+          const assessmentLabel = growing
+            ? injuredTeammates.length > 0
+              ? "POTENTIAL OPPORTUNITY — INJURY FLAG + USAGE GROWTH"
+              : "USAGE TRENDING UP"
+            : "UNVERIFIED / MIXED EVIDENCE";
+
+          assessmentText.textContent =
+            `${assessmentLabel}\n` +
+            `Latest recorded game: ${currentValue.toFixed(1)} ${metricLabel}. ` +
+            `Previous two recorded games: ${previousAverage.toFixed(1)} ${metricLabel}/game. ` +
+            `Change: ${change >= 0 ? "+" : ""}${change.toFixed(1)}.\n` +
+            (injuredTeammates.length > 0
+              ? "Same-position teammate injury flags are present. "
+              : "No qualifying same-position teammate injury flags were found. ") +
+            "Future workload and replacement roles are not verified.";
+        } else {
+          assessmentText.textContent =
+            "UNVERIFIED / MIXED EVIDENCE\n" +
+            "Insufficient recorded games to compare the latest workload " +
+            "against the preceding two games. Future role is unverified.";
+        }
+
+        opportunityAssessment.append(
+          assessmentHeading,
+          assessmentText
+        );
+
+        intelligence.appendChild(opportunityAssessment);
+
         row.append(title, details, intelligence);
         container.appendChild(row);
+
 
       });
 
