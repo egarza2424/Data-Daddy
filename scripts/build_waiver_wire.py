@@ -538,6 +538,7 @@ def main():
     opportunities = data.get('opportunity_volume', {})
     performances = data.get('recent_player_performance', {})
     red_zone = data.get('red_zone_opportunity', {})
+    defensive_matchups = data.get('defensive_matchup', {})
 
     # Fetch fresh public ownership each run. On failure, do not use old data.
     try:
