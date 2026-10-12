@@ -1430,9 +1430,49 @@ async function loadWaiverWire() {
             return `${teammate.name} — ${status}\nRecent workload: ${workload}`;
           });
 
+          const injuryOpportunity =
+            fullPlayer.injury_opportunity || player.injury_opportunity || {};
+
+          const validLevels = new Set([
+            "High",
+            "Moderate",
+            "Low",
+            "Unverified"
+          ]);
+
+          const opportunityLevel = validLevels.has(injuryOpportunity.level)
+            ? injuryOpportunity.level
+            : "Unverified";
+
+          const opportunityBasis = injuryOpportunity.basis;
+          const basisMetric = injuryOpportunity.metric;
+
+          const basisMetricLabel = basisMetric === "pass_attempts"
+            ? "pass attempts"
+            : basisMetric === "carries"
+              ? "carries"
+              : "targets";
+
+          const hasValidBasis =
+            opportunityBasis &&
+            Number.isFinite(Number(opportunityBasis.average)) &&
+            Number.isInteger(Number(opportunityBasis.sample_games)) &&
+            Number(opportunityBasis.sample_games) >= 2 &&
+            ["pass_attempts", "carries", "targets"].includes(basisMetric);
+
+          const opportunityExplanation = hasValidBasis
+            ? `${opportunityBasis.name}: ${Number(opportunityBasis.average).toFixed(1)} ${basisMetricLabel}/game across ${Number(opportunityBasis.sample_games)} recorded games.`
+            : "Insufficient qualifying teammate workload evidence.";
+
           injuryWatch.textContent =
             "INJURY WATCH\n" +
             injuryLines.join("\n\n") +
+            "\n\nINJURY OPPORTUNITY SIGNAL: " +
+            opportunityLevel +
+            "\n" +
+            opportunityExplanation +
+            "\n\nThis signal classifies historical workload associated with a flagged teammate. " +
+            "It does not establish a replacement role or predict transferred opportunities." +
             "\n\nSource: ESPN fantasy injury feed. " +
             "Workload is historical, not a projection. " +
             "Starting roles, injury diagnoses, and return timelines remain unverified.";
