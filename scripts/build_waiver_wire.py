@@ -55,6 +55,7 @@ def fetch_nfl_schedule(season):
 
     team_weeks = defaultdict(set)
     team_opponents = defaultdict(dict)
+    team_home_away = defaultdict(dict)
     game_count = 0
 
     for row in reader:
@@ -79,6 +80,8 @@ def fetch_nfl_schedule(season):
         if not home_team or not away_team:
             continue
 
+        team_home_away[home_team][row_week] = 'home'
+        team_home_away[away_team][row_week] = 'away'
         team_weeks[home_team].add(row_week)
         team_weeks[away_team].add(row_week)
         team_opponents[home_team][row_week] = away_team
@@ -90,8 +93,8 @@ def fetch_nfl_schedule(season):
             'NFL schedule coverage insufficient for requested season'
         )
 
-    return team_weeks, team_opponents, game_count
-
+    return team_weeks, team_opponents, team_home_away, game_count
+            
 def fetch_espn_ownership(players):
     params = {
         "players": {
@@ -561,7 +564,7 @@ def main():
         }
 
     try:
-        team_weeks, team_opponents, schedule_game_count = fetch_nfl_schedule(data['season'])
+        team_weeks, team_opponents, team_home_away, schedule_game_count = fetch_nfl_schedule(data['season'])
         print(
             f"NFL schedule loaded: {schedule_game_count} games, "
             f"{len(team_weeks)} teams."
