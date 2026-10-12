@@ -1,20 +1,24 @@
 #!/usr/bin/env python3
 """Audit frozen waiver Top 10 snapshots against recorded weekly PPR.
 
-Conservative policy: a snapshot must be explicitly verified as pregame before
-its results are counted in predictive accuracy summaries. Missing games are
+Conservative policy: a snapshot must precede each player's scheduled kickoff
+before its results count in predictive accuracy summaries. Missing games are
 never assumed to be zero-point performances.
 """
 import argparse
 import csv
 import json
+import urllib.request
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 DEFAULT_SNAPSHOTS = Path('data/waiver_snapshots')
 DEFAULT_STATS = Path('nfl-stats.json')
 DEFAULT_OUTPUT = Path('data/waiver_validation')
+DEFAULT_SCHEDULE_URL = 'https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv'
+TEAM_ALIASES = {'LA': 'LAR', 'JAC': 'JAX', 'WSH': 'WAS', 'OAK': 'LV'}
 
 
 def parse_time(value):
@@ -24,6 +28,60 @@ def parse_time(value):
         return datetime.fromisoformat(str(value).replace('Z', '+00:00')).astimezone(timezone.utc)
     except (ValueError, TypeError):
         return None
+
+
+
+def normalize_team(team):
+    value = str(team or '').strip().upper()
+    return TEAM_ALIASES.get(value, value)
+
+
+def load_kickoffs(schedule_url):
+    """Map (season, week, team) to unique scheduled UTC kickoff.
+
+    nflverse nfldata games.csv gameday/gametime are US Eastern local time.
+    Missing, malformed or ambiguous records remain ineligible.
+    """
+    kickoffs = {}
+    ambiguous = set()
+    try:
+        with urllib.request.urlopen(schedule_url, timeout=25) as response:
+            reader = csv.DictReader(line.decode('utf-8-sig') for line in response)
+            required = {'season', 'week', 'game_type', 'gameday', 'gametime', 'home_team', 'away_team'}
+            if not required.issubset(set(reader.fieldnames or [])):
+                raise ValueError('NFL schedule missing required columns')
+            for row in reader:
+                if str(row.get('game_type', '')).strip() != 'REG':
+                    continue
+                try:
+                    season = int(row['season'])
+                    week = int(row['week'])
+                except (ValueError, TypeError):
+                    continue
+                day, clock = (row.get('gameday') or '').strip(), (row.get('gametime') or '').strip()
+                if not day or not clock:
+                    continue
+                try:
+                    kickoff = datetime.fromisoformat(f'{day}T{clock}').replace(
+                        tzinfo=ZoneInfo('America/New_York')
+                    ).astimezone(timezone.utc)
+                except ValueError:
+                    continue
+                for raw_team in (row.get('home_team'), row.get('away_team')):
+                    team = normalize_team(raw_team)
+                    if not team:
+                        continue
+                    key = (season, week, team)
+                    if key in kickoffs:
+                        ambiguous.add(key)
+                    else:
+                        kickoffs[key] = kickoff
+    except (OSError, ValueError, TimeoutError) as error:
+        print(f'NFL kickoff schedule unavailable; timing remains unverified: {error}')
+        return {}, set()
+    for key in ambiguous:
+        kickoffs.pop(key, None)
+    return kickoffs, ambiguous
 
 
 def collect_player_games(stats):
@@ -69,19 +127,27 @@ def collect_player_games(stats):
     return games, conflicts
 
 
-def audit_snapshot(path, games, conflicts, pregame_approved):
+def audit_snapshot(path, games, conflicts, kickoffs, ambiguous_kickoffs):
     snapshot = json.loads(path.read_text(encoding='utf-8'))
     season, week = int(snapshot['season']), int(snapshot['target_week'])
     generated = parse_time(snapshot.get('last_updated'))
-    # No schedule/kickoff feed is supplied here. Timing cannot be independently verified.
-    timing = 'manually_verified_pregame' if path.name in pregame_approved else 'pregame_unverified'
-    if generated is None:
-        timing = 'missing_snapshot_timestamp'
     recommendations = snapshot.get('provisional_top_10', [])
     rows = []
     for index, candidate in enumerate(recommendations, start=1):
         player_id = str(candidate.get('player_id') or '')
         key = (player_id, season, week)
+        kickoff_key = (season, week, normalize_team(candidate.get('team')))
+        kickoff = kickoffs.get(kickoff_key)
+        if generated is None:
+            timing = 'missing_snapshot_timestamp'
+        elif kickoff_key in ambiguous_kickoffs:
+            timing = 'ambiguous_kickoff'
+        elif kickoff is None:
+            timing = 'kickoff_unavailable'
+        elif generated < kickoff:
+            timing = 'verified_pregame'
+        else:
+            timing = 'post_kickoff'
         if key in conflicts:
             result_status, actual = 'conflicting_stat_records', None
         elif key in games:
@@ -94,6 +160,7 @@ def audit_snapshot(path, games, conflicts, pregame_approved):
             'snapshot_generated_utc': generated.isoformat() if generated else '',
             'season': season, 'target_week': week,
             'pregame_status': timing,
+            'scheduled_kickoff_utc': kickoff.isoformat() if kickoff else '',
             'rank': candidate.get('provisional_rank', index),
             'original_rank': candidate.get('original_rank', ''),
             'player_id': player_id,
@@ -104,7 +171,7 @@ def audit_snapshot(path, games, conflicts, pregame_approved):
             'injury_opportunity_signal': signal or '',
             'result_status': result_status,
             'actual_ppr': actual if actual is not None else '',
-            'eligible_for_predictive_accuracy': timing == 'manually_verified_pregame' and result_status == 'recorded_game',
+            'eligible_for_predictive_accuracy': timing == 'verified_pregame' and result_status == 'recorded_game',
         })
     return rows
 
@@ -114,8 +181,8 @@ def main():
     parser.add_argument('--snapshots', type=Path, default=DEFAULT_SNAPSHOTS)
     parser.add_argument('--stats', type=Path, default=DEFAULT_STATS)
     parser.add_argument('--output', type=Path, default=DEFAULT_OUTPUT)
-    parser.add_argument('--approve-pregame', action='append', default=[], metavar='SNAPSHOT_FILENAME',
-                        help='Use only after independently verifying all relevant kickoff times and snapshot timestamp')
+    parser.add_argument('--schedule-url', default=DEFAULT_SCHEDULE_URL,
+                        help='NFL schedule CSV URL (defaults to nflverse nfldata)')
     args = parser.parse_args()
     if not args.stats.is_file():
         parser.error(f'Missing stats file: {args.stats}')
@@ -126,9 +193,10 @@ def main():
     paths = sorted(args.snapshots.glob('waiver_*_week_*.json'))
     if not paths:
         parser.error(f'No weekly snapshots in {args.snapshots}')
+    kickoffs, ambiguous_kickoffs = load_kickoffs(args.schedule_url)
     rows = []
     for path in paths:
-        rows.extend(audit_snapshot(path, games, conflicts, set(args.approve_pregame)))
+        rows.extend(audit_snapshot(path, games, conflicts, kickoffs, ambiguous_kickoffs))
     if not rows:
         parser.error('Snapshots contain no provisional_top_10 recommendations')
     args.output.mkdir(parents=True, exist_ok=True)
@@ -147,10 +215,13 @@ def main():
         'recorded_game_rows': sum(r['result_status'] == 'recorded_game' for r in rows),
         'missing_or_unavailable_rows': sum(r['result_status'] == 'missing_game_or_unavailable' for r in rows),
         'conflicting_stat_records': len(conflicts),
+        'verified_pregame_rows': sum(r['pregame_status'] == 'verified_pregame' for r in rows),
+        'post_kickoff_rows': sum(r['pregame_status'] == 'post_kickoff' for r in rows),
+        'timing_unavailable_rows': sum(r['pregame_status'] in ('missing_snapshot_timestamp', 'ambiguous_kickoff', 'kickoff_unavailable') for r in rows),
         'predictive_accuracy_eligible_rows': len(eligible),
         'eligible_average_ppr': round(sum(float(r['actual_ppr']) for r in eligible) / len(eligible), 2) if eligible else None,
         'eligible_average_ppr_by_position': {p: round(sum(v) / len(v), 2) for p, v in sorted(grouped.items())},
-        'note': 'No unverified snapshots count toward predictive accuracy; absent game records are not zeroes. '
+        'note': 'Only player-level verified pregame recommendations count toward predictive accuracy; absent game records are not zeroes. '
                 'PPR is read from nfl-stats.json, not recalculated.',
     }
     summary_path = args.output / 'waiver_validation_summary.json'
