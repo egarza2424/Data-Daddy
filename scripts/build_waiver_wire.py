@@ -616,6 +616,13 @@ def main():
         change = round(latest - baseline, 2) if baseline is not None else None
         performance = performances.get(player_id, {})
         red_zone_data = red_zone.get(player_id, {})
+        defensive_matchup = defensive_matchups.get(player_id, {})
+        scheduled_opponent = team_opponents.get(schedule_team, {}).get(int(data['target_week']))
+        matchup_matches_schedule = (
+            defensive_matchup.get('opponent') == scheduled_opponent
+            and defensive_matchup.get('position') == position
+            and scheduled_opponent is not None
+        )
         candidates.append({
             'player_id': player_id, 'name': player.get('name'),
             'team': player.get('team'), 'position': position,
