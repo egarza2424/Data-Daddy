@@ -1168,11 +1168,20 @@ async function loadWaiverWire() {
         
         const matchupWeek = Number(player.matchup_week ?? data.target_week);
         const nextOpponent = player.next_opponent;
+        const matchupLocation = player.matchup_location;
+
+        const matchupLabel = !nextOpponent
+          ? "BYE / Schedule unavailable"
+          : matchupLocation === "home"
+            ? `vs ${nextOpponent}`
+            : matchupLocation === "away"
+              ? `@ ${nextOpponent}`
+              : `Opponent: ${nextOpponent}`;
 
         details.textContent =
           `Rostered: ${Number.isFinite(ownership) ? ownership.toFixed(1) + "%" : "Unverified"}` +
           ` • Evidence score: ${Number.isFinite(score) ? score.toFixed(1) : "—"}` +
-          ` • Week ${matchupWeek}: ${nextOpponent ? "vs " + nextOpponent : "BYE / Schedule unavailable"}`;
+          ` • Week ${matchupWeek}: ${matchupLabel}`;
         
         const intelligence = document.createElement("div");
         intelligence.className = "waiver-intelligence";
