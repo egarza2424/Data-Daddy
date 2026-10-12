@@ -1,0 +1,11 @@
+snapshot_file,snapshot_generated_utc,season,target_week,pregame_status,rank,original_rank,player_id,name,team,position,waiver_evidence_score,injury_opportunity_signal,result_status,actual_ppr,eligible_for_predictive_accuracy
+waiver_2026_week_06.json,2026-10-12T22:25:02.022107+00:00,2026,6,pregame_unverified,1,1,00-0040583,Woody Marks,HOU,RB,98.2,injury_flag_and_observed_usage_growth,missing_game_or_unavailable,,False
+waiver_2026_week_06.json,2026-10-12T22:25:02.022107+00:00,2026,6,pregame_unverified,2,2,00-0031503,Jameis Winston,NYG,QB,92.39,injury_flag_and_observed_usage_growth,missing_game_or_unavailable,,False
+waiver_2026_week_06.json,2026-10-12T22:25:02.022107+00:00,2026,6,pregame_unverified,3,4,00-0036894,Pat Freiermuth,PIT,TE,89.34,usage_growth_without_qualifying_injury_flag,missing_game_or_unavailable,,False
+waiver_2026_week_06.json,2026-10-12T22:25:02.022107+00:00,2026,6,pregame_unverified,4,5,00-0033526,Samaje Perine,CIN,RB,88.13,usage_growth_without_qualifying_injury_flag,missing_game_or_unavailable,,False
+waiver_2026_week_06.json,2026-10-12T22:25:02.022107+00:00,2026,6,pregame_unverified,5,6,00-0038935,Brenton Strange,JAX,TE,87.43,usage_growth_without_qualifying_injury_flag,missing_game_or_unavailable,,False
+waiver_2026_week_06.json,2026-10-12T22:25:02.022107+00:00,2026,6,pregame_unverified,6,7,00-0041489,Germie Bernard,PIT,WR,87.05,injury_flag_and_observed_usage_growth,missing_game_or_unavailable,,False
+waiver_2026_week_06.json,2026-10-12T22:25:02.022107+00:00,2026,6,pregame_unverified,7,8,00-0040215,Gavin Bartholomew,MIN,TE,83.11,injury_flag_usage_trend_unverified,missing_game_or_unavailable,,False
+waiver_2026_week_06.json,2026-10-12T22:25:02.022107+00:00,2026,6,pregame_unverified,8,9,00-0041395,Eli Raridon,NE,TE,79.5,usage_growth_without_qualifying_injury_flag,missing_game_or_unavailable,,False
+waiver_2026_week_06.json,2026-10-12T22:25:02.022107+00:00,2026,6,pregame_unverified,9,10,00-0030279,Keenan Allen,IND,WR,79.03,injury_flag_and_observed_usage_growth,missing_game_or_unavailable,,False
+waiver_2026_week_06.json,2026-10-12T22:25:02.022107+00:00,2026,6,pregame_unverified,10,11,00-0039811,MarShawn Lloyd,GB,RB,78.03,injury_flag_and_observed_usage_growth,missing_game_or_unavailable,,False
