@@ -11919,7 +11919,8 @@ jobs:
             OUTPUT_FILE="nfl-stats.json"
           fi
 
-          git add "$OUTPUT_FILE" waiver_wire_candidates.json
+          
+          git add "$OUTPUT_FILE" waiver_wire_candidates.json data/waiver_snapshots/
 
           if git diff --cached --quiet; then
             echo "No stats changes to commit."
