@@ -1395,7 +1395,7 @@ async function loadWaiverWire() {
         intelligence.append(heading, usage, metrics, assessment);
 
         if (injuredTeammates.length > 0) {
-          const injuryWatch = document.createElement("p");
+          const injuryWatch = document.createElement("div");
           injuryWatch.className = "waiver-injury-watch";
           injuryWatch.style.marginTop = "16px";
           injuryWatch.style.whiteSpace = "pre-line";
