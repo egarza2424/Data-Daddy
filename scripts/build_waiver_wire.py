@@ -269,8 +269,55 @@ def nflverse_injury_evidence(player_id, team, reports, metadata):
         'nflverse_report_injury': row.get('report_primary_injury') or None,
     })
     return result
+def teammate_injury_evidence(player_id, team, position, players,
+                             injury_reports, nflverse_reports):
+    """Collect teammate injury signals without inferring depth-chart roles."""
+    evidence = []
 
+    for teammate_id, teammate in players.items():
+        if teammate_id == player_id:
+            continue
 
+        if teammate.get('team') != team:
+            continue
+
+        if teammate.get('position') != position:
+            continue
+
+        espn_report = injury_reports.get(teammate_id, {})
+        nflverse_rows = nflverse_reports.get(teammate_id, [])
+
+        matched_rows = [
+            row for row in nflverse_rows
+            if row.get('team') == team
+        ]
+
+        if not espn_report and not matched_rows:
+            continue
+
+        evidence.append({
+            'player_id': teammate_id,
+            'name': teammate.get('name'),
+            'position': position,
+            'team': team,
+            'espn_status': espn_report.get('status'),
+            'nflverse_reports': [
+                {
+                    'game_status': row.get('report_status'),
+                    'practice_status': row.get('practice_status'),
+                    'injury': (
+                        row.get('report_primary_injury')
+                        or row.get('practice_primary_injury')
+                    ),
+                }
+                for row in matched_rows
+            ],
+            'starter_role_verified': False,
+            'expected_games_missed': None,
+            'return_timetable_verified': False,
+        })
+
+    return evidence
 def load_ownership():
     if not OWNERSHIP_SOURCE.exists():
         return {}
