@@ -640,6 +640,7 @@ def main():
             'role_usage_evidence': usage_role_evidence(current_games, position),
             **ownership_summary(ownership.get(player_id, {})),
             'injury_opportunity': None,
+            'teammate_injury_evidence': [],
             **injury_screening(injury_reports.get(player_id)),
             **nflverse_injury_evidence(player_id, player.get('team'),
                                        nflverse_reports, nflverse_metadata),
