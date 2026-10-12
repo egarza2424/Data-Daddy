@@ -1386,15 +1386,18 @@ async function loadWaiverWire() {
           : "";
 
         assessment.textContent =
-          `WHY ADD HIM? ${playerValue}${injuryContext} ` +
-          `FANTASY OUTLOOK: ${trendDescription}${injuryOutlook} ` +
+          `WHY ADD HIM?\n${playerValue}${injuryContext}\n\n` +
+          `FANTASY OUTLOOK:\n${trendDescription}${injuryOutlook} ` +
           "Future role and workload sustainability remain unverified.";
+
+        assessment.style.whiteSpace = "pre-line";
 
         intelligence.append(heading, usage, metrics, assessment);
 
         if (injuredTeammates.length > 0) {
           const injuryWatch = document.createElement("p");
           injuryWatch.className = "waiver-injury-watch";
+          injuryWatch.style.marginTop = "16px";
 
           injuryWatch.textContent =
             `INJURY WATCH: ${injurySummary}. ` +
