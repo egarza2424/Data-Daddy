@@ -693,6 +693,9 @@ def build_provisional_shortlist(eligible, limit=10):
     selected = []
     excluded = []
     for candidate in eligible:
+        if candidate.get('next_opponent') is None:
+            continue
+
         if candidate.get('injury_screening') == 'flagged_unavailable':
             if candidate.get('preliminary_waiver_rank', 10**9) <= limit:
                 excluded.append({
