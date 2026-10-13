@@ -4895,12 +4895,34 @@ jobs:
           # bye during the actual projection week.
           # -------------------------------------------------
 
-          projection_week_matchups = {
-              team: matchup
-              for team, matchup in team_next_opponent.items()
-              if int(matchup.get("week") or 0) == projection_week
-          }
+          projection_week_matchups = {}
 
+          for game in upcoming_games:
+              if game["week"] != projection_week:
+                  continue
+
+              away_team = game["away_team"]
+              home_team = game["home_team"]
+
+              if away_team == "LA":
+                  away_team = "LAR"
+
+              if home_team == "LA":
+                  home_team = "LAR"
+
+              projection_week_matchups[away_team] = {
+                  "opponent": home_team,
+                  "week": projection_week,
+                  "gameday": game["date"].isoformat(),
+                  "location": "away"
+              }
+
+              projection_week_matchups[home_team] = {
+                  "opponent": away_team,
+                  "week": projection_week,
+                  "gameday": game["date"].isoformat(),
+                  "location": "home"
+              }
           bye_week_teams = sorted(
               set(team_next_opponent.keys()) -
               set(projection_week_matchups.keys())
