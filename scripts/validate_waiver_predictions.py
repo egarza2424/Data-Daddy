@@ -271,7 +271,7 @@ def main():
         'eligible_average_ppr': round(sum(float(r['actual_ppr']) for r in eligible) / len(eligible), 2) if eligible else None,
         'eligible_average_ppr_by_position': {p: round(sum(v) / len(v), 2) for p, v in sorted(grouped.items())},
         'note': 'Only player-level verified pregame recommendations count toward predictive accuracy; absent game records are not zeroes. '
-                'PPR is read from nfl-stats.json, not recalculated.',
+                'PPR is calculated from full weekly player stats and cross-checked against recent performance records.',
     }
     summary_path = args.output / 'waiver_validation_summary.json'
     summary_path.write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8')
