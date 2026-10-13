@@ -4908,3 +4908,24 @@ section:has(#waiverWireList) {
   line-height: 1.6;
   color: var(--muted);
 }
+
+/* Compare Players: heading first and consistent section spacing */
+#compare.controls {
+  margin-top: 28px;
+}
+
+@media (min-width: 701px) {
+  #compare > .compare-section-heading {
+    grid-row: 1;
+  }
+
+  #compare > .player-search-control {
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 700px) {
+  #compare > .compare-section-heading {
+    grid-row: 1;
+  }
+}
