@@ -224,6 +224,65 @@ def audit_snapshot(path, games, conflicts, kickoffs, ambiguous_kickoffs):
         })
     return rows
 
+def calculate_rank_correlation(rows):
+    """Spearman correlation between predicted rank and actual PPR."""
+    if len(rows) < 3:
+        return None
+
+    def average_ranks(values):
+        order = sorted(range(len(values)), key=lambda i: values[i])
+        ranks = [0.0] * len(values)
+        index = 0
+
+        while index < len(order):
+            end = index
+            while (
+                end + 1 < len(order)
+                and values[order[end + 1]] == values[order[index]]
+            ):
+                end += 1
+
+            rank = (index + end + 2) / 2.0
+            for position in range(index, end + 1):
+                ranks[order[position]] = rank
+            index = end + 1
+
+        return ranks
+
+    try:
+        predicted = [
+            float(row['rank'])
+            for row in rows
+        ]
+        actual = [
+            -float(row['actual_ppr'])
+            for row in rows
+        ]
+    except (ValueError, TypeError, KeyError):
+        return None
+
+    predicted_ranks = average_ranks(predicted)
+    actual_ranks = average_ranks(actual)
+
+    predicted_mean = sum(predicted_ranks) / len(rows)
+    actual_mean = sum(actual_ranks) / len(rows)
+
+    numerator = sum(
+        (p - predicted_mean) * (a - actual_mean)
+        for p, a in zip(predicted_ranks, actual_ranks)
+    )
+    predicted_variance = sum(
+        (p - predicted_mean) ** 2 for p in predicted_ranks
+    )
+    actual_variance = sum(
+        (a - actual_mean) ** 2 for a in actual_ranks
+    )
+
+    denominator = (predicted_variance * actual_variance) ** 0.5
+    if denominator == 0:
+        return None
+
+    return round(numerator / denominator, 3)
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
