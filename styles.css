@@ -4872,3 +4872,9 @@ section:has(#waiverWireList) {
     font-size: 12px;
   }
 }
+
+/* DATA DADDY — MODEL EXPLANATION SPACING */
+
+#model-explainer {
+  margin-top: 24px;
+}
