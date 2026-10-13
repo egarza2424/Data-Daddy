@@ -4793,3 +4793,82 @@ section:has(#waiverWireList) {
     grid-template-columns: 1fr;
   }
 }
+
+/* DATA DADDY — MOBILE PPR PROJECTION CARDS */
+
+.projection-mobile-cards {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .projection-table-wrapper {
+    overflow: visible;
+  }
+
+  .projection-table-wrapper .projection-table {
+    display: none;
+  }
+
+  .projection-mobile-cards {
+    display: grid;
+    gap: 14px;
+  }
+
+  .projection-mobile-card {
+    padding: 16px;
+    border: 1px solid #344256;
+    border-radius: 12px;
+    background: #17212f;
+  }
+
+  .projection-mobile-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 14px;
+  }
+
+  .projection-mobile-card-header strong {
+    color: #f5f7fb;
+    font-size: 17px;
+  }
+
+  .projection-mobile-card-header span {
+    color: #b4c0d0;
+    font-size: 12px;
+  }
+
+  .projection-mobile-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .projection-mobile-metric {
+    padding: 12px;
+    border-radius: 8px;
+    background: #0b1017;
+  }
+
+  .projection-mobile-metric span,
+  .projection-mobile-metric strong {
+    display: block;
+  }
+
+  .projection-mobile-metric span {
+    color: #b4c0d0;
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+
+  .projection-mobile-metric strong {
+    color: #f5c451;
+    font-size: 20px;
+  }
+
+  .projection-mobile-status {
+    margin-top: 12px;
+    color: #b4c0d0;
+    font-size: 12px;
+  }
+}
