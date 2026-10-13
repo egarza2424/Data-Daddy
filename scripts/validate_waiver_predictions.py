@@ -282,9 +282,26 @@ def calculate_rank_correlation(rows):
     if denominator == 0:
         return None
 
+    
     return round(numerator / denominator, 3)
 
+
+def calculate_overall_rank_correlation(weekly_correlations):
+    """Calculate the equal-week average of valid weekly correlations."""
+    valid_correlations = [
+        correlation
+        for correlation in weekly_correlations.values()
+        if correlation is not None
+    ]
+
+    if not valid_correlations:
+        return None
+
+    return round(sum(valid_correlations) / len(valid_correlations), 3)
+
+
 def main():
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--snapshots', type=Path, default=DEFAULT_SNAPSHOTS)
     parser.add_argument('--stats', type=Path, default=DEFAULT_STATS)
@@ -328,20 +345,7 @@ def main():
         for (season, week), week_rows in sorted(weekly_groups.items())
     }
 
-    valid_weekly_correlations = [
-        correlation
-        for correlation in weekly_rank_correlations.values()
-        if correlation is not None
-    ]
-
-    overall_rank_correlation = (
-        round(
-            sum(valid_weekly_correlations) / len(valid_weekly_correlations),
-            3
-        )
-        if valid_weekly_correlations
-        else None
-    )
+    overall_rank_correlation = calculate_overall_rank_correlation(weekly_rank_correlations)
 
     summary = {
 
