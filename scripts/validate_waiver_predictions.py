@@ -365,11 +365,24 @@ def main():
     }
 
     
+    
     overall_rank_correlation = calculate_overall_rank_correlation(weekly_rank_correlations)
 
     top_five_count, top_five_hits, top_five_hit_rate = calculate_top_five_hit_rate(eligible)
 
+    weekly_top_five_hit_rates = {
+        f'{season}_week_{week:02d}': {
+            'eligible_recommendations': count,
+            'hits': hits,
+            'hit_rate_pct': rate,
+        }
+        for (season, week), week_rows in sorted(weekly_groups.items())
+        for count, hits, rate in [calculate_top_five_hit_rate(week_rows)]
+        if count > 0
+    }
+
     summary = {
+
 
 
         'snapshot_files': len(paths),
@@ -388,6 +401,7 @@ def main():
         'eligible_top_five_recommendations': top_five_count,
         'eligible_top_five_hits': top_five_hits,
         'eligible_top_five_hit_rate_pct': top_five_hit_rate,
+        'eligible_top_five_by_week': weekly_top_five_hit_rates,
         'note': 'Only player-level verified pregame recommendations count toward predictive accuracy; absent game records are not zeroes. '
                 'PPR is calculated from full weekly player stats and cross-checked against recent performance records.',
     }
