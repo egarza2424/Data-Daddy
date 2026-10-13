@@ -1693,15 +1693,26 @@ async function loadWaiverWire() {
   }
 }
 
+
 function renderProjectionBoard() {
   const tableBody =
     document.getElementById(
       "projectionTableBody"
     );
 
+  const mobileCards =
+    document.getElementById(
+      "projectionMobileCards"
+    );
+
   if (!tableBody) {
     return;
   }
+
+  if (mobileCards) {
+    mobileCards.innerHTML = "";
+  }
+
 
   const searchInput =
     document.getElementById(
