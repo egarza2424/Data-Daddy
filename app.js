@@ -6979,12 +6979,13 @@ function renderPlayerCard(
           </span>
 
           <div class="player-projected-ppr">
-            ${projectedPpr}
+            ${recommendation === "BYE" ? "BYE" : projectedPpr}
           </div>
 
           <span class="player-score-rank">
-            ${projectedRank}
+            ${recommendation === "BYE" ? "No game scheduled" : projectedRank}
           </span>
+
         </div>
       </div>
 
