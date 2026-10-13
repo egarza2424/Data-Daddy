@@ -6937,12 +6937,26 @@ function renderPlayerCard(
 </div>
         </div>
 
+       
         <div class="recommendation-badge">
-          ${recommendation}
+          ${recommendation === "BYE" ? "BYE WEEK" : recommendation}
         </div>
       </div>
 
+      ${recommendation === "BYE" ? `
+        <div class="player-bye-notice" role="status">
+          <strong>BYE WEEK</strong>
+          <p>
+            This player has no scheduled game this week.
+            Do not start them in your fantasy lineup.
+            Their AI Score reflects model signals,
+            not projected points for this bye week.
+          </p>
+        </div>
+      ` : ""}
+
       <div class="player-score-summary">
+
         <div class="player-score-block">
           <span class="player-score-label">
             AI SCORE
