@@ -322,12 +322,29 @@ def main():
     for row in eligible:
         weekly_groups[(row['season'], row['target_week'])].append(row)
 
+    
     weekly_rank_correlations = {
         f'{season}_week_{week:02d}': calculate_rank_correlation(week_rows)
         for (season, week), week_rows in sorted(weekly_groups.items())
     }
 
+    valid_weekly_correlations = [
+        correlation
+        for correlation in weekly_rank_correlations.values()
+        if correlation is not None
+    ]
+
+    overall_rank_correlation = (
+        round(
+            sum(valid_weekly_correlations) / len(valid_weekly_correlations),
+            3
+        )
+        if valid_weekly_correlations
+        else None
+    )
+
     summary = {
+
         'snapshot_files': len(paths),
         'recommendation_rows': len(rows),
         'recorded_game_rows': sum(r['result_status'] == 'recorded_game' for r in rows),
@@ -339,7 +356,7 @@ def main():
         'predictive_accuracy_eligible_rows': len(eligible),
         'eligible_average_ppr': round(sum(float(r['actual_ppr']) for r in eligible) / len(eligible), 2) if eligible else None,
         'eligible_average_ppr_by_position': {p: round(sum(v) / len(v), 2) for p, v in sorted(grouped.items())},
-        'eligible_spearman_rank_correlation': calculate_rank_correlation(eligible),
+        'eligible_spearman_rank_correlation': overall_rank_correlation,
         'eligible_spearman_by_week': weekly_rank_correlations,
         'note': 'Only player-level verified pregame recommendations count toward predictive accuracy; absent game records are not zeroes. '
                 'PPR is calculated from full weekly player stats and cross-checked against recent performance records.',
