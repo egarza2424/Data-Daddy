@@ -4880,10 +4880,21 @@ section:has(#waiverWireList) {
 }
 
 /* Compare Players section heading */
-.compare-section-heading {
+
+#compare > .compare-section-heading {
   grid-column: 1 / -1;
-  margin-bottom: 12px;
+  grid-row: 1;
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 16px;
 }
+
+#compare > .control,
+#compare > .vs,
+#compare > #compareBtn {
+  grid-row: auto;
+}
+
 
 .compare-section-heading h3 {
   margin: 8px 0 10px;
