@@ -4958,3 +4958,17 @@ section:has(#waiverWireList) {
 #waiver-wire .eyebrow {
   color: #f5c451;
 }
+
+/* Lineup Optimizer — consistent standalone panel spacing */
+.lineup-optimizer-panel {
+  margin-top: 28px;
+  padding: 22px;
+}
+
+.lineup-optimizer-panel > .lineup-analyzer {
+  margin-top: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
