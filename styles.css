@@ -4948,3 +4948,13 @@ section:has(#waiverWireList) {
     grid-row: 1;
   }
 }
+
+/* Data Daddy — consistent gold feature labels */
+#rankings .eyebrow,
+#projections .eyebrow,
+#compare .eyebrow,
+.lineup-optimizer-panel .eyebrow,
+#sleepers .eyebrow,
+#waiver-wire .eyebrow {
+  color: #f5c451;
+}
