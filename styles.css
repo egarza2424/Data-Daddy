@@ -4878,3 +4878,22 @@ section:has(#waiverWireList) {
 #model-explainer {
   margin-top: 24px;
 }
+
+/* Compare Players section heading */
+.compare-section-heading {
+  grid-column: 1 / -1;
+  margin-bottom: 12px;
+}
+
+.compare-section-heading h3 {
+  margin: 8px 0 10px;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  line-height: 1.2;
+}
+
+.compare-section-heading p {
+  margin: 0;
+  max-width: 850px;
+  line-height: 1.6;
+  color: var(--muted);
+}
