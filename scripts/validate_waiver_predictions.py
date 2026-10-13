@@ -317,6 +317,16 @@ def main():
     grouped = defaultdict(list)
     for row in eligible:
         grouped[row['position']].append(float(row['actual_ppr']))
+
+    weekly_groups = defaultdict(list)
+    for row in eligible:
+        weekly_groups[(row['season'], row['target_week'])].append(row)
+
+    weekly_rank_correlations = {
+        f'{season}_week_{week:02d}': calculate_rank_correlation(week_rows)
+        for (season, week), week_rows in sorted(weekly_groups.items())
+    }
+
     summary = {
         'snapshot_files': len(paths),
         'recommendation_rows': len(rows),
@@ -330,6 +340,7 @@ def main():
         'eligible_average_ppr': round(sum(float(r['actual_ppr']) for r in eligible) / len(eligible), 2) if eligible else None,
         'eligible_average_ppr_by_position': {p: round(sum(v) / len(v), 2) for p, v in sorted(grouped.items())},
         'eligible_spearman_rank_correlation': calculate_rank_correlation(eligible),
+        'eligible_spearman_by_week': weekly_rank_correlations,
         'note': 'Only player-level verified pregame recommendations count toward predictive accuracy; absent game records are not zeroes. '
                 'PPR is calculated from full weekly player stats and cross-checked against recent performance records.',
     }
