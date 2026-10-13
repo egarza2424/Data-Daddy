@@ -7591,16 +7591,18 @@ function renderPositionRankings() {
 
       const row =
         document.createElement("tr");
+      
       [
         `${player.position}${rank}`,
         player.name,
-        opponent,
         score.toFixed(1),
+        opponent,
         projectedPpr,
         projectedRank,
         player.injuryStatus ||
           "Available"
       ].forEach((value) => {
+
 
         const cell =
           document.createElement("td");
