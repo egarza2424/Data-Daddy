@@ -1,7 +1,10 @@
 
 import unittest
 
-from scripts.validate_waiver_predictions import calculate_rank_correlation
+from scripts.validate_waiver_predictions import (
+    calculate_rank_correlation,
+    calculate_overall_rank_correlation,
+)
 
 
 class TestWaiverRankCorrelation(unittest.TestCase):
@@ -45,6 +48,27 @@ class TestWaiverRankCorrelation(unittest.TestCase):
         ]
         self.assertIsNone(calculate_rank_correlation(rows))
 
+    def test_overall_single_week(self):
+        weekly = {'2026_week_06': 0.750}
+        self.assertEqual(calculate_overall_rank_correlation(weekly), 0.750)
+
+    def test_overall_multiple_weeks(self):
+        weekly = {
+            '2026_week_06': 0.600,
+            '2026_week_07': 0.800,
+        }
+        self.assertEqual(calculate_overall_rank_correlation(weekly), 0.700)
+
+    def test_overall_ignores_unavailable_weeks(self):
+        weekly = {
+            '2026_week_06': None,
+            '2026_week_07': 0.800,
+        }
+        self.assertEqual(calculate_overall_rank_correlation(weekly), 0.800)
+        self.assertIsNone(calculate_overall_rank_correlation({}))
+        self.assertIsNone(
+            calculate_overall_rank_correlation({'2026_week_06': None})
+        )
 
 if __name__ == '__main__':
     unittest.main()
