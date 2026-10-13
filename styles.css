@@ -4972,3 +4972,17 @@ section:has(#waiverWireList) {
   border-radius: 0;
   background: transparent;
 }
+
+/* Data Daddy — consistent feature title typography */
+#rankings > h3,
+#projections .projections-heading h3,
+#compare .compare-section-heading h3,
+.lineup-optimizer-panel .lineup-analyzer-heading h3,
+#sleepers .sleepers-header h2,
+#waiver-wire .waiver-wire-header h2 {
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin: 8px 0 12px;
+}
