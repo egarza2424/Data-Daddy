@@ -6577,7 +6577,26 @@ function getRecommendation(player, positionRank) {
     return "SIT";
   }
 
+  const playerTeam =
+    player.team === "LA"
+      ? "LAR"
+      : player.team;
+
+  const weeklyMatchup =
+    teamNextOpponent[playerTeam];
+
+  if (
+    !weeklyMatchup ||
+    !weeklyMatchup.opponent ||
+    String(weeklyMatchup.opponent)
+      .trim()
+      .toUpperCase() === "BYE"
+  ) {
+    return "BYE";
+  }
+
   const injury = String(player.injuryStatus || "")
+
     .trim()
     .toUpperCase();
 
