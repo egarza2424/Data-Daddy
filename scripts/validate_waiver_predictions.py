@@ -85,47 +85,96 @@ def load_kickoffs(schedule_url):
 
 
 def collect_player_games(stats):
-    """Return {(player_id, season, week): points} from supported structures.
+    """Collect weekly PPR from full player history and recent records.
 
-    Reject ambiguous player IDs or duplicate/conflicting game records.
+    Reject conflicting records. Missing games are never treated as zero.
     """
-    records = stats.get('recent_player_performance')
-    if records is None:
-        raise ValueError('nfl-stats.json has no recent_player_performance section')
-    if isinstance(records, dict):
-        iterable = [(key, value) for key, value in records.items()]
-    elif isinstance(records, list):
-        iterable = [(None, value) for value in records]
-    else:
-        raise ValueError('recent_player_performance must be a dict or list')
-
     games = {}
     conflicts = set()
+
+    def add_game(player_id, season, week, points):
+        if not player_id or points is None:
+            return
+        try:
+            key = (str(player_id), int(season), int(week))
+            value = round(float(points), 2)
+        except (TypeError, ValueError):
+            return
+
+        if key in conflicts:
+            return
+        if key in games and games[key] != value:
+            conflicts.add(key)
+            games.pop(key, None)
+        else:
+            games[key] = value
+
+    def calculate_ppr(row):
+        fields = {
+            'passing_yards': 1 / 25,
+            'passing_tds': 4,
+            'interceptions': -2,
+            'rushing_yards': 1 / 10,
+            'rushing_tds': 6,
+            'receptions': 1,
+            'receiving_yards': 1 / 10,
+            'receiving_tds': 6,
+        }
+        try:
+            return sum(
+                float(row.get(field) or 0) * weight
+                for field, weight in fields.items()
+            )
+        except (TypeError, ValueError):
+            return None
+
+    full_history = stats.get('players', [])
+    if not isinstance(full_history, list):
+        raise ValueError('nfl-stats.json players must be a list')
+
+    for row in full_history:
+        if not isinstance(row, dict):
+            continue
+        if row.get('season_type') not in ('REG', ''):
+            continue
+        if row.get('position') not in ('QB', 'RB', 'WR', 'TE'):
+            continue
+        add_game(
+            row.get('player_id'),
+            row.get('season'),
+            row.get('week'),
+            calculate_ppr(row),
+        )
+
+    recent = stats.get('recent_player_performance', {})
+    if isinstance(recent, dict):
+        iterable = recent.items()
+    elif isinstance(recent, list):
+        iterable = [(None, player) for player in recent]
+    else:
+        raise ValueError(
+            'recent_player_performance must be a dict or list'
+        )
+
     for dictionary_key, player in iterable:
         if not isinstance(player, dict):
             continue
-        player_id = player.get('player_id') or player.get('id') or dictionary_key
-        if not player_id:
-            continue
+        player_id = (
+            player.get('player_id')
+            or player.get('id')
+            or dictionary_key
+        )
         for game in player.get('games', []):
             if not isinstance(game, dict):
                 continue
-            try:
-                key = (str(player_id), int(game['season']), int(game['week']))
-                points = game.get('ppr_points')
-                if points is None:
-                    continue
-                points = float(points)
-            except (KeyError, ValueError, TypeError):
-                continue
-            if key in games and games[key] != points:
-                conflicts.add(key)
-            else:
-                games[key] = points
-    for key in conflicts:
-        games.pop(key, None)
-    return games, conflicts
+            add_game(
+                player_id,
+                game.get('season'),
+                game.get('week'),
+                game.get('ppr_points'),
+            )
 
+    return games, conflicts
 
 def audit_snapshot(path, games, conflicts, kickoffs, ambiguous_kickoffs):
     snapshot = json.loads(path.read_text(encoding='utf-8'))
