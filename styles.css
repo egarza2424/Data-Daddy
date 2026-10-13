@@ -5015,3 +5015,15 @@ section:has(#waiverWireList) {
   letter-spacing: -0.025em;
   margin: 8px 0 12px;
 }
+
+/* Data Daddy — consistent model explanation panel padding */
+#model-explainer {
+  padding: 28px 30px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 700px) {
+  #model-explainer {
+    padding: 20px 18px;
+  }
+}
