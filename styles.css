@@ -5002,3 +5002,16 @@ section:has(#waiverWireList) {
 .roadmap .eyebrow {
   color: #f5c451;
 }
+
+/* Data Daddy — consistent model explanation heading */
+#model-explainer > .eyebrow {
+  color: #f5c451;
+}
+
+#model-explainer > h3 {
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin: 8px 0 12px;
+}
