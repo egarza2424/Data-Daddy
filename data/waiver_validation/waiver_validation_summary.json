@@ -15,5 +15,6 @@
   "eligible_top_five_recommendations": 0,
   "eligible_top_five_hits": 0,
   "eligible_top_five_hit_rate_pct": null,
+  "eligible_top_five_by_week": {},
   "note": "Only player-level verified pregame recommendations count toward predictive accuracy; absent game records are not zeroes. PPR is calculated from full weekly player stats and cross-checked against recent performance records."
 }
