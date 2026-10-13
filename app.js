@@ -1983,6 +1983,62 @@ function renderProjectionBoard() {
       );
 
       tableBody.appendChild(row);
+
+      if (mobileCards) {
+        const card =
+          document.createElement("article");
+
+        card.className = "projection-mobile-card";
+
+        const cardHeader =
+          document.createElement("div");
+        cardHeader.className = "projection-mobile-card-header";
+
+        const playerName =
+          document.createElement("strong");
+        playerName.textContent =
+          projection.player_name || "Unknown";
+
+        const playerDetails =
+          document.createElement("span");
+        playerDetails.textContent =
+          `${position} · ${projection.team || "—"} · vs ${opponent}`;
+
+        cardHeader.append(playerName, playerDetails);
+
+        const metrics =
+          document.createElement("div");
+        metrics.className = "projection-mobile-metrics";
+
+        const metricValues = [
+          ["Projected PPR", Number.isFinite(projectedPpr) ? projectedPpr.toFixed(2) : "—"],
+          ["PPR Rank", Number.isFinite(projectedRank) ? `${position}${projectedRank}` : "—"],
+          ["AI Rank", aiRank ? `${position}${aiRank}` : "—"],
+          ["AI Score", Number.isFinite(aiScore) ? aiScore.toFixed(1) : "—"]
+        ];
+
+        metricValues.forEach(([label, value]) => {
+          const metric = document.createElement("div");
+          metric.className = "projection-mobile-metric";
+
+          const labelElement = document.createElement("span");
+          labelElement.textContent = label;
+
+          const valueElement = document.createElement("strong");
+          valueElement.textContent = value;
+
+          metric.append(labelElement, valueElement);
+          metrics.appendChild(metric);
+        });
+
+        const statusElement =
+          document.createElement("div");
+        statusElement.className = "projection-mobile-status";
+        statusElement.textContent = `Status: ${status}`;
+
+        card.append(cardHeader, metrics, statusElement);
+        mobileCards.appendChild(card);
+      }      
     }
   );
 
