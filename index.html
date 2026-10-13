@@ -180,140 +180,6 @@
 
 </section>
 
-
-
-<section class="panel controls" id="compare">
-
-  <div class="compare-section-heading">
-    <div class="eyebrow">
-      PLAYER COMPARISON LAB
-    </div>
-
-    <h3>Compare Players</h3>
-
-    <p>
-      Not sure who to start? Compare up to three players
-      using AI Score, projected PPR, and 11 explainable signals.
-      Select your players, choose your risk tolerance,
-      and click Compare Players to explore the differences
-      behind their rankings.
-    </p>
-  </div>
-
- <div class="control player-search-control">
-  <label for="playerASearch">
-    Player A
-  </label>
-
-  <div class="player-search">
-    <input
-      id="playerASearch"
-      type="text"
-      placeholder="Search NFL player..."
-      autocomplete="off"
-    >
-
-    <div
-      id="playerAResults"
-      class="player-search-results">
-    </div>
-
-    <select id="playerA" hidden></select>
-  </div>
-</div>
-
-  <div class="vs">
-    VS
-  </div>
-
-
-  <div class="control player-search-control">
-  <label for="playerBSearch">
-    Player B
-  </label>
-
-  <div class="player-search">
-    <input
-      id="playerBSearch"
-      type="text"
-      placeholder="Search NFL player..."
-      autocomplete="off"
-    >
-
-    <div
-      id="playerBResults"
-      class="player-search-results">
-    </div>
-
-    <select id="playerB" hidden></select>
-  </div>
-</div>
-
-
-  <div class="vs">
-    VS
-  </div>
-
-  <div class="control player-search-control">
-    <label for="playerCSearch">
-      Player C
-    </label>
-
-    <div class="player-search">
-      <input
-        id="playerCSearch"
-        type="text"
-        placeholder="Search third NFL player..."
-        autocomplete="off"
-      >
-
-      <div
-        id="playerCResults"
-        class="player-search-results">
-      </div>
-
-      <select id="playerC" hidden></select>
-    </div>
-  </div>
-  
-
-  <div class="control">
-
-    <label for="riskTolerance">
-      Risk tolerance
-    </label>
-
-    <select id="riskTolerance">
-
-      <option value="conservative">
-        Conservative
-      </option>
-
-      <option value="balanced" selected>
-        Balanced
-      </option>
-
-      <option value="aggressive">
-        Aggressive
-      </option>
-
-    </select>
-
-  </div>
-
-
-  <button id="compareBtn" class="primary-btn">
-    Compare players
-  </button>
-
-</section>
-
-
-<section
-  id="result"
-  class="results"
-  aria-live="polite">
-</section>
 <section class="panel position-rankings" id="rankings">
 
   <div class="eyebrow">
@@ -594,7 +460,139 @@
   </div>
 
 </section>
+<section class="panel controls" id="compare">
 
+  <div class="compare-section-heading">
+    <div class="eyebrow">
+      PLAYER COMPARISON LAB
+    </div>
+
+    <h3>Compare Players</h3>
+
+    <p>
+      Not sure who to start? Compare up to three players
+      using AI Score, projected PPR, and 11 explainable signals.
+      Select your players, choose your risk tolerance,
+      and click Compare Players to explore the differences
+      behind their rankings.
+    </p>
+  </div>
+
+ <div class="control player-search-control">
+  <label for="playerASearch">
+    Player A
+  </label>
+
+  <div class="player-search">
+    <input
+      id="playerASearch"
+      type="text"
+      placeholder="Search NFL player..."
+      autocomplete="off"
+    >
+
+    <div
+      id="playerAResults"
+      class="player-search-results">
+    </div>
+
+    <select id="playerA" hidden></select>
+  </div>
+</div>
+
+  <div class="vs">
+    VS
+  </div>
+
+
+  <div class="control player-search-control">
+  <label for="playerBSearch">
+    Player B
+  </label>
+
+  <div class="player-search">
+    <input
+      id="playerBSearch"
+      type="text"
+      placeholder="Search NFL player..."
+      autocomplete="off"
+    >
+
+    <div
+      id="playerBResults"
+      class="player-search-results">
+    </div>
+
+    <select id="playerB" hidden></select>
+  </div>
+</div>
+
+
+  <div class="vs">
+    VS
+  </div>
+
+  <div class="control player-search-control">
+    <label for="playerCSearch">
+      Player C
+    </label>
+
+    <div class="player-search">
+      <input
+        id="playerCSearch"
+        type="text"
+        placeholder="Search third NFL player..."
+        autocomplete="off"
+      >
+
+      <div
+        id="playerCResults"
+        class="player-search-results">
+      </div>
+
+      <select id="playerC" hidden></select>
+    </div>
+  </div>
+  
+
+  <div class="control">
+
+    <label for="riskTolerance">
+      Risk tolerance
+    </label>
+
+    <select id="riskTolerance">
+
+      <option value="conservative">
+        Conservative
+      </option>
+
+      <option value="balanced" selected>
+        Balanced
+      </option>
+
+      <option value="aggressive">
+        Aggressive
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <button id="compareBtn" class="primary-btn">
+    Compare players
+  </button>
+
+</section>
+
+
+<section
+  id="result"
+  class="results"
+  aria-live="polite">
+</section>
+  
 <section class="panel lineup-optimizer-panel">
 
   <div class="lineup-analyzer" id="lineup-optimizer">
