@@ -19,6 +19,8 @@ OWNERSHIP_CUTOFF = 65
 VALID_PLATFORMS = ('espn', 'yahoo', 'sleeper')
 ESPN_URL = ('https://lm-api-reads.fantasy.espn.com/apis/v3/'
             'games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info')
+SLEEPER_PLAYERS_URL = 'https://api.sleeper.app/v1/players/nfl'
+SLEEPER_API_SOURCE = 'Sleeper public NFL player directory'
 POSITION_IDS = {1: 'QB', 2: 'RB', 3: 'WR', 4: 'TE'}
 FRESHNESS_HOURS = 36
 NFLVERSE_INJURIES_URL = ('https://github.com/nflverse/nflverse-data/releases/'
