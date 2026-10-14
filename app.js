@@ -1115,14 +1115,14 @@ async function loadWaiverWire() {
 
     const notice = document.createElement("p");
       notice.textContent =
-        `DATA DADDY — WEEK ${data.target_week} WAIVER WIRE TOP 10. ` +
-        "Our AI-powered rankings identify promising waiver pickups " +
-        "using recent player usage, fantasy production, opportunity trends, " +
-        "and verified roster availability. " +
-        "This is a running weekly watchlist, not a one-time waiver report. " +
-        "Rankings are designed to refresh daily as new data becomes available, " +
-        "helping you identify emerging opportunities throughout the week.";
-      
+        `DATA DADDY — WEEK ${data.target_week} PRELIMINARY WAIVER WATCHLIST. ` +
+        "These 10 players are selected using opportunity trends, " +
+        "recent fantasy production, and verified available ownership data. " +
+        "Players flagged as unavailable by ESPN are screened out. " +
+        "Official injury clearance, starting roles, and matchups " +
+        "have not yet been fully verified. " +
+        "This watchlist is designed to update daily as new data becomes available.";
+
         container.appendChild(notice);
 
         if (data.last_updated) {
