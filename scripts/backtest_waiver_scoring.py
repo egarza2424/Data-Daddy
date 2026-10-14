@@ -113,6 +113,11 @@ def build_historical_signals(rows, target_week):
 
         signals.append({
             "player_id": player_id,
+            "name": (
+                games[-1].get("player_display_name")
+                or games[-1].get("player_name")
+                or player_id
+            ),
             "position": games[-1]["position"],
             "target_week": target_week,
             "recent_average_ppr": round(recent_average_ppr, 2),
@@ -307,7 +312,7 @@ def main():
     for rank, player in enumerate(top_ten, start=1):
         print(
             f"{rank:2}. "
-            f"{player['position']} | "
+            f"{player['name']} ({player['position']}) | "
             f"Score: {player['historical_evidence_score']:.2f} | "
             f"Recent PPR: {player['recent_average_ppr']:.2f} | "
             f"Opportunity change: {player['opportunity_change']}"
