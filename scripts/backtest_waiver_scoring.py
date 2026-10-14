@@ -295,7 +295,25 @@ def main():
                 f"  Opportunity change: no available values, "
                 f"missing={missing_changes}"
             )
+    ranked = score_historical_signals(signals)
 
+    print("\nHISTORICAL EVIDENCE SCORE — TOP 10")
+
+    top_ten = ranked[:10]
+    top_ten_positions = Counter(
+        player["position"] for player in top_ten
+    )
+
+    for rank, player in enumerate(top_ten, start=1):
+        print(
+            f"{rank:2}. "
+            f"{player['position']} | "
+            f"Score: {player['historical_evidence_score']:.2f} | "
+            f"Recent PPR: {player['recent_average_ppr']:.2f} | "
+            f"Opportunity change: {player['opportunity_change']}"
+        )
+
+    print(f"Top 10 position distribution: {dict(top_ten_positions)}")
     
     print("Status: HISTORICAL SIGNAL VALIDATION")
     print("No live rankings or historical snapshots modified.")
