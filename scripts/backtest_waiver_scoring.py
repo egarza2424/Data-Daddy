@@ -175,8 +175,44 @@ def main():
     print(f"Player-week records: {len(rows)}")
     print(f"Available weeks: {weeks}")
     print(f"Position distribution: {dict(positions)}")
-    print("Status: DATA VALIDATION ONLY")
+
+    target_week = 6
+    signals = build_historical_signals(rows, target_week)
+
+    signal_positions = Counter(
+        signal["position"] for signal in signals
+    )
+
+    print(f"Pregame target week: {target_week}")
+    print(f"Players with historical signals: {len(signals)}")
+    print(f"Signal position distribution: {dict(signal_positions)}")
+
+    for position in sorted(POSITIONS):
+        group = [
+            signal for signal in signals
+            if signal["position"] == position
+        ]
+
+        if not group:
+            continue
+
+        average_ppr = sum(
+            signal["recent_average_ppr"] for signal in group
+        ) / len(group)
+
+        average_opportunity = sum(
+            signal["latest_opportunity"] for signal in group
+        ) / len(group)
+
+        print(
+            f"{position}: {len(group)} players, "
+            f"avg recent PPR={average_ppr:.2f}, "
+            f"avg latest opportunity={average_opportunity:.2f}"
+        )
+
+    print("Status: HISTORICAL SIGNAL VALIDATION")
     print("No live rankings or historical snapshots modified.")
+
 
 
 if __name__ == "__main__":
