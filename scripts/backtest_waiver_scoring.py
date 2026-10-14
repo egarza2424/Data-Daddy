@@ -302,8 +302,8 @@ def main():
             )
     ranked = score_historical_signals(signals)
 
-    print("\nHISTORICAL EVIDENCE SCORE — TOP 10")
-
+    print("\nHISTORICAL ALL-PLAYER EVIDENCE SCORE — TOP 10")
+    print("Diagnostic only: historical ownership eligibility not verified.")
     top_ten = ranked[:10]
     top_ten_positions = Counter(
         player["position"] for player in top_ten
