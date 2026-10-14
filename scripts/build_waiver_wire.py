@@ -65,7 +65,21 @@ def fetch_sleeper_player_matches(players):
                 'position': record.get('position'),
                 'team': record.get('team'),
             })
+    print('Sleeper ID samples (first 5 Data Daddy players):')
+    for player_id, player in list(players.items())[:5]:
+        print(
+            f'  Data Daddy ID={player_id}, '
+            f'name={player.get("name") or player.get("player_name")}, '
+            f'position={player.get("position")}'
+        )
 
+    print('Sleeper ID samples (first 5 GSIS records):')
+    for gsis_id, records in list(by_gsis.items())[:5]:
+        print(
+            f'  Sleeper GSIS ID={gsis_id}, '
+            f'position={records[0]["position"]}'
+        )
+            
     matches = {}
     ambiguous = 0
     gsis_hits = 0
