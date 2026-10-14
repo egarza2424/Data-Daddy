@@ -1,0 +1,24 @@
+name: Backtest Waiver Scoring
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  historical-backtest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate historical 2025 NFL data
+        run: |
+          python scripts/backtest_waiver_scoring.py --season 2025
