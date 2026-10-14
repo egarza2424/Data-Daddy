@@ -68,8 +68,11 @@ def fetch_sleeper_player_matches(players):
 
     matches = {}
     ambiguous = 0
+    gsis_hits = 0
+    position_mismatches = 0
 
     for player_id, player in players.items():
+
         records = by_gsis.get(str(player_id), [])
 
         if len(records) != 1:
@@ -77,10 +80,13 @@ def fetch_sleeper_player_matches(players):
                 ambiguous += 1
             continue
 
+        gsis_hits += 1
         record = records[0]
 
         if record['position'] != player.get('position'):
+            position_mismatches += 1
             continue
+
 
         matches[player_id] = record['sleeper_id']
 
@@ -89,7 +95,13 @@ def fetch_sleeper_player_matches(players):
         f'{len(matches)} GSIS player matches, '
         f'{ambiguous} ambiguous.'
     )
-
+    print(
+        f'Sleeper match diagnostics: '
+        f'{gsis_hits} unique GSIS ID hits, '
+        f'{position_mismatches} position mismatches, '
+        f'{len(players)} Data Daddy player records.'
+    )
+            
     return matches
 
 def fetch_nfl_schedule(season):
