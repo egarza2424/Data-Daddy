@@ -1055,6 +1055,7 @@ def main():
         candidates.append({
             'player_id': player_id, 'name': player.get('name'),
             'team': player.get('team'), 'position': position,
+            'sleeper_player_id': sleeper_matches.get(player_id),
             'next_opponent': team_opponents.get(schedule_team, {}).get(int(data['target_week'])),
             'matchup_week': int(data['target_week']),
             'matchup_location': team_home_away.get(schedule_team, {}).get(int(data['target_week'])),
