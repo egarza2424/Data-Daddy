@@ -72,7 +72,7 @@ def build_historical_signals(rows, target_week):
         games.sort(key=lambda game: int(game["week"]))
 
         recent = games[-3:]
-        previous = games[-6:-3]
+        previous = games[-4:-1]
 
         recent_ppr = [
             calculate_ppr(game)
@@ -106,8 +106,9 @@ def build_historical_signals(rows, target_week):
         )
 
         opportunity_change = (
-            recent_average_opportunity
-            - previous_average_opportunity
+            latest_opportunity - previous_average_opportunity
+            if previous_opportunity
+            else None
         )
 
         signals.append({
@@ -116,7 +117,11 @@ def build_historical_signals(rows, target_week):
             "target_week": target_week,
             "recent_average_ppr": round(recent_average_ppr, 2),
             "latest_opportunity": round(latest_opportunity, 2),
-            "opportunity_change": round(opportunity_change, 2),
+            "opportunity_change": (
+                round(opportunity_change, 2)
+                if opportunity_change is not None
+                else None
+            ),
             "history_games": len(games),
         })
 
