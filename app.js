@@ -1404,7 +1404,24 @@ async function loadWaiverWire() {
 
         assessment.style.whiteSpace = "pre-line";
 
-        intelligence.append(heading, usage, metrics, assessment);
+        const opportunityOutlook = document.createElement("p");
+
+        opportunityOutlook.textContent =
+          Number.isFinite(opportunityChange) && opportunityChange > 0
+            ? "OPPORTUNITY OUTLOOK: Rising usage — potential breakout watch. Monitor whether the increased workload continues."
+            : "OPPORTUNITY OUTLOOK: Usage growth not established — monitor future workload before relying on this player.";
+
+        opportunityOutlook.style.marginTop = "12px";
+        opportunityOutlook.style.fontWeight = "600";
+        opportunityOutlook.style.color = "#f5d37a";
+
+        intelligence.append(
+          heading,
+          usage,
+          metrics,
+          assessment,
+          opportunityOutlook
+        );
 
         if (injuredTeammates.length > 0) {
           const injuryWatch = document.createElement("div");
