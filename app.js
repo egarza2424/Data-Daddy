@@ -1226,8 +1226,12 @@ async function loadWaiverWire() {
         details.textContent =
           `Rostered: ${Number.isFinite(ownership) ? ownership.toFixed(1) + "%" : "Unverified"}` +
           ` • Evidence score: ${Number.isFinite(score) ? score.toFixed(1) : "—"}` +
+          ` • Injury status: ${player.injury_screening === "flagged_unavailable"
+            ? "ESPN flagged unavailable"
+            : "Official clearance pending"}` +
           ` • Week ${matchupWeek}: ${matchupLabel}` +
           defensiveLabel;
+
         
         const intelligence = document.createElement("div");
         intelligence.className = "waiver-intelligence";
