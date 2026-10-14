@@ -1361,33 +1361,30 @@ async function loadWaiverWire() {
           positionOutlooks[player.position] ||
           "Recent opportunities may create fantasy value, but future usage remains uncertain.";
 
-               let playerValue = "";
+        const workloadLabel = player.position === "QB"
+          ? "pass attempts"
+          : player.position === "RB"
+            ? "carries"
+            : "targets";
 
-        if (player.position === "RB") {
-          playerValue =
-            "Carries provide rushing opportunities, while targets " +
-            "add PPR upside. Increased involvement could make " +
-            "him a useful waiver addition if the workload continues.";
-        } else if (player.position === "WR") {
-          playerValue =
-            "Targets create opportunities for receptions and " +
-            "receiving production. Consistent target volume " +
-            "could increase his weekly PPR value.";
-        } else if (player.position === "TE") {
-          playerValue =
-            "Passing-game involvement is particularly important " +
-            "at tight end. Sustained targets could make him " +
-            "a useful weekly streaming option.";
-        } else if (player.position === "QB") {
-          playerValue =
-            "Passing volume creates opportunities for yards " +
-            "and touchdowns. Continued offensive involvement " +
-            "could improve his weekly fantasy outlook.";
-        } else {
-          playerValue =
-            "Recent workload provides a potential path " +
-            "to additional fantasy production.";
-        }
+        const workload = Number.isFinite(latestMetric)
+          ? `${latestMetric} ${workloadLabel} last week`
+          : "limited recent workload data";
+
+        const production = Number.isFinite(recentPpr)
+          ? `averaging ${recentPpr.toFixed(1)} PPR points over the last three games`
+          : "with recent fantasy production still being evaluated";
+
+        const growth = Number.isFinite(opportunityChange)
+          ? ` The model measures an opportunity change of ${opportunityChange > 0 ? "+" : ""}${opportunityChange.toFixed(1)}.`
+          : "";
+
+        const playerValue =
+          `${player.name} recorded ${workload} and is ${production}.` +
+          growth +
+          " Continued opportunity could increase his fantasy value, " +
+          "but future workload is not guaranteed.";
+
 
         const injuryContext = injuredTeammates.length > 0
           ? ` Same-position teammates with ESPN injury flags: ${injurySummary}. ` +
