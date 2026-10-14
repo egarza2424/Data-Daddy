@@ -1398,8 +1398,8 @@ async function loadWaiverWire() {
           : "";
 
         assessment.textContent =
-          `WHY ADD HIM?\n${playerValue}${injuryContext}\n\n` +
-          `FANTASY OUTLOOK:\n${trendDescription}${injuryOutlook} ` +
+          `WHY ADD HIM?\n${playerValue}\n\n` +
+          `FANTASY OUTLOOK:\n${trendDescription} ` +
           "Future role and workload sustainability remain unverified.";
 
         assessment.style.whiteSpace = "pre-line";
