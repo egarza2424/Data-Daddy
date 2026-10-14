@@ -79,6 +79,44 @@ def fetch_sleeper_player_matches(players):
             f'  Sleeper GSIS ID={gsis_id}, '
             f'position={records[0]["position"]}'
         )
+    by_name_position = defaultdict(list)
+    for sleeper_id, record in sleeper_players.items():
+        if not isinstance(record, dict):
+            continue
+        name = record.get('full_name') or ''
+        position = record.get('position')
+        if name and position:
+            by_name_position[(normalized_name(name), position)].append(
+                (sleeper_id, record.get('gsis_id'), record.get('team'))
+            )
+
+    missing_gsis = 0
+    name_matches = 0
+    name_ambiguous = 0
+
+    for player_id, player in players.items():
+        if player_id in by_gsis:
+            continue
+
+        missing_gsis += 1
+        name = player.get('name') or player.get('player_name') or ''
+        position = player.get('position')
+        alternatives = by_name_position.get(
+            (normalized_name(name), position), []
+        )
+
+        if len(alternatives) == 1:
+            name_matches += 1
+        elif len(alternatives) > 1:
+            name_ambiguous += 1
+
+    print(
+        f'Sleeper fallback diagnostic: '
+        f'{missing_gsis} players without GSIS hits, '
+        f'{name_matches} unique name/position matches, '
+        f'{name_ambiguous} ambiguous name/position matches.'
+    )
+
             
     matches = {}
     ambiguous = 0
