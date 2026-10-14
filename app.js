@@ -1380,11 +1380,15 @@ async function loadWaiverWire() {
           ? ` The model measures an opportunity change of ${opportunityChange > 0 ? "+" : ""}${opportunityChange.toFixed(1)}.`
           : "";
 
-        const playerValue =
-          `${player.name} recorded ${workload} and is ${production}.` +
-          growth +
-          " Continued opportunity could increase his fantasy value, " +
-          "but future workload is not guaranteed.";
+      const playerValue =
+          Number.isFinite(opportunityChange) && opportunityChange > 0
+            ? `${player.name} is worth monitoring because the model identifies increasing opportunity. ` +
+              "That creates potential fantasy upside if the expanded role continues."
+            : Number.isFinite(recentPpr) && recentPpr > 0
+              ? `${player.name} has recorded recent fantasy production, ` +
+                "but additional opportunity may be needed for a meaningful breakout."
+              : `${player.name} is on the waiver watchlist, but available evidence ` +
+                "is insufficient to establish a dependable fantasy role.";
 
 
         const injuryContext = injuredTeammates.length > 0
