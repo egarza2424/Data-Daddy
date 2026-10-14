@@ -137,6 +137,37 @@ def fetch_sleeper_player_matches(players):
     ambiguous = 0
     gsis_hits = 0
     position_mismatches = 0
+    fallback_matches = 0
+
+    for player_id, player in players.items():
+        records = by_gsis.get(str(player_id), [])
+
+        if records:
+            continue
+
+        name = player.get('name') or player.get('player_name') or ''
+        position = player.get('position')
+        data_team = player.get('team')
+
+        alternatives = by_name_position.get(
+            (normalized_name(name), position), []
+        )
+
+        if len(alternatives) != 1 or not data_team:
+            continue
+
+        sleeper_id, sleeper_gsis, sleeper_team = alternatives[0]
+
+        if sleeper_team != data_team:
+            continue
+
+        if sleeper_gsis and str(sleeper_gsis) != str(player_id):
+            continue
+
+        matches[player_id] = sleeper_id
+        fallback_matches += 1
+
+    print(f'Sleeper accepted fallback matches: {fallback_matches}')
 
     for player_id, player in players.items():
 
