@@ -2008,15 +2008,16 @@ function renderProjectionBoard() {
       const row =
         document.createElement("tr");
 
-      const values = [
-        Number.isFinite(
-          projectedRank
-        )
+            const values = [
+        Number.isFinite(projectedRank)
           ? `${position}${projectedRank}`
           : "—",
 
-        projection.player_name ||
-          "Unknown",
+        projection.player_name || "Unknown",
+
+        Number.isFinite(projectedPpr)
+          ? projectedPpr.toFixed(2)
+          : "—",
 
         position || "—",
 
@@ -2032,28 +2033,16 @@ function renderProjectionBoard() {
           ? `${position}${aiRank}`
           : "—",
 
-        Number.isFinite(
-          projectedPpr
-        )
-          ? projectedPpr.toFixed(2)
-          : "—",
-
         status
       ];
 
       values.forEach(
-        (value, index) => {
+        (value) => {
           const cell =
             document.createElement("td");
 
           cell.textContent =
             String(value);
-
-          if (index === 7) {
-            cell.classList.add(
-              "projection-ppr-value"
-            );
-          }
 
           row.appendChild(cell);
         }
