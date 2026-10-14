@@ -1405,11 +1405,43 @@ async function loadWaiverWire() {
         assessment.style.whiteSpace = "pre-line";
 
         const opportunityOutlook = document.createElement("p");
+        const usageDifference =
+          Number.isFinite(latestMetric) && Number.isFinite(averageMetric)
+            ? latestMetric - averageMetric
+            : NaN;
+
+        const usageTrend = Number.isFinite(usageDifference)
+          ? usageDifference >= 2
+            ? "RISING WORKLOAD"
+            : usageDifference <= -2
+              ? "DECLINING WORKLOAD"
+              : "STABLE WORKLOAD"
+          : "WORKLOAD UNVERIFIED";
+
+        const usageEvidence = Number.isFinite(usageDifference)
+          ? `${latestMetric} ${metricLabel} last week versus ${averageMetric.toFixed(1)} per game recently`
+          : "Insufficient recorded workload to establish a trend";
+
+        const fantasyEvidence = Number.isFinite(recentPpr)
+          ? `${recentPpr.toFixed(1)} PPR points per game over the last three games`
+          : "Recent fantasy production unavailable";
+
+        const recommendation =
+          usageTrend === "RISING WORKLOAD"
+            ? "Potential breakout candidate if the increased role continues."
+            : usageTrend === "DECLINING WORKLOAD"
+              ? "Monitor for a workload rebound before relying on this player."
+              : usageTrend === "STABLE WORKLOAD"
+                ? "Current role appears relatively steady; watch for a new opportunity catalyst."
+                : "More workload evidence is needed before assessing breakout potential.";
 
         opportunityOutlook.textContent =
-          Number.isFinite(opportunityChange) && opportunityChange > 0
-            ? "OPPORTUNITY OUTLOOK: Rising usage — potential breakout watch. Monitor whether the increased workload continues."
-            : "OPPORTUNITY OUTLOOK: Usage growth not established — monitor future workload before relying on this player.";
+          `OPPORTUNITY OUTLOOK — ${usageTrend}\n` +
+          `${player.name}: ${usageEvidence}. ` +
+          `Recent production: ${fantasyEvidence}. ` +
+          recommendation;
+
+        opportunityOutlook.style.whiteSpace = "pre-line";        
 
         opportunityOutlook.style.marginTop = "12px";
         opportunityOutlook.style.fontWeight = "600";
