@@ -916,8 +916,10 @@ def main():
     data = json.loads(SOURCE.read_text(encoding='utf-8'))
     players = data.get('player_lookup', {})
     opportunities = data.get('opportunity_volume', {})
+    sleeper_matches = {}
     try:
         sleeper_matches = fetch_sleeper_player_matches(players)
+
         print(f'Sleeper identity verification: {len(sleeper_matches)} matched players')
     except Exception as error:
         print(f'Sleeper directory unavailable: {type(error).__name__}: {error}')            
