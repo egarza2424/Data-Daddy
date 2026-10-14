@@ -597,6 +597,98 @@ def main():
         )
     else:
         print("No observed outcomes available.")
+    print("\nCONTROLLED TE-TO-WR SWAP — HISTORICAL TEST")
+    print("Diagnostic only; historical ownership not verified.")
+
+    swap_differences = []
+    skipped_swaps = 0
+
+    for week in range(2, 19):
+        weekly_signals = build_historical_signals(rows, week)
+        if not weekly_signals:
+            continue
+
+        ranked = score_historical_signals(weekly_signals)
+        top_ten = ranked[:10]
+
+        selected_tes = [
+            player for player in top_ten
+            if player["position"] == "TE"
+        ]
+
+        if len(selected_tes) < 3:
+            continue
+
+        removed_te = selected_tes[-1]
+
+        added_wr = next(
+            (
+                player for player in ranked[10:]
+                if player["position"] == "WR"
+            ),
+            None
+        )
+
+        if added_wr is None:
+            continue
+
+        relevant_ids = {
+            removed_te["player_id"],
+            added_wr["player_id"],
+        }
+
+        actual_rows = [
+            row for row in rows
+            if int(row["week"]) == week
+            and row["player_id"] in relevant_ids
+        ]
+
+        actual_counts = Counter(
+            row["player_id"] for row in actual_rows
+        )
+
+        if any(
+            actual_counts[player_id] != 1
+            for player_id in relevant_ids
+        ):
+            skipped_swaps += 1
+            continue
+
+        actual_ppr = {
+            row["player_id"]: calculate_ppr(row)
+            for row in actual_rows
+        }
+
+        te_ppr = actual_ppr[removed_te["player_id"]]
+        wr_ppr = actual_ppr[added_wr["player_id"]]
+        difference = wr_ppr - te_ppr
+
+        swap_differences.append(difference)
+
+        print(
+            f"Week {week:2}: "
+            f"OUT {removed_te['name']} (TE) {te_ppr:.2f} | "
+            f"IN {added_wr['name']} (WR) {wr_ppr:.2f} | "
+            f"Change={difference:+.2f} PPR"
+        )
+
+    if swap_differences:
+        average_change = (
+            sum(swap_differences) / len(swap_differences)
+        )
+        improved = sum(
+            difference > 0 for difference in swap_differences
+        )
+
+        print(
+            f"Evaluated={len(swap_differences)}, "
+            f"improved={improved}, "
+            f"avg PPR change={average_change:+.2f}, "
+            f"skipped={skipped_swaps}"
+        )
+    else:
+        print(f"No valid swaps; skipped={skipped_swaps}")
+
     
     
     print("Status: HISTORICAL SIGNAL VALIDATION")
