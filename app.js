@@ -1227,13 +1227,13 @@ async function loadWaiverWire() {
           `Rostered: ${Number.isFinite(ownership) ? ownership.toFixed(1) + "%" : "Unverified"} (${Object.keys(fullPlayer.ownership_sources || {}).map(source => source.toUpperCase()).join(", ") || "source unverified"})` +
           `\nWaiver Evidence Score: ${Number.isFinite(score) ? score.toFixed(1) + "/100" : "—"}` +
           `\nScoring: 45% opportunity growth • 35% recent PPR • 20% current volume` +
-          ` • Injury status: ${
+          `\nInjury status: ${
             player.injury_feed_status
               ? String(player.injury_feed_status).replaceAll("_", " ")
               : "No ESPN injury designation reported"
           }` +
 
-          ` • Week ${matchupWeek}: ${matchupLabel}` +
+          `\nWeek ${matchupWeek}: ${matchupLabel}` +
           defensiveLabel;
         details.style.whiteSpace = "pre-line";
         
