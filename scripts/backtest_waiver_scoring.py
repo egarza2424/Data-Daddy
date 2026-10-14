@@ -314,6 +314,45 @@ def main():
         )
 
     print(f"Top 10 position distribution: {dict(top_ten_positions)}")
+    print("\nACTUAL WEEK 6 PPR — HISTORICAL TOP 10")
+
+    actual_week = {}
+    duplicate_ids = set()
+
+    for row in rows:
+        if int(row["week"]) != target_week:
+            continue
+
+        player_id = row["player_id"]
+
+        if player_id in actual_week:
+            duplicate_ids.add(player_id)
+            continue
+
+        actual_week[player_id] = calculate_ppr(row)
+
+    for rank, player in enumerate(top_ten, start=1):
+        player_id = player["player_id"]
+
+        if player_id in duplicate_ids:
+            actual = "AMBIGUOUS"
+        elif player_id not in actual_week:
+            actual = "NO RECORD"
+        else:
+            actual = f"{actual_week[player_id]:.2f}"
+
+        print(
+            f"{rank:2}. {player['position']} | "
+            f"Evidence={player['historical_evidence_score']:.2f} | "
+            f"Prior PPR={player['recent_average_ppr']:.2f} | "
+            f"Actual Week {target_week} PPR={actual}"
+        )
+
+    print(
+        "Note: NO RECORD is not treated as zero PPR. "
+        "Duplicate player-week records are excluded."
+    )
+
     
     print("Status: HISTORICAL SIGNAL VALIDATION")
     print("No live rankings or historical snapshots modified.")
