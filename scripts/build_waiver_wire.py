@@ -190,7 +190,9 @@ def fetch_sleeper_player_matches(players):
 
     print(
         f'Sleeper: {len(sleeper_players)} directory records, '
-        f'{len(matches)} GSIS player matches, '
+        f'{gsis_hits - position_mismatches} direct GSIS matches, '
+        f'{fallback_matches} fallback matches, '
+        f'{len(matches)} total matched players, '
         f'{ambiguous} ambiguous.'
     )
     print(
