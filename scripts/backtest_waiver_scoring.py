@@ -357,7 +357,60 @@ def main():
         "Note: NO RECORD is not treated as zero PPR. "
         "Duplicate player-week records are excluded."
     )
+    print("\nMULTIWEEK ALL-PLAYER TOP 10 POSITION AUDIT")
+    print("Diagnostic only: historical ownership not verified.")
 
+    total_top_ten = Counter()
+    total_pool = Counter()
+    weeks_tested = 0
+
+    for week in range(2, 19):
+        weekly_signals = build_historical_signals(rows, week)
+
+        if not weekly_signals:
+            continue
+
+        weekly_ranked = score_historical_signals(weekly_signals)
+        weekly_top = weekly_ranked[:10]
+
+        pool_counts = Counter(
+            player["position"] for player in weekly_signals
+        )
+        top_counts = Counter(
+            player["position"] for player in weekly_top
+        )
+
+        total_pool.update(pool_counts)
+        total_top_ten.update(top_counts)
+        weeks_tested += 1
+
+        print(
+            f"Week {week:2}: "
+            f"pool={len(weekly_signals)}, "
+            f"Top 10={dict(top_counts)}"
+        )
+
+    print(f"Weeks tested: {weeks_tested}")
+
+    for position in sorted(POSITIONS):
+        pool_total = sum(total_pool.values())
+        top_total = sum(total_top_ten.values())
+
+        pool_share = (
+            100 * total_pool[position] / pool_total
+            if pool_total else 0
+        )
+        top_share = (
+            100 * total_top_ten[position] / top_total
+            if top_total else 0
+        )
+
+        print(
+            f"{position}: "
+            f"pool share={pool_share:.1f}%, "
+            f"Top 10 share={top_share:.1f}%, "
+            f"difference={top_share - pool_share:+.1f} pp"
+        )
     
     print("Status: HISTORICAL SIGNAL VALIDATION")
     print("No live rankings or historical snapshots modified.")
