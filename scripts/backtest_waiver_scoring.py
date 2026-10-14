@@ -541,6 +541,62 @@ def main():
 
     print("Only observed, unambiguous outcomes included.")
     print("This is not an ownership-filtered waiver accuracy test.")
+    print("\nHIGHEST-RANKED WR OUTSIDE TOP 10")
+    print("All-player diagnostic; ownership not verified.")
+
+    overlooked_wr_results = []
+    missing_wr_results = 0
+
+    for week in range(2, 19):
+        weekly_signals = build_historical_signals(rows, week)
+
+        if not weekly_signals:
+            continue
+
+        ranked = score_historical_signals(weekly_signals)
+
+        overlooked = next(
+            (
+                player for player in ranked[10:]
+                if player["position"] == "WR"
+            ),
+            None
+        )
+
+        if overlooked is None:
+            continue
+
+        week_rows = [
+            row for row in rows
+            if int(row["week"]) == week
+            and row["player_id"] == overlooked["player_id"]
+        ]
+
+        if len(week_rows) != 1:
+            missing_wr_results += 1
+            continue
+
+        actual_ppr = calculate_ppr(week_rows[0])
+        overlooked_wr_results.append(actual_ppr)
+
+        print(
+            f"Week {week:2}: {overlooked['name']} | "
+            f"Score={overlooked['historical_evidence_score']:.2f} | "
+            f"Actual PPR={actual_ppr:.2f}"
+        )
+
+    if overlooked_wr_results:
+        average = (
+            sum(overlooked_wr_results) / len(overlooked_wr_results)
+        )
+
+        print(
+            f"Observed={len(overlooked_wr_results)}, "
+            f"average actual PPR={average:.2f}, "
+            f"missing/ambiguous={missing_wr_results}"
+        )
+    else:
+        print("No observed outcomes available.")
     
     
     print("Status: HISTORICAL SIGNAL VALIDATION")
