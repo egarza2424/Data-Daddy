@@ -464,7 +464,84 @@ def main():
         )
 
     print("Missing or ambiguous outcomes excluded from averages.")
+    print("\nMULTIWEEK TOP 10 — POSITION-RELATIVE PPR")
+    print("Comparison: same-week, same-position median actual PPR.")
 
+    from statistics import median
+
+    relative_results = {position: [] for position in POSITIONS}
+
+    for week in range(2, 19):
+        weekly_signals = build_historical_signals(rows, week)
+
+        if not weekly_signals:
+            continue
+
+        weekly_top = score_historical_signals(weekly_signals)[:10]
+
+        week_rows = [
+            row for row in rows
+            if int(row["week"]) == week
+        ]
+
+        week_counts = Counter(row["player_id"] for row in week_rows)
+
+        actual_by_id = {
+            row["player_id"]: calculate_ppr(row)
+            for row in week_rows
+            if week_counts[row["player_id"]] == 1
+        }
+
+        position_actuals = {position: [] for position in POSITIONS}
+
+        for row in week_rows:
+            if row["player_id"] not in actual_by_id:
+                continue
+
+            position_actuals[row["position"]].append(
+                actual_by_id[row["player_id"]]
+            )
+
+        position_medians = {
+            position: median(values)
+            for position, values in position_actuals.items()
+            if values
+        }
+
+        for player in weekly_top:
+            position = player["position"]
+            player_id = player["player_id"]
+
+            if (
+                player_id not in actual_by_id
+                or position not in position_medians
+            ):
+                continue
+
+            relative_results[position].append(
+                actual_by_id[player_id] - position_medians[position]
+            )
+
+    for position in sorted(POSITIONS):
+        values = relative_results[position]
+
+        if not values:
+            print(f"{position}: no observed comparisons")
+            continue
+
+        average = sum(values) / len(values)
+        positive = sum(value > 0 for value in values)
+
+        print(
+            f"{position}: "
+            f"observed={len(values)}, "
+            f"avg above position median={average:+.2f} PPR, "
+            f"above median={positive}/{len(values)}"
+        )
+
+    print("Only observed, unambiguous outcomes included.")
+    print("This is not an ownership-filtered waiver accuracy test.")
+    
     
     print("Status: HISTORICAL SIGNAL VALIDATION")
     print("No live rankings or historical snapshots modified.")
