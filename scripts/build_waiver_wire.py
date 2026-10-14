@@ -93,6 +93,9 @@ def fetch_sleeper_player_matches(players):
     missing_gsis = 0
     name_matches = 0
     name_ambiguous = 0
+    team_matches = 0
+    team_mismatches = 0
+    team_missing = 0
 
     for player_id, player in players.items():
         if player_id in by_gsis:
@@ -107,17 +110,29 @@ def fetch_sleeper_player_matches(players):
 
         if len(alternatives) == 1:
             name_matches += 1
+            sleeper_team = alternatives[0][2]
+            data_team = player.get('team')
+
+            if not sleeper_team or not data_team:
+                team_missing += 1
+            elif sleeper_team == data_team:
+                team_matches += 1
+            else:
+                team_mismatches += 1
         elif len(alternatives) > 1:
             name_ambiguous += 1
-
     print(
         f'Sleeper fallback diagnostic: '
         f'{missing_gsis} players without GSIS hits, '
         f'{name_matches} unique name/position matches, '
         f'{name_ambiguous} ambiguous name/position matches.'
     )
-
-            
+    print(
+        f'Sleeper team verification: '
+        f'{team_matches} matching teams, '
+        f'{team_mismatches} mismatched teams, '
+        f'{team_missing} missing team values.'
+    )            
     matches = {}
     ambiguous = 0
     gsis_hits = 0
