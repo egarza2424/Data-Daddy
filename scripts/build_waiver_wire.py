@@ -39,6 +39,59 @@ def normalized_name(value):
     text = text.lower().replace('’', "'")
     text = re.sub(r'[^a-z0-9]', '', text)
     return text
+def fetch_sleeper_player_matches(players):
+    """Match Sleeper NFL players using verified GSIS identifiers."""
+    request = urllib.request.Request(
+        SLEEPER_PLAYERS_URL,
+        headers={'User-Agent': 'Mozilla/5.0'},
+    )
+
+    with urllib.request.urlopen(request, timeout=45) as response:
+        sleeper_players = json.load(response)
+
+    if not isinstance(sleeper_players, dict) or len(sleeper_players) < 1000:
+        raise RuntimeError('Sleeper player directory response is incomplete.')
+
+    by_gsis = defaultdict(list)
+
+    for sleeper_id, record in sleeper_players.items():
+        if not isinstance(record, dict):
+            continue
+
+        gsis_id = str(record.get('gsis_id') or '').strip()
+        if gsis_id:
+            by_gsis[gsis_id].append({
+                'sleeper_id': sleeper_id,
+                'position': record.get('position'),
+                'team': record.get('team'),
+            })
+
+    matches = {}
+    ambiguous = 0
+
+    for player_id, player in players.items():
+        records = by_gsis.get(str(player_id), [])
+
+        if len(records) != 1:
+            if len(records) > 1:
+                ambiguous += 1
+            continue
+
+        record = records[0]
+
+        if record['position'] != player.get('position'):
+            continue
+
+        matches[player_id] = record['sleeper_id']
+
+    print(
+        f'Sleeper: {len(sleeper_players)} directory records, '
+        f'{len(matches)} GSIS player matches, '
+        f'{ambiguous} ambiguous.'
+    )
+
+    return matches
+
 def fetch_nfl_schedule(season):
     """Return regular-season team/week schedule coverage."""
     request = urllib.request.Request(
