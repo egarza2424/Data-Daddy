@@ -411,6 +411,60 @@ def main():
             f"Top 10 share={top_share:.1f}%, "
             f"difference={top_share - pool_share:+.1f} pp"
         )
+    print("\nMULTIWEEK TOP 10 — ACTUAL NEXT-WEEK PPR")
+    print("All-player diagnostic; ownership eligibility not verified.")
+
+    outcomes = {position: [] for position in POSITIONS}
+    missing_outcomes = Counter()
+    ambiguous_outcomes = Counter()
+
+    for week in range(2, 19):
+        weekly_signals = build_historical_signals(rows, week)
+
+        if not weekly_signals:
+            continue
+
+        weekly_top = score_historical_signals(weekly_signals)[:10]
+
+        actual_by_id = {}
+        duplicate_ids = set()
+
+        for row in rows:
+            if int(row["week"]) != week:
+                continue
+
+            player_id = row["player_id"]
+
+            if player_id in actual_by_id:
+                duplicate_ids.add(player_id)
+            else:
+                actual_by_id[player_id] = calculate_ppr(row)
+
+        for player in weekly_top:
+            position = player["position"]
+            player_id = player["player_id"]
+
+            if player_id in duplicate_ids:
+                ambiguous_outcomes[position] += 1
+            elif player_id not in actual_by_id:
+                missing_outcomes[position] += 1
+            else:
+                outcomes[position].append(actual_by_id[player_id])
+
+    for position in sorted(POSITIONS):
+        values = outcomes[position]
+        average = sum(values) / len(values) if values else 0
+
+        print(
+            f"{position}: "
+            f"observed={len(values)}, "
+            f"avg actual PPR={average:.2f}, "
+            f"missing={missing_outcomes[position]}, "
+            f"ambiguous={ambiguous_outcomes[position]}"
+        )
+
+    print("Missing or ambiguous outcomes excluded from averages.")
+
     
     print("Status: HISTORICAL SIGNAL VALIDATION")
     print("No live rankings or historical snapshots modified.")
