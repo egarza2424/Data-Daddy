@@ -1225,7 +1225,8 @@ async function loadWaiverWire() {
 
         details.textContent =
           `Rostered: ${Number.isFinite(ownership) ? ownership.toFixed(1) + "%" : "Unverified"} (${Object.keys(fullPlayer.ownership_sources || {}).map(source => source.toUpperCase()).join(", ") || "source unverified"})` +
-          ` • Waiver Evidence Score: ${Number.isFinite(score) ? score.toFixed(1) + "/100" : "—"} (45% opportunity growth, 35% recent PPR, 20% current volume)` +
+          `\nWaiver Evidence Score: ${Number.isFinite(score) ? score.toFixed(1) + "/100" : "—"}` +
+          `\nScoring: 45% opportunity growth • 35% recent PPR • 20% current volume` +
           ` • Injury status: ${
             player.injury_feed_status
               ? String(player.injury_feed_status).replaceAll("_", " ")
@@ -1234,7 +1235,7 @@ async function loadWaiverWire() {
 
           ` • Week ${matchupWeek}: ${matchupLabel}` +
           defensiveLabel;
-
+        details.style.whiteSpace = "pre-line";
         
         const intelligence = document.createElement("div");
         intelligence.className = "waiver-intelligence";
