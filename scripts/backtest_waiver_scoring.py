@@ -125,10 +125,66 @@ def build_historical_signals(rows, target_week):
             "history_games": len(games),
         })
 
-    return signals
+        return signals
+
+
+def score_historical_signals(signals):
+    """Reproduce live position-relative evidence scoring."""
+    from collections import defaultdict
+
+    weights = {
+        "opportunity_change": 0.45,
+        "recent_average_ppr": 0.35,
+        "latest_opportunity": 0.20,
+    }
+
+    groups = defaultdict(list)
+    for signal in signals:
+        groups[signal["position"]].append(signal)
+
+    for position, players in groups.items():
+        percentile_maps = {}
+
+        for field in weights:
+            values = sorted({
+                player[field]
+                for player in players
+                if player[field] is not None
+            })
+
+            if not values:
+                percentile_maps[field] = {}
+            elif len(values) == 1:
+                percentile_maps[field] = {values[0]: 50.0}
+            else:
+                percentile_maps[field] = {
+                    value: round(
+                        100 * index / (len(values) - 1), 2
+                    )
+                    for index, value in enumerate(values)
+                }
+
+        for player in players:
+            score = 0.0
+
+            for field, weight in weights.items():
+                value = player[field]
+
+                if value is None:
+                    continue
+
+                score += percentile_maps[field][value] * weight
+
+            player["historical_evidence_score"] = round(score, 2)
+
+    return sorted(
+        signals,
+        key=lambda player: -player["historical_evidence_score"],
+    )
 
 
 def load_historical_stats(season):
+
 
     url = STATS_URL.format(season=season)
 
