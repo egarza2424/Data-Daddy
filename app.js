@@ -1380,16 +1380,26 @@ async function loadWaiverWire() {
           ? ` The model measures an opportunity change of ${opportunityChange > 0 ? "+" : ""}${opportunityChange.toFixed(1)}.`
           : "";
 
-      const playerValue =
-          Number.isFinite(opportunityChange) && opportunityChange > 0
-            ? `${player.name} is worth monitoring because the model identifies increasing opportunity. ` +
-              "That creates potential fantasy upside if the expanded role continues."
-            : Number.isFinite(recentPpr) && recentPpr > 0
-              ? `${player.name} has recorded recent fantasy production, ` +
-                "but additional opportunity may be needed for a meaningful breakout."
-              : `${player.name} is on the waiver watchlist, but available evidence ` +
-                "is insufficient to establish a dependable fantasy role.";
+        const workloadIncrease =
+          Number.isFinite(latestMetric) &&
+          Number.isFinite(averageMetric)
+            ? latestMetric - averageMetric
+            : NaN;
 
+        const playerValue =
+          Number.isFinite(workloadIncrease) && workloadIncrease >= 2
+            ? `${player.name} is seeing increased involvement, with ` +
+              `${latestMetric} ${workloadLabel} last week compared with ` +
+              `${averageMetric.toFixed(1)} per game recently. ` +
+              (injuredTeammates.length > 0
+                ? "Injuries among same-position teammates could create additional opportunity, although a replacement role is not confirmed."
+                : "Continued involvement could support a larger fantasy role.")
+            : Number.isFinite(recentPpr) && recentPpr > 0
+              ? `${player.name} has averaged ${recentPpr.toFixed(1)} ` +
+                "PPR points over the last three games. " +
+                "Monitor whether his workload can support continued production."
+              : `${player.name} remains a potential waiver candidate, ` +
+                "but additional workload and production evidence is needed.";
 
         const injuryContext = injuredTeammates.length > 0
           ? ` Same-position teammates with ESPN injury flags: ${injurySummary}. ` +
