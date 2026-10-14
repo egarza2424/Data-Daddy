@@ -897,7 +897,22 @@ def main():
     eligible = rank_eligible_candidates(candidates)
     unverified = [c for c in candidates if c['ownership_eligible'] is None]
     above_cutoff = [c for c in candidates if c['ownership_eligible'] is False]
+    print('VERIFIED OWNERSHIP SOURCE COVERAGE')
+    for platform in VALID_PLATFORMS:
+        count = sum(
+            platform in c.get('ownership_sources', {})
+            for c in candidates
+        )
+        print(f'{platform.upper()}: {count} candidates')
 
+    three_source_count = sum(
+        c.get('ownership_source_count') == 3
+        for c in candidates
+    )
+    print(f'All three platforms verified: {three_source_count}')
+    print(f'Eligible using available sources: {len(eligible)}')
+
+            
     # Keep a 50-player review pool for the existing website. Only players
     # with verified ownership below 65% enter the ranked portion.
     review_pool = eligible[:50]
