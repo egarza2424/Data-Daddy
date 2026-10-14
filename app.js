@@ -1224,7 +1224,7 @@ async function loadWaiverWire() {
           : " • Defensive matchup: N/A";
 
         details.textContent =
-          `Rostered: ${Number.isFinite(ownership) ? ownership.toFixed(1) + "%" : "Unverified"}` +
+          `Rostered: ${Number.isFinite(ownership) ? ownership.toFixed(1) + "%" : "Unverified"} (${Object.keys(fullPlayer.ownership_sources || {}).map(source => source.toUpperCase()).join(", ") || "source unverified"})` +
           ` • Evidence score: ${Number.isFinite(score) ? score.toFixed(1) : "—"}` +
           ` • Injury status: ${
             player.injury_feed_status
