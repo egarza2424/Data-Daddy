@@ -214,7 +214,33 @@ def main():
             f"avg recent PPR={average_ppr:.2f}, "
             f"avg latest opportunity={average_opportunity:.2f}"
         )
+        known_changes = [
+            signal["opportunity_change"]
+            for signal in group
+            if signal["opportunity_change"] is not None
+        ]
 
+        missing_changes = len(group) - len(known_changes)
+
+        if known_changes:
+            average_change = sum(known_changes) / len(known_changes)
+            positive_changes = sum(
+                change > 0 for change in known_changes
+            )
+
+            print(
+                f"  Opportunity change: "
+                f"avg={average_change:+.2f}, "
+                f"positive={positive_changes}/{len(known_changes)}, "
+                f"missing={missing_changes}"
+            )
+        else:
+            print(
+                f"  Opportunity change: no available values, "
+                f"missing={missing_changes}"
+            )
+
+    
     print("Status: HISTORICAL SIGNAL VALIDATION")
     print("No live rankings or historical snapshots modified.")
 
