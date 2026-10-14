@@ -1226,7 +1226,7 @@ async function loadWaiverWire() {
         details.textContent =
           `Rostered: ${Number.isFinite(ownership) ? ownership.toFixed(1) + "%" : "Unverified"}` +
           ` • Evidence score: ${Number.isFinite(score) ? score.toFixed(1) : "—"}` +
-            • Injury status: ${
+          ` • Injury status: ${
             player.injury_feed_status
               ? String(player.injury_feed_status).replaceAll("_", " ")
               : "No ESPN injury designation reported"
