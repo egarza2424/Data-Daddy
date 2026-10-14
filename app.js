@@ -1401,11 +1401,21 @@ async function loadWaiverWire() {
             "Their return timetables have not been verified."
           : "";
 
+        const fantasyOutlook =
+          player.position === "QB"
+            ? "Passing volume offers fantasy upside, but scoring depends on efficiency, touchdowns, and continued playing time."
+            : player.position === "RB"
+              ? "A sustained rushing role can create fantasy value. Receiving opportunities may provide additional PPR upside."
+              : player.position === "WR"
+                ? "Consistent targets are important for reliable PPR production. Receiving efficiency and touchdown opportunities also matter."
+                : player.position === "TE"
+                  ? "A dependable passing-game role can create streaming value at tight end. Target consistency remains important."
+                  : "Future fantasy value depends on continued opportunity and production.";
+
         assessment.textContent =
           `WHY ADD HIM?\n${playerValue}\n\n` +
-          `FANTASY OUTLOOK:\n${trendDescription} ` +
+          `FANTASY OUTLOOK:\n${fantasyOutlook} ` +
           "Future role and workload sustainability remain unverified.";
-
         assessment.style.whiteSpace = "pre-line";
 
         const opportunityOutlook = document.createElement("p");
