@@ -1388,19 +1388,18 @@ async function loadWaiverWire() {
 
         const playerValue =
           Number.isFinite(workloadIncrease) && workloadIncrease >= 2
-            ? `${player.name} is seeing increased involvement, with ` +
-              `${latestMetric} ${workloadLabel} last week compared with ` +
-              `${averageMetric.toFixed(1)} per game recently. ` +
+            ? `${player.name} is a potential breakout waiver target because his recent workload is increasing. ` +
               (injuredTeammates.length > 0
-                ? "Injuries among same-position teammates could create additional opportunity, although a replacement role is not confirmed."
-                : "Continued involvement could support a larger fantasy role.")
-            : Number.isFinite(recentPpr) && recentPpr > 0
-              ? `${player.name} has averaged ${recentPpr.toFixed(1)} ` +
-                "PPR points over the last three games. " +
-                "Monitor whether his workload can support continued production."
-              : `${player.name} remains a potential waiver candidate, ` +
-                "but additional workload and production evidence is needed.";
-
+                ? "Injuries at his position may create additional opportunities, but his future role is not confirmed."
+                : "Consider adding him ahead of a possible larger role if you have roster flexibility.")
+            : Number.isFinite(workloadIncrease) && workloadIncrease <= -2
+              ? `${player.name} is a cautious waiver option because his recent workload has declined. ` +
+                "Monitor for renewed involvement before relying on him."
+              : Number.isFinite(recentPpr) && recentPpr > 0
+                ? `${player.name} offers some recent fantasy production, but his role has not shown clear growth. ` +
+                  "Consider him based on your roster needs rather than expecting an immediate breakout."
+                : `${player.name} is a speculative waiver candidate. ` +
+                  "Additional playing-time and production evidence is needed before making him a priority add.";
         const injuryContext = injuredTeammates.length > 0
           ? ` Same-position teammates with ESPN injury flags: ${injurySummary}. ` +
             "These statuses may affect future opportunity, but a direct replacement role is not verified."
