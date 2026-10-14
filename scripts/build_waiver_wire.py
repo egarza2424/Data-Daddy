@@ -766,14 +766,37 @@ def main():
     red_zone = data.get('red_zone_opportunity', {})
     defensive_matchups = data.get('defensive_matchup', {})
 
-    # Fetch fresh public ownership each run. On failure, do not use old data.
+    # Retain independently sourced ownership records.
+    # Freshness validation still rejects expired platform data.
+    existing_ownership = load_ownership()
+
     try:
-        ownership, injury_reports, checked_at = fetch_espn_ownership(players)
+        espn_ownership, injury_reports, checked_at = fetch_espn_ownership(players)
     except Exception as error:
         print(f'ESPN ownership unavailable: {type(error).__name__}: {error}')
-        ownership, injury_reports, checked_at = {}, {}, None
+        espn_ownership, injury_reports, checked_at = {}, {}, None
+
+    ownership = {}
+    for player_id in players:
+        existing = existing_ownership.get(player_id, {})
+        merged = {}
+
+        if isinstance(existing, dict):
+            for platform in ('yahoo', 'sleeper'):
+                entry = existing.get(platform)
+                if isinstance(entry, dict):
+                    merged[platform] = entry
+
+        espn_entry = espn_ownership.get(player_id, {}).get('espn')
+        if espn_entry is not None:
+            merged['espn'] = espn_entry
+
+        if merged:
+            ownership[player_id] = merged
+
     OWNERSHIP_SOURCE.write_text(json.dumps({
-        'checked_at': checked_at, 'source': 'ESPN public fantasy player API',
+        'checked_at': checked_at,
+        'source': 'Platform-specific verified ownership records',
         'players': ownership,
     }, indent=2) + '\n', encoding='utf-8')
 
