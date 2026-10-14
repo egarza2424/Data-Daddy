@@ -125,7 +125,7 @@ def build_historical_signals(rows, target_week):
             "history_games": len(games),
         })
 
-        return signals
+    return signals
 
 
 def score_historical_signals(signals):
