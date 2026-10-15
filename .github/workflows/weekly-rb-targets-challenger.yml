@@ -1,0 +1,163 @@
+name: Weekly RB Targets Challenger
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 15 * * 4"
+
+permissions:
+  contents: write
+
+jobs:
+  rb-challenger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pandas numpy
+      - name: Freeze weekly RB targets challenger
+        run: |
+          python <<'PY'
+          import io
+          import re
+          import urllib.request
+          from pathlib import Path
+          import numpy as np
+          import pandas as pd
+
+          def key(s):
+              return re.sub(r"[^a-z0-9]", "", re.sub(
+                  r"\s+(jr\.?|sr\.?|ii|iii|iv)$", "", str(s).lower().strip()
+              ))
+
+          historical = pd.read_csv("projection-model/2025-historical-ppr-dataset.csv")
+          hist = historical.loc[historical["position"].eq("RB")].copy()
+          snapshots = sorted(Path("projection-model").glob("2026-week*-ppr-projections.csv"),
+                             key=lambda p: int(re.search(r"week(\d+)", p.name).group(1)))
+          if not snapshots:
+              raise SystemExit("No frozen weekly projections")
+          original_path = snapshots[-1]
+          week = int(re.search(r"week(\d+)", original_path.name).group(1))
+          out = Path(f"projection-model/validation/2026-week{week}-rb-targets-challenger.csv")
+          if out.exists():
+              print(f"Already frozen: {out}; leaving it unchanged")
+              raise SystemExit(0)
+          original = pd.read_csv(original_path)
+          current = original.loc[original["position"].eq("RB")].copy()
+          if current.empty:
+              raise SystemExit("No RBs in frozen projections")
+          base = ["opportunity_score", "production_score", "usage_score",
+                  "redzone_score", "model_confidence_score"]
+          target = "pregame_targets_3wk"
+          def fetch(year):
+              url = ("https://github.com/nflverse/nflverse-data/releases/"
+                     f"download/stats_player/stats_player_week_{year}.csv")
+              with urllib.request.urlopen(url, timeout=120) as r:
+                  return pd.read_csv(io.BytesIO(r.read()), low_memory=False)
+          def make_targets(year, ids, names, end_week):
+              stats = fetch(year)
+              if "player_display_name" not in stats.columns:
+                  raise SystemExit("nflverse player_display_name missing")
+              needed = ["player_id", "week", "season_type", "targets", "player_display_name"]
+              if any(c not in stats for c in needed):
+                  raise SystemExit("nflverse missing required columns")
+              stats = stats.loc[stats["season_type"].eq("REG")].copy()
+              stats["week"] = pd.to_numeric(stats["week"], errors="coerce")
+              stats["targets"] = pd.to_numeric(stats["targets"], errors="coerce").fillna(0)
+              stats["name_key"] = stats["player_display_name"].map(key)
+              stats["player_id"] = stats["player_id"].astype(str).str.strip()
+              stats = stats.loc[stats["week"].between(1, end_week - 1)]
+              stats = stats.groupby(["player_id", "name_key", "week"], as_index=False)["targets"].sum()
+              grid = pd.MultiIndex.from_product(
+                  [ids, range(1, end_week)], names=["player_id", "week"]
+              ).to_frame(index=False)
+              # For historical data, use exact player ID; for current data, names
+              # are the only cross-system key and must be unique.
+              if names is None:
+                  grid = grid.merge(stats[["player_id", "week", "targets"]],
+                                    on=["player_id", "week"], how="left")
+              else:
+                  stats = stats.loc[stats["name_key"].isin(names)]
+                  collisions = stats.groupby("name_key")["player_id"].nunique()
+                  ambiguous = set(collisions[collisions > 1].index)
+                  stats = stats.loc[~stats["name_key"].isin(ambiguous)]
+                  lookup = stats.groupby(["name_key", "week"], as_index=False)["targets"].sum()
+                  grid["name_key"] = grid["player_id"]
+                  grid = grid.merge(lookup, on=["name_key", "week"], how="left")
+              grid["targets"] = grid["targets"].fillna(0)
+              grid = grid.sort_values(["player_id", "week"])
+              # Prior three calendar weeks, including zeros for games missed.
+              rolling = grid.groupby("player_id")["targets"].transform(
+                  lambda x: x.shift(1).rolling(3, min_periods=3).mean()
+              )
+              grid[target] = rolling
+              return grid
+
+          # Historical training must use exactly the same player-week features
+          # as the earlier held-out backtest.
+          hist["player_id"] = hist["player_id"].astype(str).str.strip()
+          hist["week"] = pd.to_numeric(hist["week"], errors="coerce")
+          hgrid = make_targets(2025, hist["player_id"].unique(), None, 19)
+          hist = hist.merge(hgrid[["player_id", "week", target]],
+                            on=["player_id", "week"], how="left", validate="many_to_one")
+          # The 2026 snapshot IDs are different from nflverse IDs. Match by
+          # normalized player name, but refuse to invent targets for unmatched.
+          current["name_key"] = current["player_name"].map(key)
+          if current["name_key"].duplicated().any():
+              raise SystemExit("Duplicate normalized RB names in frozen projections")
+          cgrid = make_targets(2026, current["name_key"].tolist(),
+                               current["name_key"].tolist(), week + 1)
+          # Use the prior 3 weeks before the target week.
+          cgrid = cgrid.loc[cgrid["week"].eq(week)]
+          if cgrid.empty:
+              # make_targets creates weeks 1..week, so target week exists
+              raise SystemExit("No target-week pregame features")
+          current = current.merge(cgrid[["player_id", target]].rename(
+              columns={"player_id": "name_key"}), on="name_key",
+              how="left", validate="one_to_one")
+          # Players with no recorded targets may legitimately have zero, but
+          # missing identity matches are not silently treated as verified zeros.
+          stats2026 = fetch(2026)
+          seen = set(stats2026.loc[
+              pd.to_numeric(stats2026["week"], errors="coerce").lt(week),
+              "player_display_name"
+          ].dropna().map(key))
+          current["targets_verified"] = current["name_key"].isin(seen)
+          for c in base + [target, "actual_ppr"]:
+              if c in hist:
+                  hist[c] = pd.to_numeric(hist[c], errors="coerce")
+          train = hist.dropna(subset=base + [target, "actual_ppr"])
+          if len(train) < 500:
+              raise SystemExit("Insufficient historical RB training rows")
+          x = train[base + [target]].to_numpy(dtype=float)
+          y = train["actual_ppr"].to_numpy(dtype=float)
+          coef = np.linalg.lstsq(np.column_stack([np.ones(len(x)), x]), y, rcond=None)[0]
+          current["challenger_ppr"] = np.nan
+          eligible = current["targets_verified"] & current[base + [target]].notna().all(axis=1)
+          if eligible.any():
+              tx = current.loc[eligible, base + [target]].to_numpy(dtype=float)
+              current.loc[eligible, "challenger_ppr"] = np.maximum(
+                  0, np.column_stack([np.ones(len(tx)), tx]) @ coef
+              ).round(2)
+          current["challenger_delta"] = (current["challenger_ppr"] - current["projected_ppr"]).round(2)
+          cols = ["player_name", "team", "opponent", "projected_ppr",
+                  target, "targets_verified", "challenger_ppr", "challenger_delta"]
+          out.parent.mkdir(parents=True, exist_ok=True)
+          current[cols].to_csv(out, index=False)
+          print(f"Frozen {out}: eligible {eligible.sum()}/{len(current)}")
+          print(current.loc[current["player_name"].isin(
+              ["Tony Pollard", "Christian McCaffrey"]
+          ), cols].to_string(index=False))
+          print("Control predictions and production model are unchanged.")
+          PY
+      - name: Commit frozen challenger if created
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add projection-model/validation/*-rb-targets-challenger.csv
+          if ! git diff --cached --quiet; then
+            git commit -m "Freeze weekly RB targets challenger"
+            git push
+          fi
