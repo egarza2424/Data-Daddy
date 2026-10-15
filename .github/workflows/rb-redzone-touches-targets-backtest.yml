@@ -1,0 +1,140 @@
+name: RB Red-Zone Touches and Targets Backtest
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy pandas scipy
+      - name: Test red-zone shares on held-out 2025 RB weeks
+        run: |
+          import csv, gzip
+          from collections import defaultdict, deque
+          from pathlib import Path
+          import numpy as np
+          import pandas as pd
+          
+          history = pd.read_csv("projection-model/2025-historical-ppr-dataset.csv", low_memory=False)
+          rb = history.loc[history.position.eq("RB")].copy()
+          rb["week"] = pd.to_numeric(rb["week"], errors="coerce")
+          rb["player_id"] = rb["player_id"].astype(str).str.strip()
+          aliases = {"LAR":"LA","JAX":"JAC","WAS":"WSH"}
+          def team_key(v):
+              s = str(v).strip().upper()
+              return aliases.get(s,s)
+          rb["team_key"] = rb["team"].map(team_key)
+          pbp_path = Path("historical-data/play_by_play_2025.csv.gz")
+          if not pbp_path.exists():
+              raise SystemExit("Missing PBP: " + str(pbp_path))
+          
+          # Each play contributes to both player and team counts; receptions
+          # require a completed pass, not merely a receiver target.
+          player = defaultdict(lambda: [0,0,0])
+          team = defaultdict(lambda: [0,0,0])
+          with gzip.open(pbp_path, "rt", encoding="utf-8", newline="") as f:
+              for p in csv.DictReader(f):
+                  if p.get("season_type") != "REG":
+                      continue
+                  try:
+                      week = int(float(p.get("week") or 0))
+                      yard = float(p.get("yardline_100") or 999)
+                  except (ValueError,TypeError):
+                      continue
+                  if week < 1 or week > 18 or yard > 20:
+                      continue
+                  t = team_key(p.get("posteam"))
+                  if t in ("","NAN","NONE"):
+                      continue
+                  tk = (t,week)
+                  rush = p.get("rush_attempt") == "1"
+                  passing = p.get("pass_attempt") == "1"
+                  complete = p.get("complete_pass") == "1"
+                  rid = str(p.get("rusher_player_id") or "").strip()
+                  recid = str(p.get("receiver_player_id") or "").strip()
+                  if rush and rid:
+                      player[(rid,week)][0] += 1
+                      team[tk][0] += 1
+                  if passing and recid:
+                      player[(recid,week)][2] += 1
+                      team[tk][2] += 1
+                      if complete:
+                          player[(recid,week)][1] += 1
+                          team[tk][1] += 1
+          
+          def scores(row):
+              w = int(row.week)
+              pid = row.player_id
+              t = row.team_key
+              # Sum previous three calendar weeks only; never use target-week PBP.
+              pp = np.array([player[(pid,k)] for k in range(max(1,w-3),w)]).sum(axis=0)
+              tt = np.array([team[(t,k)] for k in range(max(1,w-3),w)]).sum(axis=0)
+              p_touches = pp[0] + pp[1]
+              t_touches = tt[0] + tt[1]
+              if t_touches <= 0 or tt[2] <= 0:
+                  return pd.Series({"challenger_redzone":np.nan,"rz_touches":p_touches,
+                                    "team_rz_touches":t_touches,"rz_targets":pp[2],
+                                    "team_rz_targets":tt[2]})
+              touch_share = 100*p_touches/t_touches
+              target_share = 100*pp[2]/tt[2]
+              return pd.Series({"challenger_redzone":.7*touch_share+.3*target_share,
+                                "rz_touches":p_touches,"team_rz_touches":t_touches,
+                                "rz_targets":pp[2],"team_rz_targets":tt[2]})
+          
+          rb = pd.concat([rb,rb.apply(scores,axis=1)],axis=1)
+          base = ["opportunity_score","production_score","usage_score",
+                  "redzone_score","model_confidence_score"]
+          alt = ["opportunity_score","production_score","usage_score",
+                 "challenger_redzone","model_confidence_score"]
+          needed = base + ["challenger_redzone","actual_ppr"]
+          for c in needed:
+              rb[c] = pd.to_numeric(rb[c],errors="coerce")
+          rb = rb.dropna(subset=needed)
+          train = rb[rb.week.between(4,12)].copy()
+          test = rb[rb.week.between(13,18)].copy()
+          if len(train)<100 or len(test)<100:
+              raise SystemExit(f"Insufficient shared rows: train={len(train)} test={len(test)}")
+          def predict(cols):
+              x = np.c_[np.ones(len(train)),train[cols].to_numpy(float)]
+              y = train.actual_ppr.to_numpy(float)
+              coef = np.linalg.lstsq(x,y,rcond=None)[0]
+              return np.c_[np.ones(len(test)),test[cols].to_numpy(float)] @ coef
+          test["baseline_prediction"] = predict(base)
+          test["challenger_prediction"] = predict(alt)
+          y = test.actual_ppr.to_numpy(float)
+          from scipy.stats import spearmanr
+          def metrics(col):
+              p = test[col].to_numpy(float)
+              return dict(MAE=round(float(np.mean(abs(p-y))),4),
+                          RMSE=round(float(np.sqrt(np.mean((p-y)**2))),4),
+                          Spearman=round(float(spearmanr(p,y).statistic),4))
+          out = Path("projection-model/validation")
+          out.mkdir(parents=True,exist_ok=True)
+          details = out/"2025-rb-redzone-touches-targets-backtest.csv"
+          test[["week","player_id","player_name","team","actual_ppr",
+                "redzone_score","challenger_redzone","rz_touches","team_rz_touches",
+                "rz_targets","team_rz_targets","baseline_prediction",
+                "challenger_prediction"]].to_csv(details,index=False)
+          summary = pd.DataFrame([
+              {"model":"Model F baseline",**metrics("baseline_prediction"),
+               "train_rows":len(train),"test_rows":len(test)},
+              {"model":"70% touches + 30% targets",**metrics("challenger_prediction"),
+               "train_rows":len(train),"test_rows":len(test)}
+          ])
+          summary_path = out/"2025-rb-redzone-touches-targets-summary.csv"
+          summary.to_csv(summary_path,index=False)
+          print(summary.to_string(index=False))
+          print("Red-zone PBP joins require both team touches and team targets > 0.")
+          print(f"Frozen outputs: {summary_path} and {details}")
+          
+      - name: Commit isolated validation files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add projection-model/validation/2025-rb-redzone-touches-targets-*.csv
+          git diff --cached --quiet || (git commit -m "Save red-zone touches and targets RB backtest" && git push)
