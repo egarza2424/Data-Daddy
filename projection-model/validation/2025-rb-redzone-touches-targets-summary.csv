@@ -1,0 +1,3 @@
+model,MAE,RMSE,Spearman,train_rows,test_rows
+Model F baseline,4.4875,6.1916,0.718,718,534
+70% touches + 30% targets,4.4832,6.171,0.7191,718,534
