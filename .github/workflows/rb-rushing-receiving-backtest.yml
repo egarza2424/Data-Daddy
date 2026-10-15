@@ -1,0 +1,120 @@
+name: RB Rushing Receiving Backtest
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rb-volume-backtest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy pandas scipy
+      - name: Compare historical RB models with pregame rushing and receiving volume
+        run: |
+          python <<'PY'
+          import io
+          import urllib.request
+          import numpy as np
+          import pandas as pd
+          from scipy.stats import spearmanr
+
+          source = "projection-model/2025-historical-ppr-dataset.csv"
+          history = pd.read_csv(source)
+          rb = history.loc[history["position"].eq("RB")].copy()
+          rb["player_id"] = rb["player_id"].astype(str).str.strip()
+          rb["week"] = pd.to_numeric(rb["week"], errors="coerce")
+          url = ("https://github.com/nflverse/nflverse-data/releases/"
+                 "download/stats_player/stats_player_week_2025.csv")
+          print("Downloading 2025 player-week stats to construct PRE-game volume features")
+          with urllib.request.urlopen(url, timeout=120) as response:
+              weekly = pd.read_csv(io.BytesIO(response.read()), low_memory=False)
+          needed = ["player_id", "week", "season_type", "carries", "targets", "receptions"]
+          missing = [x for x in needed if x not in weekly.columns]
+          if missing:
+              raise SystemExit("Missing nflverse columns: " + ", ".join(missing))
+          weekly = weekly.loc[
+              weekly["season_type"].fillna("REG").eq("REG")
+          ].copy()
+          weekly["week"] = pd.to_numeric(weekly["week"], errors="coerce")
+          weekly["player_id"] = weekly["player_id"].astype(str).str.strip()
+          weekly = weekly.loc[weekly["week"].notna() & weekly["player_id"].ne("")].copy()
+          for col in ["carries", "targets", "receptions"]:
+              weekly[col] = pd.to_numeric(weekly[col], errors="coerce").fillna(0)
+          weekly = weekly.groupby(["player_id", "week"], as_index=False)[
+              ["carries", "targets", "receptions"]
+          ].sum()
+          # Create a complete player-week grid. Missing games count as zero
+          # prior usage, never as an observed target-week outcome.
+          ids = rb["player_id"].dropna().unique()
+          grid = pd.MultiIndex.from_product(
+              [ids, range(1, 19)], names=["player_id", "week"]
+          ).to_frame(index=False)
+          grid = grid.merge(weekly, on=["player_id", "week"], how="left")
+          grid[["carries", "targets", "receptions"]] = grid[
+              ["carries", "targets", "receptions"]
+          ].fillna(0)
+          grid = grid.sort_values(["player_id", "week"])
+          for col in ["carries", "targets", "receptions"]:
+              grid[f"pregame_{col}_3wk"] = (
+                  grid.groupby("player_id")[col]
+                  .transform(lambda x: x.shift(1).rolling(3, min_periods=3).mean())
+              )
+          features = ["pregame_carries_3wk", "pregame_targets_3wk",
+                      "pregame_receptions_3wk"]
+          rb = rb.merge(grid[["player_id", "week"] + features],
+                        on=["player_id", "week"], how="left", validate="many_to_one")
+          base = ["opportunity_score", "production_score", "usage_score",
+                  "redzone_score", "model_confidence_score"]
+          models = {
+              "current_model_f": base,
+              "plus_rushing_receiving_volume": base + features,
+              "plus_volume_and_environment": base + features + ["scoring_environment_score"],
+              "plus_volume_environment_matchup": base + features + [
+                  "scoring_environment_score", "matchup_score"],
+          }
+          required = sorted(set(sum(models.values(), [])) | {"actual_ppr", "week"})
+          for col in required:
+              rb[col] = pd.to_numeric(rb[col], errors="coerce")
+          before = len(rb)
+          rb = rb.dropna(subset=required)
+          print(f"Matched historical RB rows with complete pregame features: {len(rb)}/{before}")
+          weeks = sorted(rb["week"].unique())
+          if len(weeks) < 5 or len(rb) < 200:
+              raise SystemExit("Insufficient matched historical RB data; inspect player IDs and nflverse schema.")
+          split = max(2, int(len(weeks) * 0.6))
+          train_weeks, test_weeks = weeks[:split], weeks[split:]
+          train = rb.loc[rb["week"].isin(train_weeks)]
+          test = rb.loc[rb["week"].isin(test_weeks)]
+          print(f"Train weeks: {train_weeks}; test weeks: {test_weeks}")
+          print(f"Train rows={len(train)} test rows={len(test)}")
+          print("All candidate models evaluated on IDENTICAL rows and held-out weeks.")
+          print("Target-week rushing, targets and receptions are NEVER used as inputs.")
+          for label, cols in models.items():
+              x = train[cols].to_numpy(dtype=float)
+              y = train["actual_ppr"].to_numpy(dtype=float)
+              coef = np.linalg.lstsq(
+                  np.column_stack([np.ones(len(x)), x]), y, rcond=None
+              )[0]
+              tx = test[cols].to_numpy(dtype=float)
+              pred = np.column_stack([np.ones(len(tx)), tx]) @ coef
+              actual = test["actual_ppr"].to_numpy(dtype=float)
+              mae = np.abs(pred - actual).mean()
+              rmse = np.sqrt(np.mean((pred - actual) ** 2))
+              rho = spearmanr(pred, actual).statistic
+              print(f"{label}: MAE={mae:.3f} RMSE={rmse:.3f} Spearman={rho:.3f}")
+              for col, value in zip(["intercept"] + cols, coef):
+                  print(f"  {col}: {value:+.5f}")
+              for week in test_weeks:
+                  mask = test["week"].eq(week).to_numpy()
+                  print(f"  week {int(week)}: n={mask.sum()} MAE={np.abs(pred[mask]-actual[mask]).mean():.3f}")
+          print("Week 6 Pollard vs McCaffrey NOT recalculated: the frozen")
+          print("Week 6 projection file does not include their pregame")
+          print("three-week rushing/receiving volume features.")
+          print("Production Model F and live rankings are unchanged.")
+          PY
