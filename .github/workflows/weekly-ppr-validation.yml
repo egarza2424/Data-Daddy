@@ -679,6 +679,85 @@ jobs:
               index=False
           )
 
+          # -----------------------------------------
+          # Weekly audit: coverage, bias, and misses
+          # -----------------------------------------
+          unmatched_path = (
+              output_dir
+              / f"2026-week{target_week}-ppr-unmatched.csv"
+          )
+          unmatched_rows = predictions.merge(
+              report[["player_id"]].drop_duplicates(),
+              on="player_id",
+              how="left",
+              indicator=True
+          )
+          unmatched_rows = unmatched_rows.loc[
+              unmatched_rows["_merge"].eq("left_only")
+          ].drop(columns=["_merge"])
+          unmatched_rows["review_status"] = (
+              "unresolved_no_verified_weekly_stat"
+          )
+          # Missing records may mean bye, inactive, zero production,
+          # or an identity/data issue. Never assume zero points.
+          unmatched_rows.to_csv(unmatched_path, index=False)
+
+          audit_rows = []
+          for position in ["QB", "RB", "WR", "TE"]:
+              group = report.loc[
+                  report["position"].eq(position)
+              ].copy()
+              projected_count = int(
+                  predictions["position"].eq(position).sum()
+              )
+              if group.empty:
+                  continue
+              over = group.loc[group["ppr_error"] > 0]
+              under = group.loc[group["ppr_error"] < 0]
+              audit_rows.append({
+                  "week": target_week,
+                  "position": position,
+                  "projected_players": projected_count,
+                  "matched_players": len(group),
+                  "unmatched_players": projected_count - len(group),
+                  "match_coverage_pct": round(
+                      100 * len(group) / projected_count, 1
+                  ) if projected_count else 0,
+                  "overprojected_players": len(over),
+                  "underprojected_players": len(under),
+                  "exact_projection_players": int(
+                      group["ppr_error"].eq(0).sum()
+                  ),
+                  "mean_overprojection_ppr": round(
+                      float(over["ppr_error"].mean()), 3
+                  ) if len(over) else None,
+                  "mean_underprojection_ppr": round(
+                      float(under["ppr_error"].mean()), 3
+                  ) if len(under) else None,
+                  "mae": round(
+                      float(group["absolute_ppr_error"].mean()), 3
+                  ),
+                  "largest_miss_player": (
+                      group.sort_values(
+                          "absolute_ppr_error", ascending=False
+                      ).iloc[0]["player_name"]
+                  ),
+                  "largest_miss_ppr": round(
+                      float(group["absolute_ppr_error"].max()), 3
+                  ),
+              })
+
+          audit_path = (
+              output_dir
+              / f"2026-week{target_week}-ppr-audit.csv"
+          )
+          audit = pd.DataFrame(audit_rows)
+          audit.to_csv(audit_path, index=False)
+          print("Weekly Model F audit:")
+          print(audit.to_string(index=False))
+          print(f"Unmatched review: {unmatched_path}")
+          print(f"Audit report: {audit_path}")
+
 
           # -----------------------------------------
           # Build season-to-date summary
