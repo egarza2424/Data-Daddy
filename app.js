@@ -68,7 +68,7 @@ Usage: {
   "Red-Zone Usage": {
     weight: "9.30%",
     description:
-      "Measures involvement inside the opponent's 20-yard line. QB uses red-zone pass attempts + carries. RB/WR/TE use their share of team red-zone carries + targets."
+      "Measures involvement inside the opponent's 20-yard line over the last three games. Current live scoring: QB uses red-zone pass attempts + carries; RB uses red-zone carries per game divided by 4 (capped at 100); WR/TE use red-zone targets per game divided by 2 (capped at 100). Experimental RB/WR/TE formula under testing: Red-Zone Usage Score = 70% × Red-Zone Touch Share + 30% × Red-Zone Target Share, where Touch Share = (player red-zone carries + red-zone receptions) ÷ (team red-zone carries + red-zone receptions) × 100, and Target Share = player red-zone targets ÷ team red-zone targets × 100. A target is an opportunity, not necessarily a completed touch. The experimental formula is not yet used in live rankings."
   },
 
   "Model Confidence": {
