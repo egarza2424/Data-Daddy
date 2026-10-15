@@ -1,0 +1,5 @@
+position,weeks,players,mae,rmse,mean_error,pearson,spearman,mean_absolute_rank_error
+QB,1,28,16.389,16.72,16.389,,,13.5
+RB,1,109,6.61,8.319,6.61,-0.061,-0.07,51.45
+WR,1,170,6.057,7.261,6.057,,,82.512
+TE,1,111,5.004,5.95,5.0,-0.114,-0.134,53.937
