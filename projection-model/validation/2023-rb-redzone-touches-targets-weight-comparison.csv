@@ -1,0 +1,3 @@
+model,touch_weight,target_weight,MAE,RMSE,Spearman,train_rows,test_rows
+Model F baseline,,,4.477,6.0796,0.7059,688,492
+100% touches + 0% targets,1.0,0.0,4.4908,6.0945,0.7057,688,492
