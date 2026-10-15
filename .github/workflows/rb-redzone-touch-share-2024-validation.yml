@@ -99,13 +99,12 @@ jobs:
               tt = np.array([team[(t,k)] for k in range(max(1,w-3),w)]).sum(axis=0)
               p_touches = pp[0] + pp[1]
               t_touches = tt[0] + tt[1]
-              if t_touches <= 0 or tt[2] <= 0:
+              if t_touches <= 0:
                   return pd.Series({"challenger_redzone":np.nan,"rz_touches":p_touches,
                                     "team_rz_touches":t_touches,"rz_targets":pp[2],
                                     "team_rz_targets":tt[2]})
               touch_share = 100*p_touches/t_touches
-              target_share = 100*pp[2]/tt[2]
-              return pd.Series({"challenger_redzone":.7*touch_share+.3*target_share,
+              return pd.Series({"challenger_redzone":touch_share,
                                 "rz_touches":p_touches,"team_rz_touches":t_touches,
                                 "rz_targets":pp[2],"team_rz_targets":tt[2]})
           
@@ -146,20 +145,18 @@ jobs:
           summary = pd.DataFrame([
               {"model":"Model F baseline",**metrics("baseline_prediction"),
                "train_rows":len(train),"test_rows":len(test)},
-              {"model":"70% touches + 30% targets",**metrics("challenger_prediction"),
+              {"model":"100% touches + 0% targets",**metrics("challenger_prediction"),
                "train_rows":len(train),"test_rows":len(test)}
           ])
           summary_path = out/"2024-rb-redzone-touches-targets-summary.csv"
           summary.to_csv(summary_path,index=False)
           print(summary.to_string(index=False))
-          print("Red-zone PBP joins require both team touches and team targets > 0.")
+          print("Red-zone PBP joins require team touches > 0.")
           print(f"Frozen outputs: {summary_path} and {details}")
           # Compare weights using identical train/test rows and re-fit each challenger.
           # Team shares are reconstructed from the saved player/team counts.
           train_touch = 100 * (train["rz_touches"] / train["team_rz_touches"])
-          train_target = 100 * (train["rz_targets"] / train["team_rz_targets"])
           test_touch = 100 * (test["rz_touches"] / test["team_rz_touches"])
-          test_target = 100 * (test["rz_targets"] / test["team_rz_targets"])
           shared_features = ["opportunity_score", "production_score",
                              "usage_score", "model_confidence_score"]
           comparisons = [{"model":"Model F baseline","touch_weight":None,
@@ -168,10 +165,10 @@ jobs:
           for weight in (1.0,):
               x_train = np.c_[np.ones(len(train)),
                   train[shared_features].to_numpy(float),
-                  (weight * train_touch + (1-weight) * train_target).to_numpy(float)]
+                  train_touch.to_numpy(float)]
               x_test = np.c_[np.ones(len(test)),
                   test[shared_features].to_numpy(float),
-                  (weight * test_touch + (1-weight) * test_target).to_numpy(float)]
+                  test_touch.to_numpy(float)]
               coef = np.linalg.lstsq(x_train, train.actual_ppr.to_numpy(float), rcond=None)[0]
               predictions = x_test @ coef
               label = f"{round(weight*100)}% touches + {round((1-weight)*100)}% targets"
