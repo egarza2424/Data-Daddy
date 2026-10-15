@@ -93,7 +93,10 @@ jobs:
               )
 
           target_week, projection_path = max(
-              week_files,
+              (
+                  item for item in week_files
+                  if item[0] <= 5
+              ),
               key=lambda item: item[0]
           )
 
