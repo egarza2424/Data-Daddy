@@ -1,0 +1,96 @@
+name: RB Model F Feature Backtest
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rb-feature-backtest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy pandas scipy
+      - name: Compare RB features without changing production projections
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import numpy as np
+          import pandas as pd
+          from scipy.stats import spearmanr
+
+          history = pd.read_csv("projection-model/2025-historical-ppr-dataset.csv")
+          rb = history.loc[history["position"].eq("RB")].copy()
+          rb["week"] = pd.to_numeric(rb["week"], errors="coerce")
+          base = [
+              "opportunity_score", "production_score", "usage_score",
+              "redzone_score", "model_confidence_score",
+          ]
+          models = {
+              "current_model_f": base,
+              "plus_scoring_environment": base + ["scoring_environment_score"],
+              "plus_scoring_and_matchup": base + [
+                  "scoring_environment_score", "matchup_score"
+              ],
+          }
+          required = sorted(set(sum(models.values(), [])) | {"actual_ppr", "week"})
+          for col in required:
+              rb[col] = pd.to_numeric(rb[col], errors="coerce")
+          rb = rb.dropna(subset=required).sort_values("week")
+          weeks = sorted(rb["week"].unique())
+          if len(weeks) < 5:
+              raise SystemExit(f"Need >=5 historical weeks for time-ordered backtest, got {weeks}")
+          split = max(2, int(len(weeks) * 0.6))
+          train_weeks, test_weeks = weeks[:split], weeks[split:]
+          train = rb.loc[rb["week"].isin(train_weeks)]
+          test = rb.loc[rb["week"].isin(test_weeks)]
+          print(f"2025 RB chronological split: train weeks {train_weeks}; test weeks {test_weeks}")
+          print(f"Rows: train={len(train)} test={len(test)}")
+          print("No future weeks used to fit holdout predictions.")
+
+          def fit(df, features):
+              x = df[features].to_numpy(dtype=float)
+              y = df["actual_ppr"].to_numpy(dtype=float)
+              return np.linalg.lstsq(
+                  np.column_stack([np.ones(len(x)), x]), y, rcond=None
+              )[0]
+
+          def predict(df, features, coef):
+              x = df[features].to_numpy(dtype=float)
+              return np.column_stack([np.ones(len(x)), x]) @ coef
+
+          for label, features in models.items():
+              coefficients = fit(train, features)
+              pred = predict(test, features, coefficients)
+              actual = test["actual_ppr"].to_numpy(dtype=float)
+              mae = np.abs(pred - actual).mean()
+              rmse = np.sqrt(np.mean((pred - actual) ** 2))
+              rho = spearmanr(pred, actual).statistic
+              print(f"{label}: MAE={mae:.3f}, RMSE={rmse:.3f}, Spearman={rho:.3f}")
+              print("  learned coefficients: " + ", ".join(
+                  f"{feature}={weight:+.4f}"
+                  for feature, weight in zip(["intercept"] + features, coefficients)
+              ))
+              for week in test_weeks:
+                  mask = test["week"].eq(week).to_numpy()
+                  print(f"  week {int(week)}: n={mask.sum()} MAE={np.abs(pred[mask]-actual[mask]).mean():.3f}")
+
+          live = pd.read_csv("projection-model/2026-week6-ppr-projections.csv")
+          players = live.loc[
+              live["player_name"].isin(["Tony Pollard", "Christian McCaffrey"])
+              & live["position"].eq("RB")
+          ].copy()
+          if len(players) != 2:
+              print("Week 6 Pollard/McCaffrey comparison unavailable.")
+          else:
+              print("WEEK 6 WHAT-IF (fit on all 2025 RB rows; NOT a Week 6 accuracy test):")
+              for label, features in models.items():
+                  coefficients = fit(rb, features)
+                  values = predict(players, features, coefficients)
+                  for name, value in zip(players["player_name"], values):
+                      print(f"  {label}: {name}={value:.2f} PPR")
+          PY
