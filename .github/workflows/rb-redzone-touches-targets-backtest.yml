@@ -14,6 +14,7 @@ jobs:
       - run: pip install numpy pandas scipy
       - name: Test red-zone shares on held-out 2025 RB weeks
         run: |
+          python <<'PY'
           import csv, gzip
           from collections import defaultdict, deque
           from pathlib import Path
@@ -131,6 +132,7 @@ jobs:
           print(summary.to_string(index=False))
           print("Red-zone PBP joins require both team touches and team targets > 0.")
           print(f"Frozen outputs: {summary_path} and {details}")
+          PY
           
       - name: Commit isolated validation files
         run: |
