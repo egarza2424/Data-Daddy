@@ -1,0 +1,5 @@
+week,position,projected_players,matched_players,unmatched_players,match_coverage_pct,overprojected_players,underprojected_players,exact_projection_players,mean_overprojection_ppr,mean_underprojection_ppr,mae,largest_miss_player,largest_miss_ppr
+5,QB,28,28,0,100.0,13,15,0,6.12,-8.729,7.518,Drake Maye,23.23
+5,RB,109,79,30,72.5,47,32,0,3.877,-5.679,4.607,Jaylen Warren,20.73
+5,WR,170,123,47,72.4,73,50,0,3.237,-5.953,4.341,Puka Nacua,22.21
+5,TE,111,76,35,68.5,46,30,0,2.804,-5.57,3.896,Isaiah Likely,20.68
