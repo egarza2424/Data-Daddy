@@ -163,6 +163,14 @@ jobs:
               comparisons.append({"model":label,"touch_weight":weight,
                   "target_weight":1-weight,**metrics(label),
                   "train_rows":len(train),"test_rows":len(test)})
+          # Freeze touch-only predictions separately; retain original 70/30 file.
+          touch_only_path = out/"2025-rb-redzone-touch-only-backtest.csv"
+          test[["week","player_id","player_name","team","actual_ppr",
+                "redzone_score","rz_touches","team_rz_touches",
+                "baseline_prediction","100% touches + 0% targets"]].rename(
+                    columns={"100% touches + 0% targets":"touch_only_prediction"}
+                ).to_csv(touch_only_path,index=False)
+          print(f"Saved {touch_only_path}")
           comparison = pd.DataFrame(comparisons)
           comparison_path = out/"2025-rb-redzone-touches-targets-weight-comparison.csv"
           comparison.to_csv(comparison_path,index=False)
@@ -175,5 +183,5 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add projection-model/validation/2025-rb-redzone-touches-targets-*.csv
+          git add projection-model/validation/2025-rb-redzone-touches-targets-*.csv projection-model/validation/2025-rb-redzone-touch-only-backtest.csv
           git diff --cached --quiet || (git commit -m "Save red-zone touches and targets RB backtest" && git push)
