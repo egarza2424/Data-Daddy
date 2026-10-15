@@ -92,30 +92,15 @@ jobs:
                   "the PPR projection filenames."
               )
 
-          target_week, projection_path = max(
-              (
-                  item for item in week_files
-                  if item[0] <= 5
-              ),
-              key=lambda item: item[0]
-          )
-
-          print(
-              f"Using projections: {projection_path}"
-          )
-
-          print(
-              f"Validating NFL Week {target_week}"
-          )
+          # Choose the latest week with available actual statistics
+          # after downloading the nflverse weekly dataset.
+          target_week = None
+          projection_path = None
 
 
           # -----------------------------------------
-          # Load frozen weekly projections
+          # Required columns for the frozen projections
           # -----------------------------------------
-
-          predictions = pd.read_csv(
-              projection_path
-          )
 
           required_projection_columns = [
               "player_id",
@@ -124,92 +109,6 @@ jobs:
               "projected_ppr",
               "projected_position_rank",
           ]
-
-          missing = [
-              column
-              for column
-              in required_projection_columns
-              if column not in predictions.columns
-          ]
-
-          if missing:
-              raise SystemExit(
-                  "Projection file is missing "
-                  "required columns: "
-                  + ", ".join(missing)
-              )
-
-          predictions["player_id"] = (
-              predictions["player_id"]
-              .astype(str)
-              .str.replace(
-                  r"\.0$",
-                  "",
-                  regex=True
-              )
-              .str.strip()
-          )
-
-          predictions["position"] = (
-              predictions["position"]
-              .astype(str)
-              .str.upper()
-              .str.strip()
-          )
-
-          predictions = predictions[
-              predictions["position"].isin(
-                  ["QB", "RB", "WR", "TE"]
-              )
-          ].copy()
-
-          predictions["projected_ppr"] = (
-              pd.to_numeric(
-                  predictions["projected_ppr"],
-                  errors="coerce"
-              )
-          )
-
-          predictions[
-              "projected_position_rank"
-          ] = pd.to_numeric(
-              predictions[
-                  "projected_position_rank"
-              ],
-              errors="coerce"
-          )
-
-          if (
-              predictions["projected_ppr"]
-              .isna()
-              .any()
-          ):
-              raise SystemExit(
-                  "Projection file contains "
-                  "invalid projected PPR values."
-              )
-
-          if (
-              predictions[
-                  "projected_position_rank"
-              ]
-              .isna()
-              .any()
-          ):
-              raise SystemExit(
-                  "Projection file contains "
-                  "invalid PPR position ranks."
-              )
-
-          predictions[
-              "projected_position_rank"
-          ] = (
-              predictions[
-                  "projected_position_rank"
-              ]
-              .astype(int)
-          )
-
 
           # -----------------------------------------
           # Download actual 2026 NFL statistics
@@ -283,18 +182,61 @@ jobs:
               f"weeks: {available_weeks}"
           )
 
-          if target_week not in available_weeks:
-              print(
-                  f"Actual Week {target_week} "
-                  "statistics are not available yet."
-              )
+          eligible_weeks = [
+              (week, path)
+              for week, path in week_files
+              if week in available_weeks
+          ]
 
+          if not eligible_weeks:
               print(
-                  "Validation will wait for the "
-                  "next scheduled run."
+                  "No completed week has a frozen "
+                  "Model F projection file yet."
               )
-
               raise SystemExit(0)
+
+          target_week, projection_path = max(
+              eligible_weeks,
+              key=lambda item: item[0]
+          )
+
+          print(f"Using projections: {projection_path}")
+          print(f"Validating NFL Week {target_week}")
+
+          # Load the chosen frozen projections after week selection.
+          predictions = pd.read_csv(projection_path)
+          missing = [
+              col for col in required_projection_columns
+              if col not in predictions.columns
+          ]
+          if missing:
+              raise SystemExit(
+                  "Projection file missing columns: "
+                  + ", ".join(missing)
+              )
+          predictions["player_id"] = (
+              predictions["player_id"].astype(str)
+              .str.replace(r"\.0$", "", regex=True).str.strip()
+          )
+          predictions["position"] = (
+              predictions["position"].astype(str).str.upper().str.strip()
+          )
+          predictions = predictions[
+              predictions["position"].isin(["QB", "RB", "WR", "TE"])
+          ].copy()
+          predictions["projected_ppr"] = pd.to_numeric(
+              predictions["projected_ppr"], errors="coerce"
+          )
+          predictions["projected_position_rank"] = pd.to_numeric(
+              predictions["projected_position_rank"], errors="coerce"
+          )
+          if predictions[[
+              "projected_ppr", "projected_position_rank"
+          ]].isna().any().any():
+              raise SystemExit("Invalid projection values or ranks.")
+          predictions["projected_position_rank"] = (
+              predictions["projected_position_rank"].astype(int)
+          )
 
 
           # -----------------------------------------
@@ -420,20 +362,66 @@ jobs:
 
 
           # -----------------------------------------
-          # Join predictions to actual performance
+          # Resolve player identity safely
           # -----------------------------------------
+          # Data Daddy uses a different numeric player ID namespace
+          # than nflverse (GSIS IDs). Match full display name +
+          # position, only when unique on BOTH sides.
+          import unicodedata
 
-          report = predictions.merge(
-              actual[
-                  [
-                      "player_id",
-                      "actual_ppr",
-                  ]
-              ],
-              on="player_id",
+          def name_key(value):
+              value = unicodedata.normalize("NFKD", str(value))
+              value = "".join(
+                  char for char in value
+                  if not unicodedata.combining(char)
+              )
+              value = re.sub(r"[^a-z0-9 ]", " ", value.lower())
+              value = re.sub(
+                  r"\b(jr|sr|ii|iii|iv|v)\b", "", value
+              )
+              return " ".join(value.split())
+
+          display_col = next(
+              (col for col in [
+                  "player_display_name", "player_name"
+              ] if col in actual.columns),
+              None
+          )
+          if display_col is None:
+              raise SystemExit(
+                  "Actual stats have no player name column."
+              )
+
+          predictions["match_name"] = (
+              predictions["player_name"].map(name_key)
+          )
+          actual["match_name"] = (
+              actual[display_col].map(name_key)
+          )
+
+          # Only allow unambiguous player/position matches.
+          match_cols = ["match_name", "position"]
+          pred_counts = predictions.groupby(
+              match_cols
+          )["player_id"].transform("size")
+          actual_counts = actual.groupby(
+              match_cols
+          )["player_id"].transform("size")
+          eligible_pred = predictions.loc[
+              pred_counts.eq(1)
+          ].copy()
+          eligible_actual = actual.loc[
+              actual_counts.eq(1),
+              match_cols + ["actual_ppr"]
+          ].copy()
+
+          report = eligible_pred.merge(
+              eligible_actual,
+              on=match_cols,
               how="left",
               validate="one_to_one"
           )
+          report["match_method"] = "unique_name_position"
 
           matched = int(
               report["actual_ppr"]
@@ -458,14 +446,21 @@ jobs:
               f"{unmatched}"
           )
 
-          # Players in the frozen projection pool
-          # who record no fantasy statistics remain
-          # part of the evaluation population.
-          if unmatched > 0:
+          ambiguous = len(predictions) - len(eligible_pred)
+          print(f"Ambiguous projection identities: {ambiguous}")
+          print(
+              f"Matched coverage: {matched}/{len(predictions)} "
+              "frozen projection players"
+          )
+          # An absent stats row is UNKNOWN, not proof of zero PPR.
+          # Report accuracy only for verified, uniquely matched players.
+          report = report.loc[
+              report["actual_ppr"].notna()
+          ].copy()
+          if matched < 25:
               raise SystemExit(
-                  f"Validation blocked: {unmatched} players "
-                  "have no matching actual PPR records. "
-                  "Check player ID formats before scoring."
+                  "Validation blocked: fewer than 25 "
+                  "verified player matches."
               )
 
 
@@ -700,6 +695,11 @@ jobs:
           for path in completed_files:
               frame = pd.read_csv(path)
 
+              # Ignore legacy reports that assigned zero to missing
+              # player IDs; they are not valid model evaluations.
+              if "match_method" not in frame.columns:
+                  continue
+
               if not frame.empty:
                   season_frames.append(
                       frame
@@ -898,22 +898,3 @@ jobs:
           if [ ! -d "projection-model/validation" ]; then
             echo "No Model F validation files generated."
             exit 0
-          fi
-
-          git config user.name \
-            "github-actions[bot]"
-
-          git config user.email \
-            "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add projection-model/validation/
-
-          if git diff --cached --quiet; then
-            echo "No Model F validation changes to commit."
-            exit 0
-          fi
-
-          git commit \
-            -m "Save weekly Model F PPR validation"
-
-          git push
