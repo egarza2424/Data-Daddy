@@ -679,6 +679,58 @@ jobs:
               index=False
           )
 
+          # Preserve original pregame signals alongside actual results
+          # for each position's biggest over- and underprojections.
+          signal_columns = [
+              "opportunity_score",
+              "production_score",
+              "usage_score",
+              "redzone_score",
+              "model_confidence_score",
+              "matchup_score",
+              "scoring_environment_score",
+          ]
+          available_signals = [
+              col for col in signal_columns if col in report.columns
+          ]
+          review_columns = [
+              "week", "position", "player_name", "team", "opponent",
+              "projected_ppr", "actual_ppr", "ppr_error",
+              "absolute_ppr_error", "projected_position_rank",
+              "actual_position_rank",
+          ] + available_signals
+
+          review_frames = []
+          for position in ["QB", "RB", "WR", "TE"]:
+              position_rows = report.loc[
+                  report["position"].eq(position)
+              ]
+              for direction, condition in [
+                  ("underprojected", position_rows["ppr_error"] < 0),
+                  ("overprojected", position_rows["ppr_error"] > 0),
+              ]:
+                  selected = (
+                      position_rows.loc[condition]
+                      .sort_values("absolute_ppr_error", ascending=False)
+                      .head(10)
+                      .copy()
+                  )
+                  selected["miss_direction"] = direction
+                  review_frames.append(selected)
+
+          miss_review = pd.concat(
+              review_frames, ignore_index=True
+          )
+          miss_review = miss_review[
+              ["miss_direction"] + review_columns
+          ]
+          miss_review_path = (
+              output_dir
+              / f"2026-week{target_week}-ppr-signal-miss-review.csv"
+          )
+          miss_review.to_csv(miss_review_path, index=False)
+          print(f"Pregame signal miss review: {miss_review_path}")
+
           # -----------------------------------------
           # Weekly audit: coverage, bias, and misses
           # -----------------------------------------
