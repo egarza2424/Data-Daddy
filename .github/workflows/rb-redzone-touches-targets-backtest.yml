@@ -138,6 +138,37 @@ jobs:
           print(summary.to_string(index=False))
           print("Red-zone PBP joins require both team touches and team targets > 0.")
           print(f"Frozen outputs: {summary_path} and {details}")
+          # Compare weights using identical train/test rows and re-fit each challenger.
+          # Team shares are reconstructed from the saved player/team counts.
+          train_touch = 100 * (train["rz_touches"] / train["team_rz_touches"])
+          train_target = 100 * (train["rz_targets"] / train["team_rz_targets"])
+          test_touch = 100 * (test["rz_touches"] / test["team_rz_touches"])
+          test_target = 100 * (test["rz_targets"] / test["team_rz_targets"])
+          shared_features = ["opportunity_score", "production_score",
+                             "usage_score", "model_confidence_score"]
+          comparisons = [{"model":"Model F baseline","touch_weight":None,
+                          "target_weight":None,**metrics("baseline_prediction"),
+                          "train_rows":len(train),"test_rows":len(test)}]
+          for weight in (1.0, 0.8, 0.7, 0.6, 0.5):
+              x_train = np.c_[np.ones(len(train)),
+                  train[shared_features].to_numpy(float),
+                  (weight * train_touch + (1-weight) * train_target).to_numpy(float)]
+              x_test = np.c_[np.ones(len(test)),
+                  test[shared_features].to_numpy(float),
+                  (weight * test_touch + (1-weight) * test_target).to_numpy(float)]
+              coef = np.linalg.lstsq(x_train, train.actual_ppr.to_numpy(float), rcond=None)[0]
+              predictions = x_test @ coef
+              label = f"{round(weight*100)}% touches + {round((1-weight)*100)}% targets"
+              test[label] = predictions
+              comparisons.append({"model":label,"touch_weight":weight,
+                  "target_weight":1-weight,**metrics(label),
+                  "train_rows":len(train),"test_rows":len(test)})
+          comparison = pd.DataFrame(comparisons)
+          comparison_path = out/"2025-rb-redzone-touches-targets-weight-comparison.csv"
+          comparison.to_csv(comparison_path,index=False)
+          print("\\nRed-zone weight comparison:")
+          print(comparison.to_string(index=False))
+          print(f"Saved {comparison_path}")
           PY
           
       - name: Commit isolated validation files
