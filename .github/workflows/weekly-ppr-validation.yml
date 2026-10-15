@@ -461,10 +461,12 @@ jobs:
           # Players in the frozen projection pool
           # who record no fantasy statistics remain
           # part of the evaluation population.
-          report["actual_ppr"] = (
-              report["actual_ppr"]
-              .fillna(0.0)
-          )
+          if unmatched > 0:
+              raise SystemExit(
+                  f"Validation blocked: {unmatched} players "
+                  "have no matching actual PPR records. "
+                  "Check player ID formats before scoring."
+              )
 
 
           # -----------------------------------------
