@@ -32,7 +32,13 @@ jobs:
           rb["team_key"] = rb["team"].map(team_key)
           pbp_path = Path("historical-data/play_by_play_2025.csv.gz")
           if not pbp_path.exists():
-              raise SystemExit("Missing PBP: " + str(pbp_path))
+              import urllib.request
+              pbp_path.parent.mkdir(parents=True, exist_ok=True)
+              url = ("https://github.com/nflverse/nflverse-data/releases/"
+                     "download/pbp/play_by_play_2025.csv.gz")
+              print(f"Downloading missing 2025 play-by-play: {url}", flush=True)
+              urllib.request.urlretrieve(url, pbp_path)
+              print(f"Downloaded {pbp_path} ({pbp_path.stat().st_size} bytes)", flush=True)
           
           # Each play contributes to both player and team counts; receptions
           # require a completed pass, not merely a receiver target.
