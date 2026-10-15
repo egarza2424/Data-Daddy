@@ -73,6 +73,7 @@ jobs:
                   "redzone_score", "model_confidence_score"]
           models = {
               "current_model_f": base,
+              "plus_targets_only": base + ["pregame_targets_3wk"],
               "plus_rushing_receiving_volume": base + features,
               "plus_volume_and_environment": base + features + ["scoring_environment_score"],
               "plus_volume_environment_matchup": base + features + [
@@ -113,6 +114,17 @@ jobs:
               for week in test_weeks:
                   mask = test["week"].eq(week).to_numpy()
                   print(f"  week {int(week)}: n={mask.sum()} MAE={np.abs(pred[mask]-actual[mask]).mean():.3f}")
+              if label in ("current_model_f", "plus_targets_only", "plus_rushing_receiving_volume"):
+                  # Define receiving-volume cohorts using pregame target averages only.
+                  # A single threshold is shared by every candidate on identical rows.
+                  threshold = float(train["pregame_targets_3wk"].median())
+                  for cohort, mask in [
+                      ("low_target", test["pregame_targets_3wk"].to_numpy() <= threshold),
+                      ("high_target", test["pregame_targets_3wk"].to_numpy() > threshold),
+                  ]:
+                      if mask.sum() > 2:
+                          cohort_rho = spearmanr(pred[mask], actual[mask]).statistic
+                          print(f"  {cohort} (train median={threshold:.2f}): n={mask.sum()} MAE={np.abs(pred[mask]-actual[mask]).mean():.3f} Spearman={cohort_rho:.3f}")
           print("Week 6 Pollard vs McCaffrey NOT recalculated: the frozen")
           print("Week 6 projection file does not include their pregame")
           print("three-week rushing/receiving volume features.")
