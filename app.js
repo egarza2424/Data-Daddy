@@ -4127,6 +4127,7 @@ function getProductionGameCount(player) {
   return recentGames.length;
 }
 
+function calculateProductionScore(player) {
   const games = getPlayerWeeklyStats(player);
 
   if (games.length === 0) {
