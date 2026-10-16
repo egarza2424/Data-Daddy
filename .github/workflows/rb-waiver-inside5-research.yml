@@ -1,0 +1,48 @@
+name: RB Waiver Audit and Inside-5 Research
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas numpy
+      - name: Retrieve breakout ranking artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p projection-model/validation historical-data
+          RUN_ID=$(gh run list --workflow rb-breakout-ranking-validation.yml --status success --limit 1 --json databaseId --jq '.[0].databaseId')
+          test -n "$RUN_ID" || { echo "No successful breakout-ranking run"; exit 1; }
+          gh run download "$RUN_ID" -D /tmp/rb-ranking
+          SOURCE=$(find /tmp/rb-ranking -name rb-breakout-ranked-player-weeks.csv -type f -print -quit)
+          test -n "$SOURCE" || { echo "Ranking artifact missing"; exit 1; }
+          cp "$SOURCE" projection-model/validation/
+      - name: Audit historical waiver eligibility
+        run: python scripts/audit_rb_historical_waiver.py
+      - name: Download historical play-by-play
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.request import urlretrieve
+          for year in (2023,2024,2025):
+              p=Path(f"historical-data/play_by_play_{year}.csv.gz")
+              if not p.exists():
+                  urlretrieve(f"https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_{year}.csv.gz",p)
+          PY
+      - name: Evaluate inside-5 goal-line ranking signals
+        run: python scripts/validate_rb_inside5_breakout.py
+      - name: Upload research artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: rb-waiver-audit-inside5-results
+          path: |
+            projection-model/validation/rb-waiver-eligibility-audit.csv
+            projection-model/validation/rb-inside5-breakout-*.csv
+          if-no-files-found: error
