@@ -183,7 +183,7 @@ function getHistoricalCallerEvidence(details) {
   );
 }
 
-function calculateUsageScore(player) {
+}
 
 const riskProfiles = {
   conservative: {
