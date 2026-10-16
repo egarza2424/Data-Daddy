@@ -4405,7 +4405,36 @@ function calculateUsageScore(player) {
     0,
     Math.round(averageShare * 100)
   );
+
+function getOpportunityGameCount(player) {
+  if (!player) {
+    return 0;
+  }
+
+  const playerName = normalizeName(player.name);
+
+  const matchingGames = getPlayerWeeklyStats(player)
+    .filter(game =>
+      Number(game.season) === 2026 &&
+      game.position === player.position &&
+      normalizeName(
+        game.player_display_name ||
+        game.player_name ||
+        game.name
+      ) === playerName
+    )
+    .sort((a, b) =>
+      Number(b.week || 0) - Number(a.week || 0)
+    );
+
+  const uniqueWeeks = new Set(
+    matchingGames.map(game => Number(game.week))
+  );
+
+  return Math.min(3, uniqueWeeks.size);
 }
+
+  
 function calculateOpportunityScore(player) {
   const games = getPlayerWeeklyStats(player);
 
