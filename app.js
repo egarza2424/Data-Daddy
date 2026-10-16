@@ -4802,7 +4802,10 @@ function calculateUsageScore(player) {
 
   return Math.max(
     0,
-    Math.round(averageShare * 100)
+    Math.min(
+      100,
+      Math.round(averageShare * 100)
+    )
   );
 }
 
