@@ -4408,8 +4408,6 @@ function calculateUsageScore(player) {
 }
 
 function getOpportunityGameCount(player) {
-
-function getOpportunityGameCount(player) {
   if (!player) {
     return 0;
   }
