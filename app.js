@@ -120,16 +120,16 @@ function getWeightedRedZoneRecord(player) {
     player.player_id || player.id || ""
   ).trim();
 
-  const name = normalizeName(player.name);
-
+  const name = normalizeName(player.name)
+    .replace(/\s+(jr|sr|ii|iii|iv|v)$/i, "");
   const matches = Object.entries(
     currentWeightedRedZoneData.players
   ).filter(([id, record]) =>
     record.position === player.position &&
     (
       (playerId && id === playerId) ||
-      normalizeName(record.player_name) === name
-    )
+      normalizeName(record.player_name)
+        .replace(/\s+(jr|sr|ii|iii|iv|v)$/i, "") === name    )
   );
 
   return matches.length === 1 ? matches[0][1] : null;
