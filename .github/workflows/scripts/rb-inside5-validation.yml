@@ -1,0 +1,56 @@
+name: RB Inside-5 Historical Validation
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install numpy pandas scipy
+      - name: Download historical inputs and build missing datasets
+        run: |
+          mkdir -p historical-data projection-model
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.request import urlretrieve
+          base = 'https://github.com/nflverse/nflverse-data/releases/download/'
+          for year in (2023, 2024, 2025):
+              files = [
+                  (f'{base}pbp/play_by_play_{year}.csv.gz', Path(f'historical-data/play_by_play_{year}.csv.gz')),
+              ]
+              if not Path(f'projection-model/{year}-historical-ppr-dataset.csv').exists():
+                  files.extend([
+                      (f'{base}stats_player/stats_player_week_{year}.csv', Path(f'historical-data/player_stats_{year}.csv')),
+                      (f'{base}schedules/games.csv', Path('historical-data/games.csv')),
+                  ])
+              for url, path in files:
+                  if not path.exists():
+                      print('Downloading', url, flush=True)
+                      urlretrieve(url, path)
+          PY
+          for year in 2023 2024 2025; do
+            if [ ! -f "projection-model/${year}-historical-ppr-dataset.csv" ]; then
+              python scripts/build_historical_ppr_dataset.py \
+                --stats "historical-data/player_stats_${year}.csv" \
+                --pbp "historical-data/play_by_play_${year}.csv.gz" \
+                --games historical-data/games.csv \
+                --season "$year" --first-week 4 --last-week 18 \
+                --output "projection-model/${year}-historical-ppr-dataset.csv"
+            fi
+          done
+      - name: Compare baseline with inside-5 challenger
+        run: python scripts/validate_rb_inside5.py
+      - name: Upload isolated research results
+        uses: actions/upload-artifact@v4
+        with:
+          name: rb-inside5-validation-2023-2025
+          path: |
+            projection-model/validation/*-rb-inside5-backtest.csv
+            projection-model/validation/*-rb-inside5-summary.csv
+          if-no-files-found: error
