@@ -1,0 +1,42 @@
+name: Build RB Goal-Line Feed
+on:
+  workflow_dispatch:
+    inputs:
+      target_week:
+        description: '2026 target week (only earlier games used)'
+        required: true
+        default: '7'
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download 2026 play-by-play
+        run: |
+          curl --fail --location --retry 3 --output /tmp/play_by_play_2026.csv.gz \
+            https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.csv.gz
+      - name: Generate pregame goal-line evidence
+        run: |
+          python scripts/build_rb_goal_line_feed.py \
+            --pbp /tmp/play_by_play_2026.csv.gz \
+            --stats nfl-stats.json \
+            --target-week '${{ inputs.target_week }}' \
+            --output data/rb_goal_line_2026.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rb-goal-line-feed
+          path: data/rb_goal_line_2026.json
+      - name: Commit generated feed
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/rb_goal_line_2026.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update pregame RB goal-line feed'
+            git push
+          fi
