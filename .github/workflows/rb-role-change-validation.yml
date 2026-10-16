@@ -1,0 +1,38 @@
+name: RB Role Change Historical Validation
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install pandas numpy
+      - name: Download historical weekly player stats
+        run: |
+          mkdir -p historical-data
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.request import urlretrieve
+          for year in (2023,2024,2025):
+              dest=Path(f'historical-data/player_stats_{year}.csv')
+              if not dest.exists():
+                  url=f'https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_{year}.csv'
+                  print('Downloading',url,flush=True)
+                  urlretrieve(url,dest)
+          PY
+      - name: Run pregame role-change research
+        run: python scripts/validate_rb_role_change.py
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: rb-role-change-validation-results
+          path: |
+            projection-model/validation/rb-role-change-player-weeks.csv
+            projection-model/validation/rb-role-change-metrics.csv
+          if-no-files-found: error
