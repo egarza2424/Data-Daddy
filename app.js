@@ -183,8 +183,6 @@ function getHistoricalCallerEvidence(details) {
   );
 }
 
-}
-
 const riskProfiles = {
   conservative: {
     opportunity: 0.15,
