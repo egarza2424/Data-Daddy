@@ -7193,7 +7193,11 @@ ${metricRow("Opportunity", metrics.opportunity)}
 <div class="metric-sample-size">
   Last 3 available games · ${getOpportunityGameCount(player)} games evaluated
 </div>
+        
         ${metricRow("Recent Production", metrics.production)}
+        <div class="metric-sample-size">
+          Last 3 available games · ${getProductionGameCount(player)} games evaluated
+        </div>
         ${metricRow("Usage", metrics.usage)}
         ${metricRow("Matchup", metrics.matchup)}
         ${metricRow(
