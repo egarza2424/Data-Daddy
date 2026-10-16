@@ -64,6 +64,106 @@ function getUsageEvidence(player) {
   );
 }
 
+let currentWeightedRedZoneData = null;
+
+async function loadWeightedRedZoneData() {
+  currentWeightedRedZoneData = null;
+
+  const week = Number(
+    document.documentElement.dataset.targetWeek
+  );
+
+  if (!Number.isInteger(week) || week < 2 || week > 19) {
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `./data/red_zone_usage_2026_week${week}.json`,
+      { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+      console.warn("Weighted red-zone feed unavailable:", response.status);
+      return;
+    }
+
+    const data = await response.json();
+
+    if (
+      Number(data.season) !== 2026 ||
+      Number(data.target_week) !== week ||
+      !data.players ||
+      !Number.isFinite(
+        Number(data.league_high_weighted_opportunities_per_game)
+      )
+    ) {
+      console.warn("Invalid weighted red-zone feed");
+      return;
+    }
+
+    currentWeightedRedZoneData = data;
+  } catch (error) {
+    console.warn("Could not load weighted red-zone feed:", error);
+  }
+}
+
+function getWeightedRedZoneRecord(player) {
+  if (
+    !currentWeightedRedZoneData ||
+    !["RB", "WR", "TE"].includes(player.position)
+  ) {
+    return null;
+  }
+
+  const playerId = String(
+    player.player_id || player.id || ""
+  ).trim();
+
+  const name = normalizeName(player.name);
+
+  const matches = Object.entries(
+    currentWeightedRedZoneData.players
+  ).filter(([id, record]) =>
+    record.position === player.position &&
+    (
+      (playerId && id === playerId) ||
+      normalizeName(record.player_name) === name
+    )
+  );
+
+  return matches.length === 1 ? matches[0][1] : null;
+}
+
+function getWeightedRedZoneEvidence(player) {
+  const record = getWeightedRedZoneRecord(player);
+
+  if (!record) {
+    return "Weighted red-zone data unavailable";
+  }
+
+  const zones = [
+    ["20–11 yards", "20_11"],
+    ["10–6 yards", "10_6"],
+    ["Inside the 5", "5_1"]
+  ];
+
+  const details = zones.map(([label, key]) => {
+    const zone = record.zones[key];
+    const opportunities = zone.carries + zone.targets;
+    return `${label}: ${opportunities} (${zone.carries} carries, ${zone.targets} targets)`;
+  });
+
+  return (
+    `Last ${record.games_evaluated} completed games · ` +
+    details.join(" · ") +
+    ` · Weighted opportunities/game: ` +
+    Number(record.weighted_opportunities_per_game).toFixed(2)
+  );
+}
+
+
+
 let currentGoalLineData = null;
 
 
@@ -341,12 +441,17 @@ Usage: {
 
 
  
+ 
   "Red-Zone Usage": {
     weight: "9.30%",
     description:
-      "Shows how often a player gets opportunities to score touchdowns near the goal line. More opportunities can mean greater touchdown potential."
+      "Measures scoring opportunities over the previous 4 completed games. " +
+      "Carries and receiving targets are weighted by distance from the goal line: " +
+      "20–11 yards = 1×, 10–6 yards = 2×, and inside the 5 = 3×. " +
+      "Closer opportunities carry more weight because they offer greater touchdown potential. " +
+      "RBs, WRs, and TEs share one grading scale. The highest weighted opportunities per game earns 100/100; all other players are graded relative to that leader. " +
+      "QB scoring uses a separate method."
   },
-
 
   "Model Confidence": {
     weight: "5.58%",
@@ -450,7 +555,9 @@ currentScoringEnvironment =
 
 document.documentElement.dataset.targetWeek =
   data.target_week || "";
-await loadGoalLineData();    
+await loadGoalLineData();  
+await loadWeightedRedZoneData();
+    
 currentPlayerVsDefensiveCaller =
   data.current_player_vs_defensive_caller || {};
   
@@ -4844,6 +4951,23 @@ function calculateOpportunityScore(player) {
   );
 }
 function calculateRedZoneScore(player) {
+
+  if (["RB", "WR", "TE"].includes(player.position)) {
+    const record = getWeightedRedZoneRecord(player);
+
+    if (!record) {
+      return null;
+    }
+
+    const score = Number(record.red_zone_score);
+
+    return Number.isFinite(score)
+      ? Math.max(0, Math.min(100, score))
+      : null;
+  }
+
+
+  
   const games = getPlayerWeeklyStats(player)
     .filter(
       game => Number(game.season) === 2026
