@@ -64,6 +64,91 @@ function getUsageEvidence(player) {
   );
 }
 
+let currentGoalLineData = null;
+
+async function loadGoalLineData() {
+  currentGoalLineData = null;
+
+  try {
+    const response = await fetch(
+      "./data/rb_goal_line_2026.json",
+      { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+      return;
+    }
+
+    const data = await response.json();
+
+    const currentWeek = Number(
+      document.documentElement.dataset.targetWeek
+    );
+
+    if (
+      Number(data.season) !== 2026 ||
+      !currentWeek ||
+      Number(data.target_week) !== currentWeek ||
+      !data.players
+    ) {
+      return;
+    }
+
+    currentGoalLineData = data;
+  } catch (error) {
+    console.warn("Goal-line data unavailable:", error);
+  }
+}
+
+function getGoalLineEvidence(player) {
+  if (
+    !currentGoalLineData ||
+    player.position !== "RB"
+  ) {
+    return null;
+  }
+
+  const playerId = String(
+    player.player_id || player.id || ""
+  ).trim();
+
+  const playerName = normalizeName(player.name);
+
+  const record = Object.entries(
+    currentGoalLineData.players
+  ).find(([id, entry]) =>
+    (playerId && id === playerId) ||
+    normalizeName(entry.player_name) === playerName
+  );
+
+  if (!record) {
+    return "Inside-the-5: player data unavailable";
+  }
+
+  const entry = record[1];
+  const carries = Number(
+    entry.inside5_rushes_last3weeks || 0
+  );
+  const targets = Number(
+    entry.inside5_targets_last3weeks || 0
+  );
+  const teamCarries = Number(
+    entry.team_inside5_rushes_last3weeks || 0
+  );
+
+  const share = entry.inside5_rush_share_last3weeks;
+
+  return (
+    `Inside-the-5, previous 3 calendar weeks: ` +
+    `${carries} carries, ${targets} targets · ` +
+    (share === null
+      ? "No team goal-line rushing opportunities"
+      : `${carries} of ${teamCarries} team carries ` +
+        `(${(Number(share) * 100).toFixed(1)}%)`)
+  );
+}
+
+
 function getRedZoneEvidence(player) {
   const games = getPlayerWeeklyStats(player)
     .filter(game => Number(game.season) === 2026)
@@ -107,8 +192,25 @@ function getRedZoneEvidence(player) {
     Number.isFinite(Number(game.week))
   );
 
+  
+  const goalLineEvidence = getGoalLineEvidence(player);
+
   return (
     `Last 3 available games · ` +
+    `${validGames.length} evaluated · ` +
+    (player.position === "RB"
+      ? "red-zone carries"
+      : "red-zone targets") +
+    (validGames.length === 0
+      ? " · neutral fallback: 50"
+      : validGames.length < 3
+        ? " · limited sample"
+        : "") +
+    (goalLineEvidence
+      ? ` · ${goalLineEvidence}`
+      : "")
+  );
+
     `${validGames.length} evaluated · ` +
     (player.position === "RB"
       ? "red-zone carries"
@@ -344,7 +446,7 @@ currentScoringEnvironment =
 
 document.documentElement.dataset.targetWeek =
   data.target_week || "";
-
+await loadGoalLineData();    
 currentPlayerVsDefensiveCaller =
   data.current_player_vs_defensive_caller || {};
   
