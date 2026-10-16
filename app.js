@@ -340,16 +340,13 @@ Usage: {
 },
 
 
+ 
   "Red-Zone Usage": {
     weight: "9.30%",
     description:
       "Shows how often a player gets opportunities to score touchdowns near the goal line. More opportunities can mean greater touchdown potential."
   },
 
-    
-    description:
-      "Measures average red-zone opportunities per game inside the opponent's 20-yard line over the last three games. QB scoring uses red-zone pass attempts plus carries. RB scoring uses average red-zone carries per game divided by 4; WR/TE scoring uses average red-zone targets per game divided by 2. These position-specific benchmarks normalize scores to a 0–100 scale, capped at 100. Additional red-zone opportunity types are being evaluated through historical validation and are not yet included in live scoring. For Example: Experimental RB/WR/TE formula under testing: Red-Zone Usage Score = 70% × Red-Zone Touch Share + 30% × Red-Zone Target Share, where Touch Share = (player red-zone carries + red-zone receptions) ÷ (team red-zone carries + red-zone receptions) × 100, and Target Share = player red-zone targets ÷ team red-zone targets × 100. A target is an opportunity, not necessarily a completed touch. The experimental formula is not yet used in live rankings."
-  },
 
   "Model Confidence": {
     weight: "5.58%",
