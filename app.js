@@ -6963,7 +6963,8 @@ function metricRow(
   value,
   isRisk = false,
   breakdown = null,
-  signalDetails = null
+  signalDetails = null,
+  evidence = ""
 ) {
   const info =
     metricDescriptions[label];
@@ -7117,6 +7118,10 @@ const signalDetailsHtml =
     </div>
 
         <p>${description}</p>
+
+        ${evidence
+          ? `<div class="metric-sample-size">${evidence}</div>`
+          : ""}
 
         ${breakdownHtml}
         
@@ -7359,70 +7364,96 @@ function renderPlayerCard(
       `
       : `
 
-${metricRow("Opportunity", metrics.opportunity)}
-<div class="metric-sample-size">
-  Last 3 available games · ${getOpportunityGameCount(player)} games evaluated
-</div>
-        
-        ${metricRow("Recent Production", metrics.production)}
-        <div class="metric-sample-size">
-          Last 3 available games · ${getProductionGameCount(player)} games evaluated
-        </div>
-       
-        ${metricRow("Usage", metrics.usage)}
-        <div class="metric-sample-size">
-          ${getUsageEvidence(player)}
-        </div>
+        ${metricRow(
+          "Opportunity",
+          metrics.opportunity,
+          false,
+          null,
+          null,
+          `Last 3 available games · ${getOpportunityGameCount(player)} games evaluated`
+        )}
 
-        ${metricRow("Matchup", metrics.matchup)}
-        <div class="metric-sample-size">
-          Opponent defensive data · positional fantasy points allowed ·
-          historical game count not provided by this signal
-        </div>
+        ${metricRow(
+          "Recent Production",
+          metrics.production,
+          false,
+          null,
+          null,
+          `Last 3 available games · ${getProductionGameCount(player)} games evaluated`
+        )}
+
+        ${metricRow(
+          "Usage",
+          metrics.usage,
+          false,
+          null,
+          null,
+          getUsageEvidence(player)
+        )}
+
+        ${metricRow(
+          "Matchup",
+          metrics.matchup,
+          false,
+          null,
+          null,
+          "Opponent defensive data · positional fantasy points allowed · historical game count not provided by this signal"
+        )}
+
         ${metricRow(
           "Play Caller Matchup",
           metrics.playCallerMatchup,
           false,
           null,
-          playCallerDetails
+          playCallerDetails,
+          getHistoricalCallerEvidence(playCallerDetails)
         )}
-        <div class="metric-sample-size">
-          ${getHistoricalCallerEvidence(playCallerDetails)}
-        </div>
 
         ${metricRow(
           "Player vs Defensive Play Caller",
           metrics.playerVsDefensiveCaller,
           false,
           null,
-          playerVsCallerDetails
+          playerVsCallerDetails,
+          getHistoricalCallerEvidence(playerVsCallerDetails)
         )}
-        <div class="metric-sample-size">
-          ${getHistoricalCallerEvidence(playerVsCallerDetails)}
-        </div>
 
-        ${metricRow("Red-Zone Usage", metrics.redzone)}
-        <div class="metric-sample-size">
-          ${getRedZoneEvidence(player)}
-        </div>
+        ${metricRow(
+          "Red-Zone Usage",
+          metrics.redzone,
+          false,
+          null,
+          null,
+          getRedZoneEvidence(player)
+        )}
 
         ${metricRow(
           "Scoring Environment",
-          metrics.scoringEnvironment
+          metrics.scoringEnvironment,
+          false,
+          null,
+          null,
+          getScoringEnvironmentEvidence(player)
         )}
-        <div class="metric-sample-size">
-          ${getScoringEnvironmentEvidence(player)}
-        </div>
 
         ${metricRow(
           "Model Confidence",
           metrics.expert,
           false,
-          confidenceBreakdown
+          confidenceBreakdown,
+          null,
+          getConfidenceEvidence(player)
         )}
-        <div class="metric-sample-size">
-          ${getConfidenceEvidence(player)}
-        </div>
+
+        ${metricRow(
+          "Risk Adjustment",
+          riskAdjustment,
+          true,
+          null,
+          null,
+          getRiskEvidence(player)
+        )}
+
 
         ${metricRow("Risk Adjustment", riskAdjustment, true)}
         <div class="metric-sample-size">
@@ -7466,18 +7497,20 @@ ${metricRow("Opportunity", metrics.opportunity)}
                </div>`
             : ""}
 
-          <div class="metric-sample-size">
-            ${trench
-              ? `Upcoming matchup · ${trench.opponent} ·
-                 ${trench.injuryAdjusted
-                   ? "pregame offensive-line availability included"
-                   : "team-level metrics only"} ·
-                 confidence: ${trench.confidence} ·
-                 historical game count not provided`
-              : gameCompleted
-                ? "Completed game · pregame signal not applicable"
-                : "Upcoming matchup · verified trench data unavailable"}
-          </div>
+       
+            <div class="metric-sample-size">
+              ${trench
+                ? `Upcoming matchup · ${trench.opponent} ·
+                   ${trench.injuryAdjusted
+                     ? "pregame offensive-line availability included"
+                     : "team-level metrics only"} ·
+                   confidence: ${trench.confidence || "not specified"} ·
+                   historical game count not provided`
+                : gameCompleted
+                  ? "Completed game · pregame signal not applicable"
+                  : "Upcoming matchup · verified trench data unavailable"}
+            </div>
+
 
           <div class="metric-explanation">
             <div class="metric-explanation-heading">
