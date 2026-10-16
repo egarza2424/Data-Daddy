@@ -28,14 +28,7 @@ jobs:
             --stats nfl-stats.json \
             --target-week '${{ inputs.target_week }}' \
             --output data/rb_goal_line_2026_week${{ inputs.target_week }}.json
-        run: |
-          python scripts/build_rb_goal_line_feed.py \
-            --pbp /tmp/play_by_play_2026.csv.gz \
-            --stats nfl-stats.json \
-            --target-week '${{ inputs.target_week }}' \
-           
-            --output data/rb_goal_line_2026_week${{ inputs.target_week }}.json
-      - uses: actions/upload-artifact@v4
+      
         with:
           name: rb-goal-line-feed-week${{ inputs.target_week }}
 
