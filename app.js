@@ -4428,11 +4428,7 @@ function getOpportunityGameCount(player) {
       Number(b.week || 0) - Number(a.week || 0)
     );
 
-  const uniqueWeeks = new Set(
-    matchingGames.map(game => Number(game.week))
-  );
-
-  return Math.min(3, uniqueWeeks.size);
+    return Math.min(3, matchingGames.length);
 }
 
   
