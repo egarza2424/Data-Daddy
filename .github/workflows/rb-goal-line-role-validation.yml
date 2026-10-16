@@ -1,0 +1,39 @@
+name: RB Goal-Line Role Historical Validation
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install research dependencies
+        run: pip install pandas numpy
+      - name: Download historical player and play-by-play inputs
+        run: |
+          mkdir -p historical-data
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.request import urlretrieve
+          for year in (2023,2024,2025):
+              for url,path in [
+                  (f'https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_{year}.csv',Path(f'historical-data/player_stats_{year}.csv')),
+                  (f'https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_{year}.csv.gz',Path(f'historical-data/play_by_play_{year}.csv.gz'))]:
+                  if not path.exists():
+                      print('Downloading',url,flush=True)
+                      urlretrieve(url,path)
+          PY
+      - name: Evaluate pregame goal-line roles
+        run: python scripts/validate_rb_goal_line_roles.py
+      - name: Upload research outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: rb-goal-line-role-results
+          path: |
+            projection-model/validation/rb-goal-line-role-player-weeks.csv
+            projection-model/validation/rb-goal-line-role-metrics.csv
+          if-no-files-found: error
