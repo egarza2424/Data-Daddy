@@ -1314,7 +1314,8 @@ footer a {
 
 @media (min-width: 901px) {
   .results .player-comparison-header {
-    height: 520px;
+    min-height: 520px;
+    height: auto;
   }
 }
 .player-status span {
