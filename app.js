@@ -7375,7 +7375,10 @@ ${metricRow("Opportunity", metrics.opportunity)}
         </div>
 
         ${metricRow("Matchup", metrics.matchup)}
-
+        <div class="metric-sample-size">
+          Opponent defensive data · positional fantasy points allowed ·
+          historical game count not provided by this signal
+        </div>
         ${metricRow(
           "Play Caller Matchup",
           metrics.playCallerMatchup,
@@ -7462,6 +7465,19 @@ ${metricRow("Opportunity", metrics.opportunity)}
                  </div>
                </div>`
             : ""}
+
+          <div class="metric-sample-size">
+            ${trench
+              ? `Upcoming matchup · ${trench.opponent} ·
+                 ${trench.injuryAdjusted
+                   ? "pregame offensive-line availability included"
+                   : "team-level metrics only"} ·
+                 confidence: ${trench.confidence} ·
+                 historical game count not provided`
+              : gameCompleted
+                ? "Completed game · pregame signal not applicable"
+                : "Upcoming matchup · verified trench data unavailable"}
+          </div>
 
           <div class="metric-explanation">
             <div class="metric-explanation-heading">
