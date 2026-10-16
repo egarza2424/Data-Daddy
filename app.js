@@ -7491,21 +7491,6 @@ function renderPlayerCard(
                </div>`
             : ""}
 
-       
-            <div class="metric-sample-size">
-              ${trench
-                ? `Upcoming matchup · ${trench.opponent} ·
-                   ${trench.injuryAdjusted
-                     ? "pregame offensive-line availability included"
-                     : "team-level metrics only"} ·
-                   confidence: ${trench.confidence || "not specified"} ·
-                   historical game count not provided`
-                : gameCompleted
-                  ? "Completed game · pregame signal not applicable"
-                  : "Upcoming matchup · verified trench data unavailable"}
-            </div>
-
-
           <div class="metric-explanation">
             <div class="metric-explanation-heading">
               <strong>Trench Matchup</strong>
