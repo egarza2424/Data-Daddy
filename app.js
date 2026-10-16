@@ -7181,7 +7181,7 @@ ${metricRow("Opportunity", metrics.opportunity)}
 <div class="metric-sample-size">
   Last 3 available games · ${getOpportunityGameCount(player)} games evaluated
 </div>
-Z        ${metricRow("Recent Production", metrics.production)}
+        ${metricRow("Recent Production", metrics.production)}
         ${metricRow("Usage", metrics.usage)}
         ${metricRow("Matchup", metrics.matchup)}
         ${metricRow(
