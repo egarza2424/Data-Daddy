@@ -20,7 +20,14 @@ jobs:
         run: |
           curl --fail --location --retry 3 --output /tmp/play_by_play_2026.csv.gz \
             https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.csv.gz
+
       - name: Generate pregame goal-line evidence
+        run: |
+          python scripts/build_rb_goal_line_feed.py \
+            --pbp /tmp/play_by_play_2026.csv.gz \
+            --stats nfl-stats.json \
+            --target-week '${{ inputs.target_week }}' \
+            --output data/rb_goal_line_2026_week${{ inputs.target_week }}.json
         run: |
           python scripts/build_rb_goal_line_feed.py \
             --pbp /tmp/play_by_play_2026.csv.gz \
