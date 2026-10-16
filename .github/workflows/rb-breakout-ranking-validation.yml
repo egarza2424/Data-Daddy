@@ -1,0 +1,38 @@
+name: RB Breakout Ranking Historical Validation
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install numpy pandas
+      - name: Download most recent successful role-change artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p projection-model/validation
+          RUN_ID=$(gh run list --workflow rb-role-change-validation.yml --status success --limit 1 --json databaseId --jq '.[0].databaseId')
+          test -n "$RUN_ID" || { echo 'No successful RB role-change run found'; exit 1; }
+          gh run download "$RUN_ID" -D /tmp/rb-role-change-artifacts
+          SOURCE=$(find /tmp/rb-role-change-artifacts -name rb-role-change-player-weeks.csv -type f -print -quit)
+          test -n "$SOURCE" || { echo 'Role-change player-week CSV missing from artifact'; exit 1; }
+          cp "$SOURCE" projection-model/validation/rb-role-change-player-weeks.csv
+      - name: Validate RB breakout rankings
+        run: python scripts/validate_rb_breakout_rankings.py
+      - name: Upload research results
+        uses: actions/upload-artifact@v4
+        with:
+          name: rb-breakout-ranking-results
+          path: |
+            projection-model/validation/rb-breakout-development-search.csv
+            projection-model/validation/rb-breakout-ranking-metrics.csv
+            projection-model/validation/rb-breakout-ranked-player-weeks.csv
+          if-no-files-found: error
