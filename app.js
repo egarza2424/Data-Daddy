@@ -4405,6 +4405,9 @@ function calculateUsageScore(player) {
     0,
     Math.round(averageShare * 100)
   );
+}
+
+function getOpportunityGameCount(player) {
 
 function getOpportunityGameCount(player) {
   if (!player) {
