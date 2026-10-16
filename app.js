@@ -4111,7 +4111,22 @@ function getPlayerWeeklyStats(player) {
 
   return matches;
 }
-function calculateProductionScore(player) {
+
+function getProductionGameCount(player) {
+  if (!player) {
+    return 0;
+  }
+
+  const recentGames = getPlayerWeeklyStats(player)
+    .filter(game => Number(game.season) === 2026)
+    .sort((a, b) =>
+      Number(b.week || 0) - Number(a.week || 0)
+    )
+    .slice(0, 3);
+
+  return recentGames.length;
+}
+
   const games = getPlayerWeeklyStats(player);
 
   if (games.length === 0) {
