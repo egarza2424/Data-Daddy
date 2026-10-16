@@ -12,6 +12,178 @@ const BASE_WEIGHTS = {
   trench: 0.07
 };
 
+function getUsageEvidence(player) {
+  const games = getPlayerWeeklyStats(player)
+    .filter(game => Number(game.season) === 2026)
+    .sort((a, b) =>
+      Number(b.week || 0) - Number(a.week || 0)
+    )
+    .slice(0, 3);
+
+  if (games.length === 0) {
+    return "2026 · 0 games · no player data (fallback: 20)";
+  }
+
+  let validGames = 0;
+
+  games.forEach(game => {
+    const season = Number(game.season);
+    const week = Number(game.week);
+    const team = game.team;
+
+    if (!season || !week || !team) return;
+
+    const rows = getTeamGameRows(season, week, team);
+
+    const teamCarries = rows.reduce(
+      (sum, row) =>
+        sum + Number(
+          row.carries || row.rushing_attempts || 0
+        ),
+      0
+    );
+
+    if (player.position === "QB") {
+      if (teamCarries > 0) validGames++;
+      return;
+    }
+
+    // RB/WR/TE usage accepts a valid team-week
+    // even when either individual denominator is zero.
+    validGames++;
+  });
+
+  return (
+    `Last 3 available games · ${validGames} valid ` +
+    `of ${games.length} selected · ` +
+    (validGames === 0
+      ? "neutral fallback: 50"
+      : validGames < 3
+        ? "limited sample"
+        : "team opportunity shares")
+  );
+}
+
+function getRedZoneEvidence(player) {
+  const games = getPlayerWeeklyStats(player)
+    .filter(game => Number(game.season) === 2026)
+    .sort((a, b) =>
+      Number(b.week || 0) - Number(a.week || 0)
+    )
+    .slice(0, 3);
+
+  if (games.length === 0) {
+    return "2026 · 0 games · neutral fallback: 50";
+  }
+
+  if (player.position === "QB") {
+    const matchingGames = weeklyStats
+      .filter(game =>
+        Number(game.season) === 2026 &&
+        game.position === "QB" &&
+        normalizeName(
+          game.player_display_name ||
+          game.player_name ||
+          game.name
+        ) === normalizeName(player.name)
+      )
+      .sort((a, b) =>
+        Number(b.week || 0) - Number(a.week || 0)
+      )
+      .slice(0, 3);
+
+    return (
+      `Last 3 available QB games · ` +
+      `${matchingGames.length} evaluated · ` +
+      `red-zone passes + carries` +
+      (matchingGames.length < 3
+        ? " · limited sample"
+        : "")
+    );
+  }
+
+  const validGames = games.filter(game =>
+    Number.isFinite(Number(game.season)) &&
+    Number.isFinite(Number(game.week))
+  );
+
+  return (
+    `Last 3 available games · ` +
+    `${validGames.length} evaluated · ` +
+    (player.position === "RB"
+      ? "red-zone carries"
+      : "red-zone targets") +
+    (validGames.length === 0
+      ? " · neutral fallback: 50"
+      : validGames.length < 3
+        ? " · limited sample"
+        : "")
+  );
+}
+
+function getConfidenceEvidence(player) {
+  const count = getPlayerWeeklyStats(player)
+    .filter(game => Number(game.season) === 2026)
+    .sort((a, b) =>
+      Number(b.week || 0) - Number(a.week || 0)
+    )
+    .slice(0, 3)
+    .length;
+
+  return (
+    `Last 3 available games · ${count} evaluated · ` +
+    (count < 2
+      ? "neutral fallback: 50"
+      : count < 3
+        ? "limited sample + availability"
+        : "stability + availability")
+  );
+}
+
+function getRiskEvidence(player) {
+  return (
+    "Current player status · injury, practice, " +
+    "roster, depth chart, experience and age · " +
+    "rule-based; no game sample"
+  );
+}
+
+function getScoringEnvironmentEvidence(player) {
+  const environment = getScoringEnvironment(player);
+
+  if (!environment) {
+    return "Upcoming game · market data unavailable · neutral fallback: 50";
+  }
+
+  return (
+    `Upcoming game${environment.week
+      ? ` · Week ${environment.week}`
+      : ""}` +
+    ` · implied team total: ${
+      environment.impliedTeamTotal === null
+        ? "unavailable"
+        : environment.impliedTeamTotal
+    }` +
+    ` · source: ${environment.source}`
+  );
+}
+
+function getHistoricalCallerEvidence(details) {
+  const count = Number(details?.sampleSize || 0);
+
+  if (!details || count <= 0) {
+    return "Historical meetings · 0 games · neutral fallback: 50";
+  }
+
+  return (
+    `Historical meetings · ${count} games · ` +
+    (count < 3
+      ? "limited sample; score adjusted toward 50"
+      : "full sample confidence")
+  );
+}
+
+function calculateUsageScore(player) {
 
 const riskProfiles = {
   conservative: {
@@ -7198,8 +7370,14 @@ ${metricRow("Opportunity", metrics.opportunity)}
         <div class="metric-sample-size">
           Last 3 available games · ${getProductionGameCount(player)} games evaluated
         </div>
+       
         ${metricRow("Usage", metrics.usage)}
+        <div class="metric-sample-size">
+          ${getUsageEvidence(player)}
+        </div>
+
         ${metricRow("Matchup", metrics.matchup)}
+
         ${metricRow(
           "Play Caller Matchup",
           metrics.playCallerMatchup,
@@ -7207,6 +7385,10 @@ ${metricRow("Opportunity", metrics.opportunity)}
           null,
           playCallerDetails
         )}
+        <div class="metric-sample-size">
+          ${getHistoricalCallerEvidence(playCallerDetails)}
+        </div>
+
         ${metricRow(
           "Player vs Defensive Play Caller",
           metrics.playerVsDefensiveCaller,
@@ -7214,12 +7396,22 @@ ${metricRow("Opportunity", metrics.opportunity)}
           null,
           playerVsCallerDetails
         )}
+        <div class="metric-sample-size">
+          ${getHistoricalCallerEvidence(playerVsCallerDetails)}
+        </div>
+
         ${metricRow("Red-Zone Usage", metrics.redzone)}
+        <div class="metric-sample-size">
+          ${getRedZoneEvidence(player)}
+        </div>
 
         ${metricRow(
           "Scoring Environment",
           metrics.scoringEnvironment
         )}
+        <div class="metric-sample-size">
+          ${getScoringEnvironmentEvidence(player)}
+        </div>
 
         ${metricRow(
           "Model Confidence",
@@ -7227,8 +7419,15 @@ ${metricRow("Opportunity", metrics.opportunity)}
           false,
           confidenceBreakdown
         )}
+        <div class="metric-sample-size">
+          ${getConfidenceEvidence(player)}
+        </div>
 
         ${metricRow("Risk Adjustment", riskAdjustment, true)}
+        <div class="metric-sample-size">
+          ${getRiskEvidence(player)}
+        </div>
+
 
         <div class="metric-row trench-signal">
           <div class="metric-label-row">
