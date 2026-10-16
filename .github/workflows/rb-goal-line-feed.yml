@@ -26,16 +26,16 @@ jobs:
             --pbp /tmp/play_by_play_2026.csv.gz \
             --stats nfl-stats.json \
             --target-week '${{ inputs.target_week }}' \
-            --output data/rb_goal_line_2026.json
-      - uses: actions/upload-artifact@v4
+            --output data/rb_goal_line_2026_week${{ inputs.target_week }}.json
+            - uses: actions/upload-artifact@v4
         with:
-          name: rb-goal-line-feed
-          path: data/rb_goal_line_2026.json
+          name: rb-goal-line-feed-week${{ inputs.target_week }}
+          path: data/rb_goal_line_2026_week${{ inputs.target_week }}.json
       - name: Commit generated feed
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/rb_goal_line_2026.json
+          git add data/rb_goal_line_2026_week${{ inputs.target_week }}.json
           if ! git diff --cached --quiet; then
             git commit -m 'Update pregame RB goal-line feed'
             git push
