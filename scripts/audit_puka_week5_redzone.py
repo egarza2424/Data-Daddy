@@ -5,12 +5,12 @@ import gzip
 
 PUKA_ID = "00-0039075"
 SEASON = 2026
-WEEK = 5
+WEEKS = (1, 4, 5)
 
-ZONES = {
-    "20-11": {"carries": 0, "targets": 0},
-    "10-6": {"carries": 0, "targets": 0},
-    "5-1": {"carries": 0, "targets": 0},
+ZONE_WEIGHTS = {
+    "20-11": 1,
+    "10-6": 2,
+    "5-1": 3,
 }
 
 
@@ -24,7 +24,19 @@ def get_zone(yardline):
     return None
 
 
+def empty_counts():
+    return {
+        zone: {"carries": 0, "targets": 0}
+        for zone in ZONE_WEIGHTS
+    }
+
+
 def main(path):
+    results = {
+        week: empty_counts()
+        for week in WEEKS
+    }
+
     with gzip.open(path, "rt", encoding="utf-8") as file:
         reader = csv.DictReader(file)
 
@@ -36,7 +48,7 @@ def main(path):
             except (ValueError, TypeError):
                 continue
 
-            if season != SEASON or week != WEEK:
+            if season != SEASON or week not in WEEKS:
                 continue
 
             if play["season_type"] != "REG":
@@ -50,36 +62,60 @@ def main(path):
                 play["rush_attempt"] == "1"
                 and play["rusher_player_id"] == PUKA_ID
             ):
-                ZONES[zone]["carries"] += 1
+                results[week][zone]["carries"] += 1
 
             if (
                 play["pass_attempt"] == "1"
                 and play["receiver_player_id"] == PUKA_ID
             ):
-                ZONES[zone]["targets"] += 1
+                results[week][zone]["targets"] += 1
 
-    print("PUKA NACUA — WEEK 5 RED-ZONE AUDIT")
-    print("----------------------------------")
+    print("PUKA NACUA — WEEKS 1, 4, 5 RED-ZONE AUDIT")
+    print("=" * 48)
 
-    weighted = 0
+    combined = empty_counts()
+    grand_total = 0
 
-    for zone, weight in [
-        ("20-11", 1),
-        ("10-6", 2),
-        ("5-1", 3),
-    ]:
-        carries = ZONES[zone]["carries"]
-        targets = ZONES[zone]["targets"]
+    for week in WEEKS:
+        print(f"\nWEEK {week}")
+        weekly_total = 0
 
-        weighted += (carries + targets) * weight
+        for zone, weight in ZONE_WEIGHTS.items():
+            carries = results[week][zone]["carries"]
+            targets = results[week][zone]["targets"]
 
+            combined[zone]["carries"] += carries
+            combined[zone]["targets"] += targets
+
+            weighted = (carries + targets) * weight
+            weekly_total += weighted
+
+            print(
+                f"{zone}: carries={carries}, "
+                f"targets={targets}, weighted={weighted}"
+            )
+
+        grand_total += weekly_total
+        print(f"Week {week} weighted total: {weekly_total}")
+
+    print("\nCOMBINED THREE-GAME TOTALS")
+
+    for zone in ZONE_WEIGHTS:
+        counts = combined[zone]
         print(
-            f"{zone}: carries={carries}, "
-            f"targets={targets}"
+            f"{zone}: carries={counts['carries']}, "
+            f"targets={counts['targets']}"
         )
 
-    print("----------------------------------")
-    print(f"Weighted opportunities: {weighted}")
+    print(f"\nTotal weighted opportunities: {grand_total}")
+    print(f"Weighted opportunities/game: {grand_total / len(WEEKS):.4f}")
+
+    expected = 13
+    print(f"Expected frozen-feed total: {expected}")
+    print(f"Audit result: {'PASS' if grand_total == expected else 'FAIL'}")
+
+    if grand_total != expected:
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":
