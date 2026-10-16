@@ -4955,15 +4955,15 @@ function calculateRedZoneScore(player) {
   if (["RB", "WR", "TE"].includes(player.position)) {
     const record = getWeightedRedZoneRecord(player);
 
-    if (!record) {
-      return null;
+    if (!record || record.red_zone_score == null) {
+      return 50; // Neutral fallback when data is unavailable
     }
 
     const score = Number(record.red_zone_score);
 
     return Number.isFinite(score)
       ? Math.max(0, Math.min(100, score))
-      : null;
+      : 50;
   }
 
 
@@ -7654,8 +7654,9 @@ function renderPlayerCard(
           false,
           null,
           null,
-          getRedZoneEvidence(player)
-        )}
+          player.position === "QB"
+            ? getRedZoneEvidence(player)
+            : getWeightedRedZoneEvidence(player)        )}
 
         ${metricRow(
           "Scoring Environment",
