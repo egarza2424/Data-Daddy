@@ -210,17 +210,6 @@ function getRedZoneEvidence(player) {
       ? ` · ${goalLineEvidence}`
       : "")
   );
-
-    `${validGames.length} evaluated · ` +
-    (player.position === "RB"
-      ? "red-zone carries"
-      : "red-zone targets") +
-    (validGames.length === 0
-      ? " · neutral fallback: 50"
-      : validGames.length < 3
-        ? " · limited sample"
-        : "")
-  );
 }
 
 function getConfidenceEvidence(player) {
