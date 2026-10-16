@@ -7455,12 +7455,6 @@ function renderPlayerCard(
         )}
 
 
-        ${metricRow("Risk Adjustment", riskAdjustment, true)}
-        <div class="metric-sample-size">
-          ${getRiskEvidence(player)}
-        </div>
-
-
         <div class="metric-row trench-signal">
           <div class="metric-label-row">
             <span class="metric-name">
@@ -7526,9 +7520,24 @@ function renderPlayerCard(
                      : "This is currently a team-level matchup; offensive-line injury adjustment is unavailable."}`
                 : gameCompleted
                   ? "This matchup has recorded game statistics, so the pregame trench signal is no longer applicable."
+                  
                   : "No verified pregame trench matchup data is available for this opponent."}
             </p>
+
+            <div class="metric-sample-size">
+              ${trench
+                ? `Upcoming matchup · ${trench.opponent} ·
+                   ${trench.injuryAdjusted
+                     ? "pregame offensive-line availability included"
+                     : "team-level metrics only"} ·
+                   confidence: ${trench.confidence || "not specified"} ·
+                   historical game count not provided`
+                : gameCompleted
+                  ? "Completed game · pregame signal not applicable"
+                  : "Upcoming matchup · verified trench data unavailable"}
+            </div>
           </div>
+
         </div>
         `}
       </article>
