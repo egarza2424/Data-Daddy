@@ -66,31 +66,44 @@ function getUsageEvidence(player) {
 
 let currentGoalLineData = null;
 
+
 async function loadGoalLineData() {
   currentGoalLineData = null;
 
+  const currentWeek = Number(
+    document.documentElement.dataset.targetWeek
+  );
+
+  if (
+    !Number.isInteger(currentWeek) ||
+    currentWeek < 2 ||
+    currentWeek > 19
+  ) {
+    return;
+  }
+
   try {
     const response = await fetch(
-      "./data/rb_goal_line_2026.json",
+      `./data/rb_goal_line_2026_week${currentWeek}.json`,
       { cache: "no-store" }
     );
 
     if (!response.ok) {
+      console.warn(
+        `Goal-line data unavailable for Week ${currentWeek}:`,
+        response.status
+      );
       return;
     }
 
     const data = await response.json();
 
-    const currentWeek = Number(
-      document.documentElement.dataset.targetWeek
-    );
-
     if (
       Number(data.season) !== 2026 ||
-      !currentWeek ||
       Number(data.target_week) !== currentWeek ||
       !data.players
     ) {
+      console.warn("Goal-line feed week mismatch");
       return;
     }
 
