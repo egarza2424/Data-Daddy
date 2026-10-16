@@ -7176,8 +7176,12 @@ function renderPlayerCard(
         </div>
       `
       : `
-  ${metricRow("Opportunity", metrics.opportunity)}
-        ${metricRow("Recent Production", metrics.production)}
+
+${metricRow("Opportunity", metrics.opportunity)}
+<div class="metric-sample-size">
+  Last 3 available games · ${getOpportunityGameCount(player)} games evaluated
+</div>
+Z        ${metricRow("Recent Production", metrics.production)}
         ${metricRow("Usage", metrics.usage)}
         ${metricRow("Matchup", metrics.matchup)}
         ${metricRow(
