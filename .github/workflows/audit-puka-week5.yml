@@ -1,0 +1,32 @@
+
+name: Audit Puka Week 5 Red Zone
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download 2026 play-by-play
+        run: |
+          curl --fail --location --retry 3 \
+            --output /tmp/play_by_play_2026.csv.gz \
+            https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.csv.gz
+
+      - name: Audit Puka Week 5 red-zone opportunities
+        run: |
+          python scripts/audit_puka_week5_redzone.py \
+            --pbp /tmp/play_by_play_2026.csv.gz
