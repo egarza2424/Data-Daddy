@@ -21,6 +21,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: data-daddy-red-zone-feed
+  cancel-in-progress: false
+
 jobs:
   build:
     if: >-
