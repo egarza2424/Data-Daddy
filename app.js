@@ -4495,18 +4495,20 @@ function optimizeLineup() {
   } else {
     const message = document.createElement("div");
 
+    
     const heading = document.createElement("h4");
-    heading.textContent = "No Major Start/Sit Disagreements";
+    heading.textContent = "No AI Insights Meet the Threshold";
 
     const explanation = document.createElement("p");
     explanation.textContent =
-      "DATA DADDY found no close starting-lineup " +
-      "decisions where a bench player's AI Score " +
-      "exceeds the selected starter's score by " +
-      "at least 5 points within a 3-point PPR " +
-      "projection difference. The recommended " +
-      "lineup remains the highest-projected " +
-      "eligible combination.";
+      "Your optimized lineup uses the highest projected " +
+      "PPR combination of eligible players. No bench " +
+      "player meets both AI Second Opinion criteria: " +
+      "a projected PPR difference of 3 points or less " +
+      "and an AI Score advantage of at least 5 points. " +
+      "Recommendation: Keep the current optimized lineup " +
+      "based on the available projections.";
+
 
     message.append(heading, explanation);
     dialog.appendChild(message);
