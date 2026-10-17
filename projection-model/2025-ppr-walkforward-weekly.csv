@@ -287,3 +287,15 @@ F_position_specific,WR,15,141,4.2849,5.8395,0.6267,25.1773
 F_position_specific,WR,16,148,4.4497,6.3831,0.5695,27.0338
 F_position_specific,WR,17,146,3.9128,5.3728,0.5543,30.1849
 F_position_specific,WR,18,137,3.983,5.4268,0.5551,28.2336
+G_QB_passing_rushing,QB,7,35,6.986,8.4258,0.4875,8.3429
+G_QB_passing_rushing,QB,8,31,5.1175,6.1412,0.7119,5.9032
+G_QB_passing_rushing,QB,9,30,7.6526,9.0802,0.3609,8.7333
+G_QB_passing_rushing,QB,10,33,6.3527,7.327,0.5342,7.4848
+G_QB_passing_rushing,QB,11,34,7.1557,9.3327,0.2874,9.8235
+G_QB_passing_rushing,QB,12,32,5.6297,7.1566,0.5684,6.9688
+G_QB_passing_rushing,QB,13,36,5.3544,6.5623,0.5627,8.0833
+G_QB_passing_rushing,QB,14,35,6.9101,8.8301,0.4186,8.7143
+G_QB_passing_rushing,QB,15,37,6.3877,8.4782,0.5198,9.0
+G_QB_passing_rushing,QB,16,41,6.8352,8.2324,0.6177,7.7805
+G_QB_passing_rushing,QB,17,36,6.2656,7.9838,0.5392,6.7778
+G_QB_passing_rushing,QB,18,40,6.7286,8.553,0.3722,9.9
