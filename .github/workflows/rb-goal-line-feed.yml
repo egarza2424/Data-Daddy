@@ -2,6 +2,8 @@
 name: Build Weighted Red-Zone Feed
 
 on:
+  schedule:
+    - cron: "30 15 * * *"
   workflow_dispatch:
     inputs:
       target_week:
