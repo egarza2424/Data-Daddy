@@ -3983,144 +3983,224 @@ function getStartSitInsights(
 }
 
 
-function renderStartSitInsights(
-  slots,
-  bench
-) {
-  const insights =
-    getStartSitInsights(
-      slots,
-      bench
-    );
+
+function renderStartSitInsights(slots, bench) {
+  const insights = getStartSitInsights(slots, bench);
 
   if (insights.length === 0) {
     return null;
   }
 
-  const section =
-    document.createElement(
-      "section"
+  const section = document.createElement("section");
+  section.className = "start-sit-insights";
+
+  const heading = document.createElement("div");
+  heading.className = "start-sit-insights-heading";
+
+  const eyebrow = document.createElement("span");
+  eyebrow.className = "eyebrow";
+  eyebrow.textContent = "AI SECOND OPINION";
+
+  const title = document.createElement("h4");
+  title.textContent = "Start/Sit Insights";
+
+  const intro = document.createElement("p");
+  intro.textContent =
+    "Projected PPR determines the optimal lineup. " +
+    "These comparisons add matchup and opportunity " +
+    "context to qualifying AI Score disagreements.";
+
+  heading.append(eyebrow, title, intro);
+  section.appendChild(heading);
+
+  function getSignals(projection) {
+    const player = getProjectionPlayer(projection);
+
+    if (!player) {
+      return null;
+    }
+
+    const position = String(
+      player.position || projection.position || ""
+    ).toUpperCase();
+
+    const games = getPlayerWeeklyStats(player)
+      .filter(game =>
+        Number(game.season) === 2026 &&
+        Number(game.week) < Number(targetWeek)
+      )
+      .sort((a, b) =>
+        Number(b.week) - Number(a.week)
+      )
+      .slice(0, 3);
+
+    const matchup = teamNextOpponent[player.team];
+    const defense =
+      matchup?.opponent
+        ? defensePositionAllowed[matchup.opponent]
+        : null;
+
+    const matchupAvailable =
+      defense?.[position]?.fantasy_points_allowed != null;
+
+    const matchupScore = matchupAvailable
+      ? calculateMatchupScore(player)
+      : null;
+
+    const total = (field) =>
+      games.reduce(
+        (sum, game) => sum + Number(game[field] || 0),
+        0
+      );
+
+    const average = (value) =>
+      games.length > 0
+        ? (value / games.length).toFixed(1)
+        : null;
+
+    let usageLabel = "Recent usage unavailable";
+    let redZoneLabel = "Red-zone data unavailable";
+
+    if (games.length > 0) {
+      if (position === "RB") {
+        usageLabel =
+          `${average(total("carries"))} carries/game, ` +
+          `${average(total("targets"))} targets/game`;
+
+        redZoneLabel =
+          `${average(total("red_zone_carries"))} ` +
+          "red-zone carries/game";
+      } else if (position === "WR" || position === "TE") {
+        usageLabel =
+          `${average(total("targets"))} targets/game`;
+
+        redZoneLabel =
+          `${average(total("red_zone_targets"))} ` +
+          "red-zone targets/game";
+      } else if (position === "QB") {
+        usageLabel =
+          `${average(total("attempts"))} pass attempts/game`;
+
+        redZoneLabel =
+          `${average(
+            total("red_zone_pass_attempts") +
+            total("red_zone_carries")
+          )} red-zone opportunities/game`;
+      }
+    }
+
+    return {
+      games: games.length,
+      usageLabel,
+      redZoneLabel,
+      matchupLabel: matchupAvailable
+        ? `${matchup.opponent} • Matchup score ${matchupScore}/100`
+        : "Matchup data unavailable"
+    };
+  }
+
+  function addSignalRow(container, label, starterValue, benchValue) {
+    const row = document.createElement("div");
+    row.style.cssText =
+      "display:grid;grid-template-columns:1fr 1fr;" +
+      "gap:12px;padding:12px 0;" +
+      "border-bottom:1px solid rgba(255,255,255,.12)";
+
+    const left = document.createElement("div");
+    const right = document.createElement("div");
+
+    const leftLabel = document.createElement("small");
+    leftLabel.textContent = `${label} — Starter`;
+
+    const rightLabel = document.createElement("small");
+    rightLabel.textContent = `${label} — Alternative`;
+
+    const leftValue = document.createElement("div");
+    leftValue.textContent = starterValue;
+
+    const rightValue = document.createElement("div");
+    rightValue.textContent = benchValue;
+
+    left.append(leftLabel, leftValue);
+    right.append(rightLabel, rightValue);
+    row.append(left, right);
+    container.appendChild(row);
+  }
+
+  insights.forEach(insight => {
+    const card = document.createElement("div");
+    card.className = "start-sit-insight-card";
+
+    const starterName = insight.starter.player_name;
+    const benchName = insight.benchPlayer.player_name;
+
+    const cardTitle = document.createElement("h4");
+    cardTitle.textContent =
+      `${insight.slot}: ${starterName} vs. ${benchName}`;
+
+    const summary = document.createElement("p");
+    summary.textContent =
+      `The PPR projection favors ${starterName} by ` +
+      `${insight.projectionEdge.toFixed(2)} points, ` +
+      `while AI Score favors ${benchName} by ` +
+      `${insight.aiEdge.toFixed(1)} points.`;
+
+    card.append(cardTitle, summary);
+
+    addSignalRow(
+      card,
+      "Projected PPR",
+      insight.starterPpr.toFixed(2),
+      insight.benchPpr.toFixed(2)
     );
 
-  section.className =
-    "start-sit-insights";
+    addSignalRow(
+      card,
+      "AI Score",
+      insight.starterAi.score.toFixed(1),
+      insight.benchAi.score.toFixed(1)
+    );
 
-  const heading =
-    document.createElement("div");
+    const starterSignals = getSignals(insight.starter);
+    const benchSignals = getSignals(insight.benchPlayer);
 
-  heading.className =
-    "start-sit-insights-heading";
+    addSignalRow(
+      card,
+      "Matchup",
+      starterSignals?.matchupLabel || "Unavailable",
+      benchSignals?.matchupLabel || "Unavailable"
+    );
 
-  heading.innerHTML = `
-    <span class="eyebrow">
-      AI SECOND OPINION
-    </span>
+    addSignalRow(
+      card,
+      "Recent usage",
+      starterSignals?.usageLabel || "Unavailable",
+      benchSignals?.usageLabel || "Unavailable"
+    );
 
-    <h4>
-      Start/Sit Insights
-    </h4>
+    addSignalRow(
+      card,
+      "Red-zone opportunity",
+      starterSignals?.redZoneLabel || "Unavailable",
+      benchSignals?.redZoneLabel || "Unavailable"
+    );
 
-    <p>
-      Projected PPR determines the optimal lineup.
-      These alerts highlight close decisions where
-      the underlying AI Score favors a bench player.
-    </p>
-  `;
+    const note = document.createElement("p");
+    note.style.marginTop = "14px";
+    note.textContent =
+      "AI Second Opinion: Consider the alternative " +
+      "if matchup and opportunity trends support the " +
+      "higher AI Score. The projected starter remains " +
+      "the PPR-based recommendation. Recent averages " +
+      "use up to three completed weeks of available data.";
 
-  section.appendChild(
-    heading
-  );
-
-  insights.forEach(
-    (insight) => {
-      const card =
-        document.createElement(
-          "div"
-        );
-
-      card.className =
-        "start-sit-insight-card";
-
-      const starterName =
-        insight.starter.player_name;
-
-      const benchName =
-        insight.benchPlayer.player_name;
-
-      card.innerHTML = `
-        <div class="start-sit-insight-label">
-          AI EDGE • ${insight.slot}
-        </div>
-
-        <div class="start-sit-insight-title">
-          Review ${starterName}
-          vs. ${benchName}
-        </div>
-
-        <p>
-          The PPR model starts
-          <strong>${starterName}</strong>,
-          but the underlying AI Score favors
-          <strong>${benchName}</strong>.
-        </p>
-
-        <div class="start-sit-comparison">
-          <div>
-            <span>PROJECTED STARTER</span>
-
-            <strong>
-              ${starterName}
-            </strong>
-
-            <small>
-              ${insight.starterPpr.toFixed(2)}
-              PPR • AI
-              ${insight.starterAi.score.toFixed(1)}
-            </small>
-          </div>
-
-          <div>
-            <span>AI ALTERNATIVE</span>
-
-            <strong>
-              ${benchName}
-            </strong>
-
-            <small>
-              ${insight.benchPpr.toFixed(2)}
-              PPR • AI
-              ${insight.benchAi.score.toFixed(1)}
-            </small>
-          </div>
-        </div>
-
-        <div class="start-sit-edge-summary">
-          <span>
-            Projection edge:
-            <strong>
-              +${insight.projectionEdge.toFixed(2)}
-              PPR ${starterName}
-            </strong>
-          </span>
-
-          <span>
-            AI Score edge:
-            <strong>
-              +${insight.aiEdge.toFixed(1)}
-              ${benchName}
-            </strong>
-          </span>
-        </div>
-      `;
-
-      section.appendChild(
-        card
-      );
-    }
-  );
+    card.appendChild(note);
+    section.appendChild(card);
+  });
 
   return section;
 }
+
 
   
 function renderOptimizedLineup(
