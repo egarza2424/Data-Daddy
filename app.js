@@ -4572,26 +4572,109 @@ function optimizeLineup() {
 
   if (existingInsights) {
     dialog.appendChild(existingInsights);
-  } else {
-    const message = document.createElement("div");
 
-    
+  } else {
     const heading = document.createElement("h4");
-    heading.textContent = "No AI Insights Meet the Threshold";
+    heading.textContent = "Your Optimized Lineup — AI Analysis";
+    dialog.appendChild(heading);
 
     const explanation = document.createElement("p");
     explanation.textContent =
-      "Your optimized lineup uses the highest projected " +
-      "PPR combination of eligible players. No bench " +
-      "player meets both AI Second Opinion criteria: " +
-      "a projected PPR difference of 3 points or less " +
-      "and an AI Score advantage of at least 5 points. " +
-      "Recommendation: Keep the current optimized lineup " +
-      "based on the available projections.";
+      "No bench player meets the current AI disagreement " +
+      "threshold. Here is an overview of your recommended " +
+      "starters, based on available projections and signals.";
+    dialog.appendChild(explanation);
 
+    const slots = buildLineupSlots(bestLineup, rules);
 
-    message.append(heading, explanation);
-    dialog.appendChild(message);
+    slots.forEach(({ slot, player: projection }) => {
+      const player = getProjectionPlayer(projection);
+      const card = document.createElement("div");
+      card.className = "start-sit-insight-card";
+
+      const name = document.createElement("h4");
+      name.textContent =
+        `${slot}: ${projection.player_name}`;
+
+      const ppr = Number(projection.projected_ppr);
+      const ai = getLineupPlayerAiData(projection);
+
+      const details = document.createElement("p");
+      details.textContent =
+        `Projected PPR: ${
+          Number.isFinite(ppr) ? ppr.toFixed(2) : "Unavailable"
+        } | AI Score: ${
+          ai.score == null ? "Unavailable" : ai.score.toFixed(1)
+        }`;
+
+      card.append(name, details);
+
+      if (player) {
+        const position = String(player.position || "").toUpperCase();
+        const opponent = teamNextOpponent[player.team]?.opponent;
+        const allowed = opponent
+          ? defensePositionAllowed[opponent]?.[position]
+          : null;
+
+        const matchup = document.createElement("p");
+        matchup.textContent =
+          allowed?.fantasy_points_allowed != null
+            ? `Matchup: ${opponent} | Score: ${
+                calculateMatchupScore(player)
+              }/100`
+            : "Matchup: Unavailable";
+
+        card.appendChild(matchup);
+
+        const games = getPlayerWeeklyStats(player)
+          .filter(game =>
+            Number(game.season) === 2026 &&
+            Number(game.week) < Number(targetWeek)
+          )
+          .sort((a, b) => Number(b.week) - Number(a.week))
+          .slice(0, 3);
+
+        const usage = document.createElement("p");
+
+        if (games.length) {
+          const field = position === "RB"
+            ? "carries"
+            : position === "QB"
+              ? "attempts"
+              : "targets";
+
+          const valid = games
+            .map(game => Number(game[field]))
+            .filter(Number.isFinite);
+
+          usage.textContent = valid.length
+            ? `Recent ${field}: ${
+                (valid.reduce((a, b) => a + b, 0) /
+                  valid.length).toFixed(1)
+              } per game (${valid.length} games)`
+            : "Recent usage: Unavailable";
+        } else {
+          usage.textContent = "Recent usage: Unavailable";
+        }
+
+        card.appendChild(usage);
+      } else {
+        const unavailable = document.createElement("p");
+        unavailable.textContent =
+          "Additional player signals unavailable.";
+        card.appendChild(unavailable);
+      }
+
+      dialog.appendChild(card);
+    });
+
+    const recommendation = document.createElement("p");
+    recommendation.textContent =
+      "Recommendation: Keep the projected optimal lineup " +
+      "unless new injury, role, or matchup information " +
+      "changes the decision. AI Scores and recent usage " +
+      "provide supporting context, not guaranteed outcomes.";
+    dialog.appendChild(recommendation);
   }
 
   document.body.appendChild(dialog);
