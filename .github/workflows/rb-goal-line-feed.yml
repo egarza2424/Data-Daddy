@@ -24,6 +24,93 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Resolve target week
+        id: resolve_week
+        env:
+          MANUAL_WEEK: ${{ inputs.target_week }}
+        run: |
+          python <<'PY'
+          import csv
+          import io
+          import os
+          import urllib.request
+          from collections import defaultdict
+          from datetime import datetime
+
+          manual_week = os.environ.get("MANUAL_WEEK", "").strip()
+
+          if manual_week:
+              target_week = int(manual_week)
+              if not 2 <= target_week <= 19:
+                  raise ValueError("Target week must be 2-19.")
+          else:
+              url = (
+                  "https://raw.githubusercontent.com/"
+                  "nflverse/nfldata/master/data/games.csv"
+              )
+
+              with urllib.request.urlopen(url) as response:
+                  schedule = response.read().decode("utf-8")
+
+              next_games = {}
+
+              for game in csv.DictReader(io.StringIO(schedule)):
+                  if str(game.get("season")) != "2026":
+                      continue
+
+                  if game.get("game_type") not in {"REG", ""}:
+                      continue
+
+                  away = game.get("away_team")
+                  home = game.get("home_team")
+
+                  if not away or not home:
+                      continue
+
+                  if (
+                      game.get("away_score") not in {None, ""}
+                      and game.get("home_score") not in {None, ""}
+                  ):
+                      continue
+
+                  try:
+                      week = int(game.get("week") or 0)
+                      game_date = datetime.strptime(
+                          game["gameday"], "%Y-%m-%d"
+                      ).date()
+                  except (ValueError, TypeError, KeyError):
+                      continue
+
+                  for team in (away, home):
+                      previous = next_games.get(team)
+                      if (
+                          previous is None
+                          or (game_date, week) < previous
+                      ):
+                          next_games[team] = (game_date, week)
+
+              week_counts = defaultdict(int)
+              for _, week in next_games.values():
+                  week_counts[week] += 1
+
+              if not week_counts:
+                  raise RuntimeError(
+                      "Unable to resolve upcoming NFL week."
+                  )
+
+              target_week = max(
+                  week_counts,
+                  key=lambda week: (week_counts[week], week)
+              )
+
+          print(f"Resolved red-zone target: 2026 Week {target_week}")
+
+          with open(
+              os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8"
+          ) as output:
+              output.write(f"week={target_week}\n")
+          PY
+
 
       - name: Download 2026 play-by-play
         run: |
