@@ -4393,41 +4393,38 @@ function renderOptimizedLineup(
 }
 
 
-function optimizeLineup() {
-  const result =
-    document.getElementById(
-      "lineupAnalyzerResult"
-    );
 
-  if (!result) {
-    return;
+function optimizeLineup() {
+  const result = document.getElementById(
+    "lineupAnalyzerResult"
+  );
+
+  if (!result) return;
+
+  const existingDialog = document.getElementById(
+    "lineupAiInsightsDialog"
+  );
+
+  if (existingDialog) {
+    existingDialog.remove();
   }
 
-  const rules =
-    getLineupRules();
+  const rules = getLineupRules();
+  const groups = getLineupPlayersByPosition();
+  const bestLineup = findBestLegalLineup(
+    rules,
+    groups
+  );
 
-  const groups =
-    getLineupPlayersByPosition();
-
-  const bestLineup =
-    findBestLegalLineup(
+  if (!bestLineup) {
+    const missing = getMissingLineupNeeds(
       rules,
       groups
     );
 
-  if (!bestLineup) {
-    const missing =
-      getMissingLineupNeeds(
-        rules,
-        groups
-      );
-
     result.innerHTML = `
       <div class="lineup-validation-message">
-        <strong>
-          Roster is not complete yet.
-        </strong>
-
+        <strong>Roster is not complete yet.</strong>
         <span>
           ${
             missing.length > 0
@@ -4441,11 +4438,91 @@ function optimizeLineup() {
     return;
   }
 
-  renderOptimizedLineup(
-    bestLineup,
-    rules
+  renderOptimizedLineup(bestLineup, rules);
+
+  const dialog = document.createElement("dialog");
+  dialog.id = "lineupAiInsightsDialog";
+  dialog.setAttribute(
+    "aria-label",
+    "DATA DADDY AI Second Opinion"
   );
+
+  Object.assign(dialog.style, {
+    width: "min(92vw, 700px)",
+    maxHeight: "85vh",
+    overflowY: "auto",
+    padding: "24px",
+    border: "1px solid #c8a64d",
+    borderRadius: "16px",
+    background: "#151515",
+    color: "#ffffff",
+    boxShadow: "0 20px 70px rgba(0,0,0,.7)"
+  });
+
+  const header = document.createElement("div");
+  Object.assign(header.style, {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: "16px",
+    marginBottom: "20px"
+  });
+
+  const title = document.createElement("h3");
+  title.textContent = "DATA DADDY — AI SECOND OPINION";
+  title.style.margin = "0";
+  title.style.color = "#f5d37a";
+
+  const closeButton = document.createElement("button");
+  closeButton.type = "button";
+  closeButton.textContent = "✕ Close";
+  closeButton.style.padding = "10px 14px";
+  closeButton.style.cursor = "pointer";
+
+  closeButton.addEventListener("click", () => {
+    dialog.close();
+  });
+
+  header.append(title, closeButton);
+  dialog.appendChild(header);
+
+  const existingInsights = result.querySelector(
+    ".start-sit-insights"
+  );
+
+  if (existingInsights) {
+    dialog.appendChild(existingInsights);
+  } else {
+    const message = document.createElement("div");
+
+    const heading = document.createElement("h4");
+    heading.textContent = "No Major Start/Sit Disagreements";
+
+    const explanation = document.createElement("p");
+    explanation.textContent =
+      "DATA DADDY found no close starting-lineup " +
+      "decisions where a bench player's AI Score " +
+      "exceeds the selected starter's score by " +
+      "at least 5 points within a 3-point PPR " +
+      "projection difference. The recommended " +
+      "lineup remains the highest-projected " +
+      "eligible combination.";
+
+    message.append(heading, explanation);
+    dialog.appendChild(message);
+  }
+
+  document.body.appendChild(dialog);
+
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) {
+      dialog.close();
+    }
+  });
+
+  dialog.showModal();
 }
+
 
 function normalizeName(name) {
   return String(name || "")
