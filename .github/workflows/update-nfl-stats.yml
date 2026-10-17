@@ -863,14 +863,13 @@ jobs:
                   if row_week > 0:
                       available_2026_weeks.append(row_week)
 
-              if target_week is not None:
-                  history_cutoff_week = target_week
-              elif available_2026_weeks:
-                  history_cutoff_week = max(
-                      available_2026_weeks
-                  ) + 1
-              else:
-                  history_cutoff_week = 1
+              history_cutoff_week = prediction_week_cutoff
+
+              print(
+                  "Rolling-history cutoff: "
+                  f"exclude Week {history_cutoff_week} "
+                  "and later."
+              )
 
               for row in rows:
                   try:
