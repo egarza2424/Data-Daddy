@@ -59,12 +59,13 @@ MODEL_F_FEATURES_BY_POSITION = {
     "RB": MODEL_A_FEATURES,
     "WR": MODEL_A_FEATURES,
     "TE": MODEL_E_FEATURES,
-    MODEL_G_QB_FEATURES = MODEL_D_FEATURES + [
+}
+
+MODEL_G_QB_FEATURES = MODEL_D_FEATURES + [
     "qb_pass_attempts_pg",
     "qb_rush_attempts_pg",
     "qb_rush_yards_pg",
 ]
-}
 def fit_linear_regression(
     train_x,
     train_y,
