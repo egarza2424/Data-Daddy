@@ -3879,9 +3879,25 @@ function getStartSitInsights(
         return;
       }
 
+      
       bench.forEach(
         (benchPlayer) => {
+          const eligiblePlayers =
+            getLineupPlayersByPosition();
+
+          const position = String(
+            benchPlayer.position || ""
+          ).toUpperCase();
+
+          const isAvailable =
+            (eligiblePlayers[position] || []).some(
+              player =>
+                getLineupProjectionKey(player) ===
+                getLineupProjectionKey(benchPlayer)
+            );
+
           if (
+            !isAvailable ||
             !isPlayerEligibleForSlot(
               benchPlayer,
               slot
@@ -3889,6 +3905,7 @@ function getStartSitInsights(
           ) {
             return;
           }
+
 
           const benchPpr =
             Number(
