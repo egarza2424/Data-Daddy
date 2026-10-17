@@ -179,6 +179,88 @@ jobs:
                   "Matchup schedule using live "
                   "next-opponent mode."
               )
+          # -------------------------------------------------
+          # EARLY PREDICTION-WEEK CUTOFF
+          # -------------------------------------------------
+          if target_week is not None:
+              prediction_week_cutoff = target_week
+          else:
+              schedule_url = (
+                  "https://raw.githubusercontent.com/"
+                  "nflverse/nfldata/master/data/games.csv"
+              )
+
+              with urllib.request.urlopen(
+                  schedule_url
+              ) as response:
+                  schedule_text = (
+                      response.read().decode("utf-8")
+                  )
+
+              schedule_rows = csv.DictReader(
+                  io.StringIO(schedule_text)
+              )
+
+              next_games = {}
+
+              for game in schedule_rows:
+                  if str(game.get("season")) != "2026":
+                      continue
+
+                  if game.get("game_type") not in {"REG", ""}:
+                      continue
+
+                  away = game.get("away_team")
+                  home = game.get("home_team")
+
+                  if not away or not home:
+                      continue
+
+                  if (
+                      game.get("away_score") not in {None, ""}
+                      and game.get("home_score") not in {None, ""}
+                  ):
+                      continue
+
+                  try:
+                      week = int(game.get("week") or 0)
+                      game_date = datetime.strptime(
+                          game["gameday"], "%Y-%m-%d"
+                      ).date()
+                  except (ValueError, TypeError, KeyError):
+                      continue
+
+                  for team in (away, home):
+                      previous = next_games.get(team)
+
+                      if (
+                          previous is None
+                          or (game_date, week) < previous
+                      ):
+                          next_games[team] = (game_date, week)
+
+              week_counts = defaultdict(int)
+
+              for _, week in next_games.values():
+                  week_counts[week] += 1
+
+              if not week_counts:
+                  raise RuntimeError(
+                      "Unable to resolve prediction week."
+                  )
+
+              prediction_week_cutoff = max(
+                  week_counts,
+                  key=lambda week: (
+                      week_counts[week], week
+                  )
+              )
+
+          print(
+              "Early prediction-week cutoff: "
+              f"2026 Week {prediction_week_cutoff}."
+          )
+
 
           seasons = [2026, 2025]
           # -------------------------------------------------
