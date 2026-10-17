@@ -39,6 +39,15 @@ jobs:
             --target-week "${{ inputs.target_week }}" \
             --output "data/red_zone_usage_2026_week${{ inputs.target_week }}.json"
 
+      - name: Validate generated red-zone feed
+        run: |
+          python scripts/validate_red_zone_feed.py \
+            --pbp /tmp/play_by_play_2026.csv.gz \
+            --stats nfl-stats.json \
+            --feed "data/red_zone_usage_2026_week${{ inputs.target_week }}.json"
+
+
+
       - name: Upload red-zone artifact
         uses: actions/upload-artifact@v4
         with:
