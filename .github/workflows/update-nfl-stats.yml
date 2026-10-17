@@ -5421,13 +5421,9 @@ jobs:
 
           current_player_vs_defensive_caller = {}
           
-          if target_week is not None:
-              player_signal_source_rows = (
-                  completed_2026_rows
-              )
-          else:
-              player_signal_source_rows = rows
-
+          player_signal_source_rows = (
+              completed_2026_rows
+          )
           player_signal_source_weeks = sorted({
               int(float(row.get("week") or 0))
               for row in player_signal_source_rows
