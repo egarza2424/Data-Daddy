@@ -1359,7 +1359,23 @@ def build_week(
         opportunity_raw = float(
             recent["opportunity_raw"].mean()
         )
+        # QB challenger features: prior three games only.
+        qb_pass_attempts_pg = 0.0
+        qb_rush_attempts_pg = 0.0
+        qb_rush_yards_pg = 0.0
 
+        if position == "QB":
+            qb_pass_attempts_pg = float(
+                recent["attempts"].mean()
+            )
+            qb_rush_attempts_pg = float(
+                recent["carries"].mean()
+            )
+            qb_rush_yards_pg = float(
+                recent["rushing_yards"].mean()
+            )
+
+        
         usage_values = []
         confidence_usage_values = []
 
@@ -1474,6 +1490,15 @@ def build_week(
 
                 "redzone_raw":
                     redzone_per_game,
+
+                "qb_pass_attempts_pg":
+                    qb_pass_attempts_pg,
+
+                "qb_rush_attempts_pg":
+                    qb_rush_attempts_pg,
+
+                "qb_rush_yards_pg":
+                    qb_rush_yards_pg,
 
                 "production_consistency":
                     production_consistency,
@@ -1744,6 +1769,9 @@ def build_dataset(
         "opportunity_raw",
         "usage_raw",
         "redzone_raw",
+        "qb_pass_attempts_pg",
+        "qb_rush_attempts_pg",
+        "qb_rush_yards_pg",
         "matchup_raw",
         "actual_ppr",
     ]
