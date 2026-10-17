@@ -4925,21 +4925,53 @@ function optimizeLineup() {
         }
       }
 
-      const summary = reasons.length
+     
+      const addAnalysisSection = (heading, content, color) => {
+        const section = document.createElement("div");
+        section.style.cssText =
+          "padding:10px 14px;margin-top:10px;" +
+          "background:rgba(255,255,255,.04);" +
+          "border-left:3px solid " + color + ";" +
+          "border-radius:5px;";
 
-        ? `Supporting signals: ${reasons.join(", ")}.`
-        : "No strong supporting signals identified from available data.";
+        const label = document.createElement("strong");
+        label.textContent = heading;
+        label.style.color = color;
+        label.style.display = "block";
+        label.style.marginBottom = "5px";
 
-      const warning = cautions.length
-        ? ` Caution: ${cautions.join(", ")}.`
-        : "";
+        const description = document.createElement("div");
+        description.textContent = content;
+        description.style.lineHeight = "1.5";
 
-      recommendation.textContent =
-        `DATA DADDY Recommendation: Start ${projection.player_name} ` +
-        `in the projected optimal lineup. ${summary}${warning} ` +
-        "Monitor new information before kickoff.";
+        section.append(label, description);
+        card.appendChild(section);
+      };
 
-      card.appendChild(recommendation);
+      addAnalysisSection(
+        "SUPPORTING SIGNALS",
+        reasons.length
+          ? reasons.join(" • ")
+          : "No strong supporting signals identified from available data.",
+        "#7dd3a8"
+      );
+
+      addAnalysisSection(
+        "RISK FACTORS",
+        cautions.length
+          ? cautions.join(" • ")
+          : "No specific risk factors flagged by the available signals.",
+        "#f0b86e"
+      );
+
+      addAnalysisSection(
+        "FINAL RECOMMENDATION",
+        `Start ${projection.player_name} in the projected optimal ` +
+        "lineup based on projected PPR. Monitor injury, role, " +
+        "and matchup updates before kickoff.",
+        "#f5d37a"
+      );
+
       
       dialog.appendChild(card);
     });
