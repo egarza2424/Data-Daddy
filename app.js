@@ -4024,10 +4024,14 @@ function renderStartSitInsights(slots, bench) {
       player.position || projection.position || ""
     ).toUpperCase();
 
+    const targetWeek = Number(
+      document.documentElement.dataset.targetWeek
+    );
+
     const games = getPlayerWeeklyStats(player)
       .filter(game =>
         Number(game.season) === 2026 &&
-        Number(game.week) < Number(targetWeek)
+        Number(game.week) < targetWeek
       )
       .sort((a, b) =>
         Number(b.week) - Number(a.week)
@@ -4626,10 +4630,14 @@ function optimizeLineup() {
 
         card.appendChild(matchup);
 
+        const targetWeek = Number(
+          document.documentElement.dataset.targetWeek
+        );
+
         const games = getPlayerWeeklyStats(player)
           .filter(game =>
             Number(game.season) === 2026 &&
-            Number(game.week) < Number(targetWeek)
+            Number(game.week) < targetWeek
           )
           .sort((a, b) => Number(b.week) - Number(a.week))
           .slice(0, 3);
