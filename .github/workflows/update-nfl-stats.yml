@@ -5435,20 +5435,24 @@ jobs:
               f"{player_signal_source_weeks}."
           )
 
-          if target_week is not None:
-              leaked_player_signal_weeks = [
-                  week
-                  for week in player_signal_source_weeks
-                  if week >= target_week
-              ]
+          leaked_player_signal_weeks = [
+              week
+              for week in player_signal_source_weeks
+              if week >= prediction_week_cutoff
+          ]
 
-              if leaked_player_signal_weeks:
-                  raise RuntimeError(
-                      "Fixed-week player-signal leakage "
-                      "detected. Source contains target "
-                      "or future weeks: "
-                      f"{leaked_player_signal_weeks}"
-                  )
+          if leaked_player_signal_weeks:
+              raise RuntimeError(
+                  "Pregame player-signal leakage detected. "
+                  "Source contains target or future weeks: "
+                  f"{leaked_player_signal_weeks}"
+              )
+
+          print(
+              "Pregame player-signal validation: PASS. "
+              f"All source weeks precede Week "
+              f"{prediction_week_cutoff}."
+          )
 
           current_player_ids = {
               row.get("player_id")
