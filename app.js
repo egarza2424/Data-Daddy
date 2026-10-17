@@ -4206,16 +4206,120 @@ function renderStartSitInsights(slots, bench) {
       benchSignals?.redZoneLabel || "Unavailable"
     );
 
+    
     const note = document.createElement("p");
     note.style.marginTop = "14px";
+
+    const reasons = [];
+    let starterSupport = 0;
+    let benchSupport = 0;
+
+    const starterMatchup =
+      starterSignals?.matchupLabel || "";
+    const benchMatchup =
+      benchSignals?.matchupLabel || "";
+
+    const starterMatchupScore = Number(
+      starterMatchup.match(/Matchup score (\d+)/)?.[1]
+    );
+    const benchMatchupScore = Number(
+      benchMatchup.match(/Matchup score (\d+)/)?.[1]
+    );
+
+    if (
+      starterMatchup.includes("Matchup score") &&
+      benchMatchup.includes("Matchup score")
+    ) {
+      const difference =
+        benchMatchupScore - starterMatchupScore;
+
+      if (difference >= 10) {
+        benchSupport++;
+        reasons.push(
+          `${benchName} has the more favorable matchup.`
+        );
+      } else if (difference <= -10) {
+        starterSupport++;
+        reasons.push(
+          `${starterName} has the more favorable matchup.`
+        );
+      }
+    }
+
+    const starterUsage = parseFloat(
+      starterSignals?.usageLabel || ""
+    );
+    const benchUsage = parseFloat(
+      benchSignals?.usageLabel || ""
+    );
+
+    if (
+      insight.starter.position ===
+        insight.benchPlayer.position &&
+      Number.isFinite(starterUsage) &&
+      Number.isFinite(benchUsage)
+    ) {
+      if (benchUsage >= starterUsage * 1.2 &&
+          benchUsage - starterUsage >= 1) {
+        benchSupport++;
+        reasons.push(
+          `${benchName} has greater recent opportunity volume.`
+        );
+      } else if (
+        starterUsage >= benchUsage * 1.2 &&
+        starterUsage - benchUsage >= 1
+      ) {
+        starterSupport++;
+        reasons.push(
+          `${starterName} has greater recent opportunity volume.`
+        );
+      }
+    }
+
+    const starterRedZone = parseFloat(
+      starterSignals?.redZoneLabel || ""
+    );
+    const benchRedZone = parseFloat(
+      benchSignals?.redZoneLabel || ""
+    );
+
+    if (
+      insight.starter.position ===
+        insight.benchPlayer.position &&
+      Number.isFinite(starterRedZone) &&
+      Number.isFinite(benchRedZone)
+    ) {
+      if (benchRedZone - starterRedZone >= 1) {
+        benchSupport++;
+        reasons.push(
+          `${benchName} has more recent red-zone opportunities.`
+        );
+      } else if (starterRedZone - benchRedZone >= 1) {
+        starterSupport++;
+        reasons.push(
+          `${starterName} has more recent red-zone opportunities.`
+        );
+      }
+    }
+
+    const recommendation =
+      benchSupport >= 2 && benchSupport > starterSupport
+        ? `Consider starting ${benchName} over ${starterName}.`
+        : `Keep ${starterName} as the projected starter.`;
+
     note.textContent =
-      "AI Second Opinion: Consider the alternative " +
-      "if matchup and opportunity trends support the " +
-      "higher AI Score. The projected starter remains " +
-      "the PPR-based recommendation. Recent averages " +
-      "use up to three completed weeks of available data.";
+      `DATA DADDY Recommendation: ${recommendation} ` +
+      `The PPR projection favors ${starterName} by ` +
+      `${insight.projectionEdge.toFixed(2)} points, while ` +
+      `AI Score favors ${benchName} by ` +
+      `${insight.aiEdge.toFixed(1)} points. ` +
+      (reasons.length
+        ? reasons.join(" ")
+        : "Available matchup and opportunity data do not " +
+          "show a clear additional advantage.");
 
     card.appendChild(note);
+
     section.appendChild(card);
   });
 
