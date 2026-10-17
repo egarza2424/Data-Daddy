@@ -4907,10 +4907,12 @@ function optimizeLineup() {
             1,
             "red-zone receiving opportunities"
           );
+       
         }
-
+      }
 
       const summary = reasons.length
+
         ? `Supporting signals: ${reasons.join(", ")}.`
         : "No strong supporting signals identified from available data.";
 
