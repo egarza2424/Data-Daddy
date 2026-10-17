@@ -4520,7 +4520,35 @@ function optimizeLineup() {
     }
   });
 
-  dialog.showModal();
+
+  const insightsButton = document.createElement("button");
+  insightsButton.type = "button";
+  insightsButton.textContent = "View AI Insights";
+
+  Object.assign(insightsButton.style, {
+    display: "block",
+    width: "100%",
+    marginTop: "20px",
+    padding: "14px 20px",
+    border: "1px solid #c8a64d",
+    borderRadius: "10px",
+    background: "#dcae42",
+    color: "#111111",
+    fontWeight: "700",
+    fontSize: "15px",
+    cursor: "pointer"
+  });
+
+  insightsButton.addEventListener("click", () => {
+    dialog.showModal();
+  });
+
+  result.appendChild(insightsButton);
+
+  result.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
 }
 
 
