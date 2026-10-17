@@ -59,6 +59,11 @@ MODEL_F_FEATURES_BY_POSITION = {
     "RB": MODEL_A_FEATURES,
     "WR": MODEL_A_FEATURES,
     "TE": MODEL_E_FEATURES,
+    MODEL_G_QB_FEATURES = MODEL_D_FEATURES + [
+    "qb_pass_attempts_pg",
+    "qb_rush_attempts_pg",
+    "qb_rush_yards_pg",
+]
 }
 def fit_linear_regression(
     train_x,
@@ -605,7 +610,15 @@ def main():
                 "F_position_specific"
             ),
         )
+        model_g = pd.DataFrame()
 
+        if position == "QB":
+            model_g = walk_forward_model(
+                data=data,
+                position=position,
+                feature_columns=MODEL_G_QB_FEATURES,
+                model_name="G_QB_passing_rushing",
+            )
         
         prediction_frames.extend(
             [
@@ -615,6 +628,7 @@ def main():
                 model_d,
                 model_e,
                 model_f,
+                model_g,
             ]
         )
     
