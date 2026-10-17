@@ -3356,39 +3356,60 @@ function getLineupPlayersByPosition() {
     TE: []
   };
 
-  lineupRoster.forEach(
-    (projection) => {
-      const position =
-        String(
-          projection.position || ""
-        ).toUpperCase();
+  const unavailableStatuses = new Set([
+    "OUT",
+    "IR",
+    "INJURED_RESERVE",
+    "INJURY_RESERVE",
+    "PUP",
+    "INACTIVE",
+    "SUSPENDED",
+    "EXEMPT",
+    "EXEMPT_LIST",
+    "RESERVE/EXEMPT",
+    "RESERVE_EXEMPT"
+  ]);
 
-      if (!groups[position]) {
-        return;
-      }
+  lineupRoster.forEach((projection) => {
+    const position = String(
+      projection.position || ""
+    ).toUpperCase();
 
-      groups[position].push(
-        projection
-      );
+    if (!groups[position]) {
+      return;
     }
-  );
 
-  Object.values(groups).forEach(
-    (players) => {
-      players.sort(
-        (a, b) =>
-          Number(
-            b.projected_ppr
-          ) -
-          Number(
-            a.projected_ppr
-          )
-      );
+    const player = getProjectionPlayer(projection);
+
+    const injuryStatus = String(
+      player?.injuryStatus || ""
+    ).trim().toUpperCase();
+
+    const rosterStatus = String(
+      player?.status || ""
+    ).trim().toUpperCase();
+
+    if (
+      unavailableStatuses.has(injuryStatus) ||
+      unavailableStatuses.has(rosterStatus)
+    ) {
+      return;
     }
-  );
+
+    groups[position].push(projection);
+  });
+
+  Object.values(groups).forEach((positionPlayers) => {
+    positionPlayers.sort(
+      (a, b) =>
+        Number(b.projected_ppr) -
+        Number(a.projected_ppr)
+    );
+  });
 
   return groups;
 }
+
 
 
 function getLineupDistributions(
