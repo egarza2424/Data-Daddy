@@ -2,6 +2,13 @@
 name: Build Weighted Red-Zone Feed
 
 on:
+  workflow_run:
+    workflows:
+      - "Update NFL Stats"
+    types:
+      - completed
+    branches:
+      - main
   schedule:
     - cron: "30 15 * * *"
   workflow_dispatch:
