@@ -1,0 +1,25 @@
+
+name: Audit Red-Zone Team Changes
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Audit team changes
+        run: |
+          python scripts/audit_red_zone_team_changes.py
