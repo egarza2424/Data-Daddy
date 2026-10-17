@@ -4678,11 +4678,25 @@ function optimizeLineup() {
   title.style.margin = "0";
   title.style.color = "#f5d37a";
 
+  
   const closeButton = document.createElement("button");
   closeButton.type = "button";
   closeButton.textContent = "✕ Close";
-  closeButton.style.padding = "10px 14px";
-  closeButton.style.cursor = "pointer";
+
+  Object.assign(closeButton.style, {
+    background: "#171717",
+    color: "#f5d37a",
+    border: "1px solid #f5d37a",
+    borderRadius: "8px",
+    padding: "10px 16px",
+    fontSize: "13px",
+    fontWeight: "700",
+    cursor: "pointer",
+    width: "auto",
+    minWidth: "90px",
+    flex: "0 0 auto",
+    boxShadow: "none"
+  });
 
   closeButton.addEventListener("click", () => {
     dialog.close();
