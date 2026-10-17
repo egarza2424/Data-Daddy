@@ -1,0 +1,39 @@
+
+name: Validate Red-Zone Feed
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_week:
+        description: "Week to validate"
+        required: true
+        default: "6"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download 2026 play-by-play
+        run: |
+          curl --fail --location --retry 3 \
+            --output /tmp/play_by_play_2026.csv.gz \
+            https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.csv.gz
+
+      - name: Validate frozen red-zone feed
+        run: |
+          python scripts/validate_red_zone_feed.py \
+            --pbp /tmp/play_by_play_2026.csv.gz \
+            --stats nfl-stats.json \
+            --feed "data/red_zone_usage_2026_week${{ inputs.target_week }}.json"
