@@ -4834,6 +4834,7 @@ function optimizeLineup() {
           );
         }
 
+        
         const targetWeek = Number(
           document.documentElement.dataset.targetWeek
         );
@@ -4846,32 +4847,68 @@ function optimizeLineup() {
           .sort((a, b) => Number(b.week) - Number(a.week))
           .slice(0, 3);
 
-        const field = position === "RB"
-          ? "carries"
-          : position === "QB"
-            ? "attempts"
-            : "targets";
+        const average = (field) => {
+          const values = recentGames
+            .map(game => game[field])
+            .filter(value =>
+              value !== null &&
+              value !== undefined &&
+              value !== ""
+            )
+            .map(Number)
+            .filter(Number.isFinite);
 
-        const values = recentGames
-          .map(game => Number(game[field]))
-          .filter(Number.isFinite);
+          return values.length >= 2
+            ? values.reduce((sum, value) => sum + value, 0) /
+                values.length
+            : null;
+        };
 
-        if (values.length >= 2) {
-          const average =
-            values.reduce((sum, value) => sum + value, 0) /
-            values.length;
+        const addVolumeSignal = (field, threshold, label) => {
+          const value = average(field);
 
-          const threshold = position === "QB"
-            ? 30
-            : position === "RB"
-              ? 15
-              : 7;
-
-          if (average >= threshold) {
-            reasons.push("strong recent opportunity volume");
+          if (value !== null && value >= threshold) {
+            reasons.push(
+              `${label} (${value.toFixed(1)}/game)`
+            );
           }
+        };
+
+        if (position === "QB") {
+          addVolumeSignal(
+            "attempts", 30, "strong passing volume"
+          );
+          addVolumeSignal(
+            "carries", 5, "rushing involvement"
+          );
+          addVolumeSignal(
+            "red_zone_pass_attempts",
+            4,
+            "red-zone passing opportunities"
+          );
+        } else if (position === "RB") {
+          addVolumeSignal(
+            "carries", 15, "strong rushing workload"
+          );
+          addVolumeSignal(
+            "targets", 4, "receiving involvement"
+          );
+          addVolumeSignal(
+            "red_zone_carries",
+            2,
+            "red-zone rushing opportunities"
+          );
+        } else if (position === "WR" || position === "TE") {
+          addVolumeSignal(
+            "targets", 7, "strong target volume"
+          );
+          addVolumeSignal(
+            "red_zone_targets",
+            1,
+            "red-zone receiving opportunities"
+          );
         }
-      }
+
 
       const summary = reasons.length
         ? `Supporting signals: ${reasons.join(", ")}.`
