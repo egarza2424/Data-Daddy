@@ -4794,6 +4794,100 @@ function optimizeLineup() {
         card.appendChild(unavailable);
       }
 
+      const recommendation = document.createElement("p");
+      recommendation.style.marginTop = "12px";
+
+      const reasons = [];
+      const cautions = [];
+
+      if (player) {
+        const position = String(
+          player.position || projection.position || ""
+        ).toUpperCase();
+
+        const opponent =
+          teamNextOpponent[player.team]?.opponent;
+
+        const matchupData = opponent
+          ? defensePositionAllowed[opponent]?.[position]
+          : null;
+
+        if (matchupData?.fantasy_points_allowed != null) {
+          const score = Number(calculateMatchupScore(player));
+
+          if (Number.isFinite(score)) {
+            if (score >= 65) {
+              reasons.push("favorable matchup");
+            } else if (score <= 35) {
+              cautions.push("difficult matchup");
+            }
+          }
+        }
+
+        const status = String(
+          player.injuryStatus || player.status || ""
+        ).trim().toUpperCase();
+
+        if (status === "QUESTIONABLE" || status === "DOUBTFUL") {
+          cautions.push(
+            `${status.toLowerCase()} injury designation`
+          );
+        }
+
+        const targetWeek = Number(
+          document.documentElement.dataset.targetWeek
+        );
+
+        const recentGames = getPlayerWeeklyStats(player)
+          .filter(game =>
+            Number(game.season) === 2026 &&
+            Number(game.week) < targetWeek
+          )
+          .sort((a, b) => Number(b.week) - Number(a.week))
+          .slice(0, 3);
+
+        const field = position === "RB"
+          ? "carries"
+          : position === "QB"
+            ? "attempts"
+            : "targets";
+
+        const values = recentGames
+          .map(game => Number(game[field]))
+          .filter(Number.isFinite);
+
+        if (values.length >= 2) {
+          const average =
+            values.reduce((sum, value) => sum + value, 0) /
+            values.length;
+
+          const threshold = position === "QB"
+            ? 30
+            : position === "RB"
+              ? 15
+              : 7;
+
+          if (average >= threshold) {
+            reasons.push("strong recent opportunity volume");
+          }
+        }
+      }
+
+      const summary = reasons.length
+        ? `Supporting signals: ${reasons.join(", ")}.`
+        : "No strong supporting signals identified from available data.";
+
+      const warning = cautions.length
+        ? ` Caution: ${cautions.join(", ")}.`
+        : "";
+
+      recommendation.textContent =
+        `DATA DADDY Recommendation: Start ${projection.player_name} ` +
+        `in the projected optimal lineup. ${summary}${warning} ` +
+        "Monitor new information before kickoff.";
+
+      card.appendChild(recommendation);
+      
       dialog.appendChild(card);
     });
 
