@@ -5,9 +5,9 @@ on:
   workflow_dispatch:
     inputs:
       target_week:
-        description: "2026 target week (only earlier games used)"
-        required: true
-        default: "6"
+        description: "Optional 2026 target week (blank for automatic selection)"
+        required: false
+        default: ""
 
 permissions:
   contents: write
