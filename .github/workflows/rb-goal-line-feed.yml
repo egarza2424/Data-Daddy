@@ -123,32 +123,32 @@ jobs:
           python scripts/build_rb_goal_line_feed.py \
             --pbp /tmp/play_by_play_2026.csv.gz \
             --stats nfl-stats.json \
-            --target-week "${{ inputs.target_week }}" \
-            --output "data/red_zone_usage_2026_week${{ inputs.target_week }}.json"
+            --target-week "${{ steps.resolve_week.outputs.week }}" \
+            --output "data/red_zone_usage_2026_week${{ steps.resolve_week.outputs.week }}.json"
 
       - name: Validate generated red-zone feed
         run: |
           python scripts/validate_red_zone_feed.py \
             --pbp /tmp/play_by_play_2026.csv.gz \
             --stats nfl-stats.json \
-            --feed "data/red_zone_usage_2026_week${{ inputs.target_week }}.json"
+            --feed "data/red_zone_usage_2026_week${{ steps.resolve_week.outputs.week }}.json"
 
 
 
       - name: Upload red-zone artifact
         uses: actions/upload-artifact@v4
         with:
-          name: weighted-red-zone-week${{ inputs.target_week }}
-          path: data/red_zone_usage_2026_week${{ inputs.target_week }}.json
+          name: weighted-red-zone-week${{ steps.resolve_week.outputs.week }}
+          path: data/red_zone_usage_2026_week${{ steps.resolve_week.outputs.week }}.json
 
       - name: Commit generated feed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add "data/red_zone_usage_2026_week${{ inputs.target_week }}.json"
+          git add "data/red_zone_usage_2026_week${{ steps.resolve_week.outputs.week }}.json"
 
           if ! git diff --cached --quiet; then
-            git commit -m "Update Week ${{ inputs.target_week }} weighted red-zone feed"
+            git commit -m "Update Week ${{ steps.resolve_week.outputs.week }} weighted red-zone feed"
             git push
           fi
