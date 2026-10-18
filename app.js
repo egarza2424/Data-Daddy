@@ -3446,16 +3446,33 @@ function getLineupPlayersByPosition() {
       player?.injuryStatus || ""
     ).trim().toUpperCase();
 
+    
     const rosterStatus = String(
       player?.status || ""
     ).trim().toUpperCase();
 
+    const sleeperId = String(
+      player?.id || ""
+    ).trim();
+
+    const snapshotPlayer =
+      gamedayAvailability?.players?.[sleeperId];
+
+    const snapshotUnavailable =
+      snapshotPlayer?.availability ===
+      "unavailable_reported" &&
+      String(snapshotPlayer.position || "").toUpperCase() === position &&
+      String(snapshotPlayer.team || "").toUpperCase() ===
+        String(player?.team || "").toUpperCase();
+
     if (
       unavailableStatuses.has(injuryStatus) ||
-      unavailableStatuses.has(rosterStatus)
+      unavailableStatuses.has(rosterStatus) ||
+      snapshotUnavailable
     ) {
       return;
     }
+
 
     groups[position].push(projection);
   });
