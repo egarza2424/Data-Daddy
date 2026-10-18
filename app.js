@@ -3347,6 +3347,67 @@ function getLineupRules() {
   };
 }
 
+let gamedayAvailability = null;
+
+async function loadGamedayAvailability() {
+  try {
+    const response = await fetch(
+      "./data/gameday_availability.json",
+      { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        `Availability snapshot HTTP ${response.status}`
+      );
+    }
+
+    const snapshot = await response.json();
+
+    if (
+      !snapshot ||
+      snapshot.season !== 2026 ||
+      !snapshot.players ||
+      typeof snapshot.players !== "object" ||
+      !snapshot.generated_at_utc
+    ) {
+      throw new Error("Invalid availability snapshot");
+    }
+
+    const generatedAt = Date.parse(
+      snapshot.generated_at_utc
+    );
+
+    const ageHours =
+      (Date.now() - generatedAt) / 3600000;
+
+    if (
+      !Number.isFinite(ageHours) ||
+      ageHours < -0.25 ||
+      ageHours > 2
+    ) {
+      throw new Error(
+        "Availability snapshot is stale or invalid"
+      );
+    }
+
+    gamedayAvailability = snapshot;
+
+    console.log(
+      "Game-day availability loaded:",
+      snapshot.player_count,
+      "players; generated:",
+      snapshot.generated_at_utc
+    );
+  } catch (error) {
+    gamedayAvailability = null;
+    console.warn(
+      "Game-day availability unavailable:",
+      error.message
+    );
+  }
+}
+
 
 function getLineupPlayersByPosition() {
   const groups = {
