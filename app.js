@@ -9002,9 +9002,15 @@ async function initializeApp() {
   // Load Model F PPR projections for that week.
   await loadWeeklyPprProjections();
 
+ 
   // Load the current NFL player pool and connect
   // Sleeper players to NFL/GSIS IDs.
   await loadPlayers();
+
+  // Load the latest game-day availability snapshot.
+  // A missing or stale snapshot will not block startup.
+  await loadGamedayAvailability();
+
 
   console.log(
     "PPR projection mapping check:",
