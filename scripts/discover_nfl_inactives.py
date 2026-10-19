@@ -123,8 +123,20 @@ def main():
         if url in seen:
             continue
 
-        seen.add(url)
+        season_pattern = (
+            rf"\b{args.season}\b"
+        )
 
+        if not (
+            re.search(season_pattern, title)
+            or re.search(
+                season_pattern,
+                url,
+            )
+        ):
+            continue
+
+        seen.add(url)
         # The title identifies the week, but not
         # necessarily the season or publication date.
         # These are candidates, not verified reports.
