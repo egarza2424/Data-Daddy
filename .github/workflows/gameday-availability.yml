@@ -130,15 +130,40 @@ jobs:
           print("NFL.com observations remain unverified.")
           PY
 
+      - name: Build game-specific NFL observations
+        run: |
+          python scripts/build_nfl_inactive_observations.py
 
+      - name: Validate NFL observations
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
 
-      - name: Commit availability snapshot
+          path = Path("data/nfl_inactive_observations.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+
+          assert data["season"] == 2026
+          assert data["official_inactives_verified"] is False
+          assert isinstance(data["games"], list)
+
+          for game in data["games"]:
+              assert game["verification_status"] == "extracted_unverified"
+              assert game["official_inactives_verified"] is False
+
+          print("PASS: NFL observations validated")
+          print("Games:", len(data["games"]))
+          PY
+
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          
           git add data/gameday_availability.json
+          git add data/nfl_inactive_observations.json
           git add -f data/nfl_inactive_snapshots/inactives_*.json 2>/dev/null || true
+
           if git diff --cached --quiet; then
             echo "No availability changes."
           else
