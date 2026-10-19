@@ -600,6 +600,30 @@ const displayWeek = Number.isInteger(publishedWeek) &&
 document.documentElement.dataset.targetWeek =
   String(displayWeek);
 
+const matchupWeekAligned =
+  publishedWeek === displayWeek;
+
+document.documentElement.dataset.matchupWeekAligned =
+  String(matchupWeekAligned);
+
+if (!matchupWeekAligned) {
+  console.warn(
+    `DATA DADDY: matchup data is Week ${publishedWeek}, ` +
+    `but projections are Week ${displayWeek}. ` +
+    "Suppressing mismatched matchup signals."
+  );
+
+  teamNextOpponent = {};
+  defensePositionAllowed = {};
+  currentPlayCallerSignals = {};
+  currentTrenchSignals = {};
+  currentScoringEnvironment = {};
+  currentPlayerVsDefensiveCaller = {};
+  trenchSignalWeek = null;
+}
+
+
+    
 console.log(
   "DATA DADDY week control:",
   {
