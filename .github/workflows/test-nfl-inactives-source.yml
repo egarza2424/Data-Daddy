@@ -56,6 +56,36 @@ jobs:
                       "Lamar Jackson" in html,
               }
 
+              import re
+
+              for player_name in (
+                  "Quinshon Judkins",
+                  "Lamar Jackson",
+              ):
+                  matches = list(
+                      re.finditer(
+                          re.escape(player_name),
+                          html,
+                          flags=re.IGNORECASE,
+                      )
+                  )
+
+                  print(
+                      f"\nHTML matches for {player_name}: "
+                      f"{len(matches)}"
+                  )
+
+                  for match in matches[:3]:
+                      start = max(0, match.start() - 500)
+                      end = min(len(html), match.end() + 500)
+                      snippet = html[start:end]
+
+                      print(
+                          "\n--- PLAYER HTML CONTEXT ---"
+                      )
+                      print(snippet)
+                      print("--- END CONTEXT ---\n")
+
 
               for label, passed in checks.items():
                   print(label, "PASS" if passed else "FAIL")
