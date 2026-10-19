@@ -100,6 +100,95 @@ jobs:
           )
           PY
 
+      - name: Validate inactive teams against NFL schedule
+        env:
+          NFL_SEASON: ${{ inputs.season }}
+          NFL_WEEK: ${{ inputs.week }}
+        run: |
+          python3 scripts/fetch_nfl_schedule.py
+
+          python3 - <<'PY'
+          import json
+          import os
+          from datetime import date
+          from pathlib import Path
+
+          season = int(os.environ["NFL_SEASON"])
+          week = int(os.environ["NFL_WEEK"])
+
+          extracted = json.loads(
+              Path("data/nfl_inactives_extracted.json").read_text()
+          )
+          schedule = json.loads(
+              Path("data/nfl_schedule_2026.json").read_text()
+          )
+
+          team_codes = {
+              "ARI": "CARDINALS", "ATL": "FALCONS",
+              "BAL": "RAVENS", "BUF": "BILLS",
+              "CAR": "PANTHERS", "CHI": "BEARS",
+              "CIN": "BENGALS", "CLE": "BROWNS",
+              "DAL": "COWBOYS", "DEN": "BRONCOS",
+              "DET": "LIONS", "GB": "PACKERS",
+              "HOU": "TEXANS", "IND": "COLTS",
+              "JAX": "JAGUARS", "KC": "CHIEFS",
+              "LA": "RAMS", "LAC": "CHARGERS",
+              "LV": "RAIDERS", "MIA": "DOLPHINS",
+              "MIN": "VIKINGS", "NE": "PATRIOTS",
+              "NO": "SAINTS", "NYG": "GIANTS",
+              "NYJ": "JETS", "PHI": "EAGLES",
+              "PIT": "STEELERS", "SEA": "SEAHAWKS",
+              "SF": "49ERS", "TB": "BUCCANEERS",
+              "TEN": "TITANS", "WAS": "COMMANDERS",
+          }
+
+          if schedule["season"] != season:
+              raise SystemExit("Schedule season mismatch")
+
+          games = [
+              game for game in schedule["games"]
+              if int(game["week"]) == week
+              and int(game["season"]) == season
+              and date.fromisoformat(
+                  game["gameday"]
+              ).weekday() == 6
+          ]
+
+          expected = set()
+
+          for game in games:
+              for field in ("home_team", "away_team"):
+                  code = game[field]
+                  if code not in team_codes:
+                      raise SystemExit(
+                          f"Unknown team code: {code}"
+                      )
+                  expected.add(team_codes[code])
+
+          actual = set(extracted["teams"])
+
+          missing = sorted(expected - actual)
+          extra = sorted(actual - expected)
+
+          print("Scheduled Sunday games:", len(games))
+          print("Scheduled Sunday teams:", len(expected))
+          print("Extracted teams:", len(actual))
+          print("Missing teams:", missing)
+          print("Extra teams:", extra)
+
+          if (
+              len(games) != extracted["expected_game_count"]
+              or missing
+              or extra
+          ):
+              raise SystemExit(
+                  "NFL inactive report schedule mismatch"
+              )
+
+          print("PASS: All Sunday teams match the schedule")
+          PY
+
+
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
