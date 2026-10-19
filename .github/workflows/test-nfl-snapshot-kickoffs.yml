@@ -56,9 +56,13 @@ jobs:
           )
           PY
 
+      
       - name: Save timestamped snapshot
         run: |
-          python3 scripts/save_nfl_inactive_snapshot.py
+          python3 scripts/save_nfl_inactive_snapshot.py \
+            --season 2026 \
+            --week 6
+
 
       
       - name: Audit snapshot against kickoffs
