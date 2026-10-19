@@ -1372,15 +1372,13 @@ function renderWeeklySleepers() {
       card.className =
         "sleeper-card";
 
-      const matchup =
-        teamNextOpponent[
-          player.team
-        ];
+      
+        // Use the opponent from the same weekly
+        // snapshot as the Sleeper's projections.
+        const opponent =
+          String(projection.opponent || "").trim() ||
+          "TBD";
 
-      const opponent =
-        matchup?.opponent ||
-        projection.opponent ||
-        "TBD";
 
       const status =
         player.injuryStatus ||
