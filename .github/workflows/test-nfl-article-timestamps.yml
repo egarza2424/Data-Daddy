@@ -1,0 +1,26 @@
+
+name: Test NFL Article Timestamps
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect-timestamps:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Discover NFL Week 6 report
+        run: |
+          python3 scripts/discover_nfl_inactives.py \
+            --season 2026 \
+            --week 6
+
+      - name: Inspect article timestamps
+        run: |
+          python3 scripts/inspect_nfl_article_timestamps.py
