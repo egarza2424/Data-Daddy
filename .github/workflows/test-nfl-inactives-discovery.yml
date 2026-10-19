@@ -59,7 +59,10 @@ jobs:
                   "https://www.nfl.com/news/"
               )
               assert item["verification_status"] == (
-                  "candidate_season_unverified"
+                  "candidate_listing_date_checked"
+              )
+              assert item["listing_publication_date"][:4] == str(
+                  data["requested_season"]
               )
 
           print(
