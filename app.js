@@ -7737,8 +7737,6 @@ const relevantPlayers = players.filter((player) => {
     .trim()
     .toUpperCase();
 /*
-
-/*
  * Only apply matchup-based eligibility when
  * matchup data matches the displayed week.
  * Missing data must not be interpreted as a bye.
