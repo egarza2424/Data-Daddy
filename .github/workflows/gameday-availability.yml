@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: "*/15 * * * 0,1,4"
+    - cron: "*/15 * * * 0,1,4,5,6"
 
 permissions:
   contents: write
@@ -56,13 +56,85 @@ jobs:
           )
           PY
 
+      - name: Collect NFL.com inactive observations
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import subprocess
+          from datetime import datetime, timedelta, timezone
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          def run(*args):
+              subprocess.run(["python", *args], check=True)
+
+          run("scripts/fetch_nfl_schedule.py")
+
+          schedule = json.loads(
+              Path("data/nfl_schedule_2026.json").read_text()
+          )
+          now = datetime.now(timezone.utc)
+          eastern = ZoneInfo("America/New_York")
+
+          windows = set()
+          for game in schedule["games"]:
+              kickoff = datetime.strptime(
+                  game["gameday"] + " " + game["gametime"],
+                  "%Y-%m-%d %H:%M",
+              ).replace(tzinfo=eastern).astimezone(timezone.utc)
+
+              if timedelta(hours=-2) <= kickoff - now <= timedelta(hours=3):
+                  windows.add((int(game["season"]), int(game["week"])))
+
+          if not windows:
+              print("No games near kickoff; skipping NFL.com collection.")
+          else:
+              for season, week in sorted(windows):
+                  try:
+                      run(
+                          "scripts/discover_nfl_inactives.py",
+                          "--season", str(season),
+                          "--week", str(week),
+                      )
+                      candidates = json.loads(
+                          Path("data/nfl_inactive_report_candidates.json")
+                          .read_text()
+                      )["candidates"]
+
+                      if len(candidates) != 1:
+                          print(
+                              f"Week {week}: {len(candidates)} reports; "
+                              "skipping ambiguous or missing report."
+                          )
+                          continue
+
+                      run(
+                          "scripts/extract_nfl_inactives.py",
+                          "--url", candidates[0]["url"],
+                      )
+                      run(
+                          "scripts/save_nfl_inactive_snapshot.py",
+                          "--season", str(season),
+                          "--week", str(week),
+                      )
+                  except Exception as exc:
+                      print(
+                          f"Week {week}: collection unavailable: {exc}"
+                      )
+
+          print("NFL.com observations remain unverified.")
+          PY
+
+
+
       - name: Commit availability snapshot
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add data/gameday_availability.json
-
+          git add -f data/nfl_inactive_snapshots/inactives_*.json 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No availability changes."
           else
