@@ -108,7 +108,7 @@
         "espn": {
           "percent": 44.39,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -162,7 +162,7 @@
           "position": "WR",
           "team": "PIT",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -215,7 +215,7 @@
           "position": "WR",
           "team": "PIT",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -268,7 +268,7 @@
           "position": "WR",
           "team": "PIT",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -321,7 +321,7 @@
           "position": "WR",
           "team": "PIT",
           "espn_status": "OUT",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -374,7 +374,7 @@
           "position": "WR",
           "team": "PIT",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -408,7 +408,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -523,7 +523,7 @@
         "espn": {
           "percent": 26.16,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -563,7 +563,7 @@
           "position": "QB",
           "team": "PIT",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -591,7 +591,7 @@
           "position": "QB",
           "team": "PIT",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -633,7 +633,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -748,7 +748,7 @@
         "espn": {
           "percent": 33.21,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -788,7 +788,7 @@
           "position": "RB",
           "team": "NO",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -841,7 +841,7 @@
           "position": "RB",
           "team": "NO",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -891,7 +891,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -997,16 +997,16 @@
         "starting_role_verified": null,
         "injury_replacement_role_verified": null
       },
-      "espn_rostered": 57.08,
+      "espn_rostered": 57.07,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": 57.08,
+      "average_rostered": 57.07,
       "ownership_eligible": true,
       "ownership_sources": {
         "espn": {
-          "percent": 57.08,
+          "percent": 57.07,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -1056,7 +1056,7 @@
           "position": "RB",
           "team": "ARI",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -1109,7 +1109,7 @@
           "position": "RB",
           "team": "ARI",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -1137,7 +1137,7 @@
           "position": "RB",
           "team": "ARI",
           "espn_status": "OUT",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -1187,7 +1187,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -1280,16 +1280,16 @@
         "starting_role_verified": null,
         "injury_replacement_role_verified": null
       },
-      "espn_rostered": 14.91,
+      "espn_rostered": 14.9,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": 14.91,
+      "average_rostered": 14.9,
       "ownership_eligible": true,
       "ownership_sources": {
         "espn": {
-          "percent": 14.91,
+          "percent": 14.9,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -1329,7 +1329,7 @@
           "position": "TE",
           "team": "LV",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -1382,7 +1382,7 @@
           "position": "TE",
           "team": "LV",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -1432,7 +1432,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -1539,7 +1539,7 @@
         "espn": {
           "percent": 2.93,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -1593,7 +1593,7 @@
           "position": "WR",
           "team": "NYJ",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -1638,7 +1638,7 @@
           "position": "WR",
           "team": "NYJ",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -1691,7 +1691,7 @@
           "position": "WR",
           "team": "NYJ",
           "espn_status": "QUESTIONABLE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -1719,7 +1719,7 @@
           "position": "WR",
           "team": "NYJ",
           "espn_status": "OUT",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -1764,7 +1764,7 @@
           "position": "WR",
           "team": "NYJ",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -1809,7 +1809,7 @@
           "position": "WR",
           "team": "NYJ",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -1862,7 +1862,7 @@
           "position": "WR",
           "team": "NYJ",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -1907,7 +1907,7 @@
           "position": "WR",
           "team": "NYJ",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -1949,7 +1949,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -2064,7 +2064,7 @@
         "espn": {
           "percent": 13.77,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -2118,7 +2118,7 @@
           "position": "WR",
           "team": "NE",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -2171,7 +2171,7 @@
           "position": "WR",
           "team": "NE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -2224,7 +2224,7 @@
           "position": "WR",
           "team": "NE",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -2277,7 +2277,7 @@
           "position": "WR",
           "team": "NE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -2322,7 +2322,7 @@
           "position": "WR",
           "team": "NE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -2375,7 +2375,7 @@
           "position": "WR",
           "team": "NE",
           "espn_status": "QUESTIONABLE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -2400,7 +2400,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -2515,7 +2515,7 @@
         "espn": {
           "percent": 7.96,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -2555,7 +2555,7 @@
           "position": "WR",
           "team": "DAL",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -2608,7 +2608,7 @@
           "position": "WR",
           "team": "DAL",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -2636,7 +2636,7 @@
           "position": "WR",
           "team": "DAL",
           "espn_status": "QUESTIONABLE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -2689,7 +2689,7 @@
           "position": "WR",
           "team": "DAL",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -2742,7 +2742,7 @@
           "position": "WR",
           "team": "DAL",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -2792,7 +2792,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -2907,7 +2907,7 @@
         "espn": {
           "percent": 3.92,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -2957,7 +2957,7 @@
           "position": "RB",
           "team": "CHI",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -3010,7 +3010,7 @@
           "position": "RB",
           "team": "CHI",
           "espn_status": "OUT",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -3063,7 +3063,7 @@
           "position": "RB",
           "team": "CHI",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -3105,7 +3105,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -3211,16 +3211,16 @@
         "starting_role_verified": null,
         "injury_replacement_role_verified": null
       },
-      "espn_rostered": 9.2,
+      "espn_rostered": 9.19,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": 9.2,
+      "average_rostered": 9.19,
       "ownership_eligible": true,
       "ownership_sources": {
         "espn": {
-          "percent": 9.2,
+          "percent": 9.19,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -3260,7 +3260,7 @@
           "position": "WR",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -3297,7 +3297,7 @@
           "position": "WR",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -3350,7 +3350,7 @@
           "position": "WR",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -3403,7 +3403,7 @@
           "position": "WR",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -3453,7 +3453,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -3568,7 +3568,7 @@
         "espn": {
           "percent": 0.32,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -3618,7 +3618,7 @@
           "position": "RB",
           "team": "ARI",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -3671,7 +3671,7 @@
           "position": "RB",
           "team": "ARI",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -3699,7 +3699,7 @@
           "position": "RB",
           "team": "ARI",
           "espn_status": "OUT",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -3749,7 +3749,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -3864,7 +3864,7 @@
         "espn": {
           "percent": 6.95,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -3904,7 +3904,7 @@
           "position": "RB",
           "team": "CIN",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -3957,7 +3957,7 @@
           "position": "RB",
           "team": "CIN",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -4007,7 +4007,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -4122,7 +4122,7 @@
         "espn": {
           "percent": 30.37,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -4162,7 +4162,7 @@
           "position": "WR",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -4199,7 +4199,7 @@
           "position": "WR",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -4252,7 +4252,7 @@
           "position": "WR",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -4305,7 +4305,7 @@
           "position": "WR",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -4355,7 +4355,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -4470,7 +4470,7 @@
         "espn": {
           "percent": 0.82,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -4520,7 +4520,7 @@
           "position": "TE",
           "team": "LAR",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -4573,7 +4573,7 @@
           "position": "TE",
           "team": "LAR",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -4626,7 +4626,7 @@
           "position": "TE",
           "team": "LAR",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -4679,7 +4679,7 @@
           "position": "TE",
           "team": "LAR",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -4704,7 +4704,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -4819,7 +4819,7 @@
         "espn": {
           "percent": 39.14,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -4873,7 +4873,7 @@
           "position": "WR",
           "team": "IND",
           "espn_status": "QUESTIONABLE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -4926,7 +4926,7 @@
           "position": "WR",
           "team": "IND",
           "espn_status": "OUT",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -4971,7 +4971,7 @@
           "position": "WR",
           "team": "IND",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -5024,7 +5024,7 @@
           "position": "WR",
           "team": "IND",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -5069,7 +5069,7 @@
           "position": "WR",
           "team": "IND",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -5122,7 +5122,7 @@
           "position": "WR",
           "team": "IND",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -5175,7 +5175,7 @@
           "position": "WR",
           "team": "IND",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -5217,7 +5217,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -5332,7 +5332,7 @@
         "espn": {
           "percent": 0.03,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -5382,7 +5382,7 @@
           "position": "TE",
           "team": "BAL",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -5435,7 +5435,7 @@
           "position": "TE",
           "team": "BAL",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -5485,7 +5485,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -5592,7 +5592,7 @@
         "espn": {
           "percent": 0.04,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -5642,7 +5642,7 @@
           "position": "TE",
           "team": "MIN",
           "espn_status": "QUESTIONABLE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -5695,7 +5695,7 @@
           "position": "TE",
           "team": "MIN",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -5748,7 +5748,7 @@
           "position": "TE",
           "team": "MIN",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -5782,7 +5782,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -5897,7 +5897,7 @@
         "espn": {
           "percent": 39.98,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -5937,7 +5937,7 @@
           "position": "QB",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -5979,7 +5979,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -6085,16 +6085,16 @@
         "starting_role_verified": null,
         "injury_replacement_role_verified": null
       },
-      "espn_rostered": 7.85,
+      "espn_rostered": 7.84,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": 7.85,
+      "average_rostered": 7.84,
       "ownership_eligible": true,
       "ownership_sources": {
         "espn": {
-          "percent": 7.85,
+          "percent": 7.84,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -6152,7 +6152,7 @@
           "position": "RB",
           "team": "CLE",
           "espn_status": "OUT",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -6205,7 +6205,7 @@
           "position": "RB",
           "team": "CLE",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -6258,7 +6258,7 @@
           "position": "RB",
           "team": "CLE",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -6295,7 +6295,7 @@
           "position": "RB",
           "team": "CLE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -6329,7 +6329,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -6444,7 +6444,7 @@
         "espn": {
           "percent": 1.94,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -6494,7 +6494,7 @@
           "position": "QB",
           "team": "TB",
           "espn_status": "OUT",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -6544,7 +6544,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -6659,7 +6659,7 @@
         "espn": {
           "percent": 5.44,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -6709,7 +6709,7 @@
           "position": "WR",
           "team": "NYG",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -6762,7 +6762,7 @@
           "position": "WR",
           "team": "NYG",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -6815,7 +6815,7 @@
           "position": "WR",
           "team": "NYG",
           "espn_status": "QUESTIONABLE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -6868,7 +6868,7 @@
           "position": "WR",
           "team": "NYG",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -6905,7 +6905,7 @@
           "position": "WR",
           "team": "NYG",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -6955,7 +6955,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -7070,7 +7070,7 @@
         "espn": {
           "percent": 2.14,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -7110,7 +7110,7 @@
           "position": "TE",
           "team": "PIT",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -7147,7 +7147,7 @@
           "position": "TE",
           "team": "PIT",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -7197,7 +7197,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -7312,7 +7312,7 @@
         "espn": {
           "percent": 31.81,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -7352,7 +7352,7 @@
           "position": "TE",
           "team": "HOU",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -7405,7 +7405,7 @@
           "position": "TE",
           "team": "HOU",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -7458,7 +7458,7 @@
           "position": "TE",
           "team": "HOU",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -7511,7 +7511,7 @@
           "position": "TE",
           "team": "HOU",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -7545,7 +7545,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -7647,7 +7647,7 @@
         "espn": {
           "percent": 0.08,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -7697,7 +7697,7 @@
           "position": "TE",
           "team": "LAC",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -7734,7 +7734,7 @@
           "position": "TE",
           "team": "LAC",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -7779,7 +7779,7 @@
           "position": "TE",
           "team": "LAC",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -7829,7 +7829,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -7944,7 +7944,7 @@
         "espn": {
           "percent": 46.95,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -7989,7 +7989,7 @@
           "position": "WR",
           "team": "TB",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -8042,7 +8042,7 @@
           "position": "WR",
           "team": "TB",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -8079,7 +8079,7 @@
           "position": "WR",
           "team": "TB",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -8132,7 +8132,7 @@
           "position": "WR",
           "team": "TB",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -8185,7 +8185,7 @@
           "position": "WR",
           "team": "TB",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -8235,7 +8235,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -8350,7 +8350,7 @@
         "espn": {
           "percent": 7.39,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -8390,7 +8390,7 @@
           "position": "WR",
           "team": "ARI",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -8443,7 +8443,7 @@
           "position": "WR",
           "team": "ARI",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -8496,7 +8496,7 @@
           "position": "WR",
           "team": "ARI",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -8533,7 +8533,7 @@
           "position": "WR",
           "team": "ARI",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -8586,7 +8586,7 @@
           "position": "WR",
           "team": "ARI",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -8636,7 +8636,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -8751,7 +8751,7 @@
         "espn": {
           "percent": 1.67,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -8791,7 +8791,7 @@
           "position": "RB",
           "team": "NYG",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -8836,7 +8836,7 @@
           "position": "RB",
           "team": "NYG",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -8889,7 +8889,7 @@
           "position": "RB",
           "team": "NYG",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -8942,7 +8942,7 @@
           "position": "RB",
           "team": "NYG",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -8992,7 +8992,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -9094,7 +9094,7 @@
         "espn": {
           "percent": 13.3,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -9134,7 +9134,7 @@
           "position": "RB",
           "team": "JAX",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -9187,7 +9187,7 @@
           "position": "RB",
           "team": "JAX",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -9240,7 +9240,7 @@
           "position": "RB",
           "team": "JAX",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -9290,7 +9290,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -9392,7 +9392,7 @@
         "espn": {
           "percent": 32.2,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -9442,7 +9442,7 @@
           "position": "WR",
           "team": "BUF",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -9495,7 +9495,7 @@
           "position": "WR",
           "team": "BUF",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -9540,7 +9540,7 @@
           "position": "WR",
           "team": "BUF",
           "espn_status": "OUT",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -9593,7 +9593,7 @@
           "position": "WR",
           "team": "BUF",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -9646,7 +9646,7 @@
           "position": "WR",
           "team": "BUF",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -9680,7 +9680,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -9795,7 +9795,7 @@
         "espn": {
           "percent": 42.64,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -9835,7 +9835,7 @@
           "position": "TE",
           "team": "NE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -9888,7 +9888,7 @@
           "position": "TE",
           "team": "NE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -9925,7 +9925,7 @@
           "position": "TE",
           "team": "NE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -9975,7 +9975,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -10090,7 +10090,7 @@
         "espn": {
           "percent": 0.23,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -10130,7 +10130,7 @@
           "position": "TE",
           "team": "NYJ",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -10183,7 +10183,7 @@
           "position": "TE",
           "team": "NYJ",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -10236,7 +10236,7 @@
           "position": "TE",
           "team": "NYJ",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -10286,7 +10286,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -10388,7 +10388,7 @@
         "espn": {
           "percent": 10.19,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -10428,7 +10428,7 @@
           "position": "RB",
           "team": "LAC",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -10481,7 +10481,7 @@
           "position": "RB",
           "team": "LAC",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -10531,7 +10531,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -10638,7 +10638,7 @@
         "espn": {
           "percent": 55.71,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -10696,7 +10696,7 @@
           "position": "RB",
           "team": "PHI",
           "espn_status": "OUT",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -10749,7 +10749,7 @@
           "position": "RB",
           "team": "PHI",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -10777,7 +10777,7 @@
           "position": "RB",
           "team": "PHI",
           "espn_status": "QUESTIONABLE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -10822,7 +10822,7 @@
           "position": "RB",
           "team": "PHI",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -10875,7 +10875,7 @@
           "position": "RB",
           "team": "PHI",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -10925,7 +10925,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -11040,7 +11040,7 @@
         "espn": {
           "percent": 62.05,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -11080,7 +11080,7 @@
           "position": "RB",
           "team": "NO",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -11133,7 +11133,7 @@
           "position": "RB",
           "team": "NO",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -11183,7 +11183,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -11285,7 +11285,7 @@
         "espn": {
           "percent": 44.24,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -11325,7 +11325,7 @@
           "position": "TE",
           "team": "JAX",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -11353,7 +11353,7 @@
           "position": "TE",
           "team": "JAX",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -11406,7 +11406,7 @@
           "position": "TE",
           "team": "JAX",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -11456,7 +11456,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -11571,7 +11571,7 @@
         "espn": {
           "percent": 0.66,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -11616,7 +11616,7 @@
           "position": "WR",
           "team": "TB",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -11653,7 +11653,7 @@
           "position": "WR",
           "team": "TB",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -11706,7 +11706,7 @@
           "position": "WR",
           "team": "TB",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -11759,7 +11759,7 @@
           "position": "WR",
           "team": "TB",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -11812,7 +11812,7 @@
           "position": "WR",
           "team": "TB",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -11862,7 +11862,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -11977,7 +11977,7 @@
         "espn": {
           "percent": 0.65,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -12026,7 +12026,7 @@
           "position": "RB",
           "team": "NE",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -12054,7 +12054,7 @@
           "position": "RB",
           "team": "NE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -12091,7 +12091,7 @@
           "position": "RB",
           "team": "NE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -12144,7 +12144,7 @@
           "position": "RB",
           "team": "NE",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -12181,7 +12181,7 @@
           "position": "RB",
           "team": "NE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -12231,7 +12231,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -12333,7 +12333,7 @@
         "espn": {
           "percent": 44.24,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -12387,7 +12387,7 @@
           "position": "WR",
           "team": "LV",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -12432,7 +12432,7 @@
           "position": "WR",
           "team": "LV",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -12485,7 +12485,7 @@
           "position": "WR",
           "team": "LV",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -12538,7 +12538,7 @@
           "position": "WR",
           "team": "LV",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -12591,7 +12591,7 @@
           "position": "WR",
           "team": "LV",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -12644,7 +12644,7 @@
           "position": "WR",
           "team": "LV",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -12672,7 +12672,7 @@
           "position": "WR",
           "team": "LV",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -12706,7 +12706,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -12821,7 +12821,7 @@
         "espn": {
           "percent": 1.37,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -12861,7 +12861,7 @@
           "position": "WR",
           "team": "ATL",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -12914,7 +12914,7 @@
           "position": "WR",
           "team": "ATL",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -12967,7 +12967,7 @@
           "position": "WR",
           "team": "ATL",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -13020,7 +13020,7 @@
           "position": "WR",
           "team": "ATL",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -13070,7 +13070,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -13176,16 +13176,16 @@
         "starting_role_verified": null,
         "injury_replacement_role_verified": null
       },
-      "espn_rostered": 32.0,
+      "espn_rostered": 31.99,
       "yahoo_rostered": null,
       "sleeper_rostered": null,
-      "average_rostered": 32.0,
+      "average_rostered": 31.99,
       "ownership_eligible": true,
       "ownership_sources": {
         "espn": {
-          "percent": 32.0,
+          "percent": 31.99,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -13225,7 +13225,7 @@
           "position": "WR",
           "team": "MIA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -13278,7 +13278,7 @@
           "position": "WR",
           "team": "MIA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -13331,7 +13331,7 @@
           "position": "WR",
           "team": "MIA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -13376,7 +13376,7 @@
           "position": "WR",
           "team": "MIA",
           "espn_status": "QUESTIONABLE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -13418,7 +13418,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -13533,7 +13533,7 @@
         "espn": {
           "percent": 63.1,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -13573,7 +13573,7 @@
           "position": "WR",
           "team": "TEN",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -13626,7 +13626,7 @@
           "position": "WR",
           "team": "TEN",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -13679,7 +13679,7 @@
           "position": "WR",
           "team": "TEN",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -13732,7 +13732,7 @@
           "position": "WR",
           "team": "TEN",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -13782,7 +13782,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -13884,7 +13884,7 @@
         "espn": {
           "percent": 62.34,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -13934,7 +13934,7 @@
           "position": "WR",
           "team": "BUF",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -13987,7 +13987,7 @@
           "position": "WR",
           "team": "BUF",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -14040,7 +14040,7 @@
           "position": "WR",
           "team": "BUF",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -14085,7 +14085,7 @@
           "position": "WR",
           "team": "BUF",
           "espn_status": "OUT",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -14138,7 +14138,7 @@
           "position": "WR",
           "team": "BUF",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -14172,7 +14172,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -14287,7 +14287,7 @@
         "espn": {
           "percent": 5.3,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -14337,7 +14337,7 @@
           "position": "QB",
           "team": "BAL",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -14365,7 +14365,7 @@
           "position": "QB",
           "team": "BAL",
           "espn_status": "OUT",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -14415,7 +14415,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -14530,7 +14530,7 @@
         "espn": {
           "percent": 0.2,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -14570,7 +14570,7 @@
           "position": "TE",
           "team": "CAR",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -14623,7 +14623,7 @@
           "position": "TE",
           "team": "CAR",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -14676,7 +14676,7 @@
           "position": "TE",
           "team": "CAR",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -14726,7 +14726,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -14841,7 +14841,7 @@
         "espn": {
           "percent": 4.66,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -14881,7 +14881,7 @@
           "position": "WR",
           "team": "HOU",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -14934,7 +14934,7 @@
           "position": "WR",
           "team": "HOU",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -14987,7 +14987,7 @@
           "position": "WR",
           "team": "HOU",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -15040,7 +15040,7 @@
           "position": "WR",
           "team": "HOU",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -15077,7 +15077,7 @@
           "position": "WR",
           "team": "HOU",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -15127,7 +15127,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -15242,7 +15242,7 @@
         "espn": {
           "percent": 0.09,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -15287,7 +15287,7 @@
           "position": "TE",
           "team": "DAL",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -15315,7 +15315,7 @@
           "position": "TE",
           "team": "DAL",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -15368,7 +15368,7 @@
           "position": "TE",
           "team": "DAL",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -15418,7 +15418,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -15533,7 +15533,7 @@
         "espn": {
           "percent": 0.17,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -15573,7 +15573,7 @@
           "position": "WR",
           "team": "MIA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -15626,7 +15626,7 @@
           "position": "WR",
           "team": "MIA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -15671,7 +15671,7 @@
           "position": "WR",
           "team": "MIA",
           "espn_status": "QUESTIONABLE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -15716,7 +15716,7 @@
           "position": "WR",
           "team": "MIA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -15766,7 +15766,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -15881,7 +15881,7 @@
         "espn": {
           "percent": 1.11,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -15921,7 +15921,7 @@
           "position": "TE",
           "team": "MIA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -15974,7 +15974,7 @@
           "position": "TE",
           "team": "MIA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -16011,7 +16011,7 @@
           "position": "TE",
           "team": "MIA",
           "espn_status": "QUESTIONABLE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -16036,7 +16036,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -16151,7 +16151,7 @@
         "espn": {
           "percent": 0.35,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -16191,7 +16191,7 @@
           "position": "WR",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -16228,7 +16228,7 @@
           "position": "WR",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -16281,7 +16281,7 @@
           "position": "WR",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -16334,7 +16334,7 @@
           "position": "WR",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -16384,7 +16384,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -16499,7 +16499,7 @@
         "espn": {
           "percent": 45.21,
           "source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-          "checked_at": "2026-10-19T20:28:53+00:00"
+          "checked_at": "2026-10-19T21:26:20+00:00"
         }
       },
       "ownership_source_count": 1,
@@ -16539,7 +16539,7 @@
           "position": "WR",
           "team": "CLE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -16592,7 +16592,7 @@
           "position": "WR",
           "team": "CLE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -16637,7 +16637,7 @@
           "position": "WR",
           "team": "CLE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -16690,7 +16690,7 @@
           "position": "WR",
           "team": "CLE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -16743,7 +16743,7 @@
           "position": "WR",
           "team": "CLE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -16793,7 +16793,7 @@
       ],
       "injury_feed_status": "ACTIVE",
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "injury_screening": "requires_official_verification",
       "injury_screening_reason": "ESPN fantasy feed does not establish game-day availability",
       "nflverse_injury_match": "not_listed",
@@ -16906,7 +16906,7 @@
           "position": "WR",
           "team": "PIT",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -16959,7 +16959,7 @@
           "position": "WR",
           "team": "PIT",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -17012,7 +17012,7 @@
           "position": "WR",
           "team": "PIT",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -17065,7 +17065,7 @@
           "position": "WR",
           "team": "PIT",
           "espn_status": "OUT",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -17118,7 +17118,7 @@
           "position": "WR",
           "team": "PIT",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -17209,7 +17209,7 @@
       "nflverse_freshness": "unavailable",
       "injury_source_conflict_review": false,
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "official_game_status": null,
       "official_game_status_source": null,
       "official_game_status_checked_at": null,
@@ -17290,7 +17290,7 @@
           "position": "QB",
           "team": "PIT",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -17318,7 +17318,7 @@
           "position": "QB",
           "team": "PIT",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -17403,7 +17403,7 @@
       "nflverse_freshness": "unavailable",
       "injury_source_conflict_review": false,
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "official_game_status": null,
       "official_game_status_source": null,
       "official_game_status_checked_at": null,
@@ -17484,7 +17484,7 @@
           "position": "RB",
           "team": "NO",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -17537,7 +17537,7 @@
           "position": "RB",
           "team": "NO",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -17630,7 +17630,7 @@
       "nflverse_freshness": "unavailable",
       "injury_source_conflict_review": false,
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "official_game_status": null,
       "official_game_status_source": null,
       "official_game_status_checked_at": null,
@@ -17711,7 +17711,7 @@
           "position": "RB",
           "team": "ARI",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -17764,7 +17764,7 @@
           "position": "RB",
           "team": "ARI",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -17792,7 +17792,7 @@
           "position": "RB",
           "team": "ARI",
           "espn_status": "OUT",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -17880,7 +17880,7 @@
         "interpretation": "ESPN teammate injury flags and candidate usage trends are separate observations; causation and future role are unverified."
       },
       "waiver_evidence_score": 90.87,
-      "average_rostered": 57.08,
+      "average_rostered": 57.07,
       "injury_feed_status": "ACTIVE",
       "injury_screening": "requires_official_verification",
       "injury_review_priority": "standard_official_verification_pending",
@@ -17895,7 +17895,7 @@
       "nflverse_freshness": "unavailable",
       "injury_source_conflict_review": false,
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "official_game_status": null,
       "official_game_status_source": null,
       "official_game_status_checked_at": null,
@@ -17963,7 +17963,7 @@
           "position": "TE",
           "team": "LV",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -18016,7 +18016,7 @@
           "position": "TE",
           "team": "LV",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -18094,7 +18094,7 @@
         "interpretation": "ESPN teammate injury flags and candidate usage trends are separate observations; causation and future role are unverified."
       },
       "waiver_evidence_score": 90.4,
-      "average_rostered": 14.91,
+      "average_rostered": 14.9,
       "injury_feed_status": "ACTIVE",
       "injury_screening": "requires_official_verification",
       "injury_review_priority": "standard_official_verification_pending",
@@ -18109,7 +18109,7 @@
       "nflverse_freshness": "unavailable",
       "injury_source_conflict_review": false,
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "official_game_status": null,
       "official_game_status_source": null,
       "official_game_status_checked_at": null,
@@ -18182,7 +18182,7 @@
           "position": "WR",
           "team": "NYJ",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -18227,7 +18227,7 @@
           "position": "WR",
           "team": "NYJ",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -18280,7 +18280,7 @@
           "position": "WR",
           "team": "NYJ",
           "espn_status": "QUESTIONABLE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -18308,7 +18308,7 @@
           "position": "WR",
           "team": "NYJ",
           "espn_status": "OUT",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -18353,7 +18353,7 @@
           "position": "WR",
           "team": "NYJ",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -18398,7 +18398,7 @@
           "position": "WR",
           "team": "NYJ",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -18451,7 +18451,7 @@
           "position": "WR",
           "team": "NYJ",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -18496,7 +18496,7 @@
           "position": "WR",
           "team": "NYJ",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -18595,7 +18595,7 @@
       "nflverse_freshness": "unavailable",
       "injury_source_conflict_review": false,
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "official_game_status": null,
       "official_game_status_source": null,
       "official_game_status_checked_at": null,
@@ -18676,7 +18676,7 @@
           "position": "WR",
           "team": "NE",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -18729,7 +18729,7 @@
           "position": "WR",
           "team": "NE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -18782,7 +18782,7 @@
           "position": "WR",
           "team": "NE",
           "espn_status": "INJURY_RESERVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -18835,7 +18835,7 @@
           "position": "WR",
           "team": "NE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -18880,7 +18880,7 @@
           "position": "WR",
           "team": "NE",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -18933,7 +18933,7 @@
           "position": "WR",
           "team": "NE",
           "espn_status": "QUESTIONABLE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -19015,7 +19015,7 @@
       "nflverse_freshness": "unavailable",
       "injury_source_conflict_review": false,
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "official_game_status": null,
       "official_game_status_source": null,
       "official_game_status_checked_at": null,
@@ -19096,7 +19096,7 @@
           "position": "WR",
           "team": "DAL",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -19149,7 +19149,7 @@
           "position": "WR",
           "team": "DAL",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -19177,7 +19177,7 @@
           "position": "WR",
           "team": "DAL",
           "espn_status": "QUESTIONABLE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -19230,7 +19230,7 @@
           "position": "WR",
           "team": "DAL",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -19283,7 +19283,7 @@
           "position": "WR",
           "team": "DAL",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -19376,7 +19376,7 @@
       "nflverse_freshness": "unavailable",
       "injury_source_conflict_review": false,
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "official_game_status": null,
       "official_game_status_source": null,
       "official_game_status_checked_at": null,
@@ -19457,7 +19457,7 @@
           "position": "RB",
           "team": "CHI",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -19510,7 +19510,7 @@
           "position": "RB",
           "team": "CHI",
           "espn_status": "OUT",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -19563,7 +19563,7 @@
           "position": "RB",
           "team": "CHI",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -19658,7 +19658,7 @@
       "nflverse_freshness": "unavailable",
       "injury_source_conflict_review": false,
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "official_game_status": null,
       "official_game_status_source": null,
       "official_game_status_checked_at": null,
@@ -19739,7 +19739,7 @@
           "position": "WR",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -19776,7 +19776,7 @@
           "position": "WR",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -19829,7 +19829,7 @@
           "position": "WR",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -19882,7 +19882,7 @@
           "position": "WR",
           "team": "SEA",
           "espn_status": "ACTIVE",
-          "espn_checked_at": "2026-10-19T20:28:53+00:00",
+          "espn_checked_at": "2026-10-19T21:26:20+00:00",
           "nflverse_reports": [],
           "recent_usage": {
             "usage_evidence_status": "measured_usage_only_not_role_verified",
@@ -19960,7 +19960,7 @@
         "interpretation": "ESPN teammate injury flags and candidate usage trends are separate observations; causation and future role are unverified."
       },
       "waiver_evidence_score": 81.01,
-      "average_rostered": 9.2,
+      "average_rostered": 9.19,
       "injury_feed_status": "ACTIVE",
       "injury_screening": "requires_official_verification",
       "injury_review_priority": "standard_official_verification_pending",
@@ -19975,7 +19975,7 @@
       "nflverse_freshness": "unavailable",
       "injury_source_conflict_review": false,
       "injury_feed_source": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/players?scoringPeriodId=0&view=kona_player_info",
-      "injury_feed_checked_at": "2026-10-19T20:28:53+00:00",
+      "injury_feed_checked_at": "2026-10-19T21:26:20+00:00",
       "official_game_status": null,
       "official_game_status_source": null,
       "official_game_status_checked_at": null,
@@ -19986,5 +19986,5 @@
     }
   ],
   "excluded_from_original_top_10_by_espn_injury_screen": [],
-  "last_updated": "2026-10-19T20:28:54.160564+00:00"
+  "last_updated": "2026-10-19T21:26:20.705870+00:00"
 }
