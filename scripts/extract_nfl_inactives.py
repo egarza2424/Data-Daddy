@@ -208,31 +208,28 @@ def main():
     parser = InactiveParser()
     parser.feed(html)
 
-    bills_matches = list(
+    bills_headings = list(
         re.finditer(
-            r"BILLS",
+            r"<h3\b[^>]*>.*?BILLS.*?</h3>",
             html,
-            flags=re.IGNORECASE,
+            flags=re.IGNORECASE | re.DOTALL,
         )
     )
 
     print(
-        "BILLS HTML OCCURRENCES:",
-        len(bills_matches),
+        "BILLS H3 HEADING MATCHES:",
+        len(bills_headings),
     )
 
-    for match in bills_matches[-5:]:
+    for match in bills_headings[:3]:
         start = max(0, match.start() - 200)
-        end = min(len(html), match.end() + 1200)
+        end = min(len(html), match.end() + 2500)
 
         snippet = html[start:end]
 
-        if "<h3" not in snippet.lower():
-            continue
-
         print(
-            "BILLS RAW HTML:",
-            snippet[:1400],
+            "BILLS HEADING AND FOLLOWING HTML:",
+            snippet[:2800],
         )
 
     records = parser.records
