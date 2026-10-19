@@ -136,17 +136,45 @@ def main():
         ):
             continue
 
+       
+        date_match = re.search(
+            r"\b("
+            r"JANUARY|FEBRUARY|MARCH|APRIL|MAY|JUNE|"
+            r"JULY|AUGUST|SEPTEMBER|OCTOBER|"
+            r"NOVEMBER|DECEMBER"
+            r")\s+(\d{1,2}),\s+(\d{4})\b",
+            title,
+            flags=re.IGNORECASE,
+        )
+
+        if not date_match:
+            print("Skipping article without listing date:", url)
+            continue
+
+        try:
+            publication_date = datetime.strptime(
+                date_match.group(0).title(),
+                "%B %d, %Y",
+            ).date()
+        except ValueError:
+            continue
+
+        if publication_date.year != args.season:
+            print("Skipping wrong-season article:", url)
+            continue
+
         seen.add(url)
-        # The title identifies the week, but not
-        # necessarily the season or publication date.
-        # These are candidates, not verified reports.
+
         candidates.append({
             "title": title,
             "url": url,
             "week": args.week,
             "season": args.season,
+            "listing_publication_date": (
+                publication_date.isoformat()
+            ),
             "verification_status": (
-                "candidate_season_unverified"
+                "candidate_listing_date_checked"
             ),
         })
 
