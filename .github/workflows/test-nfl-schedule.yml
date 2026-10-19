@@ -1,0 +1,76 @@
+
+name: Test NFL Schedule
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-schedule:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch NFL schedule
+        run: |
+          python3 scripts/fetch_nfl_schedule.py
+
+      - name: Validate schedule data
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("data/nfl_schedule_2026.json")
+
+          if not path.exists():
+              raise SystemExit("Schedule file was not created")
+
+          data = json.loads(path.read_text())
+
+          assert data["season"] == 2026
+          assert data["game_count"] > 0
+          assert data["schedule_verified"] is False
+
+          games = data["games"]
+
+          print("Total 2026 games:", len(games))
+          print("Available fields:", sorted(games[0].keys()))
+
+          week_6 = [
+              game for game in games
+              if str(game.get("week", "")).strip() == "6"
+          ]
+
+          print("Week 6 games:", len(week_6))
+
+          for game in week_6:
+              print(
+                  "MATCHUP:",
+                  game.get("away_team"),
+                  "@",
+                  game.get("home_team"),
+                  "| Date:",
+                  game.get("gameday"),
+                  "| Time:",
+                  game.get("gametime"),
+                  "| Game ID:",
+                  game.get("game_id"),
+              )
+
+          if not week_6:
+              raise SystemExit("No Week 6 games found")
+          PY
+
+      - name: Upload schedule test
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfl-schedule-test
+          path: data/nfl_schedule_2026.json
+          if-no-files-found: warn
+          retention-days: 7
