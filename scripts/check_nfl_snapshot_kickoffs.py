@@ -1,6 +1,7 @@
 
 """Check whether NFL inactive snapshots preceded each kickoff."""
 
+import argparse
 import json
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -23,6 +24,16 @@ def parse_timestamp(value):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--season", type=int, default=2026)
+    parser.add_argument("--week", type=int, default=6)
+    args = parser.parse_args()
+
+    if args.season != 2026:
+        raise SystemExit(
+            "Only the 2026 schedule is supported currently"
+        )
+
     schedule = json.loads(
         SCHEDULE.read_text(encoding="utf-8")
     )
@@ -57,8 +68,8 @@ def main():
 
     games = [
         game for game in schedule["games"]
-        if int(game["season"]) == 2026
-        and int(game["week"]) == 6
+        if int(game["season"]) == args.season
+        and int(game["week"]) == args.week
         and date.fromisoformat(
             game["gameday"]
         ).weekday() == 6
@@ -133,8 +144,8 @@ def main():
 
     OUTPUT.write_text(
         json.dumps({
-            "season": 2026,
-            "week": 6,
+            "season": args.season,
+            "week": args.week,
             "games_checked": len(results),
             "results": results,
         }, indent=2) + "\n",
