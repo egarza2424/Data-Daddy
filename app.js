@@ -7737,12 +7737,11 @@ const relevantPlayers = players.filter((player) => {
     .trim()
     .toUpperCase();
 /*
- * Exclude players whose team does not have
- * a matchup in the current target week.
- *
- * teamNextOpponent only contains teams that
- * are actually playing this week, so a missing
- * matchup represents a bye.
+
+/*
+ * Only apply matchup-based eligibility when
+ * matchup data matches the displayed week.
+ * Missing data must not be interpreted as a bye.
  */
 const playerTeam =
   player.team === "LA"
@@ -7752,15 +7751,23 @@ const playerTeam =
 const weeklyMatchup =
   teamNextOpponent[playerTeam];
 
+const matchupWeekAligned =
+  document.documentElement.dataset
+    .matchupWeekAligned !== "false";
+
 if (
-  !weeklyMatchup ||
-  !weeklyMatchup.opponent ||
-  String(weeklyMatchup.opponent)
-    .trim()
-    .toUpperCase() === "BYE"
+  matchupWeekAligned &&
+  (
+    !weeklyMatchup ||
+    !weeklyMatchup.opponent ||
+    String(weeklyMatchup.opponent)
+      .trim()
+      .toUpperCase() === "BYE"
+  )
 ) {
   return false;
 }
+
   
   const unavailableRosterStatuses = [
     "INACTIVE",
