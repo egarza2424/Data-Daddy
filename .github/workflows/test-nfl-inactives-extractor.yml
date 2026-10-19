@@ -1,0 +1,70 @@
+
+name: Test NFL Inactives Extractor
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-extractor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run NFL inactive extractor
+        run: python3 scripts/extract_nfl_inactives.py
+
+      - name: Validate extracted records
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("data/nfl_inactives_extracted.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+
+          print("Extracted players:", data["player_count"])
+          print("Teams:", ", ".join(data["teams"]))
+
+          expected = {
+              ("RAVENS", "QB", "Lamar Jackson"),
+              ("BROWNS", "RB", "Quinshon Judkins"),
+          }
+
+          actual = {
+              (
+                  player["team"],
+                  player["position"],
+                  player["name"],
+              )
+              for player in data["players"]
+          }
+
+          for record in sorted(expected):
+              print(
+                  "CHECK:",
+                  record,
+                  "PASS" if record in actual else "FAIL"
+              )
+
+          assert expected.issubset(actual), (
+              "Known inactive player/team matching failed"
+          )
+
+          assert data["verification_status"] == (
+              "extracted_unverified"
+          )
+
+          print("Extractor validation passed.")
+          PY
+
+      - name: Upload extracted records
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfl-inactives-extraction
+          path: data/nfl_inactives_extracted.json
+          retention-days: 7
