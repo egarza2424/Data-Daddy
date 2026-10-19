@@ -4,6 +4,7 @@
 import json
 import re
 import urllib.request
+from datetime import datetime, timezone
 from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
@@ -133,7 +134,62 @@ def main():
         matches = sorted(set(re.findall(pattern, html)))
         print(pattern, matches[:10])
 
-    print("\nINSPECTION ONLY: timestamps are not verified.")
+    
+    timestamp_pairs = []
+
+    for document in parser.json_ld:
+        if isinstance(document, dict):
+            published = document.get("datePublished")
+            modified = document.get("dateModified")
+
+            if published and modified:
+                timestamp_pairs.append(
+                    (published, modified)
+                )
+
+    if len(timestamp_pairs) != 1:
+        raise SystemExit(
+            "FAIL: Expected one publication/modification pair"
+        )
+
+    published_raw, modified_raw = timestamp_pairs[0]
+
+    try:
+        published_at = datetime.fromisoformat(
+            published_raw.replace("Z", "+00:00")
+        )
+        modified_at = datetime.fromisoformat(
+            modified_raw.replace("Z", "+00:00")
+        )
+    except (ValueError, AttributeError):
+        raise SystemExit("FAIL: Invalid article timestamps")
+
+    if (
+        published_at.tzinfo is None
+        or modified_at.tzinfo is None
+    ):
+        raise SystemExit("FAIL: Timestamps lack timezone")
+
+    now = datetime.now(timezone.utc)
+
+    if published_at > modified_at:
+        raise SystemExit(
+            "FAIL: Publication is after modification"
+        )
+
+    if modified_at > now:
+        raise SystemExit(
+            "FAIL: Modification timestamp is in the future"
+        )
+
+    print("\nPASS: Article timestamp metadata is valid")
+    print("Published UTC:", published_at.isoformat())
+    print("Modified UTC:", modified_at.isoformat())
+    print(
+        "CAUTION: No individual player entry timestamps "
+        "have been established."
+    )
+
 
 
 if __name__ == "__main__":
