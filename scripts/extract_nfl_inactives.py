@@ -5,6 +5,7 @@ Produces extraction candidates for validation.
 Does not independently verify publication time or game IDs.
 """
 
+import argparse
 import json
 import re
 import urllib.request
@@ -158,6 +159,17 @@ class InactiveParser(HTMLParser):
 
 
 def main():
+    global SOURCE_URL
+
+    cli = argparse.ArgumentParser()
+    cli.add_argument(
+        "--url",
+        default=SOURCE_URL,
+        help="NFL.com inactive report URL",
+    )
+    args = cli.parse_args()
+    SOURCE_URL = args.url
+
     request = urllib.request.Request(
         SOURCE_URL,
         headers={
