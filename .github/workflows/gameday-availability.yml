@@ -106,22 +106,33 @@ jobs:
                           .read_text()
                       )["candidates"]
 
-                      if len(candidates) != 1:
-                          print(
-                              f"Week {week}: {len(candidates)} reports; "
-                              "skipping ambiguous or missing report."
-                          )
+                      if not candidates:
+                          print(f"Week {week}: no matching NFL.com report yet.")
                           continue
 
-                      run(
-                          "scripts/extract_nfl_inactives.py",
-                          "--url", candidates[0]["url"],
-                      )
-                      run(
-                          "scripts/save_nfl_inactive_snapshot.py",
-                          "--season", str(season),
-                          "--week", str(week),
-                      )
+                      # Process each distinct report independently: a weekly
+                      # Sunday article must not suppress Thursday/Monday reports.
+                      seen_urls = set()
+                      for candidate in candidates:
+                          url = candidate["url"]
+                          if url in seen_urls:
+                              continue
+                          seen_urls.add(url)
+                          try:
+                              run(
+                                  "scripts/extract_nfl_inactives.py",
+                                  "--url", url,
+                              )
+                              run(
+                                  "scripts/save_nfl_inactive_snapshot.py",
+                                  "--season", str(season),
+                                  "--week", str(week),
+                              )
+                          except Exception as report_exc:
+                              print(
+                                  f"Week {week}: report not usable ({url}): "
+                                  f"{report_exc}"
+                              )
                   except Exception as exc:
                       print(
                           f"Week {week}: collection unavailable: {exc}"
