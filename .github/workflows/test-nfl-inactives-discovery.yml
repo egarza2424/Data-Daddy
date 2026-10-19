@@ -1,0 +1,77 @@
+
+name: Test NFL Inactives Discovery
+
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: "NFL season"
+        required: true
+        default: "2026"
+        type: string
+      week:
+        description: "NFL week"
+        required: true
+        default: "6"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  test-discovery:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Discover NFL inactive reports
+        env:
+          NFL_SEASON: ${{ inputs.season }}
+          NFL_WEEK: ${{ inputs.week }}
+        run: |
+          python3 scripts/discover_nfl_inactives.py \
+            --season "$NFL_SEASON" \
+            --week "$NFL_WEEK"
+
+      - name: Validate discovery output
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path(
+              "data/nfl_inactive_report_candidates.json"
+          )
+          data = json.loads(
+              path.read_text(encoding="utf-8")
+          )
+
+          candidates = data["candidates"]
+
+          assert data["candidate_count"] == len(
+              candidates
+          )
+
+          for item in candidates:
+              assert item["url"].startswith(
+                  "https://www.nfl.com/news/"
+              )
+              assert item["verification_status"] == (
+                  "candidate_season_unverified"
+              )
+
+          print(
+              "Discovery validation passed.",
+              len(candidates),
+              "candidate reports found."
+          )
+          PY
+
+      - name: Upload discovery results
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfl-inactives-discovery
+          path: data/nfl_inactive_report_candidates.json
+          retention-days: 7
