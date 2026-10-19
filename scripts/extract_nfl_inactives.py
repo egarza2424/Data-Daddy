@@ -247,6 +247,9 @@ def main():
     print("Actual team sections:", actual_teams)
 
     if actual_teams != expected_teams:
+        print("Recognized headings:", sorted(parser.recognized_team_headings))
+        print("Unrecognized headings:", sorted(parser.unrecognized_headings))
+        print("Unsupported positions:", sorted(parser.unsupported_positions))
         raise RuntimeError(
             f"Incomplete team coverage: "
             f"expected {expected_teams}, found {actual_teams}"
