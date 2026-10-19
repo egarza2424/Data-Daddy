@@ -314,12 +314,21 @@ jobs:
                           injury_status:
                             player.injuryStatus || "",
 
+                         
                           opponent:
+                            (
+                              teamNextOpponent[
+                                player.team === "LA"
+                                  ? "LAR"
+                                  : player.team
+                              ]?.opponent
+                            ) ||
                             playCallerDetails
                               ?.opponent ||
                             playerVsCallerDetails
                               ?.opponent ||
                             "Unknown",
+
 
                           offensive_play_caller:
                             playCallerDetails
