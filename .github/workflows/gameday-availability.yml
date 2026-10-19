@@ -156,6 +156,22 @@ jobs:
           print("Games:", len(data["games"]))
           PY
 
+      - name: Audit per-game inactive coverage
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          schedule = json.loads(Path("data/nfl_schedule_2026.json").read_text())
+          feed = json.loads(Path("data/nfl_inactive_observations.json").read_text())
+          indexed = {g["game_id"]: g for g in feed["games"]}
+          for game in schedule["games"]:
+              if int(game["season"]) != 2026:
+                  continue
+              record = indexed.get(game["game_id"])
+              status = "extracted_unverified" if record else "no_report"
+              print(game["game_id"], status)
+          PY
+
       - name: Commit availability snapshot
         run: |
           git config user.name "github-actions[bot]"
