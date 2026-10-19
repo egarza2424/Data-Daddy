@@ -25,48 +25,52 @@ jobs:
         env:
           NFL_REPORT_URL: ${{ inputs.report_url }}
         run: python3 scripts/extract_nfl_inactives.py --url "$NFL_REPORT_URL"
+      
       - name: Validate extracted records
+        env:
+          NFL_REPORT_URL: ${{ inputs.report_url }}
         run: |
           python3 - <<'PY'
           import json
+          import os
           from pathlib import Path
 
           path = Path("data/nfl_inactives_extracted.json")
           data = json.loads(path.read_text(encoding="utf-8"))
 
-          print("Extracted players:", data["player_count"])
-          print("Teams:", ", ".join(data["teams"]))
+          players = data["players"]
+          teams = set(data["teams"])
 
-          expected = {
-              ("RAVENS", "QB", "Lamar Jackson"),
-              ("BROWNS", "RB", "Quinshon Judkins"),
-          }
+          print("Extracted players:", len(players))
+          print("Teams:", ", ".join(sorted(teams)))
 
-          actual = {
-              (
+          assert data["source_url"] == os.environ["NFL_REPORT_URL"]
+          assert data["verification_status"] == "extracted_unverified"
+          assert data["player_count"] == len(players)
+          assert len(players) >= 10
+          assert len(teams) >= 2
+
+          seen = set()
+
+          for player in players:
+              assert player["team"] in teams
+              assert player["position"]
+              assert player["name"]
+              assert player["source_url"] == data["source_url"]
+              assert isinstance(
+                  player["emergency_third_qb"], bool
+              )
+
+              key = (
                   player["team"],
                   player["position"],
                   player["name"],
               )
-              for player in data["players"]
-          }
 
-          for record in sorted(expected):
-              print(
-                  "CHECK:",
-                  record,
-                  "PASS" if record in actual else "FAIL"
-              )
+              assert key not in seen, f"Duplicate player: {key}"
+              seen.add(key)
 
-          assert expected.issubset(actual), (
-              "Known inactive player/team matching failed"
-          )
-
-          assert data["verification_status"] == (
-              "extracted_unverified"
-          )
-
-          print("Extractor validation passed.")
+          print("Dynamic extraction validation passed.")
           PY
 
       - name: Upload extracted records
