@@ -35,7 +35,7 @@ TEAMS = {
 }
 
 POSITIONS = {
-    "QB", "RB", "FB", "WR", "TE", "T", "G",
+    "QB", "RB", "FB", "WR", "TE", "T", "OT", "G",
     "C", "OL", "DL", "DE", "DT", "NT", "EDGE",
     "LB", "ILB", "OLB", "CB", "DB", "S",
     "FS", "SS", "K", "P", "LS",
@@ -53,6 +53,7 @@ class InactiveParser(HTMLParser):
         self.buffer = []
         self.records = []
         self.seen = set()
+        self.unsupported_positions = set()
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -143,6 +144,9 @@ class InactiveParser(HTMLParser):
                             "source_url": SOURCE_URL,
                         })
 
+                elif position not in POSITIONS:
+                    self.unsupported_positions.add(position)
+
             self.tag = None
 
         elif tag == "ul":
@@ -221,6 +225,10 @@ def main():
 
     print("Extracted players:", len(records))
     print("Teams:", ", ".join(teams))
+    print(
+        "Unsupported position labels:",
+        sorted(parser.unsupported_positions),
+    )
 
     for record in records:
         if record["name"] in {
