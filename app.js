@@ -636,8 +636,12 @@ console.log(
 await loadGoalLineData();  
 await loadWeightedRedZoneData();
     
+
 currentPlayerVsDefensiveCaller =
-  data.current_player_vs_defensive_caller || {};
+  matchupWeekAligned
+    ? (data.current_player_vs_defensive_caller || {})
+    : {};
+
   
   console.log(
   `NFL stats loaded: ${data.season}, ${weeklyStats.length} rows`
