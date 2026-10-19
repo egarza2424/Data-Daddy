@@ -3,6 +3,12 @@ name: Test NFL Inactives Extractor
 
 on:
   workflow_dispatch:
+    inputs:
+      report_url:
+        description: "NFL.com inactive report URL"
+        required: true
+        type: string
+        default: "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
 
 permissions:
   contents: read
@@ -16,8 +22,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run NFL inactive extractor
-        run: python3 scripts/extract_nfl_inactives.py
-
+        env:
+          NFL_REPORT_URL: ${{ inputs.report_url }}
+        run: python3 scripts/extract_nfl_inactives.py --url "$NFL_REPORT_URL"
       - name: Validate extracted records
         run: |
           python3 - <<'PY'
