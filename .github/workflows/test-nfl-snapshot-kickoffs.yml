@@ -60,9 +60,12 @@ jobs:
         run: |
           python3 scripts/save_nfl_inactive_snapshot.py
 
+      
       - name: Audit snapshot against kickoffs
         run: |
-          python3 scripts/check_nfl_snapshot_kickoffs.py
+          python3 scripts/check_nfl_snapshot_kickoffs.py \
+            --season 2026 \
+            --week 6
 
       - name: Validate audit results
         run: |
