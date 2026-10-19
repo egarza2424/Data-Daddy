@@ -64,6 +64,53 @@ jobs:
 
           if not week_6:
               raise SystemExit("No Week 6 games found")
+
+          sunday_games = [
+              game for game in week_6
+              if game.get("gameday") == "2026-10-18"
+          ]
+
+          team_codes = {
+              "ARI": "CARDINALS",
+              "ATL": "FALCONS",
+              "BAL": "RAVENS",
+              "BUF": "BILLS",
+              "CAR": "PANTHERS",
+              "CHI": "BEARS",
+              "CLE": "BROWNS",
+              "DAL": "COWBOYS",
+              "GB": "PACKERS",
+              "HOU": "TEXANS",
+              "IND": "COLTS",
+              "JAX": "JAGUARS",
+              "KC": "CHIEFS",
+              "LA": "RAMS",
+              "LAC": "CHARGERS",
+              "LV": "RAIDERS",
+              "NE": "PATRIOTS",
+              "NO": "SAINTS",
+              "NYG": "GIANTS",
+              "NYJ": "JETS",
+              "PHI": "EAGLES",
+              "PIT": "STEELERS",
+              "TB": "BUCCANEERS",
+              "TEN": "TITANS",
+          }
+
+          expected_teams = set()
+
+          for game in sunday_games:
+              expected_teams.add(team_codes[game["away_team"]])
+              expected_teams.add(team_codes[game["home_team"]])
+
+          print("Sunday games:", len(sunday_games))
+          print("Sunday teams:", sorted(expected_teams))
+
+          if len(sunday_games) != 12:
+              raise SystemExit("Unexpected Sunday game count")
+
+          if len(expected_teams) != 24:
+              raise SystemExit("Unexpected Sunday team count")
           PY
 
       - name: Upload schedule test
