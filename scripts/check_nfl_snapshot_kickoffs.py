@@ -52,6 +52,7 @@ def main():
             path.read_text(encoding="utf-8")
         )
 
+        
         if data.get("verification_status") != (
             "extracted_unverified"
         ):
@@ -59,12 +60,23 @@ def main():
                 f"Unexpected status: {path}"
             )
 
+        if (
+            data.get("season") != args.season
+            or data.get("week") != args.week
+        ):
+            print(
+                "Skipping snapshot from another season/week:",
+                path.name,
+            )
+            continue
+
         snapshots.append({
             "filename": path.name,
             "retrieved_at": parse_timestamp(
                 data["retrieved_at_utc"]
             ),
         })
+
 
     games = [
         game for game in schedule["games"]
