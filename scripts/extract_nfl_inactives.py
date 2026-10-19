@@ -208,30 +208,32 @@ def main():
     parser = InactiveParser()
     parser.feed(html)
 
-    bills_match = re.search(
-        r"<h3[^>]*>\s*BILLS\s*</h3>(.{0,5000})",
-        html,
-        flags=re.IGNORECASE | re.DOTALL,
+    bills_matches = list(
+        re.finditer(
+            r"BILLS",
+            html,
+            flags=re.IGNORECASE,
+        )
     )
 
-    if bills_match:
-        bills_section = bills_match.group(1)
+    print(
+        "BILLS HTML OCCURRENCES:",
+        len(bills_matches),
+    )
 
-        bills_section = re.sub(
-            r"<[^>]+>",
-            " ",
-            bills_section,
-        )
+    for match in bills_matches[-5:]:
+        start = max(0, match.start() - 200)
+        end = min(len(html), match.end() + 1200)
 
-        bills_section = unescape(bills_section)
-        bills_section = " ".join(bills_section.split())
+        snippet = html[start:end]
+
+        if "<h3" not in snippet.lower():
+            continue
 
         print(
-            "BILLS SECTION PREVIEW:",
-            bills_section[:1200],
+            "BILLS RAW HTML:",
+            snippet[:1400],
         )
-    else:
-        print("BILLS SECTION PREVIEW: heading not found")
 
     records = parser.records
     teams = sorted({
