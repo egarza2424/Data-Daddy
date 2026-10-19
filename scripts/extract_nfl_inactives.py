@@ -56,6 +56,7 @@ class InactiveParser(HTMLParser):
         self.unsupported_positions = set()
         self.unrecognized_headings = set()
         self.recognized_team_headings = set()
+        self.bills_list_entries = []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -117,6 +118,9 @@ class InactiveParser(HTMLParser):
             raw = unescape(
                 "".join(self.buffer)
             ).strip()
+
+            if self.team == "BILLS":
+                self.bills_list_entries.append(raw)
 
             match = re.match(
                 r"^([A-Za-z]+)\s+(.+)$",
@@ -208,29 +212,10 @@ def main():
     parser = InactiveParser()
     parser.feed(html)
 
-    bills_headings = list(
-        re.finditer(
-            r"<h3\b[^>]*>.*?BILLS.*?</h3>",
-            html,
-            flags=re.IGNORECASE | re.DOTALL,
-        )
-    )
-
     print(
-        "BILLS H3 HEADING MATCHES:",
-        len(bills_headings),
+        "BILLS LIST ENTRIES:",
+        parser.bills_list_entries,
     )
-
-    for match in bills_headings[:3]:
-        start = max(0, match.start() - 200)
-        end = min(len(html), match.end() + 2500)
-
-        snippet = html[start:end]
-
-        print(
-            "BILLS HEADING AND FOLLOWING HTML:",
-            snippet[:2800],
-        )
 
     records = parser.records
     teams = sorted({
