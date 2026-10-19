@@ -84,8 +84,12 @@ jobs:
                   "%Y-%m-%d %H:%M",
               ).replace(tzinfo=eastern).astimezone(timezone.utc)
 
-              if timedelta(hours=-2) <= kickoff - now <= timedelta(hours=3):
+              
+              time_until_kickoff = kickoff - now
+
+              if timedelta(0) < time_until_kickoff <= timedelta(hours=3):
                   windows.add((int(game["season"]), int(game["week"])))
+
 
           if not windows:
               print("No games near kickoff; skipping NFL.com collection.")
