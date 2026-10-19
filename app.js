@@ -7908,15 +7908,22 @@ function getRecommendation(player, positionRank) {
   const weeklyMatchup =
     teamNextOpponent[playerTeam];
 
+ 
+  // Only identify a bye when the matchup data
+  // matches the displayed NFL week.
+  const matchupWeekAligned =
+    document.documentElement.dataset
+      .matchupWeekAligned !== "false";
+
   if (
-    !weeklyMatchup ||
-    !weeklyMatchup.opponent ||
-    String(weeklyMatchup.opponent)
+    matchupWeekAligned &&
+    String(weeklyMatchup?.opponent || "")
       .trim()
       .toUpperCase() === "BYE"
   ) {
     return "BYE";
   }
+
 
   const injury = String(player.injuryStatus || "")
 
