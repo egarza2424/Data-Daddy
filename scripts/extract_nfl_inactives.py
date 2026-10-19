@@ -229,7 +229,7 @@ def main():
         expected_games = int(game_count_match.group(1))
         report_type = "multi_game_sunday"
     elif re.search(
-        r"\\b(?:monday|thursday)[-\\s]+night[-\\s]+inactives\\b",
+        r"\b(?:monday|thursday)[-\s]+night[-\s]+inactives\b",
         SOURCE_URL,
         flags=re.IGNORECASE,
     ):
