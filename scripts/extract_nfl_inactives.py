@@ -278,9 +278,14 @@ def main():
             datetime.now(timezone.utc).isoformat()
         ),
         "verification_status": "extracted_unverified",
-        "player_count": len(records),
+        "expected_game_count": expected_games,
+        "expected_team_count": expected_teams,
+        "extracted_team_count": len(teams),
         "teams": teams,
+        "player_count": len(records),
         "players": records,
+        "schedule_verified": False,
+        "kickoff_times_verified": False,
     }
 
     OUTPUT.parent.mkdir(
