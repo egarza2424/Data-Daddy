@@ -216,6 +216,31 @@ def main():
     parser = InactiveParser()
     parser.feed(html)
 
+    game_count_match = re.search(
+        r"\bfor Sunday(?:'s|’s)\s+(\d+)\s+games\b",
+        html,
+        flags=re.IGNORECASE,
+    )
+
+    if not game_count_match:
+        raise RuntimeError(
+            "Could not determine expected Sunday game count"
+        )
+
+    expected_games = int(game_count_match.group(1))
+    expected_teams = expected_games * 2
+    actual_teams = len(parser.recognized_team_headings)
+
+    print("Expected Sunday games:", expected_games)
+    print("Expected team sections:", expected_teams)
+    print("Actual team sections:", actual_teams)
+
+    if actual_teams != expected_teams:
+        raise RuntimeError(
+            f"Incomplete team coverage: "
+            f"expected {expected_teams}, found {actual_teams}"
+        )
+
     records = parser.records
     teams = sorted({
         record["team"] for record in records
