@@ -553,8 +553,62 @@ trenchSignalWeek =
 currentScoringEnvironment =
   data.current_scoring_environment || {};
 
+
+const publishedWeek = Number(data.target_week);
+
+const easternToday = new Intl.DateTimeFormat(
+  "en-CA",
+  {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }
+).formatToParts(new Date());
+
+const dateParts = Object.fromEntries(
+  easternToday.map(part => [part.type, part.value])
+);
+
+const easternDate = Date.UTC(
+  Number(dateParts.year),
+  Number(dateParts.month) - 1,
+  Number(dateParts.day)
+);
+
+// The 2026 NFL Week 1 publishing window begins
+// Tuesday, September 8. Each following week
+// begins on Tuesday Eastern Time.
+const firstWeekStart = Date.UTC(2026, 8, 8);
+
+const calendarWeek = Math.max(
+  1,
+  Math.min(
+    18,
+    Math.floor(
+      (easternDate - firstWeekStart) /
+      (7 * 24 * 60 * 60 * 1000)
+    ) + 1
+  )
+);
+
+const displayWeek = Number.isInteger(publishedWeek) &&
+  publishedWeek >= 1
+    ? Math.min(publishedWeek, calendarWeek)
+    : calendarWeek;
+
 document.documentElement.dataset.targetWeek =
-  data.target_week || "";
+  String(displayWeek);
+
+console.log(
+  "DATA DADDY week control:",
+  {
+    publishedWeek,
+    calendarWeek,
+    displayWeek
+  }
+);
+
 await loadGoalLineData();  
 await loadWeightedRedZoneData();
     
