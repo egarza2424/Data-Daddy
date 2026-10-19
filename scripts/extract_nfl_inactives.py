@@ -222,16 +222,27 @@ def main():
         flags=re.IGNORECASE,
     )
 
-    if not game_count_match:
-        raise RuntimeError(
-            "Could not determine expected Sunday game count"
-        )
+    # Single-game Monday/Thursday reports do not use the Sunday count phrase.
+    # Require exactly two team sections for these reports; never infer coverage
+    # from a partial article.
+    if game_count_match:
+        expected_games = int(game_count_match.group(1))
+        report_type = "multi_game_sunday"
+    elif re.search(
+        r"\\b(?:monday|thursday)[-\\s]+night[-\\s]+inactives\\b",
+        SOURCE_URL,
+        flags=re.IGNORECASE,
+    ):
+        expected_games = 1
+        report_type = "single_game_primetime"
+    else:
+        raise RuntimeError("Unrecognized inactive report format")
 
-    expected_games = int(game_count_match.group(1))
     expected_teams = expected_games * 2
     actual_teams = len(parser.recognized_team_headings)
 
-    print("Expected Sunday games:", expected_games)
+    print("Report type:", report_type)
+    print("Expected games:", expected_games)
     print("Expected team sections:", expected_teams)
     print("Actual team sections:", actual_teams)
 
@@ -278,6 +289,7 @@ def main():
             datetime.now(timezone.utc).isoformat()
         ),
         "verification_status": "extracted_unverified",
+        "report_type": report_type,
         "expected_game_count": expected_games,
         "expected_team_count": expected_teams,
         "extracted_team_count": len(teams),
