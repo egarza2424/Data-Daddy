@@ -1,23 +1,23 @@
 {
   "snapshot_files": 2,
   "recommendation_rows": 20,
-  "recorded_game_rows": 7,
-  "missing_or_unavailable_rows": 13,
+  "recorded_game_rows": 8,
+  "missing_or_unavailable_rows": 12,
   "conflicting_stat_records": 0,
   "verified_pregame_rows": 18,
   "post_kickoff_rows": 0,
   "timing_unavailable_rows": 2,
-  "predictive_accuracy_eligible_rows": 7,
-  "eligible_average_ppr": 11.01,
+  "predictive_accuracy_eligible_rows": 8,
+  "eligible_average_ppr": 9.76,
   "eligible_average_ppr_by_position": {
     "QB": 10.48,
-    "RB": 10.1,
+    "RB": 5.55,
     "TE": 4.87,
     "WR": 20.95
   },
-  "eligible_spearman_rank_correlation": -0.107,
+  "eligible_spearman_rank_correlation": 0.262,
   "eligible_spearman_by_week": {
-    "2026_week_06": -0.107
+    "2026_week_06": 0.262
   },
   "eligible_top_five_recommendations": 4,
   "eligible_top_five_hits": 2,
