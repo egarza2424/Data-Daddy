@@ -196,12 +196,14 @@ jobs:
                 deployedWeek !==
                 statsMetadata.targetWeek
               ) {
-                throw new Error(
-                  "Snapshot blocked: website week " +
-                  `${deployedWeek} does not match ` +
-                  "nfl-stats.json target_week " +
-                  `${statsMetadata.targetWeek}.`
+                console.log(
+                  "Snapshot deferred: website is displaying Week " +
+                  deployedWeek +
+                  " while nfl-stats.json has advanced to Week " +
+                  statsMetadata.targetWeek +
+                  ". Waiting for the Tuesday Eastern transition."
                 );
+                return;
               }
 
               console.log(
