@@ -1,0 +1,66 @@
+
+name: Test Official NFL Inactives Source
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-source:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test NFL report retrieval
+        run: |
+          python3 - <<'PY'
+          import urllib.request
+          from urllib.error import HTTPError, URLError
+
+          url = (
+              "https://www.nfl.com/news/"
+              "nfl-week-6-inactives-players-ruled-out-"
+              "sunday-2026-season"
+          )
+
+          request = urllib.request.Request(
+              url,
+              headers={
+                  "User-Agent": "Mozilla/5.0",
+                  "Accept": "text/html",
+              },
+          )
+
+          try:
+              with urllib.request.urlopen(
+                  request, timeout=30
+              ) as response:
+                  html = response.read().decode(
+                      "utf-8", errors="replace"
+                  )
+                  print("HTTP status:", response.status)
+                  print("HTML length:", len(html))
+
+              checks = {
+                  "NFL article title":
+                      "Week 6 inactives" in html,
+                  "Texans":
+                      "Texans" in html,
+                  "Jaguars":
+                      "Jaguars" in html,
+              }
+
+              for label, passed in checks.items():
+                  print(label, "PASS" if passed else "FAIL")
+
+              if not all(checks.values()):
+                  raise RuntimeError(
+                      "NFL article content not fully detected"
+                  )
+
+          except (HTTPError, URLError) as error:
+              raise RuntimeError(
+                  f"NFL source retrieval failed: {error}"
+              ) from error
+          PY
