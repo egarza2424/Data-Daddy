@@ -96,6 +96,12 @@ class InactiveParser(HTMLParser):
                 "".join(self.buffer)
             ).strip().upper()
 
+            heading_aliases = {
+                "EAGLS": "EAGLES",
+            }
+
+            heading = heading_aliases.get(heading, heading)
+
             self.team = heading if heading in TEAMS else None
 
             if heading and heading not in TEAMS:
