@@ -1,0 +1,122 @@
+
+name: Test NFL Snapshot Kickoffs
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-kickoffs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch NFL schedule
+        run: |
+          python3 scripts/fetch_nfl_schedule.py
+
+      - name: Discover NFL Week 6 report
+        run: |
+          python3 scripts/discover_nfl_inactives.py \
+            --season 2026 \
+            --week 6
+
+      - name: Extract discovered report
+        run: |
+          python3 - <<'PY'
+          import json
+          import subprocess
+          from pathlib import Path
+
+          data = json.loads(
+              Path(
+                  "data/nfl_inactive_report_candidates.json"
+              ).read_text()
+          )
+
+          candidates = data["candidates"]
+
+          if len(candidates) != 1:
+              raise SystemExit(
+                  "Expected exactly one inactive report"
+              )
+
+          subprocess.run(
+              [
+                  "python3",
+                  "scripts/extract_nfl_inactives.py",
+                  "--url",
+                  candidates[0]["url"],
+              ],
+              check=True,
+          )
+          PY
+
+      - name: Save timestamped snapshot
+        run: |
+          python3 scripts/save_nfl_inactive_snapshot.py
+
+      - name: Audit snapshot against kickoffs
+        run: |
+          python3 scripts/check_nfl_snapshot_kickoffs.py
+
+      - name: Validate audit results
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          audit = json.loads(
+              Path(
+                  "data/nfl_snapshot_kickoff_audit.json"
+              ).read_text()
+          )
+
+          results = audit["results"]
+
+          if len(results) != 12:
+              raise SystemExit(
+                  f"Expected 12 games, found {len(results)}"
+              )
+
+          timely = [
+              game for game in results
+              if game["has_timely_pregame_observation"]
+          ]
+
+          verified = [
+              game for game in results
+              if game["official_inactives_verified"]
+          ]
+
+          print("Games checked:", len(results))
+          print("Timely pregame observations:", len(timely))
+          print("Officially verified games:", len(verified))
+
+          if timely:
+              raise SystemExit(
+                  "Historical snapshot incorrectly marked pregame"
+              )
+
+          if verified:
+              raise SystemExit(
+                  "Unverified data marked officially verified"
+              )
+
+          print("PASS: Historical snapshot correctly rejected")
+          PY
+
+      - name: Upload audit artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfl-snapshot-kickoff-audit
+          path: |
+            data/nfl_inactive_snapshots/*.json
+            data/nfl_snapshot_kickoff_audit.json
+          if-no-files-found: warn
+          retention-days: 7
