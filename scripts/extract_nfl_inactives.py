@@ -122,49 +122,57 @@ class InactiveParser(HTMLParser):
             if self.team == "BILLS":
                 self.bills_list_entries.append(raw)
 
-            match = re.match(
-                r"^([A-Za-z]+)\s+(.+)$",
-                raw,
-            )
+            for line in raw.splitlines():
+                line = line.strip()
 
-            if match and self.team:
+                if not line:
+                    continue
+
+                match = re.match(
+                    r"^([A-Za-z]+)[ \t]+(.+)$",
+                    line,
+                )
+
+                if not match or not self.team:
+                    continue
+
                 position = match.group(1).upper()
                 name = match.group(2).strip()
 
-                if position in POSITIONS:
-                    emergency = bool(
-                        re.search(
-                            r"emergency third QB",
-                            name,
-                            flags=re.IGNORECASE,
-                        )
-                    )
+                if position not in POSITIONS:
+                    self.unsupported_positions.add(position)
+                    continue
 
-                    name = re.sub(
-                        r"\s*\(emergency third QB\)",
-                        "",
+                emergency = bool(
+                    re.search(
+                        r"emergency third QB",
                         name,
                         flags=re.IGNORECASE,
-                    ).strip()
-
-                    key = (
-                        self.team,
-                        position,
-                        name,
                     )
+                )
 
-                    if key not in self.seen:
-                        self.seen.add(key)
-                        self.records.append({
-                            "team": self.team,
-                            "position": position,
-                            "name": name,
-                            "emergency_third_qb": emergency,
-                            "source_url": SOURCE_URL,
-                        })
+                name = re.sub(
+                    r"\s*\(emergency third QB\)",
+                    "",
+                    name,
+                    flags=re.IGNORECASE,
+                ).strip()
 
-                elif position not in POSITIONS:
-                    self.unsupported_positions.add(position)
+                key = (
+                    self.team,
+                    position,
+                    name,
+                )
+
+                if key not in self.seen:
+                    self.seen.add(key)
+                    self.records.append({
+                        "team": self.team,
+                        "position": position,
+                        "name": name,
+                        "emergency_third_qb": emergency,
+                        "source_url": SOURCE_URL,
+                    })
 
             self.tag = None
 
