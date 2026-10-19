@@ -846,6 +846,52 @@ jobs:
 
 
 
+      - name: Audit scheduled team coverage
+        run: |
+          python scripts/fetch_nfl_schedule.py
+          python <<'PY'
+          import csv
+          import json
+          from pathlib import Path
+
+          snapshot_path = Path("projection-model/current-live-model-snapshot.csv")
+          with snapshot_path.open(newline="", encoding="utf-8") as f:
+              rows = list(csv.DictReader(f))
+          if not rows:
+              raise RuntimeError("Snapshot has no players")
+
+          weeks = {str(r["snapshot_week"]).strip() for r in rows}
+          if len(weeks) != 1:
+              raise RuntimeError(f"Mixed snapshot weeks: {sorted(weeks)}")
+          week = next(iter(weeks))
+
+          schedule = json.loads(Path("data/nfl_schedule_2026.json").read_text())
+          games = [g for g in schedule["games"] if str(g.get("week", "")).strip() == week]
+          if not games:
+              raise RuntimeError(f"No scheduled games found for Week {week}")
+
+          normalize = lambda t: "LA" if str(t).strip().upper() == "LAR" else str(t).strip().upper()
+          scheduled = {normalize(g[k]) for g in games for k in ("home_team", "away_team")}
+          observed = {normalize(r["team"]) for r in rows if r.get("team")}
+          missing = sorted(scheduled - observed)
+          unexpected = sorted(observed - scheduled)
+          all_teams = {
+              "ARI","ATL","BAL","BUF","CAR","CHI","CIN","CLE",
+              "DAL","DEN","DET","GB","HOU","IND","JAX","KC",
+              "LA","LAC","LV","MIA","MIN","NE","NO","NYG",
+              "NYJ","PHI","PIT","SEA","SF","TB","TEN","WAS"
+          }
+          byes = sorted(all_teams - scheduled)
+          print(f"Week {week}: {len(games)} games, {len(scheduled)} scheduled teams")
+          print("Teams on bye:", ", ".join(byes) or "none")
+          print("Snapshot teams:", ", ".join(sorted(observed)))
+          print("Scheduled teams missing from snapshot:", missing)
+          print("Snapshot teams without scheduled games:", unexpected)
+          print("Seattle status:", "BYE" if "SEA" in byes else ("PRESENT" if "SEA" in observed else "MISSING"))
+          if missing or unexpected:
+              raise RuntimeError("Snapshot team coverage does not match the target-week schedule")
+          PY
+
       - name: Show generated snapshot
         run: |
           ls -lh model-snapshots/
