@@ -156,20 +156,59 @@ jobs:
           print("Games:", len(data["games"]))
           PY
 
-      - name: Audit per-game inactive coverage
+      - name: Audit current game-week inactive coverage
         run: |
           python - <<'PY'
           import json
+          from datetime import datetime, timedelta, timezone
           from pathlib import Path
+          from zoneinfo import ZoneInfo
+
           schedule = json.loads(Path("data/nfl_schedule_2026.json").read_text())
           feed = json.loads(Path("data/nfl_inactive_observations.json").read_text())
-          indexed = {g["game_id"]: g for g in feed["games"]}
+          indexed = {str(g["game_id"]): g for g in feed["games"]}
+          now = datetime.now(timezone.utc)
+          eastern = ZoneInfo("America/New_York")
+          counts = {"verified": 0, "unverified": 0, "missing_near_kickoff": 0, "pending": 0}
+          checked = []
           for game in schedule["games"]:
               if int(game["season"]) != 2026:
                   continue
-              record = indexed.get(game["game_id"])
-              status = "extracted_unverified" if record else "no_report"
+              kickoff = datetime.strptime(
+                  game["gameday"] + " " + game["gametime"], "%Y-%m-%d %H:%M"
+              ).replace(tzinfo=eastern).astimezone(timezone.utc)
+              # Only inspect games within the upcoming eight-day window.
+              if not -timedelta(hours=6) <= kickoff - now <= timedelta(days=8):
+                  continue
+              record = indexed.get(str(game["game_id"]))
+              if record and record.get("official_inactives_verified") is True:
+                  status = "verified"
+              elif record:
+                  status = "unverified"
+              elif kickoff - now <= timedelta(hours=3):
+                  status = "missing_near_kickoff"
+              else:
+                  status = "pending"
+              counts[status] += 1
+              checked.append({
+                  "game_id": game["game_id"],
+                  "week": int(game["week"]),
+                  "kickoff_utc": kickoff.isoformat(),
+                  "status": status,
+                  "official_inactives_verified": status == "verified",
+                  "source_url": record.get("source_url") if record else None,
+              })
               print(game["game_id"], status)
+          report = {
+              "generated_at_utc": now.isoformat(),
+              "window_days": 8,
+              "summary": counts,
+              "games": checked,
+          }
+          path = Path("data/nfl_inactive_coverage_audit.json")
+          path.write_text(json.dumps(report, indent=2) + "\\n")
+          print("Coverage summary:", counts)
+          print("Saved:", path)
           PY
 
       - name: Commit availability snapshot
@@ -181,6 +220,7 @@ jobs:
           
           git add data/gameday_availability.json
           git add data/nfl_inactive_observations.json
+          git add data/nfl_inactive_coverage_audit.json
           git add -f data/nfl_inactive_snapshots/inactives_*.json 2>/dev/null || true
 
           if git diff --cached --quiet; then
