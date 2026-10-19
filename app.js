@@ -3920,72 +3920,42 @@ function getMissingLineupNeeds(
 
   return missing;
 }
+
 function getLineupPlayerAiData(
   projection
 ) {
-  const matchedPlayer =
-    getProjectionPlayer(
-      projection
-    );
-
-  if (!matchedPlayer) {
+  if (!projection) {
     return {
       score: null,
       rank: null
     };
   }
 
-  const profile = "balanced";
+  // Use the same weekly Model F snapshot
+  // as the lineup optimizer's PPR projections.
+  const score = Number(
+    projection.model_score
+  );
 
-  const position =
-    String(
-      projection.position || ""
-    ).toUpperCase();
-
-  const rankings =
-    getPositionRankings(
-      position,
-      profile
-    );
-
-  const matchingEntry =
-    rankings.find(
-      entry =>
-        entry.player ===
-        matchedPlayer ||
-        normalizeName(
-          entry.player?.name
-        ) ===
-        normalizeName(
-          matchedPlayer.name
-        )
-    );
-
-  const rank =
-    getPlayerPositionRank(
-      matchedPlayer,
-      profile
-    );
-
-  const score =
-    Number(
-      matchingEntry?.score
-    );
+  const rank = Number(
+    projection.position_rank
+  );
 
   return {
     score:
-      Number.isFinite(score)
+      Number.isFinite(score) &&
+      score >= 0
         ? score
         : null,
 
     rank:
-      Number.isFinite(
-        Number(rank)
-      )
-        ? Number(rank)
+      Number.isInteger(rank) &&
+      rank > 0
+        ? rank
         : null
   };
 }
+
 
 function isPlayerEligibleForSlot(
   player,
