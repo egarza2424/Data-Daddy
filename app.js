@@ -7759,13 +7759,9 @@ const matchupWeekAligned =
 
 if (
   matchupWeekAligned &&
-  (
-    !weeklyMatchup ||
-    !weeklyMatchup.opponent ||
-    String(weeklyMatchup.opponent)
-      .trim()
-      .toUpperCase() === "BYE"
-  )
+  String(weeklyMatchup?.opponent || "")
+    .trim()
+    .toUpperCase() === "BYE"
 ) {
   return false;
 }
