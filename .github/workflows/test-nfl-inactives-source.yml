@@ -42,6 +42,7 @@ jobs:
                   print("HTTP status:", response.status)
                   print("HTML length:", len(html))
 
+              
               checks = {
                   "NFL article title":
                       "Week 6 inactives" in html,
@@ -49,7 +50,12 @@ jobs:
                       "Texans" in html,
                   "Jaguars":
                       "Jaguars" in html,
+                  "Known inactive — Quinshon Judkins":
+                      "Quinshon Judkins" in html,
+                  "Known inactive — Lamar Jackson":
+                      "Lamar Jackson" in html,
               }
+
 
               for label, passed in checks.items():
                   print(label, "PASS" if passed else "FAIL")
