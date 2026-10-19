@@ -55,6 +55,7 @@ class InactiveParser(HTMLParser):
         self.seen = set()
         self.unsupported_positions = set()
         self.unrecognized_headings = set()
+        self.recognized_team_headings = set()
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -103,6 +104,9 @@ class InactiveParser(HTMLParser):
             heading = heading_aliases.get(heading, heading)
 
             self.team = heading if heading in TEAMS else None
+
+            if self.team:
+                self.recognized_team_headings.add(self.team)
 
             if heading and heading not in TEAMS:
                 self.unrecognized_headings.add(heading)
@@ -243,6 +247,15 @@ def main():
     print(
         "Unrecognized team headings:",
         sorted(parser.unrecognized_headings),
+    )
+    print(
+        "Recognized team headings:",
+        len(parser.recognized_team_headings),
+        sorted(parser.recognized_team_headings),
+    )
+    print(
+        "Headings without extracted players:",
+        sorted(parser.recognized_team_headings - set(teams)),
     )
 
     for record in records:
