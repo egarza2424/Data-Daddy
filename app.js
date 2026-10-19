@@ -4716,6 +4716,55 @@ function renderOptimizedLineup(
   }
 }
 
+function renderNflInactiveObservationStatus(container) {
+  const existing = container.querySelector(
+    ".nfl-inactive-observation-status"
+  );
+
+  if (existing) existing.remove();
+
+  const panel = document.createElement("div");
+  panel.className = "nfl-inactive-observation-status";
+
+  Object.assign(panel.style, {
+    padding: "14px 16px",
+    marginBottom: "16px",
+    border: "1px solid #c8a64d",
+    borderRadius: "10px",
+    background: "#171717",
+    color: "#ffffff"
+  });
+
+  const heading = document.createElement("strong");
+  heading.textContent = "NFL Game-Day Inactive Report";
+  heading.style.color = "#f5d37a";
+
+  const description = document.createElement("p");
+  description.style.margin = "8px 0 0";
+
+  const games = nflInactiveObservations?.games || [];
+
+  if (games.length === 0) {
+    description.textContent =
+      "No pregame NFL.com observations are currently available. " +
+      "DATA DADDY continues using its existing player availability data.";
+  } else {
+    const playerCount = games.reduce(
+      (total, game) => total + game.players.length,
+      0
+    );
+
+    description.textContent =
+      `${games.length} game reports available, covering ` +
+      `${playerCount} player entries. These NFL.com observations ` +
+      `are not independently verified and do not change ` +
+      `lineup eligibility or projected PPR.`;
+  }
+
+  panel.append(heading, description);
+  container.prepend(panel);
+}
+
 
 
 function optimizeLineup() {
@@ -4763,7 +4812,7 @@ function optimizeLineup() {
   }
 
   renderOptimizedLineup(bestLineup, rules);
-
+  renderNflInactiveObservationStatus(result);
   const dialog = document.createElement("dialog");
   dialog.id = "lineupAiInsightsDialog";
   dialog.setAttribute(
