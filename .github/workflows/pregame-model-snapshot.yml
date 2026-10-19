@@ -33,6 +33,7 @@ jobs:
           mkdir -p projection-model
           
       - name: Capture website model snapshot
+        id: capture
         run: |
           node <<'NODE'
           const { chromium } = require("playwright");
@@ -203,6 +204,7 @@ jobs:
                   statsMetadata.targetWeek +
                   ". Waiting for the Tuesday Eastern transition."
                 );
+                fs.appendFileSync(process.env.GITHUB_OUTPUT, "captured=false\n");
                 return;
               }
 
@@ -697,6 +699,8 @@ jobs:
                 );
               }
 
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, "captured=true\n");
+
               console.log(
                 `Exported snapshot confirmed as ` +
                 `Week ${deployedWeek}.`
@@ -714,6 +718,7 @@ jobs:
           NODE
 
       - name: Verify roster availability with nflverse
+        if: steps.capture.outputs.captured == 'true'
         run: |
           python <<'PY'
           import csv
@@ -849,6 +854,7 @@ jobs:
 
 
       - name: Audit scheduled team coverage
+        if: steps.capture.outputs.captured == 'true'
         run: |
           python scripts/fetch_nfl_schedule.py
           python <<'PY'
@@ -895,11 +901,13 @@ jobs:
           PY
 
       - name: Show generated snapshot
+        if: steps.capture.outputs.captured == 'true'
         run: |
           ls -lh model-snapshots/
           head -n 2 model-snapshots/*.csv
 
       - name: Commit snapshot
+        if: steps.capture.outputs.captured == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
