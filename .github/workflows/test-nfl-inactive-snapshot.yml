@@ -1,0 +1,122 @@
+
+name: Test NFL Inactive Snapshot
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-snapshot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Discover NFL Week 6 report
+        run: |
+          python3 scripts/discover_nfl_inactives.py \
+            --season 2026 \
+            --week 6
+
+      - name: Extract discovered report
+        run: |
+          python3 - <<'PY'
+          import json
+          import subprocess
+          from pathlib import Path
+
+          data = json.loads(
+              Path(
+                  "data/nfl_inactive_report_candidates.json"
+              ).read_text()
+          )
+
+          candidates = data["candidates"]
+
+          if len(candidates) != 1:
+              raise SystemExit(
+                  "Expected exactly one inactive report"
+              )
+
+          subprocess.run(
+              [
+                  "python3",
+                  "scripts/extract_nfl_inactives.py",
+                  "--url",
+                  candidates[0]["url"],
+              ],
+              check=True,
+          )
+          PY
+
+      - name: Save immutable snapshot
+        run: |
+          python3 scripts/save_nfl_inactive_snapshot.py
+
+      - name: Validate snapshot integrity
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          paths = sorted(
+              Path("data/nfl_inactive_snapshots")
+              .glob("inactives_*.json")
+          )
+
+          if len(paths) != 1:
+              raise SystemExit(
+                  f"Expected one snapshot, found {len(paths)}"
+              )
+
+          data = json.loads(paths[0].read_text())
+
+          expected_hash = data.pop("sha256")
+
+          canonical = json.dumps(
+              data,
+              sort_keys=True,
+              separators=(",", ":"),
+          ).encode("utf-8")
+
+          actual_hash = hashlib.sha256(
+              canonical
+          ).hexdigest()
+
+          if actual_hash != expected_hash:
+              raise SystemExit("Snapshot checksum mismatch")
+
+          if data["verification_status"] != (
+              "extracted_unverified"
+          ):
+              raise SystemExit(
+                  "Unexpected verification status"
+              )
+
+          if data["pregame_verified"] is not False:
+              raise SystemExit(
+                  "Pregame verification must remain false"
+              )
+
+          print("PASS: Snapshot integrity verified")
+          print("Snapshot:", paths[0])
+          print("Players:", data["player_count"])
+          print("SHA256:", actual_hash)
+          print(
+              "Pregame verified:",
+              data["pregame_verified"],
+          )
+          PY
+
+      - name: Upload snapshot artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfl-inactive-snapshot-test
+          path: data/nfl_inactive_snapshots/*.json
+          if-no-files-found: warn
+          retention-days: 7
