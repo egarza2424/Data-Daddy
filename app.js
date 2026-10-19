@@ -2420,12 +2420,14 @@ function renderProjectionBoard() {
           projection.model_score
         );
 
+      
+      // Keep AI Rank aligned with the weekly
+      // projection snapshot and AI Score.
       const aiRank =
-        player
-          ? getPlayerPositionRank(
-              player
-            )
+        Number(projection.position_rank) > 0
+          ? Number(projection.position_rank)
           : null;
+
 
       
       // Use the opponent from the same weekly
