@@ -3347,6 +3347,47 @@ function getLineupRules() {
   };
 }
 
+let nflInactiveObservations = null;
+
+async function loadNflInactiveObservations() {
+  try {
+    const response = await fetch(
+      "./data/nfl_inactive_observations.json",
+      { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+      throw new Error(`NFL observations HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (
+      data?.season !== 2026 ||
+      data?.official_inactives_verified !== false ||
+      !Array.isArray(data.games)
+    ) {
+      throw new Error("Invalid NFL observation feed");
+    }
+
+    nflInactiveObservations = data;
+
+    console.log(
+      "NFL.com game-specific observations loaded:",
+      data.games.length,
+      "games (unverified; informational only)"
+    );
+  } catch (error) {
+    nflInactiveObservations = null;
+    console.warn(
+      "NFL.com observations unavailable:",
+      error.message
+    );
+  }
+}
+
+
+
 let gamedayAvailability = null;
 
 async function loadGamedayAvailability() {
@@ -9026,7 +9067,10 @@ async function initializeApp() {
 
   // Load the latest game-day availability snapshot.
   // A missing or stale snapshot will not block startup.
+  
   await loadGamedayAvailability();
+  await loadNflInactiveObservations();
+
 
 
   console.log(
