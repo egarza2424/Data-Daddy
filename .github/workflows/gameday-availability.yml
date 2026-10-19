@@ -152,11 +152,14 @@ jobs:
               assert game["official_inactives_verified"] is False
 
           print("PASS: NFL observations validated")
+          
           print("Games:", len(data["games"]))
           PY
 
+      - name: Commit availability snapshot
         run: |
           git config user.name "github-actions[bot]"
+
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           
