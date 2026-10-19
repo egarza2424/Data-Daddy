@@ -208,6 +208,31 @@ def main():
     parser = InactiveParser()
     parser.feed(html)
 
+    bills_match = re.search(
+        r"<h3[^>]*>\s*BILLS\s*</h3>(.{0,5000})",
+        html,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+
+    if bills_match:
+        bills_section = bills_match.group(1)
+
+        bills_section = re.sub(
+            r"<[^>]+>",
+            " ",
+            bills_section,
+        )
+
+        bills_section = unescape(bills_section)
+        bills_section = " ".join(bills_section.split())
+
+        print(
+            "BILLS SECTION PREVIEW:",
+            bills_section[:1200],
+        )
+    else:
+        print("BILLS SECTION PREVIEW: heading not found")
+
     records = parser.records
     teams = sorted({
         record["team"] for record in records
