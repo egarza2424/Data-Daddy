@@ -54,6 +54,7 @@ class InactiveParser(HTMLParser):
         self.records = []
         self.seen = set()
         self.unsupported_positions = set()
+        self.unrecognized_headings = set()
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -96,6 +97,10 @@ class InactiveParser(HTMLParser):
             ).strip().upper()
 
             self.team = heading if heading in TEAMS else None
+
+            if heading and heading not in TEAMS:
+                self.unrecognized_headings.add(heading)
+
             self.tag = None
 
         elif tag == "li" and self.tag == "li":
@@ -228,6 +233,10 @@ def main():
     print(
         "Unsupported position labels:",
         sorted(parser.unsupported_positions),
+    )
+    print(
+        "Unrecognized team headings:",
+        sorted(parser.unrecognized_headings),
     )
 
     for record in records:
