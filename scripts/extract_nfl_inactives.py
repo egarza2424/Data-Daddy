@@ -99,6 +99,7 @@ class InactiveParser(HTMLParser):
 
             heading_aliases = {
                 "EAGLS": "EAGLES",
+                "NINERS": "49ERS",
             }
 
             heading = heading_aliases.get(heading, heading)
