@@ -56,7 +56,6 @@ class InactiveParser(HTMLParser):
         self.unsupported_positions = set()
         self.unrecognized_headings = set()
         self.recognized_team_headings = set()
-        self.bills_list_entries = []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -118,9 +117,6 @@ class InactiveParser(HTMLParser):
             raw = unescape(
                 "".join(self.buffer)
             ).strip()
-
-            if self.team == "BILLS":
-                self.bills_list_entries.append(raw)
 
             for line in raw.splitlines():
                 line = line.strip()
@@ -220,11 +216,6 @@ def main():
     parser = InactiveParser()
     parser.feed(html)
 
-    print(
-        "BILLS LIST ENTRIES:",
-        parser.bills_list_entries,
-    )
-
     records = parser.records
     teams = sorted({
         record["team"] for record in records
@@ -235,6 +226,27 @@ def main():
             "Insufficient inactive records extracted"
         )
 
+    missing_teams = (
+        parser.recognized_team_headings - set(teams)
+    )
+
+    if missing_teams:
+        raise RuntimeError(
+            "Team headings without extracted players: "
+            + ", ".join(sorted(missing_teams))
+        )
+
+    if parser.unrecognized_headings:
+        raise RuntimeError(
+            "Unrecognized team headings: "
+            + ", ".join(sorted(parser.unrecognized_headings))
+        )
+
+    if parser.unsupported_positions:
+        raise RuntimeError(
+            "Unsupported position labels: "
+            + ", ".join(sorted(parser.unsupported_positions))
+        )
     result = {
         "source_url": SOURCE_URL,
         "retrieved_at_utc": (
