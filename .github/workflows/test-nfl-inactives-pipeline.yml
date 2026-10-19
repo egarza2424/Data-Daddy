@@ -1,0 +1,112 @@
+
+name: Test NFL Inactives Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: "NFL season"
+        required: true
+        default: "2026"
+        type: string
+      week:
+        description: "NFL week"
+        required: true
+        default: "6"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  test-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Discover NFL inactive reports
+        env:
+          NFL_SEASON: ${{ inputs.season }}
+          NFL_WEEK: ${{ inputs.week }}
+        run: |
+          python3 scripts/discover_nfl_inactives.py \
+            --season "$NFL_SEASON" \
+            --week "$NFL_WEEK"
+
+      - name: Extract discovered report
+        run: |
+          python3 - <<'PY'
+          import json
+          import subprocess
+          from pathlib import Path
+
+          path = Path(
+              "data/nfl_inactive_report_candidates.json"
+          )
+          data = json.loads(path.read_text())
+
+          candidates = data["candidates"]
+
+          if not candidates:
+              raise SystemExit(
+                  "No reports discovered. Extraction stopped."
+              )
+
+          if len(candidates) != 1:
+              raise SystemExit(
+                  "Multiple reports found. Manual review required."
+              )
+
+          report = candidates[0]
+
+          if report["verification_status"] != (
+              "candidate_listing_date_checked"
+          ):
+              raise SystemExit(
+                  "Report has not passed listing-date check."
+              )
+
+          url = report["url"]
+
+          print("Extracting:", url)
+
+          subprocess.run(
+              [
+                  "python3",
+                  "scripts/extract_nfl_inactives.py",
+                  "--url",
+                  url,
+              ],
+              check=True,
+          )
+
+          extracted = json.loads(
+              Path(
+                  "data/nfl_inactives_extracted.json"
+              ).read_text()
+          )
+
+          assert extracted["source_url"] == url
+          assert extracted["verification_status"] == (
+              "extracted_unverified"
+          )
+
+          print(
+              "Pipeline completed:",
+              extracted["player_count"],
+              "unverified player records"
+          )
+          PY
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfl-inactives-pipeline-test
+          path: |
+            data/nfl_inactive_report_candidates.json
+            data/nfl_inactives_extracted.json
+          if-no-files-found: warn
+          retention-days: 7
