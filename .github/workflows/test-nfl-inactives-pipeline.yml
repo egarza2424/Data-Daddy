@@ -110,7 +110,8 @@ jobs:
           python3 - <<'PY'
           import json
           import os
-          from datetime import date
+          from datetime import date, datetime, timezone
+          from zoneinfo import ZoneInfo
           from pathlib import Path
 
           season = int(os.environ["NFL_SEASON"])
@@ -185,7 +186,67 @@ jobs:
                   "NFL inactive report schedule mismatch"
               )
 
+          
           print("PASS: All Sunday teams match the schedule")
+
+          eastern = ZoneInfo("America/New_York")
+          pacific = ZoneInfo("America/Los_Angeles")
+
+          kickoff_records = []
+
+          for game in games:
+              gameday = game.get("gameday", "")
+              gametime = game.get("gametime", "")
+
+              try:
+                  local_kickoff = datetime.strptime(
+                      f"{gameday} {gametime}",
+                      "%Y-%m-%d %H:%M",
+                  ).replace(tzinfo=eastern)
+              except (ValueError, TypeError):
+                  raise SystemExit(
+                      f"Invalid kickoff for {game['game_id']}"
+                  )
+
+              utc_kickoff = local_kickoff.astimezone(
+                  timezone.utc
+              )
+
+              pacific_kickoff = local_kickoff.astimezone(
+                  pacific
+              )
+
+              kickoff_records.append({
+                  "game_id": game["game_id"],
+                  "home_team": game["home_team"],
+                  "away_team": game["away_team"],
+                  "kickoff_utc": utc_kickoff.isoformat(),
+                  "kickoff_pacific": (
+                      pacific_kickoff.isoformat()
+                  ),
+              })
+
+              print(
+                  "KICKOFF:",
+                  game["game_id"],
+                  "| Pacific:",
+                  pacific_kickoff.strftime(
+                      "%Y-%m-%d %I:%M %p %Z"
+                  ),
+                  "| UTC:",
+                  utc_kickoff.isoformat(),
+              )
+
+          if len(kickoff_records) != len(games):
+              raise SystemExit(
+                  "Kickoff coverage is incomplete"
+              )
+
+          print(
+              "PASS: All Sunday kickoff times parsed:",
+              len(kickoff_records),
+          )
+
           PY
 
 
