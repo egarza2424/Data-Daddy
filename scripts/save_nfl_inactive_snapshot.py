@@ -1,6 +1,7 @@
 
 """Save an immutable, unverified NFL inactive observation."""
 
+import argparse
 import hashlib
 import json
 import os
@@ -12,11 +13,31 @@ SNAPSHOT_DIR = Path("data/nfl_inactive_snapshots")
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--season", type=int, required=True)
+    parser.add_argument("--week", type=int, required=True)
+    args = parser.parse_args()
+
+    if args.season < 2020 or not 1 <= args.week <= 22:
+        raise SystemExit("Invalid NFL season or week")
+
     source = json.loads(SOURCE.read_text(encoding="utf-8"))
 
     if source.get("verification_status") != "extracted_unverified":
         raise SystemExit("Unexpected source verification status")
+    from urllib.parse import urlparse
 
+    source_path = urlparse(source["source_url"]).path.lower()
+
+    if (
+        f"week-{args.week}-" not in source_path
+        or f"{args.season}-season" not in source_path
+    ):
+        raise SystemExit(
+            "Source URL does not match requested season/week"
+        )
+
+    
     retrieved_at = datetime.fromisoformat(
         source["retrieved_at_utc"].replace("Z", "+00:00")
     )
@@ -35,6 +56,8 @@ def main():
         raise SystemExit("Extraction is older than 10 minutes")
 
     payload = {
+        "season": args.season,
+        "week": args.week,
         "snapshot_type": "nfl_article_observation",
         "verification_status": "extracted_unverified",
         "source_url": source["source_url"],
@@ -65,7 +88,9 @@ def main():
     SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
 
     stamp = now.strftime("%Y%m%dT%H%M%S%fZ")
-    path = SNAPSHOT_DIR / f"inactives_{stamp}.json"
+    path = SNAPSHOT_DIR / (
+        f"inactives_{args.season}_week_{args.week:02d}_{stamp}.json"
+    )
 
     serialized = json.dumps(
         payload, indent=2, ensure_ascii=False
