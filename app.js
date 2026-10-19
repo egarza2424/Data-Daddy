@@ -2427,17 +2427,13 @@ function renderProjectionBoard() {
             )
           : null;
 
-      const matchup =
-        player
-          ? teamNextOpponent[
-              player.team
-            ]
-          : null;
-
+      
+      // Use the opponent from the same weekly
+      // projection snapshot as the PPR values.
       const opponent =
-        matchup?.opponent ||
-        projection.opponent ||
+        String(projection.opponent || "").trim() ||
         "TBD";
+
 
       const status =
         player?.injuryStatus ||
