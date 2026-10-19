@@ -127,7 +127,7 @@ jobs:
                           f"Week {week}: collection unavailable: {exc}"
                       )
 
-          print("NFL.com observations remain unverified.")
+          print("NFL.com observations remain unverified; no official status is inferred.")
           PY
 
       - name: Build game-specific NFL observations
@@ -208,6 +208,8 @@ jobs:
           path = Path("data/nfl_inactive_coverage_audit.json")
           path.write_text(json.dumps(report, indent=2) + "\\n")
           print("Coverage summary:", counts)
+          if counts["missing_near_kickoff"]:
+              print("WARNING: game(s) missing inactive observations near kickoff; do not treat as confirmed active.")
           print("Saved:", path)
           PY
 
