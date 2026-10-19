@@ -58,7 +58,8 @@ class InactiveParser(HTMLParser):
         attrs = dict(attrs)
 
         if self.wrapper_depth:
-            self.depth += 1
+            if tag == "div":
+                self.depth += 1
         elif (
             tag == "div"
             and "story-part-rich-text-editor-wrapper"
