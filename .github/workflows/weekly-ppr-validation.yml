@@ -771,8 +771,60 @@ jobs:
               .value_counts()
               .to_string()
           )
-          # Missing records may mean bye, inactive, zero production,
-          # or an identity/data issue. Never assume zero points.
+          # Investigate missing identities without assuming zero PPR.
+          actual_name_counts = (
+              actual.groupby("match_name")
+              .size()
+          )
+          actual_identity_counts = (
+              actual.groupby(["match_name", "position"])
+              .size()
+          )
+
+          unmatched_rows["name_in_weekly_stats"] = (
+              unmatched_rows["match_name"]
+              .map(actual_name_counts)
+              .fillna(0)
+              .astype(int)
+              .gt(0)
+          )
+
+          unmatched_rows["name_position_in_weekly_stats"] = [
+              actual_identity_counts.get(
+                  (name, position), 0
+              ) > 0
+              for name, position in zip(
+                  unmatched_rows["match_name"],
+                  unmatched_rows["position"]
+              )
+          ]
+
+          unresolved_mask = unmatched_rows[
+              "review_status"
+          ].eq("unresolved_no_verified_weekly_stat")
+
+          unmatched_rows.loc[
+              unresolved_mask
+              & unmatched_rows["name_in_weekly_stats"]
+              & ~unmatched_rows["name_position_in_weekly_stats"],
+              "review_status"
+          ] = "name_found_different_position"
+
+          unmatched_rows.loc[
+              unresolved_mask
+              & ~unmatched_rows["name_in_weekly_stats"],
+              "review_status"
+          ] = "absent_from_weekly_stats"
+
+          print("Expanded unmatched diagnostics:")
+          print(
+              unmatched_rows["review_status"]
+              .value_counts()
+              .to_string()
+          )
+
+          # Absence from weekly stats does not prove inactivity
+          # or zero fantasy points.
           unmatched_rows.to_csv(unmatched_path, index=False)
 
           audit_rows = []
