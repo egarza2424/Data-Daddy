@@ -1359,6 +1359,24 @@ def build_week(
         opportunity_raw = float(
             recent["opportunity_raw"].mean()
         )
+        # RB challenger: prior-game workload only.
+        rb_carries_pg = 0.0
+        rb_targets_pg = 0.0
+        rb_receptions_pg = 0.0
+        rb_rush_yards_pg = 0.0
+        rb_receiving_yards_pg = 0.0
+        rb_redzone_carries_pg = 0.0
+        rb_redzone_targets_pg = 0.0
+
+        if position == "RB":
+            rb_carries_pg = float(recent["carries"].mean())
+            rb_targets_pg = float(recent["targets"].mean())
+            rb_receptions_pg = float(recent["receptions"].mean())
+            rb_rush_yards_pg = float(recent["rushing_yards"].mean())
+            rb_receiving_yards_pg = float(recent["receiving_yards"].mean())
+            rb_redzone_carries_pg = float(recent["red_zone_carries"].mean())
+            rb_redzone_targets_pg = float(recent["red_zone_targets"].mean())
+        
         # QB challenger features: prior three games only.
         qb_pass_attempts_pg = 0.0
         qb_rush_attempts_pg = 0.0
@@ -1499,7 +1517,15 @@ def build_week(
 
                 "qb_rush_yards_pg":
                     qb_rush_yards_pg,
+                "rb_carries_pg": rb_carries_pg,
+                "rb_targets_pg": rb_targets_pg,
+                "rb_receptions_pg": rb_receptions_pg,
+                "rb_rush_yards_pg": rb_rush_yards_pg,
+                "rb_receiving_yards_pg": rb_receiving_yards_pg,
+                "rb_redzone_carries_pg": rb_redzone_carries_pg,
+                "rb_redzone_targets_pg": rb_redzone_targets_pg,
 
+                
                 "production_consistency":
                     production_consistency,
 
@@ -1772,6 +1798,13 @@ def build_dataset(
         "qb_pass_attempts_pg",
         "qb_rush_attempts_pg",
         "qb_rush_yards_pg",
+        "rb_carries_pg",
+        "rb_targets_pg",
+        "rb_receptions_pg",
+        "rb_rush_yards_pg",
+        "rb_receiving_yards_pg",
+        "rb_redzone_carries_pg",
+        "rb_redzone_targets_pg",
         "matchup_raw",
         "actual_ppr",
     ]
