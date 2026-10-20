@@ -4628,7 +4628,8 @@ function renderLineupInjuryWatch(slots, bench) {
 
 function renderOptimizedLineup(
   lineup,
-  rules
+  rules,
+  strategy = "best"
 ) {
   const result =
     document.getElementById(
@@ -4685,7 +4686,7 @@ function renderOptimizedLineup(
   heading.innerHTML = `
     <div>
       <span class="eyebrow">
-        BEST PROJECTED LINEUP
+        ${strategy === "safe" ? "SAFER LINEUP — INJURY DESIGNATIONS" : "BEST PROJECTED LINEUP"}
       </span>
       <h3>
         Optimal Starting Lineup
@@ -5017,7 +5018,7 @@ function optimizeLineup(mode = "best") {
     return;
   }
 
-  renderOptimizedLineup(bestLineup, rules);
+  renderOptimizedLineup(bestLineup, rules, useSafer ? "safe" : "best");
   if (maximumLineup && saferLineup) {
     const choices = document.createElement("div");
     choices.className = "lineup-strategy-choices";
