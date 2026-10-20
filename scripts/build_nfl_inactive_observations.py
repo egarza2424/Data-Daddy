@@ -126,6 +126,11 @@ def main():
             "week": week,
             "kickoff_utc": kickoff.isoformat(),
             "observed_at_utc": observed.isoformat(),
+            "minutes_before_kickoff": round(
+                (kickoff - observed).total_seconds() / 60, 2
+            ),
+            "observation_timing": "retrieved_before_kickoff",
+            "publication_time_verified": False,
             "source_url": latest["source_url"],
             "source_type": "nfl_article_extraction",
             "verification_status": "extracted_unverified",
