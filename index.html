@@ -6,7 +6,7 @@
   <meta name="description" content="Fantasy AI Player Lab — weekly data-driven NFL fantasy rankings, player comparisons, and transparent model scoring powered by 11 explainable signals.">
   <title>Fantasy AI Player Lab</title>
 
-  <link rel="stylesheet" href="styles.css?v=35">
+  <link rel="stylesheet" href="styles.css?v=36">
 </head>
 
 <body>
@@ -192,13 +192,17 @@
       <button type="button" class="tracker-tab" data-tracker-category="sleepers">Sleeper Hits</button>
       <button type="button" class="tracker-tab" data-tracker-category="waiver">Waiver Wire Hits</button>
     </div>
+    <div class="tracker-filters">
+    <div class="tracker-control">
     <label for="trackerPosition">Position</label>
     <select id="trackerPosition" class="tracker-position">
       <option value="ALL">All Positions</option><option value="QB">QB</option>
       <option value="RB">RB</option><option value="WR">WR</option><option value="TE">TE</option>
     </select>
+    </div>
+    </div>
     <p id="trackerNote" aria-live="polite">Loading completed weekly audit…</p>
-    <div id="trackerCards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:18px 0"></div>
+    <div id="trackerCards"></div>
   </div>
   <p style="font-size:.9rem;opacity:.85">The tracker does not treat missing player results as zero or label unverified recommendations as hits. <a href="https://github.com/egarza2424/Data-Daddy/tree/main/model-validation" target="_blank" rel="noopener noreferrer">View audit data ↗</a></p>
 </section>
