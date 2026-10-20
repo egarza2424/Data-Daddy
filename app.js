@@ -4962,7 +4962,18 @@ function renderNflInactiveObservationStatus(container) {
 
 
 
-function optimizeLineup() {
+function getSaferLineupGroups(groups) {
+  const risky = new Set(["QUESTIONABLE", "DOUBTFUL", "Q", "D"]);
+  return Object.fromEntries(Object.entries(groups).map(([position, entries]) => [
+    position,
+    entries.filter(projection => {
+      const player = getProjectionPlayer(projection);
+      return !risky.has(String(player?.injuryStatus || "").trim().toUpperCase());
+    })
+  ]));
+}
+
+function optimizeLineup(mode = "best") {
   const result = document.getElementById(
     "lineupAnalyzerResult"
   );
@@ -4979,10 +4990,10 @@ function optimizeLineup() {
 
   const rules = getLineupRules();
   const groups = getLineupPlayersByPosition();
-  const bestLineup = findBestLegalLineup(
-    rules,
-    groups
-  );
+  const maximumLineup = findBestLegalLineup(rules, groups);
+  const saferLineup = findBestLegalLineup(rules, getSaferLineupGroups(groups));
+  const useSafer = mode === "safe" && Boolean(saferLineup);
+  const bestLineup = useSafer ? saferLineup : maximumLineup;
 
   if (!bestLineup) {
     const missing = getMissingLineupNeeds(
@@ -5007,6 +5018,34 @@ function optimizeLineup() {
   }
 
   renderOptimizedLineup(bestLineup, rules);
+  if (maximumLineup && saferLineup) {
+    const choices = document.createElement("div");
+    choices.className = "lineup-strategy-choices";
+    Object.assign(choices.style, { display: "flex", gap: "10px",
+      flexWrap: "wrap", margin: "12px 0" });
+    for (const [choice, label] of [
+      ["best", "Best Projected PPR"],
+      ["safe", "Avoid Questionable/Doubtful"]
+    ]) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = label;
+      button.disabled = choice === (useSafer ? "safe" : "best");
+      button.addEventListener("click", () => optimizeLineup(choice));
+      choices.appendChild(button);
+    }
+    const summary = document.createElement("p");
+    summary.textContent = useSafer
+      ? "Safer designation-based lineup: " + saferLineup.total.toFixed(2) +
+        " projected PPR vs. maximum " + maximumLineup.total.toFixed(2) +
+        ". This does not guarantee player availability."
+      : "Maximum projected lineup: " + maximumLineup.total.toFixed(2) +
+        " PPR. Safer designation-based option: " + saferLineup.total.toFixed(2) +
+        " PPR. Injury designations can change.";
+    const resultHeading = result.firstElementChild;
+    if (resultHeading) resultHeading.before(choices, summary);
+    else result.append(choices, summary);
+  }
   const dialog = document.createElement("dialog");
   dialog.id = "lineupAiInsightsDialog";
   dialog.setAttribute(
