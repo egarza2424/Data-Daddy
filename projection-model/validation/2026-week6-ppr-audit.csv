@@ -1,5 +1,0 @@
-week,position,projected_players,matched_players,unmatched_players,match_coverage_pct,overprojected_players,underprojected_players,exact_projection_players,mean_overprojection_ppr,mean_underprojection_ppr,mae,largest_miss_player,largest_miss_ppr
-6,QB,26,26,0,100.0,16,10,0,5.943,-4.366,5.337,Jacoby Brissett,16.39
-6,RB,102,68,34,66.7,38,30,0,3.629,-5.401,4.411,Christian McCaffrey,17.93
-6,WR,162,119,43,73.5,79,40,0,3.091,-5.718,3.974,Germie Bernard,19.25
-6,TE,107,67,40,62.6,38,29,0,3.195,-5.744,4.298,Kyle Pitts,16.56
