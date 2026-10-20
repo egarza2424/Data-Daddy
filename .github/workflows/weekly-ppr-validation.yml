@@ -1037,7 +1037,7 @@ jobs:
           # Build season-to-date summary
           # -----------------------------------------
 
-                    # Private historical reports plus current week.
+          # Private historical reports plus current week.
           private_dir = Path("private-audits")
 
           historical_files = sorted(
