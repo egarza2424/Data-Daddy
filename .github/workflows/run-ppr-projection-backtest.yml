@@ -182,8 +182,8 @@ jobs:
               "E_normalized_plus_matchup_and_environment",
               "F_position_specific",
               "G_QB_passing_rushing",
+              "H_RB_role_aware",
           }
-
           actual_models = set(
               predictions[
                   "model"
