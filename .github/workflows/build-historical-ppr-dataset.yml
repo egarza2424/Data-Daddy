@@ -154,16 +154,26 @@ jobs:
             --output "projection-model/${SEASON}-historical-ppr-dataset.csv"
 
       - name: Inspect generated dataset
+        env:
+          SEASON: ${{ inputs.season }}
         run: |
           python <<'PY'
+          import os
           import pandas as pd
+
+          season = int(os.environ["SEASON"])
 
           path = (
               "projection-model/"
-              "2025-historical-ppr-dataset.csv"
+              f"{season}-historical-ppr-dataset.csv"
           )
 
           df = pd.read_csv(path)
+
+          if not df["season"].eq(season).all():
+              raise ValueError(
+                  f"Dataset contains records outside {season}"
+              )
 
           print()
           print("Dataset shape:")
