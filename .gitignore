@@ -11,3 +11,5 @@ build/
 .env
 .env.*
 !.env.example
+# Keep generated Model F validation reports out of public Git commits
+/projection-model/validation/
