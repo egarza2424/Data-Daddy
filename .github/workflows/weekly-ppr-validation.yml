@@ -1037,40 +1037,39 @@ jobs:
           # Build season-to-date summary
           # -----------------------------------------
 
-          completed_files = sorted(
-              output_dir.glob(
+                    # Private historical reports plus current week.
+          private_dir = Path("private-audits")
+
+          historical_files = sorted(
+              private_dir.glob(
                   "2026-week*-ppr-validation.csv"
               )
           )
 
-          expected_weeks = {
-              week
-              for week, path in week_files
-              if week in available_weeks
-          }
+          reports_by_week = {}
 
-          available_report_weeks = {
-              int(match.group(1))
-              for path in completed_files
-              if (match := re.fullmatch(
+          for path in historical_files:
+              match = re.fullmatch(
                   r"2026-week(\d+)-ppr-validation\.csv",
                   path.name
-              ))
-          }
-
-          if not expected_weeks.issubset(
-              available_report_weeks
-          ):
-              missing_weeks = sorted(
-                  expected_weeks - available_report_weeks
               )
-              print(
-                  "Season summary update skipped: "
-                  f"missing validation reports for {missing_weeks}. "
-                  "Preserving the existing season baseline."
-              )
-              completed_files = []
+              if match:
+                  week = int(match.group(1))
+                  if week <= target_week:
+                      reports_by_week[week] = path
 
+          # Always use the newly validated current week.
+          reports_by_week[target_week] = detail_path
+
+          completed_files = [
+              reports_by_week[week]
+              for week in sorted(reports_by_week)
+          ]
+
+          print(
+              "Season validation weeks: "
+              f"{sorted(reports_by_week)}"
+          )
           season_frames = []
 
           for path in completed_files:
