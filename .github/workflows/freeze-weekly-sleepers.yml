@@ -19,7 +19,10 @@ jobs:
       - run: |
           npm install --no-save playwright
           npx playwright install --with-deps chromium
+      - name: Retrieve 2026 NFL schedule
+        run: python scripts/fetch_nfl_schedule.py
       - name: Capture live pregame sleeper recommendations
+        id: capture
         run: |
           mkdir -p data/sleeper_snapshots
           node <<'NODE'
@@ -54,10 +57,16 @@ jobs:
               const file="data/sleeper_snapshots/2026-week"+String(payload.target_week).padStart(2,"0")+".json";
               if(fs.existsSync(file)){console.log("Existing sleeper snapshot preserved: "+file);return;}
               fs.writeFileSync(file,JSON.stringify(payload,null,2)+"\n");
+              fs.appendFileSync(process.env.GITHUB_OUTPUT,"snapshot="+file+"\\n");
               console.log("Saved "+file+" with "+payload.picks.length+" sleeper recommendations");
             }finally{await browser.close();}
           })().catch(e=>{console.error(e);process.exit(1)});
           NODE
+      - name: Verify each sleeper pick preceded kickoff
+        if: steps.capture.outputs.snapshot != ''
+        env:
+          SNAPSHOT_PATH: ${{ steps.capture.outputs.snapshot }}
+        run: python scripts/verify_sleeper_snapshot_kickoffs.py "$SNAPSHOT_PATH"
       - name: Commit immutable sleeper snapshot
         run: |
           git config user.name "github-actions[bot]"
