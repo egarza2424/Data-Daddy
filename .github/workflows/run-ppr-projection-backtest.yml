@@ -349,6 +349,66 @@ jobs:
           print("Model J1 validation passed")
           PY
 
+      - name: Run Model J2 four-model validation
+        run: |
+          python -m py_compile scripts/validate_rb_model_j2.py
+          python scripts/validate_rb_model_j2.py --season 2024
+          python scripts/validate_rb_model_j2.py --season 2025
+
+      - name: Verify Model J2 validation results
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd
+
+          base = Path("projection-model/validation")
+          expected_models = {
+              "F_position_specific",
+              "I_RB_component",
+              "J1_RB_season_efficiency",
+              "J2_RB_role_stability",
+          }
+
+          for season in (2024, 2025):
+              prefix = base / f"{season}-rb-model-j2"
+
+              for suffix in (
+                  "predictions",
+                  "summary",
+                  "tier-weekly",
+                  "tier-summary",
+              ):
+                  path = Path(f"{prefix}-{suffix}.csv")
+                  if not path.exists():
+                      raise RuntimeError(f"Missing {path}")
+
+                  data = pd.read_csv(path)
+                  if data.empty:
+                      raise RuntimeError(f"Empty {path}")
+
+              predictions = pd.read_csv(
+                  f"{prefix}-predictions.csv"
+              )
+
+              if not predictions["season"].eq(season).all():
+                  raise RuntimeError(f"Incorrect season: {season}")
+
+              if set(predictions["model"]) != expected_models:
+                  raise RuntimeError(f"Missing models: {season}")
+
+              if predictions["projected_ppr"].isna().any():
+                  raise RuntimeError(f"Missing projections: {season}")
+
+              if not (predictions["training_through_week"]
+                      < predictions["week"]).all():
+                  raise RuntimeError("Invalid training week")
+
+              print(f"{season}: all four models verified")
+
+          print("Model J2 validation passed")
+          PY
+
+
 
       - name: Commit PPR backtest results
         run: |
@@ -378,8 +438,17 @@ jobs:
             projection-model/validation/2024-rb-model-j1-tier-summary.csv \
             projection-model/validation/2025-rb-model-j1-predictions.csv \
             projection-model/validation/2025-rb-model-j1-summary.csv \
-            projection-model/validation/2025-rb-model-j1-tier-weekly.csv \
-            projection-model/validation/2025-rb-model-j1-tier-summary.csv
+            projection-model/validation/2025-rb-model-j1-tier-weekly.csv \     
+            projection-model/validation/2025-rb-model-j1-tier-summary.csv \
+            projection-model/validation/2024-rb-model-j2-predictions.csv \
+            projection-model/validation/2024-rb-model-j2-summary.csv \
+            projection-model/validation/2024-rb-model-j2-tier-weekly.csv \
+            projection-model/validation/2024-rb-model-j2-tier-summary.csv \
+            projection-model/validation/2025-rb-model-j2-predictions.csv \
+            projection-model/validation/2025-rb-model-j2-summary.csv \
+            projection-model/validation/2025-rb-model-j2-tier-weekly.csv \
+            projection-model/validation/2025-rb-model-j2-tier-summary.csv
+
           if git diff --cached --quiet; then
             echo \
               "No PPR backtest changes to commit."
