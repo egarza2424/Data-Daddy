@@ -9146,27 +9146,13 @@ function renderPositionRankings() {
     `${profile}-${position}`
   ];
 
-    const rankings =
+      const rankings =
     getPositionRankings(position, profile)
-      .filter(({ player }) => {
-        const projection =
-          getPlayerPprProjection(player);
-
-        const hasCurrentWeekProjection =
-          projection &&
-          Number(projection.snapshot_week) ===
-            Number(snapshotWeek) &&
-          Number.isFinite(
-            Number(projection.projected_ppr)
-          );
-
-        return (
-          hasCurrentWeekProjection &&
-          player.name
-            .toLowerCase()
-            .includes(query)
-        );
-      });
+      .filter(({ player }) =>
+        player.name
+          .toLowerCase()
+          .includes(query)
+      );
   tableBody.innerHTML = "";
 
   if (rankings.length === 0) {
