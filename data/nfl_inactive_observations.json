@@ -1,6 +1,98 @@
 {
   "season": 2026,
-  "generated_at_utc": "2026-10-20T00:03:19.893159+00:00",
+  "generated_at_utc": "2026-10-20T00:06:13.832513+00:00",
   "official_inactives_verified": false,
-  "games": []
+  "games": [
+    {
+      "game_id": "2026_06_WAS_SF",
+      "season": 2026,
+      "week": 6,
+      "kickoff_utc": "2026-10-20T00:15:00+00:00",
+      "observed_at_utc": "2026-10-20T00:06:13.485812+00:00",
+      "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers",
+      "source_type": "nfl_article_extraction",
+      "verification_status": "extracted_unverified",
+      "official_inactives_verified": false,
+      "players": [
+        {
+          "name": "Marcus Mariota",
+          "team": "COMMANDERS",
+          "position": "QB",
+          "emergency_third_qb": false
+        },
+        {
+          "name": "Fabian Moreau",
+          "team": "COMMANDERS",
+          "position": "CB",
+          "emergency_third_qb": false
+        },
+        {
+          "name": "Isaac Yiadom",
+          "team": "COMMANDERS",
+          "position": "CB",
+          "emergency_third_qb": false
+        },
+        {
+          "name": "T.J. Maguranyanga",
+          "team": "COMMANDERS",
+          "position": "DE",
+          "emergency_third_qb": false
+        },
+        {
+          "name": "Tanoa Togiai",
+          "team": "COMMANDERS",
+          "position": "G",
+          "emergency_third_qb": false
+        },
+        {
+          "name": "Charles Omenihu",
+          "team": "COMMANDERS",
+          "position": "DE",
+          "emergency_third_qb": false
+        },
+        {
+          "name": "Kurtis Rourke",
+          "team": "49ERS",
+          "position": "QB",
+          "emergency_third_qb": false
+        },
+        {
+          "name": "Enrique Cruz Jr.",
+          "team": "49ERS",
+          "position": "OL",
+          "emergency_third_qb": false
+        },
+        {
+          "name": "Deebo Samuel",
+          "team": "49ERS",
+          "position": "WR",
+          "emergency_third_qb": false
+        },
+        {
+          "name": "Garret Wallow",
+          "team": "49ERS",
+          "position": "LB",
+          "emergency_third_qb": false
+        },
+        {
+          "name": "Marques Sigle",
+          "team": "49ERS",
+          "position": "S",
+          "emergency_third_qb": false
+        },
+        {
+          "name": "Nick Bosa",
+          "team": "49ERS",
+          "position": "DL",
+          "emergency_third_qb": false
+        },
+        {
+          "name": "Naquan Jones",
+          "team": "49ERS",
+          "position": "DL",
+          "emergency_third_qb": false
+        }
+      ]
+    }
+  ]
 }
