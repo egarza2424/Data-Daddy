@@ -55,9 +55,9 @@
           .sort((a,b)=>b.delta-a.delta).slice(0,12);
       } else {
         // Sleeper candidates are not identifiable from the ranking-only report.
-        const verified=(reports.sleepers||[]).filter(r=>Number(r.target_week)===week&&r.timing_status==="verified_pregame"&&r.result_status==="recorded_game"&&number(r.actual_ppr)>=10&&(position==="ALL"||r.position===position));
-        note.textContent="Week "+week+" · kickoff-verified frozen sleeper picks with recorded PPR only. Sleeper Score is not a projected PPR value.";
-        list.innerHTML=verified.sort((a,b)=>number(b.actual_ppr)-number(a.actual_ppr)).slice(0,12).map(r=>card(r.player_name+" · "+r.position,"Sleeper pick #"+r.rank+" · Sleeper Score "+r.sleeper_score,number(r.actual_ppr).toFixed(1)+" actual PPR")).join("")||'<p>No independently verified sleeper hits available in the published audit.</p>';
+        const verified=(reports.sleepers||[]).filter(r=>Number(r.target_week)===week&&r.timing_status==="verified_pregame"&&r.result_status==="recorded_game"&&r.sleeper_hit==="True"&&(position==="ALL"||r.position===position));
+        note.textContent="Week "+week+" · kickoff-verified frozen sleeper picks: actual PPR ≥ QB 16 / RB-WR 10 / TE 8, and at least 20% above frozen projected PPR. Sleeper Score is not projected PPR.";
+        list.innerHTML=verified.sort((a,b)=>number(b.actual_ppr)-number(a.actual_ppr)).slice(0,12).map(r=>card(r.player_name+" · "+r.position,"Sleeper pick #"+r.rank+" · Sleeper Score "+r.sleeper_score,number(r.actual_ppr).toFixed(1)+" actual PPR · "+number(r.ppr_lift_pct).toFixed(1)+"% over projection"+(r.breakout_hit==="True"?" · Breakout":""))).join("")||'<p>No independently verified sleeper hits available in the published audit.</p>';
         return;
       }
       note.textContent="Week "+week+" · matched-player cohort only. Predicted and actual ranks are recalculated among matched players by position. This is ranking agreement, not PPR projection accuracy.";
