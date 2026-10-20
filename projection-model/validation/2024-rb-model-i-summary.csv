@@ -1,0 +1,3 @@
+model,observations,mae,rmse,correlation,mean_absolute_rank_error
+F_position_specific,993,4.4607,6.0887,0.658,14.137
+I_RB_component,993,4.4908,6.0281,0.6665,14.2618
