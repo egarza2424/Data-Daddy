@@ -248,8 +248,15 @@ jobs:
               "validation passed."
           )
           PY
+      - name: Run Model I RB component backtest
+        run: |
+          python -m py_compile scripts/validate_rb_component_model.py
+          python scripts/validate_rb_component_model.py
 
-      - name: Commit PPR backtest results
+      - name: Run Model I RB component backtest
+        run: |
+          python -m py_compile scripts/validate_rb_component_model.py
+          python scripts/validate_rb_component_model.py
         run: |
           git config user.name \
             "github-actions[bot]"
