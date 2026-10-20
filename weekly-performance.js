@@ -67,10 +67,10 @@
     } else {
       items=(reports.waiver||[]).filter(r=>Number(r.target_week)===week&&
         r.eligible_for_predictive_accuracy==="True"&&r.result_status==="recorded_game"&&
-        Number.isFinite(number(r.actual_ppr))&&number(r.actual_ppr)>=10&&
+        Number.isFinite(number(r.actual_ppr))&&number(r.actual_ppr)>=({QB:16,RB:10,WR:10,TE:8}[r.position]??Infinity)&&
         (position==="ALL"||r.position===position))
         .sort((a,b)=>number(b.actual_ppr)-number(a.actual_ppr)).slice(0,12);
-      note.textContent="Week "+week+" · verified pregame waiver recommendations with recorded results and at least 10 PPR. This is a display threshold, not a validated prediction-accuracy metric.";
+      note.textContent="Week "+week+" · verified pregame waiver recommendations with recorded results and position-specific minimum PPR (QB 16, RB/WR 10, TE 8). This is a display threshold, not a validated prediction-accuracy metric.";
       list.innerHTML=items.map(r=>card(r.name+" · "+r.position,
         "Waiver recommendation #"+r.rank+" · evidence score "+r.waiver_evidence_score,
         number(r.actual_ppr).toFixed(1)+" actual PPR")).join("")||"<p>No qualifying verified waiver results for this week.</p>";
