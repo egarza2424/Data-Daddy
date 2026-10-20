@@ -4495,6 +4495,51 @@ function renderStartSitInsights(slots, bench) {
 
 
   
+// Schedule is advisory only. The source schedule is not independently verified.
+let lineupKickoffSchedule = null;
+async function loadLineupKickoffSchedule() {
+  lineupKickoffSchedule = null;
+  try {
+    const response = await fetch("./data/nfl_schedule_2026.json", { cache: "no-store" });
+    if (!response.ok) return;
+    const data = await response.json();
+    if (data.season !== 2026 || !Array.isArray(data.games)) return;
+    lineupKickoffSchedule = data.games;
+  } catch (error) {
+    console.warn("Lineup kickoff schedule unavailable:", error);
+  }
+}
+function getLineupKickoff(projection) {
+  const week = Number(document.documentElement.dataset.targetWeek);
+  const team = String(projection.team || "").toUpperCase();
+  if (!lineupKickoffSchedule || !Number.isInteger(week) || !team) return null;
+  const matches = lineupKickoffSchedule.filter(game =>
+    Number(game.week) === week &&
+    [game.home_team, game.away_team].some(t =>
+      String(t || "").toUpperCase() === team ||
+      (team === "LAR" && t === "LA") ||
+      (team === "JAX" && t === "JAC") ||
+      (team === "WAS" && t === "WSH")
+    )
+  );
+  if (matches.length !== 1) return null;
+  const game = matches[0];
+  if (!/^\\d{4}-\\d{2}-\\d{2}$/.test(String(game.gameday)) ||
+      !/^\\d{1,2}:\\d{2}$/.test(String(game.gametime))) return null;
+  // Compare scheduled local Eastern kickoff labels, not guessed UTC offsets.
+  return game.gameday + "T" + game.gametime.padStart(5, "0");
+}
+function currentEasternKickoffLabel() {
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York", year: "numeric", month: "2-digit",
+      day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23"
+    }).formatToParts(new Date()).map(p => [p.type, p.value])
+  );
+  return parts.year + "-" + parts.month + "-" + parts.day +
+    "T" + parts.hour + ":" + parts.minute;
+}
+
 // Retrieval time only; Sleeper does not supply a verified report publication time.
 let sleeperInjuryFetchedAt = null;
 
@@ -4514,7 +4559,18 @@ function renderLineupInjuryWatch(slots, bench) {
         );
       })
       .sort((a, b) => Number(b.projected_ppr) - Number(a.projected_ppr));
-    watch.push({ projection, status, alternative: alternatives[0] });
+    const starterKickoff = getLineupKickoff(projection);
+    const nowEastern = currentEasternKickoffLabel();
+    const lateOptions = starterKickoff && starterKickoff > nowEastern
+      ? alternatives.filter(candidate => {
+          const kickoff = getLineupKickoff(candidate);
+          return kickoff && kickoff >= starterKickoff;
+        })
+      : [];
+    watch.push({
+      projection, status, alternative: alternatives[0],
+      lateAlternative: lateOptions[0], starterKickoff
+    });
   }
   if (!watch.length) return null;
   const section = document.createElement("section");
@@ -4536,7 +4592,7 @@ function renderLineupInjuryWatch(slots, bench) {
     ? "Sleeper data retrieved " + Math.floor(elapsedMinutes) + " minute(s) ago. This is the retrieval time, not the injury report publication time."
     : "Sleeper injury report publication time unavailable. Check official game-day status before kickoff.";
   section.appendChild(freshness);
-  for (const { projection, status, alternative } of watch) {
+  for (const { projection, status, alternative, lateAlternative, starterKickoff } of watch) {
     const line = document.createElement("p");
     const name = document.createElement("strong");
     name.textContent = projection.player_name + " — " +
@@ -4551,6 +4607,19 @@ function renderLineupInjuryWatch(slots, bench) {
       line.appendChild(detail);
     } else {
       line.appendChild(document.createTextNode(" | No same-position bench alternative found."));
+    }
+    if (starterKickoff) {
+      const swap = document.createElement("span");
+      swap.textContent = lateAlternative
+        ? " | Late-swap option: " + lateAlternative.player_name +
+          " (scheduled kickoff no earlier than starter; " +
+          Number(lateAlternative.projected_ppr).toFixed(2) + " PPR)"
+        : " | No confirmed same-or-later kickoff bench option in this roster. Earlier backups may lock before the starter's status is known.";
+      line.appendChild(swap);
+    } else {
+      line.appendChild(document.createTextNode(
+        " | Kickoff comparison unavailable; verify bench game times."
+      ));
     }
     section.appendChild(line);
   }
@@ -9253,6 +9322,7 @@ async function initializeApp() {
   // A missing or stale snapshot will not block startup.
   
   await loadGamedayAvailability();
+  await loadLineupKickoffSchedule();
   await loadNflInactiveObservations();
 
 
