@@ -120,6 +120,21 @@ def main():
             if player["team"] in {home, away}
         ]
 
+        published_raw = latest.get("article_published_at_utc")
+        published = None
+        publication_timing = "metadata_unavailable"
+        if published_raw:
+            try:
+                published = timestamp(published_raw)
+                if published > observed:
+                    publication_timing = "after_retrieval_conflict"
+                elif published >= kickoff:
+                    publication_timing = "at_or_after_kickoff"
+                else:
+                    publication_timing = "metadata_before_kickoff"
+            except (ValueError, TypeError):
+                publication_timing = "invalid_metadata"
+
         results.append({
             "game_id": game["game_id"],
             "season": season,
@@ -135,6 +150,8 @@ def main():
                 else "at_least_30_minutes_before_kickoff"
             ),
             "publication_time_verified": False,
+            "article_published_at_utc": published.isoformat() if published else None,
+            "publication_timing": publication_timing,
             "source_url": latest["source_url"],
             "source_type": "nfl_article_extraction",
             "verification_status": "extracted_unverified",
@@ -164,6 +181,7 @@ def main():
             "minutes_before_kickoff:", result["minutes_before_kickoff"],
             "source:", result["source_url"],
             "publication_time_verified:", result["publication_time_verified"],
+            "publication_timing:", result["publication_timing"],
             "lineup_decision_window:", result["lineup_decision_window"],
         )
     timing_counts = {
