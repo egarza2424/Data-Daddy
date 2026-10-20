@@ -7945,15 +7945,25 @@ const playerTeam =
           .trim()
           .toUpperCase();
 
-const confirmedWeek7Byes =
-  new Set(["BUF", "JAX", "LAC", "WAS"]);
+const byeTeamsByWeek = {
+  5: ["CAR", "KC"],
+  6: ["CIN", "DET", "MIA", "MIN"],
+  7: ["BUF", "JAX", "LAC", "WAS"],
+  8: ["HOU", "NO", "NYG", "SF"],
+  9: ["PIT", "TEN"],
+  10: ["CHI", "DEN", "PHI", "TB"],
+  11: ["ATL", "CLE", "GB", "LAR", "NE", "SEA"],
+  13: ["BAL", "IND", "LV", "NYJ"],
+  14: ["ARI", "DAL"]
+};
 
-if (
-  Number(
-    document.documentElement.dataset.targetWeek
-  ) === 7 &&
-  confirmedWeek7Byes.has(playerTeam)
-) {
+const displayedWeek = Number(
+  document.documentElement.dataset.targetWeek
+);
+
+const byeTeams = byeTeamsByWeek[displayedWeek] || [];
+
+if (byeTeams.includes(playerTeam)) {
   return false;
 }
 
