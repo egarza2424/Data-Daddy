@@ -253,6 +253,50 @@ jobs:
           python -m py_compile scripts/validate_rb_component_model.py
           python scripts/validate_rb_component_model.py
 
+      - name: Run independent 2024 RB validation
+        run: |
+          python scripts/validate_rb_component_model.py --season 2024
+
+      - name: Verify independent 2024 RB results
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd
+
+          base = Path("projection-model/validation")
+          names = [
+              "predictions",
+              "summary",
+              "tier-weekly",
+              "tier-summary",
+          ]
+
+          for name in names:
+              path = base / f"2024-rb-model-i-{name}.csv"
+              if not path.exists():
+                  raise RuntimeError(f"Missing result: {path}")
+              data = pd.read_csv(path)
+              if data.empty:
+                  raise RuntimeError(f"Empty result: {path}")
+              print(f"Verified {path}: {len(data)} rows")
+
+          predictions = pd.read_csv(
+              base / "2024-rb-model-i-predictions.csv"
+          )
+
+          if not predictions["season"].eq(2024).all():
+              raise RuntimeError("Incorrect validation season")
+
+          if predictions["projected_ppr"].isna().any():
+              raise RuntimeError("Missing projected PPR values")
+
+          expected = {"F_position_specific", "I_RB_component"}
+          if set(predictions["model"]) != expected:
+              raise RuntimeError("Missing model predictions")
+
+          print("Independent 2024 validation passed")
+          PY
+
       - name: Commit PPR backtest results
         run: |
           git config user.name \
@@ -270,8 +314,11 @@ jobs:
             projection-model/validation/2025-rb-model-i-predictions.csv \
             projection-model/validation/2025-rb-model-i-summary.csv \
             projection-model/validation/2025-rb-model-i-tier-weekly.csv \
-            projection-model/validation/2025-rb-model-i-tier-summary.csv
-
+            projection-model/validation/2025-rb-model-i-tier-summary.csv \
+            projection-model/validation/2024-rb-model-i-predictions.csv \
+            projection-model/validation/2024-rb-model-i-summary.csv \
+            projection-model/validation/2024-rb-model-i-tier-weekly.csv \
+            projection-model/validation/2024-rb-model-i-tier-summary.csv
           if git diff --cached --quiet; then
             echo \
               "No PPR backtest changes to commit."
