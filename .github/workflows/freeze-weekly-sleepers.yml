@@ -57,7 +57,7 @@ jobs:
               const file="data/sleeper_snapshots/2026-week"+String(payload.target_week).padStart(2,"0")+".json";
               if(fs.existsSync(file)){console.log("Existing sleeper snapshot preserved: "+file);return;}
               fs.writeFileSync(file,JSON.stringify(payload,null,2)+"\n");
-              fs.appendFileSync(process.env.GITHUB_OUTPUT,"snapshot="+file+"\\n");
+              fs.appendFileSync(process.env.GITHUB_OUTPUT,"snapshot="+file+"\n");
               console.log("Saved "+file+" with "+payload.picks.length+" sleeper recommendations");
             }finally{await browser.close();}
           })().catch(e=>{console.error(e);process.exit(1)});
