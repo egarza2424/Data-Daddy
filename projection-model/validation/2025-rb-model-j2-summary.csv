@@ -1,0 +1,5 @@
+model,observations,mae,rmse,correlation,mean_absolute_rank_error
+F_position_specific,1012,4.6429,6.497,0.6293,13.9407
+I_RB_component,1012,4.6228,6.4706,0.6339,14.001
+J1_RB_season_efficiency,1012,4.6198,6.465,0.6351,14.0484
+J2_RB_role_stability,1012,4.4775,6.3302,0.6532,13.6838
