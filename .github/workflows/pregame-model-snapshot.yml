@@ -883,6 +883,28 @@ jobs:
           observed = {normalize(r["team"]) for r in rows if r.get("team")}
           missing = sorted(scheduled - observed)
           unexpected = sorted(observed - scheduled)
+          # Preserve the complete captured source for audit purposes,
+          # but publish only players on teams scheduled to play.
+          if missing:
+              raise RuntimeError(
+                  f"Scheduled teams missing from captured snapshot: {missing}"
+              )
+          if unexpected:
+              print("Excluding bye-week team rows:", unexpected)
+              filtered = [
+                  row for row in rows
+                  if normalize(row.get("team", "")) in scheduled
+              ]
+              if not filtered:
+                  raise RuntimeError("No scheduled-team players remain")
+              with snapshot_path.open("w", newline="", encoding="utf-8") as f:
+                  writer = csv.DictWriter(f, fieldnames=rows[0].keys())
+                  writer.writeheader()
+                  writer.writerows(filtered)
+              print(f"Published snapshot: {len(filtered)} scheduled-team players; excluded {len(rows)-len(filtered)} bye-week rows")
+              rows = filtered
+              observed = {normalize(r["team"]) for r in rows if r.get("team")}
+              unexpected = sorted(observed - scheduled)
           all_teams = {
               "ARI","ATL","BAL","BUF","CAR","CHI","CIN","CLE",
               "DAL","DEN","DET","GB","HOU","IND","JAX","KC",
