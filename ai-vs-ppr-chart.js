@@ -10,33 +10,39 @@
     c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])
   );
 
-  async function loadCSV(path) {
+    async function loadJSON(path) {
     const response = await fetch(path + "?t=" + Date.now(), {
       cache: "no-store"
     });
-    if (!response.ok) throw new Error("Missing " + path);
 
-    const lines = (await response.text()).trim().split(/\r?\n/);
-    const headers = lines.shift().split(",");
+    if (!response.ok) {
+      throw new Error("Missing " + path);
+    }
 
-    return lines.filter(Boolean).map(line => {
-      const values = line.split(",");
-      return Object.fromEntries(
-        headers.map((key, i) => [key, values[i]])
-      );
-    });
+    return response.json();
   }
 
   async function initialize() {
     try {
-      const rows = await loadCSV(
-        "projection-model/validation/2026-week6-ranking-comparison.csv"
+      const rows = await loadJSON(
+        "data/weekly-ranking-accuracy.json"
+      );
+
+      const latestWeek = Math.max(
+        ...rows.map(r => Number(r.week))
+      );
+
+      const latestSeason = Math.max(
+        ...rows
+          .filter(r => Number(r.week) === latestWeek)
+          .map(r => Number(r.season))
       );
 
       const positions = ["QB", "RB", "WR", "TE"];
       const methods = ["AI Score", "Projected PPR"];
       const valid = rows.filter(r =>
-        Number(r.week) === 6 &&
+        Number(r.week) === latestWeek &&
+        Number(r.season) === latestSeason &&
         positions.includes(r.position) &&
         methods.includes(r.method)
       );
@@ -47,7 +53,9 @@
 
       let html =
         '<p class="model-comparison-week">' +
-        'Week 6 · 2026 · Verified-player comparison</p>';
+        'Week ' + safe(latestWeek) + ' · ' +
+        safe(latestSeason) +
+        ' · Verified-player comparison</p>';
 
       html += '<p class="model-comparison-disclaimer">' +
         'Top-group hits are provisional. Missing player results are ' +
