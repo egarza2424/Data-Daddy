@@ -17,7 +17,9 @@ const context = {
     createTextNode: text => ({ textContent: text })
   },
   getProjectionPlayer: p => p.playerData,
-  sleeperInjuryFetchedAt: null
+  sleeperInjuryFetchedAt: null,
+  getLineupKickoff: p => p.kickoff || null,
+  currentEasternKickoffLabel: () => '2026-10-20T10:00'
 };
 vm.createContext(context);
 vm.runInContext(source.slice(start, end), context);
@@ -33,6 +35,13 @@ assert(panel, "Questionable starter must trigger a panel");
 const text = JSON.stringify(panel);
 assert(text.includes("Starter") && text.includes("QUESTIONABLE"));
 assert(text.includes("Backup") && text.includes("4.00 PPR"), "Bench gap must be displayed");
+const lateStarter = { ...starter, kickoff: "2026-10-25T16:25" };
+const earlyBackup = { ...backup, kickoff: "2026-10-25T13:00" };
+const lateBackup = player("Late Backup", "WR", 11, "");
+lateBackup.kickoff = "2026-10-25T20:20";
+const latePanel = render([{ slot: "WR1", player: lateStarter }], [earlyBackup, lateBackup]);
+assert(JSON.stringify(latePanel).includes("Late-swap option: Late Backup"));
+assert(!JSON.stringify(render([{ slot: "WR1", player: lateStarter }], [earlyBackup])).includes("Late-swap option: Backup"));
 assert.equal(render([{ slot: "WR1", player: player("Healthy", "WR", 16, "") }], [backup]), null);
 const doubtful = render([{ slot: "WR1", player: player("Doubtful", "WR", 15, "D") }], []);
 assert(JSON.stringify(doubtful).includes("No same-position bench alternative"));
