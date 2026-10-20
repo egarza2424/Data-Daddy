@@ -32,19 +32,24 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas numpy pyarrow
 
-      - name: Download 2025 nflverse weekly player stats
+      - name: Download selected-season nflverse weekly player stats
+        env:
+          SEASON: ${{ inputs.season }}
         run: |
           mkdir -p historical-data
 
           python <<'PY'
+          import os
           import urllib.request
           import pandas as pd
+
+          season = os.environ["SEASON"]
 
           url = (
               "https://github.com/nflverse/"
               "nflverse-data/releases/download/"
               "stats_player/"
-              "stats_player_week_2025.csv"
+              f"stats_player_week_{season}.csv"
           )
           output = (
               "historical-data/"
@@ -91,12 +96,12 @@ jobs:
               "https://github.com/nflverse/"
               "nflverse-data/releases/download/"
               "pbp/"
-              "play_by_play_2025.csv.gz"
+              f"play_by_play_{season}.csv.gz"
           )
 
           pbp_output = (
               "historical-data/"
-              "play_by_play_2025.csv.gz"
+              f"play_by_play_{season}.csv.gz"
           )
 
           print(
@@ -109,7 +114,7 @@ jobs:
           )
 
           print(
-              "Saved 2025 play-by-play to "
+              f"Saved {season} play-by-play to "
               f"{pbp_output}"
           )
           games_url = (
