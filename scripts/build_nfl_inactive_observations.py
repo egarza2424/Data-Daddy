@@ -130,6 +130,10 @@ def main():
                 (kickoff - observed).total_seconds() / 60, 2
             ),
             "observation_timing": "retrieved_before_kickoff",
+            "lineup_decision_window": (
+                "late_under_30_minutes" if (kickoff - observed).total_seconds() < 1800
+                else "at_least_30_minutes_before_kickoff"
+            ),
             "publication_time_verified": False,
             "source_url": latest["source_url"],
             "source_type": "nfl_article_extraction",
@@ -160,6 +164,7 @@ def main():
             "minutes_before_kickoff:", result["minutes_before_kickoff"],
             "source:", result["source_url"],
             "publication_time_verified:", result["publication_time_verified"],
+            "lineup_decision_window:", result["lineup_decision_window"],
         )
     print("Official verification: False")
     print("Saved:", OUTPUT)
