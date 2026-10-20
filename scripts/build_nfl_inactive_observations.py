@@ -153,6 +153,14 @@ def main():
     )
 
     print("Game-specific observations:", len(results))
+    for result in results:
+        print(
+            "OBSERVATION:", result["game_id"],
+            "players:", len(result["players"]),
+            "minutes_before_kickoff:", result["minutes_before_kickoff"],
+            "source:", result["source_url"],
+            "publication_time_verified:", result["publication_time_verified"],
+        )
     print("Official verification: False")
     print("Saved:", OUTPUT)
 
