@@ -1,0 +1,5 @@
+position,players,mean_absolute_rank_error,rank_spearman,score_vs_ppr_spearman
+QB,26,12.5,,
+RB,104,48.673,-0.075,-0.075
+WR,165,81.018,0.051,0.051
+TE,108,53.5,,
