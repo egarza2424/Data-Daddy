@@ -1288,15 +1288,21 @@ jobs:
       - name: Save weekly validation privately
         shell: bash
         run: |
-          shopt -s nullglob
-          reports=(projection-model/validation/2026-week*-ppr-validation.csv)
+          report=$(find projection-model/validation \
+            -maxdepth 1 \
+            -type f \
+            -name '2026-week*-ppr-validation.csv' \
+            -printf '%T@ %p\n' \
+            | sort -nr \
+            | head -n 1 \
+            | cut -d' ' -f2-)
 
-          if [ "${#reports[@]}" -ne 1 ]; then
-            echo "Expected exactly one newly generated weekly report."
+          if [ -z "$report" ] || [ ! -f "$report" ]; then
+            echo "No weekly validation report found."
             exit 1
           fi
 
-          cp "${reports[0]}" private-audits-write/
+          cp "$report" private-audits-write/
 
           cd private-audits-write
 
