@@ -1360,6 +1360,7 @@ def build_week(
             recent["opportunity_raw"].mean()
         )
         # RB challenger: prior-game workload only.
+        rb_prior_games = 0
         rb_carries_pg = 0.0
         rb_targets_pg = 0.0
         rb_receptions_pg = 0.0
@@ -1369,6 +1370,7 @@ def build_week(
         rb_redzone_targets_pg = 0.0
 
         if position == "RB":
+            rb_prior_games = len(recent)
             rb_carries_pg = float(recent["carries"].mean())
             rb_targets_pg = float(recent["targets"].mean())
             rb_receptions_pg = float(recent["receptions"].mean())
@@ -1517,6 +1519,7 @@ def build_week(
 
                 "qb_rush_yards_pg":
                     qb_rush_yards_pg,
+                "rb_prior_games": rb_prior_games,
                 "rb_carries_pg": rb_carries_pg,
                 "rb_targets_pg": rb_targets_pg,
                 "rb_receptions_pg": rb_receptions_pg,
@@ -1798,6 +1801,7 @@ def build_dataset(
         "qb_pass_attempts_pg",
         "qb_rush_attempts_pg",
         "qb_rush_yards_pg",
+        "rb_prior_games",
         "rb_carries_pg",
         "rb_targets_pg",
         "rb_receptions_pg",
