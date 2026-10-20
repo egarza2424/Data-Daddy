@@ -166,6 +166,18 @@ def main():
             "publication_time_verified:", result["publication_time_verified"],
             "lineup_decision_window:", result["lineup_decision_window"],
         )
+    timing_counts = {
+        "at_least_30_minutes_before_kickoff": 0,
+        "late_under_30_minutes": 0,
+    }
+    for result in results:
+        timing_counts[result["lineup_decision_window"]] += 1
+    print("Lineup timing summary:", timing_counts)
+    if timing_counts["late_under_30_minutes"]:
+        print(
+            "WARNING: Some reports were first captured under 30 minutes "
+            "before kickoff; early lineup availability is not assured."
+        )
     print("Official verification: False")
     print("Saved:", OUTPUT)
 
