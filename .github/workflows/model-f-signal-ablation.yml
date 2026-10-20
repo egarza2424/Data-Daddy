@@ -1,0 +1,33 @@
+name: Model F Signal Ablation Audit
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install pandas numpy
+      - name: Run signal audit
+        run: python scripts/audit_model_f_signals.py
+      - name: Verify results
+        run: |
+          python -c "import pandas as pd; d=pd.read_csv('projection-model/validation/model-f-signal-ablation.csv'); assert set(d.position)=={'QB','RB','WR','TE'}; assert all('Model F baseline' in set(d[d.position==p].variant) for p in ('QB','RB','WR','TE')); print(d.to_string(index=False))"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: model-f-signal-ablation
+          path: projection-model/validation/model-f-signal-ablation.csv
+      - name: Commit audit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add projection-model/validation/model-f-signal-ablation.csv
+          if ! git diff --cached --quiet; then
+            git commit -m "Record historical Model F signal ablation results"
+            git push
+          fi
