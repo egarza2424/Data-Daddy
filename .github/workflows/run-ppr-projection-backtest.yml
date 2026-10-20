@@ -264,7 +264,9 @@ jobs:
           git add \
             projection-model/2025-ppr-walkforward-predictions.csv \
             projection-model/2025-ppr-walkforward-summary.csv \
-            projection-model/2025-ppr-walkforward-weekly.csv \
+            projection-model/2025-ppr-walkforward-weekly.csv
+
+          git add -f \
             projection-model/validation/2025-rb-model-i-predictions.csv \
             projection-model/validation/2025-rb-model-i-summary.csv \
             projection-model/validation/2025-rb-model-i-tier-weekly.csv \
