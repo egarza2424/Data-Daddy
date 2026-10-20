@@ -206,12 +206,12 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
 
     tier_audit.to_csv(
-        OUT / "2025-rb-model-i-tier-weekly.csv",
+        OUT / f"{args.season}-rb-model-i-tier-weekly.csv",
         index=False,
     )
 
     tier_summary.to_csv(
-        OUT / "2025-rb-model-i-tier-summary.csv",
+        OUT / f"{args.season}-rb-model-i-tier-summary.csv",
         index=False,
     )
     
@@ -228,8 +228,8 @@ def main():
         })
     summary = pd.DataFrame(summaries)
     OUT.mkdir(parents=True, exist_ok=True)
-    predictions.to_csv(OUT / "2025-rb-model-i-predictions.csv", index=False)
-    summary.to_csv(OUT / "2025-rb-model-i-summary.csv", index=False)
+    predictions.to_csv(OUT / f"{args.season}-rb-model-i-predictions.csv", index=False)
+    summary.to_csv(OUT / f"{args.season}-rb-model-i-summary.csv", index=False)
     print(summary.to_string(index=False))
     print("Saved validation outputs only; production files unchanged.")
 
