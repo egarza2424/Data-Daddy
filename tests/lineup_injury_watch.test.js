@@ -16,7 +16,8 @@ const context = {
     createElement: tag => new Element(tag),
     createTextNode: text => ({ textContent: text })
   },
-  getProjectionPlayer: p => p.playerData
+  getProjectionPlayer: p => p.playerData,
+  sleeperInjuryFetchedAt: null
 };
 vm.createContext(context);
 vm.runInContext(source.slice(start, end), context);
