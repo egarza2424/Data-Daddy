@@ -539,6 +539,10 @@ jobs:
 
           print()
           print("AI SCORE VS PROJECTED PPR TOP-N AUDIT")
+          print(
+              ranking_comparison.to_string(index=False)
+          )
+
           ranking_output_dir = Path(
               "projection-model/validation"
           )
