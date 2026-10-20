@@ -539,8 +539,26 @@ jobs:
 
           print()
           print("AI SCORE VS PROJECTED PPR TOP-N AUDIT")
+          ranking_output_dir = Path(
+              "projection-model/validation"
+          )
+          ranking_output_dir.mkdir(
+              parents=True,
+              exist_ok=True
+          )
+
+          ranking_output_path = (
+              ranking_output_dir
+              / f"2026-week{target_week}-ranking-comparison.csv"
+          )
+
+          ranking_comparison.to_csv(
+              ranking_output_path,
+              index=False
+          )
+
           print(
-              ranking_comparison.to_string(index=False)
+              f"Ranking comparison saved: {ranking_output_path}"
           )
 
           # -----------------------------------------
