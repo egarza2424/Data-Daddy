@@ -1278,13 +1278,6 @@ jobs:
           test -d projection-model/validation
           echo "Validation reports generated successfully."
 
-      - name: Checkout private audit backup destination
-        uses: actions/checkout@v4
-        with:
-          repository: egarza2424/Data-Daddy-Private-Audits
-          token: ${{ secrets.PRIVATE_AUDIT_WRITE_TOKEN }}
-          path: private-audits-write
-
       - name: Save weekly validation privately
         shell: bash
         run: |
