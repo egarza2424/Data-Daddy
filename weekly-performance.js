@@ -55,8 +55,9 @@
           .sort((a,b)=>b.delta-a.delta).slice(0,12);
       } else {
         // Sleeper candidates are not identifiable from the ranking-only report.
-        note.textContent="Sleeper results require a separately frozen, pregame sleeper recommendation file linked to actual PPR. Rankings alone cannot establish a sleeper hit.";
-        list.innerHTML='<p>No independently verified sleeper hits available in the published audit.</p>';
+        const verified=(reports.sleepers||[]).filter(r=>Number(r.target_week)===week&&r.timing_status==="verified_pregame"&&r.result_status==="recorded_game"&&number(r.actual_ppr)>=10&&(position==="ALL"||r.position===position));
+        note.textContent="Week "+week+" · kickoff-verified frozen sleeper picks with recorded PPR only. Sleeper Score is not a projected PPR value.";
+        list.innerHTML=verified.sort((a,b)=>number(b.actual_ppr)-number(a.actual_ppr)).slice(0,12).map(r=>card(r.player_name+" · "+r.position,"Sleeper pick #"+r.rank+" · Sleeper Score "+r.sleeper_score,number(r.actual_ppr).toFixed(1)+" actual PPR")).join("")||'<p>No independently verified sleeper hits available in the published audit.</p>';
         return;
       }
       note.textContent="Week "+week+" · matched-player cohort only. Predicted and actual ranks are recalculated among matched players by position. This is ranking agreement, not PPR projection accuracy.";
@@ -91,6 +92,8 @@
       }
       if(!latest) throw new Error("No completed ranking audit found.");
       state.week=latest;state.reports.ranking=ranking;
+      try {state.reports.sleepers=await load("data/sleeper_validation/sleeper_prediction_audit.csv");}
+      catch(e){state.reports.sleepers=[];}
       try {state.reports.waiver=await load("data/waiver_validation/waiver_prediction_audit.csv");}
       catch(e){state.reports.waiver=[];}
       render();
