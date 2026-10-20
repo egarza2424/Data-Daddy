@@ -71,6 +71,47 @@ def main():
     if age_seconds > 600:
         raise SystemExit("Extraction is older than 10 minutes")
 
+    # Keep a new immutable observation only when the source's player
+    # roster changes. Preserve the first retrieval time for each version.
+    roster_signature = hashlib.sha256(json.dumps({
+        "source_url": source["source_url"],
+        "teams": sorted(source["teams"]),
+        "players": sorted(
+            (
+                p["team"], p["position"], p["name"],
+                bool(p.get("emergency_third_qb", False))
+            )
+            for p in source["players"]
+        ),
+    }, sort_keys=True).encode("utf-8")).hexdigest()
+
+    SNAPSHOT_DIR.mkdir(parents=True, exist_ok=True)
+    for existing_path in SNAPSHOT_DIR.glob(
+        f"inactives_{args.season}_week_{args.week:02d}_*.json"
+    ):
+        try:
+            existing = json.loads(
+                existing_path.read_text(encoding="utf-8")
+            )
+        except (OSError, ValueError):
+            continue
+        if existing.get("source_url") != source["source_url"]:
+            continue
+        existing_signature = hashlib.sha256(json.dumps({
+            "source_url": existing["source_url"],
+            "teams": sorted(existing["teams"]),
+            "players": sorted(
+                (
+                    p["team"], p["position"], p["name"],
+                    bool(p.get("emergency_third_qb", False))
+                )
+                for p in existing["players"]
+            ),
+        }, sort_keys=True).encode("utf-8")).hexdigest()
+        if existing_signature == roster_signature:
+            print("Unchanged inactive report; retaining original snapshot:", existing_path)
+            return
+
     payload = {
         "season": args.season,
         "week": args.week,
