@@ -214,6 +214,29 @@ def main():
             "utf-8", errors="replace"
         )
 
+    # Preserve article-provided publication metadata separately from retrieval.
+    # This is evidence from the page, not independent timestamp verification.
+    publication_candidates = []
+    for pattern in (
+        r'<meta[^>]+property=["\\']article:published_time["\\'][^>]+content=["\\']([^"\\']+)',
+        r'<meta[^>]+content=["\\']([^"\\']+)["\\'][^>]+property=["\\']article:published_time["\\']',
+        r'"datePublished"\\s*:\\s*"([^"]+)"',
+    ):
+        publication_candidates.extend(re.findall(pattern, html, flags=re.IGNORECASE))
+    parsed_publications = []
+    for value in publication_candidates:
+        try:
+            parsed = datetime.fromisoformat(value.strip().replace("Z", "+00:00"))
+            if parsed.tzinfo is not None:
+                parsed_publications.append(parsed.astimezone(timezone.utc).isoformat())
+        except ValueError:
+            continue
+    published_at = (
+        parsed_publications[0]
+        if parsed_publications and len(set(parsed_publications)) == 1
+        else None
+    )
+
     parser = InactiveParser()
     parser.feed(html)
 
@@ -293,6 +316,8 @@ def main():
             datetime.now(timezone.utc).isoformat()
         ),
         "verification_status": "extracted_unverified",
+        "article_published_at_utc": published_at,
+        "publication_metadata_consistent": published_at is not None,
         "report_type": report_type,
         "expected_game_count": expected_games,
         "expected_team_count": expected_teams,
@@ -313,6 +338,7 @@ def main():
         encoding="utf-8",
     )
 
+    print("Article publication metadata:", published_at or "missing_or_conflicting")
     print("Extracted players:", len(records))
     print("Teams:", ", ".join(teams))
     print(
