@@ -24,3 +24,4 @@ F_position_specific,RB,1012,4.6429,6.497,0.6293,13.9407
 F_position_specific,TE,827,3.7645,5.3519,0.5461,13.7533
 F_position_specific,WR,1609,4.2976,5.9073,0.5877,25.22
 G_QB_passing_rushing,QB,420,6.4565,8.0826,0.4949,8.1643
+H_RB_role_aware,RB,1012,4.7736,6.6221,0.6203,14.084
