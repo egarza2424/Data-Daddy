@@ -47,3 +47,8 @@ assert(source.includes('button.addEventListener("click", () => optimizeLineup(ch
 assert(source.includes('const starterKeys =') && source.includes('!starterKeys.has('),
   "Bench must be rebuilt from the selected lineup starters");
 console.log("PASS: strategy controls, heading, and bench rendering wiring");
+
+assert(source.includes('if (maximumLineup) {\\n    const choices = document.createElement("div");'.replace('\\n', '\n')),
+  "Strategy controls must render even when no safer legal lineup exists");
+assert(source.includes('choice === "safe" && !saferLineup'),
+  "Unavailable safer strategy must be visibly disabled");
