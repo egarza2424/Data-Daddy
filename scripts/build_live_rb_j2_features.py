@@ -55,10 +55,15 @@ def main():
     # The live site uses numeric IDs while nflverse uses GSIS IDs. Resolve only
     # unique name+team matches; flag all ambiguous/unmatched identities.
     lookup = history.groupby(['normalized_name', 'normalized_team'])['player_id'].unique()
+    name_lookup = history.groupby('normalized_name')['player_id'].unique()
     records = []
     for row in live.itertuples(index=False):
         key = (row.normalized_name, row.normalized_team)
         candidates = lookup.get(key, [])
+        match_status = 'matched'
+        if len(candidates) == 0:
+            candidates = name_lookup.get(row.normalized_name, [])
+            match_status = 'matched_name_only'
         record = {'snapshot_week': target_week, 'player_id': row.player_id,
                   'player_name': row.player_name, 'team': row.team,
                   'implied_team_total': row.implied_team_total,
@@ -67,7 +72,7 @@ def main():
             player_history = history.loc[history['player_id'].eq(candidates[0])].sort_values('week')
             recent = player_history.tail(3)
             record['j2_stats_player_id'] = str(candidates[0])
-            record['j2_match_status'] = 'matched'
+            record['j2_match_status'] = match_status
             record['rb_prior_games'] = len(recent)
             record['rb_season_games'] = len(player_history)
             for col, out in [('carries', 'carries'), ('targets', 'targets'),
@@ -83,12 +88,15 @@ def main():
     output = pd.DataFrame(records)
     if output.duplicated('player_id').any():
         raise ValueError('Duplicate player IDs in audit output')
+    resolved = output.loc[output['j2_stats_player_id'].ne('')]
+    if resolved['j2_stats_player_id'].duplicated().any():
+        raise ValueError('Same nflverse player matched to multiple live RBs')
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     output.to_csv(OUTPUT, index=False)
     print(f'Wrote {OUTPUT}; target week={target_week}; stats cutoff week<{target_week}')
     print(output['j2_match_status'].value_counts().to_string())
     print('Unmatched and ambiguous players:')
-    print(output.loc[output['j2_match_status'].ne('matched'), ['player_name', 'team', 'j2_match_status']].to_string(index=False))
+    print(output.loc[~output['j2_match_status'].isin(['matched', 'matched_name_only']), ['player_name', 'team', 'j2_match_status']].to_string(index=False))
     print('AUDIT ONLY: Model F and production outputs unchanged.')
 
 
