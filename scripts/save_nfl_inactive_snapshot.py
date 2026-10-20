@@ -29,13 +29,27 @@ def main():
 
     source_path = urlparse(source["source_url"]).path.lower()
 
-    if (
-        f"week-{args.week}-" not in source_path
-        or f"{args.season}-season" not in source_path
-    ):
-        raise SystemExit(
-            "Source URL does not match requested season/week"
+    # Sunday roundup URLs include the season; primetime URLs may not.
+    # Season-less primetime reports remain explicitly unverified and are
+    # accepted only in the matching retrieval calendar year.
+    is_sunday_season_url = f"{args.season}-season" in source_path
+    is_primetime_url = (
+        source.get("report_type") == "single_game_primetime"
+        and (
+            "monday-night-inactives" in source_path
+            or "thursday-night-inactives" in source_path
         )
+    )
+    if f"week-{args.week}-" not in source_path or not (
+        is_sunday_season_url or is_primetime_url
+    ):
+        raise SystemExit("Source URL does not match requested week/report type")
+    if is_primetime_url and (
+        source.get("expected_team_count") != 2
+        or source.get("extracted_team_count") != 2
+        or len(source.get("teams", [])) != 2
+    ):
+        raise SystemExit("Incomplete primetime team coverage")
 
     
     retrieved_at = datetime.fromisoformat(
@@ -46,6 +60,8 @@ def main():
         raise SystemExit("Source retrieval time has no timezone")
 
     now = datetime.now(timezone.utc)
+    if is_primetime_url and retrieved_at.year != args.season:
+        raise SystemExit("Primetime URL lacks season and retrieval year differs")
 
     if retrieved_at > now:
         raise SystemExit("Source retrieval time is in the future")
