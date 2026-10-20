@@ -7970,9 +7970,7 @@ if (
 ) {
   return false;
 }
-}
 
-  
   const unavailableRosterStatuses = [
     "INACTIVE",
     "INJURED_RESERVE",
