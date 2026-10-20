@@ -3,10 +3,12 @@
 Reads the existing historical CSV; writes only separate Model I validation files.
 No changes to production models or frozen projections.
 """
+import argparse
 from pathlib import Path
 import numpy as np
 import pandas as pd
 
+DEFAULT_SEASON = 2025
 SOURCE = Path("projection-model/2025-historical-ppr-dataset.csv")
 OUT = Path("projection-model/validation")
 BASELINE = [
@@ -71,7 +73,29 @@ def training_priors(train):
 
 
 def main():
-    data = pd.read_csv(SOURCE)
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--season",
+        type=int,
+        default=DEFAULT_SEASON,
+    )
+    args = parser.parse_args()
+
+    source = Path(
+        f"projection-model/{args.season}-historical-ppr-dataset.csv"
+    )
+
+    if not source.exists():
+        raise FileNotFoundError(
+            f"Historical dataset not found: {source}"
+        )
+
+    data = pd.read_csv(source)
+
+    if not data["season"].eq(args.season).all():
+        raise ValueError(
+            f"Dataset contains records outside {args.season}"
+        )
     missing = sorted(set(NEEDED) - set(data.columns))
     if missing:
         raise ValueError(f"Missing dataset columns: {missing}")
