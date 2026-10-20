@@ -26,7 +26,7 @@
     if (!response.ok) throw new Error("Missing report: " + path);
     return parseCSV(await response.text());
   }
-  const card = (title, detail, footer) => '<article class="launch-tool-card" style="display:block;padding:16px;min-width:0"><strong>'+esc(title)+'</strong><p>'+esc(detail)+'</p><p>'+esc(footer)+'</p></article>';
+  const card = (title, detail, footer) => '<article class="tracker-result-card"><strong>'+esc(title)+'</strong><p>'+esc(detail)+'</p><p>'+esc(footer)+'</p></article>';
   function render() {
     const {category,position,week,reports}=state;
     root.querySelectorAll("[data-tracker-category]").forEach(b=>{
