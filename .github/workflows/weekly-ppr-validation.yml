@@ -750,6 +750,27 @@ jobs:
           unmatched_rows["review_status"] = (
               "unresolved_no_verified_weekly_stat"
           )
+
+          # Identify duplicate projection identities separately.
+          unmatched_rows["identity_count"] = (
+              unmatched_rows.groupby(
+                  ["match_name", "position"]
+              )["player_id"].transform("size")
+          )
+
+          unmatched_rows.loc[
+              unmatched_rows["identity_count"].gt(1),
+              "review_status"
+          ] = "ambiguous_projection_identity"
+
+          print(
+              "Unmatched identity diagnostics:"
+          )
+          print(
+              unmatched_rows["review_status"]
+              .value_counts()
+              .to_string()
+          )
           # Missing records may mean bye, inactive, zero production,
           # or an identity/data issue. Never assume zero points.
           unmatched_rows.to_csv(unmatched_path, index=False)
