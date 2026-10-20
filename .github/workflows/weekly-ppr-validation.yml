@@ -462,7 +462,86 @@ jobs:
                   "Validation blocked: fewer than 25 "
                   "verified player matches."
               )
+          # -----------------------------------------
+          # Independent AI Score vs PPR top-N audit
+          # -----------------------------------------
+          top_n_by_position = {
+              "QB": 24,
+              "RB": 36,
+              "WR": 36,
+              "TE": 24,
+          }
 
+          ranking_rows = []
+
+          for position, top_n in top_n_by_position.items():
+              eligible = eligible_pred.loc[
+                  eligible_pred["position"].eq(position)
+              ].copy()
+
+              verified = report.loc[
+                  report["position"].eq(position)
+              ].copy()
+
+              actual_top_ids = set(
+                  verified.nlargest(
+                      top_n, "actual_ppr"
+                  )["player_id"].astype(str)
+              )
+
+              for method, score_column in [
+                  ("AI Score", "model_score"),
+                  ("Projected PPR", "projected_ppr"),
+              ]:
+                  selected = eligible.sort_values(
+                      [score_column, "player_id"],
+                      ascending=[False, True]
+                  ).head(top_n).copy()
+
+                  selected = selected.merge(
+                      verified[["player_id", "actual_ppr"]],
+                      on="player_id",
+                      how="left",
+                      validate="one_to_one"
+                  )
+
+                  verified_selected = selected.loc[
+                      selected["actual_ppr"].notna()
+                  ]
+
+                  hits = len(
+                      set(
+                          verified_selected["player_id"].astype(str)
+                      ) & actual_top_ids
+                  )
+
+                  ranking_rows.append({
+                      "week": target_week,
+                      "position": position,
+                      "method": method,
+                      "top_n": top_n,
+                      "selected_players": len(selected),
+                      "verified_players": len(verified_selected),
+                      "unverified_players": int(
+                          selected["actual_ppr"].isna().sum()
+                      ),
+                      "top_n_hits": hits,
+                      "hit_rate_pct": round(
+                          100 * hits / top_n, 1
+                      ),
+                      "verification_coverage_pct": round(
+                          100 * len(verified_selected)
+                          / len(selected), 1
+                      ) if len(selected) else 0,
+                  })
+
+          ranking_comparison = pd.DataFrame(ranking_rows)
+
+          print()
+          print("AI SCORE VS PROJECTED PPR TOP-N AUDIT")
+          print(
+              ranking_comparison.to_string(index=False)
+          )
 
           # -----------------------------------------
           # Calculate errors and actual ranks
