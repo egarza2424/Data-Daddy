@@ -4495,6 +4495,58 @@ function renderStartSitInsights(slots, bench) {
 
 
   
+function renderLineupInjuryWatch(slots, bench) {
+  const watch = [];
+  for (const { slot, player: projection } of slots) {
+    const player = getProjectionPlayer(projection);
+    const status = String(player?.injuryStatus || "").trim().toUpperCase();
+    if (!["QUESTIONABLE", "DOUBTFUL", "Q", "D"].includes(status)) continue;
+    const alternatives = bench
+      .filter(candidate => candidate.position === projection.position ||
+        (slot.toUpperCase().includes("FLEX") && ["RB", "WR", "TE"].includes(candidate.position)))
+      .filter(candidate => {
+        const info = getProjectionPlayer(candidate);
+        return !["QUESTIONABLE", "DOUBTFUL", "Q", "D"].includes(
+          String(info?.injuryStatus || "").trim().toUpperCase()
+        );
+      })
+      .sort((a, b) => Number(b.projected_ppr) - Number(a.projected_ppr));
+    watch.push({ projection, status, alternative: alternatives[0] });
+  }
+  if (!watch.length) return null;
+  const section = document.createElement("section");
+  section.className = "lineup-injury-watch";
+  Object.assign(section.style, {
+    border: "1px solid #c8a64d", borderRadius: "10px",
+    padding: "14px 16px", margin: "16px 0"
+  });
+  const title = document.createElement("h4");
+  title.textContent = "Injury Watch — Check Before Kickoff";
+  section.appendChild(title);
+  const note = document.createElement("p");
+  note.textContent = "These starters have a reported injury designation. Status may change; verify the latest team inactive list before locking your lineup. Alternatives below are not guaranteed active.";
+  section.appendChild(note);
+  for (const { projection, status, alternative } of watch) {
+    const line = document.createElement("p");
+    const name = document.createElement("strong");
+    name.textContent = projection.player_name + " — " +
+      (status === "Q" ? "QUESTIONABLE" : status === "D" ? "DOUBTFUL" : status);
+    line.appendChild(name);
+    if (alternative) {
+      const gap = Number(projection.projected_ppr) - Number(alternative.projected_ppr);
+      const detail = document.createElement("span");
+      detail.textContent = " | Bench option: " + alternative.player_name +
+        " (" + Number(alternative.projected_ppr).toFixed(2) + " PPR)" +
+        (Number.isFinite(gap) ? "; projected difference: " + gap.toFixed(2) + " PPR" : "");
+      line.appendChild(detail);
+    } else {
+      line.appendChild(document.createTextNode(" | No same-position bench alternative found."));
+    }
+    section.appendChild(line);
+  }
+  return section;
+}
+
 function renderOptimizedLineup(
   lineup,
   rules
@@ -4668,6 +4720,9 @@ function renderOptimizedLineup(
       insightsSection
     );
   }
+
+  const injuryWatch = renderLineupInjuryWatch(slots, bench);
+  if (injuryWatch) result.appendChild(injuryWatch);
 
   if (bench.length > 0) {
     const benchHeading =
