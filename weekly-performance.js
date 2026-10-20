@@ -27,6 +27,31 @@
     return parseCSV(await response.text());
   }
   const card = (title, detail, footer) => '<article class="tracker-result-card"><strong>'+esc(title)+'</strong><p>'+esc(detail)+'</p><p>'+esc(footer)+'</p></article>';
+  function renderAccuracyChart(rows, week) {
+    const chart = document.getElementById("trackerAccuracyChart");
+    if (!chart) return;
+    const positions = ["QB", "RB", "WR", "TE"];
+    const results = positions.map(position => {
+      const cohort = rows.filter(r => r.position === position &&
+        Number.isFinite(number(r.position_rank)) &&
+        Number.isFinite(number(r.actual_ppr)) &&
+        r.actual_ppr !== "");
+      const sorted = [...cohort].sort((a,b) => number(b.actual_ppr) - number(a.actual_ppr));
+      const actualTop = new Set(sorted.slice(0,15).map(r => r.player_id));
+      const predictedTop = [...cohort].sort((a,b) => number(a.position_rank) - number(b.position_rank)).slice(0,15);
+      const hits = predictedTop.filter(r => actualTop.has(r.player_id)).length;
+      const count = predictedTop.length;
+      return {position, hits, count, pct: count ? 100 * hits / count : null};
+    });
+    chart.setAttribute("aria-label", "Week " + week + " top-15 ranking overlap: " +
+      results.map(r => r.position + " " + (r.pct===null ? "unavailable" : r.pct.toFixed(0)+" percent")).join(", "));
+    chart.innerHTML = '<p class="tracker-chart-week">Week '+esc(week)+' · completed postgame audit</p>'+
+      results.map(r => '<div class="tracker-chart-row"><span class="tracker-chart-label">'+r.position+'</span>'+
+        '<div class="tracker-chart-track"><div class="tracker-chart-fill" style="width:'+(r.pct??0).toFixed(1)+'%"></div></div>'+
+        '<strong class="tracker-chart-value">'+(r.pct===null?'N/A':r.pct.toFixed(0)+'%')+'</strong>'+
+        '<small class="tracker-chart-count">'+r.hits+'/'+r.count+'</small></div>').join("")+
+      '<p class="tracker-chart-caption">Top-15 overlap uses the matched-player cohort only. Rankings are recalculated within that cohort; missing players are excluded. Higher is better.</p>';
+  }
   function render() {
     const {category,position,week,reports}=state;
     root.querySelectorAll("[data-tracker-category]").forEach(b=>{
@@ -92,12 +117,13 @@
       }
       if(!latest) throw new Error("No completed ranking audit found.");
       state.week=latest;state.reports.ranking=ranking;
+      renderAccuracyChart(ranking, latest);
       try {state.reports.sleepers=await load("data/sleeper_validation/sleeper_prediction_audit.csv");}
       catch(e){state.reports.sleepers=[];}
       try {state.reports.waiver=await load("data/waiver_validation/waiver_prediction_audit.csv");}
       catch(e){state.reports.waiver=[];}
       render();
-    }catch(e){status.textContent="Weekly audit data is not available yet.";root.querySelector("#trackerCards").innerHTML="";}
+    }catch(e){status.textContent="Weekly audit data is not available yet.";const chart=document.getElementById("trackerAccuracyChart");if(chart)chart.textContent="No completed weekly accuracy audit available yet.";root.querySelector("#trackerCards").innerHTML="";}
   }
   initialize();
 })();
