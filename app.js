@@ -7949,7 +7949,9 @@ const confirmedWeek7Byes =
   new Set(["BUF", "JAX", "LAC", "WAS"]);
 
 if (
-  Number(snapshotWeek) === 7 &&
+  Number(
+    document.documentElement.dataset.targetWeek
+  ) === 7 &&
   confirmedWeek7Byes.has(playerTeam)
 ) {
   return false;
