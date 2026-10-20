@@ -38,7 +38,9 @@ jobs:
                 const statsWeek=Number(window.nflStats?.target_week);
                 if(!Number.isInteger(week)||week<1)throw Error("Invalid displayed week");
                 if(typeof getWeeklySleeperCandidates!=="function")throw Error("Sleeper model unavailable");
-                if(!Array.isArray(weeklyPprProjections)||!weeklyPprProjections.length)throw Error("PPR projections unavailable");
+                if(!Array.isArray(weeklyPprProjections)||!weeklyPprProjections.length){
+                  return {season:2026,target_week:week,displayed_week:week,picks:[],capture_status:"projections_unavailable"};
+                }
                 const picks=getWeeklySleeperCandidates().slice(0,10).map((p,index)=>({
                   rank:index+1,player_name:p.player?.name||p.projection?.player_name,
                   position:p.position,team:p.player?.team||p.projection?.team,
@@ -48,6 +50,10 @@ jobs:
                 if(!picks.length||picks.some(p=>!p.player_name))throw Error("Sleeper picks unavailable");
                 return {season:2026,target_week:week,displayed_week:week,picks};
               });
+              if(payload.capture_status==="projections_unavailable"){
+                console.log("No published PPR projections for displayed Week "+payload.target_week+"; skipping capture without publishing an unverified snapshot.");
+                return;
+              }
               const schedule=JSON.parse(fs.readFileSync("data/nfl_schedule_2026.json","utf8"));
               const games=schedule.games.filter(g=>Number(g.week)===payload.target_week);
               if(!games.length)throw Error("No schedule for target week");
