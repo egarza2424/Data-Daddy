@@ -4495,6 +4495,9 @@ function renderStartSitInsights(slots, bench) {
 
 
   
+// Retrieval time only; Sleeper does not supply a verified report publication time.
+let sleeperInjuryFetchedAt = null;
+
 function renderLineupInjuryWatch(slots, bench) {
   const watch = [];
   for (const { slot, player: projection } of slots) {
@@ -4526,6 +4529,13 @@ function renderLineupInjuryWatch(slots, bench) {
   const note = document.createElement("p");
   note.textContent = "These starters have a reported injury designation. Status may change; verify the latest team inactive list before locking your lineup. Alternatives below are not guaranteed active.";
   section.appendChild(note);
+  const freshness = document.createElement("p");
+  const checkedAt = Number(sleeperInjuryFetchedAt);
+  const elapsedMinutes = (Date.now() - checkedAt) / 60000;
+  freshness.textContent = checkedAt > 0 && Number.isFinite(elapsedMinutes) && elapsedMinutes >= 0
+    ? "Sleeper data retrieved " + Math.floor(elapsedMinutes) + " minute(s) ago. This is the retrieval time, not the injury report publication time."
+    : "Sleeper injury report publication time unavailable. Check official game-day status before kickoff.";
+  section.appendChild(freshness);
   for (const { projection, status, alternative } of watch) {
     const line = document.createElement("p");
     const name = document.createElement("strong");
@@ -6856,6 +6866,7 @@ async function loadPlayers() {
     );
 
     const responses = await Promise.all(requests);
+    sleeperInjuryFetchedAt = Date.now();
     const sleeperPlayers = responses.flatMap((playerMap) =>
       Object.values(playerMap)
     );
@@ -7135,6 +7146,7 @@ async function refreshPlayerInjuries() {
       });
     });
 
+    sleeperInjuryFetchedAt = Date.now();
     players.forEach((player) => {
       const latest = updates.get(String(player.id));
       if (!latest) return;
