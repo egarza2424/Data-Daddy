@@ -1,0 +1,111 @@
+{
+  "season": 2026,
+  "week": 6,
+  "snapshot_type": "nfl_article_observation",
+  "verification_status": "extracted_unverified",
+  "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers",
+  "retrieved_at_utc": "2026-10-20T00:08:04.884034+00:00",
+  "saved_at_utc": "2026-10-20T00:08:04.926117+00:00",
+  "player_count": 13,
+  "teams": [
+    "49ERS",
+    "COMMANDERS"
+  ],
+  "players": [
+    {
+      "team": "COMMANDERS",
+      "position": "QB",
+      "name": "Marcus Mariota",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers"
+    },
+    {
+      "team": "COMMANDERS",
+      "position": "CB",
+      "name": "Fabian Moreau",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers"
+    },
+    {
+      "team": "COMMANDERS",
+      "position": "CB",
+      "name": "Isaac Yiadom",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers"
+    },
+    {
+      "team": "COMMANDERS",
+      "position": "DE",
+      "name": "T.J. Maguranyanga",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers"
+    },
+    {
+      "team": "COMMANDERS",
+      "position": "G",
+      "name": "Tanoa Togiai",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers"
+    },
+    {
+      "team": "COMMANDERS",
+      "position": "DE",
+      "name": "Charles Omenihu",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers"
+    },
+    {
+      "team": "49ERS",
+      "position": "QB",
+      "name": "Kurtis Rourke",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers"
+    },
+    {
+      "team": "49ERS",
+      "position": "OL",
+      "name": "Enrique Cruz Jr.",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers"
+    },
+    {
+      "team": "49ERS",
+      "position": "WR",
+      "name": "Deebo Samuel",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers"
+    },
+    {
+      "team": "49ERS",
+      "position": "LB",
+      "name": "Garret Wallow",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers"
+    },
+    {
+      "team": "49ERS",
+      "position": "S",
+      "name": "Marques Sigle",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers"
+    },
+    {
+      "team": "49ERS",
+      "position": "DL",
+      "name": "Nick Bosa",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers"
+    },
+    {
+      "team": "49ERS",
+      "position": "DL",
+      "name": "Naquan Jones",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers"
+    }
+  ],
+  "schedule_verified": false,
+  "kickoff_times_verified": false,
+  "pregame_verified": false,
+  "sha256": "0017fffb45daab88d19f5fa00e40397431a4e53c69d49f7466139ffc393cd293"
+}

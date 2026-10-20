@@ -1,0 +1,1120 @@
+{
+  "season": 2026,
+  "week": 6,
+  "snapshot_type": "nfl_article_observation",
+  "verification_status": "extracted_unverified",
+  "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season",
+  "retrieved_at_utc": "2026-10-20T00:08:05.179090+00:00",
+  "saved_at_utc": "2026-10-20T00:08:05.222961+00:00",
+  "player_count": 154,
+  "teams": [
+    "BEARS",
+    "BILLS",
+    "BROWNS",
+    "BUCCANEERS",
+    "CARDINALS",
+    "CHARGERS",
+    "CHIEFS",
+    "COLTS",
+    "COWBOYS",
+    "EAGLES",
+    "FALCONS",
+    "GIANTS",
+    "JAGUARS",
+    "JETS",
+    "PACKERS",
+    "PANTHERS",
+    "PATRIOTS",
+    "RAIDERS",
+    "RAMS",
+    "RAVENS",
+    "SAINTS",
+    "STEELERS",
+    "TEXANS",
+    "TITANS"
+  ],
+  "players": [
+    {
+      "team": "TEXANS",
+      "position": "S",
+      "name": "Jalen Pitre",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "TEXANS",
+      "position": "RB",
+      "name": "David Montgomery",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "TEXANS",
+      "position": "DE",
+      "name": "Sabastian Harsh",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "TEXANS",
+      "position": "G",
+      "name": "Febechi Nwaiwu",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "TEXANS",
+      "position": "OT",
+      "name": "Braden Smith",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "TEXANS",
+      "position": "OT",
+      "name": "Nate Thomas",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "TEXANS",
+      "position": "TE",
+      "name": "Marlin Klein",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "JAGUARS",
+      "position": "CB",
+      "name": "Montaric Brown",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "JAGUARS",
+      "position": "WR",
+      "name": "CJ Williams",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "JAGUARS",
+      "position": "S",
+      "name": "Jalen Huskey",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "JAGUARS",
+      "position": "CB",
+      "name": "Jaylon Jones",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "JAGUARS",
+      "position": "LS",
+      "name": "Ross Matiscik",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "JAGUARS",
+      "position": "DE",
+      "name": "Wesley Williams",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "JAGUARS",
+      "position": "DT",
+      "name": "Albert Regis",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BEARS",
+      "position": "QB",
+      "name": "Case Keenum",
+      "emergency_third_qb": true,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BEARS",
+      "position": "RB",
+      "name": "Kyle Monangai",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BEARS",
+      "position": "DB",
+      "name": "Tyrique Stevenson",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BEARS",
+      "position": "LB",
+      "name": "Keyshaun Elliott",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BEARS",
+      "position": "LB",
+      "name": "T.J. Edwards",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BEARS",
+      "position": "OL",
+      "name": "Jordan McFadden",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BEARS",
+      "position": "DL",
+      "name": "Jayden Loving",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "FALCONS",
+      "position": "QB",
+      "name": "Cooper Rush",
+      "emergency_third_qb": true,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "FALCONS",
+      "position": "QB",
+      "name": "Jack Strand",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "FALCONS",
+      "position": "CB",
+      "name": "C.J. Henderson",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "FALCONS",
+      "position": "DB",
+      "name": "Malcolm DeWalt IV",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "FALCONS",
+      "position": "LB",
+      "name": "Christian Harris",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "FALCONS",
+      "position": "OL",
+      "name": "Ethan Onianwa",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "FALCONS",
+      "position": "DE",
+      "name": "Drake Jackson",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAVENS",
+      "position": "QB",
+      "name": "Lamar Jackson",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAVENS",
+      "position": "WR",
+      "name": "Elijah Sarratt",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAVENS",
+      "position": "S",
+      "name": "K’Von Wallace",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAVENS",
+      "position": "C",
+      "name": "Cam Jurgens",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAVENS",
+      "position": "G",
+      "name": "Andrew Vorhees",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAVENS",
+      "position": "TE",
+      "name": "Matthew Hibner",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAVENS",
+      "position": "DE",
+      "name": "Broderick Washington",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BROWNS",
+      "position": "RB",
+      "name": "Quinshon Judkins",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BROWNS",
+      "position": "QB",
+      "name": "Taylen Green",
+      "emergency_third_qb": true,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BROWNS",
+      "position": "CB",
+      "name": "Noah Igbinoghene",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BROWNS",
+      "position": "DT",
+      "name": "Mike Hall Jr.",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BROWNS",
+      "position": "C",
+      "name": "Parker Brailsford",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BROWNS",
+      "position": "G",
+      "name": "Teven Jenkins",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BROWNS",
+      "position": "DT",
+      "name": "Mason Graham",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "TITANS",
+      "position": "S",
+      "name": "Kevin Winston Jr.",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "TITANS",
+      "position": "CB",
+      "name": "Alontae Taylor",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "TITANS",
+      "position": "RB",
+      "name": "Nick Singleton",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "TITANS",
+      "position": "T",
+      "name": "Brandon Crenshaw-Dickson",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "TITANS",
+      "position": "TE",
+      "name": "Kylen Granson",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "TITANS",
+      "position": "DL",
+      "name": "Jordan Elliott",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "TITANS",
+      "position": "DT",
+      "name": "Jackie Marshall",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "COLTS",
+      "position": "LB",
+      "name": "Jaylon Carlies",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "COLTS",
+      "position": "WR",
+      "name": "Ashton Dulin",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "COLTS",
+      "position": "QB",
+      "name": "Riley Leonard",
+      "emergency_third_qb": true,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "COLTS",
+      "position": "G",
+      "name": "Dalton Tucker",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "COLTS",
+      "position": "TE",
+      "name": "Tyler Warren",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "JETS",
+      "position": "RB",
+      "name": "Breece Hall",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "JETS",
+      "position": "DL",
+      "name": "Jack Heflin",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "JETS",
+      "position": "WR",
+      "name": "Adonai Mitchell",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "JETS",
+      "position": "EDGE",
+      "name": "Joseph Ossai",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "JETS",
+      "position": "G",
+      "name": "Dylan Parham",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "JETS",
+      "position": "CB",
+      "name": "Nahshon Wright",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PATRIOTS",
+      "position": "CB",
+      "name": "Carlton Davis",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PATRIOTS",
+      "position": "CB",
+      "name": "Karon Prunty",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PATRIOTS",
+      "position": "CB",
+      "name": "Channing Canada",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PATRIOTS",
+      "position": "OT",
+      "name": "Dametrious Crownover",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PATRIOTS",
+      "position": "TE",
+      "name": "Tanner Arkin",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PATRIOTS",
+      "position": "QB",
+      "name": "Behren Morton",
+      "emergency_third_qb": true,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "SAINTS",
+      "position": "QB",
+      "name": "Zach Wilson",
+      "emergency_third_qb": true,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "SAINTS",
+      "position": "EDGE",
+      "name": "Anfernee Jennings",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "SAINTS",
+      "position": "S",
+      "name": "Mike Reid",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "SAINTS",
+      "position": "LB",
+      "name": "Kaden Elliss",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "SAINTS",
+      "position": "DL",
+      "name": "Nathan Shepherd",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "SAINTS",
+      "position": "DL",
+      "name": "John Ridgeway III",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "GIANTS",
+      "position": "CB",
+      "name": "Colton Hood",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "GIANTS",
+      "position": "QB",
+      "name": "Jake Haener",
+      "emergency_third_qb": true,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "GIANTS",
+      "position": "S",
+      "name": "Tyler Nubin",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "GIANTS",
+      "position": "OL",
+      "name": "Jermaine Eluemunor",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "GIANTS",
+      "position": "TE",
+      "name": "Theo Johnson",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "GIANTS",
+      "position": "DL",
+      "name": "C.J. Okoye",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PANTHERS",
+      "position": "TE",
+      "name": "Ja'Tavion Sanders",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PANTHERS",
+      "position": "QB",
+      "name": "Haynes King",
+      "emergency_third_qb": true,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PANTHERS",
+      "position": "RB",
+      "name": "AJ Dillon",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PANTHERS",
+      "position": "OT",
+      "name": "Monroe Freeling",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PANTHERS",
+      "position": "G",
+      "name": "Torricelli Simpkins",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PANTHERS",
+      "position": "OT",
+      "name": "Albert Reese",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PANTHERS",
+      "position": "DT",
+      "name": "TeRah Edwards",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "EAGLES",
+      "position": "WR",
+      "name": "Hollywood Brown",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "EAGLES",
+      "position": "QB",
+      "name": "Joe Milton",
+      "emergency_third_qb": true,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "EAGLES",
+      "position": "RB",
+      "name": "Saquon Barkley",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "EAGLES",
+      "position": "DB",
+      "name": "Michael Carter II",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "EAGLES",
+      "position": "LB",
+      "name": "A.J. Epenesa",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "EAGLES",
+      "position": "OLB",
+      "name": "Jalyx Hunt",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "STEELERS",
+      "position": "WR",
+      "name": "Ben Skowronek",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "STEELERS",
+      "position": "QB",
+      "name": "Drew Allar",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "STEELERS",
+      "position": "QB",
+      "name": "Will Howard",
+      "emergency_third_qb": true,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "STEELERS",
+      "position": "CB",
+      "name": "Sean Murphy-Bunting",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "STEELERS",
+      "position": "RB",
+      "name": "Eli Heidenreich",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "STEELERS",
+      "position": "CB",
+      "name": "Terell Smith",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "STEELERS",
+      "position": "DL",
+      "name": "Kevin Jobity Jr.",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BUCCANEERS",
+      "position": "QB",
+      "name": "Baker Mayfield",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BUCCANEERS",
+      "position": "CB",
+      "name": "Benjamin Morrison",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BUCCANEERS",
+      "position": "S",
+      "name": "Antoine Winfield Jr.",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BUCCANEERS",
+      "position": "RB",
+      "name": "Sean Tucker",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BUCCANEERS",
+      "position": "G",
+      "name": "Luke Haggard",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BUCCANEERS",
+      "position": "G",
+      "name": "Billy Schrauth",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BUCCANEERS",
+      "position": "DL",
+      "name": "DeMonte Capehart",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CARDINALS",
+      "position": "RB",
+      "name": "Jeremiyah Love",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CARDINALS",
+      "position": "QB",
+      "name": "Carson Beck",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CARDINALS",
+      "position": "CB",
+      "name": "Starling Thomas V",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CARDINALS",
+      "position": "S",
+      "name": "Andrew Wingard",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CARDINALS",
+      "position": "S",
+      "name": "Wydett Williams Jr.",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CARDINALS",
+      "position": "S",
+      "name": "Jerrick Reed II",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CARDINALS",
+      "position": "DL",
+      "name": "Andrew Billings",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAMS",
+      "position": "WR",
+      "name": "C.J. Daniels Jr.",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAMS",
+      "position": "WR",
+      "name": "Tutu Atwell",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAMS",
+      "position": "QB",
+      "name": "Ty Simpson",
+      "emergency_third_qb": true,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAMS",
+      "position": "CB",
+      "name": "Trent McDuffie",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAMS",
+      "position": "DE",
+      "name": "Larrell Murchison",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAMS",
+      "position": "OL",
+      "name": "Bill Murray",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CHARGERS",
+      "position": "S",
+      "name": "Derwin James",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CHARGERS",
+      "position": "WR",
+      "name": "Tre' Harris",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CHARGERS",
+      "position": "CB",
+      "name": "Rodney Shelley",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CHARGERS",
+      "position": "CB",
+      "name": "Donte Jackson",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CHARGERS",
+      "position": "OLB",
+      "name": "Bud Dupree",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CHARGERS",
+      "position": "G",
+      "name": "Kayode Awosika",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CHARGERS",
+      "position": "OT",
+      "name": "Joe Alt",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CHIEFS",
+      "position": "WR",
+      "name": "Rashee Rice",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CHIEFS",
+      "position": "TE",
+      "name": "Jared Wiley",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CHIEFS",
+      "position": "QB",
+      "name": "Garrett Nussmeier",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CHIEFS",
+      "position": "DB",
+      "name": "Jadon Canady",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CHIEFS",
+      "position": "DE",
+      "name": "Jack Pyburn",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CHIEFS",
+      "position": "OT",
+      "name": "Diego Pounds",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "CHIEFS",
+      "position": "OT",
+      "name": "Josh Simmons",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BILLS",
+      "position": "WR",
+      "name": "DJ Moore",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BILLS",
+      "position": "LB",
+      "name": "Mike Danna",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BILLS",
+      "position": "G",
+      "name": "Ar'maj Reed-Adams",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BILLS",
+      "position": "OL",
+      "name": "Jude Bowry",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "BILLS",
+      "position": "DL",
+      "name": "Ed Oliver",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAIDERS",
+      "position": "QB",
+      "name": "Aidan O'Connell",
+      "emergency_third_qb": true,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAIDERS",
+      "position": "S",
+      "name": "Tristin McCollum",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAIDERS",
+      "position": "S",
+      "name": "Dalton Johnson",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAIDERS",
+      "position": "DE",
+      "name": "Cian Slone",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAIDERS",
+      "position": "G",
+      "name": "Bryce Cabeldue",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "RAIDERS",
+      "position": "DT",
+      "name": "Tonka Hemingway",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "COWBOYS",
+      "position": "LB",
+      "name": "DeMarvion Overshown",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "COWBOYS",
+      "position": "DB",
+      "name": "Cobie Durant",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "COWBOYS",
+      "position": "DB",
+      "name": "Alijah Clark",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "COWBOYS",
+      "position": "RB",
+      "name": "Emari Demercado",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "COWBOYS",
+      "position": "LB",
+      "name": "James Houston",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "COWBOYS",
+      "position": "OL",
+      "name": "Drew Shelton",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "COWBOYS",
+      "position": "WR",
+      "name": "Camden Brown",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PACKERS",
+      "position": "CB",
+      "name": "Benjamin St. Juste",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PACKERS",
+      "position": "OL",
+      "name": "Jager Burton",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PACKERS",
+      "position": "G",
+      "name": "Aaron Banks",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "team": "PACKERS",
+      "position": "OL",
+      "name": "Donovan Jennings",
+      "emergency_third_qb": false,
+      "source_url": "https://www.nfl.com/news/nfl-week-6-inactives-players-ruled-out-sunday-2026-season"
+    }
+  ],
+  "schedule_verified": false,
+  "kickoff_times_verified": false,
+  "pregame_verified": false,
+  "sha256": "93bae796537461cbf920dce195aba2be89979e78d30e485f6c7e93c3c199c08a"
+}
