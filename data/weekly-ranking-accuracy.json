@@ -1,0 +1,98 @@
+[
+  {
+    "season":2026,
+    "week":6,
+    "position":"QB",
+    "method":"AI Score",
+    "top_n":24,
+    "top_n_hits":22,
+    "hit_rate_pct":91.7,
+    "verified_players":24,
+    "selected_players":24,
+    "verification_coverage_pct":100.0
+  },
+  {
+    "season":2026,
+    "week":6,
+    "position":"QB",
+    "method":"Projected PPR",
+    "top_n":24,
+    "top_n_hits":22,
+    "hit_rate_pct":91.7,
+    "verified_players":24,
+    "selected_players":24,
+    "verification_coverage_pct":100.0
+  },
+  {
+    "season":2026,
+    "week":6,
+    "position":"RB",
+    "method":"AI Score",
+    "top_n":36,
+    "top_n_hits":24,
+    "hit_rate_pct":66.7,
+    "verified_players":28,
+    "selected_players":36,
+    "verification_coverage_pct":77.8
+  },
+  {
+    "season":2026,
+    "week":6,
+    "position":"RB",
+    "method":"Projected PPR",
+    "top_n":36,
+    "top_n_hits":28,
+    "hit_rate_pct":77.8,
+    "verified_players":34,
+    "selected_players":36,
+    "verification_coverage_pct":94.4
+  },
+  {
+    "season":2026,
+    "week":6,
+    "position":"WR",
+    "method":"AI Score",
+    "top_n":36,
+    "top_n_hits":24,
+    "hit_rate_pct":66.7,
+    "verified_players":34,
+    "selected_players":36,
+    "verification_coverage_pct":94.4
+  },
+  {
+    "season":2026,
+    "week":6,
+    "position":"WR",
+    "method":"Projected PPR",
+    "top_n":36,
+    "top_n_hits":23,
+    "hit_rate_pct":63.9,
+    "verified_players":36,
+    "selected_players":36,
+    "verification_coverage_pct":100.0
+  },
+  {
+    "season":2026,
+    "week":6,
+    "position":"TE",
+    "method":"AI Score",
+    "top_n":24,
+    "top_n_hits":10,
+    "hit_rate_pct":41.7,
+    "verified_players":18,
+    "selected_players":24,
+    "verification_coverage_pct":75.0
+  },
+  {
+    "season":2026,
+    "week":6,
+    "position":"TE",
+    "method":"Projected PPR",
+    "top_n":24,
+    "top_n_hits":9,
+    "hit_rate_pct":37.5,
+    "verified_players":18,
+    "selected_players":24,
+    "verification_coverage_pct":75.0
+  }
+]
