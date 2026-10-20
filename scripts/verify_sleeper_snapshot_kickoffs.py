@@ -33,6 +33,8 @@ def main():
     excluded = []
     for pick in snapshot["picks"]:
         team = str(pick.get("team") or "").upper()
+        if team == "LAR":
+            team = "LA"
         kickoff = kickoffs.get(team)
         if kickoff is None or captured >= kickoff:
             excluded.append({"player_name": pick.get("player_name"), "team": team,
