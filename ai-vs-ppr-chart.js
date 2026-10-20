@@ -11,11 +11,59 @@
       return Object.fromEntries(headers.map((key, i) => [key, values[i]]));
     });
   }
+  async function loadCSV(path) {
+    const response = await fetch(path + "?t=" + Date.now(), {cache:"no-store"});
+    if (!response.ok) throw new Error("Missing " + path);
+    return csv(await response.text());
+  }
+  async function fallbackAudit() {
+    // Use only completed validation weeks; do not inspect live/future projections.
+    for (let week = 22; week >= 1; week--) {
+      try {
+        const [actual, projections] = await Promise.all([
+          loadCSV("model-validation/2026-week" + week + "-validation.csv"),
+          loadCSV("projection-model/2026-week" + week + "-ppr-projections.csv")
+        ]);
+        const projectionMap = new Map(projections.map(r => [r.position + ":" + r.player_id, r]));
+        const results = [];
+        for (const position of ["QB", "RB", "WR", "TE"]) {
+          const cutoff = position === "QB" || position === "TE" ? 24 : 36;
+          const cohort = actual.filter(r => r.position === position &&
+            r.actual_ppr !== "" && Number.isFinite(Number(r.actual_ppr)) &&
+            Number.isFinite(Number(r.position_rank)) &&
+            projectionMap.has(r.position + ":" + r.player_id) &&
+            Number.isFinite(Number(projectionMap.get(r.position + ":" + r.player_id).projected_position_rank)));
+          if (!cohort.length) throw new Error("Incomplete position " + position);
+          const sortedActual = [...cohort].sort((a,b) =>
+            Number(b.actual_ppr)-Number(a.actual_ppr) || a.player_id.localeCompare(b.player_id));
+          const actualTop = new Set(sortedActual.slice(0,cutoff).map(r => r.player_id));
+          for (const [model,rank] of [
+            ["AI Rankings",r => Number(r.position_rank)],
+            ["PPR Projection Rankings",r => Number(projectionMap.get(r.position+":"+r.player_id).projected_position_rank)]
+          ]) {
+            const picks = [...cohort].sort((a,b) => rank(a)-rank(b) ||
+              a.player_id.localeCompare(b.player_id)).slice(0,cutoff);
+            results.push({season:"2026",week:String(week),position,model,
+              top_group_hits:String(picks.filter(r => actualTop.has(r.player_id)).length),
+              evaluated_picks:String(picks.length)});
+          }
+        }
+        return results;
+      } catch (error) {
+        // Missing or incomplete week: continue to the latest earlier completed week.
+      }
+    }
+    throw new Error("No completed head-to-head data available");
+  }
   async function initialize() {
     try {
-      const response = await fetch("model-validation/ai-vs-ppr-ranking-audit.csv?t=" + Date.now(), {cache:"no-store"});
-      if (!response.ok) throw new Error("No published comparison report");
-      const rows = csv(await response.text()).filter(r => r.season === "2026" &&
+      let rows;
+      try {
+        rows = await loadCSV("model-validation/ai-vs-ppr-ranking-audit.csv");
+      } catch (error) {
+        rows = await fallbackAudit();
+      }
+      rows = rows.filter(r => r.season === "2026" &&
         ["QB","RB","WR","TE"].includes(r.position) &&
         ["AI Rankings","PPR Projection Rankings"].includes(r.model));
       const weeks = [...new Set(rows.map(r => Number(r.week)).filter(Number.isFinite))].sort((a,b) => b-a);
