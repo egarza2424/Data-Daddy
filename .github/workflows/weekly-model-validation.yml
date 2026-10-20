@@ -878,6 +878,9 @@ jobs:
           )
           PY
 
+      - name: Audit frozen sleeper picks
+        run: python scripts/validate_sleeper_predictions.py
+
       - name: Show validation results
         run: |
           echo "Generated validation files:"
@@ -904,7 +907,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add model-validation/
+          git add model-validation/ data/sleeper_validation/
 
           if git diff --cached --quiet; then
             echo "No validation changes to commit."
