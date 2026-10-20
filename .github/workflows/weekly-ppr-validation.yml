@@ -1278,41 +1278,6 @@ jobs:
           test -d projection-model/validation
           echo "Validation reports generated successfully."
 
-      - name: Save weekly validation privately
-        shell: bash
-        run: |
-          report=$(find projection-model/validation \
-            -maxdepth 1 \
-            -type f \
-            -name '2026-week*-ppr-validation.csv' \
-            -printf '%T@ %p\n' \
-            | sort -nr \
-            | head -n 1 \
-            | cut -d' ' -f2-)
-
-          if [ -z "$report" ] || [ ! -f "$report" ]; then
-            echo "No weekly validation report found."
-            exit 1
-          fi
-
-          cp "$report" private-audits-write/
-
-          cd private-audits-write
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add -- '*-ppr-validation.csv'
-          if git diff --cached --quiet; then
-            echo "Private audit backup is already current."
-            exit 0
-          fi
-
-          git commit -m "Back up weekly Model F validation"
-          git push origin HEAD:main
-
-          echo "Weekly validation backed up privately."
-
       - name: Publish public ranking accuracy
         run: |
           if [ ! -f "data/weekly-ranking-accuracy.json" ]; then
