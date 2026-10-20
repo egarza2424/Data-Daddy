@@ -66,6 +66,20 @@ MODEL_G_QB_FEATURES = MODEL_D_FEATURES + [
     "qb_rush_attempts_pg",
     "qb_rush_yards_pg",
 ]
+# RB challenger: separate rushing, receiving,
+# red-zone workload, and scoring environment.
+MODEL_H_RB_FEATURES = [
+    *MODEL_A_FEATURES,
+    "rb_carries_pg",
+    "rb_targets_pg",
+    "rb_receptions_pg",
+    "rb_rush_yards_pg",
+    "rb_receiving_yards_pg",
+    "rb_redzone_carries_pg",
+    "rb_redzone_targets_pg",
+    "scoring_environment_score",
+]
+
 def fit_linear_regression(
     train_x,
     train_y,
@@ -612,6 +626,7 @@ def main():
             ),
         )
         model_g = pd.DataFrame()
+        model_h = pd.DataFrame()
 
         if position == "QB":
             model_g = walk_forward_model(
@@ -619,6 +634,14 @@ def main():
                 position=position,
                 feature_columns=MODEL_G_QB_FEATURES,
                 model_name="G_QB_passing_rushing",
+            )
+
+        if position == "RB":
+            model_h = walk_forward_model(
+                data=data,
+                position=position,
+                feature_columns=MODEL_H_RB_FEATURES,
+                model_name="H_RB_role_aware",
             )
         
         prediction_frames.extend(
@@ -630,6 +653,7 @@ def main():
                 model_e,
                 model_f,
                 model_g,
+                model_h,
             ]
         )
     
