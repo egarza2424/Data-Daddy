@@ -1,0 +1,22 @@
+name: Test Lineup Injury Watch
+
+on:
+  push:
+    paths:
+      - app.js
+      - tests/lineup_injury_watch.test.js
+      - .github/workflows/test-lineup-injury-watch.yml
+  workflow_dispatch:
+
+jobs:
+  injury-watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check app syntax
+        run: node --check app.js
+      - name: Test simulated injury scenarios
+        run: node tests/lineup_injury_watch.test.js
