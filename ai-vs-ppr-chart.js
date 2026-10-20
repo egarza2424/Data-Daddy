@@ -95,7 +95,7 @@
         '<p class="model-comparison-disclaimer">Matched-player top-group overlap, not projected PPR error or a guarantee of future performance. Comparisons use completed weeks only.</p>';
       root.innerHTML = html;
     } catch (error) {
-      root.textContent = "The head-to-head accuracy chart will appear after the first completed comparison audit is published.";
+      if (!root.querySelector(".model-comparison-position")) root.textContent = "No completed comparison is available yet.";
     }
   }
   initialize();
