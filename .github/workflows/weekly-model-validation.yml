@@ -497,46 +497,46 @@ jobs:
               f"QB/RB/WR/TE rows: {len(actual)}"
           )
 
+          # Sleeper snapshot IDs and nflverse IDs are different namespaces.
+          # Match exact normalized player name + position; never coerce
+          # unmatched players to zero points.
+          import unicodedata
+          def normalize_name(value):
+              value = unicodedata.normalize("NFKD", str(value or ""))
+              value = "".join(c for c in value if not unicodedata.combining(c))
+              return "".join(c for c in value.lower() if c.isalnum())
+
+          actual_name_column = next(
+              (col for col in ["player_display_name", "player_name", "player_name_full"]
+               if col in actual.columns), None
+          )
+          if actual_name_column is None:
+              raise SystemExit("Actual stats have no player name column")
+          predictions["match_name"] = predictions["player_name"].map(normalize_name)
+          actual["match_name"] = actual[actual_name_column].map(normalize_name)
+          key = ["match_name", "position"]
+          duplicate_actual = actual.duplicated(key, keep=False)
+          if duplicate_actual.any():
+              print("Ambiguous actual names excluded:", int(duplicate_actual.sum()))
+              actual = actual.loc[~duplicate_actual].copy()
+          duplicate_predictions = predictions.duplicated(key, keep=False)
+          if duplicate_predictions.any():
+              print("Ambiguous prediction names excluded:", int(duplicate_predictions.sum()))
+              predictions = predictions.loc[~duplicate_predictions].copy()
           merged = predictions.merge(
-              actual[
-                  [
-                      "player_id",
-                      "actual_ppr",
-                  ]
-              ],
-              on="player_id",
-              how="left",
-              validate="one_to_one"
+              actual[key + ["actual_ppr"]],
+              on=key, how="left", validate="one_to_one"
           )
-
-          matched_count = int(
-              merged["actual_ppr"]
-              .notna()
-              .sum()
-          )
-
-          unmatched_count = int(
-              merged["actual_ppr"]
-              .isna()
-              .sum()
-          )
-
-          print(
-              f"Matched snapshot players: {matched_count}"
-          )
-
-          print(
-              f"Snapshot players without Week "
-              f"{target_week} stats: {unmatched_count}"
-          )
-
-          # A frozen ranking contains players who may not
-          # record a stat in the target week. They remain in
-          # the evaluation population with 0 PPR.
-          merged["actual_ppr"] = (
-              merged["actual_ppr"]
-              .fillna(0.0)
-          )
+          matched_count = int(merged["actual_ppr"].notna().sum())
+          unmatched_count = int(merged["actual_ppr"].isna().sum())
+          print(f"Matched snapshot players by name+position: {matched_count}")
+          print(f"Unmatched (not scored as zero): {unmatched_count}")
+          if matched_count < 100 or matched_count / max(len(merged), 1) < 0.50:
+              raise SystemExit(
+                  "Audit blocked: fewer than 100 matches or under 50% coverage. "
+                  "Investigate identity and actual-stat coverage before publishing metrics."
+              )
+          merged = merged.loc[merged["actual_ppr"].notna()].copy()
 
           # Rank actual fantasy performance separately
           # within QB, RB, WR and TE.
