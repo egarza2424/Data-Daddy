@@ -204,7 +204,7 @@
     <p id="trackerNote" aria-live="polite">Loading completed weekly audit…</p>
     <div id="trackerCards"></div>
   </div>
-  <p style="font-size:.9rem;opacity:.85">The tracker does not treat missing player results as zero or label unverified recommendations as hits. <a href="https://github.com/egarza2424/Data-Daddy/tree/main/model-validation" target="_blank" rel="noopener noreferrer">View audit data ↗</a></p>
+  <div class="tracker-accuracy" aria-labelledby="trackerAccuracyHeading"><h4 id="trackerAccuracyHeading">Weekly Ranking Accuracy</h4><p>Top-15 overlap by position: the percentage of our predicted top-15 players who also finished in the actual top 15, among players with recorded results. This measures ranking agreement, not PPR projection error.</p><div id="trackerAccuracyChart" role="img" aria-label="Weekly top-15 ranking overlap chart">Loading weekly accuracy…</div></div><p style="font-size:.9rem;opacity:.85">Only completed, matched-player audits are shown. Missing results are never counted as zero, and unverified recommendations are not labeled hits.</p>
 </section>
 
 <section class="panel position-rankings" id="rankings">
@@ -1300,6 +1300,6 @@ Players qualify when their average verified roster percentage is below 65%, usin
   #weeklyPerformanceTracker .tracker-tabs {grid-template-columns:1fr;}
 }
 </style>
-<script src="weekly-performance.js?v=5" defer></script>
+<script src="weekly-performance.js?v=6" defer></script>
 </body>
 </html>
