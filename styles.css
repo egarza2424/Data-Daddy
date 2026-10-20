@@ -5028,3 +5028,29 @@ section:has(#waiverWireList) {
     padding: 20px 18px;
   }
 }
+
+
+/* Performance Tracker — match the polished Rankings section */
+#ranking-hits { padding: 30px; }
+#ranking-hits > .eyebrow { color: var(--accent); margin-bottom: 7px; }
+#ranking-hits > h3 { color: var(--ink); font-size: clamp(1.55rem,3vw,2rem); line-height: 1.15; margin-bottom: 7px; }
+#ranking-hits > p { max-width: 760px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+#weeklyPerformanceTracker { margin-top: 24px; }
+#ranking-hits .tracker-tabs { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; margin-bottom: 24px; }
+#ranking-hits .tracker-tab { min-width: 0; min-height: 46px; padding: 10px 12px; border: 1px solid #43536b; border-radius: 9px; background: #101823; color: var(--ink); font: inherit; font-size: 13px; font-weight: 750; cursor: pointer; transition: background .15s,border-color .15s; }
+#ranking-hits .tracker-tab:hover:not(:disabled) { border-color: var(--accent); background: #1c2838; }
+#ranking-hits .tracker-tab[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #101823; cursor: default; }
+#ranking-hits .tracker-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+#ranking-hits .tracker-filters { display: grid; grid-template-columns: minmax(220px, 320px); margin-bottom: 16px; }
+#ranking-hits .tracker-filters label { display: block; margin-bottom: 7px; color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+#ranking-hits .tracker-position { width: 100%; height: 44px; padding: 0 13px; border: 1px solid #43536b; border-radius: 9px; background: #101823; color: var(--ink); font: inherit; }
+#ranking-hits .tracker-position:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px rgba(245,196,81,.1); }
+#ranking-hits #trackerNote { margin: 14px 0 16px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+#ranking-hits #trackerCards { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; margin: 0 0 22px; }
+#ranking-hits #trackerCards .tracker-result-card { min-width: 0; padding: 18px; border: 1px solid #344256; border-radius: 12px; background: #101823; }
+#ranking-hits .tracker-result-card strong { display: block; margin-bottom: 9px; color: var(--ink); font-size: 15px; }
+#ranking-hits .tracker-result-card p { margin: 0 0 6px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+#ranking-hits .tracker-result-card p:last-child { margin-bottom: 0; color: var(--accent); }
+#ranking-hits > p:last-child { margin: 12px 0 0; font-size: 12px; }
+@media(max-width:800px) { #ranking-hits .tracker-tabs { grid-template-columns: repeat(2,minmax(0,1fr)); } #ranking-hits #trackerCards { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width:520px) { #ranking-hits { padding: 20px; } #ranking-hits #trackerCards { grid-template-columns: 1fr; } #ranking-hits .tracker-tab { font-size: 12px; } }
