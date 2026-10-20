@@ -5019,7 +5019,7 @@ function optimizeLineup(mode = "best") {
   }
 
   renderOptimizedLineup(bestLineup, rules, useSafer ? "safe" : "best");
-  if (maximumLineup && saferLineup) {
+  if (maximumLineup) {
     const choices = document.createElement("div");
     choices.className = "lineup-strategy-choices";
     Object.assign(choices.style, { display: "flex", gap: "10px",
@@ -5031,18 +5031,21 @@ function optimizeLineup(mode = "best") {
       const button = document.createElement("button");
       button.type = "button";
       button.textContent = label;
-      button.disabled = choice === (useSafer ? "safe" : "best");
+      button.disabled = choice === (useSafer ? "safe" : "best") || (choice === "safe" && !saferLineup);
+      if (choice === "safe" && !saferLineup) button.title = "No legal lineup without questionable or doubtful players";
       button.addEventListener("click", () => optimizeLineup(choice));
       choices.appendChild(button);
     }
     const summary = document.createElement("p");
-    summary.textContent = useSafer
-      ? "Safer designation-based lineup: " + saferLineup.total.toFixed(2) +
-        " projected PPR vs. maximum " + maximumLineup.total.toFixed(2) +
-        ". This does not guarantee player availability."
-      : "Maximum projected lineup: " + maximumLineup.total.toFixed(2) +
-        " PPR. Safer designation-based option: " + saferLineup.total.toFixed(2) +
-        " PPR. Injury designations can change.";
+    summary.textContent = !saferLineup
+      ? "No legal lineup can avoid all questionable/doubtful players with the current roster. Add eligible backups to unlock the safer strategy."
+      : useSafer
+        ? "Safer designation-based lineup: " + saferLineup.total.toFixed(2) +
+          " projected PPR vs. maximum " + maximumLineup.total.toFixed(2) +
+          ". This does not guarantee player availability."
+        : "Maximum projected lineup: " + maximumLineup.total.toFixed(2) +
+          " PPR. Safer designation-based option: " + saferLineup.total.toFixed(2) +
+          " PPR. Injury designations can change.";
     const resultHeading = result.firstElementChild;
     if (resultHeading) resultHeading.before(choices, summary);
     else result.append(choices, summary);
