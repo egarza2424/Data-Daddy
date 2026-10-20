@@ -5,6 +5,7 @@ on:
     paths:
       - app.js
       - tests/lineup_injury_watch.test.js
+      - tests/lineup_strategies.test.js
       - .github/workflows/test-lineup-injury-watch.yml
   workflow_dispatch:
 
@@ -20,3 +21,5 @@ jobs:
         run: node --check app.js
       - name: Test simulated injury scenarios
         run: node tests/lineup_injury_watch.test.js
+      - name: Test lineup strategy choices
+        run: node tests/lineup_strategies.test.js
