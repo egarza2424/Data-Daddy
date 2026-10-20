@@ -1202,8 +1202,3 @@ jobs:
         run: |
           test -d projection-model/validation
           echo "Validation reports generated successfully."
-        with:
-          name: model-f-validation
-          path: projection-model/validation/
-          retention-days: 30
-          if-no-files-found: error
