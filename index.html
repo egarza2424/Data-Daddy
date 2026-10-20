@@ -6,7 +6,7 @@
   <meta name="description" content="Fantasy AI Player Lab — weekly data-driven NFL fantasy rankings, player comparisons, and transparent model scoring powered by 11 explainable signals.">
   <title>Fantasy AI Player Lab</title>
 
-  <link rel="stylesheet" href="styles.css?v=37">
+  <link rel="stylesheet" href="styles.css?v=38">
 </head>
 
 <body>
@@ -327,6 +327,12 @@
     to help you make smarter fantasy football decisions.
     Here's how to interpret each one.
   </p>
+
+  <div class="model-comparison-chart" aria-labelledby="modelComparisonHeading">
+    <h4 id="modelComparisonHeading">AI Rankings vs. PPR Rankings — Weekly Accuracy</h4>
+    <p>Which ranking model correctly identified more top players? QB and TE use top 24; RB and WR use top 36. Only matched players with recorded game results count.</p>
+    <div id="modelComparisonChart" aria-live="polite">Loading completed-week comparison…</div>
+  </div>
 
   <h4>AI Score — Evaluate the Player</h4>
   <p>
@@ -1301,5 +1307,6 @@ Players qualify when their average verified roster percentage is below 65%, usin
 }
 </style>
 <script src="weekly-performance.js?v=7" defer></script>
+<script src="ai-vs-ppr-chart.js?v=1" defer></script>
 </body>
 </html>
