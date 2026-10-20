@@ -1368,7 +1368,58 @@ def build_week(
         rb_receiving_yards_pg = 0.0
         rb_redzone_carries_pg = 0.0
         rb_redzone_targets_pg = 0.0
+        # Model J1: season-to-date RB efficiency.
+        # History contains only games before target_week.
+        rb_season_games = 0
+        rb_season_carries = 0.0
+        rb_season_targets = 0.0
+        rb_season_receptions = 0.0
+        rb_season_rush_yards = 0.0
+        rb_season_receiving_yards = 0.0
+        rb_season_ypc = 0.0
+        rb_season_catch_rate = 0.0
+        rb_season_ypr = 0.0
 
+        if position == "RB":
+            season_history = history.loc[
+                history["player_id"].eq(player_id)
+                & history["position"].eq("RB")
+            ]
+
+            rb_season_games = len(season_history)
+            rb_season_carries = float(
+                season_history["carries"].sum()
+            )
+            rb_season_targets = float(
+                season_history["targets"].sum()
+            )
+            rb_season_receptions = float(
+                season_history["receptions"].sum()
+            )
+            rb_season_rush_yards = float(
+                season_history["rushing_yards"].sum()
+            )
+            rb_season_receiving_yards = float(
+                season_history["receiving_yards"].sum()
+            )
+
+            if rb_season_carries > 0:
+                rb_season_ypc = (
+                    rb_season_rush_yards / rb_season_carries
+                )
+
+            if rb_season_targets > 0:
+                rb_season_catch_rate = (
+                    rb_season_receptions / rb_season_targets
+                )
+
+            if rb_season_receptions > 0:
+                rb_season_ypr = (
+                    rb_season_receiving_yards
+                    / rb_season_receptions
+                )
+
+        
         if position == "RB":
             rb_prior_games = len(recent)
             rb_carries_pg = float(recent["carries"].mean())
@@ -1527,7 +1578,15 @@ def build_week(
                 "rb_receiving_yards_pg": rb_receiving_yards_pg,
                 "rb_redzone_carries_pg": rb_redzone_carries_pg,
                 "rb_redzone_targets_pg": rb_redzone_targets_pg,
-
+                "rb_season_games": rb_season_games,
+                "rb_season_carries": rb_season_carries,
+                "rb_season_targets": rb_season_targets,
+                "rb_season_receptions": rb_season_receptions,
+                "rb_season_rush_yards": rb_season_rush_yards,
+                "rb_season_receiving_yards": rb_season_receiving_yards,
+                "rb_season_ypc": rb_season_ypc,
+                "rb_season_catch_rate": rb_season_catch_rate,
+                "rb_season_ypr": rb_season_ypr,
                 
                 "production_consistency":
                     production_consistency,
@@ -1809,6 +1868,15 @@ def build_dataset(
         "rb_receiving_yards_pg",
         "rb_redzone_carries_pg",
         "rb_redzone_targets_pg",
+        "rb_season_games",
+        "rb_season_carries",
+        "rb_season_targets",
+        "rb_season_receptions",
+        "rb_season_rush_yards",
+        "rb_season_receiving_yards",
+        "rb_season_ypc",
+        "rb_season_catch_rate",
+        "rb_season_ypr",
         "matchup_raw",
         "actual_ppr",
     ]
