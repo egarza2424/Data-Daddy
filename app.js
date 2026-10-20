@@ -4873,7 +4873,6 @@ function optimizeLineup() {
   }
 
   renderOptimizedLineup(bestLineup, rules);
-  renderNflInactiveObservationStatus(result);
   const dialog = document.createElement("dialog");
   dialog.id = "lineupAiInsightsDialog";
   dialog.setAttribute(
