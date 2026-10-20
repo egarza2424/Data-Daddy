@@ -2,7 +2,15 @@ name: Build Historical PPR Dataset
 
 on:
   workflow_dispatch:
-
+    inputs:
+      season:
+        description: "Historical NFL season to build"
+        required: true
+        default: "2025"
+        type: choice
+        options:
+          - "2024"
+          - "2025"
 permissions:
   contents: write
 
