@@ -453,15 +453,17 @@ jobs:
           PY
 
       - name: Commit historical dataset
+        env:
+          SEASON: ${{ inputs.season }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add projection-model/2025-historical-ppr-dataset.csv
+          git add "projection-model/${SEASON}-historical-ppr-dataset.csv"
 
           if git diff --cached --quiet; then
             echo "No historical dataset changes to commit."
           else
-            git commit -m "Update 2025 historical PPR dataset"
+            git commit -m "Update ${SEASON} historical PPR dataset"
             git push
           fi
