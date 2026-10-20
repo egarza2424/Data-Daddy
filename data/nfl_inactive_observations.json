@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "generated_at_utc": "2026-10-20T00:08:05.294137+00:00",
+  "generated_at_utc": "2026-10-20T00:10:53.955280+00:00",
   "official_inactives_verified": false,
   "games": [
     {
@@ -8,8 +8,8 @@
       "season": 2026,
       "week": 6,
       "kickoff_utc": "2026-10-20T00:15:00+00:00",
-      "observed_at_utc": "2026-10-20T00:08:04.884034+00:00",
-      "minutes_before_kickoff": 6.92,
+      "observed_at_utc": "2026-10-20T00:10:53.610767+00:00",
+      "minutes_before_kickoff": 4.11,
       "observation_timing": "retrieved_before_kickoff",
       "publication_time_verified": false,
       "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers",
