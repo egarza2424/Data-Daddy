@@ -4792,10 +4792,13 @@ function renderNflInactiveObservationStatus(container) {
 
   // Only show reports for the current projection week. Historical inactive
   // observations must never appear as live lineup guidance.
-  const projectionWeeks = [...new Set(
-    lineupRoster.map(player => Number(player.week)).filter(Number.isInteger)
-  )];
-  const currentWeek = projectionWeeks.length === 1 ? projectionWeeks[0] : null;
+  const targetWeek = Number(
+    document.documentElement.dataset.targetWeek
+  );
+  // The site's target week is the canonical display week. Roster rows may
+  // omit their own week, so do not infer the week from roster entries.
+  const currentWeek = Number.isInteger(targetWeek) &&
+    targetWeek >= 1 && targetWeek <= 22 ? targetWeek : null;
   const games = (nflInactiveObservations?.games || []).filter(
     game => currentWeek !== null &&
       Number(game.week) === currentWeek &&
