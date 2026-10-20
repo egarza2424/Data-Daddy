@@ -1198,20 +1198,10 @@ jobs:
           )
           PY
 
-      - name: Commit Model F validation results
-        run: |
-          if [ ! -d "projection-model/validation" ]; then
-            echo "No Model F validation files generated."
-            exit 0
-          fi
-
-          if [ -z "$(git status --porcelain -- projection-model/validation)" ]; then
-            echo "No new Model F validation changes to commit."
-            exit 0
-          fi
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add projection-model/validation
-          git commit -m "Save weekly Model F PPR validation"
-          git push
+      - name: Save private validation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-f-validation
+          path: projection-model/validation/
+          retention-days: 30
+          if-no-files-found: error
