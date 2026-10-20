@@ -37,3 +37,13 @@ assert.equal(ctx.findBestLegalLineup(rules, ctx.getSaferLineupGroups({
 })), null, "Safer strategy must not invent eligible players");
 assert.equal(best.total, 78, "Original projections must remain unchanged");
 console.log("PASS: maximum PPR, safer legal lineup, injury exclusion, no legal safer lineup");
+
+assert(source.includes('renderOptimizedLineup(bestLineup, rules, useSafer ? "safe" : "best")'),
+  "Selected strategy must be passed to the lineup renderer");
+assert(source.includes('strategy === "safe" ? "SAFER LINEUP'),
+  "Safer mode must display its own heading");
+assert(source.includes('button.addEventListener("click", () => optimizeLineup(choice))'),
+  "Strategy buttons must rerender the selected lineup");
+assert(source.includes('const starterKeys =') && source.includes('!starterKeys.has('),
+  "Bench must be rebuilt from the selected lineup starters");
+console.log("PASS: strategy controls, heading, and bench rendering wiring");
