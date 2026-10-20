@@ -19,6 +19,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Checkout private historical audits
+        uses: actions/checkout@v4
+        with:
+          repository: egarza2424/Data-Daddy-Private-Audits
+          token: ${{ secrets.PRIVATE_AUDIT_TOKEN }}
+          path: private-audits
+          persist-credentials: false
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
