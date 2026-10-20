@@ -1,0 +1,9 @@
+week,position,method,top_n,selected_players,verified_players,unverified_players,top_n_hits,hit_rate_pct,verification_coverage_pct
+6,QB,AI Score,24,24,24,0,22,91.7,100.0
+6,QB,Projected PPR,24,24,24,0,22,91.7,100.0
+6,RB,AI Score,36,36,28,8,24,66.7,77.8
+6,RB,Projected PPR,36,36,34,2,28,77.8,94.4
+6,WR,AI Score,36,36,34,2,24,66.7,94.4
+6,WR,Projected PPR,36,36,36,0,23,63.9,100.0
+6,TE,AI Score,24,24,18,6,10,41.7,75.0
+6,TE,Projected PPR,24,24,18,6,9,37.5,75.0
