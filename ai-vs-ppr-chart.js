@@ -10,7 +10,7 @@
     c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])
   );
 
-    async function loadJSON(path) {
+  async function loadJSON(path) {
     const response = await fetch(path + "?t=" + Date.now(), {
       cache: "no-store"
     });
@@ -48,7 +48,7 @@
       );
 
       if (valid.length !== 8) {
-        throw new Error("Incomplete Week 6 ranking comparison");
+        throw new Error("Incomplete weekly ranking comparison");
       }
 
       let html =
