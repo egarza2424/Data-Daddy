@@ -5054,3 +5054,18 @@ section:has(#waiverWireList) {
 #ranking-hits > p:last-child { margin: 12px 0 0; font-size: 12px; }
 @media(max-width:800px) { #ranking-hits .tracker-tabs { grid-template-columns: repeat(2,minmax(0,1fr)); } #ranking-hits #trackerCards { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media(max-width:520px) { #ranking-hits { padding: 20px; } #ranking-hits #trackerCards { grid-template-columns: 1fr; } #ranking-hits .tracker-tab { font-size: 12px; } }
+
+
+/* On-site performance accuracy chart */
+#ranking-hits .tracker-accuracy {margin:22px 0 16px;padding:20px;border:1px solid #334256;border-radius:14px;background:linear-gradient(145deg,#131f2d,#0c1521);}
+#ranking-hits .tracker-accuracy h4 {margin:0 0 8px;font-size:1.15rem;color:#f1c66a;}
+#ranking-hits .tracker-accuracy > p {margin:0 0 14px;line-height:1.5;opacity:.88;}
+#ranking-hits .tracker-chart-week {font-size:.9rem;font-weight:700;margin:0 0 14px;color:#e5eaf1;}
+#ranking-hits .tracker-chart-row {display:grid;grid-template-columns:38px minmax(0,1fr) 54px 42px;align-items:center;gap:10px;margin:12px 0;}
+#ranking-hits .tracker-chart-label {font-weight:800;color:#f2f4f8;}
+#ranking-hits .tracker-chart-track {height:15px;border-radius:999px;background:#273648;overflow:hidden;}
+#ranking-hits .tracker-chart-fill {height:100%;border-radius:999px;background:linear-gradient(90deg,#a87b29,#f1c66a);}
+#ranking-hits .tracker-chart-value {text-align:right;color:#f1c66a;font-variant-numeric:tabular-nums;}
+#ranking-hits .tracker-chart-count {text-align:right;opacity:.75;font-variant-numeric:tabular-nums;}
+#ranking-hits .tracker-chart-caption {margin:14px 0 0;font-size:.82rem;opacity:.75;}
+@media(max-width:440px){#ranking-hits .tracker-accuracy{padding:14px}#ranking-hits .tracker-chart-row{grid-template-columns:28px minmax(0,1fr) 44px 30px;gap:6px}}
