@@ -5069,3 +5069,22 @@ section:has(#waiverWireList) {
 #ranking-hits .tracker-chart-count {text-align:right;opacity:.75;font-variant-numeric:tabular-nums;}
 #ranking-hits .tracker-chart-caption {margin:14px 0 0;font-size:.82rem;opacity:.75;}
 @media(max-width:440px){#ranking-hits .tracker-accuracy{padding:14px}#ranking-hits .tracker-chart-row{grid-template-columns:28px minmax(0,1fr) 44px 30px;gap:6px}}
+
+
+/* AI Score versus PPR postgame head-to-head comparison */
+.model-comparison-chart{margin:22px 0 28px;padding:20px;border:1px solid #34445a;border-radius:14px;background:linear-gradient(145deg,#14202e,#0b1521)}
+.model-comparison-chart h4{margin:0 0 8px;color:#f1c66a;font-size:1.15rem}
+.model-comparison-chart>p{margin:0 0 16px;line-height:1.5}
+.model-comparison-week{font-weight:700;margin:12px 0 18px}
+.model-comparison-position{margin:18px 0;padding-bottom:12px;border-bottom:1px solid #2a3a4d}
+.model-comparison-position>strong{display:block;margin-bottom:9px}
+.model-comparison-position>strong small{font-weight:400;opacity:.75}
+.model-comparison-bar-row{display:grid;grid-template-columns:74px minmax(0,1fr) 60px 42px;gap:10px;align-items:center;margin:8px 0;font-size:.9rem}
+.model-comparison-bar-row b,.model-comparison-bar-row small{text-align:right;font-variant-numeric:tabular-nums}
+.model-comparison-track{height:14px;background:#283749;border-radius:99px;overflow:hidden}
+.model-comparison-fill{height:100%;border-radius:99px}
+.model-comparison-ai{background:linear-gradient(90deg,#a47b2c,#f1c66a)}
+.model-comparison-ppr{background:linear-gradient(90deg,#2e87a7,#70d5e7)}
+.model-comparison-summary{font-weight:600;margin:18px 0 8px}
+.model-comparison-disclaimer{font-size:.82rem;opacity:.75}
+@media(max-width:480px){.model-comparison-chart{padding:14px}.model-comparison-bar-row{grid-template-columns:60px minmax(0,1fr) 48px 34px;gap:6px;font-size:.78rem}}
