@@ -1,0 +1,118 @@
+{
+  "season": 2026,
+  "target_week": 7,
+  "displayed_week": 7,
+  "picks": [
+    {
+      "rank": 1,
+      "player_name": "Caleb Williams",
+      "position": "QB",
+      "team": "CHI",
+      "sleeper_score": 100,
+      "projected_ppr": 18.83,
+      "model_rank": 6,
+      "ppr_rank": 12,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-10-23T00:15:00+00:00"
+    },
+    {
+      "rank": 2,
+      "player_name": "Christian Watson",
+      "position": "WR",
+      "team": "GB",
+      "sleeper_score": 84.5,
+      "projected_ppr": 10.85,
+      "model_rank": 17,
+      "ppr_rank": 27,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-10-25T20:25:00+00:00"
+    },
+    {
+      "rank": 3,
+      "player_name": "D'Andre Swift",
+      "position": "RB",
+      "team": "CHI",
+      "sleeper_score": 83.871,
+      "projected_ppr": 11.62,
+      "model_rank": 15,
+      "ppr_rank": 22,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-10-23T00:15:00+00:00"
+    },
+    {
+      "rank": 5,
+      "player_name": "Woody Marks",
+      "position": "RB",
+      "team": "HOU",
+      "sleeper_score": 73.559,
+      "projected_ppr": 11.39,
+      "model_rank": 21,
+      "ppr_rank": 23,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-10-25T17:00:00+00:00"
+    },
+    {
+      "rank": 6,
+      "player_name": "Michael Mayer",
+      "position": "TE",
+      "team": "LV",
+      "sleeper_score": 72.79,
+      "projected_ppr": 8.42,
+      "model_rank": 12,
+      "ppr_rank": 13,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-10-25T20:25:00+00:00"
+    },
+    {
+      "rank": 7,
+      "player_name": "Jameson Williams",
+      "position": "WR",
+      "team": "DET",
+      "sleeper_score": 71.337,
+      "projected_ppr": 9.31,
+      "model_rank": 26,
+      "ppr_rank": 35,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-10-25T20:25:00+00:00"
+    },
+    {
+      "rank": 9,
+      "player_name": "Justin Jefferson",
+      "position": "WR",
+      "team": "MIN",
+      "sleeper_score": 68.359,
+      "projected_ppr": 9.78,
+      "model_rank": 29,
+      "ppr_rank": 33,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-10-25T17:00:00+00:00"
+    },
+    {
+      "rank": 10,
+      "player_name": "DeMario Douglas",
+      "position": "WR",
+      "team": "NE",
+      "sleeper_score": 67.922,
+      "projected_ppr": 10.08,
+      "model_rank": 28,
+      "ppr_rank": 29,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-10-23T00:15:00+00:00"
+    }
+  ],
+  "captured_utc": "2026-10-20T05:01:12.234Z",
+  "timing_status": "verified_pregame",
+  "kickoff_source": "https://github.com/nflverse/nfldata/raw/refs/heads/master/data/games.csv",
+  "excluded_at_capture": [
+    {
+      "player_name": "Tyler Higbee",
+      "team": "LAR",
+      "reason": "missing kickoff"
+    },
+    {
+      "player_name": "Konata Mumpfield",
+      "team": "LAR",
+      "reason": "missing kickoff"
+    }
+  ]
+}
