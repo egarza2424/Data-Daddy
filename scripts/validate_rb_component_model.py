@@ -116,6 +116,81 @@ def main():
     predictions["absolute_rank_error"] = (
         predictions["actual_rank"] - predictions["projected_rank"]
     ).abs()
+    # Model F vs Model I: top-tier RB ranking audit.
+    tier_rows = []
+
+    for (model, week), group in predictions.groupby(
+        ["model", "week"]
+    ):
+        for cutoff in (12, 24):
+            actual_top = set(
+                group.nsmallest(
+                    cutoff, "actual_rank"
+                )["player_id"]
+            )
+
+            predicted_top = set(
+                group.nsmallest(
+                    cutoff, "projected_rank"
+                )["player_id"]
+            )
+
+            correct = len(actual_top & predicted_top)
+
+            selected = group[
+                group["player_id"].isin(predicted_top)
+            ]
+
+            tier_rows.append({
+                "model": model,
+                "week": week,
+                "tier": f"Top {cutoff}",
+                "correct_picks": correct,
+                "total_picks": len(predicted_top),
+                "hit_rate": round(
+                    correct / len(predicted_top), 4
+                ),
+                "mean_rank_error": round(
+                    selected["absolute_rank_error"].mean(), 4
+                ),
+            })
+
+    tier_audit = pd.DataFrame(tier_rows)
+
+    tier_summary = (
+        tier_audit.groupby(["model", "tier"])
+        .agg(
+            correct_picks=("correct_picks", "sum"),
+            total_picks=("total_picks", "sum"),
+            hit_rate=("hit_rate", "mean"),
+            mean_rank_error=("mean_rank_error", "mean"),
+        )
+        .reset_index()
+    )
+
+    tier_summary["hit_rate"] = (
+        tier_summary["hit_rate"] * 100
+    ).round(2)
+
+    tier_summary["mean_rank_error"] = (
+        tier_summary["mean_rank_error"]
+    ).round(4)
+
+    print("\nTOP-12 / TOP-24 RB RANKING AUDIT")
+    print(tier_summary.to_string(index=False))
+
+    OUT.mkdir(parents=True, exist_ok=True)
+
+    tier_audit.to_csv(
+        OUT / "2025-rb-model-i-tier-weekly.csv",
+        index=False,
+    )
+
+    tier_summary.to_csv(
+        OUT / "2025-rb-model-i-tier-summary.csv",
+        index=False,
+    )
+    
     summaries = []
     for model, group in predictions.groupby("model"):
         error = group["projected_ppr"].to_numpy() - group["actual_ppr"].to_numpy()
