@@ -7937,9 +7937,23 @@ const relevantPlayers = players.filter((player) => {
  * Missing data must not be interpreted as a bye.
  */
 const playerTeam =
-  player.team === "LA"
-    ? "LAR"
-    : player.team;
+  String(player.team || "")
+    .trim()
+    .toUpperCase() === "LA"
+      ? "LAR"
+      : String(player.team || "")
+          .trim()
+          .toUpperCase();
+
+const confirmedWeek7Byes =
+  new Set(["BUF", "JAX", "LAC", "WAS"]);
+
+if (
+  Number(snapshotWeek) === 7 &&
+  confirmedWeek7Byes.has(playerTeam)
+) {
+  return false;
+}
 
 const weeklyMatchup =
   teamNextOpponent[playerTeam];
@@ -7955,6 +7969,7 @@ if (
     .toUpperCase() === "BYE"
 ) {
   return false;
+}
 }
 
   
