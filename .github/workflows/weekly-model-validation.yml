@@ -2,6 +2,11 @@ name: Weekly Model Validation
 
 on:
   workflow_dispatch:
+    inputs:
+      target_week:
+        description: 'NFL week to validate; blank uses latest frozen snapshot'
+        required: false
+        type: string
 
   schedule:
     - cron: "0 22 * * 2"
@@ -29,8 +34,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas scipy
 
-      - name: Find latest frozen pregame snapshot
+      - name: Find requested frozen pregame snapshot
         id: snapshot
+        env:
+          REQUESTED_WEEK: ${{ inputs.target_week }}
         run: |
           python <<'PY'
           import csv
@@ -52,6 +59,10 @@ jobs:
               raise SystemExit(
                   "No frozen pregame snapshot found."
               )
+
+          requested_week = os.environ.get("REQUESTED_WEEK", "").strip()
+          if requested_week and (not requested_week.isdigit() or not 1 <= int(requested_week) <= 22):
+              raise SystemExit("target_week must be between 1 and 22")
 
           dated_files = []
 
@@ -87,10 +98,21 @@ jobs:
                   "snapshot found."
               )
 
-          snapshot = max(
-              dated_files,
-              key=lambda item: item[0]
-          )[1]
+          if requested_week:
+              matching = []
+              for date, path in dated_files:
+                  with path.open("r", encoding="utf-8", newline="") as f:
+                      first = next(csv.DictReader(f), None)
+                  if first and str(first.get("snapshot_week") or first.get("week") or "").strip() == requested_week:
+                      matching.append((date, path))
+              if not matching:
+                  raise SystemExit(
+                      f"No frozen pregame snapshot for Week {requested_week}. "
+                      "Audit blocked: do not substitute a later-week snapshot."
+                  )
+              snapshot = max(matching, key=lambda item: item[0])[1]
+          else:
+              snapshot = max(dated_files, key=lambda item: item[0])[1]
 
           with snapshot.open(
               "r",
