@@ -36,21 +36,22 @@
         Number.isFinite(number(r.position_rank)) &&
         Number.isFinite(number(r.actual_ppr)) &&
         r.actual_ppr !== "");
+      const cutoff = position === "RB" || position === "WR" ? 24 : 15;
       const sorted = [...cohort].sort((a,b) => number(b.actual_ppr) - number(a.actual_ppr));
-      const actualTop = new Set(sorted.slice(0,15).map(r => r.player_id));
-      const predictedTop = [...cohort].sort((a,b) => number(a.position_rank) - number(b.position_rank)).slice(0,15);
+      const actualTop = new Set(sorted.slice(0,cutoff).map(r => r.player_id));
+      const predictedTop = [...cohort].sort((a,b) => number(a.position_rank) - number(b.position_rank)).slice(0,cutoff);
       const hits = predictedTop.filter(r => actualTop.has(r.player_id)).length;
       const count = predictedTop.length;
-      return {position, hits, count, pct: count ? 100 * hits / count : null};
+      return {position, cutoff, hits, count, pct: count ? 100 * hits / count : null};
     });
-    chart.setAttribute("aria-label", "Week " + week + " top-15 ranking overlap: " +
-      results.map(r => r.position + " " + (r.pct===null ? "unavailable" : r.pct.toFixed(0)+" percent")).join(", "));
-    chart.innerHTML = '<p class="tracker-chart-week">Week '+esc(week)+' · completed postgame audit</p>'+
-      results.map(r => '<div class="tracker-chart-row"><span class="tracker-chart-label">'+r.position+'</span>'+
+    chart.setAttribute("aria-label", "Week " + week + " position-specific ranking overlap: " +
+      results.map(r => r.position + " top-" + r.cutoff + " " + (r.pct===null ? "unavailable" : r.pct.toFixed(0)+" percent")).join(", "));
+    chart.innerHTML = '<p class="tracker-chart-week">Week '+esc(week)+' · QB/TE top 15 · RB/WR top 24 · completed postgame audit</p>'+
+      results.map(r => '<div class="tracker-chart-row"><span class="tracker-chart-label">'+r.position+' <small>Top '+r.cutoff+'</small></span>'+
         '<div class="tracker-chart-track"><div class="tracker-chart-fill" style="width:'+(r.pct??0).toFixed(1)+'%"></div></div>'+
         '<strong class="tracker-chart-value">'+(r.pct===null?'N/A':r.pct.toFixed(0)+'%')+'</strong>'+
         '<small class="tracker-chart-count">'+r.hits+'/'+r.count+'</small></div>').join("")+
-      '<p class="tracker-chart-caption">Top-15 overlap uses the matched-player cohort only. Rankings are recalculated within that cohort; missing players are excluded. Higher is better.</p>';
+      '<p class="tracker-chart-caption">Top-15 QB/TE and top-24 RB/WR overlap uses the matched-player cohort only. Rankings are recalculated within that cohort; missing players are excluded. Higher is better.</p>';
   }
   function render() {
     const {category,position,week,reports}=state;
