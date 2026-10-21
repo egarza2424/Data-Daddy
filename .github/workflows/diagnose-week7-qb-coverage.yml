@@ -1,0 +1,44 @@
+name: Diagnose Week 7 QB Coverage
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check backend, Sleeper and projection QB universe
+        run: |
+          python - <<'PY'
+          import csv, json, urllib.request
+          from pathlib import Path
+          snap = Path("model-snapshots/2026-10-21-pregame-model-snapshot.csv")
+          projections = Path("projection-model/2026-week7-ppr-projections.csv")
+          for label, path in [("snapshot",snap),("projections",projections)]:
+              rows = list(csv.DictReader(path.open(newline="",encoding="utf-8")))
+              qb = [r for r in rows if r.get("position")=="QB"]
+              print(label, "QB count:",len(qb))
+              print(label,"NYG QBs:",[(r["player_name"],r.get("team")) for r in qb if r.get("team") in ("NYG","LAR") and (r.get("team")=="NYG")])
+              print(label,"McCarthy:",[(r["player_name"],r.get("team")) for r in qb if "mccarthy" in r["player_name"].lower()])
+          data=json.loads(Path("nfl-stats.json").read_text(encoding="utf-8"))
+          lookup=data.get("player_lookup",{})
+          print("Backend McCarthy:",[(k,v) for k,v in lookup.items() if "mccarthy" in str(v).lower()][:10])
+          print("Backend NYG QBs:",[(k,v) for k,v in lookup.items() if isinstance(v,dict) and v.get("position")=="QB" and v.get("team") in ("NYG","LAR")][:20])
+          print("Backend McCarthy score:",[(k,data.get("fantasy_ai_scores",{}).get(k)) for k,v in lookup.items() if "mccarthy" in str(v).lower()])
+          url="https://api.sleeper.app/v1/players/nfl?position=QB&active=true"
+          try:
+              with urllib.request.urlopen(url,timeout=45) as response:
+                  sleeper=json.load(response)
+              matches=[(k,{f:v.get(f) for f in ("first_name","last_name","team","position","status","gsis_id","depth_chart_order")}) for k,v in sleeper.items() if "mccarthy" in ((v.get("first_name") or "")+" "+(v.get("last_name") or "")).lower()]
+              print("Sleeper McCarthy:",matches[:15])
+              print("Sleeper NYG QB count:",sum(v.get("team")=="NYG" and v.get("position")=="QB" for v in sleeper.values()))
+          except Exception as e:
+              print("Sleeper lookup unavailable:",repr(e))
+          PY
