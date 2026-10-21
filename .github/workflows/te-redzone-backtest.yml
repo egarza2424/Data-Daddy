@@ -18,9 +18,13 @@ jobs:
           python-version: '3.11'
       - name: Run read-only TE red-zone sensitivity audit
         run: python scripts/backtest_te_redzone_normalization.py
+      - name: Run read-only TE target-trend audit
+        run: python scripts/backtest_te_target_trend.py
       - name: Upload audit CSV
         if: success()
         uses: actions/upload-artifact@v4
         with:
           name: week6-te-redzone-normalization-audit
-          path: model-validation/2026-week6-te-redzone-normalization-audit.csv
+          path: |
+            model-validation/2026-week6-te-redzone-normalization-audit.csv
+            model-validation/2026-week6-te-target-trend-audit.csv
