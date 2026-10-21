@@ -11,11 +11,14 @@ def build_challenger(projections, stats, target_week, weight=0.5):
     if te.empty:
         raise ValueError("No TE projections found")
     rows = pd.DataFrame(stats["players"])
+    if rows.empty:
+        raise ValueError("Weekly stats contain no players")
     required = {"season", "week", "position", "team", "player_display_name"}
     if not required.issubset(rows.columns):
         raise ValueError(f"Missing weekly stat fields: {sorted(required-set(rows.columns))}")
     rows = rows.loc[
         rows["position"].eq("TE")
+        & rows.get("season_type", pd.Series("REG", index=rows.index)).eq("REG")
         & pd.to_numeric(rows["season"], errors="coerce").eq(2026)
         & pd.to_numeric(rows["week"], errors="coerce").lt(target_week)
     ].copy()
@@ -29,12 +32,16 @@ def build_challenger(projections, stats, target_week, weight=0.5):
         import re
         name = re.sub(r"\s+(jr\.?|sr\.?|ii|iii|iv)$", "", str(name).lower().strip())
         return re.sub(r"[^a-z0-9]", "", name)
+    # Prefer stable IDs only when both sides use the same namespace. The weekly
+    # nflverse IDs (00-...) and projection IDs (integers) are not interchangeable.
     rows["key"] = rows["player_display_name"].map(normalize) + "|" + rows["team"].astype(str).str.upper()
     te["key"] = te["player_name"].map(normalize) + "|" + te["team"].astype(str).str.upper()
+    if rows.duplicated(["key", "week"]).any():
+        raise ValueError("Duplicate weekly TE identity; refusing to inflate PPG")
     grouped = rows.groupby("key")["ppr"].agg(["count", "mean"])
     te["prior_games"] = te["key"].map(grouped["count"]).fillna(0).astype(int)
     te["season_ppg"] = te["key"].map(grouped["mean"])
-    te["challenger_ppr"] = te["projected_ppr"].astype(float)
+    te["challenger_ppr"] = pd.to_numeric(te["projected_ppr"], errors="raise")
     eligible = te["prior_games"].ge(2) & te["season_ppg"].notna()
     te.loc[eligible, "challenger_ppr"] = (
         (1-weight)*te.loc[eligible, "projected_ppr"].astype(float)
@@ -42,6 +49,8 @@ def build_challenger(projections, stats, target_week, weight=0.5):
     )
     te["challenger_ppr"] = te["challenger_ppr"].round(2)
     te["challenger_rank"] = te["challenger_ppr"].rank(method="min", ascending=False).astype(int)
+    te["baseline_rank"] = te["projected_position_rank"]
+    te["ppg_match_status"] = te["prior_games"].map(lambda n: "matched" if n else "no_prior_stats")
     return te.drop(columns=["key"]).sort_values(["challenger_rank", "player_name"])
 
 def main():
