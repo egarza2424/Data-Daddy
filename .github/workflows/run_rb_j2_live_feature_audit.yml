@@ -27,6 +27,8 @@ jobs:
 
       - name: Generate J2 RB feature audit
         run: python scripts/build_live_rb_j2_features.py
+      - name: Generate returning RB historical audit
+        run: python scripts/build_rb_returning_player_audit.py
 
       - name: Upload audit CSV
         if: always()
