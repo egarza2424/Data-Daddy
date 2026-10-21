@@ -367,6 +367,7 @@ jobs:
               "I_RB_component",
               "J1_RB_season_efficiency",
               "J2_RB_role_stability",
+              "J2_RB_no_betting_lines",
           }
 
           for season in (2024, 2025):
@@ -403,7 +404,7 @@ jobs:
                       < predictions["week"]).all():
                   raise RuntimeError("Invalid training week")
 
-              print(f"{season}: all four models verified")
+              print(f"{season}: all five models verified")
 
           print("Model J2 validation passed")
           PY
