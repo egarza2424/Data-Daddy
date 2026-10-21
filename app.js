@@ -8828,6 +8828,13 @@ const depthOrder =
  * depth-chart requirement.
  */
   if (position === "QB") {
+    // Week 7 verified NYG starter change: Sleeper still lists
+    // McCarthy third on its depth chart. Keep the verified starter
+    // and exclude the benched QB until the feed catches up.
+    if (displayedWeek === 7 && playerTeam === "NYG") {
+      if (player.name === "J.J. McCarthy") return true;
+      if (player.name === "Jameis Winston") return false;
+    }
     return depthOrder === 1;
   }
 
