@@ -937,16 +937,18 @@ function getProjectionPlayer(projection) {
     String(
       projection.position || ""
     ).toUpperCase();
+  const normalizeTeam = team =>
+    ({ LA: "LAR", JAC: "JAX", WSH: "WAS" })[
+      String(team || "").toUpperCase()
+    ] || String(team || "").toUpperCase();
+  const projectionTeam = normalizeTeam(projection.team);
 
   return (
     players.find((player) => {
       return (
-        normalizeName(player.name) ===
-          projectionName &&
-        String(
-          player.position || ""
-        ).toUpperCase() ===
-          projectionPosition
+        normalizeName(player.name) === projectionName &&
+        String(player.position || "").toUpperCase() === projectionPosition &&
+        normalizeTeam(player.team) === projectionTeam
       );
     }) || null
   );
