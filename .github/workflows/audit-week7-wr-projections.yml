@@ -1,0 +1,37 @@
+name: Audit Week 7 WR Projections
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compare WR Model F inputs and projections
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          snap=list(csv.DictReader(Path("projection-model/current-live-model-snapshot.csv").open(encoding="utf-8",newline="")))
+          pred=list(csv.DictReader(Path("projection-model/2026-week7-ppr-projections.csv").open(encoding="utf-8",newline="")))
+          targets=["Justin Jefferson","Ja'Marr Chase","Amon-Ra St. Brown","Nico Collins","Chris Olave","George Pickens","Jalen Coker","Germie Bernard","Christian Watson","Jordan Addison","Emeka Egbuka","Carnell Tate","Malik Washington","Mike Evans"]
+          s={r["player_name"]:r for r in snap if r["position"]=="WR"}
+          p={r["player_name"]:r for r in pred if r["position"]=="WR"}
+          print("MODEL F WR FEATURE SET: opportunity_score, production_score, usage_score, redzone_score, model_confidence_score")
+          print("No historical player-name or injury-status feature is in the WR regression; injury status is used for availability filtering.")
+          print("name | rank | ppr | team | opponent | injury | opportunity | production | usage | redzone | confidence | snapshot AI rank")
+          for name in targets:
+              a=s.get(name,{});b=p.get(name,{})
+              fields=[name,b.get("projected_position_rank","MISSING"),b.get("projected_ppr","MISSING"),b.get("team",""),b.get("opponent",""),b.get("injury_status",""),*[b.get(k,"") for k in ("opportunity_score","production_score","usage_score","redzone_score","model_confidence_score")],a.get("position_rank","")]
+              print(" | ".join(fields))
+          print("SNAPSHOT_WR_COUNT",sum(r["position"]=="WR" for r in snap))
+          print("PROJECTED_WR_COUNT",sum(r["position"]=="WR" for r in pred))
+          print("Note: targets/routes/snaps and historical player baselines require separate source verification; do not infer them from 0-100 scores.")
+          PY
