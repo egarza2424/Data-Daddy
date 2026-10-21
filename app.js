@@ -7955,8 +7955,9 @@ function calculateScore(player, profile) {
 
   // Targeted read-only audit: show precisely why Emmanuel Wilson ranks high.
   // No changes to scoring, weights, or published rankings.
-  if (normalizeName(player.name) === normalizeName("Emmanuel Wilson") &&
-      !window.__dataDaddyWilsonAuditLogged) {
+  if (["Emanuel Wilson", "Emmanuel Wilson"].some((name) =>
+        normalizeName(player.name) === normalizeName(name)
+      ) && !window.__dataDaddyWilsonAuditLogged) {
     window.__dataDaddyWilsonAuditLogged = true;
     console.group("DATA DADDY AI SCORE AUDIT — Emmanuel Wilson");
     console.table({
@@ -8127,7 +8128,9 @@ function calculateInjuryOpportunityBoost(player) {
 // Registered at script load, not inside a rankings cache miss.
 window.dataDaddyAuditWilson = function () {
   const matches = players.filter((p) =>
-    normalizeName(p.name) === normalizeName("Emmanuel Wilson")
+    ["Emanuel Wilson", "Emmanuel Wilson"].some((name) =>
+      normalizeName(p.name) === normalizeName(name)
+    )
   );
   if (!matches.length) {
     console.warn("WILSON AUDIT: Emmanuel Wilson not found in loaded player universe. Check whether players have finished loading.");
