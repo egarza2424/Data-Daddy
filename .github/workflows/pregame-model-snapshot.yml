@@ -807,6 +807,21 @@ jobs:
               if not new_status:
                   continue
 
+              # Week 7 only: prevent a stale exempt-list
+              # feed from reversing Jacobs' roster correction.
+              if (
+                  str(row.get("snapshot_week")) == "7"
+                  and row.get("player_name") == "Josh Jacobs"
+                  and row.get("team") == "GB"
+                  and new_status == "EXEMPT"
+                  and str(row.get("roster_status", "")).upper() == "ACTIVE"
+              ):
+                  print(
+                      "Preserving Week 7 Jacobs status; "
+                      "verify game-day availability separately."
+                  )
+                  continue
+
               previous_status = row.get("roster_status", "")
               if previous_status.upper() == new_status:
                   continue
