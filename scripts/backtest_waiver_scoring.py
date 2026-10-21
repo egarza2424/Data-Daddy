@@ -72,7 +72,8 @@ def build_historical_signals(rows, target_week):
         games.sort(key=lambda game: int(game["week"]))
 
         recent = games[-3:]
-        previous = games[-4:-1]
+        previous = games[-4]
+        previous = games[-4:-1] if len(games) > 1 else []
 
         recent_ppr = [
             calculate_ppr(game)
@@ -86,7 +87,7 @@ def build_historical_signals(rows, target_week):
 
         previous_opportunity = [
             calculate_opportunity(game)
-            for game in previous
+            for game in prior_games
         ]
 
         latest_opportunity = recent_opportunity[-1]
