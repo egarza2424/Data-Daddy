@@ -380,6 +380,21 @@ def prepare_snapshot(
     snapshot = snapshot.loc[
         ~unavailable_mask
     ].copy()
+
+    # Confirmed Week 7 NYG QB change (Oct 21, 2026):
+    # J.J. McCarthy starts against Houston; Winston is the backup.
+    # Do not project Winston as a starter or transfer his projection
+    # to McCarthy. McCarthy must enter through the regular snapshot.
+    if int(target_week) == 7:
+        nyg_winston = (
+            snapshot["position"].astype(str).str.upper().eq("QB")
+            & snapshot["team"].astype(str).str.upper().eq("NYG")
+            & snapshot["player_name"].astype(str).str.casefold().eq("jameis winston")
+        )
+        if nyg_winston.any():
+            print("Week 7 starter update: excluding NYG backup Jameis Winston from PPR projections.")
+            snapshot = snapshot.loc[~nyg_winston].copy()
+
     
     # Historical Model F uses model_confidence_score.
     # The live snapshot currently exports this signal
