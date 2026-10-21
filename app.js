@@ -2625,10 +2625,15 @@ function renderProjectionBoard() {
           projection.projected_ppr
         );
 
-      const aiScore =
-        Number(
-          projection.model_score
-        );
+      // Jacobs' Week 7 projection snapshot has a stale AI Score.
+      // Display the same live balanced-profile score as AI Rankings.
+      const jacobsWeek7 =
+        projection.player_name === "Josh Jacobs" &&
+        position === "RB" &&
+        Number(projection.snapshot_week) === 7;
+      const aiScore = jacobsWeek7 && player
+        ? calculateScore(player, "balanced")
+        : Number(projection.model_score);
 
       
       // Keep AI Rank aligned with the weekly
@@ -2682,12 +2687,9 @@ function renderProjectionBoard() {
         status
       ];
 
-      const jacobsExplanation =
-        projection.player_name === "Josh Jacobs" &&
-        position === "RB" &&
-        Number(projection.snapshot_week) === 7
-          ? "Week 7 return-from-absence caution: AI Score 36.1 reflects limited recent production (0/100), low usage (20/100), opportunity (50/100), and difficult matchup (24/100). The separate 13.0 PPR projection is an editorial return-to-play estimate, not a model-generated AI Score."
-          : "";
+      const jacobsExplanation = jacobsWeek7
+        ? "Week 7 return-from-absence caution: his AI Score is driven by the current rankings signals and can be suppressed by limited recent production and usage. The separate 13.0 PPR projection is an editorial return-to-play estimate, not an AI Score. Previous projection snapshot AI Score: 36.1."
+        : "";
 
       values.forEach(
         (value, index) => {
@@ -2763,7 +2765,7 @@ function renderProjectionBoard() {
         if (jacobsExplanation) {
           const explanation = document.createElement("p");
           explanation.className = "projection-mobile-status";
-          explanation.textContent = "Why AI Score is 36.1: " + jacobsExplanation;
+          explanation.textContent = "Why his AI Score is low: " + jacobsExplanation;
           card.appendChild(explanation);
         }
         mobileCards.appendChild(card);
