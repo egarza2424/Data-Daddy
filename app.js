@@ -8320,6 +8320,64 @@ window.dataDaddyRbReturnCandidates = function (teamFilter = "SEA") {
   return rows;
 };
 
+// Read-only historical-vs-recent RB role-change audit.
+// Recent = last three completed team weeks; prior = up to three earlier
+// games. Missing games count as zero only in the recent team-week window.
+window.dataDaddyRbRoleChangeAudit = function (teamFilter = "SEA") {
+  const team = String(teamFilter || "SEA").toUpperCase();
+  const teamRows = weeklyStats.filter((g) =>
+    Number(g.season) === 2026 && g.team === team);
+  const weeks = [...new Set(teamRows.map((g) => Number(g.week))
+    .filter(Number.isFinite))].sort((a, b) => b - a);
+  const recentWeeks = weeks.slice(0, 3);
+  const priorWeeks = weeks.slice(3, 6);
+  const rbPlayers = players.filter((p) => p.position === "RB" && p.team === team);
+  const workload = (player, windowWeeks) => {
+    if (!windowWeeks.length) return null;
+    const games = getPlayerWeeklyStats(player).filter((g) =>
+      Number(g.season) === 2026 && g.team === team &&
+      windowWeeks.includes(Number(g.week)));
+    const sum = (fn) => games.reduce((total, g) => total + fn(g), 0);
+    const carries = sum((g) => Number(g.carries ?? g.rushing_attempts ?? 0));
+    const targets = sum((g) => Number(g.targets || 0));
+    return {
+      carries: +(carries / windowWeeks.length).toFixed(1),
+      targets: +(targets / windowWeeks.length).toFixed(1),
+      opportunities: +((carries + targets) / windowWeeks.length).toFixed(1),
+      played: games.length
+    };
+  };
+  const rows = rbPlayers.map((p) => {
+    const recent = workload(p, recentWeeks);
+    const prior = workload(p, priorWeeks);
+    const delta = recent && prior
+      ? +(recent.opportunities - prior.opportunities).toFixed(1) : null;
+    const priorMeaningful = prior && prior.opportunities >= 6;
+    const recentDecline = delta != null && delta <= -3;
+    const recentRise = delta != null && delta >= 3;
+    return {
+      name: p.name, id: p.id, team, depth: p.depthChartOrder,
+      recentWeeks: recentWeeks.join(","), priorWeeks: priorWeeks.join(","),
+      priorOppPerWeek: prior?.opportunities ?? null,
+      recentOppPerWeek: recent?.opportunities ?? null,
+      priorGamesPlayed: prior?.played ?? null,
+      recentGamesPlayed: recent?.played ?? null,
+      oppDelta: delta,
+      roleTrend: !prior ? "INSUFFICIENT PRIOR DATA" :
+        recentDecline && priorMeaningful ? "DECLINING / RETURN CANDIDATE" :
+        recentRise ? "INCREASING" : "NO CLEAR CHANGE",
+      injury: p.injuryStatus || "", rosterStatus: p.status || "",
+      practice: p.practiceParticipation || "",
+      verifiedReturn: false
+    };
+  }).sort((a, b) => (a.oppDelta ?? 999) - (b.oppDelta ?? 999));
+  console.group("DATA DADDY — " + team + " RB role change (historical vs recent)");
+  console.log("Historical trend only; not proof of injury return or future workload. No live scoring changes.");
+  console.table(rows);
+  console.groupEnd();
+  return rows;
+};
+
 window.dataDaddyAuditWilson = function () {
   const matches = players.filter((p) =>
     String(p.id) === "11435" ||
