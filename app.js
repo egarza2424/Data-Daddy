@@ -5691,7 +5691,10 @@ function normalizeName(name) {
     .toLowerCase()
     .replace(/[.'’-]/g, "")
     .replace(/\s+/g, " ")
-    .trim();
+    .trim()
+    // Stat feeds and roster feeds often disagree on generational suffixes.
+    // Remove suffixes only at the end; retain exact full-name matching.
+    .replace(/ (jr|sr|ii|iii|iv|v)$/i, "");
 }
 
 
