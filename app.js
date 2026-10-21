@@ -8225,6 +8225,58 @@ window.dataDaddyWilsonRoleSecurityTest = function () {
   return rows;
 };
 
+// League-wide read-only role-security sensitivity audit.
+// Hypothetical reductions only: no injury return is assumed confirmed.
+// Published rankings, AI scores and PPR projections remain unchanged.
+window.dataDaddyRbRoleSecurityAudit = function () {
+  const rbs = players.filter((p) => p.position === "RB");
+  const rows = rbs.map((p) => {
+    const games = getPlayerWeeklyStats(p)
+      .filter((g) => Number(g.season) === 2026 &&
+        String(g.team) === String(p.team))
+      .sort((a, b) => Number(b.week || 0) - Number(a.week || 0))
+      .slice(0, 3);
+    if (!games.length) return null;
+    const average = (fn) => games.reduce((sum, g) => sum + fn(g), 0) / games.length;
+    const avgCarries = average((g) => Number(g.carries ?? g.rushing_attempts ?? 0));
+    const avgTargets = average((g) => Number(g.targets || 0));
+    if (avgCarries + avgTargets < 4) return null;
+    const metrics = getMetrics(p);
+    const base = calculateScore(p, "balanced");
+    const relevantTeammates = rbs.filter((mate) =>
+      mate.id !== p.id && mate.team === p.team &&
+      (mate.depthChartOrder == null || Number(mate.depthChartOrder) <= 3)
+    );
+    const teammateStatus = relevantTeammates.map((mate) => ({
+      name: mate.name, depth: mate.depthChartOrder,
+      injury: mate.injuryStatus, status: mate.status,
+      practice: mate.practiceParticipation
+    }));
+    const sensitivity = (retention) => {
+      const reduction = (1 - retention) * (
+        (Number(metrics.opportunity) || 0) * BASE_WEIGHTS.opportunity +
+        (Number(metrics.usage) || 0) * BASE_WEIGHTS.usage
+      );
+      return +Math.max(0, base - reduction).toFixed(1);
+    };
+    return {
+      name: p.name, team: p.team, games: games.length,
+      avgCarries: +avgCarries.toFixed(1), avgTargets: +avgTargets.toFixed(1),
+      baseline: base, shadow75: sensitivity(0.75),
+      shadow50: sensitivity(0.50),
+      opportunity: metrics.opportunity, usage: metrics.usage,
+      teammateCount: teammateStatus.length,
+      teammates: teammateStatus
+    };
+  }).filter(Boolean).sort((a, b) => b.baseline - a.baseline);
+  console.group("DATA DADDY — RB role-security league-wide SHADOW AUDIT");
+  console.log("Hypothetical 75% and 50% workload retention. Not injury confirmations or calibrated forecasts.");
+  console.table(rows.map(({ teammates, ...row }) => row));
+  console.log("Individual teammate injury/depth records available in returned rows.");
+  console.groupEnd();
+  return rows;
+};
+
 window.dataDaddyAuditWilson = function () {
   const matches = players.filter((p) =>
     String(p.id) === "11435" ||
