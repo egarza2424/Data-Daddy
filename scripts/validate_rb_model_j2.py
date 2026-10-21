@@ -25,8 +25,8 @@ REQUIRED = BASELINE + [
 MODELS = (
     'F_position_specific', 'I_RB_component',
     'J1_RB_season_efficiency', 'J2_RB_role_stability',
+    'J2_RB_no_betting_lines',
 )
-
 
 def ols(train_x, train_y, test_x):
     x = np.column_stack([np.ones(len(train_x)), np.asarray(train_x, float)])
@@ -101,15 +101,32 @@ def features(frame, prior, model):
         ypr = (frame['rb_season_receiving_yards'].to_numpy(float) + 20 * prior[2]) / (catch_count + 20)
     rush_points = carries * ypc * 0.1
     receiving_points = targets * catch_rate * (1 + ypr * 0.1)
-    base = np.column_stack([
-        rush_points, receiving_points,
+    
+    base_features = [
+        rush_points,
+        receiving_points,
         frame['rb_redzone_carries_pg'].to_numpy(float),
         frame['rb_redzone_targets_pg'].to_numpy(float),
-        frame['implied_team_total'].to_numpy(float),
-    ])
-    if model == 'J2_RB_role_stability':
-        return np.column_stack([base, role_trends(frame)])
+    ]
+
+    if model != 'J2_RB_no_betting_lines':
+        base_features.append(
+            frame['implied_team_total'].to_numpy(float)
+        )
+
+    base = np.column_stack(base_features)
+
+    if model in (
+        'J2_RB_role_stability',
+        'J2_RB_no_betting_lines',
+    ):
+        return np.column_stack([
+            base,
+            role_trends(frame),
+        ])
+
     return base
+
 
 
 def main():
