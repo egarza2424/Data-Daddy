@@ -2682,14 +2682,25 @@ function renderProjectionBoard() {
         status
       ];
 
+      const jacobsExplanation =
+        projection.player_name === "Josh Jacobs" &&
+        position === "RB" &&
+        Number(projection.snapshot_week) === 7
+          ? "Week 7 return-from-absence caution: AI Score 36.1 reflects limited recent production (0/100), low usage (20/100), opportunity (50/100), and difficult matchup (24/100). The separate 13.0 PPR projection is an editorial return-to-play estimate, not a model-generated AI Score."
+          : "";
+
       values.forEach(
-        (value) => {
+        (value, index) => {
           const cell =
             document.createElement("td");
 
           cell.textContent =
             String(value);
-
+          if (jacobsExplanation && index === 6) {
+            cell.title = jacobsExplanation;
+            cell.style.textDecoration = "underline dotted";
+            cell.style.cursor = "help";
+          }
           row.appendChild(cell);
         }
       );
@@ -2749,6 +2760,12 @@ function renderProjectionBoard() {
         statusElement.textContent = `Status: ${status}`;
 
         card.append(cardHeader, metrics, statusElement);
+        if (jacobsExplanation) {
+          const explanation = document.createElement("p");
+          explanation.className = "projection-mobile-status";
+          explanation.textContent = "Why AI Score is 36.1: " + jacobsExplanation;
+          card.appendChild(explanation);
+        }
         mobileCards.appendChild(card);
       }      
     }
