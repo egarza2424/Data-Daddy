@@ -27,6 +27,16 @@ checks = {
         'const profile = riskSelect?.value || "balanced";' in projection,
     "projections do not display stale snapshot AI Score":
         not bool(re.search(r"(?:const\s+aiScore\s*=|\.textContent\s*=)[^;]*projection\.model_score", projection)),
+    "sleepers and lineup optimizer use live AI rankings":
+        "getPlayerPositionRank(player, profile)" in app[
+            app.index("function getLineupPlayerAiData("):
+            app.index("function isPlayerEligibleForSlot(")
+        ],
+    "sleeper and lineup AI scores share display helper":
+        "getDisplayedAiScore(player, profile)" in app[
+            app.index("function getLineupPlayerAiData("):
+            app.index("function isPlayerEligibleForSlot(")
+        ],
     "projections use live AI ranking":
         "getPlayerPositionRank(player, profile)" in projection,
 }
