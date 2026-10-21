@@ -1579,7 +1579,7 @@ async function loadWaiverWire() {
       overall: ["Germie Bernard","Omar Cooper Jr.","Kendre Miller","Ryan Flournoy","DeMario Douglas","Roschon Johnson","Tyler Higbee","Michael Mayer","Aaron Rodgers","Bam Knight"],
       QB: ["Aaron Rodgers","C.J. Stroud","Sam Darnold","Jalon Daniels","Tyler Huntley"],
       RB: ["Kendre Miller","Roschon Johnson","Bam Knight","Tyler Allgeier","Samaje Perine"],
-      WR: ["Germie Bernard","Omar Cooper Jr.","Ryan Flournoy","DeMario Douglas","Keenan Allen"],
+      WR: ["Germie Bernard","Omar Cooper Jr.","Keenan Allen","DeMario Douglas","Ryan Flournoy"],
       TE: ["Tyler Higbee","Michael Mayer","Colby Parkinson","Chig Okonkwo","Darnell Washington"]
     };
     if (Number(data.target_week) === 7) {
@@ -1610,7 +1610,9 @@ async function loadWaiverWire() {
           let note = "";
           if (name === "Bam Knight" || name === "Tyler Allgeier") note = " • Opportunity depends on Jeremiyah Love's availability";
           if (name === "Tyler Higbee") note = " • Editorial injury-opportunity selection; verify eligibility and role";
-          if (name === "C.J. Stroud") note = " • Editorial selection; ownership eligibility not yet verified";
+          if (name === "C.J. Stroud") note = " • Editorial pick; evidence score and roster eligibility pending";
+          if (name === "Jalon Daniels") note = " • WATCH ONLY: Consider if Baker Mayfield is out AND Daniels is confirmed to start";
+          if (name === "Tyler Huntley") note = " • WATCH ONLY: Consider if Lamar Jackson is out AND Huntley is confirmed to start";
           info.textContent = "Data Daddy Evidence Score: " + score + note;
           item.appendChild(info);
           section.appendChild(item);
@@ -1618,7 +1620,7 @@ async function loadWaiverWire() {
         container.appendChild(section);
       };
       renderRanking("OVERALL TOP 10", editorialWeek7.overall);
-      ["QB","RB","WR","TE"].forEach((position) => renderRanking("TOP 5 " + position, editorialWeek7[position]));
+      ["QB","RB","WR","TE"].forEach((position) => renderRanking(position === "QB" ? "TOP 3 QB + 2 INJURY WATCH OPTIONS" : "TOP 5 " + position, editorialWeek7[position]));
       return;
     }
 
