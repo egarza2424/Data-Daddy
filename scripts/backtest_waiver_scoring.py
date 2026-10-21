@@ -36,12 +36,18 @@ def calculate_ppr(row):
     )
 
 
+
 def calculate_opportunity(row):
-    """Estimate opportunity volume from touches and targets."""
+    """Match the live opportunity formulas by position."""
     position = row.get("position")
 
     if position == "QB":
-            if position == "RB":
+        return (
+            safe_number(row.get("attempts"))
+            + safe_number(row.get("carries"))
+        )
+
+    if position == "RB":
         return (
             safe_number(row.get("carries"))
             + safe_number(row.get("targets"))
@@ -49,10 +55,6 @@ def calculate_opportunity(row):
 
     return safe_number(row.get("targets"))
 
-    return (
-        safe_number(row.get("carries"))
-        + safe_number(row.get("targets"))
-    )
 
 
 def build_historical_signals(rows, target_week):
