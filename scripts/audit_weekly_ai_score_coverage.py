@@ -53,6 +53,7 @@ checks = {
         "function getDisplayedAiScore(player, profile)" in app and
         "return player ? calculateScore(player, profile) : NaN;" in app,
     "projection name lookup checks team":
+        "normalizeLookupTeam(player.team) === projectionTeam" in app or
         "normalizeTeam(player.team) === projectionTeam" in app,
 }
 for label, passed in checks.items():
