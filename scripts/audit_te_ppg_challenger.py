@@ -27,7 +27,7 @@ def build_challenger(projections, stats, target_week, weight=0.5):
                    + 6*rows["rushing_tds"])
     def normalize(name):
         import re
-        name = re.sub(r"\\s+(jr\\.?|sr\\.?|ii|iii|iv)$", "", str(name).lower().strip())
+        name = re.sub(r"\s+(jr\.?|sr\.?|ii|iii|iv)$", "", str(name).lower().strip())
         return re.sub(r"[^a-z0-9]", "", name)
     rows["key"] = rows["player_display_name"].map(normalize) + "|" + rows["team"].astype(str).str.upper()
     te["key"] = te["player_name"].map(normalize) + "|" + te["team"].astype(str).str.upper()
