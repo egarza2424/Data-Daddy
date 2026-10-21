@@ -5864,6 +5864,17 @@ function calculateProductionScore(player) {
       return 0;
     }
 
+    // TE production responds to recent form without discarding prior games.
+    // Newest-to-oldest weights: 50/30/20 for three games.
+    // Other positions retain their existing equal-game average.
+    if (player.position === "TE" && recentGames.length === 3) {
+      return recentGames.reduce(
+        (sum, game, index) =>
+          sum + getFantasyPoints(game) * [0.5, 0.3, 0.2][index],
+        0
+      );
+    }
+
     const total =
       recentGames.reduce(
         (sum, game) =>
