@@ -8789,8 +8789,17 @@ const depthOrder =
     const targetedGames = recentTeGames.filter(
       game => Number(game.targets || 0) >= 2
     ).length;
+    // A depth-chart TE1 label alone cannot justify a weekly ranking
+    // when the player has no 2026 receiving involvement. This blocks
+    // neutral-data placeholders from displacing productive veterans.
+    // Retain a TE1 with documented 2026 involvement, even if limited.
+    const hasCurrentTeInvolvement = currentTeGames.some(game =>
+      Number(game.targets || 0) > 0 ||
+      Number(game.receptions || 0) > 0 ||
+      Number(game.receiving_yards || 0) > 0
+    );
     return (
-      depthOrder === 1 ||
+      (depthOrder === 1 && hasCurrentTeInvolvement) ||
       (recentTeGames.length >= 2 &&
         targetedGames >= 2 &&
         recentTargets >= 6)
