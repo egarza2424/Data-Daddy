@@ -1,0 +1,60 @@
+name: Audit WR Usage Sensitivity
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install analysis dependencies
+        run: pip install pandas numpy
+      - name: Held-out WR model sensitivity audit
+        run: |
+          python - <<'PY'
+          import numpy as np, pandas as pd
+          path="projection-model/2025-historical-ppr-dataset.csv"
+          df=pd.read_csv(path)
+          df=df[df.position.eq("WR")].copy()
+          features=["opportunity_score","production_score","usage_score","redzone_score","model_confidence_score"]
+          for c in features+["actual_ppr"]: df[c]=pd.to_numeric(df[c],errors="coerce")
+          df=df.dropna(subset=features+["actual_ppr"])
+          print("Available columns:",",".join(df.columns))
+          print("WR valid rows:",len(df))
+          for c in ("week","game_week","snapshot_week","target_week"):
+              if c in df.columns:
+                  week=pd.to_numeric(df[c],errors="coerce")
+                  if week.notna().sum()>0 and week.nunique()>2:
+                      cutoff=week.quantile(.7)
+                      train=df[week<=cutoff];test=df[week>cutoff]
+                      print("Held-out chronological split",c,"cutoff",cutoff)
+                      break
+          else:
+              print("No valid chronological week field; refusing random split for time-based validation")
+              raise SystemExit(0)
+          if len(test)<30 or len(train)<100:
+              print("Insufficient chronological holdout");raise SystemExit(0)
+          y=train.actual_ppr.to_numpy();actual=test.actual_ppr.to_numpy()
+          def fit(cols):
+              X=np.column_stack([np.ones(len(train)),train[cols].to_numpy()])
+              coef=np.linalg.lstsq(X,y,rcond=None)[0]
+              XT=np.column_stack([np.ones(len(test)),test[cols].to_numpy()])
+              return np.maximum(XT@coef,0)
+          base=fit(features)
+          reduced=fit([x for x in features if x!="usage_score"])
+          def metrics(pred):
+              mae=np.mean(np.abs(pred-actual))
+              rmse=np.sqrt(np.mean((pred-actual)**2))
+              return f"MAE={mae:.4f} RMSE={rmse:.4f}"
+          print("Train rows:",len(train),"Test rows:",len(test))
+          print("Baseline all five:",metrics(base))
+          print("No usage feature:",metrics(reduced))
+          print("This is a diagnostic, not authorization to deploy a new model.")
+          PY
