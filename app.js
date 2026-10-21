@@ -8160,6 +8160,55 @@ function calculateScore(player, profile) {
     console.groupEnd();
   }
 
+  // Read-only Week 7 TE signal audit. Never changes player rankings.
+  if (
+    player.position === "TE" &&
+    ["Travis Kelce", "Juwan Johnson", "Jake Ferguson",
+     "Kenyon Sadiq", "Cade Otton", "Tyler Higbee"].includes(player.name) &&
+    typeof window !== "undefined"
+  ) {
+    window.__dataDaddyTeAuditLogged ||= new Set();
+    const auditKey = [player.name, profile, snapshotWeek || "live"].join("|");
+    if (!window.__dataDaddyTeAuditLogged.has(auditKey)) {
+      window.__dataDaddyTeAuditLogged.add(auditKey);
+      const recentRows = getPlayerWeeklyStats(player)
+        .filter(game => Number(game.season) === 2026)
+        .sort((a, b) => Number(b.week || 0) - Number(a.week || 0))
+        .slice(0, 3);
+      const recentTargets = recentRows.map(game => ({
+        week: game.week, team: game.team,
+        name: game.player_display_name || game.player_name || game.name,
+        targets: Number(game.targets || 0),
+        carries: Number(game.carries || game.rushing_attempts || 0),
+        receptions: Number(game.receptions || 0),
+        receivingYards: Number(game.receiving_yards || 0)
+      }));
+      console.group("DATA DADDY WEEK 7 TE SIGNAL AUDIT — " + player.name);
+      console.table({
+        opportunity: {score: metrics.opportunity, weight: weights.opportunity},
+        production: {score: metrics.production, weight: weights.production},
+        usage: {score: metrics.usage, weight: weights.usage},
+        redzone: {score: metrics.redzone, weight: weights.redzone},
+        matchup: {score: metrics.matchup, weight: weights.matchup},
+        playCallerMatchup: {score: metrics.playCallerMatchup, weight: weights.playCallerMatchup},
+        playerVsDefensiveCaller: {score: metrics.playerVsDefensiveCaller, weight: weights.playerVsDefensiveCaller},
+        expert: {score: metrics.expert, weight: weights.expert},
+        risk: {score: metrics.risk, weight: weights.risk}
+      });
+      console.table(recentTargets);
+      console.log("Matching and adjustments", {
+        playerId: player.id, nflId: player.nflId, team: player.team,
+        recentMatchedGames: recentRows.length,
+        opportunityFallback20: metrics.opportunity === 20,
+        noMatched2026Games: recentRows.length === 0,
+        trench, scoringEnvironment, injuryBoost,
+        rookieAdjustment: useRookiePrior ? rookieAdjustment : null,
+        finalAiScore: Number(adjustedScore.toFixed(1))
+      });
+      console.groupEnd();
+    }
+  }
+
   return Number(adjustedScore.toFixed(1));
 }
 
