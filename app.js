@@ -5734,19 +5734,19 @@ function getPlayerWeeklyStats(player) {
   }
 
   const matches = weeklyStats.filter((row) => {
-    const fullName = normalizeName(
-      row.player_display_name
-    );
+    const fullName = normalizeName(row.player_display_name || "");
+    const shortName = normalizeName(row.player_name || "");
+    const rowPosition = String(row.position || "").toUpperCase();
+    const playerPosition = String(player.position || "").toUpperCase();
 
-    const shortName = normalizeName(
-      row.player_name
-    );
-
-    return (
-      fullName === playerName ||
-      fullName.includes(playerName) ||
-      playerName.includes(fullName) ||
-      shortName === playerName
+    // Never match a different position or a partial name. Partial-name
+    // matching can silently attribute another player's targets/production.
+    if (rowPosition && playerPosition && rowPosition !== playerPosition) {
+      return false;
+    }
+    return Boolean(
+      playerName &&
+      (fullName === playerName || shortName === playerName)
     );
   });
 
