@@ -2625,23 +2625,20 @@ function renderProjectionBoard() {
           projection.projected_ppr
         );
 
-      // Jacobs' Week 7 projection snapshot has a stale AI Score.
-      // Display the same live balanced-profile score as AI Rankings.
+      // The Rankings and Projections tabs must use the same live
+      // player, scoring profile and calculation. Never mix an older
+      // projection snapshot's model_score with live AI Rankings.
+      const profile = riskSelect?.value || "balanced";
+      const aiScore = player
+        ? calculateScore(player, profile)
+        : NaN;
+      const aiRank = player
+        ? getPlayerPositionRank(player, profile)
+        : null;
       const jacobsWeek7 =
         projection.player_name === "Josh Jacobs" &&
         position === "RB" &&
         Number(projection.snapshot_week) === 7;
-      const aiScore = jacobsWeek7 && player
-        ? calculateScore(player, "balanced")
-        : Number(projection.model_score);
-
-      
-      // Keep AI Rank aligned with the weekly
-      // projection snapshot and AI Score.
-      const aiRank =
-        Number(projection.position_rank) > 0
-          ? Number(projection.position_rank)
-          : null;
 
 
       
@@ -2688,7 +2685,7 @@ function renderProjectionBoard() {
       ];
 
       const jacobsExplanation = jacobsWeek7
-        ? "Week 7 return-from-absence caution: his AI Score is driven by the current rankings signals and can be suppressed by limited recent production and usage. The separate 13.0 PPR projection is an editorial return-to-play estimate, not an AI Score. Previous projection snapshot AI Score: 36.1."
+        ? "Week 7 return-from-absence caution: his live AI Score reflects limited recent production, usage, and matchup signals. The separate 13.0 PPR projection is an editorial return-to-play estimate, not an AI Score."
         : "";
 
       values.forEach(
@@ -10234,7 +10231,10 @@ async function initializeApp() {
   renderLineupRoster();
   
   // Refresh rankings when risk tolerance changes.
-  riskSelect.addEventListener("change", renderPositionRankings);
+  riskSelect.addEventListener("change", () => {
+    renderPositionRankings();
+    renderProjectionBoard();
+  });
 
   // Refresh injury designations every five minutes.
   setInterval(refreshPlayerInjuries, 5 * 60 * 1000);
