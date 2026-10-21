@@ -53,6 +53,9 @@ jobs:
         run: |
           python scripts/build_weekly_ppr_projections.py
 
+      - name: Guard AI Score consistency across website sections
+        run: python scripts/test_ai_score_display_consistency.py
+
       - name: Validate projection output
         run: |
           python <<'PY'
