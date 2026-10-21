@@ -39,10 +39,10 @@ snapshot_week,player_id,player_name,position,team,opponent,roster_status,injury_
 7,9224,Chase Brown,RB,CIN,BAL,Active,,52.9,20,16.74,10,64,38,71,21,78,27,77,J2_RB_role_stability,2025
 7,4199,Aaron Jones,RB,MIN,IND,Active,Questionable,65.7,7,16.24,11,98,53,89,18,85,37,73,J2_RB_role_stability,2025
 7,3198,Derrick Henry,RB,BAL,CIN,Active,,65.4,8,16.21,12,85,43,79,84,81,35,92,J2_RB_role_stability,2025
-7,5850,Josh Jacobs,RB,GB,DET,Active,,36.1,60,16.0,13,50,0,20,50,50,24,81,Manual_Week7_RB_override,2025
-7,7588,Javonte Williams,RB,DAL,PHI,Active,,68.4,5,15.68,14,64,60,88,68,74,51,77,J2_RB_role_stability,2025
-7,7594,Chuba Hubbard,RB,CAR,TB,Active,,64.8,9,14.89,15,93,62,86,40,86,28,73,J2_RB_role_stability,2025
-7,11584,Bucky Irving,RB,TB,CAR,Active,,58.3,16,14.82,16,77,46,67,34,64,33,52,J2_RB_role_stability,2025
+7,5850,Josh Jacobs,RB,GB,DET,Active,,36.1,60,13.0,16,50,0,20,50,50,24,81,Manual_Week7_RB_override,2025
+7,7588,Javonte Williams,RB,DAL,PHI,Active,,68.4,5,15.68,13,64,60,88,68,74,51,77,J2_RB_role_stability,2025
+7,7594,Chuba Hubbard,RB,CAR,TB,Active,,64.8,9,14.89,14,93,62,86,40,86,28,73,J2_RB_role_stability,2025
+7,11584,Bucky Irving,RB,TB,CAR,Active,,58.3,16,14.82,15,77,46,67,34,64,33,52,J2_RB_role_stability,2025
 7,8129,Dameon Pierce,RB,PHI,DAL,Active,,57.6,17,12.05,17,61,28,89,23,72,42,48,J2_RB_role_stability,2025
 7,5967,Tony Pollard,RB,TEN,CLE,Active,,52.3,22,11.69,18,68,27,81,48,80,25,39,J2_RB_role_stability,2025
 7,12489,RJ Harvey,RB,DEN,ARI,Active,,43.3,37,11.63,19,38,36,37,15,50,52,73,J2_RB_role_stability,2025
