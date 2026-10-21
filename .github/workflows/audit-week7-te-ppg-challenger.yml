@@ -1,0 +1,29 @@
+name: Audit Week 7 TE PPG Challenger
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit-week7-te:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pandas
+        run: python -m pip install pandas
+      - name: Validate and run TE challenger
+        run: |
+          python -m py_compile scripts/audit_te_ppg_challenger.py
+          python scripts/audit_te_ppg_challenger.py --week 7 --weight 0.5
+      - name: Upload audit CSV
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2026-week7-te-ppg-challenger
+          path: projection-model/validation/2026-week7-te-ppg-challenger.csv
