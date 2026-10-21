@@ -1,0 +1,9 @@
+season,week,position,model,cutoff,matched_players,evaluated_picks,top_group_hits,top_group_accuracy_pct,mean_absolute_rank_error,scope
+2026,6,QB,AI Rankings,24,25,24,23,95.83,6.96,matched_cohort_only
+2026,6,QB,PPR Projection Rankings,24,25,24,23,95.83,6.72,matched_cohort_only
+2026,6,RB,AI Rankings,36,62,36,27,75.0,11.0323,matched_cohort_only
+2026,6,RB,PPR Projection Rankings,36,62,36,29,80.56,11.129,matched_cohort_only
+2026,6,WR,AI Rankings,36,111,36,26,72.22,20.3604,matched_cohort_only
+2026,6,WR,PPR Projection Rankings,36,111,36,25,69.44,18.1261,matched_cohort_only
+2026,6,TE,AI Rankings,24,64,24,14,58.33,14.4688,matched_cohort_only
+2026,6,TE,PPR Projection Rankings,24,64,24,15,62.5,14.0938,matched_cohort_only
