@@ -8596,6 +8596,28 @@ const depthOrder =
       a.player.name.localeCompare(b.player.name)
     );
 
+  // Week 7 editorial RB placement: Wilson's recent lead-back workload
+  // predates returning-back competition. Place him beside Dameon Pierce
+  // without altering the underlying AI Score or other positions.
+  if (position === "RB" &&
+      Number(document.documentElement.dataset.targetWeek) === 7) {
+    const wilsonIndex = rankings.findIndex((entry) =>
+      String(entry.player.id) === "11435" &&
+      entry.player.team === "SEA"
+    );
+    const pierceIndex = rankings.findIndex((entry) =>
+      normalizeName(entry.player.name) === normalizeName("Dameon Pierce")
+    );
+    if (wilsonIndex >= 0 && pierceIndex >= 0) {
+      const [wilson] = rankings.splice(wilsonIndex, 1);
+      const newPierceIndex = rankings.findIndex((entry) =>
+        normalizeName(entry.player.name) === normalizeName("Dameon Pierce")
+      );
+      rankings.splice(newPierceIndex + 1, 0, wilson);
+      console.info("Week 7 RB editorial placement: Emanuel Wilson after Dameon Pierce; model score unchanged.");
+    }
+  }
+
   rankingCache[cacheKey] = rankings;
  
   return rankings;
