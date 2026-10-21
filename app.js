@@ -1610,7 +1610,7 @@ async function loadWaiverWire() {
           let note = "";
           if (name === "Bam Knight" || name === "Tyler Allgeier") note = " • Opportunity depends on Jeremiyah Love's availability";
           if (name === "Tyler Higbee") note = " • Editorial injury-opportunity selection; verify eligibility and role";
-          if (name === "C.J. Stroud") note = " • Editorial pick; evidence score and roster eligibility pending";
+          if (name === "C.J. Stroud" && !player) note = " • Editorial pick; evidence score and roster eligibility pending";
           if (name === "Jalon Daniels") note = " • WATCH ONLY: Consider if Baker Mayfield is out AND Daniels is confirmed to start";
           if (name === "Tyler Huntley") note = " • WATCH ONLY: Consider if Lamar Jackson is out AND Huntley is confirmed to start";
           info.textContent = "Data Daddy Evidence Score: " + score + note;
@@ -1647,12 +1647,27 @@ async function loadWaiverWire() {
             const latest = games[0];
             const latestLine = document.createElement("p");
             if (position === "QB") {
-              const passingAttempts = total("attempts") || total("passing_attempts");
-              const passingCompletions = total("completions");
-              stats.textContent = "2026 passing: " + fmt(passingCompletions) + "/" +
-                fmt(passingAttempts) + " • " + fmt(total("passing_yards")) +
-                " yards • " + fmt(total("passing_tds")) + " TD • " +
-                fmt(total("interceptions")) + " INT";
+              const hasStat = (field) => games.some(
+                (game) => game[field] !== undefined && game[field] !== null
+              );
+              const attemptsField = hasStat("attempts") ? "attempts" :
+                hasStat("passing_attempts") ? "passing_attempts" : null;
+              const completionsField = hasStat("completions") ? "completions" :
+                hasStat("passing_completions") ? "passing_completions" : null;
+              const interceptionsField = hasStat("interceptions") ? "interceptions" :
+                hasStat("passing_interceptions") ? "passing_interceptions" : null;
+              const passingParts = [];
+              if (attemptsField && completionsField) {
+                passingParts.push(fmt(total(completionsField)) + "/" + fmt(total(attemptsField)) + " completions");
+              } else if (attemptsField) {
+                passingParts.push(fmt(total(attemptsField)) + " attempts");
+              }
+              passingParts.push(fmt(total("passing_yards")) + " yards");
+              passingParts.push(fmt(total("passing_tds")) + " TD");
+              if (interceptionsField) {
+                passingParts.push(fmt(total(interceptionsField)) + " INT");
+              }
+              stats.textContent = "2026 passing: " + passingParts.join(" • ");
               latestLine.textContent = "Week " + latest.week + ": " +
                 fmt(Number(latest.passing_yards) || 0) + " pass yards • " +
                 fmt(Number(latest.passing_tds) || 0) + " pass TD • " +
