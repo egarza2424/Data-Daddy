@@ -5771,8 +5771,19 @@ function calculateProductionScore(player) {
     return total / recentGames.length;
   }
 
+  // A player with historical rows but no 2026 appearances should not
+  // receive a zero merely because the recent-season filter is empty.
+  // Keep the same conservative missing-production fallback used for
+  // players with no rows; a future healthy-game prior requires validation.
+  const currentSeasonGames = games.filter(
+    (game) => Number(game.season) === 2026
+  );
+  if (currentSeasonGames.length === 0) {
+    return 20;
+  }
+
   const playerAverage =
-    getRecentAverage(games);
+    getRecentAverage(currentSeasonGames);
 
   const positionPlayers = {};
 
