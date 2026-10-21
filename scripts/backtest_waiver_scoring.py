@@ -836,6 +836,204 @@ def main():
     else:
         print(f"No valid swaps; skipped={skipped_swaps}")
 
+    # ---------------------------------------------------------
+    # CONTROLLED RB EVIDENCE VS J2 HISTORICAL COMPARISON
+    # ---------------------------------------------------------
+    print("\nCONTROLLED RB EVIDENCE VS J2 BACKTEST")
+    print("All-player diagnostic; ownership not verified.")
+
+    j2_url = (
+        "https://raw.githubusercontent.com/"
+        "egarza2424/Data-Daddy/main/"
+        "projection-model/validation/"
+        "2025-rb-model-j2-predictions.csv"
+    )
+
+    if args.season != 2025:
+        print("Skipped: J2 comparison currently supports 2025.")
+    else:
+        with urllib.request.urlopen(
+            j2_url, timeout=60
+        ) as response:
+            j2_text = response.read().decode("utf-8-sig")
+
+        j2_rows = list(csv.DictReader(io.StringIO(j2_text)))
+
+        j2_predictions = {}
+        duplicate_keys = set()
+
+        for record in j2_rows:
+            if record.get("model") != "J2_RB_role_stability":
+                continue
+
+            week = int(record["week"])
+            cutoff = int(record["training_through_week"])
+            player_id = record["player_id"]
+            key = (week, player_id)
+
+            if not 7 <= week <= 18:
+                continue
+
+            if cutoff >= week:
+                raise ValueError(
+                    f"Invalid J2 training cutoff: {key}"
+                )
+
+            if key in j2_predictions:
+                duplicate_keys.add(key)
+                continue
+
+            j2_predictions[key] = float(
+                record["projected_ppr"]
+            )
+
+        for key in duplicate_keys:
+            del j2_predictions[key]
+
+        print(f"Valid J2 predictions: {len(j2_predictions)}")
+        print(f"Duplicate J2 keys excluded: {len(duplicate_keys)}")
+
+        actual_lookup = {}
+        actual_counts = Counter()
+
+        for record in rows:
+            key = (
+                int(record["week"]),
+                record["player_id"]
+            )
+            actual_counts[key] += 1
+            actual_lookup[key] = calculate_ppr(record)
+
+        evidence_results = []
+        j2_results = []
+        weekly_winners = Counter()
+        total_matched = 0
+        weeks_evaluated = 0
+
+        for week in range(7, 19):
+            weekly_signals = build_historical_signals(
+                rows, week
+            )
+            scored = score_historical_signals(
+                weekly_signals
+            )
+
+            matched = []
+
+            for player in scored:
+                if player["position"] != "RB":
+                    continue
+
+                key = (week, player["player_id"])
+
+                if key not in j2_predictions:
+                    continue
+
+                if actual_counts[key] != 1:
+                    continue
+
+                matched.append({
+                    "player_id": player["player_id"],
+                    "name": player["name"],
+                    "evidence": player[
+                        "historical_evidence_score"
+                    ],
+                    "j2": j2_predictions[key],
+                    "actual": actual_lookup[key],
+                })
+
+            if len(matched) < 10:
+                print(
+                    f"Week {week}: skipped; "
+                    f"only {len(matched)} matched RBs"
+                )
+                continue
+
+            total_matched += len(matched)
+            weeks_evaluated += 1
+
+            evidence_top = sorted(
+                matched,
+                key=lambda p: (
+                    -p["evidence"], p["player_id"]
+                )
+            )[:10]
+
+            j2_top = sorted(
+                matched,
+                key=lambda p: (
+                    -p["j2"], p["player_id"]
+                )
+            )[:10]
+
+            evidence_avg = sum(
+                p["actual"] for p in evidence_top
+            ) / 10
+
+            j2_avg = sum(
+                p["actual"] for p in j2_top
+            ) / 10
+
+            evidence_results.append(evidence_avg)
+            j2_results.append(j2_avg)
+
+            if evidence_avg > j2_avg:
+                weekly_winners["Evidence"] += 1
+            elif j2_avg > evidence_avg:
+                weekly_winners["J2"] += 1
+            else:
+                weekly_winners["Tie"] += 1
+
+            overlap = len(
+                {p["player_id"] for p in evidence_top}
+                & {p["player_id"] for p in j2_top}
+            )
+
+            print(
+                f"Week {week}: n={len(matched)}, "
+                f"Evidence={evidence_avg:.2f}, "
+                f"J2={j2_avg:.2f}, "
+                f"J2-Evidence={j2_avg-evidence_avg:+.2f}, "
+                f"Top10 overlap={overlap}/10"
+            )
+
+        if weeks_evaluated:
+            evidence_mean = (
+                sum(evidence_results) / weeks_evaluated
+            )
+            j2_mean = (
+                sum(j2_results) / weeks_evaluated
+            )
+
+            print(
+                f"\nWeeks evaluated: {weeks_evaluated}"
+            )
+            print(f"Matched RB rows: {total_matched}")
+            print(
+                f"Evidence Top10 mean actual PPR: "
+                f"{evidence_mean:.3f}"
+            )
+            print(
+                f"J2 Top10 mean actual PPR: "
+                f"{j2_mean:.3f}"
+            )
+            print(
+                f"J2 minus Evidence: "
+                f"{j2_mean-evidence_mean:+.3f} PPR"
+            )
+            print(
+                f"Weekly winners: {dict(weekly_winners)}"
+            )
+        else:
+            print("No comparable weeks available.")
+
+        print(
+            "Limitations: no historical ownership filter; "
+            "comparison conditions on observed outcomes; "
+            "J2 feature-time integrity not independently audited."
+        )
+
+
     
     
     print("Status: HISTORICAL SIGNAL VALIDATION")
