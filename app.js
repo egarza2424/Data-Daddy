@@ -8126,6 +8126,48 @@ function calculateInjuryOpportunityBoost(player) {
 
 
 // Registered at script load, not inside a rankings cache miss.
+// Read-only workload comparison: uses completed 2026 games, not projected
+// depth-chart roles. It does not change any AI score.
+window.dataDaddyAuditWilsonWorkload = function () {
+  const wilson = players.find((p) =>
+    String(p.id) === "11435" || String(p.nflId || "") === "00-0038797"
+  );
+  if (!wilson) {
+    console.warn("Wilson workload audit: SEA RB not found");
+    return;
+  }
+  const games = getPlayerWeeklyStats(wilson)
+    .filter((g) => Number(g.season) === 2026 && g.team === "SEA")
+    .sort((a, b) => Number(b.week || 0) - Number(a.week || 0))
+    .slice(0, 5);
+  const records = games.map((g) => {
+    const teamRows = getTeamGameRows(Number(g.season), Number(g.week), "SEA");
+    const carries = (row) => Number(row.carries ?? row.rushing_attempts ?? 0);
+    const targets = (row) => Number(row.targets ?? 0);
+    const teamCarries = teamRows.reduce((sum, row) => sum + carries(row), 0);
+    const teamTargets = teamRows.reduce((sum, row) => sum + targets(row), 0);
+    const teammates = teamRows.filter((row) => row.position === "RB")
+      .map((row) => ({
+        name: row.player_display_name || row.player_name,
+        carries: carries(row), targets: targets(row)
+      })).sort((a, b) => b.carries + b.targets - a.carries - a.targets);
+    return {
+      week: g.week, wilsonCarries: carries(g), wilsonTargets: targets(g),
+      wilsonRushYards: Number(g.rushing_yards || 0),
+      wilsonRecYards: Number(g.receiving_yards || 0),
+      teamCarries, teamTargets,
+      carrySharePct: teamCarries ? +(100 * carries(g) / teamCarries).toFixed(1) : null,
+      targetSharePct: teamTargets ? +(100 * targets(g) / teamTargets).toFixed(1) : null,
+      teammates
+    };
+  });
+  console.group("DATA DADDY — Emanuel Wilson workload vs SEA RBs");
+  console.table(records.map(({ teammates, ...row }) => row));
+  records.forEach((row) => console.log("Week " + row.week + " SEA RB workload", row.teammates));
+  console.groupEnd();
+  return records;
+};
+
 window.dataDaddyAuditWilson = function () {
   const matches = players.filter((p) =>
     String(p.id) === "11435" ||
