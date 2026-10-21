@@ -8685,9 +8685,22 @@ const depthOrder =
     // should not rank solely on neutral/missing-data signals.
     const currentTeGames = getPlayerWeeklyStats(player)
       .filter(game => Number(game.season) === 2026);
+    // A single cameo is not evidence of a recurring receiving role.
+    // Preserve TE1 eligibility; TE2/TE3 must demonstrate targets.
+    const recentTeGames = currentTeGames
+      .sort((a, b) => Number(b.week || 0) - Number(a.week || 0))
+      .slice(0, 3);
+    const recentTargets = recentTeGames.reduce(
+      (sum, game) => sum + Number(game.targets || 0), 0
+    );
+    const targetedGames = recentTeGames.filter(
+      game => Number(game.targets || 0) >= 2
+    ).length;
     return (
       depthOrder === 1 ||
-      currentTeGames.length > 0
+      (recentTeGames.length >= 2 &&
+        targetedGames >= 2 &&
+        recentTargets >= 6)
     );
   }
 
