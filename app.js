@@ -8124,6 +8124,27 @@ function calculateInjuryOpportunityBoost(player) {
 }
 
 
+// Registered at script load, not inside a rankings cache miss.
+window.dataDaddyAuditWilson = function () {
+  const matches = players.filter((p) =>
+    normalizeName(p.name) === normalizeName("Emmanuel Wilson")
+  );
+  if (!matches.length) {
+    console.warn("WILSON AUDIT: Emmanuel Wilson not found in loaded player universe. Check whether players have finished loading.");
+    return;
+  }
+  matches.forEach((p) => {
+    window.__dataDaddyWilsonAuditLogged = false;
+    const score = calculateScore(p, "balanced");
+    console.log("WILSON AUDIT RESULT", {
+      name: p.name, team: p.team, position: p.position, score,
+      metrics: getMetrics(p), injuryStatus: p.injuryStatus,
+      rosterStatus: p.status, depthChartOrder: p.depthChartOrder,
+      seasonGames: getProductionGameCount(p)
+    });
+  });
+};
+
 function getPositionRankings(position, profile) {
   const cacheKey = `${profile}-${position}`;
 
@@ -8309,28 +8330,6 @@ const depthOrder =
 
   return false;
 });
-  // Expose an explicit, callable audit even when Wilson is excluded from
-  // the displayed rankings or the rankings are served from cache.
-  window.dataDaddyAuditWilson = function () {
-    const matches = players.filter((p) =>
-      normalizeName(p.name).includes(normalizeName("Emmanuel Wilson"))
-    );
-    if (!matches.length) {
-      console.warn("Wilson audit: player not found in loaded player universe");
-      return;
-    }
-    matches.forEach((p) => {
-      window.__dataDaddyWilsonAuditLogged = false;
-      const score = calculateScore(p, profile);
-      const metrics = getMetrics(p);
-      console.log("WILSON AUDIT RESULT", {
-        name: p.name, team: p.team, position: p.position,
-        score, metrics, injuryStatus: p.injuryStatus,
-        rosterStatus: p.status, depthChartOrder: p.depthChartOrder,
-        seasonGames: getProductionGameCount(p)
-      });
-    });
-  };
   const rankings = relevantPlayers
     .map((player) => ({
       player,
