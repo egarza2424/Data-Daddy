@@ -1,0 +1,26 @@
+name: TE Red-Zone Backtest
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run read-only TE red-zone sensitivity audit
+        run: python scripts/backtest_te_redzone_normalization.py
+      - name: Upload audit CSV
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: week6-te-redzone-normalization-audit
+          path: model-validation/2026-week6-te-redzone-normalization-audit.csv
