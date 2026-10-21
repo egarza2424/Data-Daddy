@@ -1515,6 +1515,25 @@ function renderWeeklySleepers() {
         </div>
       `;
 
+      // Conditional workload warning, not a confirmed active/inactive report.
+      if (
+        position === "RB" &&
+        normalizeName(projection.player_name) === normalizeName("Emanuel Wilson") &&
+        String(projection.team || "").toUpperCase() === "SEA"
+      ) {
+        const warning = document.createElement("div");
+        warning.className = "sleeper-reason";
+        warning.style.borderLeft = "3px solid #d6a23a";
+        warning.style.paddingLeft = "12px";
+        const heading = document.createElement("strong");
+        heading.textContent = "ROLE COMPETITION WATCH";
+        const details = document.createElement("p");
+        details.textContent =
+          "Conditional sleeper: If Seattle's competing running backs are active and share carries this week, Wilson's workload could decline and he may no longer qualify as a sleeper. Check game-day availability and backfield usage before starting him.";
+        warning.append(heading, details);
+        card.appendChild(warning);
+      }
+
       grid.appendChild(card);
     }
   );
