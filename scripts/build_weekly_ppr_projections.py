@@ -844,7 +844,44 @@ def main():
             f"J2 applied to {use_j2.sum()} RBs; "
             f"Model F retained for {(~use_j2).sum()} RBs."
         )
+    # Week 7 only: provisional Josh Jacobs return.
+    # Manual estimate, not a J2 prediction.
+    if target_week == 7:
+        jacobs_mask = (
+            projections["position"].eq("RB")
+            & projections["player_name"].eq("Josh Jacobs")
+            & projections["team"].eq("GB")
+        )
 
+        if jacobs_mask.sum() != 1:
+            raise RuntimeError(
+                "Expected exactly one eligible Josh Jacobs "
+                "row for Week 7. Check availability and identity."
+            )
+
+        projections.loc[
+            jacobs_mask, "projected_ppr"
+        ] = 16.00
+
+        projections.loc[
+            jacobs_mask, "projection_model"
+        ] = "Manual_Week7_RB_override"
+
+        # Recalculate RB ranks using final projections.
+        rb_mask = projections["position"].eq("RB")
+
+        projections.loc[
+            rb_mask, "projected_position_rank"
+        ] = (
+            projections.loc[rb_mask, "projected_ppr"]
+            .rank(method="min", ascending=False)
+            .astype(int)
+        )
+
+        print(
+            "Week 7 provisional override: "
+            "Josh Jacobs = 16.00 PPR."
+        )
     
     projections["projection_training_season"] = (
         2025
