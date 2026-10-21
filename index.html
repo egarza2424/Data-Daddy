@@ -32,6 +32,7 @@
       <a href="#lineup-optimizer">Lineup Optimizer</a>
       <a href="#sleepers">Sleepers</a>
       <a href="#waiver-wire">Waiver Wire</a>
+      <a href="#team-offensive-trends">Team Trends</a>
     </nav>
 
   </div>
@@ -989,6 +990,18 @@
       </div>
     </section>
 
+<section class="panel" id="team-offensive-trends">
+  <div class="eyebrow">DATA DADDY SCHEME INTELLIGENCE</div>
+  <h2>Team Offensive Trends</h2>
+  <p>Track where each offense directs its targets, including multiple-tight-end receiving opportunities. This first release uses observed player targets, not estimated personnel packages.</p>
+  <div id="teamOffensiveTrends">
+    <label for="offensiveTrendTeam">Select offense</label>
+    <select id="offensiveTrendTeam" data-team aria-label="Select offensive team"></select>
+    <p data-status role="status">Loading team target trends…</p>
+    <div data-results aria-live="polite"></div>
+  </div>
+</section>
+
 <section class="panel waiver-wire-panel" id="waiver-wire">
 
   <div class="waiver-wire-header">
@@ -1306,6 +1319,15 @@ Players qualify when their average verified roster percentage is below 65%, usin
   #weeklyPerformanceTracker .tracker-tabs {grid-template-columns:1fr;}
 }
 </style>
+<style>
+#teamOffensiveTrends select{display:block;max-width:320px;width:100%;padding:10px;margin:8px 0 16px;background:#111b29;color:#fff;border:1px solid #35455b;border-radius:8px}
+.team-trends-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
+.team-trend-stat{border:1px solid #35455b;border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:7px}
+.team-trend-stat span{font-size:1.8rem;font-weight:800;color:#e8b949}
+.team-trend-stat small,.team-trends-note{opacity:.78}
+@media(max-width:600px){.team-trends-grid{grid-template-columns:1fr}}
+</style>
+<script src="team-offensive-trends.js?v=1" defer></script>
 <script src="weekly-performance.js?v=7" defer></script>
 <script src="ai-vs-ppr-chart.js?v=5" defer></script>
 </body>
