@@ -1574,6 +1574,54 @@ async function loadWaiverWire() {
       ? data.provisional_top_10
       : [];
 
+    // Week 7 editorial waiver rankings. Evidence scores remain model-generated.
+    const editorialWeek7 = {
+      overall: ["Germie Bernard","Omar Cooper Jr.","Kendre Miller","Ryan Flournoy","DeMario Douglas","Roschon Johnson","Tyler Higbee","Michael Mayer","Aaron Rodgers","Bam Knight"],
+      QB: ["Aaron Rodgers","C.J. Stroud","Sam Darnold","Jalon Daniels","Tyler Huntley"],
+      RB: ["Kendre Miller","Roschon Johnson","Bam Knight","Tyler Allgeier","Samaje Perine"],
+      WR: ["Germie Bernard","Omar Cooper Jr.","Ryan Flournoy","DeMario Douglas","Keenan Allen"],
+      TE: ["Tyler Higbee","Michael Mayer","Colby Parkinson","Chig Okonkwo","Darnell Washington"]
+    };
+    if (Number(data.target_week) === 7) {
+      container.replaceChildren();
+      const heading = document.createElement("h3");
+      heading.textContent = "DATA DADDY — WEEK 7 WAIVER WIRE RANKINGS";
+      container.appendChild(heading);
+      const intro = document.createElement("p");
+      intro.textContent = "Editorial waiver pickup priorities, not projected fantasy points. Data Daddy evidence scores are unmodified and may not be directly comparable across positions. Injury-dependent roles and unscored players are marked.";
+      container.appendChild(intro);
+      const renderRanking = (title, names) => {
+        const section = document.createElement("section");
+        section.className = "waiver-editorial-section";
+        const label = document.createElement("h4");
+        label.textContent = title;
+        section.appendChild(label);
+        names.forEach((name, index) => {
+          const player = candidates.find((entry) => entry.name === name);
+          const item = document.createElement("div");
+          item.className = "waiver-player";
+          const header = document.createElement("strong");
+          header.textContent = "#" + (index + 1) + " " + name + (player ? " (" + player.position + " • " + player.team + ")" : "");
+          item.appendChild(header);
+          const info = document.createElement("p");
+          const score = player && Number.isFinite(Number(player.waiver_evidence_score))
+            ? Number(player.waiver_evidence_score).toFixed(2) + "/100"
+            : "Not scored / eligibility pending";
+          let note = "";
+          if (name === "Bam Knight" || name === "Tyler Allgeier") note = " • Opportunity depends on Jeremiyah Love's availability";
+          if (name === "Tyler Higbee") note = " • Editorial injury-opportunity selection; verify eligibility and role";
+          if (name === "C.J. Stroud") note = " • Editorial selection; ownership eligibility not yet verified";
+          info.textContent = "Data Daddy Evidence Score: " + score + note;
+          item.appendChild(info);
+          section.appendChild(item);
+        });
+        container.appendChild(section);
+      };
+      renderRanking("OVERALL TOP 10", editorialWeek7.overall);
+      ["QB","RB","WR","TE"].forEach((position) => renderRanking("TOP 5 " + position, editorialWeek7[position]));
+      return;
+    }
+
     if (provisional.length > 0) {
       container.replaceChildren();
 
