@@ -385,7 +385,7 @@ def prepare_snapshot(
     # J.J. McCarthy starts against Houston; Winston is the backup.
     # Do not project Winston as a starter or transfer his projection
     # to McCarthy. McCarthy must enter through the regular snapshot.
-    if int(target_week) == 7:
+    if int(snapshot["snapshot_week"].iloc[0]) == 7:
         nyg_winston = (
             snapshot["position"].astype(str).str.upper().eq("QB")
             & snapshot["team"].astype(str).str.upper().eq("NYG")
