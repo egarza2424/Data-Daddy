@@ -1,0 +1,31 @@
+name: Audit TE Multi-Role Usage
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run Week 6 TE shared receiving role audit
+        run: |
+          python scripts/audit_te_multi_role.py --stats nfl-stats.json --season 2026 --through-week 6 | tee te-multi-role-audit.txt
+
+      - name: Upload TE audit results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: te-multi-role-week6-audit
+          path: te-multi-role-audit.txt
+          if-no-files-found: warn
