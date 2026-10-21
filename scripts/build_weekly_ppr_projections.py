@@ -866,7 +866,27 @@ def main():
         projections.loc[
             jacobs_mask, "projection_model"
         ] = "Manual_Week7_RB_override"
+        # Week 7 only: provisional backup role for Pierre Strong.
+        strong_mask = (
+            projections["position"].eq("RB")
+            & projections["player_name"].eq("Pierre Strong")
+            & projections["team"].eq("GB")
+        )
 
+        if strong_mask.sum() != 1:
+            raise RuntimeError(
+                "Expected exactly one Pierre Strong "
+                "row for Week 7."
+            )
+
+        projections.loc[
+            strong_mask, "projected_ppr"
+        ] = 6.00
+
+        projections.loc[
+            strong_mask, "projection_model"
+        ] = "Manual_Week7_RB_override"
+        
         # Recalculate RB ranks using final projections.
         rb_mask = projections["position"].eq("RB")
 
