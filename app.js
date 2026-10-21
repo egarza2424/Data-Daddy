@@ -2629,9 +2629,7 @@ function renderProjectionBoard() {
       // player, scoring profile and calculation. Never mix an older
       // projection snapshot's model_score with live AI Rankings.
       const profile = riskSelect?.value || "balanced";
-      const aiScore = player
-        ? calculateScore(player, profile)
-        : NaN;
+      const aiScore = getDisplayedAiScore(player, profile);
       const aiRank = player
         ? getPlayerPositionRank(player, profile)
         : null;
@@ -8417,6 +8415,12 @@ window.dataDaddyAuditWilson = function () {
   });
 };
 
+// Single source of truth for AI Scores displayed in Rankings and Projections.
+// Weekly PPR snapshot model_score is historical metadata, not a live display score.
+function getDisplayedAiScore(player, profile) {
+  return player ? calculateScore(player, profile) : NaN;
+}
+
 function getPositionRankings(position, profile) {
   const cacheKey = `${profile}-${position}`;
 
@@ -8605,7 +8609,7 @@ const depthOrder =
   const rankings = relevantPlayers
     .map((player) => ({
       player,
-      score: calculateScore(player, profile)
+      score: getDisplayedAiScore(player, profile)
     }))
     .sort((a, b) =>
       b.score - a.score ||
