@@ -1,0 +1,26 @@
+name: Audit Weekly AI Score Coverage
+
+on:
+  workflow_dispatch:
+    inputs:
+      week:
+        description: 'Projection week to audit'
+        required: true
+        default: '7'
+  push:
+    paths:
+      - scripts/audit_weekly_ai_score_coverage.py
+      - .github/workflows/audit-weekly-ai-score-coverage.yml
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check audit syntax
+        run: python -m py_compile scripts/audit_weekly_ai_score_coverage.py
+      - name: Audit frozen projection identity and score integration
+        run: python scripts/audit_weekly_ai_score_coverage.py --week ${{ github.event.inputs.week || '7' }}
