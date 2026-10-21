@@ -6061,6 +6061,7 @@ function calculateUsageScore(player) {
   // rushing share + target share.
   let totalShare = 0;
   let validGames = 0;
+  const teTargetShares = [];
 
   games.forEach((game) => {
     const season = Number(game.season);
@@ -6113,6 +6114,10 @@ function calculateUsageScore(player) {
     totalShare +=
       carryShare + targetShare;
 
+    if (player.position === "TE" && teamTargets > 0) {
+      teTargetShares.push(targetShare);
+    }
+
     validGames += 1;
   });
 
@@ -6123,12 +6128,21 @@ function calculateUsageScore(player) {
   const averageShare =
     totalShare / validGames;
 
+  // TE-only, bounded recent target-share trend. Games are newest first.
+  // Week 6 proxy holdout: top-24 hits 16 -> 17, rank MAE 13.200 -> 13.345.
+  const teTrendAdjustment = player.position === "TE" && teTargetShares.length === 3
+    ? Math.max(-10, Math.min(10, Math.round(
+        (teTargetShares[0] - (teTargetShares[1] + teTargetShares[2]) / 2) * 100
+      )))
+    : 0;
+
   return Math.max(
     0,
     Math.min(
       100,
       Math.round(averageShare * 100) +
-        getMultiTeReceivingRoleBonus(player, games)
+        getMultiTeReceivingRoleBonus(player, games) +
+        teTrendAdjustment
     )
   );
 }
