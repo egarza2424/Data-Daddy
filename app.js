@@ -1627,34 +1627,63 @@ async function loadWaiverWire() {
             ? "Rostered: " + rosterPct.toFixed(2) + "% (" + sourceNames.map((source) => source.toUpperCase()).join(", ") + ")"
             : "Rostered: Not verified";
           item.appendChild(rostered);
-          // The AI Rankings section already uses weeklyStats. Reuse the same
-          // source for editorial waiver selections omitted from the top-50 export.
-          if (name === "Tyler Higbee") {
-            const higbeeGames = getPlayerWeeklyStats({ name: "Tyler Higbee" })
-              .filter((game) => Number(game.season) === Number(data.season))
-              .sort((a, b) => Number(b.week || 0) - Number(a.week || 0));
-            if (higbeeGames.length > 0) {
-              const stats = document.createElement("p");
-              const total = (field) => higbeeGames.reduce(
-                (sum, game) => sum + (Number(game[field]) || 0), 0
-              );
-              stats.textContent = "2026 receiving: " + total("targets") + " targets • " +
-                total("receptions") + " receptions • " +
-                total("receiving_yards") + " yards • " +
-                total("receiving_tds") + " TD";
-              item.appendChild(stats);
-              const latest = higbeeGames[0];
-              const latestLine = document.createElement("p");
+          // Reuse the AI Rankings weekly-stat feed for every editorial waiver player.
+          // Show position-specific season totals and the latest completed game.
+          const games = getPlayerWeeklyStats({ name })
+            .filter((game) => Number(game.season) === Number(data.season)
+              && Number(game.week) < Number(data.target_week))
+            .sort((a, b) => Number(b.week || 0) - Number(a.week || 0));
+          if (games.length > 0) {
+            const total = (field) => games.reduce(
+              (sum, game) => sum + (Number(game[field]) || 0), 0
+            );
+            const fmt = (number) => Number(number.toFixed(1)).toLocaleString("en-US");
+            const position = player?.position ||
+              players.find((entry) => normalizeName(entry.name) === normalizeName(name))?.position ||
+              (editorialWeek7.QB.includes(name) ? "QB" :
+                editorialWeek7.RB.includes(name) ? "RB" :
+                editorialWeek7.WR.includes(name) ? "WR" : "TE");
+            const stats = document.createElement("p");
+            const latest = games[0];
+            const latestLine = document.createElement("p");
+            if (position === "QB") {
+              const passingAttempts = total("attempts") || total("passing_attempts");
+              const passingCompletions = total("completions");
+              stats.textContent = "2026 passing: " + fmt(passingCompletions) + "/" +
+                fmt(passingAttempts) + " • " + fmt(total("passing_yards")) +
+                " yards • " + fmt(total("passing_tds")) + " TD • " +
+                fmt(total("interceptions")) + " INT";
               latestLine.textContent = "Week " + latest.week + ": " +
-                (Number(latest.targets) || 0) + " targets • " +
-                (Number(latest.receptions) || 0) + " catches • " +
-                (Number(latest.receiving_yards) || 0) + " yards";
-              item.appendChild(latestLine);
+                fmt(Number(latest.passing_yards) || 0) + " pass yards • " +
+                fmt(Number(latest.passing_tds) || 0) + " pass TD • " +
+                fmt(Number(latest.rushing_yards) || 0) + " rush yards";
+            } else if (position === "RB") {
+              stats.textContent = "2026 rushing/receiving: " + fmt(total("carries")) +
+                " carries • " + fmt(total("rushing_yards")) + " rush yards • " +
+                fmt(total("rushing_tds")) + " rush TD • " + fmt(total("targets")) +
+                " targets • " + fmt(total("receptions")) + " catches • " +
+                fmt(total("receiving_yards")) + " rec yards";
+              latestLine.textContent = "Week " + latest.week + ": " +
+                fmt(Number(latest.carries) || 0) + " carries • " +
+                fmt(Number(latest.rushing_yards) || 0) + " rush yards • " +
+                fmt(Number(latest.targets) || 0) + " targets • " +
+                fmt(Number(latest.receptions) || 0) + " catches";
             } else {
-              const missingStats = document.createElement("p");
-              missingStats.textContent = "Weekly production data unavailable";
-              item.appendChild(missingStats);
+              stats.textContent = "2026 receiving: " + fmt(total("targets")) +
+                " targets • " + fmt(total("receptions")) + " catches • " +
+                fmt(total("receiving_yards")) + " yards • " +
+                fmt(total("receiving_tds")) + " TD";
+              latestLine.textContent = "Week " + latest.week + ": " +
+                fmt(Number(latest.targets) || 0) + " targets • " +
+                fmt(Number(latest.receptions) || 0) + " catches • " +
+                fmt(Number(latest.receiving_yards) || 0) + " yards";
             }
+            item.appendChild(stats);
+            item.appendChild(latestLine);
+          } else {
+            const missingStats = document.createElement("p");
+            missingStats.textContent = "2026 weekly production: no completed-game stats available";
+            item.appendChild(missingStats);
           }
           section.appendChild(item);
         });
