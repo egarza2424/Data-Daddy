@@ -900,7 +900,7 @@ def main():
 
         print(
             "Week 7 provisional override: "
-            "Josh Jacobs = 16.00 PPR."
+            "Josh Jacobs = 13.00 PPR."
         )
     
     projections["projection_training_season"] = (
@@ -932,6 +932,29 @@ def main():
             .astype(str)
             .str.strip()
         )
+
+    # Week 7 editorial AI ranking placement for Emanuel Wilson.
+    # Keep his model_score intact; only the displayed rank changes.
+    # The website independently applies the same placement after Pierce.
+    if target_week == 7:
+        rb_sorted = projections.loc[
+            projections["position"].eq("RB")
+        ].sort_values(["position_rank", "player_name"])
+        wilson = rb_sorted.loc[
+            rb_sorted["player_name"].eq("Emanuel Wilson")
+            & rb_sorted["team"].eq("SEA")
+        ]
+        pierce = rb_sorted.loc[
+            rb_sorted["player_name"].eq("Dameon Pierce")
+        ]
+        if len(wilson) != 1 or len(pierce) != 1:
+            raise RuntimeError("Missing Wilson or Pierce for Week 7 RB editorial placement.")
+        wilson_index = wilson.index[0]
+        order = [idx for idx in rb_sorted.index if idx != wilson_index]
+        pierce_index = pierce.index[0]
+        order.insert(order.index(pierce_index) + 1, wilson_index)
+        for rank, idx in enumerate(order, start=1):
+            projections.loc[idx, "position_rank"] = rank
 
     output_columns = [
         "snapshot_week",
