@@ -1627,6 +1627,37 @@ async function loadWaiverWire() {
             ? "Rostered: " + rosterPct.toFixed(2) + "% (" + sourceNames.map((source) => source.toUpperCase()).join(", ") + ")"
             : "Rostered: Not verified";
           item.appendChild(rostered);
+          // Display the verified target-week opponent and defensive matchup
+          // already computed by the waiver builder. Never substitute 50 for
+          // missing scores or display a matchup from a different week.
+          const matchup = document.createElement("p");
+          const matchupWeek = Number(player?.matchup_week);
+          const opponent = player?.next_opponent;
+          const location = player?.matchup_location;
+          const matchupData = player?.defensive_matchup;
+          const validWeek = matchupWeek === Number(data.target_week);
+          if (validWeek && opponent) {
+            const matchupText = location === "home" ? "vs " + opponent :
+              location === "away" ? "@ " + opponent : "against " + opponent;
+            const matchupScore = matchupData?.score;
+            const validScore = matchupData?.opponent === opponent &&
+              matchupData?.position === player.position &&
+              matchupScore !== null && matchupScore !== undefined &&
+              Number.isFinite(Number(matchupScore));
+            matchup.textContent = "Week " + matchupWeek + " matchup: " +
+              matchupText + " • Matchup Score: " +
+              (validScore ? Number(matchupScore).toFixed(0) + "/100" : "Not available");
+            const allowed = matchupData?.fantasy_points_allowed;
+            if (validScore && allowed !== null && allowed !== undefined &&
+                Number.isFinite(Number(allowed))) {
+              matchup.textContent += " • Defense allows " +
+                Number(allowed).toFixed(1) + " PPR/game to " + player.position;
+            }
+          } else {
+            matchup.textContent = "Week " + data.target_week +
+              " matchup: Not verified • Matchup Score: Not available";
+          }
+          item.appendChild(matchup);
           // Reuse the AI Rankings weekly-stat feed for every editorial waiver player.
           // Show position-specific season totals and the latest completed game.
           const games = getPlayerWeeklyStats({ name })
