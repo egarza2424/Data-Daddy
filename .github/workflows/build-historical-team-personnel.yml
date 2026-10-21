@@ -1,0 +1,47 @@
+name: Build Historical Team Personnel Trends
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  personnel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install analysis dependencies
+        run: python -m pip install pandas pyarrow
+      - name: Download verified 2025 nflverse participation dataset
+        run: |
+          mkdir -p historical-data
+          curl --fail --location --retry 3 \
+            https://github.com/nflverse/nflverse-data/releases/download/pbp_participation/pbp_participation_2025.parquet \
+            -o historical-data/pbp_participation_2025.parquet
+          test -s historical-data/pbp_participation_2025.parquet
+      - name: Build historical personnel percentages
+        run: |
+          python scripts/build_team_personnel_trends.py \
+            --input historical-data/pbp_participation_2025.parquet \
+            --season 2025 \
+            --output data/team_personnel_trends_2025.json
+          python - <<'PY'
+          import json
+          p=json.load(open('data/team_personnel_trends_2025.json'))
+          assert len(p['teams']) >= 30, 'Too few team records'
+          assert sum(t['plays_with_known_personnel'] for t in p['teams']) > 1000, 'Insufficient personnel observations'
+          for t in p['teams']:
+              for value in t['personnel_share_pct'].values():
+                  assert value is None or 0 <= value <= 100
+          print('Verified',len(p['teams']),'team records')
+          PY
+      - name: Upload generated personnel data
+        uses: actions/upload-artifact@v4
+        with:
+          name: historical-team-personnel-2025
+          path: data/team_personnel_trends_2025.json
+          if-no-files-found: error
