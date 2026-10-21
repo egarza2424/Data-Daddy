@@ -986,6 +986,25 @@ function getWeeklySleeperCandidates() {
           return null;
         }
 
+        // TE sleepers require a credible weekly receiving role.
+        // Rank disagreement alone cannot qualify a low-volume TE.
+        if (position === "TE") {
+          const recentTeGames = getPlayerWeeklyStats(player)
+            .filter(game => Number(game.season) === 2026)
+            .sort((a, b) => Number(b.week || 0) - Number(a.week || 0))
+            .slice(0, 3);
+          const totalTargets = recentTeGames.reduce(
+            (sum, game) => sum + Number(game.targets || 0), 0
+          );
+          if (
+            recentTeGames.length < 2 ||
+            totalTargets / recentTeGames.length < 3 ||
+            Number(projection.projected_ppr) < 8
+          ) {
+            return null;
+          }
+        }
+
         const projectedPpr =
           Number(
             projection.projected_ppr
@@ -8640,10 +8659,13 @@ const depthOrder =
   }
 
   if (position === "TE") {
+    // Depth-chart backups without any current-season participation
+    // should not rank solely on neutral/missing-data signals.
+    const currentTeGames = getPlayerWeeklyStats(player)
+      .filter(game => Number(game.season) === 2026);
     return (
-      (depthOrder >= 1 &&
-        depthOrder <= 2) ||
-      hasStats
+      depthOrder === 1 ||
+      currentTeGames.length > 0
     );
   }
 
