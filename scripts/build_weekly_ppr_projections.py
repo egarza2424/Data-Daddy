@@ -861,7 +861,7 @@ def main():
 
         projections.loc[
             jacobs_mask, "projected_ppr"
-        ] = 16.00
+        ] = 13.00
 
         projections.loc[
             jacobs_mask, "projection_model"
