@@ -1,0 +1,23 @@
+name: Backtest TE Multi-Role Signal
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  holdout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compare Week 6 frozen AI ranks with pregame shared-role signal
+        run: python scripts/backtest_te_multi_role.py | tee te-multi-role-holdout-summary.txt
+      - name: Upload holdout results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: te-multi-role-week6-holdout
+          path: |
+            te-multi-role-holdout-summary.txt
+            model-validation/2026-week6-te-multi-role-holdout.csv
