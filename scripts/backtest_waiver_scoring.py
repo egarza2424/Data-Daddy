@@ -41,10 +41,13 @@ def calculate_opportunity(row):
     position = row.get("position")
 
     if position == "QB":
+            if position == "RB":
         return (
-            safe_number(row.get("attempts"))
-            + safe_number(row.get("carries"))
+            safe_number(row.get("carries"))
+            + safe_number(row.get("targets"))
         )
+
+    return safe_number(row.get("targets"))
 
     return (
         safe_number(row.get("carries"))
