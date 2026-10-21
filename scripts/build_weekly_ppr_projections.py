@@ -938,7 +938,9 @@ def main():
         # Week 7 only: provisional backup role for Pierre Strong.
         strong_mask = (
             projections["position"].eq("RB")
-            & projections["player_name"].eq("Pierre Strong")
+            & projections["player_name"].isin(
+                ["Pierre Strong", "Pierre Strong Jr."]
+            )
             & projections["team"].eq("GB")
         )
 
