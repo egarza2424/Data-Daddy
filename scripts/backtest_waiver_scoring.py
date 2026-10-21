@@ -300,7 +300,150 @@ def main():
                 f"  Opportunity change: no available values, "
                 f"missing={missing_changes}"
             )
+    
+    # Controlled historical opportunity-stability experiment.
+    # Diagnostic only: historical ownership eligibility is unverified.
+    print("\nCONTROLLED OPPORTUNITY-STABILITY BACKTEST")
+    print("All-player diagnostic; NOT verified waiver precision.")
+
+    from collections import defaultdict
+    import statistics
+
+    experiment_results = defaultdict(list)
+    weeks_compared = 0
+
+    for test_week in range(4, 19):
+        historical_signals = build_historical_signals(
+            rows, test_week
+        )
+        if len(historical_signals) < 20:
+            continue
+
+        baseline_ranked = score_historical_signals(
+            [dict(player) for player in historical_signals]
+        )
+
+        challenger_signals = [
+            dict(player) for player in historical_signals
+        ]
+
+        # Shrink opportunity spikes when history is limited.
+        # This is a test hypothesis, not a validated weight.
+        for player in challenger_signals:
+            change = player["opportunity_change"]
+            if change is not None:
+                reliability = min(
+                    1.0, max(0.0, player["history_games"] - 1) / 4
+                )
+                player["opportunity_change"] = (
+                    change * reliability
+                )
+
+        challenger_ranked = score_historical_signals(
+            challenger_signals
+        )
+
+        actual = defaultdict(list)
+        for game in rows:
+            if int(game["week"]) == test_week:
+                actual[game["player_id"]].append(
+                    calculate_ppr(game)
+                )
+
+        # Only unique, observed player-week outcomes qualify.
+        observed = {
+            player_id: values[0]
+            for player_id, values in actual.items()
+            if len(values) == 1
+        }
+
+        position_outcomes = defaultdict(list)
+        for player in historical_signals:
+            player_id = player["player_id"]
+            if player_id in observed:
+                position_outcomes[player["position"]].append(
+                    observed[player_id]
+                )
+
+        position_medians = {
+            position: statistics.median(values)
+            for position, values in position_outcomes.items()
+            if values
+        }
+
+        if not position_medians:
+            continue
+
+        for model_name, ranked_players in (
+            ("Baseline 45/35/20", baseline_ranked),
+            ("Stability challenger", challenger_ranked),
+        ):
+            top_ten = ranked_players[:10]
+            advantages = []
+
+            for player in top_ten:
+                player_id = player["player_id"]
+                position = player["position"]
+                if (
+                    player_id in observed
+                    and position in position_medians
+                ):
+                    advantages.append(
+                        observed[player_id]
+                        - position_medians[position]
+                    )
+
+            experiment_results[model_name].append({
+                "week": test_week,
+                "observed": len(advantages),
+                "total": len(top_ten),
+                "advantage": (
+                    sum(advantages) / len(advantages)
+                    if advantages else None
+                ),
+            })
+
+        weeks_compared += 1
+
+    print(f"Weeks evaluated: {weeks_compared}")
+
+    for model_name, weekly_results in experiment_results.items():
+        valid = [
+            result for result in weekly_results
+            if result["advantage"] is not None
+        ]
+        observed_count = sum(
+            result["observed"] for result in weekly_results
+        )
+        total_count = sum(
+            result["total"] for result in weekly_results
+        )
+        mean_advantage = (
+            statistics.mean(
+                result["advantage"] for result in valid
+            )
+            if valid else None
+        )
+
+        print(f"\n{model_name}")
+        print(f"Observed outcomes: {observed_count}/{total_count}")
+        print(
+            "Mean weekly position-median advantage: "
+            + (
+                f"{mean_advantage:+.3f} PPR"
+                if mean_advantage is not None
+                else "UNAVAILABLE"
+            )
+        )
+
+    print(
+        "\nLimitations: no historical ownership filtering; "
+        "missing outcomes excluded; no statistical significance "
+        "or out-of-sample tuning established."
+    )
+
     ranked = score_historical_signals(signals)
+
 
     print("\nHISTORICAL ALL-PLAYER EVIDENCE SCORE — TOP 10")
     print("Diagnostic only: historical ownership eligibility not verified.")
