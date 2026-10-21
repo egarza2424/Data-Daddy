@@ -942,19 +942,26 @@ def main():
             & projections["team"].eq("GB")
         )
 
-        if strong_mask.sum() != 1:
+        # Pierre Strong may be absent from a refreshed roster
+        # snapshot. Do not fail every position's projection run
+        # when a provisional backup is no longer eligible.
+        strong_count = int(strong_mask.sum())
+        if strong_count > 1:
             raise RuntimeError(
-                "Expected exactly one Pierre Strong "
-                "row for Week 7."
+                "Duplicate Pierre Strong RB rows for Week 7."
             )
-
-        projections.loc[
-            strong_mask, "projected_ppr"
-        ] = 6.00
-
-        projections.loc[
-            strong_mask, "projection_model"
-        ] = "Manual_Week7_RB_override"
+        if strong_count == 1:
+            projections.loc[
+                strong_mask, "projected_ppr"
+            ] = 6.00
+            projections.loc[
+                strong_mask, "projection_model"
+            ] = "Manual_Week7_RB_override"
+        else:
+            print(
+                "Pierre Strong absent from current Week 7 "
+                "snapshot; skipping provisional RB override."
+            )
         
         # Recalculate RB ranks using final projections.
         rb_mask = projections["position"].eq("RB")
