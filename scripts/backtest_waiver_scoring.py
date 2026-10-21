@@ -1343,6 +1343,170 @@ def main():
         print("Skipped: 2025-only experiment.")
 
 
+    # ---------------------------------------------------------
+    # HISTORICAL RB WAIVER-PROXY ELIGIBILITY BACKTEST
+    # ---------------------------------------------------------
+    print("\nRB HISTORICAL WAIVER-PROXY BACKTEST")
+    print("Pregame proxy only; actual ownership unavailable.")
+
+    if args.season == 2025:
+        proxy_results = {
+            "Evidence": [],
+            "J2 no lines": [],
+            "J2 + emerging opportunity": [],
+        }
+        proxy_winners = Counter()
+        proxy_eligible_total = 0
+        proxy_observed_total = 0
+        proxy_skipped = 0
+
+        for week in range(7, 19):
+            signals = build_historical_signals(rows, week)
+            scored = score_historical_signals(signals)
+            candidates = []
+
+            for player in scored:
+                if player["position"] != "RB":
+                    continue
+
+                key = (week, player["player_id"])
+                if key not in no_lines:
+                    continue
+
+                # These features only use earlier weeks.
+                prior_games = [
+                    game for game in rows
+                    if game["player_id"] == player["player_id"]
+                    and int(game["week"]) < week
+                ]
+                prior_games.sort(
+                    key=lambda game: int(game["week"])
+                )
+                recent = prior_games[-3:]
+
+                if not recent:
+                    continue
+
+                avg_ppr = sum(
+                    calculate_ppr(game) for game in recent
+                ) / len(recent)
+
+                avg_workload = sum(
+                    calculate_opportunity(game) for game in recent
+                ) / len(recent)
+
+                change = player["opportunity_change"]
+                emerging = (
+                    change is not None
+                    and change >= 5
+                    and player["latest_opportunity"] >= 8
+                )
+
+                eligible = (
+                    avg_ppr < 12
+                    or avg_workload < 15
+                    or len(prior_games) < 3
+                    or emerging
+                )
+
+                if not eligible:
+                    continue
+
+                proxy_eligible_total += 1
+
+                # Only observed, unique outcomes are scored.
+                if actual_counts[key] != 1:
+                    continue
+
+                proxy_observed_total += 1
+
+                candidates.append({
+                    "id": player["player_id"],
+                    "name": player["name"],
+                    "actual": actual_lookup[key],
+                    "evidence": player[
+                        "historical_evidence_score"
+                    ],
+                    "j2": no_lines[key],
+                    "challenger": (
+                        no_lines[key] + 2.0
+                        if emerging and len(prior_games) >= 3
+                        else no_lines[key]
+                    ),
+                })
+
+            if len(candidates) < 10:
+                proxy_skipped += 1
+                print(
+                    f"Week {week}: skipped, "
+                    f"observed eligible RBs={len(candidates)}"
+                )
+                continue
+
+            scores = {}
+
+            for label, field in (
+                ("Evidence", "evidence"),
+                ("J2 no lines", "j2"),
+                ("J2 + emerging opportunity", "challenger"),
+            ):
+                selected = sorted(
+                    candidates,
+                    key=lambda p: (-p[field], p["id"])
+                )[:10]
+
+                scores[label] = sum(
+                    p["actual"] for p in selected
+                ) / 10
+                proxy_results[label].append(scores[label])
+
+            best = max(scores.values())
+            winners = [
+                label for label, score in scores.items()
+                if abs(score - best) < 1e-9
+            ]
+
+            if len(winners) == 1:
+                proxy_winners[winners[0]] += 1
+            else:
+                proxy_winners["Tie"] += 1
+
+            print(
+                f"Week {week}: n={len(candidates)}, "
+                f"Evidence={scores['Evidence']:.2f}, "
+                f"J2={scores['J2 no lines']:.2f}, "
+                f"Opportunity="
+                f"{scores['J2 + emerging opportunity']:.2f}"
+            )
+
+        print("\nRB WAIVER-PROXY SUMMARY")
+        print(f"Eligible player-weeks: {proxy_eligible_total}")
+        print(f"Observed player-weeks: {proxy_observed_total}")
+        print(f"Skipped weeks: {proxy_skipped}")
+
+        for label, values in proxy_results.items():
+            if values:
+                print(
+                    f"{label}: "
+                    f"weeks={len(values)}, "
+                    f"mean actual Top10 PPR="
+                    f"{sum(values) / len(values):.3f}"
+                )
+
+        print(f"Weekly winners: {dict(proxy_winners)}")
+        print(
+            "Limitations: thresholds are exploratory; "
+            "no verified historical roster ownership; "
+            "unobserved outcomes excluded; "
+            "not validated waiver precision."
+        )
+    else:
+        print(
+            "Waiver-proxy experiment currently supports "
+            "2025 only."
+        )
+
+
     
     
     print("Status: HISTORICAL SIGNAL VALIDATION")
