@@ -2678,7 +2678,7 @@ function renderProjectionBoard() {
       // player, scoring profile and calculation. Never mix an older
       // projection snapshot's model_score with live AI Rankings.
       const profile = riskSelect?.value || "balanced";
-      const aiScore = getDisplayedAiScore(player, profile);
+      const aiScore = getProjectionAiScore(projection, player, profile);
       const aiRank = player
         ? getPlayerPositionRank(player, profile)
         : null;
@@ -8506,6 +8506,19 @@ window.dataDaddyAuditWilson = function () {
 // Weekly PPR snapshot model_score is historical metadata, not a live display score.
 function getDisplayedAiScore(player, profile) {
   return player ? calculateScore(player, profile) : NaN;
+}
+
+// A weekly projection may have a valid frozen model score even when
+// the live roster feed has not resolved its player ID/name yet.
+// Use it only for unresolved players; never mix snapshot and live
+// scores for successfully matched players.
+function getProjectionAiScore(projection, player, profile) {
+  if (player) return getDisplayedAiScore(player, profile);
+  const snapshotScore = Number(projection?.model_score);
+  return Number.isFinite(snapshotScore) &&
+    snapshotScore >= 0 && snapshotScore <= 100
+      ? snapshotScore
+      : NaN;
 }
 
 function getPositionRankings(position, profile) {
