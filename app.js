@@ -1283,6 +1283,22 @@ function getSleeperReason(
 }
 
 
+// Conditional editorial role alerts. These are not confirmed game-day statuses.
+function getRoleCompetitionWatch(projection) {
+  if (!projection || String(projection.position).toUpperCase() !== "RB") {
+    return null;
+  }
+  const name = normalizeName(projection.player_name || "");
+  const team = String(projection.team || "").toUpperCase();
+  if (name === normalizeName("Emanuel Wilson") && team === "SEA") {
+    return "Conditional sleeper: If Seattle's competing running backs are active and share carries this week, Wilson's workload could decline and he may no longer qualify as a sleeper. Check game-day availability and backfield usage before starting him.";
+  }
+  if (name === normalizeName("Braelon Allen") && team === "NYJ") {
+    return "Roster watch: If Breece Hall suits up and takes his usual share of the Jets backfield, Braelon Allen's carries, projected PPR and sleeper eligibility could change. Confirm Hall's game-day status and workload before making a lineup decision.";
+  }
+  return null;
+}
+
 function renderWeeklySleepers() {
   const grid =
     document.getElementById(
@@ -1515,12 +1531,8 @@ function renderWeeklySleepers() {
         </div>
       `;
 
-      // Conditional workload warning, not a confirmed active/inactive report.
-      if (
-        position === "RB" &&
-        normalizeName(projection.player_name) === normalizeName("Emanuel Wilson") &&
-        String(projection.team || "").toUpperCase() === "SEA"
-      ) {
+      const roleWatch = getRoleCompetitionWatch(projection);
+      if (roleWatch) {
         const warning = document.createElement("div");
         warning.className = "sleeper-reason";
         warning.style.borderLeft = "3px solid #d6a23a";
@@ -1528,8 +1540,7 @@ function renderWeeklySleepers() {
         const heading = document.createElement("strong");
         heading.textContent = "ROLE COMPETITION WATCH";
         const details = document.createElement("p");
-        details.textContent =
-          "Conditional sleeper: If Seattle's competing running backs are active and share carries this week, Wilson's workload could decline and he may no longer qualify as a sleeper. Check game-day availability and backfield usage before starting him.";
+        details.textContent = roleWatch;
         warning.append(heading, details);
         card.appendChild(warning);
       }
@@ -2701,6 +2712,19 @@ function renderProjectionBoard() {
         status
       ];
 
+      const roleWatch = getRoleCompetitionWatch(projection);
+      if (roleWatch) {
+        const warningRow = document.createElement("tr");
+        const warningCell = document.createElement("td");
+        warningCell.colSpan = 9;
+        warningCell.style.borderLeft = "3px solid #d6a23a";
+        warningCell.style.padding = "8px 12px";
+        warningCell.textContent = "ROLE COMPETITION WATCH — " + roleWatch;
+        warningRow.appendChild(warningCell);
+         // Insert directly after the matching player's row below.
+        row._roleWatchRow = warningRow;
+      }
+
       const jacobsExplanation = jacobsWeek7
         ? "Week 7 return-from-absence caution: his live AI Score reflects limited recent production, usage, and matchup signals. The separate 13.0 PPR projection is an editorial return-to-play estimate, not an AI Score."
         : "";
@@ -2722,6 +2746,9 @@ function renderProjectionBoard() {
       );
 
       tableBody.appendChild(row);
+      if (row._roleWatchRow) {
+        tableBody.appendChild(row._roleWatchRow);
+      }
 
       if (mobileCards) {
         const card =
@@ -2776,6 +2803,14 @@ function renderProjectionBoard() {
         statusElement.textContent = `Status: ${status}`;
 
         card.append(cardHeader, metrics, statusElement);
+        if (roleWatch) {
+          const roleNotice = document.createElement("p");
+          roleNotice.className = "projection-mobile-status";
+          roleNotice.style.borderLeft = "3px solid #d6a23a";
+          roleNotice.style.paddingLeft = "12px";
+          roleNotice.textContent = "ROLE COMPETITION WATCH — " + roleWatch;
+          card.appendChild(roleNotice);
+        }
         if (jacobsExplanation) {
           const explanation = document.createElement("p");
           explanation.className = "projection-mobile-status";
