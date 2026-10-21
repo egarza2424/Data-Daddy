@@ -914,13 +914,23 @@ function getProjectionPlayer(projection) {
   if (projectionId) {
     const idMatch =
       players.find((player) => {
+        // An ID alone is insufficient when feeds use different ID
+        // namespaces or a stale roster record. Require the same
+        // position and team before trusting the identity match.
+        const team = value =>
+          ({ LA: "LAR", JAC: "JAX", WSH: "WAS" })[
+            String(value || "").toUpperCase()
+          ] || String(value || "").toUpperCase();
         return [
           player.nflId,
           player.id
         ]
           .filter(Boolean)
           .map(id => String(id))
-          .includes(projectionId);
+          .includes(projectionId) &&
+          String(player.position || "").toUpperCase() ===
+            String(projection.position || "").toUpperCase() &&
+          team(player.team) === team(projection.team);
       });
 
     if (idMatch) {
