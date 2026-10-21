@@ -22,7 +22,8 @@ checks = {
     "rankings use shared AI Score helper":
         "score: getDisplayedAiScore(player, profile)" in ranking,
     "projections use shared AI Score helper":
-        "const aiScore = getDisplayedAiScore(player, profile);" in projection,
+        "const aiScore = getProjectionAiScore(projection, player, profile);" in projection
+        and "if (player) return getDisplayedAiScore(player, profile);" in app,
     "projections use current risk profile":
         'const profile = riskSelect?.value || "balanced";' in projection,
     "projections do not display stale snapshot AI Score":
