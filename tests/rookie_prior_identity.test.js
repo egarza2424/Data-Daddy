@@ -23,7 +23,7 @@ const context = {
   getScoringEnvironment: () => null,
   snapshotWeek: 7,
   calculateInjuryOpportunityBoost: () => 0,
-  normalizeName: name => String(name || "").toLowerCase().replace(/\\s+(jr|sr|ii|iii)$/i, "").trim(),
+  normalizeName: name => String(name || "").toLowerCase().replace(/\s+(jr|sr|ii|iii)$/i, "").trim(),
   nflPlayerLookup: {
     "00-0041511": { name: "Omar Cooper Jr.", position: "WR", team: "NYJ" }
   },
