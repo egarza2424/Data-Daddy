@@ -8168,6 +8168,63 @@ window.dataDaddyAuditWilsonWorkload = function () {
   return records;
 };
 
+// Shadow-only Week 7 return-to-play role scenarios. These do not alter
+// live rankings, weights, or player availability.
+window.dataDaddyWilsonRoleSecurityTest = function () {
+  const wilson = players.find((p) =>
+    String(p.id) === "11435" || String(p.nflId || "") === "00-0038797"
+  );
+  if (!wilson) {
+    console.warn("Role-security test: Emanuel Wilson not loaded");
+    return [];
+  }
+  const base = calculateScore(wilson, "balanced");
+  const metrics = getMetrics(wilson);
+  const games = getPlayerWeeklyStats(wilson)
+    .filter((g) => Number(g.season) === 2026 && g.team === "SEA")
+    .sort((a, b) => Number(b.week || 0) - Number(a.week || 0))
+    .slice(0, 3);
+  const carries = (g) => Number(g.carries ?? g.rushing_attempts ?? 0);
+  const avg = (rows, fn) => rows.length
+    ? rows.reduce((sum, row) => sum + fn(row), 0) / rows.length : 0;
+  const recentCarries = avg(games, carries);
+  const recentTargets = avg(games, (g) => Number(g.targets || 0));
+  const scenarioRows = [
+    { scenario: "Charbonnet out — lead committee", workloadRetention: 1.00 },
+    { scenario: "Charbonnet active — limited", workloadRetention: 0.75 },
+    { scenario: "Charbonnet active — meaningful role", workloadRetention: 0.50 },
+    { scenario: "Multiple backs return — crowded backfield", workloadRetention: 0.35 }
+  ];
+  // Hypothetical sensitivity test, not a calibrated predictive model.
+  // Apply only the proportional loss in Opportunity and Usage contribution.
+  const rows = scenarioRows.map((row) => {
+    const reduction = (1 - row.workloadRetention) *
+      ((Number(metrics.opportunity) || 0) * BASE_WEIGHTS.opportunity +
+       (Number(metrics.usage) || 0) * BASE_WEIGHTS.usage);
+    return {
+      scenario: row.scenario,
+      retainedWorkloadPct: Math.round(row.workloadRetention * 100),
+      expectedCarries: +(recentCarries * row.workloadRetention).toFixed(1),
+      expectedTargets: +(recentTargets * row.workloadRetention).toFixed(1),
+      baselineAiScore: base,
+      shadowAiScore: +Math.max(0, base - reduction).toFixed(1),
+      scoreDelta: +(-reduction).toFixed(1)
+    };
+  });
+  console.group("DATA DADDY — Emanuel Wilson role-security SHADOW TEST");
+  console.log("Historical workload:", {
+    recentGames: games.map((g) => g.week),
+    averageCarries: +recentCarries.toFixed(1),
+    averageTargets: +recentTargets.toFixed(1),
+    opportunity: metrics.opportunity, usage: metrics.usage,
+    matchup: metrics.matchup
+  });
+  console.table(rows);
+  console.log("Scenario assumptions are illustrative, not verified player projections. Live AI scores unchanged.");
+  console.groupEnd();
+  return rows;
+};
+
 window.dataDaddyAuditWilson = function () {
   const matches = players.filter((p) =>
     String(p.id) === "11435" ||
