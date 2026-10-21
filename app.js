@@ -8066,25 +8066,31 @@ function calculateScore(player, profile) {
       ? calculateInjuryOpportunityBoost(player)
       : 0;
 
-  const fallbackNflId =
-    player.nflId ||
-    Object.entries(nflPlayerLookup).find(
-      ([id, nfl]) => {
-        const normalizeTeam = team =>
-          ({ LA: "LAR", JAC: "JAX", WSH: "WAS" })[team] || team;
-
-        return (
-          normalizeName(player.name) ===
-            normalizeName(nfl.name) &&
-          player.position === nfl.position &&
-          normalizeTeam(player.team) ===
-            normalizeTeam(nfl.team)
-        );
-      }
-    )?.[0];
-  const rookieScore = fallbackNflId
-    ? fantasyAiScores[fallbackNflId]
-    : null;
+  // Sleeper IDs and GSIS IDs belong to different namespaces.
+  // Prefer an exact backend score key, then reconcile by player identity.
+  // Never let a synthetic projection ID prevent a valid rookie prior.
+  const backendScoreId = [player.nflId, player.id]
+    .filter(Boolean)
+    .map(id => String(id))
+    .find(id => fantasyAiScores[id] != null);
+  const matchedBackendId = Object.entries(nflPlayerLookup).find(
+    ([id, nfl]) => {
+      const normalizeTeam = value =>
+        ({ LA: "LAR", JAC: "JAX", WSH: "WAS" })[
+          String(value || "").toUpperCase()
+        ] || String(value || "").toUpperCase();
+      return (
+        normalizeName(player.name) === normalizeName(nfl.name) &&
+        String(player.position || "").toUpperCase() ===
+          String(nfl.position || "").toUpperCase() &&
+        normalizeTeam(player.team) === normalizeTeam(nfl.team) &&
+        fantasyAiScores[id] != null
+      );
+    }
+  )?.[0];
+  const rookieScore = fantasyAiScores[
+    backendScoreId || matchedBackendId
+  ] || null;
  
   const rookieAdjustment =
     rookieScore?.rookie_prior_adjustment;
