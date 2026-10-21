@@ -1201,6 +1201,148 @@ def main():
         print("Skipped: comparison supports 2025 only.")
 
 
+    # ---------------------------------------------------------
+    # RB EMERGING-OPPORTUNITY CHALLENGER
+    # ---------------------------------------------------------
+    print("\nRB EMERGING-OPPORTUNITY BACKTEST")
+    print("Pregame workload growth; no ownership verification.")
+
+    if args.season == 2025:
+        experiment = {
+            "J2 no lines": [],
+            "J2 + emerging opportunity": [],
+        }
+        opportunity_winners = Counter()
+        opportunity_promotions = 0
+
+        for week in range(7, 19):
+            scored = score_historical_signals(
+                build_historical_signals(rows, week)
+            )
+
+            candidates = []
+
+            for player in scored:
+                if player["position"] != "RB":
+                    continue
+
+                key = (week, player["player_id"])
+
+                if key not in no_lines:
+                    continue
+                if actual_counts[key] != 1:
+                    continue
+
+                candidates.append({
+                    "id": player["player_id"],
+                    "name": player["name"],
+                    "j2": no_lines[key],
+                    "actual": actual_lookup[key],
+                    "latest": player["latest_opportunity"],
+                    "change": player["opportunity_change"],
+                    "games": player["history_games"],
+                })
+
+            if len(candidates) < 10:
+                continue
+
+            # Exploratory thresholds, not validated parameters.
+            # All workload features precede the target week.
+            for player in candidates:
+                change = player["change"]
+
+                player["emerging"] = (
+                    player["games"] >= 3
+                    and change is not None
+                    and change >= 5
+                    and player["latest"] >= 8
+                )
+
+                player["challenger"] = (
+                    player["j2"] + 2.0
+                    if player["emerging"]
+                    else player["j2"]
+                )
+
+            baseline = sorted(
+                candidates,
+                key=lambda p: (-p["j2"], p["id"])
+            )[:10]
+
+            challenger = sorted(
+                candidates,
+                key=lambda p: (-p["challenger"], p["id"])
+            )[:10]
+
+            baseline_ids = {p["id"] for p in baseline}
+            challenger_ids = {p["id"] for p in challenger}
+
+            promoted = [
+                p for p in challenger
+                if p["id"] not in baseline_ids
+            ]
+
+            opportunity_promotions += len(promoted)
+
+            baseline_ppr = (
+                sum(p["actual"] for p in baseline) / 10
+            )
+            challenger_ppr = (
+                sum(p["actual"] for p in challenger) / 10
+            )
+
+            experiment["J2 no lines"].append(baseline_ppr)
+            experiment["J2 + emerging opportunity"].append(
+                challenger_ppr
+            )
+
+            if challenger_ppr > baseline_ppr:
+                opportunity_winners["Challenger"] += 1
+            elif baseline_ppr > challenger_ppr:
+                opportunity_winners["J2"] += 1
+            else:
+                opportunity_winners["Tie"] += 1
+
+            print(
+                f"Week {week}: "
+                f"J2={baseline_ppr:.2f}, "
+                f"Challenger={challenger_ppr:.2f}, "
+                f"Change={challenger_ppr-baseline_ppr:+.2f}, "
+                f"Promotions={len(promoted)}"
+            )
+
+            for player in promoted:
+                print(
+                    f"  PROMOTED: {player['name']} | "
+                    f"Opportunity change={player['change']:+.1f} | "
+                    f"Actual PPR={player['actual']:.2f}"
+                )
+
+        print("\nEMERGING-OPPORTUNITY SUMMARY")
+
+        for label, values in experiment.items():
+            if values:
+                print(
+                    f"{label}: "
+                    f"mean Top10 actual PPR="
+                    f"{sum(values)/len(values):.3f}"
+                )
+
+        print(
+            f"Weekly winners: {dict(opportunity_winners)}"
+        )
+        print(
+            f"Total promoted players: {opportunity_promotions}"
+        )
+        print(
+            "Exploratory +2 PPR adjustment only. "
+            "No historical ownership filter; "
+            "not a production recommendation."
+        )
+    else:
+        print("Skipped: 2025-only experiment.")
+
+
     
     
     print("Status: HISTORICAL SIGNAL VALIDATION")
