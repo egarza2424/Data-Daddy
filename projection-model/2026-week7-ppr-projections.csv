@@ -43,37 +43,37 @@ snapshot_week,player_id,player_name,position,team,opponent,roster_status,injury_
 7,8155,Breece Hall,RB,NYJ,MIA,Active,Questionable,55.1,19,14.99,14,75,44,72,34,73,47,62,J2_RB_role_stability,2025
 7,7594,Chuba Hubbard,RB,CAR,TB,Active,,64.9,8,14.89,15,93,62,86,40,86,28,74,J2_RB_role_stability,2025
 7,11584,Bucky Irving,RB,TB,CAR,Active,Questionable,56.9,15,14.82,16,77,46,67,34,59,33,53,J2_RB_role_stability,2025
-7,8116,Pierre Strong Jr.,RB,GB,DET,Active,,43.8,33,14.66,17,48,26,45,29,67,24,82,J2_RB_role_stability,2025
-7,5850,Josh Jacobs,RB,GB,DET,Active,,40.0,45,13.0,18,50,20,20,50,50,24,82,Manual_Week7_RB_override,2025
-7,12512,Quinshon Judkins,RB,CLE,TEN,Active,Questionable,55.3,17,12.79,19,77,41,75,32,70,37,46,J2_RB_role_stability,2025
-7,8129,Dameon Pierce,RB,PHI,DAL,Active,,54.6,20,12.05,20,61,28,89,23,72,42,49,J2_RB_role_stability,2025
-7,12489,RJ Harvey,RB,DEN,ARI,Active,,43.3,36,11.63,21,38,36,37,15,50,52,74,J2_RB_role_stability,2025
-7,7611,Rhamondre Stevenson,RB,NE,CHI,Active,,49.1,29,11.6,22,59,39,47,31,78,20,72,J2_RB_role_stability,2025
-7,5967,Tony Pollard,RB,TEN,CLE,Active,,52.1,25,11.6,22,68,27,81,48,80,25,37,J2_RB_role_stability,2025
-7,12481,Cam Skattebo,RB,NYG,HOU,Active,,51.4,26,11.22,24,73,31,67,18,83,60,25,J2_RB_role_stability,2025
-7,12495,Ollie Gordon II,RB,MIA,NYJ,Active,,56.2,16,10.85,25,60,49,59,42,88,43,34,J2_RB_role_stability,2025
-7,12474,Woody Marks,RB,HOU,NYG,Active,,54.5,22,10.76,26,54,32,57,29,77,45,89,J2_RB_role_stability,2025
-7,13287,Jeremiyah Love,RB,ARI,DEN,Active,Questionable,52.4,24,10.37,27,67,32,71,23,49,34,46,J2_RB_role_stability,2025
-7,4035,Alvin Kamara,RB,NO,PIT,Active,Questionable,43.3,35,10.27,28,37,42,36,13,54,36,53,J2_RB_role_stability,2025
-7,7021,Rico Dowdle,RB,PIT,NO,Active,Questionable,44.3,32,9.85,29,41,19,43,9,78,80,74,J2_RB_role_stability,2025
-7,10235,Roschon Johnson,RB,CHI,NE,Active,,49.2,28,9.75,30,40,30,31,24,55,39,91,J2_RB_role_stability,2025
-7,6806,J.K. Dobbins,RB,DEN,ARI,Active,,55.2,18,9.7,31,65,37,67,31,82,52,74,J2_RB_role_stability,2025
-7,11435,Emanuel Wilson,RB,SEA,KC,Active,,62.5,21,9.43,32,77,49,75,27,71,30,65,J2_RB_role_stability,2025
-7,11586,Blake Corum,RB,LA,LV,Active,,45.9,30,9.42,33,33,34,35,13,67,72,89,J2_RB_role_stability,2025
-7,11576,Braelon Allen,RB,NYJ,MIA,Active,,58.2,14,9.11,34,78,41,91,11,78,47,62,J2_RB_role_stability,2025
-7,11581,MarShawn Lloyd,RB,GB,DET,Active,,43.6,34,8.97,35,41,29,41,31,69,24,82,J2_RB_role_stability,2025
-7,8132,Tyler Allgeier,RB,ARI,DEN,Active,,45.8,31,8.55,36,43,23,38,24,57,34,46,J2_RB_role_stability,2025
-7,5892,David Montgomery,RB,HOU,NYG,Active,Questionable,41.2,43,8.08,37,35,13,44,8,54,45,89,J2_RB_role_stability,2025
-7,4147,Samaje Perine,RB,CIN,BAL,Active,,36.5,51,8.04,38,32,20,33,16,42,27,80,J2_RB_role_stability,2025
-7,9757,Kendre Miller,RB,NO,PIT,Active,,49.5,27,7.99,39,51,23,52,31,69,36,53,J2_RB_role_stability,2025
-7,4866,Saquon Barkley,RB,PHI,DAL,Active,Questionable,39.6,47,7.86,40,32,14,39,15,34,42,49,J2_RB_role_stability,2025
-7,8154,Brian Robinson Jr.,RB,ATL,SF,Active,,41.4,40,7.45,41,33,31,33,21,48,53,69,J2_RB_role_stability,2025
-7,12529,TreVeyon Henderson,RB,NE,CHI,Active,,35.2,54,6.97,42,36,14,28,6,71,20,72,J2_RB_role_stability,2025
-7,9508,Tyjae Spears,RB,TEN,CLE,Active,,28.1,80,6.66,43,20,16,19,2,40,25,37,J2_RB_role_stability,2025
-7,13414,Kaelon Black,RB,SF,ATL,Active,,39.6,46,6.51,44,26,8,24,13,66,78,88,J2_RB_role_stability,2025
-7,12048,George Holani,RB,SEA,KC,Active,,42.9,38,6.5,45,26,19,25,11,77,30,65,J2_RB_role_stability,2025
-7,5995,Justice Hill,RB,BAL,CIN,Active,,32.1,65,6.43,46,19,19,16,0,54,35,71,J2_RB_role_stability,2025
-7,7567,Kenny Gainwell,RB,TB,CAR,Active,,35.6,53,6.03,47,20,21,18,8,68,33,53,J2_RB_role_stability,2025
+7,5850,Josh Jacobs,RB,GB,DET,Active,,40.0,45,13.0,17,50,20,20,50,50,24,82,Manual_Week7_RB_override,2025
+7,12512,Quinshon Judkins,RB,CLE,TEN,Active,Questionable,55.3,17,12.79,18,77,41,75,32,70,37,46,J2_RB_role_stability,2025
+7,8129,Dameon Pierce,RB,PHI,DAL,Active,,54.6,20,12.05,19,61,28,89,23,72,42,49,J2_RB_role_stability,2025
+7,12489,RJ Harvey,RB,DEN,ARI,Active,,43.3,36,11.63,20,38,36,37,15,50,52,74,J2_RB_role_stability,2025
+7,7611,Rhamondre Stevenson,RB,NE,CHI,Active,,49.1,29,11.6,21,59,39,47,31,78,20,72,J2_RB_role_stability,2025
+7,5967,Tony Pollard,RB,TEN,CLE,Active,,52.1,25,11.6,21,68,27,81,48,80,25,37,J2_RB_role_stability,2025
+7,12481,Cam Skattebo,RB,NYG,HOU,Active,,51.4,26,11.22,23,73,31,67,18,83,60,25,J2_RB_role_stability,2025
+7,12495,Ollie Gordon II,RB,MIA,NYJ,Active,,56.2,16,10.85,24,60,49,59,42,88,43,34,J2_RB_role_stability,2025
+7,12474,Woody Marks,RB,HOU,NYG,Active,,54.5,22,10.76,25,54,32,57,29,77,45,89,J2_RB_role_stability,2025
+7,13287,Jeremiyah Love,RB,ARI,DEN,Active,Questionable,52.4,24,10.37,26,67,32,71,23,49,34,46,J2_RB_role_stability,2025
+7,4035,Alvin Kamara,RB,NO,PIT,Active,Questionable,43.3,35,10.27,27,37,42,36,13,54,36,53,J2_RB_role_stability,2025
+7,7021,Rico Dowdle,RB,PIT,NO,Active,Questionable,44.3,32,9.85,28,41,19,43,9,78,80,74,J2_RB_role_stability,2025
+7,10235,Roschon Johnson,RB,CHI,NE,Active,,49.2,28,9.75,29,40,30,31,24,55,39,91,J2_RB_role_stability,2025
+7,6806,J.K. Dobbins,RB,DEN,ARI,Active,,55.2,18,9.7,30,65,37,67,31,82,52,74,J2_RB_role_stability,2025
+7,11435,Emanuel Wilson,RB,SEA,KC,Active,,62.5,21,9.43,31,77,49,75,27,71,30,65,J2_RB_role_stability,2025
+7,11586,Blake Corum,RB,LA,LV,Active,,45.9,30,9.42,32,33,34,35,13,67,72,89,J2_RB_role_stability,2025
+7,11576,Braelon Allen,RB,NYJ,MIA,Active,,58.2,14,9.11,33,78,41,91,11,78,47,62,J2_RB_role_stability,2025
+7,11581,MarShawn Lloyd,RB,GB,DET,Active,,43.6,34,8.97,34,41,29,41,31,69,24,82,J2_RB_role_stability,2025
+7,8132,Tyler Allgeier,RB,ARI,DEN,Active,,45.8,31,8.55,35,43,23,38,24,57,34,46,J2_RB_role_stability,2025
+7,5892,David Montgomery,RB,HOU,NYG,Active,Questionable,41.2,43,8.08,36,35,13,44,8,54,45,89,J2_RB_role_stability,2025
+7,4147,Samaje Perine,RB,CIN,BAL,Active,,36.5,51,8.04,37,32,20,33,16,42,27,80,J2_RB_role_stability,2025
+7,9757,Kendre Miller,RB,NO,PIT,Active,,49.5,27,7.99,38,51,23,52,31,69,36,53,J2_RB_role_stability,2025
+7,4866,Saquon Barkley,RB,PHI,DAL,Active,Questionable,39.6,47,7.86,39,32,14,39,15,34,42,49,J2_RB_role_stability,2025
+7,8154,Brian Robinson Jr.,RB,ATL,SF,Active,,41.4,40,7.45,40,33,31,33,21,48,53,69,J2_RB_role_stability,2025
+7,12529,TreVeyon Henderson,RB,NE,CHI,Active,,35.2,54,6.97,41,36,14,28,6,71,20,72,J2_RB_role_stability,2025
+7,9508,Tyjae Spears,RB,TEN,CLE,Active,,28.1,80,6.66,42,20,16,19,2,40,25,37,J2_RB_role_stability,2025
+7,13414,Kaelon Black,RB,SF,ATL,Active,,39.6,46,6.51,43,26,8,24,13,66,78,88,J2_RB_role_stability,2025
+7,12048,George Holani,RB,SEA,KC,Active,,42.9,38,6.5,44,26,19,25,11,77,30,65,J2_RB_role_stability,2025
+7,5995,Justice Hill,RB,BAL,CIN,Active,,32.1,65,6.43,45,19,19,16,0,54,35,71,J2_RB_role_stability,2025
+7,7567,Kenny Gainwell,RB,TB,CAR,Active,,35.6,53,6.03,46,20,21,18,8,68,33,53,J2_RB_role_stability,2025
+7,8116,Pierre Strong Jr.,RB,GB,DET,Active,,43.8,33,6.0,47,48,26,45,29,67,24,82,Manual_Week7_RB_override,2025
 7,6323,Andrew Beck,RB,NYJ,MIA,Active,,37.0,49,5.95,48,20,20,20,50,50,47,62,F_position_specific,2025
 7,11579,Audric Estime,RB,CLE,TEN,Active,,41.2,42,5.95,48,20,20,20,50,50,37,46,F_position_specific,2025
 7,13433,Riley Nowakowski,RB,PIT,NO,Active,,29.7,70,5.95,48,20,20,20,50,50,80,74,F_position_specific,2025
