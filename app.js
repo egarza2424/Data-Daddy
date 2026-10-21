@@ -7953,6 +7953,34 @@ function calculateScore(player, profile) {
     scoringBase + injuryBoost
   );
 
+  // Targeted read-only audit: show precisely why Emmanuel Wilson ranks high.
+  // No changes to scoring, weights, or published rankings.
+  if (normalizeName(player.name) === normalizeName("Emmanuel Wilson") &&
+      !window.__dataDaddyWilsonAuditLogged) {
+    window.__dataDaddyWilsonAuditLogged = true;
+    console.group("DATA DADDY AI SCORE AUDIT — Emmanuel Wilson");
+    console.table({
+      opportunity: { score: metrics.opportunity, weight: weights.opportunity },
+      production: { score: metrics.production, weight: weights.production },
+      usage: { score: metrics.usage, weight: weights.usage },
+      redzone: { score: metrics.redzone, weight: weights.redzone },
+      matchup: { score: metrics.matchup, weight: weights.matchup },
+      playCallerMatchup: { score: metrics.playCallerMatchup, weight: weights.playCallerMatchup },
+      playerVsDefensiveCaller: { score: metrics.playerVsDefensiveCaller, weight: weights.playerVsDefensiveCaller },
+      expert: { score: metrics.expert, weight: weights.expert },
+      risk: { score: metrics.risk, weight: weights.risk }
+    });
+    console.log("Additional adjustments", {
+      profile, team: player.team, position: player.position,
+      trench, scoringEnvironment, injuryStatus: player.injuryStatus,
+      rosterStatus: player.status, injuryBoost,
+      rookieAdjustment: useRookiePrior ? rookieAdjustment : null,
+      healthySeasonGames: getProductionGameCount(player),
+      finalScore: Number(adjustedScore.toFixed(1))
+    });
+    console.groupEnd();
+  }
+
   return Number(adjustedScore.toFixed(1));
 }
 
