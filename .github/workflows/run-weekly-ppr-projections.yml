@@ -41,7 +41,7 @@ jobs:
 
       - name: Check projection scripts
         run: |
-          python -m py_compile scripts/build_live_rb_j2_features.py scripts/build_rb_returning_player_audit.py scripts/build_week7_rb_j2_experiment.py scripts/build_weekly_ppr_projections.py
+          python -m py_compile scripts/build_live_rb_j2_features.py scripts/build_rb_returning_player_audit.py scripts/build_week7_rb_j2_experiment.py scripts/build_weekly_ppr_projections.py scripts/audit_te_ppg_challenger.py
 
       - name: Generate Week 7 J2 RB projections
         run: |
@@ -257,6 +257,7 @@ jobs:
           allowed_models = {
               "F_position_specific",
               "J2_RB_role_stability",
+              "F_TE_50pct_prior_PPG",
               "Manual_Week7_RB_override",
           }
 
@@ -268,12 +269,12 @@ jobs:
 
           if not (
               projections.loc[
-                  projections["position"].ne("RB"),
+                  projections["position"].isin(["QB", "WR"]),
                   "projection_model",
               ] == "F_position_specific"
           ).all():
               raise SystemExit(
-                  "Non-RB projections must remain Model F."
+                  "QB and WR projections must remain Model F."
               )
 
           coefficient_positions = set(
