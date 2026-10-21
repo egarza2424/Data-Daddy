@@ -1627,6 +1627,35 @@ async function loadWaiverWire() {
             ? "Rostered: " + rosterPct.toFixed(2) + "% (" + sourceNames.map((source) => source.toUpperCase()).join(", ") + ")"
             : "Rostered: Not verified";
           item.appendChild(rostered);
+          // The AI Rankings section already uses weeklyStats. Reuse the same
+          // source for editorial waiver selections omitted from the top-50 export.
+          if (name === "Tyler Higbee") {
+            const higbeeGames = getPlayerWeeklyStats({ name: "Tyler Higbee" })
+              .filter((game) => Number(game.season) === Number(data.season))
+              .sort((a, b) => Number(b.week || 0) - Number(a.week || 0));
+            if (higbeeGames.length > 0) {
+              const stats = document.createElement("p");
+              const total = (field) => higbeeGames.reduce(
+                (sum, game) => sum + (Number(game[field]) || 0), 0
+              );
+              stats.textContent = "2026 receiving: " + total("targets") + " targets • " +
+                total("receptions") + " receptions • " +
+                total("receiving_yards") + " yards • " +
+                total("receiving_tds") + " TD";
+              item.appendChild(stats);
+              const latest = higbeeGames[0];
+              const latestLine = document.createElement("p");
+              latestLine.textContent = "Week " + latest.week + ": " +
+                (Number(latest.targets) || 0) + " targets • " +
+                (Number(latest.receptions) || 0) + " catches • " +
+                (Number(latest.receiving_yards) || 0) + " yards";
+              item.appendChild(latestLine);
+            } else {
+              const missingStats = document.createElement("p");
+              missingStats.textContent = "Weekly production data unavailable";
+              item.appendChild(missingStats);
+            }
+          }
           section.appendChild(item);
         });
         container.appendChild(section);
