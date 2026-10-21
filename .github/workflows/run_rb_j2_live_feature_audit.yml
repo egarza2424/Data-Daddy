@@ -29,11 +29,16 @@ jobs:
         run: python scripts/build_live_rb_j2_features.py
       - name: Generate returning RB historical audit
         run: python scripts/build_rb_returning_player_audit.py
+      - name: Generate experimental Week 7 J2 projections
+        run: python scripts/build_week7_rb_j2_experiment.py
 
       - name: Upload audit CSV
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: rb-j2-live-feature-audit
-          path: projection-model/validation/2026-live-rb-j2-features-audit.csv
+          path: |
+            projection-model/validation/2026-live-rb-j2-features-audit.csv
+            projection-model/validation/2026-rb-returning-player-audit.csv
+            projection-model/validation/2026-week7-rb-j2-experimental.csv
           if-no-files-found: warn
