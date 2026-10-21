@@ -1098,9 +1098,26 @@ def main():
     print(f'Eligible using available sources: {len(eligible)}')
 
             
-    # Keep a 50-player review pool for the existing website. Only players
-    # with verified ownership below 65% enter the ranked portion.
+    # Keep the ranked top 50, but also export editorial picks so their
+    # verified ownership and evidence can appear on the website.
+    # Never fabricate a roster percentage or score for an unmatched player.
+    editorial_names = {'Tyler Higbee', 'C.J. Stroud'}
     review_pool = eligible[:50]
+    exported_ids = {c['player_id'] for c in review_pool}
+    for candidate in candidates:
+        if (candidate.get('name') in editorial_names
+                and candidate['player_id'] not in exported_ids):
+            review_pool.append(candidate)
+            exported_ids.add(candidate['player_id'])
+            print(
+                f"EDITORIAL PLAYER: {candidate['name']} "
+                f"ownership={candidate.get('average_rostered')} "
+                f"eligible={candidate.get('ownership_eligible')} "
+                f"score={candidate.get('waiver_evidence_score')}"
+            )
+    for name in editorial_names:
+        if not any(c.get('name') == name for c in candidates):
+            print(f'EDITORIAL PLAYER MISSING FROM SOURCE: {name}')
     provisional_top_10, excluded_top_10 = build_provisional_shortlist(eligible)
     result = {
         'season': data['season'],
