@@ -1654,8 +1654,26 @@ async function loadWaiverWire() {
                 Number(allowed).toFixed(1) + " PPR/game to " + player.position;
             }
           } else {
-            matchup.textContent = "Week " + data.target_week +
-              " matchup: Not verified • Matchup Score: Not available";
+            // An absent opponent is a BYE only when the schedule explicitly
+            // identifies this team as off that week.
+            const byeTeamsByWeek = {
+              5: ["CAR", "KC"],
+              6: ["CIN", "DET", "MIA", "MIN"],
+              7: ["BUF", "JAX", "LAC", "WAS"],
+              8: ["HOU", "NO", "NYG", "SF"],
+              9: ["PIT", "TEN"],
+              10: ["CHI", "DEN", "PHI", "TB"],
+              11: ["ATL", "CLE", "GB", "LAR", "NE", "SEA"],
+              13: ["BAL", "IND", "LV", "NYJ"],
+              14: ["ARI", "DAL"]
+            };
+            const playerTeam = String(player?.team || "").toUpperCase();
+            const scheduledBye = (byeTeamsByWeek[Number(data.target_week)] || [])
+              .includes(playerTeam);
+            matchup.textContent = scheduledBye
+              ? "Week " + data.target_week + " matchup: BYE"
+              : "Week " + data.target_week +
+                " matchup: Not verified • Matchup Score: Not available";
           }
           item.appendChild(matchup);
           // Reuse the AI Rankings weekly-stat feed for every editorial waiver player.
