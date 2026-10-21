@@ -5914,6 +5914,27 @@ function calculateProductionScore(player) {
   );
 }
 
+// Conservative proxy for a recurring multi-TE receiving role.
+// This measures shared target production, not unobserved personnel sets.
+function getMultiTeReceivingRoleBonus(player, recentGames) {
+  if (player.position !== "TE" || recentGames.length < 2) return 0;
+  let qualifyingGames = 0;
+  for (const game of recentGames) {
+    const ownTargets = Number(game.targets || 0);
+    if (ownTargets < 3) continue;
+    const playerName = normalizeName(player.name);
+    const otherTargetedTe = getTeamGameRows(
+      Number(game.season), Number(game.week), game.team
+    ).some(row =>
+      row.position === "TE" &&
+      normalizeName(row.player_display_name || row.player_name || row.name || "") !== playerName &&
+      Number(row.targets || 0) >= 2
+    );
+    if (otherTargetedTe) qualifyingGames += 1;
+  }
+  return qualifyingGames >= 2 ? 6 : 0;
+}
+
 function calculateUsageScore(player) {
   const games = getPlayerWeeklyStats(player)
     .filter(
@@ -6075,7 +6096,8 @@ function calculateUsageScore(player) {
     0,
     Math.min(
       100,
-      Math.round(averageShare * 100)
+      Math.round(averageShare * 100) +
+        getMultiTeReceivingRoleBonus(player, games)
     )
   );
 }
