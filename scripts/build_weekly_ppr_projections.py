@@ -795,23 +795,6 @@ def main():
         projections.loc[te_indices, "projected_ppr"] = matched["challenger_ppr"].to_numpy()
         blended = matched["prior_games"].to_numpy() >= 2
         projections.loc[te_indices[blended], "projection_model"] = "F_TE_50pct_prior_PPG"
-        # Week 7 evidence-based, explicitly provisional Rams role adjustment:
-        # Parkinson drew 6 targets (5-31-1, 14.1 PPR) in Week 6.
-        # Terrance Ferguson remains on IR; Davante Adams is also unavailable.
-        # Keep a conservative 7.0 PPR floor, not an extrapolation of 14.1.
-        # Revisit when Week 7 injury/usage data or a held-out role model is ready.
-        parkinson = (
-            projections["position"].eq("TE")
-            & projections["player_name"].eq("Colby Parkinson")
-            & projections["team"].isin(["LA", "LAR"])
-        )
-        if parkinson.sum() != 1:
-            raise RuntimeError("Expected exactly one Week 7 Colby Parkinson TE projection")
-        projections.loc[parkinson, "projected_ppr"] = projections.loc[
-            parkinson, "projected_ppr"
-        ].clip(lower=7.0)
-        projections.loc[parkinson, "projection_model"] = "F_TE_50pct_prior_PPG_role_floor_W7"
-        print("Week 7 Parkinson role floor applied: 7.0 PPR (provisional).")
         projections.loc[te_indices, "projected_position_rank"] = (
             projections.loc[te_indices, "projected_ppr"]
             .rank(method="min", ascending=False).astype(int)
