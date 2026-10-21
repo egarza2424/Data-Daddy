@@ -1,0 +1,22 @@
+name: Test Rookie Prior Identity
+
+on:
+  push:
+    paths:
+      - app.js
+      - tests/rookie_prior_identity.test.js
+      - .github/workflows/test-rookie-prior-identity.yml
+  workflow_dispatch:
+
+jobs:
+  rookie-prior:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate JavaScript syntax
+        run: node --check app.js
+      - name: Test rookie prior identity and eligibility
+        run: node tests/rookie_prior_identity.test.js
