@@ -4164,41 +4164,26 @@ function getMissingLineupNeeds(
   return missing;
 }
 
-function getLineupPlayerAiData(
-  projection
-) {
+function getLineupPlayerAiData(projection) {
   if (!projection) {
-    return {
-      score: null,
-      rank: null
-    };
+    return { score: null, rank: null };
   }
 
-  // Use the same weekly Model F snapshot
-  // as the lineup optimizer's PPR projections.
-  const score = Number(
-    projection.model_score
-  );
-
-  const rank = Number(
-    projection.position_rank
-  );
-
+  // AI Scores and ranks across Rankings, Projections, Sleepers and
+  // Lineup Optimizer must come from the same live ranking source.
+  // The projection CSV is authoritative only for projected PPR.
+  const player = getProjectionPlayer(projection);
+  if (!player) {
+    return { score: null, rank: null };
+  }
+  const profile = riskSelect?.value || "balanced";
+  const score = getDisplayedAiScore(player, profile);
+  const rank = getPlayerPositionRank(player, profile);
   return {
-    score:
-      Number.isFinite(score) &&
-      score >= 0
-        ? score
-        : null,
-
-    rank:
-      Number.isInteger(rank) &&
-      rank > 0
-        ? rank
-        : null
+    score: Number.isFinite(score) ? score : null,
+    rank: Number.isInteger(rank) && rank > 0 ? rank : null
   };
 }
-
 
 function isPlayerEligibleForSlot(
   player,
