@@ -1420,6 +1420,17 @@ def main():
 
                 proxy_observed_total += 1
 
+                
+                qualification = []
+                if avg_ppr < 12:
+                    qualification.append("LOW_PPR")
+                if avg_workload < 15:
+                    qualification.append("LOW_WORKLOAD")
+                if len(prior_games) < 3:
+                    qualification.append("LIMITED_HISTORY")
+                if emerging:
+                    qualification.append("EMERGING_ROLE")
+
                 candidates.append({
                     "id": player["player_id"],
                     "name": player["name"],
@@ -1433,7 +1444,16 @@ def main():
                         if emerging and len(prior_games) >= 3
                         else no_lines[key]
                     ),
+                    "recent_ppr": round(avg_ppr, 2),
+                    "recent_workload": round(avg_workload, 2),
+                    "latest_workload": player[
+                        "latest_opportunity"
+                    ],
+                    "opportunity_change": change,
+                    "history_games": len(prior_games),
+                    "qualification": qualification,
                 })
+
 
             if len(candidates) < 10:
                 proxy_skipped += 1
@@ -1479,6 +1499,52 @@ def main():
                 f"{scores['J2 + emerging opportunity']:.2f}"
             )
 
+            print(f"\nWEEK {week} — J2 TOP 10 AUDIT")
+
+            j2_ranked = sorted(
+                candidates,
+                key=lambda p: (-p["j2"], p["id"])
+            )
+            evidence_ranked = sorted(
+                candidates,
+                key=lambda p: (-p["evidence"], p["id"])
+            )
+
+            evidence_ranks = {
+                p["id"]: index
+                for index, p in enumerate(
+                    evidence_ranked, start=1
+                )
+            }
+
+            for rank, player in enumerate(
+                j2_ranked[:10], start=1
+            ):
+                change = player["opportunity_change"]
+                change_text = (
+                    f"{change:+.1f}"
+                    if change is not None
+                    else "N/A"
+                )
+
+                print(
+                    f"{rank:2}. {player['name']} | "
+                    f"J2 Rank={rank} | "
+                    f"Evidence Rank="
+                    f"{evidence_ranks[player['id']]} | "
+                    f"Recent PPR={player['recent_ppr']:.2f} | "
+                    f"Recent Workload="
+                    f"{player['recent_workload']:.2f} | "
+                    f"Latest Workload="
+                    f"{player['latest_workload']:.2f} | "
+                    f"Change={change_text} | "
+                    f"History={player['history_games']} | "
+                    f"Qualified="
+                    f"{','.join(player['qualification'])} | "
+                    f"Actual PPR={player['actual']:.2f}"
+                )
+
+        
         print("\nRB WAIVER-PROXY SUMMARY")
         print(f"Eligible player-weeks: {proxy_eligible_total}")
         print(f"Observed player-weeks: {proxy_observed_total}")
