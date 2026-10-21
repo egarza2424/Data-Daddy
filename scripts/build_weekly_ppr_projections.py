@@ -747,7 +747,105 @@ def main():
     projections["projection_model"] = (
         "F_position_specific"
     )
+    # Apply experimental J2 to RBs only.
+    # All other positions and unmatched RBs retain Model F.
+    j2_path = (
+        OUTPUT_DIR
+        / "validation"
+        / f"2026-week{target_week}-rb-j2-experimental.csv"
+    )
 
+    if j2_path.exists():
+        j2 = pd.read_csv(j2_path)
+
+        required = {
+            "player_name",
+            "team",
+            "snapshot_week",
+            "j2_projection_status",
+            "j2_projected_ppr",
+        }
+
+        if required - set(j2.columns):
+            raise RuntimeError("J2 export missing required columns")
+
+        weeks = set(
+            pd.to_numeric(
+                j2["snapshot_week"],
+                errors="coerce",
+            ).dropna().astype(int)
+        )
+
+        if weeks != {target_week}:
+            raise RuntimeError("J2 snapshot week mismatch")
+
+        eligible = j2.loc[
+            j2["j2_projection_status"].eq(
+                "experimental_2026_features"
+            )
+        ].copy()
+
+        if eligible.duplicated(["player_name", "team"]).any():
+            raise RuntimeError("Duplicate J2 player identities")
+
+        eligible["j2_projected_ppr"] = pd.to_numeric(
+            eligible["j2_projected_ppr"],
+            errors="coerce",
+        )
+
+        eligible = eligible.dropna(
+            subset=["j2_projected_ppr"]
+        )
+
+        if (eligible["j2_projected_ppr"] < 0).any():
+            raise RuntimeError("Negative J2 projection")
+
+        rb_mask = projections["position"].eq("RB")
+
+        matched = projections.loc[
+            rb_mask,
+            ["player_name", "team"],
+        ].merge(
+            eligible[
+                ["player_name", "team", "j2_projected_ppr"]
+            ],
+            on=["player_name", "team"],
+            how="left",
+            validate="one_to_one",
+        )
+
+        values = matched["j2_projected_ppr"].to_numpy()
+        rb_indices = projections.index[rb_mask]
+        use_j2 = np.isfinite(values)
+
+        projections.loc[
+            rb_indices[use_j2],
+            "projected_ppr",
+        ] = values[use_j2]
+
+        projections.loc[
+            rb_indices[use_j2],
+            "projection_model",
+        ] = "J2_RB_role_stability"
+
+        projections.loc[
+            rb_indices,
+            "projected_position_rank",
+        ] = (
+            projections.loc[
+                rb_indices,
+                "projected_ppr",
+            ]
+            .rank(method="min", ascending=False)
+            .astype(int)
+        )
+
+        print(
+            f"J2 applied to {use_j2.sum()} RBs; "
+            f"Model F retained for {(~use_j2).sum()} RBs."
+        )
+
+    
     projections["projection_training_season"] = (
         2025
     )
