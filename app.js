@@ -8277,6 +8277,49 @@ window.dataDaddyRbRoleSecurityAudit = function () {
   return rows;
 };
 
+// Historical teammate-return candidates, for review only. A current
+// roster status is NOT proof that a player will be active on game day.
+window.dataDaddyRbReturnCandidates = function (teamFilter = "SEA") {
+  const team = String(teamFilter || "SEA").toUpperCase();
+  const teamRbs = players.filter((p) => p.position === "RB" && p.team === team);
+  const rows = teamRbs.map((p) => {
+    const games = getPlayerWeeklyStats(p)
+      .filter((g) => Number(g.season) === 2026 && g.team === team)
+      .sort((a, b) => Number(b.week || 0) - Number(a.week || 0));
+    const recent = games.slice(0, 3);
+    const latestWeek = games.length ? Number(games[0].week) : null;
+    const completedWeeks = weeklyStats
+      .filter((g) => Number(g.season) === 2026 && g.team === team)
+      .reduce((max, g) => Math.max(max, Number(g.week || 0)), 0);
+    const avg = (items, field) => items.length
+      ? +(items.reduce((sum, g) => sum +
+          Number(field === "carries" ? (g.carries ?? g.rushing_attempts ?? 0) : (g.targets ?? 0)), 0) /
+          items.length).toFixed(1) : null;
+    const gap = latestWeek == null ? null : Math.max(0, completedWeeks - latestWeek);
+    const status = String(p.injuryStatus || p.status || "").toUpperCase();
+    const missingRecent = gap != null && gap >= 1;
+    const hadRole = games.some((g) =>
+      Number(g.carries ?? g.rushing_attempts ?? 0) + Number(g.targets || 0) >= 8
+    );
+    return {
+      name: p.name, team, id: p.id, depth: p.depthChartOrder,
+      latestPlayedWeek: latestWeek, latestTeamWeek: completedWeeks,
+      missedTeamWeeks: gap, recentCarries: avg(recent, "carries"),
+      recentTargets: avg(recent, "targets"),
+      injury: p.injuryStatus || "", rosterStatus: p.status || "",
+      practice: p.practiceParticipation || "",
+      candidate: Boolean(missingRecent && hadRole),
+      confirmation: "UNVERIFIED — requires fresh active/returning evidence"
+    };
+  }).sort((a, b) => Number(b.candidate) - Number(a.candidate) ||
+    (a.depth ?? 99) - (b.depth ?? 99));
+  console.group("DATA DADDY — " + team + " RB historical return candidates");
+  console.log("Missing games and historical role are flags only. Never apply a score penalty without verified availability and role evidence.");
+  console.table(rows);
+  console.groupEnd();
+  return rows;
+};
+
 window.dataDaddyAuditWilson = function () {
   const matches = players.filter((p) =>
     String(p.id) === "11435" ||
