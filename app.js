@@ -6168,7 +6168,11 @@ function calculateOpportunityScore(player) {
   const playerData = playerTotals[playerName];
 
   if (!playerData || playerData.games === 0) {
-    return 50;
+    // No recorded 2026 opportunity is not average opportunity.
+    // TE reserves with no target/carry sample should not be rewarded
+    // with a neutral 50 that can inflate their weekly AI rank.
+    // Retain the historical fallback for other positions until audited.
+    return position === "TE" ? 20 : 50;
   }
 
   const playerAverage =
