@@ -7445,6 +7445,49 @@ Object.entries(nflPlayerLookup)
     });
   });
 
+// The weekly projection universe may contain a recent rookie before
+// Sleeper or the current backend lookup recognizes him. Add only those
+// projection players missing after both authoritative feeds are merged.
+// These records use the existing live scoring model, not a made-up score.
+weeklyPprProjections.forEach(projection => {
+  const position = String(projection.position || "").toUpperCase();
+  const name = String(projection.player_name || "").trim();
+  const nflId = String(projection.player_id || "").trim();
+  const team = normalizeLookupTeam(
+    String(projection.team || "").toUpperCase()
+  );
+  if (!nflId || !name || !team ||
+      !["QB", "RB", "WR", "TE"].includes(position)) return;
+
+  const existing = players.some(player =>
+    [player.id, player.nflId].filter(Boolean)
+      .some(id => String(id) === nflId) ||
+    (normalizeLookupName(player.name) === normalizeLookupName(name) &&
+     player.position === position &&
+     normalizeLookupTeam(player.team) === team)
+  );
+  if (existing) return;
+
+  players.push({
+    id: nflId,
+    nflId,
+    name,
+    position,
+    team,
+    status: String(projection.roster_status || "UNKNOWN"),
+    injuryStatus: projection.injury_status || null,
+    injuryStartDate: null,
+    practiceParticipation: null,
+    depthChartPosition: null,
+    depthChartOrder: null,
+    age: null,
+    yearsExp: null,
+    number: null,
+    backendAdded: true,
+    projectionAdded: true
+  });
+});
+
 players.sort((a, b) => {
   if (a.position !== b.position) {
     return (
