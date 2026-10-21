@@ -39,6 +39,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas numpy
 
+      - name: Check projection scripts
+        run: |
+          python -m py_compile scripts/build_live_rb_j2_features.py scripts/build_rb_returning_player_audit.py scripts/build_week7_rb_j2_experiment.py scripts/build_weekly_ppr_projections.py
+
+      - name: Generate Week 7 J2 RB projections
+        run: |
+          python scripts/build_live_rb_j2_features.py
+          python scripts/build_rb_returning_player_audit.py
+          python scripts/build_week7_rb_j2_experiment.py
+
       - name: Run weekly PPR projection model
         run: |
           python scripts/build_weekly_ppr_projections.py
@@ -241,12 +251,26 @@ jobs:
               ].astype(str)
           )
 
-          if models != {
-              "F_position_specific"
-          }:
+          allowed_models = {
+              "F_position_specific",
+              "J2_RB_role_stability",
+              "Manual_Week7_RB_override",
+          }
+
+          if not models.issubset(allowed_models):
               raise SystemExit(
                   "Unexpected projection model: "
                   f"{sorted(models)}"
+              )
+
+          if not (
+              projections.loc[
+                  projections["position"].ne("RB"),
+                  "projection_model",
+              ] == "F_position_specific"
+          ).all():
+              raise SystemExit(
+                  "Non-RB projections must remain Model F."
               )
 
           coefficient_positions = set(
