@@ -28,9 +28,15 @@ for r in validation:
     if r.get("position") != "TE" or not r.get("actual_ppr") or not r.get("model_score"):
         continue
     pid = str(r.get("player_id") or "")
-    rz = records.get(pid)
-    if not rz or rz.get("position") != "TE":
+    # Validation uses Data Daddy IDs; red-zone feed is keyed by nflverse IDs.
+    # Match TE names only when unambiguous, never by unrelated ID namespace.
+    player_name = str(r.get("player_name") or "").strip().casefold()
+    matches = [rec for rec in records.values()
+               if rec.get("position") == "TE"
+               and str(rec.get("player_name") or "").strip().casefold() == player_name]
+    if len(matches) != 1:
         continue
+    rz = matches[0]
     old = float(rz["red_zone_score"])
     proposed = min(100, round(float(rz["weighted_opportunities_per_game"]) / te_max * 100))
     baseline = float(r["model_score"])
