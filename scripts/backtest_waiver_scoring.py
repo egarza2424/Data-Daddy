@@ -849,6 +849,14 @@ def main():
         "2025-rb-model-j2-predictions.csv"
     )
 
+    # Experimental J2 variant without historical betting lines.
+    j2_no_lines_model = "J2_RB_no_betting_lines"
+
+    # Both J2 variants are stored in the same validation CSV.
+    j2_no_lines_url = j2_url
+
+
+    
     if args.season != 2025:
         print("Skipped: J2 comparison currently supports 2025.")
     else:
