@@ -1,5 +1,6 @@
 from pathlib import Path
 import re
+import json
 
 import numpy as np
 import pandas as pd
@@ -772,6 +773,34 @@ def main():
     projections["projection_model"] = (
         "F_position_specific"
     )
+    # Historical held-out TE challenger: prior-week-only 50% PPG blend.
+    # The existing snapshot availability and missing-evidence filters run first.
+    if target_week == 7:
+        from audit_te_ppg_challenger import build_challenger
+
+        stats_path = Path("nfl-stats.json")
+        if not stats_path.exists():
+            raise RuntimeError("TE blend requires nfl-stats.json")
+        with stats_path.open(encoding="utf-8") as handle:
+            stats = json.load(handle)
+        te_audit = build_challenger(projections, stats, target_week, 0.5)
+        te_mask = projections["position"].eq("TE")
+        matched = projections.loc[te_mask, ["player_name", "team"]].merge(
+            te_audit[["player_name", "team", "challenger_ppr", "prior_games"]],
+            on=["player_name", "team"], how="left", validate="one_to_one"
+        )
+        if matched["challenger_ppr"].isna().any():
+            raise RuntimeError("Missing TE challenger identity match")
+        te_indices = projections.index[te_mask]
+        projections.loc[te_indices, "projected_ppr"] = matched["challenger_ppr"].to_numpy()
+        blended = matched["prior_games"].to_numpy() >= 2
+        projections.loc[te_indices[blended], "projection_model"] = "F_TE_50pct_prior_PPG"
+        projections.loc[te_indices, "projected_position_rank"] = (
+            projections.loc[te_indices, "projected_ppr"]
+            .rank(method="min", ascending=False).astype(int)
+        )
+        print(f"Week 7 TE PPG blend applied to {blended.sum()} players.")
+        print("Role-change and injury verification still required before social publishing.")
     # Apply experimental J2 to RBs only.
     # All other positions and unmatched RBs retain Model F.
     j2_path = (
