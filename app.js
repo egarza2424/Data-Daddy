@@ -1615,6 +1615,18 @@ async function loadWaiverWire() {
           if (name === "Tyler Huntley") note = " • WATCH ONLY: Consider if Lamar Jackson is out AND Huntley is confirmed to start";
           info.textContent = "Data Daddy Evidence Score: " + score + note;
           item.appendChild(info);
+          const rostered = document.createElement("p");
+          const rosterPct = player && Number.isFinite(Number(player.average_rostered))
+            ? Number(player.average_rostered)
+            : null;
+          const sourceNames = player && player.ownership_sources && typeof player.ownership_sources === "object"
+            ? Object.keys(player.ownership_sources).filter((source) =>
+                Number.isFinite(Number(player.ownership_sources[source]?.percent)))
+            : [];
+          rostered.textContent = rosterPct !== null && sourceNames.length > 0
+            ? "Rostered: " + rosterPct.toFixed(2) + "% (" + sourceNames.map((source) => source.toUpperCase()).join(", ") + ")"
+            : "Rostered: Not verified";
+          item.appendChild(rostered);
           section.appendChild(item);
         });
         container.appendChild(section);
