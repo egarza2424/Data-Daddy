@@ -1042,6 +1042,165 @@ def main():
         )
 
 
+    # ---------------------------------------------------------
+    # RB EVIDENCE / J2 NO-LINES / BLEND COMPARISON
+    # ---------------------------------------------------------
+    print("\nRB THREE-MODEL HISTORICAL COMPARISON")
+    print("Diagnostic only; historical ownership not verified.")
+
+    if args.season == 2025:
+        no_lines = {}
+        duplicate_no_lines = set()
+
+        for record in j2_rows:
+            if record.get("model") != j2_no_lines_model:
+                continue
+
+            week = int(record["week"])
+            key = (week, record["player_id"])
+
+            if not 7 <= week <= 18:
+                continue
+
+            if int(record["training_through_week"]) >= week:
+                raise ValueError(
+                    f"Invalid J2 no-lines cutoff: {key}"
+                )
+
+            if key in no_lines:
+                duplicate_no_lines.add(key)
+                continue
+
+            no_lines[key] = float(record["projected_ppr"])
+
+        for key in duplicate_no_lines:
+            del no_lines[key]
+
+        print(f"No-lines predictions: {len(no_lines)}")
+        print(
+            f"Duplicate predictions excluded: "
+            f"{len(duplicate_no_lines)}"
+        )
+
+        results = {
+            "Evidence": [],
+            "J2 no lines": [],
+            "70% J2 + 30% Evidence": [],
+        }
+        weekly_wins = Counter()
+
+        for week in range(7, 19):
+            scored = score_historical_signals(
+                build_historical_signals(rows, week)
+            )
+
+            candidates = []
+
+            for player in scored:
+                if player["position"] != "RB":
+                    continue
+
+                key = (week, player["player_id"])
+
+                if key not in no_lines:
+                    continue
+
+                if actual_counts[key] != 1:
+                    continue
+
+                candidates.append({
+                    "id": player["player_id"],
+                    "evidence": player[
+                        "historical_evidence_score"
+                    ],
+                    "j2": no_lines[key],
+                    "actual": actual_lookup[key],
+                })
+
+            if len(candidates) < 10:
+                print(
+                    f"Week {week}: skipped; "
+                    f"matched RBs={len(candidates)}"
+                )
+                continue
+
+            # Convert both signals to within-week ranks.
+            # This prevents differences in score scale from
+            # determining the blended ranking.
+            n = len(candidates)
+
+            for field in ("evidence", "j2"):
+                ranked = sorted(
+                    candidates,
+                    key=lambda p: (-p[field], p["id"])
+                )
+                for rank, player in enumerate(ranked):
+                    player[f"{field}_pct"] = (
+                        100 * (n - 1 - rank) / (n - 1)
+                    )
+
+            for player in candidates:
+                player["blend"] = (
+                    0.70 * player["j2_pct"]
+                    + 0.30 * player["evidence_pct"]
+                )
+
+            scores = {}
+
+            for label, field in (
+                ("Evidence", "evidence"),
+                ("J2 no lines", "j2"),
+                ("70% J2 + 30% Evidence", "blend"),
+            ):
+                selected = sorted(
+                    candidates,
+                    key=lambda p: (-p[field], p["id"])
+                )[:10]
+
+                scores[label] = (
+                    sum(p["actual"] for p in selected) / 10
+                )
+                results[label].append(scores[label])
+
+            best = max(scores.values())
+            winners = [
+                label for label, value in scores.items()
+                if abs(value - best) < 1e-9
+            ]
+
+            if len(winners) == 1:
+                weekly_wins[winners[0]] += 1
+            else:
+                weekly_wins["Tie"] += 1
+
+            print(
+                f"Week {week}: n={n} | "
+                f"Evidence={scores['Evidence']:.2f} | "
+                f"J2={scores['J2 no lines']:.2f} | "
+                f"Blend="
+                f"{scores['70% J2 + 30% Evidence']:.2f}"
+            )
+
+        print("\nTHREE-MODEL SUMMARY")
+
+        for label, values in results.items():
+            if values:
+                print(
+                    f"{label}: weeks={len(values)}, "
+                    f"mean Top10 actual PPR="
+                    f"{sum(values) / len(values):.3f}"
+                )
+
+        print(f"Weekly winners: {dict(weekly_wins)}")
+        print(
+            "Exploratory 70/30 blend; weight not validated. "
+            "Observed-outcome candidate pool only. "
+            "Not an ownership-filtered waiver backtest."
+        )
+    else:
+        print("Skipped: comparison supports 2025 only.")
+
+
     
     
     print("Status: HISTORICAL SIGNAL VALIDATION")
