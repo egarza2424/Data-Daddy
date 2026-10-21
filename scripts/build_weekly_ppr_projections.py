@@ -452,6 +452,31 @@ def prepare_snapshot(
                 index=False
             )
         )
+    # Remove TE rows whose entire opportunity/production profile is
+    # the known missing-data fallback, not observed receiving evidence.
+    # This does not exclude TEs with any measured usage or production.
+    te_fallback = snapshot["position"].eq("TE")
+    for column, value in {
+        "opportunity_score": 50,
+        "production_score": 0,
+        "usage_score": 20,
+        "redzone_score": 50,
+        "model_confidence_score": 50,
+    }.items():
+        te_fallback &= pd.to_numeric(
+            snapshot[column], errors="coerce"
+        ).eq(value)
+
+    excluded_te = snapshot.loc[
+        te_fallback, ["player_name", "team"]
+    ]
+    if not excluded_te.empty:
+        print(
+            "Excluding TE missing-evidence fallback projections:"
+        )
+        print(excluded_te.to_string(index=False))
+    snapshot = snapshot.loc[~te_fallback].copy()
+
     # Diagnostic: detect duplicate player identities.
     # Preserve all rows until identity is verified.
     normalized_names = (
