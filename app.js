@@ -5743,9 +5743,20 @@ function getPlayerWeeklyStats(player) {
   }
 
   const playerName = normalizeName(player.name);
+  // Include position and team: a name-only cache can reuse another
+  // player's weekly rows, distorting low-sample usage and production.
+  const normalizedTeam = value =>
+    ({ LA: "LAR", JAC: "JAX", WSH: "WAS" })[
+      String(value || "").toUpperCase()
+    ] || String(value || "").toUpperCase();
+  const cacheKey = [
+    playerName,
+    String(player.position || "").toUpperCase(),
+    normalizedTeam(player.team)
+  ].join("|");
 
-  if (playerWeeklyStatsCache.has(playerName)) {
-    return playerWeeklyStatsCache.get(playerName);
+  if (playerWeeklyStatsCache.has(cacheKey)) {
+    return playerWeeklyStatsCache.get(cacheKey);
   }
 
   const matches = weeklyStats.filter((row) => {
@@ -5759,13 +5770,18 @@ function getPlayerWeeklyStats(player) {
     if (rowPosition && playerPosition && rowPosition !== playerPosition) {
       return false;
     }
+    const rowTeam = normalizedTeam(row.team);
+    const playerTeam = normalizedTeam(player.team);
+    if (rowTeam && playerTeam && rowTeam !== playerTeam) {
+      return false;
+    }
     return Boolean(
       playerName &&
       (fullName === playerName || shortName === playerName)
     );
   });
 
-  playerWeeklyStatsCache.set(playerName, matches);
+  playerWeeklyStatsCache.set(cacheKey, matches);
 
   return matches;
 }
