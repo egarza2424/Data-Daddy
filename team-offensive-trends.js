@@ -11,6 +11,17 @@
     if (!response.ok) throw new Error("Stats feed unavailable");
     const payload = await response.json();
     if (!Array.isArray(payload.players)) throw new Error("Missing player-week stats");
+    // Historical personnel is displayed separately from current-season target shares.
+    let historicalPersonnel = null;
+    try {
+      const personnelResponse = await fetch("./data/team_personnel_trends_2025.json", {cache:"no-cache"});
+      if (personnelResponse.ok) {
+        const personnelData = await personnelResponse.json();
+        if (personnelData.season === 2025 && Array.isArray(personnelData.teams)) {
+          historicalPersonnel = personnelData.teams;
+        }
+      }
+    } catch (_) { /* Current-season target dashboard remains available. */ }
     const rows = payload.players.filter(p =>
       Number(p.season) === 2026 && Number(p.week) >= 1 &&
       ["REG", undefined, null].includes(p.season_type) &&
@@ -52,6 +63,31 @@
         box.append(title,value,count);grid.append(box);
       }
       output.append(grid);
+      if (historicalPersonnel) {
+        const personnel = historicalPersonnel.find(t => t.team === team || (team === "LAR" && t.team === "LA"));
+        if (personnel) {
+          const heading = document.createElement("h3");
+          heading.textContent = "2025 offensive personnel — historical baseline";
+          output.append(heading);
+          const formations = document.createElement("div");
+          formations.className = "team-trends-grid";
+          for (const pkg of ["11","12","13","21","22"]) {
+            const box = document.createElement("div");
+            box.className = "team-trend-stat";
+            const title = document.createElement("strong");
+            title.textContent = pkg + " personnel";
+            const value = document.createElement("span");
+            const pct = personnel.personnel_share_pct[pkg];
+            value.textContent = Number.isFinite(pct) ? fmt(pct) : "N/A";
+            box.append(title,value);
+            formations.append(box);
+          }
+          output.append(formations);
+          const multiple = document.createElement("p");
+          multiple.textContent = "2025 plays with 2+ TEs: " + fmt(personnel.two_plus_te_share_pct) + ". Historical formation use does not establish 2026 usage, routes run, or targets.";
+          output.append(multiple);
+        }
+      }
       const trend=document.createElement("p");
       if(prior.total && recent.total) {
         const delta=recent.share-prior.share;
