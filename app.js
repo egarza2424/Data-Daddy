@@ -6239,6 +6239,17 @@ function getAdditionalSignalEvidence(player, label, details, confidence, trench)
         add(isPlayerHistory ? "Player historical PPR / game" : "Combined positional PPR / game",
           Number(details.averagePpr).toFixed(1));
       if (meetings < 3) add("Historical sample", "Limited (" + meetings + " of 3 games)");
+      const games = Array.isArray(details?.games) ? details.games.slice(0,3) : [];
+      for (const game of games) {
+        const season = Number(game.season);
+        const week = Number(game.week);
+        const points = game.ppr ?? game.ppr_points ?? game.fantasy_points_ppr;
+        if (!Number.isInteger(season) || !Number.isInteger(week) ||
+            points == null || !Number.isFinite(Number(points))) continue;
+        const opponent = String(game.opponent || game.opponent_team || "").trim();
+        add("Week " + week + " (" + season + ")" + (opponent ? " vs " + opponent : ""),
+          Number(points).toFixed(1) + " PPR");
+      }
     } else {
       add("Historical sample", "No direct meetings; neutral score");
     }
@@ -6950,7 +6961,8 @@ opponent:
       positionSignal.average_ppr,
 
     sampleSize:
-      Number(positionSignal.sample_size || 0)
+      Number(positionSignal.sample_size || 0),
+    games: positionSignal.games || positionSignal.historical_games || []
   };
 }
 
@@ -6998,7 +7010,8 @@ opponent:
       matchingEntry.average_ppr,
 
     sampleSize:
-      Number(matchingEntry.sample_size || 0)
+      Number(matchingEntry.sample_size || 0),
+    games: matchingEntry.games || matchingEntry.historical_games || []
   };
 }
 
