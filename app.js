@@ -6239,7 +6239,7 @@ function getCoreSignalEvidence(player, signal) {
   if (games.length < 3) add("Sample warning", "Fewer than 3 games");
   return '<div class="confidence-breakdown core-signal-breakdown">' +
     lines.map(([label, value]) =>
-      '<div><strong>' + label + '</strong><span style="color:#fbbf24;font-weight:800;">' + value + '</span></div>'
+      '<div><strong>' + label + '</strong><span class="core-signal-value" style="color:#fbbf24 !important;font-weight:800;">' + value + '</span></div>'
     ).join("") + '</div>';
 }
 
