@@ -66,3 +66,39 @@ for (position, tier), group in eligible.groupby(["position", "projection_tier"],
 print("Historical provenance: build_historical_ppr_dataset.py specifies prior weeks only;")
 print("historical availability is a constant 95, not reconstructed injury information.")
 print("Do not treat these observational comparisons as calibrated probabilities.")
+
+# Experimental, read-only role-growth challenger. Reconstruct prior-game workload
+# from raw historical stats; do not use target-week observations.
+from scripts.build_historical_ppr_dataset import prepare_stats, opportunity_value, stability_score
+from pathlib import Path
+stats_path = Path("historical-data/player_stats_2025.csv")
+if not stats_path.exists():
+    print("Role-growth challenger skipped: historical player_stats_2025.csv unavailable")
+else:
+    raw = prepare_stats(pd.read_csv(stats_path))
+    raw["opportunity_raw"] = raw.apply(opportunity_value, axis=1)
+    candidates = []
+    for row in joined.itertuples(index=False):
+        prior = raw.loc[
+            (raw.player_id.astype(str) == str(row.player_id))
+            & (raw.week < row.week)
+            & (raw.season == getattr(row, "season", 2025))
+        ].sort_values("week").tail(3)
+        if len(prior) < 3:
+            continue
+        workload = prior.opportunity_raw.astype(float).tolist()
+        baseline = max((workload[0] + workload[1]) / 2, 1)
+        growth = (workload[2] - baseline) / baseline
+        # Small capped reward for sustained role expansion, not a live model change.
+        bonus = min(10.0, max(0.0, growth * 12.0)) if workload[2] >= workload[1] else 0.0
+        candidates.append((row.position, row.projected_ppr, row.actual_ppr,
+                           row.model_confidence_score, min(100, row.model_confidence_score + bonus)))
+    if candidates:
+        trial = pd.DataFrame(candidates, columns=["position", "projected", "actual", "baseline", "challenger"])
+        trial["error"] = (trial.actual - trial.projected).abs()
+        trial["tier"] = pd.cut(trial.projected, [-float("inf"),5,10,15,20,float("inf")])
+        print("\\nRole-growth challenger: score-band diagnostics (not a projection-model backtest)")
+        for variant in ["baseline", "challenger"]:
+            trial["band"] = pd.cut(trial[variant], [-0.01,40,60,80,100])
+            print(variant, trial.groupby("band", observed=True).agg(n=("error","size"),mae=("error","mean")).round(3).to_string())
+        print("This diagnostic does NOT establish improved predictive accuracy; test downstream model with frozen walk-forward retraining before deployment.")
