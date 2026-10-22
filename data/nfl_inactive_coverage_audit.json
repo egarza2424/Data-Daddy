@@ -1,21 +1,13 @@
 {
-  "generated_at_utc": "2026-10-20T00:20:00.229060+00:00",
+  "generated_at_utc": "2026-10-22T04:10:23.910384+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
-    "unverified": 1,
+    "unverified": 0,
     "missing_near_kickoff": 0,
-    "pending": 14
+    "pending": 15
   },
   "games": [
-    {
-      "game_id": "2026_06_WAS_SF",
-      "week": 6,
-      "kickoff_utc": "2026-10-20T00:15:00+00:00",
-      "status": "unverified",
-      "official_inactives_verified": false,
-      "source_url": "https://www.nfl.com/news/week-6-monday-night-inactives-washington-commanders-at-san-francisco-49ers"
-    },
     {
       "game_id": "2026_07_NE_CHI",
       "week": 7,
@@ -124,6 +116,14 @@
       "game_id": "2026_07_DAL_PHI",
       "week": 7,
       "kickoff_utc": "2026-10-27T00:15:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_08_CAR_GB",
+      "week": 8,
+      "kickoff_utc": "2026-10-30T00:15:00+00:00",
       "status": "pending",
       "official_inactives_verified": false,
       "source_url": null
