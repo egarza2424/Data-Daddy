@@ -1,0 +1,32 @@
+name: Audit WR Component Data
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pandas
+      - name: Verify historical receiving components and pregame features
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd
+          p=Path("projection-model/2025-historical-ppr-dataset.csv")
+          d=pd.read_csv(p,nrows=5)
+          print("Historical dataset fields:")
+          print(", ".join(d.columns))
+          needed=["player_id","season","week","actual_ppr","opportunity_score","production_score","usage_score","redzone_score","model_confidence_score"]
+          print("Pregame Model F inputs:",{c:c in d.columns for c in needed})
+          components=["targets","receptions","receiving_yards","receiving_tds","rushing_yards","rushing_tds"]
+          print("Receiving outcome components:",{c:c in d.columns for c in components})
+          print("Potential raw 2025 files:")
+          for p in sorted(Path("historical-data").glob("*2025*"))[:25]:
+              print(p, "bytes",p.stat().st_size)
+          print("DIAGNOSTIC ONLY. No live changes.")
+          PY
