@@ -85,7 +85,14 @@ def compute(row,starters=()):
         run_score=bounded(run_score+injury_adjustment,0,100)
     return {'available':True,'game_id':row['game_id'],'offense_team':row['offense_team'],
             'defense_team':row['defense_team'], 'pass_score':round(pass_score,2),
-            'run_score':round(run_score,2),'ol_starter_availability':availability,
+            'run_score':round(run_score,2),
+            'offense_sack_rate':round(off_sack*100,2),
+            'offense_qb_hit_rate':round(off_hit*100,2),
+            'offense_rush_success_rate':round(off_run*100,2),
+            'defense_sack_rate':round(def_sack*100,2),
+            'defense_qb_hit_rate':round(def_hit*100,2),
+            'defense_run_stop_rate':round(def_stop*100,2),
+            'ol_starter_availability':availability,
             'injury_adjusted':availability is not None,
             'confidence':'lineup_confirmed' if availability is not None else 'team_metrics_only',
             'experimental':True}
@@ -97,6 +104,8 @@ def process(metric_csv,starter_csv,output_csv):
     else:starters=[]
     results=[compute(r,starters) for r in metrics]
     keys=['game_id','offense_team','defense_team','available','pass_score','run_score',
+          'offense_sack_rate','offense_qb_hit_rate','offense_rush_success_rate',
+          'defense_sack_rate','defense_qb_hit_rate','defense_run_stop_rate',
           'ol_starter_availability','injury_adjusted','confidence','reason','experimental']
     with open(output_csv,'w',newline='') as f:
         w=csv.DictWriter(f,fieldnames=keys,extrasaction='ignore');w.writeheader();w.writerows(results)
