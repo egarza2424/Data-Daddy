@@ -6181,7 +6181,7 @@ function getCoreSignalEvidence(player, signal) {
   const targets = game => num(game, "targets");
   const attempts = game => num(game, "attempts", "passing_attempts");
   const lines = [];
-  const add = (label, value) => lines.push(label + ": " + value);
+  const add = (label, value) => lines.push([label, String(value)]);
   if (signal === "Opportunity") {
     add("Games evaluated", games.length + " (most recent)");
     if (player.position === "QB") {
@@ -6237,7 +6237,10 @@ function getCoreSignalEvidence(player, signal) {
     add("Method", player.position === "QB" ? "QB rushing share" : "Rushing and target shares");
   }
   if (games.length < 3) add("Sample warning", "Fewer than 3 games");
-  return lines.join(" · ");
+  return '<div class="confidence-breakdown core-signal-breakdown">' +
+    lines.map(([label, value]) =>
+      '<div><strong>' + label + '</strong><span>' + value + '</span></div>'
+    ).join("") + '</div>';
 }
 
 function getOpportunityGameCount(player) {
@@ -9299,7 +9302,9 @@ const signalDetailsHtml =
         <p>${description}</p>
 
         ${evidence
-          ? `<div class="metric-sample-size">${evidence}</div>`
+          ? ["Opportunity", "Recent Production", "Usage"].includes(label)
+            ? evidence
+            : `<div class="metric-sample-size">${evidence}</div>`
           : ""}
 
         ${breakdownHtml}
