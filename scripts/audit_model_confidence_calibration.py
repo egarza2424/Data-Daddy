@@ -33,3 +33,19 @@ print(joined.groupby(["position", "confidence_band"], observed=True).agg(rows=("
 print("Overall:")
 print(joined.groupby("confidence_band", observed=True).agg(rows=("absolute_error", "size"), mae=("absolute_error", "mean")).round(3).to_string())
 print("Caution: verify confidence features are pregame-only before interpreting calibration.")
+
+# Control for player scoring volume: compare errors within pregame projection tiers.
+joined["projection_tier"] = pd.cut(
+    joined.projected_ppr, [-float("inf"), 5, 10, 15, 20, float("inf")],
+    labels=["<=5", "5-10", "10-15", "15-20", ">20"])
+joined["scaled_error"] = joined.absolute_error / joined.projected_ppr.clip(lower=5)
+print("\\nProjected PPR and scale-adjusted error by confidence band:")
+print(joined.groupby("confidence_band", observed=True).agg(
+    rows=("absolute_error", "size"),
+    avg_projected_ppr=("projected_ppr", "mean"),
+    mae=("absolute_error", "mean"),
+    scaled_error=("scaled_error", "mean")).round(3).to_string())
+print("\\nMAE within comparable projected-PPR tiers:")
+print(joined.groupby(["position", "projection_tier", "confidence_band"], observed=True).agg(
+    rows=("absolute_error", "size"), mae=("absolute_error", "mean")).round(3).to_string())
+print("Interpret tiers with small row counts cautiously; no model parameters changed.")
