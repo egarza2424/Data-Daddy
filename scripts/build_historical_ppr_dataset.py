@@ -1603,6 +1603,14 @@ def build_week(
                         1
                     ),
 
+                # Same-week outcomes only; never included in pregame predictors.
+                "targets": float(player_dict.get("targets", 0) or 0),
+                "receptions": float(player_dict.get("receptions", 0) or 0),
+                "receiving_yards": float(player_dict.get("receiving_yards", 0) or 0),
+                "receiving_tds": float(player_dict.get("receiving_tds", 0) or 0),
+                "rushing_yards": float(player_dict.get("rushing_yards", 0) or 0),
+                "rushing_tds": float(player_dict.get("rushing_tds", 0) or 0),
+
                 "actual_ppr":
                     round(
                         float(
@@ -1878,6 +1886,12 @@ def build_dataset(
         "rb_season_catch_rate",
         "rb_season_ypr",
         "matchup_raw",
+        "targets",
+        "receptions",
+        "receiving_yards",
+        "receiving_tds",
+        "rushing_yards",
+        "rushing_tds",
         "actual_ppr",
     ]
 
