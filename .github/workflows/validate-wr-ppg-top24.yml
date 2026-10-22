@@ -1,0 +1,55 @@
+name: Validate WR PPG Top 24
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pandas numpy
+      - name: Evaluate weekly top-24 recall and ranking error
+        run: |
+          python - <<'PY'
+          import pandas as pd,numpy as np
+          df=pd.read_csv("projection-model/2025-historical-ppr-dataset.csv")
+          df=df[df.position.eq("WR")].copy()
+          cols=["opportunity_score","production_score","usage_score","redzone_score","model_confidence_score"]
+          for c in cols+["actual_ppr","week"]:df[c]=pd.to_numeric(df[c],errors="coerce")
+          df=df.dropna(subset=cols+["actual_ppr","week","player_id"]).copy()
+          df["week"]=df.week.astype(int)
+          if df.duplicated(["player_id","week"]).any():raise RuntimeError("Duplicate player-week rows")
+          train=df[df.week.between(4,9)]
+          test=df[df.week.ge(10)].copy()
+          X=np.column_stack([np.ones(len(train)),train[cols].to_numpy()])
+          beta=np.linalg.lstsq(X,train.actual_ppr.to_numpy(),rcond=None)[0]
+          test["baseline"]=np.maximum(np.column_stack([np.ones(len(test)),test[cols].to_numpy()])@beta,0)
+          hist=df[["player_id","week","actual_ppr"]].copy()
+          prior={}
+          for player,grp in hist.groupby("player_id"):
+              grp=grp.sort_values("week")
+              for row in grp.itertuples(index=False):
+                  previous=grp.loc[grp.week.lt(row.week),"actual_ppr"]
+                  prior[(player,row.week)]=(len(previous),previous.mean() if len(previous) else np.nan)
+          test["prior_games"]=[prior[(p,w)][0] for p,w in zip(test.player_id,test.week)]
+          test["prior_ppg"]=[prior[(p,w)][1] for p,w in zip(test.player_id,test.week)]
+          test["blend50"]=test.baseline.copy()
+          m=test.prior_games.ge(2)&test.prior_ppg.notna()
+          test.loc[m,"blend50"]=.5*test.loc[m,"baseline"]+.5*test.loc[m,"prior_ppg"]
+          test["actual_rank"]=test.groupby("week").actual_ppr.rank(method="first",ascending=False)
+          for label in ["baseline","blend50"]:
+              test[label+"_rank"]=test.groupby("week")[label].rank(method="first",ascending=False)
+              true_top=test.actual_rank.le(24)
+              recall=(true_top&test[label+"_rank"].le(24)).sum()/true_top.sum()
+              rank_error=(test[label+"_rank"]-test.actual_rank).abs().mean()
+              print(f"{label}: weeks={test.week.nunique()}, actual_top24_recall={recall:.3%}, mean_absolute_rank_error={rank_error:.3f}")
+          print("WARNING: Historical dataset may not contain the full WR universe; recall is within the available dataset only.")
+          print("This is a historical diagnostic, not a live publication.")
+          PY
