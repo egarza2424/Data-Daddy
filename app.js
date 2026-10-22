@@ -6247,25 +6247,23 @@ function getAdditionalSignalEvidence(player, label, details, confidence, trench)
     add("Depth chart", player.depthChartOrder != null ? "#" + player.depthChartOrder : "Unavailable");
     add("Risk method", "Rule-based; not a probability");
   } else if (label === "Trench Matchup") {
-    add("Opponent defensive front", trench?.opponent || "Unavailable");
-    add("Trench score", trench ? trench.score.toFixed(1) + "/100" : "Unavailable");
-    add("Line grading source", "Public team metrics; not PFF grades");
-    const rate = value => value !== null && value !== undefined &&
-      Number.isFinite(Number(value)) ? Number(value).toFixed(2) + "%" : "Not supplied by current feed";
-    add("Offense sacks allowed / pass play", rate(trench?.offenseSackRate));
-    add("Offense QB hits allowed / pass play", rate(trench?.offenseQbHitRate));
-    add("Offense rushing success rate", rate(trench?.offenseRushSuccessRate));
-    add("Defense sacks / pass play", rate(trench?.defenseSackRate));
-    add("Defense QB hits / pass play", rate(trench?.defenseQbHitRate));
-    add("Defense run-stop rate", rate(trench?.defenseRunStopRate));
-    add("Pass matchup", trench?.passScore != null ? trench.passScore.toFixed(1) + "/100" : "Unavailable");
-    add("Run matchup", trench?.runScore != null ? trench.runScore.toFixed(1) + "/100" : "Unavailable");
-    add("OL injury adjustment", trench ? (trench.injuryAdjusted ? "Included" : "Unavailable") : "Unavailable");
-    add("Confidence", trench?.confidence || "Unavailable");
-    add("Detailed rate feed", trench?.offenseSackRate != null ? "Loaded" : "Not present in loaded snapshot");
-    add("Data file", snapshotWeek ? "Week " + snapshotWeek + " frozen snapshot" : "Live nfl-stats.json");
-    add("Published trench week", trenchSignalWeek ?? "Unavailable");
-    add("Rate data source", trench?.rateSource || "Not included in loaded trench record");
+    if (trench) {
+      add("Opponent", trench.opponent);
+      add("Overall trench matchup", trench.score.toFixed(1) + "/100");
+      add("Pass matchup", trench.passScore.toFixed(1) + "/100");
+      add("Run matchup", trench.runScore.toFixed(1) + "/100");
+      const rate = (label, value) => {
+        if (value !== null && value !== undefined && Number.isFinite(Number(value))) {
+          add(label, Number(value).toFixed(2) + "%");
+        }
+      };
+      rate("Offense sacks allowed / pass play", trench.offenseSackRate);
+      rate("Offense QB hits allowed / pass play", trench.offenseQbHitRate);
+      rate("Offense rushing success rate", trench.offenseRushSuccessRate);
+      rate("Defense sacks / pass play", trench.defenseSackRate);
+      rate("Defense QB hits / pass play", trench.defenseQbHitRate);
+      rate("Defense run-stop rate", trench.defenseRunStopRate);
+    }
   }
   return rows.length ? signalEvidenceRows(rows) : "";
 }
@@ -9821,18 +9819,7 @@ function renderPlayerCard(
             </p>
 
             ${getAdditionalSignalEvidence(player, "Trench Matchup", null, null, trench)}
-            <div class="metric-sample-size">
-              ${trench
-                ? `Upcoming matchup · ${trench.opponent} ·
-                   ${trench.injuryAdjusted
-                     ? "pregame offensive-line availability included"
-                     : "team-level metrics only"} ·
-                   confidence: ${trench.confidence || "not specified"} ·
-                   historical game count not provided`
-                : gameCompleted
-                  ? "Completed game · pregame signal not applicable"
-                  : "Upcoming matchup · verified trench data unavailable"}
-            </div>
+
           </div>
 
         </div>
