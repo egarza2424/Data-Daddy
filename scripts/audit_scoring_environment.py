@@ -50,6 +50,12 @@ for team, (opponent, total, spread, implied, source) in seen.items():
         issues.append(f"{team}/{opponent}: implied-point difference does not match spread magnitude")
     if abs(implied+other_implied-total) > 0.21:
         issues.append(f"{team}/{opponent}: implied totals do not sum to game total")
+print("\nPublished feed metadata:")
+for key in ("updated", "updated_at", "generated_at", "snapshot_generated_utc", "source", "season", "target_week"):
+    if key in data: print(f"  {key}: {data[key]}")
+for team in ("LAR", "LV", "DET", "GB"):
+    record = env.get(team) or env.get("LA" if team == "LAR" else team) or {}
+    print(f"  {team} metadata:", {k: v for k, v in record.items() if any(term in k.lower() for term in ("source", "time", "date", "updated", "timestamp", "book", "line"))})
 print(f"\nChecked {len(seen)} available team entries; {len(issues)} issue(s).")
 for issue in issues: print("ISSUE:", issue)
 print("Note: this validates internal market arithmetic and reciprocity, not independent sportsbook accuracy.")
