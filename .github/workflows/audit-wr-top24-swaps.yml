@@ -1,0 +1,49 @@
+name: Audit WR Top 24 Swaps
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pandas numpy
+      - name: Inspect Top 24 changes and misses
+        run: |
+          python - <<'PY'
+          import pandas as pd,numpy as np
+          d=pd.read_csv("projection-model/2025-historical-ppr-dataset.csv")
+          d=d[d.position.eq("WR")].copy()
+          f=["opportunity_score","production_score","usage_score","redzone_score","model_confidence_score"]
+          for c in f+["actual_ppr","week"]:d[c]=pd.to_numeric(d[c],errors="coerce")
+          d=d.dropna(subset=f+["actual_ppr","week","player_id"])
+          d["week"]=d.week.astype(int)
+          if d.duplicated(["player_id","week"]).any():raise ValueError("duplicate player-week")
+          tr=d[d.week.between(4,9)];te=d[d.week.ge(10)].copy()
+          coef=np.linalg.lstsq(np.column_stack([np.ones(len(tr)),tr[f]]),tr.actual_ppr,rcond=None)[0]
+          te["base"]=np.maximum(np.column_stack([np.ones(len(te)),te[f]])@coef,0)
+          hist=d[["player_id","week","actual_ppr"]]
+          prior=hist.merge(te[["player_id","week"]],on="player_id",suffixes=("_prior","_target"))
+          prior=prior[prior.week_prior<prior.week_target].groupby(["player_id","week_target"]).actual_ppr.agg(["count","mean"])
+          te=te.join(prior,on=["player_id","week"])
+          te["blend"]=np.where(te["count"].ge(2),.5*te.base+.5*te["mean"],te.base)
+          for col in ["base","blend","actual_ppr"]:
+              te[col+"_rank"]=te.groupby("week")[col].rank(method="first",ascending=False)
+          actual=te.actual_ppr_rank.le(24)
+          b=te.base_rank.le(24);c=te.blend_rank.le(24)
+          print("actual top24 rows",int(actual.sum()))
+          print("baseline hits",int((actual&b).sum()),"blend hits",int((actual&c).sum()))
+          print("blend gains (new correct picks)",int((actual&~b&c).sum()))
+          print("blend losses (lost correct picks)",int((actual&b&~c).sum()))
+          print("new false positives",int((~actual&~b&c).sum()))
+          print("removed false positives",int((~actual&b&~c).sum()))
+          changed=te[b.ne(c)].copy()
+          cols=["week","player_name","actual_ppr","actual_ppr_rank","base_rank","blend_rank","base","blend"]
+          print("Top 24 swaps by week:")
+          print(changed[cols].sort_values(["week","blend_rank"]).to_string(index=False,max_rows=150))
+          print("DIAGNOSTIC ONLY. Does not change live projections.")
+          PY
