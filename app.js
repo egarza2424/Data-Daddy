@@ -6236,8 +6236,11 @@ function getAdditionalSignalEvidence(player, label, details, confidence, trench)
       add(isPlayerHistory ? "Player matchup sample" : "Play caller matchup sample", meetings + " games");
       if (details?.averagePpr != null && details.averagePpr !== "" &&
           Number.isFinite(Number(details.averagePpr)))
-        add(isPlayerHistory ? "Player historical PPR / game" : "Position historical PPR / game",
+        add(isPlayerHistory ? "Player historical PPR / game" : "Combined positional PPR / game",
           Number(details.averagePpr).toFixed(1));
+      if (meetings < 3) add("Historical sample", "Limited (" + meetings + " of 3 games)");
+    } else {
+      add("Historical sample", "No direct meetings; neutral score");
     }
   } else if (label === "Red-Zone Usage") {
     const record = getWeightedRedZoneRecord(player);
