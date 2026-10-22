@@ -6224,12 +6224,21 @@ function getAdditionalSignalEvidence(player, label, details, confidence, trench)
       String(count) : "Not supplied by feed");
     add("Data scope", "Team positional total, not individual player");
   } else if (label === "Play Caller Matchup" || label === "Player vs Defensive Play Caller") {
-    add("Offensive play caller", details?.offensivePlayCaller || "Unavailable");
-    add("Defensive play caller", details?.defensivePlayCaller || "Unavailable");
-    add("Upcoming opponent", details?.opponent || "Unavailable");
-    add("Historical average PPR", details?.averagePpr != null && Number.isFinite(Number(details.averagePpr)) ? Number(details.averagePpr).toFixed(1) : "Unavailable");
-    add("Historical meetings", details?.sampleSize ?? 0);
-    if (Number(details?.sampleSize || 0) < 3) add("Sample note", "Limited history / neutral fallback");
+    const isPlayerHistory = label === "Player vs Defensive Play Caller";
+    if (!isPlayerHistory && details?.offensivePlayCaller && details.offensivePlayCaller !== "Unknown")
+      add("Offensive play caller", details.offensivePlayCaller);
+    if (details?.defensivePlayCaller && details.defensivePlayCaller !== "Unknown")
+      add("Defensive play caller", details.defensivePlayCaller);
+    if (details?.opponent && details.opponent !== "Unknown")
+      add("Opponent", details.opponent);
+    const meetings = Number(details?.sampleSize);
+    if (Number.isFinite(meetings) && meetings > 0) {
+      add(isPlayerHistory ? "Player matchup sample" : "Play caller matchup sample", meetings + " games");
+      if (details?.averagePpr != null && details.averagePpr !== "" &&
+          Number.isFinite(Number(details.averagePpr)))
+        add(isPlayerHistory ? "Player historical PPR / game" : "Position historical PPR / game",
+          Number(details.averagePpr).toFixed(1));
+    }
   } else if (label === "Red-Zone Usage") {
     const record = getWeightedRedZoneRecord(player);
     if (record?.zones) {
