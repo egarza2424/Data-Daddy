@@ -6249,8 +6249,15 @@ function getAdditionalSignalEvidence(player, label, details, confidence, trench)
   } else if (label === "Trench Matchup") {
     add("Opponent defensive front", trench?.opponent || "Unavailable");
     add("Trench score", trench ? trench.score.toFixed(1) + "/100" : "Unavailable");
-    add("Offensive line grade", trench?.offensiveLineGrade ?? "Not supplied by current feed");
-    add("Defensive line grade", trench?.defensiveLineGrade ?? "Not supplied by current feed");
+    add("Line grading source", "Public team metrics; not PFF grades");
+    const rate = value => value !== null && value !== undefined &&
+      Number.isFinite(Number(value)) ? Number(value).toFixed(2) + "%" : "Not supplied by current feed";
+    add("Offense sacks allowed / pass play", rate(trench?.offenseSackRate));
+    add("Offense QB hits allowed / pass play", rate(trench?.offenseQbHitRate));
+    add("Offense rushing success rate", rate(trench?.offenseRushSuccessRate));
+    add("Defense sacks / pass play", rate(trench?.defenseSackRate));
+    add("Defense QB hits / pass play", rate(trench?.defenseQbHitRate));
+    add("Defense run-stop rate", rate(trench?.defenseRunStopRate));
     add("Pass matchup", trench?.passScore != null ? trench.passScore.toFixed(1) + "/100" : "Unavailable");
     add("Run matchup", trench?.runScore != null ? trench.runScore.toFixed(1) + "/100" : "Unavailable");
     add("OL injury adjustment", trench ? (trench.injuryAdjusted ? "Included" : "Unavailable") : "Unavailable");
@@ -8182,7 +8189,13 @@ function getTrenchMatchup(player) {
     passScore: pass,
     runScore: run,
     offensiveLineGrade: record.offensive_line_grade ?? record.offense_line_grade ?? null,
-    defensiveLineGrade: record.defensive_line_grade ?? record.defense_front_grade ?? null
+    defensiveLineGrade: record.defensive_line_grade ?? record.defense_front_grade ?? null,
+    offenseSackRate: record.offense_sack_rate ?? null,
+    offenseQbHitRate: record.offense_qb_hit_rate ?? null,
+    offenseRushSuccessRate: record.offense_rush_success_rate ?? null,
+    defenseSackRate: record.defense_sack_rate ?? null,
+    defenseQbHitRate: record.defense_qb_hit_rate ?? null,
+    defenseRunStopRate: record.defense_run_stop_rate ?? null
   };
 }
 function isPlayerMatchupCompleted(player) {
