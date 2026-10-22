@@ -69,14 +69,26 @@ print("Do not treat these observational comparisons as calibrated probabilities.
 
 # Experimental, read-only role-growth challenger. Reconstruct prior-game workload
 # from raw historical stats; do not use target-week observations.
-from scripts.build_historical_ppr_dataset import prepare_stats, opportunity_value, stability_score
+# Load workload inputs without importing the historical build pipeline.
+def prepare_workload_stats(frame):
+    frame = frame.copy()
+    for source, target in [("player_name", "player_display_name"), ("recent_team", "team"), ("passing_attempts", "attempts")]:
+        if target not in frame.columns and source in frame.columns:
+            frame[target] = frame[source]
+    for column in ["carries", "targets", "attempts"]:
+        if column not in frame.columns:
+            frame[column] = 0
+        frame[column] = pd.to_numeric(frame[column], errors="coerce").fillna(0)
+    frame["opportunity_raw"] = frame["carries"] + frame["targets"]
+    qb = frame["position"] == "QB"
+    frame.loc[qb, "opportunity_raw"] = frame.loc[qb, "attempts"] + frame.loc[qb, "carries"]
+    return frame
 from pathlib import Path
 stats_path = Path("historical-data/player_stats_2025.csv")
 if not stats_path.exists():
     print("Role-growth challenger skipped: historical player_stats_2025.csv unavailable")
 else:
-    raw = prepare_stats(pd.read_csv(stats_path))
-    raw["opportunity_raw"] = raw.apply(opportunity_value, axis=1)
+    raw = prepare_workload_stats(pd.read_csv(stats_path))
     candidates = []
     for row in joined.itertuples(index=False):
         prior = raw.loc[
