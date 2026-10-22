@@ -816,6 +816,102 @@ def main():
         )
         print(f"Week 7 TE PPG blend applied to {blended.sum()} players.")
         print("Role-change and injury verification still required before social publishing.")
+    # Week 7 WR PPR challenger: 50% prior-game PPG, validated on
+    # held-out 2025 WRs for MAE. Keep AI position_rank unchanged:
+    # the blend did not improve historical Top-24 recall.
+    if target_week == 7:
+        import re
+
+        def wr_key(name, team):
+            name = re.sub(
+                r"\\s+(jr\\.?|sr\\.?|ii|iii|iv)$",
+                "",
+                str(name).lower().strip(),
+            )
+            return (
+                re.sub(r"[^a-z0-9]", "", name)
+                + "|"
+                + str(team).upper()
+            )
+
+        weekly = pd.DataFrame(stats["players"])
+        required = {
+            "season", "week", "position", "team",
+            "player_display_name", "receptions",
+            "receiving_yards", "receiving_tds",
+            "rushing_yards", "rushing_tds",
+        }
+        if required - set(weekly.columns):
+            raise RuntimeError("WR PPG blend missing weekly stat columns")
+        season_type = weekly.get(
+            "season_type", pd.Series("REG", index=weekly.index)
+        )
+        weekly = weekly.loc[
+            weekly["position"].eq("WR")
+            & season_type.eq("REG")
+            & pd.to_numeric(weekly["season"], errors="coerce").eq(2026)
+            & pd.to_numeric(weekly["week"], errors="coerce").lt(target_week)
+        ].copy()
+        for col in [
+            "receptions", "receiving_yards", "receiving_tds",
+            "rushing_yards", "rushing_tds",
+        ]:
+            weekly[col] = pd.to_numeric(
+                weekly[col], errors="coerce"
+            ).fillna(0)
+        weekly["ppr"] = (
+            weekly["receptions"]
+            + weekly["receiving_yards"] / 10
+            + 6 * weekly["receiving_tds"]
+            + weekly["rushing_yards"] / 10
+            + 6 * weekly["rushing_tds"]
+        )
+        weekly["key"] = [
+            wr_key(n, t)
+            for n, t in zip(
+                weekly["player_display_name"], weekly["team"]
+            )
+        ]
+        if weekly.duplicated(["key", "week"]).any():
+            raise RuntimeError("Duplicate WR identity-week in PPG history")
+        prior = weekly.groupby("key")["ppr"].agg(["count", "mean"])
+        wr_mask = projections["position"].eq("WR")
+        wr_indices = projections.index[wr_mask]
+        wr_keys = [
+            wr_key(n, t)
+            for n, t in zip(
+                projections.loc[wr_mask, "player_name"],
+                projections.loc[wr_mask, "team"],
+            )
+        ]
+        games = pd.Series(wr_keys).map(prior["count"]).fillna(0)
+        ppg = pd.Series(wr_keys).map(prior["mean"])
+        eligible = games.ge(2) & ppg.notna()
+        values = projections.loc[wr_indices, "projected_ppr"].to_numpy(
+            dtype=float, copy=True
+        )
+        mask = eligible.to_numpy()
+        values[mask] = (
+            0.5 * values[mask]
+            + 0.5 * ppg.to_numpy(dtype=float)[mask]
+        )
+        projections.loc[wr_indices, "projected_ppr"] = values
+        projections.loc[
+            wr_indices[mask], "projection_model"
+        ] = "F_WR_50pct_prior_PPG"
+        projections.loc[wr_indices, "projected_position_rank"] = (
+            projections.loc[wr_indices, "projected_ppr"]
+            .rank(method="min", ascending=False)
+            .astype(int)
+        )
+        print(
+            f"Week 7 WR 50% PPG blend applied to {mask.sum()} players; "
+            "AI score ranks unchanged."
+        )
+        print(
+            "WR PPR blend improves historical MAE but not Top-24 recall; "
+            "injury and role verification required before publication."
+        )
     # Apply experimental J2 to RBs only.
     # All other positions and unmatched RBs retain Model F.
     j2_path = (
