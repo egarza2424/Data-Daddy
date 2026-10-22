@@ -22,3 +22,5 @@ jobs:
           echo "Downloaded 2025 historical player stats"
       - name: Audit confidence bands against frozen PPR errors
         run: python scripts/audit_model_confidence_calibration.py
+      - name: Paired walk-forward role-growth challenger backtest
+        run: python scripts/backtest_role_growth_confidence.py
