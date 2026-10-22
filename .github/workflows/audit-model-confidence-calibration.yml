@@ -12,5 +12,13 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install pandas
+      - name: Download historical 2025 weekly player statistics
+        run: |
+          mkdir -p historical-data
+          curl --fail --location --retry 3 --silent --show-error \
+            "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2025.csv" \
+            -o historical-data/player_stats_2025.csv
+          test -s historical-data/player_stats_2025.csv
+          echo "Downloaded 2025 historical player stats"
       - name: Audit confidence bands against frozen PPR errors
         run: python scripts/audit_model_confidence_calibration.py
