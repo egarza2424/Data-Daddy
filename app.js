@@ -6178,11 +6178,31 @@ function getAdditionalSignalEvidence(player, label, details, confidence, trench)
   if (label === "Matchup") {
     const opponent = teamNextOpponent[player.team]?.opponent;
     const record = opponent && defensePositionAllowed[opponent]?.[player.position];
-    const value = record?.fantasy_points_allowed;
+    const raw = record?.fantasy_points_allowed;
+    const allowed = raw === null || raw === undefined || raw === "" ? NaN : Number(raw);
+    const ranked = Object.entries(defensePositionAllowed)
+      .map(([team, positions]) => ({
+        team,
+        allowed: positions?.[player.position]?.fantasy_points_allowed
+      }))
+      .filter(entry => entry.allowed !== null && entry.allowed !== undefined &&
+        entry.allowed !== "" && Number.isFinite(Number(entry.allowed)))
+      .map(entry => ({team: entry.team, allowed: Number(entry.allowed)}))
+      .sort((a,b) => b.allowed - a.allowed);
+    const rank = ranked.findIndex(entry => entry.team === opponent);
+    const countRaw = record?.sample_size_2026 ?? record?.games_evaluated ??
+      record?.games_played ?? record?.sample_size ?? null;
+    const count = countRaw === null || countRaw === "" ? NaN : Number(countRaw);
     add("Opponent", opponent || "Unavailable");
     add("Position", player.position);
-    add("Fantasy points allowed to position", Number.isFinite(Number(value)) && value != null ? Number(value).toFixed(1) + " per game (feed)" : "Unavailable");
-    add("Sample", "Defensive feed; game count not supplied");
+    add("Opponent PPR allowed to position", Number.isFinite(allowed) ?
+      allowed.toFixed(1) + " per game (all " + player.position + "s)" : "Unavailable");
+    add("Matchup favorability rank", rank >= 0 ?
+      "#" + (rank + 1) + " of " + ranked.length + " defenses" : "Unavailable");
+    add("Ranking direction", "#1 allows the most PPR to this position");
+    add("Games in defensive sample", Number.isFinite(count) && count > 0 ?
+      String(count) : "Not supplied by feed");
+    add("Data scope", "Team positional total, not individual player");
   } else if (label === "Play Caller Matchup" || label === "Player vs Defensive Play Caller") {
     add("Offensive play caller", details?.offensivePlayCaller || "Unavailable");
     add("Defensive play caller", details?.defensivePlayCaller || "Unavailable");
