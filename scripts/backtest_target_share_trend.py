@@ -30,6 +30,7 @@ for row in data.itertuples():
     prior = history.loc[history.week < row.week].tail(3)
     if len(prior) < 3:
         trends.append(0.0)
+        history_counts.append(len(prior))
         continue
     a, b, c = prior.share.tolist()
     trends.append(100 * max(-0.2, min(0.2, c - (a + b) / 2)))
