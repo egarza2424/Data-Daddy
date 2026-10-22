@@ -518,7 +518,7 @@ const statsFile = snapshotWeek
 async function loadWeeklyStats() {
   try {
 const response = await fetch(
-  `${statsFile}?v=13`,
+  `${statsFile}?v=${Date.now()}`,
   { cache: "no-store" }
 );
     if (!response.ok) {
@@ -6262,6 +6262,7 @@ function getAdditionalSignalEvidence(player, label, details, confidence, trench)
     add("Run matchup", trench?.runScore != null ? trench.runScore.toFixed(1) + "/100" : "Unavailable");
     add("OL injury adjustment", trench ? (trench.injuryAdjusted ? "Included" : "Unavailable") : "Unavailable");
     add("Confidence", trench?.confidence || "Unavailable");
+    add("Detailed rate feed", trench?.offenseSackRate != null ? "Loaded" : "Not present in loaded snapshot");
   }
   return rows.length ? signalEvidenceRows(rows) : "";
 }
