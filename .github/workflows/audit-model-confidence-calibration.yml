@@ -30,3 +30,5 @@ jobs:
         run: python scripts/backtest_role_transition_confidence.py
       - name: Audit Opportunity signal against frozen historical projections
         run: python scripts/audit_opportunity_signal.py
+      - name: Audit TE and WR target efficiency and multi-TE usage
+        run: python scripts/audit_te_wr_opportunity_efficiency.py
