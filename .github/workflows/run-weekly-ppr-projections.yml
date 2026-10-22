@@ -261,6 +261,7 @@ jobs:
               "F_WR_50pct_prior_PPG",
               "Manual_Week7_RB_override",
               "Editorial_Week7_WR_team_total_adjusted",
+              "Editorial_Week7_TE_role_matchup_adjusted",
           }
 
           if not models.issubset(allowed_models):
@@ -319,6 +320,24 @@ jobs:
                   raise SystemExit("Editorial WR ranks must be 1 through 24.")
               if not board["projected_ppr"].is_monotonic_decreasing:
                   raise SystemExit("Editorial WR PPR must descend by rank.")
+
+          if week == 7:
+              te_editorial = projections.loc[
+                  projections["projection_model"].eq(
+                      "Editorial_Week7_TE_role_matchup_adjusted"
+                  )
+              ]
+              expected_te = {
+                  "Mark Andrews": (15, 9.40),
+                  "Michael Mayer": (17, 9.20),
+                  "Juwan Johnson": (18, 9.12),
+              }
+              if len(te_editorial) != 3 or not te_editorial["position"].eq("TE").all():
+                  raise SystemExit("Expected three Week 7 TE editorial overrides.")
+              for name, (rank, ppr) in expected_te.items():
+                  match = te_editorial.loc[te_editorial["player_name"].eq(name)]
+                  if len(match) != 1 or int(match.iloc[0]["projected_position_rank"]) != rank or abs(float(match.iloc[0]["projected_ppr"]) - ppr) > 0.001:
+                      raise SystemExit(f"Week 7 TE editorial mismatch: {name}")
 
           coefficient_positions = set(
               coefficients[
