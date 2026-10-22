@@ -31,6 +31,7 @@ def main():
     if matches.empty:
         raise RuntimeError(f"No strictly pregame metrics for 2026 Week {week}")
     enriched = 0
+    rate_records = {}
     for row in matches.to_dict("records"):
         offense = str(row["offense_team"])
         defense = str(row["defense_team"])
@@ -49,10 +50,12 @@ def main():
         record["rate_source"] = "nflverse 2026 prior-game play-by-play"
         record["offense_history_games"] = int(row["offense_history_games"])
         record["defense_history_games"] = int(row["defense_history_games"])
+        rate_records[offense] = {"defense_team": defense, **{field: result[field] for field in FIELDS}, "offense_history_games": int(row["offense_history_games"]), "defense_history_games": int(row["defense_history_games"])}
         enriched += 1
     if enriched == 0:
         raise RuntimeError("No opponent-aligned trench records enriched; refusing empty publication")
     path.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")) + "\n")
+    Path("data/trench-rate-details.json").write_text(json.dumps({"season": 2026, "week": week, "teams": rate_records}, separators=(",", ":")) + "\n")
     print(f"Enriched {enriched} Week {week} trench records; existing scores preserved")
 
 if __name__ == "__main__":
