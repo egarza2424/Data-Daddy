@@ -1167,6 +1167,40 @@ def main():
             projections.loc[idx, "projected_position_rank"] = rank
         print("Week 7 editorial WR Top 24 applied; Mike Evans excluded.")
 
+    # Week 7 TE editorial placements, distinct from the validated TE model.
+    # Preserve Model F AI scores; adjust only weekly PPR and PPR ranks.
+    if target_week == 7:
+        te_mask = projections["position"].eq("TE")
+        te_order = projections.loc[te_mask].sort_values(
+            ["projected_ppr", "player_name"], ascending=[False, True]
+        ).index.tolist()
+        moves = [
+            ("Mark Andrews", 15, 9.40),
+            ("Michael Mayer", 17, 9.20),
+            ("Juwan Johnson", 18, 9.12),
+        ]
+        selected = {}
+        for name, rank, ppr in moves:
+            matches = projections.index[
+                te_mask & projections["player_name"].eq(name)
+            ]
+            if len(matches) != 1:
+                raise RuntimeError(
+                    f"Week 7 TE editorial player missing/duplicate: {name}"
+                )
+            selected[name] = matches[0]
+        te_order = [idx for idx in te_order if idx not in selected.values()]
+        for name, rank, ppr in sorted(moves, key=lambda x: x[1]):
+            idx = selected[name]
+            te_order.insert(rank - 1, idx)
+            projections.loc[idx, "projected_ppr"] = ppr
+            projections.loc[idx, "projection_model"] = (
+                "Editorial_Week7_TE_role_matchup_adjusted"
+            )
+        for rank, idx in enumerate(te_order, start=1):
+            projections.loc[idx, "projected_position_rank"] = rank
+        print("Week 7 TE editorial placements: Andrews 15, Mayer 17, Johnson 18.")
+
     # Week 7 editorial AI ranking placement for Emanuel Wilson.
     # Keep his model_score intact; only the displayed rank changes.
     # The website independently applies the same placement after Pierce.
