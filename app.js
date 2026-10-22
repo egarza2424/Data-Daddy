@@ -523,7 +523,7 @@ async function loadTrenchRateDetails() {
     if (Number(details.season) !== 2026 || Number(details.week) !== Number(trenchSignalWeek)) return;
     const normalize = team => team === "LAR" ? "LA" : team;
     for (const [team, rates] of Object.entries(details.teams || {})) {
-      const record = currentTrenchSignals[team] || currentTrenchSignals[normalize(team)];
+      const record = currentTrenchSignals[team] || currentTrenchSignals[normalize(team)] || currentTrenchSignals[team === "LA" ? "LAR" : team];
       if (!record || record.available !== true ||
           normalize(record.defense_team) !== normalize(rates.defense_team)) continue;
       for (const field of ["offense_sack_rate", "offense_qb_hit_rate", "offense_rush_success_rate",
@@ -8170,7 +8170,8 @@ function getTrenchMatchup(player) {
 
   const record =
     currentTrenchSignals[player.team] ||
-    currentTrenchSignals[normalize(player.team)];
+    currentTrenchSignals[normalize(player.team)] ||
+    currentTrenchSignals[player.team === "LA" ? "LAR" : player.team];
 
   if (
     !record ||
