@@ -1,0 +1,53 @@
+name: Publish Trench Rate Details
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  enrich-trench:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install pandas pyarrow
+      - name: Download 2026 public play-by-play and schedule
+        run: |
+          curl --fail --location --retry 3 -o play_by_play_2026.parquet \
+            https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.parquet
+          curl --fail --location --retry 3 -o schedules.csv \
+            https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv
+      - name: Build strictly pregame team matchup metrics
+        run: |
+          python build_trench_pregame.py --pbp play_by_play_2026.parquet --schedule schedules.csv --output trench_2026_pregame_metrics.csv
+      - name: Enrich existing live trench records without changing scores
+        run: |
+          python scripts/enrich_live_trench_rates.py --stats nfl-stats.json --metrics trench_2026_pregame_metrics.csv
+      - name: Validate enriched fields and preserve original scores
+        run: |
+          python - <<'PY'
+          import json,subprocess
+          current=json.load(open("nfl-stats.json"))
+          original=json.loads(subprocess.check_output(["git","show","HEAD:nfl-stats.json"]))
+          for team, before in original.get("current_trench_signals",{}).items():
+              after=current["current_trench_signals"][team]
+              for key in ("pass_score","run_score","confidence","available","defense_team"):
+                  assert after.get(key)==before.get(key),(team,key)
+          assert any("offense_sack_rate" in row for row in current["current_trench_signals"].values())
+          print("Trench rates validated; original matchup scores preserved")
+          PY
+      - name: Commit enriched current-week data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add nfl-stats.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish pregame trench rate evidence for current week"
+            git push
+          fi
