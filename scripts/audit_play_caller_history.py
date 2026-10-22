@@ -27,3 +27,21 @@ for key in ("current_play_caller_signals", "current_player_vs_defensive_caller")
 print("\nWeekly play caller fields:", Counter(k for row in players for k in row if "caller" in k))
 print("Weekly PPR fields:", Counter(k for row in players for k in row if "ppr" in k.lower() or "fantasy_points" in k.lower()))
 print("No player names or sensitive data printed. Audit is read-only.")
+
+print("\nHistorical game schema and examples:")
+for key in ("current_play_caller_signals", "current_player_vs_defensive_caller"):
+    collection = data.get(key, {})
+    found = []
+    for item in collection.values():
+        records = (item.get("positions", {}).values() if key == "current_play_caller_signals" else [item])
+        for record in records:
+            for game in record.get("games", []) or record.get("historical_games", []) or []:
+                if isinstance(game, dict):
+                    found.append(game)
+                    if len(found) >= 2:
+                        break
+            if len(found) >= 2:
+                break
+        if len(found) >= 2:
+            break
+    print(key, "sample records:", json.dumps(found, default=str))
