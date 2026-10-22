@@ -1,0 +1,45 @@
+name: Audit Week 7 WR Efficiency
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pandas
+      - name: Compare receiving efficiency and projected PPR
+        run: |
+          python - <<'PY'
+          import json,re
+          import pandas as pd
+          from pathlib import Path
+          d=pd.DataFrame(json.loads(Path("nfl-stats.json").read_text())["players"])
+          d=d[d.position.eq("WR") & pd.to_numeric(d.season,errors="coerce").eq(2026) & pd.to_numeric(d.week,errors="coerce").lt(7)].copy()
+          if "season_type" in d.columns:d=d[d.season_type.eq("REG")]
+          for c in ["targets","receptions","receiving_yards","receiving_tds","rushing_yards","rushing_tds"]:
+              d[c]=pd.to_numeric(d[c],errors="coerce").fillna(0)
+          def norm(x):
+              x=re.sub(r"\s+(jr\.?|sr\.?|ii|iii|iv)$","",str(x).lower().strip())
+              return re.sub("[^a-z0-9]","",x)
+          d["key"]=d.player_display_name.map(norm)+"|"+d.team.astype(str).str.upper()
+          if d.duplicated(["key","week"]).any():raise RuntimeError("Duplicate player week")
+          d["ppr"]=d.receptions+d.receiving_yards/10+6*d.receiving_tds+d.rushing_yards/10+6*d.rushing_tds
+          p=pd.read_csv("projection-model/2026-week7-ppr-projections.csv")
+          p=p[p.position.eq("WR")].copy()
+          p["key"]=p.player_name.map(norm)+"|"+p.team.astype(str).str.upper()
+          names=["Justin Jefferson","Ja'Marr Chase","Amon-Ra St. Brown","Nico Collins","Chris Olave","George Pickens","Christian Watson","Jalen Coker","Germie Bernard","Malik Washington","Carnell Tate","Emeka Egbuka","Jordan Addison","Matthew Golden","Garrett Wilson"]
+          print("player | games | targets/g | catches/g | yards/g | catch% | yards/target | rec TD/g | actual PPR/g | model PPR | delta")
+          for x in p[p.player_name.isin(names)].itertuples(index=False):
+              h=d[d.key.eq(x.key)]
+              if h.empty:continue
+              n=len(h);t=h.targets.sum();y=h.receiving_yards.sum()
+              avg=h.ppr.mean()
+              vals=[x.player_name,n,round(t/n,2),round(h.receptions.sum()/n,2),round(y/n,2),round(100*h.receptions.sum()/t,1) if t else None,round(y/t,2) if t else None,round(h.receiving_tds.sum()/n,2),round(avg,2),x.projected_ppr,round(avg-x.projected_ppr,2)]
+              print(" | ".join(map(str,vals)))
+          print("Descriptive diagnostic only: efficiency and TD rates may regress; do not project raw season PPG unadjusted.")
+          PY
