@@ -1107,6 +1107,66 @@ def main():
             .str.strip()
         )
 
+    # Week 7 WR editorial PPR board (human-adjusted; not Model F).
+    # This board is intentionally distinct from position_rank/model_score.
+    if target_week == 7:
+        wr_editorial = [
+            ("Puka Nacua", 22.1),
+            ("Jaxon Smith-Njigba", 21.1),
+            ("Amon-Ra St. Brown", 20.1),
+            ("Ja'Marr Chase", 19.2),
+            ("CeeDee Lamb", 18.8),
+            ("Drake London", 18.2),
+            ("Tetairoa McMillan", 17.2),
+            ("Malik Nabers", 17.1),
+            ("Justin Jefferson", 16.8),
+            ("Nico Collins", 16.7),
+            ("Christian Watson", 16.2),
+            ("Matthew Golden", 15.6),
+            ("Zay Flowers", 15.5),
+            ("Chris Olave", 15.4),
+            ("George Pickens", 14.9),
+            ("Jalen Coker", 14.6),
+            ("DeVonta Smith", 13.9),
+            ("Garrett Wilson", 13.8),
+            ("Tee Higgins", 13.7),
+            ("Germie Bernard", 13.4),
+            ("Emeka Egbuka", 12.8),
+            ("Luther Burden III", 12.5),
+            ("Malik Washington", 12.1),
+            ("Carnell Tate", 11.9),
+        ]
+        wr_mask = projections["position"].eq("WR")
+        evans = wr_mask & projections["player_name"].eq("Mike Evans")
+        projections = projections.loc[~evans].copy()
+        wr_mask = projections["position"].eq("WR")
+        chosen = []
+        for name, ppr in wr_editorial:
+            matches = projections.index[
+                wr_mask & projections["player_name"].eq(name)
+            ]
+            if len(matches) != 1:
+                raise RuntimeError(
+                    f"Week 7 editorial WR missing/duplicate: {name} ({len(matches)})"
+                )
+            idx = matches[0]
+            chosen.append(idx)
+            projections.loc[idx, "projected_ppr"] = ppr
+            projections.loc[idx, "projection_model"] = (
+                "Editorial_Week7_WR_team_total_adjusted"
+            )
+        # Keep all remaining WRs below the curated Top 24 without
+        # altering their underlying PPR estimates or AI rankings.
+        others = projections.loc[
+            wr_mask & ~projections.index.isin(chosen)
+        ].sort_values(
+            ["projected_ppr", "player_name"],
+            ascending=[False, True],
+        ).index.tolist()
+        for rank, idx in enumerate(chosen + others, start=1):
+            projections.loc[idx, "projected_position_rank"] = rank
+        print("Week 7 editorial WR Top 24 applied; Mike Evans excluded.")
+
     # Week 7 editorial AI ranking placement for Emanuel Wilson.
     # Keep his model_score intact; only the displayed rank changes.
     # The website independently applies the same placement after Pierce.
