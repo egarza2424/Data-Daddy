@@ -1,0 +1,55 @@
+name: Audit Week 7 WR PPR Challenger
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pandas numpy
+      - name: Evaluate recent production against Model F
+        run: |
+          python - <<'PY'
+          import json,re
+          import pandas as pd
+          from pathlib import Path
+          p=pd.read_csv("projection-model/2026-week7-ppr-projections.csv")
+          p=p[p.position.eq("WR")].copy()
+          data=json.loads(Path("nfl-stats.json").read_text())
+          s=pd.DataFrame(data["players"])
+          s=s[s.position.eq("WR") & pd.to_numeric(s.season,errors="coerce").eq(2026) & pd.to_numeric(s.week,errors="coerce").lt(7)].copy()
+          if "season_type" in s.columns: s=s[s.season_type.eq("REG")]
+          def norm(x):
+              x=re.sub(r"\s+(jr\.?|sr\.?|ii|iii|iv)$","",str(x).lower().strip())
+              return re.sub("[^a-z0-9]","",x)
+          for c in ["receptions","receiving_yards","receiving_tds","rushing_yards","rushing_tds"]:
+              s[c]=pd.to_numeric(s.get(c,0),errors="coerce").fillna(0)
+          s["ppr"]=s.receptions+s.receiving_yards/10+6*s.receiving_tds+s.rushing_yards/10+6*s.rushing_tds
+          s["key"]=s.player_display_name.map(norm)+"|"+s.team.astype(str).str.upper()
+          p["key"]=p.player_name.map(norm)+"|"+p.team.astype(str).str.upper()
+          if s.duplicated(["key","week"]).any(): raise RuntimeError("Duplicate WR stat rows")
+          agg=s.groupby("key").ppr.agg(["count","mean"])
+          p["prior_games"]=p.key.map(agg["count"]).fillna(0).astype(int)
+          p["prior_ppg"]=p.key.map(agg["mean"])
+          p["baseline"]=pd.to_numeric(p.projected_ppr)
+          print("WR stat rows:",len(s),"WR matched >=2 games:",int(p.prior_games.ge(2).sum()),"of",len(p))
+          names=["Justin Jefferson","Ja'Marr Chase","Amon-Ra St. Brown","Nico Collins","Chris Olave","George Pickens","Christian Watson","Jalen Coker","Germie Bernard","Malik Washington","Carnell Tate","Emeka Egbuka","Jordan Addison","Matthew Golden","Garrett Wilson","Mike Evans"]
+          for w in [0,.25,.5,.75,1]:
+              label=f"blend_{int(w*100)}"
+              p[label]=p.baseline
+              eligible=p.prior_games.ge(2)&p.prior_ppg.notna()
+              p.loc[eligible,label]=((1-w)*p.loc[eligible,"baseline"]+w*p.loc[eligible,"prior_ppg"]).round(2)
+              p[label+"_rank"]=p[label].rank(method="min",ascending=False).astype(int)
+          cols=["player_name","team","prior_games","prior_ppg","baseline","projected_position_rank","blend_25","blend_25_rank","blend_50","blend_50_rank","blend_75","blend_75_rank"]
+          print(p[p.player_name.isin(names)][cols].sort_values("player_name").to_string(index=False))
+          print("CAUTION: Prior-season-to-date PPG is descriptive; blends have NOT been held-out validated for WRs.")
+          print("No live files modified.")
+          PY
