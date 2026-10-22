@@ -36,7 +36,7 @@ def main():
     for row in matches.to_dict("records"):
         offense = str(row["offense_team"])
         defense = str(row["defense_team"])
-        aliases = (offense, "LA" if offense == "LAR" else offense)
+        aliases = (offense, "LAR" if offense == "LA" else "LA" if offense == "LAR" else offense)
         record = next((existing[t] for t in aliases if t in existing), None)
         if not isinstance(record, dict) or record.get("available") is not True:
             skipped.append((offense, defense, "missing or unavailable live record"))
