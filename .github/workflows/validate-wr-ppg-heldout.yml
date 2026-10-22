@@ -1,0 +1,57 @@
+name: Validate WR PPG Heldout
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pandas numpy
+      - name: Compare Model F and prior-game PPG blends on 2025 heldout weeks
+        run: |
+          python - <<'PY'
+          import numpy as np,pandas as pd
+          df=pd.read_csv("projection-model/2025-historical-ppr-dataset.csv")
+          df=df[df.position.eq("WR")].copy()
+          feats=["opportunity_score","production_score","usage_score","redzone_score","model_confidence_score"]
+          for c in feats+["actual_ppr","week"]: df[c]=pd.to_numeric(df[c],errors="coerce")
+          df=df.dropna(subset=feats+["actual_ppr","week","player_id"]).copy()
+          df["week"]=df.week.astype(int)
+          print("Season values:",sorted(df.season.unique().tolist()))
+          print("Total WR rows:",len(df))
+          # Train regression on early weeks only; evaluate later weeks.
+          train=df[df.week.between(4,9)]
+          test=df[df.week.ge(10)].copy()
+          if len(train)<100 or len(test)<100: raise RuntimeError("Insufficient train/test data")
+          x=np.column_stack([np.ones(len(train)),train[feats].to_numpy()])
+          beta=np.linalg.lstsq(x,train.actual_ppr.to_numpy(),rcond=None)[0]
+          test["model_f"]=np.maximum(np.column_stack([np.ones(len(test)),test[feats].to_numpy()])@beta,0)
+          # Historical rows represent pregame signals. PPG is computed exclusively
+          # from earlier observed actuals for each player (no future leakage).
+          history=df[["player_id","week","actual_ppr"]].copy()
+          if history.duplicated(["player_id","week"]).any(): raise RuntimeError("Duplicate player-week records")
+          prior=[]
+          for row in test.itertuples(index=False):
+              h=history[(history.player_id==row.player_id)&(history.week<row.week)].actual_ppr
+              prior.append((len(h),float(h.mean()) if len(h) else np.nan))
+          test["prior_games"]=[n for n,_ in prior]
+          test["prior_ppg"]=[v for _,v in prior]
+          eligible=test.prior_games.ge(2)&test.prior_ppg.notna()
+          print("Train:",len(train),"Test:",len(test),"Eligible PPG:",int(eligible.sum()))
+          for weight in [0,.25,.5,.75]:
+              pred=test.model_f.copy()
+              pred.loc[eligible]=(1-weight)*pred.loc[eligible]+weight*test.loc[eligible,"prior_ppg"]
+              mae=np.mean(abs(pred-test.actual_ppr))
+              rmse=np.sqrt(np.mean((pred-test.actual_ppr)**2))
+              print(f"PPG blend {int(weight*100)}%: MAE={mae:.4f} RMSE={rmse:.4f}")
+          print("Ranks require a separate complete-week evaluation; do not infer rank accuracy from MAE.")
+          print("Non-publishing historical validation only.")
+          PY
