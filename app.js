@@ -6158,6 +6158,88 @@ function calculateUsageScore(player) {
   );
 }
 
+// Transparent, read-only evidence for the three core AI signals.
+// These figures use the same recent 2026 weekly rows as the score functions.
+function getCoreSignalEvidence(player, signal) {
+  const games = getPlayerWeeklyStats(player)
+    .filter(game => Number(game.season) === 2026)
+    .sort((a, b) => Number(b.week || 0) - Number(a.week || 0))
+    .slice(0, 3);
+  if (!games.length) return "2026 · No recorded games · underlying data unavailable";
+  const num = (row, ...keys) => {
+    for (const key of keys) {
+      if (row[key] !== undefined && row[key] !== null && row[key] !== "") {
+        const value = Number(row[key]);
+        if (Number.isFinite(value)) return value;
+      }
+    }
+    return 0;
+  };
+  const total = (fn) => games.reduce((sum, game) => sum + fn(game), 0);
+  const avg = value => (value / games.length).toFixed(1);
+  const carries = game => num(game, "carries", "rushing_attempts");
+  const targets = game => num(game, "targets");
+  const attempts = game => num(game, "attempts", "passing_attempts");
+  const lines = [];
+  const add = (label, value) => lines.push(label + ": " + value);
+  if (signal === "Opportunity") {
+    add("Games evaluated", games.length + " (most recent)");
+    if (player.position === "QB") {
+      add("Pass attempts / game", avg(total(attempts)));
+      add("Carries / game", avg(total(carries)));
+      add("Combined opportunities / game", avg(total(g => attempts(g) + carries(g))));
+    } else {
+      add("Targets / game", avg(total(targets)));
+      add("Carries / game", avg(total(carries)));
+      add("Combined opportunities / game", avg(total(g => targets(g) + carries(g))));
+    }
+  } else if (signal === "Recent Production") {
+    const points = game =>
+      num(game, "passing_yards") / 25 +
+      num(game, "passing_tds") * 4 -
+      num(game, "interceptions") * 2 +
+      num(game, "rushing_yards") / 10 +
+      num(game, "rushing_tds") * 6 +
+      num(game, "receptions") +
+      num(game, "receiving_yards") / 10 +
+      num(game, "receiving_tds") * 6;
+    const ppr = games.map(points);
+    add("Games evaluated", games.length + " (newest first)");
+    add("PPR by week", games.map((g, i) => "W" + g.week + " " + ppr[i].toFixed(1)).join(" · "));
+    add("Average PPR / game", avg(ppr.reduce((a, b) => a + b, 0)));
+    if (player.position === "TE" && games.length === 3) {
+      add("TE weighted recent PPR", (ppr[0] * .5 + ppr[1] * .3 + ppr[2] * .2).toFixed(1) + " (50/30/20)");
+    }
+  } else if (signal === "Usage") {
+    const shares = [];
+    for (const game of games) {
+      const season = Number(game.season), week = Number(game.week);
+      if (!season || !week || !game.team) continue;
+      const teamRows = getTeamGameRows(season, week, game.team);
+      if (!Array.isArray(teamRows) || !teamRows.length) continue;
+      const teamCarries = teamRows.reduce((sum, row) => sum + carries(row), 0);
+      const teamTargets = teamRows.reduce((sum, row) => sum + targets(row), 0);
+      shares.push({
+        rush: teamCarries > 0 ? carries(game) / teamCarries * 100 : null,
+        target: teamTargets > 0 ? targets(game) / teamTargets * 100 : null
+      });
+    }
+    add("Player games", games.length);
+    add("Team-share games", shares.length);
+    const averageShare = key => {
+      const values = shares.map(x => x[key]).filter(x => x !== null);
+      return values.length
+        ? (values.reduce((a, b) => a + b, 0) / values.length).toFixed(1) + "%"
+        : "Unavailable";
+    };
+    add("Team rushing-attempt share", averageShare("rush"));
+    if (player.position !== "QB") add("Team target share", averageShare("target"));
+    add("Method", player.position === "QB" ? "QB rushing share" : "Rushing and target shares");
+  }
+  if (games.length < 3) add("Sample warning", "Fewer than 3 games");
+  return lines.join(" · ");
+}
+
 function getOpportunityGameCount(player) {
   if (!player) {
     return 0;
@@ -9467,7 +9549,7 @@ function renderPlayerCard(
           false,
           null,
           null,
-          `Last 3 available games · ${getOpportunityGameCount(player)} games evaluated`
+          getCoreSignalEvidence(player, "Opportunity")
         )}
 
         ${metricRow(
@@ -9476,7 +9558,7 @@ function renderPlayerCard(
           false,
           null,
           null,
-          `Last 3 available games · ${getProductionGameCount(player)} games evaluated`
+          getCoreSignalEvidence(player, "Recent Production")
         )}
 
         ${metricRow(
@@ -9485,7 +9567,7 @@ function renderPlayerCard(
           false,
           null,
           null,
-          getUsageEvidence(player)
+          getCoreSignalEvidence(player, "Usage")
         )}
 
         ${metricRow(
