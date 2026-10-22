@@ -6263,6 +6263,9 @@ function getAdditionalSignalEvidence(player, label, details, confidence, trench)
     add("OL injury adjustment", trench ? (trench.injuryAdjusted ? "Included" : "Unavailable") : "Unavailable");
     add("Confidence", trench?.confidence || "Unavailable");
     add("Detailed rate feed", trench?.offenseSackRate != null ? "Loaded" : "Not present in loaded snapshot");
+    add("Data file", snapshotWeek ? "Week " + snapshotWeek + " frozen snapshot" : "Live nfl-stats.json");
+    add("Published trench week", trenchSignalWeek ?? "Unavailable");
+    add("Rate data source", trench?.rateSource || "Not included in loaded trench record");
   }
   return rows.length ? signalEvidenceRows(rows) : "";
 }
@@ -8196,7 +8199,8 @@ function getTrenchMatchup(player) {
     offenseRushSuccessRate: record.offense_rush_success_rate ?? null,
     defenseSackRate: record.defense_sack_rate ?? null,
     defenseQbHitRate: record.defense_qb_hit_rate ?? null,
-    defenseRunStopRate: record.defense_run_stop_rate ?? null
+    defenseRunStopRate: record.defense_run_stop_rate ?? null,
+    rateSource: record.rate_source ?? null
   };
 }
 function isPlayerMatchupCompleted(player) {
