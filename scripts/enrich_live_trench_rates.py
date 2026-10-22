@@ -32,18 +32,22 @@ def main():
         raise RuntimeError(f"No strictly pregame metrics for 2026 Week {week}")
     enriched = 0
     rate_records = {}
+    skipped = []
     for row in matches.to_dict("records"):
         offense = str(row["offense_team"])
         defense = str(row["defense_team"])
         aliases = (offense, "LA" if offense == "LAR" else offense)
         record = next((existing[t] for t in aliases if t in existing), None)
         if not isinstance(record, dict) or record.get("available") is not True:
+            skipped.append((offense, defense, "missing or unavailable live record"))
             continue
         norm = lambda t: "LA" if t == "LAR" else t
         if norm(record.get("defense_team")) != norm(defense):
+            skipped.append((offense, defense, "opponent mismatch: live=" + str(record.get("defense_team"))))
             continue
         result = compute(row)
         if result.get("available") is not True:
+            skipped.append((offense, defense, "pregame calculation unavailable: " + str(result.get("reason"))))
             continue
         for field in FIELDS:
             record[field] = result[field]
@@ -52,6 +56,13 @@ def main():
         record["defense_history_games"] = int(row["defense_history_games"])
         rate_records[offense] = {"defense_team": defense, **{field: result[field] for field in FIELDS}, "offense_history_games": int(row["offense_history_games"]), "defense_history_games": int(row["defense_history_games"])}
         enriched += 1
+    for offense, defense, reason in skipped:
+        print(f"SKIPPED {offense} vs {defense}: {reason}")
+    expected = {team for team, record in existing.items() if isinstance(record, dict) and record.get("available") is True}
+    normalize = lambda team: "LA" if team == "LAR" else team
+    missing = sorted({normalize(team) for team in expected} - {normalize(team) for team in rate_records})
+    if missing:
+        raise RuntimeError("Missing rates for active trench teams: " + ", ".join(missing) + ". Review SKIPPED reasons above; refusing partial publication.")
     if enriched == 0:
         raise RuntimeError("No opponent-aligned trench records enriched; refusing empty publication")
     path.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")) + "\n")
