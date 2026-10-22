@@ -5,7 +5,9 @@ Does not alter pass_score, run_score, confidence, or model weights.
 import argparse
 import json
 from pathlib import Path
+import sys
 import pandas as pd
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from public_trench_signal import compute
 
 FIELDS = (
