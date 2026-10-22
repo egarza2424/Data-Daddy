@@ -1,0 +1,53 @@
+name: Validate WR Adaptive PPG
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pandas numpy
+      - name: Compare fixed and usage-adaptive PPG blending
+        run: |
+          python - <<'PY'
+          import pandas as pd,numpy as np
+          d=pd.read_csv("projection-model/2025-historical-ppr-dataset.csv")
+          d=d[d.position.eq("WR")].copy()
+          f=["opportunity_score","production_score","usage_score","redzone_score","model_confidence_score"]
+          for c in f+["actual_ppr","week"]:d[c]=pd.to_numeric(d[c],errors="coerce")
+          d=d.dropna(subset=f+["actual_ppr","week","player_id"])
+          d["week"]=d.week.astype(int)
+          if d.duplicated(["player_id","week"]).any():raise RuntimeError("duplicate player-week")
+          tr=d[d.week.between(4,9)];te=d[d.week.ge(10)].copy()
+          beta=np.linalg.lstsq(np.column_stack([np.ones(len(tr)),tr[f]]),tr.actual_ppr,rcond=None)[0]
+          te["base"]=np.maximum(np.column_stack([np.ones(len(te)),te[f]])@beta,0)
+          h=d[["player_id","week","actual_ppr","usage_score"]].copy()
+          # For each test player-week, only earlier weeks may contribute to the prior.
+          h=h.merge(te[["player_id","week"]].rename(columns={"week":"target_week"}),on="player_id")
+          h=h[h.week<h.target_week]
+          prior=h.groupby(["player_id","target_week"]).agg(prior_games=("actual_ppr","count"),prior_ppg=("actual_ppr","mean"),prior_usage=("usage_score","mean"))
+          te=te.join(prior,on=["player_id","week"])
+          eligible=te.prior_games.ge(2)&te.prior_ppg.notna()
+          te["fixed50"]=te.base
+          te.loc[eligible,"fixed50"]=.5*te.loc[eligible,"base"]+.5*te.loc[eligible,"prior_ppg"]
+          # Adaptive weight: if present pregame usage is much higher than prior
+          # usage, trust the model's current opportunity more; if similar, retain
+          # 50% prior PPG. No outcomes from the target week are used.
+          for threshold in [5,10,15]:
+              w=np.where((te.usage_score-te.prior_usage)>threshold,.25,.5)
+              col=f"adaptive_{threshold}"
+              te[col]=te.base
+              te.loc[eligible,col]=(1-w[eligible])*te.loc[eligible,"base"]+w[eligible]*te.loc[eligible,"prior_ppg"]
+          actual_top=te.groupby("week").actual_ppr.rank(method="first",ascending=False).le(24)
+          for col in ["base","fixed50","adaptive_5","adaptive_10","adaptive_15"]:
+              p=te[col];r=te.groupby("week")[col].rank(method="first",ascending=False)
+              recall=(actual_top&r.le(24)).sum()/actual_top.sum()
+              print(f"{col}: MAE={abs(p-te.actual_ppr).mean():.4f} RMSE={np.sqrt(((p-te.actual_ppr)**2).mean()):.4f} top24_recall={recall:.3%} mean_rank_error={(r-te.groupby('week').actual_ppr.rank(method='first',ascending=False)).abs().mean():.3f}")
+          print("Caveat: usage score is a pregame derived signal, not a direct injury/route projection. Historical dataset may omit WRs.")
+          print("DIAGNOSTIC ONLY: live projections unchanged.")
+          PY
