@@ -352,26 +352,6 @@ function getRiskEvidence(player) {
   );
 }
 
-function getScoringEnvironmentEvidence(player) {
-  const environment = getScoringEnvironment(player);
-
-  if (!environment) {
-    return "Upcoming game · market data unavailable · neutral fallback: 50";
-  }
-
-  return (
-    `Upcoming game${environment.week
-      ? ` · Week ${environment.week}`
-      : ""}` +
-    ` · implied team total: ${
-      environment.impliedTeamTotal === null
-        ? "unavailable"
-        : environment.impliedTeamTotal
-    }` +
-    ` · source: ${environment.source}`
-  );
-}
-
 const riskProfiles = {
   conservative: {
     opportunity: 0.15,
@@ -9775,7 +9755,7 @@ function renderPlayerCard(
           false,
           null,
           null,
-          getScoringEnvironmentEvidence(player)
+          null
         )}
 
         ${metricRow(
