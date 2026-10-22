@@ -27,15 +27,14 @@ for team, rec in sorted(env.items()):
     if not all(map(math.isfinite, (total, spread, implied))):
         issues.append(f"{team}: nonfinite market value")
         continue
-    expected = (total - spread) / 2
-    if abs(expected - implied) > 0.11:
-        issues.append(f"{team}: implied={implied} expected={expected:.2f} from total={total} spread={spread}")
+    # The published spread is game-level (same sign on both team rows).
+    # Determine team-specific implied totals using the reciprocal pair below.
     if week != target_week:
         issues.append(f"{team}: week {week} differs from target {target_week}")
     if not opponent:
         issues.append(f"{team}: missing opponent")
     seen[norm(team)] = (opponent, total, spread, implied, rec.get("source"))
-    print(f"{team} vs {opponent}: total={total:g}, team_spread={spread:+g}, implied={implied:g}, expected={expected:.2f}, source={rec.get('source')}")
+    print(f"{team} vs {opponent}: total={total:g}, team_spread={spread:+g}, implied={implied:g}, source={rec.get('source')}")
 for team, (opponent, total, spread, implied, source) in seen.items():
     if opponent not in seen:
         issues.append(f"{team}: opponent {opponent} missing available reciprocal market record")
@@ -45,8 +44,10 @@ for team, (opponent, total, spread, implied, source) in seen.items():
         issues.append(f"{team}: {opponent} reciprocal opponent is {back}")
     if abs(total-other_total) > 0.11:
         issues.append(f"{team}/{opponent}: conflicting game totals")
-    if abs(spread+other_spread) > 0.11:
-        issues.append(f"{team}/{opponent}: team spreads not opposite")
+    if abs(spread-other_spread) > 0.11:
+        issues.append(f"{team}/{opponent}: game-level spreads disagree")
+    if abs(abs(implied-other_implied)-abs(spread)) > 0.21:
+        issues.append(f"{team}/{opponent}: implied-point difference does not match spread magnitude")
     if abs(implied+other_implied-total) > 0.21:
         issues.append(f"{team}/{opponent}: implied totals do not sum to game total")
 print(f"\nChecked {len(seen)} available team entries; {len(issues)} issue(s).")
