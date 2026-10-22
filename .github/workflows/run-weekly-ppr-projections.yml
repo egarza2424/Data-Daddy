@@ -258,6 +258,7 @@ jobs:
               "F_position_specific",
               "J2_RB_role_stability",
               "F_TE_50pct_prior_PPG",
+              "F_WR_50pct_prior_PPG",
               "Manual_Week7_RB_override",
           }
 
@@ -269,12 +270,36 @@ jobs:
 
           if not (
               projections.loc[
-                  projections["position"].isin(["QB", "WR"]),
+                  projections["position"].eq("QB"),
                   "projection_model",
               ] == "F_position_specific"
           ).all():
               raise SystemExit(
-                  "QB and WR projections must remain Model F."
+                  "QB projections must remain Model F."
+              )
+
+          wr_models = set(
+              projections.loc[
+                  projections["position"].eq("WR"),
+                  "projection_model",
+              ].astype(str)
+          )
+          if not wr_models.issubset({
+              "F_position_specific",
+              "F_WR_50pct_prior_PPG",
+          }):
+              raise SystemExit(
+                  "Unexpected WR projection models: "
+                  f"{sorted(wr_models)}"
+              )
+          if (
+              projections.loc[
+                  ~projections["position"].eq("WR"),
+                  "projection_model",
+              ].eq("F_WR_50pct_prior_PPG").any()
+          ):
+              raise SystemExit(
+                  "WR PPG blend label assigned to non-WR player."
               )
 
           coefficient_positions = set(
