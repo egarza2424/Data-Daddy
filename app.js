@@ -6160,6 +6160,84 @@ function calculateUsageScore(player) {
 
 // Transparent, read-only evidence for the three core AI signals.
 // These figures use the same recent 2026 weekly rows as the score functions.
+// Consistent white-label / gold-value evidence rows across signal panels.
+function signalEvidenceRows(rows) {
+  const escape = value => String(value ?? "Unavailable").replace(/[&<>"']/g, char =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
+  return '<div class="confidence-breakdown core-signal-breakdown">' +
+    rows.map(([label, value]) =>
+      '<div><strong>' + escape(label) +
+      '</strong><span class="core-signal-value" style="color:#fbbf24 !important;font-weight:800;">' +
+      escape(value) + '</span></div>'
+    ).join("") + '</div>';
+}
+function getAdditionalSignalEvidence(player, label, details, confidence, trench) {
+  const rows = [];
+  const add = (name, value) => rows.push([name, value ?? "Unavailable"]);
+  const display = value => value === null || value === undefined || value === "" ? "Unavailable" : value;
+  if (label === "Matchup") {
+    const opponent = teamNextOpponent[player.team]?.opponent;
+    const record = opponent && defensePositionAllowed[opponent]?.[player.position];
+    const value = record?.fantasy_points_allowed;
+    add("Opponent", opponent || "Unavailable");
+    add("Position", player.position);
+    add("Fantasy points allowed to position", Number.isFinite(Number(value)) && value != null ? Number(value).toFixed(1) + " per game (feed)" : "Unavailable");
+    add("Sample", "Defensive feed; game count not supplied");
+  } else if (label === "Play Caller Matchup" || label === "Player vs Defensive Play Caller") {
+    add("Offensive play caller", details?.offensivePlayCaller || "Unavailable");
+    add("Defensive play caller", details?.defensivePlayCaller || "Unavailable");
+    add("Upcoming opponent", details?.opponent || "Unavailable");
+    add("Historical average PPR", details?.averagePpr != null && Number.isFinite(Number(details.averagePpr)) ? Number(details.averagePpr).toFixed(1) : "Unavailable");
+    add("Historical meetings", details?.sampleSize ?? 0);
+    if (Number(details?.sampleSize || 0) < 3) add("Sample note", "Limited history / neutral fallback");
+  } else if (label === "Red-Zone Usage") {
+    const record = getWeightedRedZoneRecord(player);
+    if (record?.zones) {
+      add("Games evaluated", display(record.games_evaluated));
+      for (const [name, key] of [["20–11 yards", "20_11"], ["10–6 yards", "10_6"], ["Inside the 5", "5_1"]]) {
+        const zone = record.zones[key];
+        if (zone) add(name, Number(zone.carries || 0) + Number(zone.targets || 0) + " opportunities (" + Number(zone.carries || 0) + " carries, " + Number(zone.targets || 0) + " targets)");
+      }
+      add("Weighted opportunities / game", Number(record.weighted_opportunities_per_game).toFixed(2));
+    } else {
+      const games = getPlayerWeeklyStats(player).filter(g => Number(g.season) === 2026)
+        .sort((a,b) => Number(b.week || 0) - Number(a.week || 0)).slice(0,3);
+      add("Games evaluated", games.length);
+      add("Red-zone carries", games.length ? games.reduce((n,g) => n + Number(g.red_zone_carries || 0),0) : "Unavailable");
+      add("Red-zone targets", games.length ? games.reduce((n,g) => n + Number(g.red_zone_targets || 0),0) : "Unavailable");
+      add("Weighted zone breakdown", "Unavailable");
+    }
+  } else if (label === "Scoring Environment") {
+    const env = getScoringEnvironment(player);
+    add("Opponent", env?.opponent || "Unavailable");
+    add("Week", env?.week || "Unavailable");
+    add("Implied team points", display(env?.impliedTeamTotal));
+    add("Game total", display(env?.gameTotal));
+    add("Spread", display(env?.spread));
+    add("Source", env?.source || "Unavailable");
+  } else if (label === "Model Confidence") {
+    add("Production consistency", confidence?.productionConsistency != null ? confidence.productionConsistency + "/100" : "Unavailable");
+    add("Opportunity stability", confidence?.opportunityStability != null ? confidence.opportunityStability + "/100" : "Unavailable");
+    add("Usage stability", confidence?.usageStability != null ? confidence.usageStability + "/100" : "Unavailable");
+    add("Availability", confidence?.availability != null ? confidence.availability + "/100" : "Unavailable");
+  } else if (label === "Risk Adjustment") {
+    add("Roster status", player.status || "Unavailable");
+    add("Injury designation", player.injuryStatus || "None reported");
+    add("Practice participation", player.practiceParticipation || "Not reported");
+    add("Depth chart", player.depthChartOrder != null ? "#" + player.depthChartOrder : "Unavailable");
+    add("Risk method", "Rule-based; not a probability");
+  } else if (label === "Trench Matchup") {
+    add("Opponent defensive front", trench?.opponent || "Unavailable");
+    add("Trench score", trench ? trench.score.toFixed(1) + "/100" : "Unavailable");
+    add("Offensive line grade", trench?.offensiveLineGrade ?? "Not supplied by current feed");
+    add("Defensive line grade", trench?.defensiveLineGrade ?? "Not supplied by current feed");
+    add("Pass matchup", trench?.passScore != null ? trench.passScore.toFixed(1) + "/100" : "Unavailable");
+    add("Run matchup", trench?.runScore != null ? trench.runScore.toFixed(1) + "/100" : "Unavailable");
+    add("OL injury adjustment", trench ? (trench.injuryAdjusted ? "Included" : "Unavailable") : "Unavailable");
+    add("Confidence", trench?.confidence || "Unavailable");
+  }
+  return rows.length ? signalEvidenceRows(rows) : "";
+}
 function getCoreSignalEvidence(player, signal) {
   const games = getPlayerWeeklyStats(player)
     .filter(game => Number(game.season) === 2026)
@@ -8080,7 +8158,11 @@ function getTrenchMatchup(player) {
     confidence: record.confidence || "team_metrics_only",
     injuryAdjusted: record.injury_adjusted === true,
 
-    opponent: record.defense_team
+    opponent: record.defense_team,
+    passScore: pass,
+    runScore: run,
+    offensiveLineGrade: record.offensive_line_grade ?? record.offense_line_grade ?? null,
+    defensiveLineGrade: record.defensive_line_grade ?? record.defense_front_grade ?? null
   };
 }
 function isPlayerMatchupCompleted(player) {
@@ -9140,6 +9222,7 @@ function getTopSignals(player) {
     .slice(0, 3);
 }
 
+let currentSignalPlayer = null;
 function metricRow(
   label,
   value,
@@ -9159,8 +9242,12 @@ function metricRow(
     ? info.weight
     : "";
 
+  const extraEvidence = ["Matchup", "Play Caller Matchup", "Player vs Defensive Play Caller",
+    "Red-Zone Usage", "Scoring Environment", "Model Confidence", "Risk Adjustment"].includes(label)
+    ? getAdditionalSignalEvidence(currentSignalPlayer, label, signalDetails, breakdown)
+    : "";
   const breakdownHtml =
-    label === "Model Confidence" &&
+    false && label === "Model Confidence" &&
     breakdown
       ? `
         <div class="confidence-breakdown">
@@ -9309,7 +9396,7 @@ const signalDetailsHtml =
 
         ${breakdownHtml}
         
-        ${signalDetailsHtml}
+        ${extraEvidence}
       </div>
     </div>
   `;
@@ -9321,6 +9408,7 @@ function renderPlayerCard(
   recommendation,
   positionRank
 ) {
+  currentSignalPlayer = player;
   const metrics = getMetrics(player);
   const topSignals = getTopSignals(player);
   const riskAdjustment = 100 - metrics.risk;
@@ -9694,6 +9782,7 @@ function renderPlayerCard(
                   : "No verified pregame trench matchup data is available for this opponent."}
             </p>
 
+            ${getAdditionalSignalEvidence(player, "Trench Matchup", null, null, trench)}
             <div class="metric-sample-size">
               ${trench
                 ? `Upcoming matchup · ${trench.opponent} ·
