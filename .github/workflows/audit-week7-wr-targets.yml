@@ -1,0 +1,51 @@
+name: Audit Week 7 WR Targets
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pandas
+      - name: Inspect pregame WR target volume and share
+        run: |
+          python - <<'PY'
+          import json,re
+          import pandas as pd
+          from pathlib import Path
+          data=json.loads(Path("nfl-stats.json").read_text())
+          d=pd.DataFrame(data["players"])
+          print("AVAILABLE WEEKLY STAT FIELDS:",", ".join(d.columns))
+          if not {"season","week","team","position","player_display_name","targets"}.issubset(d.columns):
+              raise RuntimeError("Required weekly targets fields unavailable")
+          d=d[pd.to_numeric(d.season,errors="coerce").eq(2026)&pd.to_numeric(d.week,errors="coerce").lt(7)].copy()
+          if "season_type" in d.columns:d=d[d.season_type.eq("REG")]
+          d["targets"]=pd.to_numeric(d.targets,errors="coerce").fillna(0)
+          d["week"]=pd.to_numeric(d.week,errors="raise").astype(int)
+          # All position targets are needed for a WR share of team targets.
+          totals=d.groupby(["team","week"]).targets.sum().rename("team_targets")
+          w=d[d.position.eq("WR")].copy().join(totals,on=["team","week"])
+          w["share"]=w.targets/w.team_targets.where(w.team_targets.gt(0))
+          def norm(x):
+              x=re.sub(r"\s+(jr\.?|sr\.?|ii|iii|iv)$","",str(x).lower().strip())
+              return re.sub("[^a-z0-9]","",x)
+          w["key"]=w.player_display_name.map(norm)+"|"+w.team.astype(str).str.upper()
+          if w.duplicated(["key","week"]).any():raise RuntimeError("Duplicate WR key-week")
+          p=pd.read_csv("projection-model/2026-week7-ppr-projections.csv")
+          p=p[p.position.eq("WR")].copy()
+          p["key"]=p.player_name.map(norm)+"|"+p.team.astype(str).str.upper()
+          names=["Justin Jefferson","Ja'Marr Chase","Amon-Ra St. Brown","Nico Collins","Chris Olave","George Pickens","Christian Watson","Jalen Coker","Germie Bernard","Malik Washington","Carnell Tate","Emeka Egbuka","Jordan Addison","Matthew Golden","Garrett Wilson"]
+          print("player | team | games | targets/game | last3 targets/game | season target share | last3 target share | model usage | model ppr")
+          for row in p[p.player_name.isin(names)].itertuples(index=False):
+              hist=w[w.key.eq(row.key)].sort_values("week")
+              last=hist.tail(3)
+              vals=[row.player_name,row.team,len(hist),round(hist.targets.mean(),2) if len(hist) else None,round(last.targets.mean(),2) if len(last) else None,round(hist.share.mean(),3) if len(hist) else None,round(last.share.mean(),3) if len(last) else None,row.usage_score,row.projected_ppr]
+              print(" | ".join(map(str,vals)))
+          print("CAUTION: Team-target denominator reflects all player stat rows; verify pass-attempt coverage and team changes before modeling.")
+          print("DIAGNOSTIC ONLY. No live projection changes.")
+          PY
