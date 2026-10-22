@@ -372,21 +372,6 @@ function getScoringEnvironmentEvidence(player) {
   );
 }
 
-function getHistoricalCallerEvidence(details) {
-  const count = Number(details?.sampleSize || 0);
-
-  if (!details || count <= 0) {
-    return "Historical meetings · 0 games · neutral fallback: 50";
-  }
-
-  return (
-    `Historical meetings · ${count} games · ` +
-    (count < 3
-      ? "limited sample; score adjusted toward 50"
-      : "full sample confidence")
-  );
-}
-
 const riskProfiles = {
   conservative: {
     opportunity: 0.15,
@@ -9760,7 +9745,7 @@ function renderPlayerCard(
           false,
           null,
           playCallerDetails,
-          getHistoricalCallerEvidence(playCallerDetails)
+          null
         )}
 
         ${metricRow(
@@ -9769,7 +9754,7 @@ function renderPlayerCard(
           false,
           null,
           playerVsCallerDetails,
-          getHistoricalCallerEvidence(playerVsCallerDetails)
+          null
         )}
 
         ${metricRow(
