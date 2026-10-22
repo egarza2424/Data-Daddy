@@ -14,7 +14,7 @@
     "5_1": 3
   },
   "league_high_weighted_opportunities_per_game": 15.5,
-  "generated_at_utc": "2026-10-22T15:05:48.085280+00:00",
+  "generated_at_utc": "2026-10-22T19:11:20.596179+00:00",
   "players": {
     "00-0030061": {
       "player_name": "Zach Ertz",
@@ -14468,7 +14468,7 @@
     },
     "00-0040390": {
       "player_name": "Jackson Meeks",
-      "position": "WR",
+      "position": "TE",
       "team": "DET",
       "games_evaluated": 1,
       "weeks_evaluated": [
