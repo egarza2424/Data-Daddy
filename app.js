@@ -430,12 +430,11 @@ Usage: {
   "Red-Zone Usage": {
     weight: "9.30%",
     description:
-      "Measures scoring opportunities over the previous 4 completed games. " +
-      "Carries and receiving targets are weighted by distance from the goal line: " +
+      "Measures scoring opportunities near the goal line. " +
+      "For RBs, WRs and TEs, carries and receiving targets over the previous four completed games are weighted by distance: " +
       "20–11 yards = 1×, 10–6 yards = 2×, and inside the 5 = 3×. " +
-      "Closer opportunities carry more weight because they offer greater touchdown potential. " +
-      "RBs, WRs, and TEs share one grading scale. The highest weighted opportunities per game earns 100/100; all other players are graded relative to that leader. " +
-      "QB scoring uses a separate method."
+      "Their scores are relative to the position-group leader in weighted opportunities per game. " +
+      "For QBs, a separate method evaluates red-zone passing attempts and carries over the three most recent available games."
   },
 
   "Model Confidence": {
