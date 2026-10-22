@@ -6252,8 +6252,11 @@ function getAdditionalSignalEvidence(player, label, details, confidence, trench)
         .sort((a,b) => Number(b.week || 0) - Number(a.week || 0)).slice(0,3);
       add("Games evaluated", games.length);
       add("Red-zone carries", games.length ? games.reduce((n,g) => n + Number(g.red_zone_carries || 0),0) : "Unavailable");
-      add("Red-zone targets", games.length ? games.reduce((n,g) => n + Number(g.red_zone_targets || 0),0) : "Unavailable");
-      add("Weighted zone breakdown", "Unavailable");
+      if (player.position === "QB") {
+        add("Red-zone pass attempts", games.length ? games.reduce((n,g) => n + Number(g.red_zone_pass_attempts || 0),0) : "Unavailable");
+      } else {
+        add("Red-zone targets", games.length ? games.reduce((n,g) => n + Number(g.red_zone_targets || 0),0) : "Unavailable");
+      }
     }
   } else if (label === "Scoring Environment") {
     const env = getScoringEnvironment(player);
