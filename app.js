@@ -9288,7 +9288,7 @@ function metricRow(
       `
       : "";
 const signalDetailsHtml =
-  signalDetails
+  false && signalDetails
     ? `
       <div class="confidence-breakdown">
 
