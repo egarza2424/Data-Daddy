@@ -26,3 +26,5 @@ jobs:
         run: python scripts/backtest_role_growth_confidence.py
       - name: Audit confidence sparse-history and role-change cases
         run: python scripts/audit_confidence_edge_cases.py
+      - name: Backtest role-transition confidence challenger
+        run: python scripts/backtest_role_transition_confidence.py
