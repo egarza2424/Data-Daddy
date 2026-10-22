@@ -24,3 +24,5 @@ jobs:
         run: python scripts/audit_model_confidence_calibration.py
       - name: Paired walk-forward role-growth challenger backtest
         run: python scripts/backtest_role_growth_confidence.py
+      - name: Audit confidence sparse-history and role-change cases
+        run: python scripts/audit_confidence_edge_cases.py
