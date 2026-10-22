@@ -1,0 +1,68 @@
+name: Validate WR Trend Challenger
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas numpy
+      - name: Compare WR trend models
+        run: |
+          python - <<'PY'
+          import numpy as np
+          import pandas as pd
+          d=pd.read_csv("projection-model/2025-historical-ppr-dataset.csv")
+          d=d[d.position.eq("WR")].copy()
+          base=["opportunity_score","production_score","usage_score","redzone_score","model_confidence_score"]
+          raw=["targets","receptions","receiving_yards","receiving_tds","actual_ppr"]
+          for c in base+raw+["week"]:d[c]=pd.to_numeric(d[c],errors="coerce")
+          d=d.dropna(subset=base+raw+["week","player_id"]).sort_values(["player_id","week"]).copy()
+          d["week"]=d.week.astype(int)
+          if d.duplicated(["player_id","week"]).any():raise RuntimeError("Duplicate player-week")
+          g=d.groupby("player_id",sort=False)
+          d["prior_games"]=g.cumcount()
+          for c in raw:
+           d["prior_"+c]=g[c].transform(lambda x:x.shift().expanding().mean())
+           d["recent_"+c]=g[c].transform(lambda x:x.shift().rolling(3,min_periods=1).mean())
+          prev_t=g.targets.transform(lambda x:x.shift().expanding().sum())
+          prev_r=g.receptions.transform(lambda x:x.shift().expanding().sum())
+          prev_y=g.receiving_yards.transform(lambda x:x.shift().expanding().sum())
+          d["catch_rate"]=(prev_r+12)/(prev_t+20)
+          d["yards_target"]=(prev_y+140)/(prev_t+20)
+          extra=["prior_targets","recent_targets","recent_receptions","recent_receiving_yards","prior_receiving_tds","catch_rate","yards_target"]
+          train=d[d.week.between(4,9)].copy()
+          test=d[d.week.ge(10)].copy()
+          if len(train)<100 or len(test)<100:raise RuntimeError("Insufficient sample")
+          med=train[extra].median().fillna(0)
+          for f in [train,test]:f[extra]=f[extra].fillna(med)
+          def predict(cols,penalty=0):
+           x=train[cols].to_numpy(float);z=test[cols].to_numpy(float)
+           mu=x.mean(axis=0);sd=x.std(axis=0);sd[sd==0]=1
+           x=(x-mu)/sd;z=(z-mu)/sd
+           X=np.column_stack([np.ones(len(x)),x]);Z=np.column_stack([np.ones(len(z)),z])
+           reg=np.eye(X.shape[1]);reg[0,0]=0
+           b=np.linalg.solve(X.T@X+penalty*reg+1e-8*np.eye(X.shape[1]),X.T@train.actual_ppr.to_numpy(float))
+           return np.maximum(Z@b,0)
+          test["base"]=predict(base)
+          test["expanded"]=predict(base+extra)
+          test["ridge10"]=predict(base+extra,10)
+          test["ridge100"]=predict(base+extra,100)
+          test["fixed50"]=test.base.copy()
+          eligible=test.prior_games.ge(2)&test.prior_actual_ppr.notna()
+          test.loc[eligible,"fixed50"]=.5*test.loc[eligible,"base"]+.5*test.loc[eligible,"prior_actual_ppr"]
+          actual_rank=test.groupby("week").actual_ppr.rank(method="first",ascending=False)
+          top=actual_rank.le(24)
+          print("Train",len(train),"Test",len(test),"PPG eligible",int(eligible.sum()))
+          for name in ["base","fixed50","expanded","ridge10","ridge100"]:
+           p=test[name]
+           rank=test.groupby("week")[name].rank(method="first",ascending=False)
+           print(f"{name}: MAE={np.mean(abs(p-test.actual_ppr)):.4f} RMSE={np.sqrt(np.mean((p-test.actual_ppr)**2)):.4f} top24_recall={(top&rank.le(24)).sum()/top.sum():.3%} mean_rank_error={(rank-actual_rank).abs().mean():.3f}")
+          print("All recent features use shifted prior games only. Same 2025 holdout reused; no live change.")
+          
+          PY
