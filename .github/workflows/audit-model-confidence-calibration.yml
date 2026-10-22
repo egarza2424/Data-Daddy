@@ -28,3 +28,5 @@ jobs:
         run: python scripts/audit_confidence_edge_cases.py
       - name: Backtest role-transition confidence challenger
         run: python scripts/backtest_role_transition_confidence.py
+      - name: Audit Opportunity signal against frozen historical projections
+        run: python scripts/audit_opportunity_signal.py
