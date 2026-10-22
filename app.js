@@ -515,6 +515,26 @@ const statsFile = snapshotWeek
   ? `./nfl-stats-week${snapshotWeek}-snapshot.json`
   : "./nfl-stats.json";
 
+async function loadTrenchRateDetails() {
+  try {
+    const response = await fetch("./data/trench-rate-details.json?v=" + Date.now(), { cache: "no-store" });
+    if (!response.ok) return;
+    const details = await response.json();
+    if (Number(details.season) !== 2026 || Number(details.week) !== Number(trenchSignalWeek)) return;
+    const normalize = team => team === "LAR" ? "LA" : team;
+    for (const [team, rates] of Object.entries(details.teams || {})) {
+      const record = currentTrenchSignals[team] || currentTrenchSignals[normalize(team)];
+      if (!record || record.available !== true ||
+          normalize(record.defense_team) !== normalize(rates.defense_team)) continue;
+      for (const field of ["offense_sack_rate", "offense_qb_hit_rate", "offense_rush_success_rate",
+        "defense_sack_rate", "defense_qb_hit_rate", "defense_run_stop_rate"]) {
+        if (rates[field] != null && Number.isFinite(Number(rates[field]))) record[field] = Number(rates[field]);
+      }
+    }
+  } catch (error) {
+    console.warn("Optional trench rate details unavailable", error);
+  }
+}
 async function loadWeeklyStats() {
   try {
 const response = await fetch(
@@ -10402,6 +10422,7 @@ async function initializeApp() {
   // Load weekly NFL data first so the current
   // target week is known.
   await loadWeeklyStats();
+  await loadTrenchRateDetails();
 
   // Load Model F PPR projections for that week.
   await loadWeeklyPprProjections();
