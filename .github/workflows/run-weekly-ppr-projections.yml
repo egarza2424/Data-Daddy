@@ -260,6 +260,7 @@ jobs:
               "F_TE_50pct_prior_PPG",
               "F_WR_50pct_prior_PPG",
               "Manual_Week7_RB_override",
+              "Editorial_Week7_WR_team_total_adjusted",
           }
 
           if not models.issubset(allowed_models):
@@ -287,6 +288,7 @@ jobs:
           if not wr_models.issubset({
               "F_position_specific",
               "F_WR_50pct_prior_PPG",
+              "Editorial_Week7_WR_team_total_adjusted",
           }):
               raise SystemExit(
                   "Unexpected WR projection models: "
@@ -301,6 +303,22 @@ jobs:
               raise SystemExit(
                   "WR PPG blend label assigned to non-WR player."
               )
+
+          if week == 7:
+              editorial = projections.loc[
+                  projections["projection_model"].eq(
+                      "Editorial_Week7_WR_team_total_adjusted"
+                  )
+              ]
+              if len(editorial) != 24 or not editorial["position"].eq("WR").all():
+                  raise SystemExit("Week 7 editorial WR board must have 24 WRs.")
+              if projections["player_name"].eq("Mike Evans").any():
+                  raise SystemExit("Mike Evans must be excluded for Week 7.")
+              board = editorial.sort_values("projected_position_rank")
+              if board["projected_position_rank"].astype(int).tolist() != list(range(1, 25)):
+                  raise SystemExit("Editorial WR ranks must be 1 through 24.")
+              if not board["projected_ppr"].is_monotonic_decreasing:
+                  raise SystemExit("Editorial WR PPR must descend by rank.")
 
           coefficient_positions = set(
               coefficients[
