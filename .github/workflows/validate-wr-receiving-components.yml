@@ -1,0 +1,71 @@
+name: Validate WR Receiving Components
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pandas numpy
+      - name: Heldout receiving component challenger
+        run: |
+          python - <<'PY'
+          import numpy as np
+          import pandas as pd
+          d=pd.read_csv("projection-model/2025-historical-ppr-dataset.csv")
+          d=d[d.position.eq("WR")].copy()
+          feats=["opportunity_score","production_score","usage_score","redzone_score","model_confidence_score"]
+          outcomes=["targets","receptions","receiving_yards","receiving_tds","rushing_yards","rushing_tds"]
+          required=feats+outcomes+["actual_ppr","week","player_id"]
+          missing=[c for c in required if c not in d.columns]
+          if missing:raise RuntimeError("Historical rebuild missing columns: "+str(missing))
+          for c in feats+outcomes+["actual_ppr","week"]:d[c]=pd.to_numeric(d[c],errors="coerce")
+          d=d.dropna(subset=required).copy()
+          d["week"]=d.week.astype(int)
+          if d.duplicated(["player_id","week"]).any():raise RuntimeError("Duplicate WR player-week")
+          train=d[d.week.between(4,9)].copy()
+          test=d[d.week.ge(10)].copy()
+          if len(train)<100 or len(test)<100:raise RuntimeError("Insufficient split")
+          def matrix(frame):return np.column_stack([np.ones(len(frame)),frame[feats].to_numpy(dtype=float)])
+          x=matrix(train);xt=matrix(test)
+          def fit(y):return np.maximum(xt@np.linalg.lstsq(x,train[y].to_numpy(dtype=float),rcond=None)[0],0)
+          test["model_f"]=fit("actual_ppr")
+          # Separate components, trained on early weeks only. No same-week outcome enters X.
+          for c in ["receptions","receiving_yards","receiving_tds","rushing_yards","rushing_tds"]:
+              test["pred_"+c]=fit(c)
+          test["components"]=(test.pred_receptions+test.pred_receiving_yards/10+6*test.pred_receiving_tds+test.pred_rushing_yards/10+6*test.pred_rushing_tds)
+          # Calculate strictly prior observed PPG for each held-out player/week.
+          hist=d[["player_id","week","actual_ppr"]]
+          lookup={}
+          for player,g in hist.groupby("player_id"):
+              g=g.sort_values("week")
+              for row in g.itertuples(index=False):
+                  h=g[g.week.lt(row.week)].actual_ppr
+                  lookup[(player,row.week)]=(len(h),h.mean() if len(h) else np.nan)
+          test["prior_games"]=[lookup[(p,w)][0] for p,w in zip(test.player_id,test.week)]
+          test["prior_ppg"]=[lookup[(p,w)][1] for p,w in zip(test.player_id,test.week)]
+          eligible=test.prior_games.ge(2)&test.prior_ppg.notna()
+          test["fixed50"]=test.model_f.copy()
+          test.loc[eligible,"fixed50"]=.5*test.loc[eligible,"model_f"]+.5*test.loc[eligible,"prior_ppg"]
+          test["component50"]=test.components.copy()
+          test.loc[eligible,"component50"]=.5*test.loc[eligible,"components"]+.5*test.loc[eligible,"prior_ppg"]
+          test["actual_rank"]=test.groupby("week").actual_ppr.rank(method="first",ascending=False)
+          print("Train",len(train),"Test",len(test),"Weeks",test.week.nunique(),"PPG eligible",int(eligible.sum()))
+          for label in ["model_f","fixed50","components","component50"]:
+              pred=test[label]
+              mae=np.mean(np.abs(pred-test.actual_ppr))
+              rmse=np.sqrt(np.mean((pred-test.actual_ppr)**2))
+              rank=test.groupby("week")[label].rank(method="first",ascending=False)
+              top=test.actual_rank.le(24)
+              recall=((top)&rank.le(24)).sum()/top.sum()
+              rankerr=(rank-test.actual_rank).abs().mean()
+              print(f"{label}: MAE={mae:.4f} RMSE={rmse:.4f} top24_recall={recall:.3%} mean_rank_error={rankerr:.3f}")
+          print("Leakage control: only early-week pregame features used for fitted component models.")
+          print("Caution: additive OLS component predictions with zero floors are a simple first challenger, not a calibrated TD or target model.")
+          print("DIAGNOSTIC ONLY. Live projections unchanged.")
+          PY
