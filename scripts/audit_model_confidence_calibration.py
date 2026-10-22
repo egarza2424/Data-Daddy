@@ -49,3 +49,20 @@ print("\\nMAE within comparable projected-PPR tiers:")
 print(joined.groupby(["position", "projection_tier", "confidence_band"], observed=True).agg(
     rows=("absolute_error", "size"), mae=("absolute_error", "mean")).round(3).to_string())
 print("Interpret tiers with small row counts cautiously; no model parameters changed.")
+
+# Minimum-sample comparison: require at least 20 observations in each compared band.
+MIN_ROWS = 20
+tier_summary = joined.groupby(
+    ["position", "projection_tier", "confidence_band"], observed=True
+).agg(rows=("absolute_error", "size"), mae=("absolute_error", "mean"),
+      scaled_error=("scaled_error", "mean")).reset_index()
+eligible = tier_summary[tier_summary.rows >= MIN_ROWS].copy()
+print("\\nWithin-tier confidence comparisons (minimum 20 rows per band):")
+for (position, tier), group in eligible.groupby(["position", "projection_tier"], observed=True):
+    if len(group) < 2:
+        continue
+    print(f"{position} projected {tier}:")
+    print(group[["confidence_band", "rows", "mae", "scaled_error"]].round(3).to_string(index=False))
+print("Historical provenance: build_historical_ppr_dataset.py specifies prior weeks only;")
+print("historical availability is a constant 95, not reconstructed injury information.")
+print("Do not treat these observational comparisons as calibrated probabilities.")
