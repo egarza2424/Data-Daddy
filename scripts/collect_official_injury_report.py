@@ -90,6 +90,12 @@ def main():
                 "match_status": "unique_name_only" if len(matches) == 1 else ("ambiguous" if matches else "unmatched"),
                 "matches": matches,
             })
+    # Do not equate appearing anywhere in a truncated OUT snippet with OUT.
+    # Retain candidate-level evidence for review; verified OUT stays empty.
+    for item in directory_matches:
+        item["status_verification"] = "not_verified"
+        item["team_verification"] = "not_verified"
+        item["eligible_for_projection_adjustment"] = False
     result = {
         "season": args.season, "week": args.week,
         "source_url": url,
