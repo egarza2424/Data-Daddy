@@ -14,6 +14,41 @@ LIVE_SNAPSHOT_PATH = Path(
     "projection-model/current-live-model-snapshot.csv"
 )
 OUTPUT_DIR = Path("projection-model")
+VERIFIED_INJURY_OUTS_PATH = Path("data/verified_injury_outs.json")
+
+# Safe initial bootstrap until the verified status file is committed.
+# The file becomes authoritative as soon as it exists.
+BOOTSTRAP_WEEK7_OUTS = [
+    ("12518", "Tyler Warren", "TE", "IND"),
+    ("12514", "Emeka Egbuka", "WR", "TB"),
+    ("8154", "Brian Robinson Jr.", "RB", "ATL"),
+]
+
+
+def load_verified_injury_outs(week):
+    if not VERIFIED_INJURY_OUTS_PATH.exists():
+        return [
+            {"player_id": pid, "player_name": name, "position": pos, "team": team}
+            for pid, name, pos, team in BOOTSTRAP_WEEK7_OUTS
+        ] if week == 7 else []
+    payload = json.loads(VERIFIED_INJURY_OUTS_PATH.read_text(encoding="utf-8"))
+    if payload.get("schema_version") != 1 or not isinstance(payload.get("out"), list):
+        raise RuntimeError("Invalid verified injury OUT file schema")
+    selected, seen = [], set()
+    for item in payload["out"]:
+        if item.get("season") != 2026 or item.get("week") != week:
+            continue
+        key = str(item.get("player_id"))
+        if key in seen or item.get("status") != "OUT":
+            raise RuntimeError(f"Invalid or duplicate verified OUT: {key}")
+        if not str(item.get("source", "")).startswith("https://www.nfl.com/"):
+            raise RuntimeError(f"Missing official NFL source for verified OUT: {key}")
+        if not all(item.get(k) for k in ("player_name", "position", "team", "verified_date")):
+            raise RuntimeError(f"Incomplete verified OUT: {key}")
+        seen.add(key)
+        selected.append(item)
+    return selected
+
 
 POSITIONS = ["QB", "RB", "WR", "TE"]
 
@@ -368,14 +403,19 @@ def prepare_snapshot(
             unavailable_statuses
         )
 
-    # Confirmed Week 7 Colts absence: Warren is OUT; the
-    # roster feed still labels him Questionable. Do not project him.
-    unavailable_mask |= (
-        snapshot["snapshot_week"].eq(7)
-        & snapshot["player_name"].eq("Tyler Warren")
-        & snapshot["position"].eq("TE")
-        & snapshot["team"].eq("IND")
-    )
+    # Override stale fantasy-feed labels only for official, week-scoped OUT
+    # designations. Do not treat Questionable or Doubtful as inactive.
+    target_week = int(snapshot["snapshot_week"].iloc[0])
+    for item in load_verified_injury_outs(target_week):
+        match = (
+            snapshot["player_id"].astype(str).eq(str(item["player_id"]))
+            & snapshot["player_name"].eq(item["player_name"])
+            & snapshot["position"].eq(item["position"])
+            & snapshot["team"].eq(item["team"])
+        )
+        if match.sum() > 1:
+            raise RuntimeError(f"Duplicate verified OUT player: {item['player_name']}")
+        unavailable_mask |= match
 
     unavailable_players = snapshot.loc[
         unavailable_mask,
@@ -1159,6 +1199,16 @@ def main():
             ("Malik Washington", 12.1),
             ("Carnell Tate", 11.9),
         ]
+        # Never force an officially ruled-out player into the curated board.
+        # Remaining available WRs fill the open slots by projected PPR.
+        verified_out_wr = {
+            item["player_name"] for item in load_verified_injury_outs(target_week)
+            if item["position"] == "WR"
+        }
+        wr_editorial = [
+            (name, ppr) for name, ppr in wr_editorial
+            if name not in verified_out_wr
+        ]
         wr_mask = projections["position"].eq("WR")
         evans = wr_mask & projections["player_name"].eq("Mike Evans")
         projections = projections.loc[~evans].copy()
@@ -1188,7 +1238,7 @@ def main():
         ).index.tolist()
         for rank, idx in enumerate(chosen + others, start=1):
             projections.loc[idx, "projected_position_rank"] = rank
-        print("Week 7 editorial WR Top 24 applied; Mike Evans excluded.")
+        print("Week 7 available editorial WR board applied; model fills vacated slots.")
 
     pre_injury_ppr = projections.set_index("player_id")["projected_ppr"].copy()
 
