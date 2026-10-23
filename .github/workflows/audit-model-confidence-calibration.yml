@@ -34,3 +34,5 @@ jobs:
         run: python scripts/audit_te_wr_opportunity_efficiency.py
       - name: Backtest TE WR target-share trend challenger
         run: python scripts/backtest_target_share_trend.py
+      - name: Backtest sustained TE WR target volume
+        run: python scripts/backtest_sustained_target_volume.py
