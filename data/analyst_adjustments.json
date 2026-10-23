@@ -1,18 +1,7 @@
 {
   "schema_version": 1,
   "description": "Week-scoped editorial adjustments. Values are deltas, not replacements. This file is configuration only until the projection and ranking pipelines consume it.",
-  "adjustments": [
-    {
-      "season": 2026,
-      "week": 7,
-      "player_id": "12495",
-      "ai_score_delta": "0.12",
-      "projected_ppr_delta": "0.16",
-      "reason": "Testing analyst adjustment precision",
-      "source": "Internal validation test",
-      "author": "egarza2424"
-    }
-  ],
+  "adjustments": [],
   "example_not_applied": {
     "season": 2026,
     "week": 7,
