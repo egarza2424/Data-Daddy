@@ -18,7 +18,7 @@ checks = {
     "shared AI Score helper exists":
         "function getDisplayedAiScore(player, profile)" in app,
     "shared helper uses calculateScore":
-        bool(re.search(r"function getDisplayedAiScore\(player, profile\)\s*\{\s*return player \? calculateScore\(player, profile\) : NaN;", app)),
+        bool(re.search(r"function getDisplayedAiScore\(player, profile\)\s*\{[\s\S]*?const liveScore = calculateScore\(player, profile\);", app)),
     "rankings use shared AI Score helper":
         "score: getDisplayedAiScore(player, profile)" in ranking,
     "projections use shared AI Score helper":
