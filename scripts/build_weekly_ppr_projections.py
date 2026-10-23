@@ -1539,6 +1539,51 @@ def main():
                 pd.DataFrame(audit_rows).to_csv(audit_path, index=False)
                 print(f"Saved {len(audit_rows)} research-only rushing scenarios: {audit_path}")
 
+    # Week 7: limited, explicitly provisional RB absence uplift.
+    # Uses the 50% carry-retention challenger; avoids assuming touchdowns
+    # or applying this adjustment when the starter is no longer verified OUT.
+    if target_week == 7:
+        verified_love_out = any(
+            item.get("player_name") == "Jeremiyah Love"
+            and item.get("team") == "ARI"
+            and item.get("position") == "RB"
+            for item in load_verified_injury_outs(target_week)
+        )
+        if verified_love_out:
+            evidence_path = Path("projection-model/validation/starter-absence-evidence.csv")
+            if evidence_path.exists():
+                evidence = pd.read_csv(evidence_path)
+                eligible = evidence.loc[
+                    evidence["activation_status"].eq("REVIEW_REQUIRED")
+                    & evidence["position"].eq("RB")
+                    & evidence["team"].eq("ARI")
+                    & evidence["starter_name"].eq("Jeremiyah Love")
+                ]
+                for _, ev in eligible.iterrows():
+                    sid = str(ev["beneficiary_sleeper_id"])
+                    mask = (
+                        projections["player_id"].astype(str).eq(sid)
+                        & projections["position"].eq("RB")
+                        & projections["team"].eq("ARI")
+                    )
+                    if mask.sum() != 1:
+                        continue
+                    idx = projections.index[mask][0]
+                    gain = max(0.0, float(ev["carry_change_per_game"]))
+                    uplift = round(gain * 0.50 * 0.4, 2)
+                    if uplift <= 0:
+                        continue
+                    baseline = float(projections.at[idx, "projected_ppr"])
+                    projections.at[idx, "original_projected_ppr"] = baseline
+                    projections.at[idx, "projected_ppr"] = round(baseline + uplift, 2)
+                    projections.at[idx, "projection_model"] = "StarterAbsence_RB_50pct_carry_retention_Week7"
+                    print(f"Love-out RB {projections.at[idx, 'player_name']}: {baseline:.2f} -> {baseline + uplift:.2f} PPR")
+                rb_mask = projections["position"].eq("RB")
+                projections.loc[rb_mask, "projected_position_rank"] = (
+                    projections.loc[rb_mask, "projected_ppr"]
+                    .rank(method="min", ascending=False).astype(int)
+                )
+
     # Apply optional week-scoped analyst deltas after baseline and editorial logic.
     # Keep original model values in separate columns for accuracy comparisons.
     from analyst_adjustments import apply_adjustments
