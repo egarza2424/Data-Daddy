@@ -15,7 +15,7 @@ def main():
     p.add_argument("--season", type=int, default=2025)
     p.add_argument("--output", default="projection-model/validation/2025-rb-absence-retention-backtest.csv")
     args = p.parse_args()
-    df = pd.read_csv(args.stats)
+    df = pd.read_csv(args.stats, low_memory=False)
     team_col = next((c for c in ("recent_team", "team") if c in df), None)
     rush_col = next((c for c in ("carries", "rushing_attempts") if c in df), None)
     if not team_col or not rush_col or not {"season", "week", "position", "player_id"}.issubset(df):
@@ -27,6 +27,7 @@ def main():
     rows = []
     for team, team_df in df.groupby(team_col):
         by_week = {w: frame.set_index("player_id") for w, frame in team_df.groupby("week")}
+        last_starter_absence_week = {}
         for week in range(5, 17):
             previous = team_df.loc[(team_df.week >= week - 4) & (team_df.week < week)]
             if previous.empty or week not in by_week or week + 1 not in by_week:
@@ -40,6 +41,12 @@ def main():
             starter = leaders["mean"].idxmax()
             if starter in by_week[week].index or starter in by_week[week + 1].index:
                 continue
+            # One non-overlapping observation per starter absence episode:
+            # consecutive missing weeks must not become new event starts.
+            if last_starter_absence_week.get(starter) == week - 1:
+                last_starter_absence_week[starter] = week
+                continue
+            last_starter_absence_week[starter] = week
             for beneficiary in set(by_week[week].index) & set(by_week[week + 1].index):
                 if beneficiary == starter:
                     continue
