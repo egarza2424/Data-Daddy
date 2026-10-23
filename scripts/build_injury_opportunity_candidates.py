@@ -83,6 +83,18 @@ def main():
                     observed_position_change = round(
                         float(totals.loc[absence_week].sum() - prior.sum(axis=1).mean()), 2
                     )
+        # Observed beneficiary change versus their own pre-absence baseline.
+        # Missing baseline is unknown, not a zero-opportunity assumption.
+        def individual_change(candidate):
+            if candidate.get("beneficiary_history_status") != "HAS_PRIOR_BASELINE":
+                return None
+            try:
+                recent = float(candidate["candidate_opportunities"])
+                baseline = float(candidate["baseline_targets_per_game"]) + float(candidate["baseline_carries_per_game"])
+                return round(recent - baseline, 2)
+            except (ValueError, TypeError):
+                return None
+
         total_recent = float(matches["candidate_opportunities"].sum())
         # Shares describe observed same-position participation only.
         # Do not convert the starter's full historical volume into a beneficiary
@@ -102,6 +114,7 @@ def main():
                 "projected_workload": "", "starter_targets_per_game": starter_targets,
                 "starter_carries_per_game": starter_carries,
                 "candidate_recent_share_pct": "", "illustrative_vacated_opportunities": "",
+                "observed_individual_opportunity_change": None,
                 "approved_for_scoring": False,
             })
         for _, candidate in matches.iterrows():
@@ -131,6 +144,7 @@ def main():
                 "candidate_recent_share_pct": round(100 * float(candidate["candidate_opportunities"]) / total_recent, 2) if total_recent else None,
                 "illustrative_vacated_opportunities": None,
                 "observed_position_opportunity_change": observed_position_change,
+                "observed_individual_opportunity_change": individual_change(candidate),
                 "approved_for_scoring": False,
             })
 
@@ -144,7 +158,7 @@ def main():
         "role_confidence", "opportunity_status", "projected_workload",
         "starter_targets_per_game", "starter_carries_per_game",
         "candidate_recent_share_pct", "illustrative_vacated_opportunities",
-        "observed_position_opportunity_change",
+        "observed_position_opportunity_change", "observed_individual_opportunity_change",
         "approved_for_scoring",
     ]
     output = Path(args.output)
