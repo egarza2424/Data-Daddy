@@ -2651,7 +2651,7 @@ function renderProjectionBoard() {
 
     tableBody.innerHTML = `
       <tr>
-        <td colspan="9">
+        <td colspan="10">
           ${
             projectionsUnavailable
               ? "Next week's projections are being prepared. Weekly PPR projections will appear here when the new matchup data is finalized."
@@ -2735,6 +2735,7 @@ function renderProjectionBoard() {
         player?.injuryStatus ||
         "Available";
 
+      const actualPpr = player ? getActualPprForRanking(player) : null;
       const row =
         document.createElement("tr");
 
@@ -2763,6 +2764,7 @@ function renderProjectionBoard() {
           ? `${position}${aiRank}`
           : "—",
 
+        actualPpr === null ? "—" : actualPpr.toFixed(2),
         status
       ];
 
@@ -2770,7 +2772,7 @@ function renderProjectionBoard() {
       if (roleWatch) {
         const warningRow = document.createElement("tr");
         const warningCell = document.createElement("td");
-        warningCell.colSpan = 9;
+        warningCell.colSpan = 10;
         warningCell.style.borderLeft = "3px solid #d6a23a";
         warningCell.style.padding = "8px 12px";
         warningCell.textContent = "ROLE COMPETITION WATCH — " + roleWatch;
@@ -2832,6 +2834,7 @@ function renderProjectionBoard() {
 
         const metricValues = [
           ["Projected PPR", Number.isFinite(projectedPpr) ? projectedPpr.toFixed(2) : "—"],
+          ["Actual PPR", actualPpr === null ? "—" : actualPpr.toFixed(2)],
           ["PPR Rank", Number.isFinite(projectedRank) ? `${position}${projectedRank}` : "—"],
           ["AI Rank", aiRank ? `${position}${aiRank}` : "—"],
           ["AI Score", Number.isFinite(aiScore) ? aiScore.toFixed(1) : "—"]
