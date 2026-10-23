@@ -61,8 +61,9 @@ def main():
                 starter_targets = round(float(history["targets"].mean()), 2)
                 starter_carries = round(float(history[carry_col].mean()), 2)
         total_recent = float(matches["candidate_opportunities"].sum())
-        # Allocation shares are historical participation proxies, not projections.
-        # A zero-history player remains visible with an unknown allocation.
+        # Shares describe observed same-position participation only.
+        # Do not convert the starter's full historical volume into a beneficiary
+        # workload estimate without evidence for retention and role assignment.
         if matches.empty:
             rows.append({
                 "season": args.season, "week": args.week,
@@ -105,9 +106,7 @@ def main():
                 "starter_targets_per_game": starter_targets,
                 "starter_carries_per_game": starter_carries,
                 "candidate_recent_share_pct": round(100 * float(candidate["candidate_opportunities"]) / total_recent, 2) if total_recent else None,
-                "illustrative_vacated_opportunities": round(
-                    (starter_targets + starter_carries) * float(candidate["candidate_opportunities"]) / total_recent, 2
-                ) if total_recent and starter_targets is not None and starter_carries is not None else None,
+                "illustrative_vacated_opportunities": None,
                 "approved_for_scoring": False,
             })
 
