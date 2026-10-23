@@ -7,6 +7,9 @@ on:
       - "data/verified_injury_outs.json"
       - "data/starter_absence_opportunities.json"
       - "scripts/build_weekly_ppr_projections.py"
+  schedule:
+    - cron: "0 14,19,23 * * 2-6"
+    - cron: "0 13,16,19,22 * * 0,1"
   workflow_dispatch:
 
   workflow_run:
