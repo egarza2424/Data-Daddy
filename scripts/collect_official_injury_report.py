@@ -48,7 +48,7 @@ def main():
     # Preserve bounded context around each OUT heading for team-section review.
     # This is audit evidence, not a verified player designation.
     out_section_context = []
-    for match in re.finditer(r"\\bOUT\\s*:", text, re.I):
+    for match in re.finditer(r"\bOUT\s*:", text, re.I):
         before = text[max(0, match.start() - 350):match.start()]
         after = text[match.end():match.end() + 1000]
         out_section_context.append({
