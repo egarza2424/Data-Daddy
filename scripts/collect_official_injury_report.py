@@ -54,6 +54,34 @@ def main():
             if name and name not in candidates:
                 candidates.append(name)
 
+    # Candidate matching is diagnostic only. A name match does not establish
+    # team, report section, game status, or confirmed absence.
+    directory_path = Path("data/gameday_availability.json")
+    directory_matches = []
+    if directory_path.exists():
+        directory = json.loads(directory_path.read_text(encoding="utf-8"))
+        players = directory.get("players", [])
+        if isinstance(players, dict):
+            players = list(players.values())
+        for name in candidates:
+            normalized = " ".join(name.casefold().split())
+            matches = []
+            for player in players:
+                if not isinstance(player, dict):
+                    continue
+                player_name = player.get("player_name") or player.get("full_name") or player.get("name") or ""
+                if " ".join(str(player_name).casefold().split()) == normalized:
+                    matches.append({
+                        "player_id": str(player.get("player_id") or player.get("sleeper_id") or ""),
+                        "player_name": player_name,
+                        "team": player.get("team"),
+                        "position": player.get("position"),
+                    })
+            directory_matches.append({
+                "reported_name": name,
+                "match_status": "unique_name_only" if len(matches) == 1 else ("ambiguous" if matches else "unmatched"),
+                "matches": matches,
+            })
     result = {
         "season": args.season, "week": args.week,
         "source_url": url,
@@ -62,6 +90,7 @@ def main():
         "automatically_verified_outs": [],
         "out_text_observations": snippets,
         "unverified_name_candidates": candidates,
+        "directory_name_matches_unverified": directory_matches,
     }
     path = Path(args.output)
     path.parent.mkdir(parents=True, exist_ok=True)
