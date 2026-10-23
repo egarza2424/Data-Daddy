@@ -2,11 +2,12 @@
   "season": 2026,
   "week": 7,
   "source_url": "https://www.nfl.com/news/nfl-week-7-injury-report-2026-season",
-  "retrieved_at_utc": "2026-10-23T20:38:07.343427+00:00",
+  "retrieved_at_utc": "2026-10-23T20:49:09.844506+00:00",
   "verification_status": "official_source_text_unresolved_player_identity",
   "automatically_verified_outs": [],
   "out_text_observations": [
     "OUT:",
+    "OUT:** WR \\u003cforge-entity title=\\\"Mike Evans\\\" slug=\\\"mike-evans\\\" code=\\\"player\\\"\\u003eMike Evans\\u003c/forge-entity\\u003e (ribs/Achilles), WR \\u003cforge-entity title=\\\"Deebo Samuel\\\" slug=\\\"deebo-samuel\\\" code=\\\"player\\\"\\u003eDeebo Samuel\\u003c/forge-entity\\u003e (hamstring), DE \\u003cforge-entity title=\\\"Nick Bosa\\\" slug=\\\"nick-bosa\\\" code=\\",
     "OUT:** RB \\u003cforge-entity title=\\\"Brian Robinson\\\" slug=\\\"brian-robinson\\\" code=\\\"player\\\"\\u003eBrian Robinson\\u003c/forge-entity\\u003e (hamstring), OT \\u003cforge-entity title=\\\"Michael Jerrell\\\" slug=\\\"michael-jerrell\\\" code=\\\"player\\\"\\u003eMichael Jerrell\\u003c/forge-entity\\u003e (bicep), LB \\u003cforge-entity title=\\\"Divine Deablo\\\" slug=\\\"d",
     "OUT:** WR \\u003cforge-entity title=\\\"Emeka Egbuka\\\" slug=\\\"emeka-egbuka\\\" code=\\\"player\\\"\\u003eEmeka Egbuka\\u003c/forge-entity\\u003e (concussion/foot), OT \\u003cforge-entity title=\\\"Luke Goedeke\\\" slug=\\\"luke-goedeke\\\" code=\\\"player\\\"\\u003eLuke Goedeke\\u003c/forge-entity\\u003e (calf), S \\u003cforge-entity title=\\\"Antoine Winfield Jr.\\\" slug=\\\"antoi",
     "OUT:** OLB \\u003cforge-entity title=\\\"Thomas Incoom\\\" slug=\\\"thomas-incoom\\\" code=\\\"player\\\"\\u003eThomas Incoom\\u003c/forge-entity\\u003e (calf), OLB \\u003cforge-entity title=\\\"Jaelan Phillips\\\" slug=\\\"jaelan-phillips\\\" code=\\\"player\\\"\\u003eJaelan Phillips\\u003c/forge-entity\\u003e (hamstring)\\n* **QUESTIONABLE:** OT \\u003cforge-entity title=\\\"Monroe",
@@ -25,6 +26,7 @@
     "OUT:** WR \\u003cforge-entity title=\\\\\\\"Dont\\u0026#39;e Thornton Jr.\\\\\\\" slug=\\\\\\\"dont-e-thornton-jr\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eDont\\u0026#39;e Thornton Jr.\\u003c/forge-entity\\u003e (hamstring), TE \\u003cforge-entity title=\\\\\\\"Carter Runyon\\\\\\\" slug=\\\\\\\"carter-runyon-2\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eCarter Runyon\\u003c/forge-entity\\u003e (foot)\\\\n* ",
     "OUT:** RB \\u003cforge-entity title=\\\\\\\"Brashard Smith\\\\\\\" slug=\\\\\\\"brashard-smith\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eBrashard Smith\\u003c/forge-entity\\u003e (hamstring), WR \\u003cforge-entity title=\\\\\\\"Rashee Rice\\\\\\\" slug=\\\\\\\"rashee-rice\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eRashee Rice\\u003c/forge-entity\\u003e (hamstring/knee), OL \\u003cforge-entity title=\\\\\\\"J",
     "OUT:\\\"}],\\\" WR \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/ben-skowronek\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Ben Skowronek\\\"}],\\\" (calf), CB \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener nore",
+    "OUT:\\\"}],\\\" WR \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/mike-evans\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Mike Evans\\\"}],\\\" (ribs/Achilles), WR \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener n",
     "OUT:\\\"}],\\\" RB \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/brian-robinson\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Brian Robinson\\\"}],\\\" (hamstring), OT \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopen",
     "OUT:\\\"}],\\\" OLB \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/tavius-robinson\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Tavius Robinson\\\"}],\\\" (pectoral), S \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noope",
     "OUT:\\\"}],\\\" WR \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/emeka-egbuka\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Emeka Egbuka\\\"}],\\\" (concussion/foot), OT \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noop",
@@ -45,12 +47,18 @@
   "out_section_context_unverified": [
     {
       "preceding_context": ".com\nShare Facebook\nShare Twitter\nNFL.com tracks player statuses for all 14 games in Week 7 of the 2026 NFL season.\nFans can stream live local and primetime games on mobile with\nNFL+\n.\nSUNDAY, OCT. 25\nPittsburgh Steelers\n4-2\nAT\nNew Orleans Saints\n2-4\nWHERE:\nStade de France (Saint Denis, France)\nWHEN:\n9:30 a.m. ET\n|\nNFL Network, ESPN, NFL+\nSTEELERS\n",
-      "following_context": "\nWR\nBen Skowronek\n(calf), CB\nBrandin Echols\n(hamstring)\nQUESTIONABLE:\nRB\nRico Dowdle\n(knee), S\nDeShon Elliott\n(knee)\nSAINTS\nQUESTIONABLE:\nG\nCesar Ruiz\n(knee), DT\nNathan Shepherd\n(illness)\nSan Francisco 49ers\n6-0\nAT\nAtlanta Falcons\n2-4\nWHERE:\nMercedes-Benz Stadium (Atlanta)\nWHEN:\n1:00 p.m. ET\n|\nFOX, FOX One, NFL+\nFALCONS\nOUT:\nRB\nBrian Robinson\n(hamstring), OT\nMichael Jerrell\n(bicep), LB\nDivine Deablo\n(forearm), DB\nBilly Bowman Jr.\n(hamstring)\nQUESTIONABLE:\nWR\nBeaux Collins\n(hip), WR\nOlamide Zaccheaus\n(shoulder), OT\nCameron Williams\n(ankle), DE\nSamson Ebukam\n(hamstring), DE\nZa'Darius Smith\n(neck), DT\nGervon Dexter\n(hamstring), LB\nKendal Daniels\n(neck), CB\nC.J. Henderson\n(groin), CB\nA.J. Terrell\n(groin), CB\nAvieon Terrell\n(back)\nCincinnati Bengals\n3-2\nAT\nBaltimore Ravens\n4-2\nWHERE:\nM&T Bank Stadium (Baltimore)\nWHEN:\n1:00 p.m. ET\n|\nCBS, Paramount+, NFL+\nBENGALS\nNo injury designations.\nRAVENS\nOUT:\nOLB\nTavius Robinson\n(pectoral), S\nJaylinn Hawkins\n(knee)\nDOUBTFUL:\nCB\nT.J. Tampa\n(knee)\nQUESTI",
+      "following_context": "\nWR\nBen Skowronek\n(calf), CB\nBrandin Echols\n(hamstring)\nQUESTIONABLE:\nRB\nRico Dowdle\n(knee), S\nDeShon Elliott\n(knee)\nSAINTS\nQUESTIONABLE:\nG\nCesar Ruiz\n(knee), DT\nNathan Shepherd\n(illness)\nSan Francisco 49ers\n6-0\nAT\nAtlanta Falcons\n2-4\nWHERE:\nMercedes-Benz Stadium (Atlanta)\nWHEN:\n1:00 p.m. ET\n|\nFOX, FOX One, NFL+\n49ERS\nOUT:\nWR\nMike Evans\n(ribs/Achilles), WR\nDeebo Samuel\n(hamstring), DE\nNick Bosa\n(knee, calf), LB\nLuke Gifford\n(groin), LB\nGarret Wallow\n(hamstring), S\nMarques Sigle\n(ankle)\nQUESTIONABLE:\nWR\nChristian Kirksey\n, CB\nUpton Stout\n(shoulder), S\nSiran Neal\n(knee)\nFALCONS\nOUT:\nRB\nBrian Robinson\n(hamstring), OT\nMichael Jerrell\n(bicep), LB\nDivine Deablo\n(forearm), DB\nBilly Bowman Jr.\n(hamstring)\nQUESTIONABLE:\nWR\nBeaux Collins\n(hip), WR\nOlamide Zaccheaus\n(shoulder), OT\nCameron Williams\n(ankle), DE\nSamson Ebukam\n(hamstring), DE\nZa'Darius Smith\n(neck), DT\nGervon Dexter\n(hamstring), LB\nKendal Daniels\n(neck), CB\nC.J. Henderson\n(groin), CB\nA.J. Terrell\n(groin), CB\nAvieon Terrell\n(back)\nCin",
       "team_verified": false,
       "player_status_verified": false
     },
     {
-      "preceding_context": "rk, ESPN, NFL+\nSTEELERS\nOUT:\nWR\nBen Skowronek\n(calf), CB\nBrandin Echols\n(hamstring)\nQUESTIONABLE:\nRB\nRico Dowdle\n(knee), S\nDeShon Elliott\n(knee)\nSAINTS\nQUESTIONABLE:\nG\nCesar Ruiz\n(knee), DT\nNathan Shepherd\n(illness)\nSan Francisco 49ers\n6-0\nAT\nAtlanta Falcons\n2-4\nWHERE:\nMercedes-Benz Stadium (Atlanta)\nWHEN:\n1:00 p.m. ET\n|\nFOX, FOX One, NFL+\nFALCONS\n",
+      "preceding_context": "work, ESPN, NFL+\nSTEELERS\nOUT:\nWR\nBen Skowronek\n(calf), CB\nBrandin Echols\n(hamstring)\nQUESTIONABLE:\nRB\nRico Dowdle\n(knee), S\nDeShon Elliott\n(knee)\nSAINTS\nQUESTIONABLE:\nG\nCesar Ruiz\n(knee), DT\nNathan Shepherd\n(illness)\nSan Francisco 49ers\n6-0\nAT\nAtlanta Falcons\n2-4\nWHERE:\nMercedes-Benz Stadium (Atlanta)\nWHEN:\n1:00 p.m. ET\n|\nFOX, FOX One, NFL+\n49ERS\n",
+      "following_context": "\nWR\nMike Evans\n(ribs/Achilles), WR\nDeebo Samuel\n(hamstring), DE\nNick Bosa\n(knee, calf), LB\nLuke Gifford\n(groin), LB\nGarret Wallow\n(hamstring), S\nMarques Sigle\n(ankle)\nQUESTIONABLE:\nWR\nChristian Kirksey\n, CB\nUpton Stout\n(shoulder), S\nSiran Neal\n(knee)\nFALCONS\nOUT:\nRB\nBrian Robinson\n(hamstring), OT\nMichael Jerrell\n(bicep), LB\nDivine Deablo\n(forearm), DB\nBilly Bowman Jr.\n(hamstring)\nQUESTIONABLE:\nWR\nBeaux Collins\n(hip), WR\nOlamide Zaccheaus\n(shoulder), OT\nCameron Williams\n(ankle), DE\nSamson Ebukam\n(hamstring), DE\nZa'Darius Smith\n(neck), DT\nGervon Dexter\n(hamstring), LB\nKendal Daniels\n(neck), CB\nC.J. Henderson\n(groin), CB\nA.J. Terrell\n(groin), CB\nAvieon Terrell\n(back)\nCincinnati Bengals\n3-2\nAT\nBaltimore Ravens\n4-2\nWHERE:\nM&T Bank Stadium (Baltimore)\nWHEN:\n1:00 p.m. ET\n|\nCBS, Paramount+, NFL+\nBENGALS\nNo injury designations.\nRAVENS\nOUT:\nOLB\nTavius Robinson\n(pectoral), S\nJaylinn Hawkins\n(knee)\nDOUBTFUL:\nCB\nT.J. Tampa\n(knee)\nQUESTIONABLE:\nQB\nLamar Jackson\n(ankle), DT\nBroderick Washington\n(ankl",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "4\nWHERE:\nMercedes-Benz Stadium (Atlanta)\nWHEN:\n1:00 p.m. ET\n|\nFOX, FOX One, NFL+\n49ERS\nOUT:\nWR\nMike Evans\n(ribs/Achilles), WR\nDeebo Samuel\n(hamstring), DE\nNick Bosa\n(knee, calf), LB\nLuke Gifford\n(groin), LB\nGarret Wallow\n(hamstring), S\nMarques Sigle\n(ankle)\nQUESTIONABLE:\nWR\nChristian Kirksey\n, CB\nUpton Stout\n(shoulder), S\nSiran Neal\n(knee)\nFALCONS\n",
       "following_context": "\nRB\nBrian Robinson\n(hamstring), OT\nMichael Jerrell\n(bicep), LB\nDivine Deablo\n(forearm), DB\nBilly Bowman Jr.\n(hamstring)\nQUESTIONABLE:\nWR\nBeaux Collins\n(hip), WR\nOlamide Zaccheaus\n(shoulder), OT\nCameron Williams\n(ankle), DE\nSamson Ebukam\n(hamstring), DE\nZa'Darius Smith\n(neck), DT\nGervon Dexter\n(hamstring), LB\nKendal Daniels\n(neck), CB\nC.J. Henderson\n(groin), CB\nA.J. Terrell\n(groin), CB\nAvieon Terrell\n(back)\nCincinnati Bengals\n3-2\nAT\nBaltimore Ravens\n4-2\nWHERE:\nM&T Bank Stadium (Baltimore)\nWHEN:\n1:00 p.m. ET\n|\nCBS, Paramount+, NFL+\nBENGALS\nNo injury designations.\nRAVENS\nOUT:\nOLB\nTavius Robinson\n(pectoral), S\nJaylinn Hawkins\n(knee)\nDOUBTFUL:\nCB\nT.J. Tampa\n(knee)\nQUESTIONABLE:\nQB\nLamar Jackson\n(ankle), DT\nBroderick Washington\n(ankle)\nTampa Bay Buccaneers\n1-5\nAT\nCarolina Panthers\n3-2\nWHERE:\nBank of America Stadium (Charlotte, N.C.)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nBUCCANEERS\nOUT:\nWR\nEmeka Egbuka\n(concussion/foot), OT\nLuke Goedeke\n(calf), S\nAntoine Winfield Jr.\n(rib)\nQUESTIONABLE:\nQB\nBaker Mayfield\n",
       "team_verified": false,
       "player_status_verified": false
@@ -63,30 +71,30 @@
     },
     {
       "preceding_context": "unt+, NFL+\nBENGALS\nNo injury designations.\nRAVENS\nOUT:\nOLB\nTavius Robinson\n(pectoral), S\nJaylinn Hawkins\n(knee)\nDOUBTFUL:\nCB\nT.J. Tampa\n(knee)\nQUESTIONABLE:\nQB\nLamar Jackson\n(ankle), DT\nBroderick Washington\n(ankle)\nTampa Bay Buccaneers\n1-5\nAT\nCarolina Panthers\n3-2\nWHERE:\nBank of America Stadium (Charlotte, N.C.)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nBUCCANEERS\n",
-      "following_context": "\nWR\nEmeka Egbuka\n(concussion/foot), OT\nLuke Goedeke\n(calf), S\nAntoine Winfield Jr.\n(rib)\nQUESTIONABLE:\nQB\nBaker Mayfield\n(right thumb)\nPANTHERS\nOUT:\nOLB\nThomas Incoom\n(calf), OLB\nJaelan Phillips\n(hamstring)\nQUESTIONABLE:\nOT\nMonroe Freeling\n(knee), LB\nBam Martin-Scott\n(hamstring)\nNew York Giants\n3-2-1\nAT\nHouston Texans\n2-4\nWHERE:\nNRG Stadium (Houston)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nGIANTS\nOUT:\nLB\nTremaine Edmunds\n(shoulder), CB\nGreg Newsome II\n(concussion)\nDOUBTFUL:\nTE\nTheo Johnson\n(neck)\nQUESTIONABLE:\nOT\nJermaine Eluemunor\n(calf), OL\nMarcus Mbow\n(knee), CB\nPaulson Adebo\n(knee), S\nJevon Holland\n(concussion), S\nTyler Nubin\n(neck)\nTEXANS\nOUT:\nRB\nDavid Montgomery\n(groin), OT\nBlake Fisher\n(thumb), S\nReed Blankenship\n(concussion/hand), S\nJalen Pitre\n(shoulder)\nQUESTIONABLE:\nWR\nTank Dell\n(knee)\nIndianapolis Colts\n2-4\nAT\nMinnesota Vikings\n5-0\nWHERE:\nU.S. Bank Stadium (Minneapolis)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nCOLTS\nOUT:\nWR\nAnthony Gould\n(concussion), TE\nTyler Warren\n(groin), CB\nSauce Gardner\n(calf)\nQUES",
+      "following_context": "\nWR\nEmeka Egbuka\n(concussion/foot), OT\nLuke Goedeke\n(calf), S\nAntoine Winfield Jr.\n(rib)\nQUESTIONABLE:\nQB\nBaker Mayfield\n(right thumb)\nPANTHERS\nOUT:\nOLB\nThomas Incoom\n(calf), OLB\nJaelan Phillips\n(hamstring)\nQUESTIONABLE:\nOT\nMonroe Freeling\n(knee), LB\nBam Martin-Scott\n(hamstring)\nNew York Giants\n3-2-1\nAT\nHouston Texans\n2-4\nWHERE:\nNRG Stadium (Houston)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nGIANTS\nOUT:\nLB\nTremaine Edmunds\n(shoulder), CB\nGreg Newsome II\n(concussion)\nDOUBTFUL:\nTE\nTheo Johnson\n(neck)\nQUESTIONABLE:\nOT\nJermaine Eluemunor\n(calf), OL\nMarcus Mbow\n(knee), CB\nPaulson Adebo\n(knee), S\nJevon Holland\n(concussion), S\nTyler Nubin\n(neck)\nTEXANS\nOUT:\nRB\nDavid Montgomery\n(groin), OT\nBlake Fisher\n(thumb), S\nReed Blankenship\n(concussion/hand), S\nJalen Pitre\n(shoulder)\nQUESTIONABLE:\nWR\nTank Dell\n(knee)\nRELATED CONTENT\nArticle\nNFL Week 7 fantasy sleepers: Broncos QB Bo Nix, Jets TE Kenyon Sadiq among sneaky-good options\nabout 2 hours ago\nArticle\nNFL Week 7 bold predictions: Giants' J.J. McCarthy shreds Texa",
       "team_verified": false,
       "player_status_verified": false
     },
     {
       "preceding_context": "IONABLE:\nQB\nLamar Jackson\n(ankle), DT\nBroderick Washington\n(ankle)\nTampa Bay Buccaneers\n1-5\nAT\nCarolina Panthers\n3-2\nWHERE:\nBank of America Stadium (Charlotte, N.C.)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nBUCCANEERS\nOUT:\nWR\nEmeka Egbuka\n(concussion/foot), OT\nLuke Goedeke\n(calf), S\nAntoine Winfield Jr.\n(rib)\nQUESTIONABLE:\nQB\nBaker Mayfield\n(right thumb)\nPANTHERS\n",
-      "following_context": "\nOLB\nThomas Incoom\n(calf), OLB\nJaelan Phillips\n(hamstring)\nQUESTIONABLE:\nOT\nMonroe Freeling\n(knee), LB\nBam Martin-Scott\n(hamstring)\nNew York Giants\n3-2-1\nAT\nHouston Texans\n2-4\nWHERE:\nNRG Stadium (Houston)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nGIANTS\nOUT:\nLB\nTremaine Edmunds\n(shoulder), CB\nGreg Newsome II\n(concussion)\nDOUBTFUL:\nTE\nTheo Johnson\n(neck)\nQUESTIONABLE:\nOT\nJermaine Eluemunor\n(calf), OL\nMarcus Mbow\n(knee), CB\nPaulson Adebo\n(knee), S\nJevon Holland\n(concussion), S\nTyler Nubin\n(neck)\nTEXANS\nOUT:\nRB\nDavid Montgomery\n(groin), OT\nBlake Fisher\n(thumb), S\nReed Blankenship\n(concussion/hand), S\nJalen Pitre\n(shoulder)\nQUESTIONABLE:\nWR\nTank Dell\n(knee)\nIndianapolis Colts\n2-4\nAT\nMinnesota Vikings\n5-0\nWHERE:\nU.S. Bank Stadium (Minneapolis)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nCOLTS\nOUT:\nWR\nAnthony Gould\n(concussion), TE\nTyler Warren\n(groin), CB\nSauce Gardner\n(calf)\nQUESTIONABLE:\nLB\nCJ Allen\n(ankle), LB\nBryce Boettcher\n(groin), CB\nJustin Walley\n(knee), P\nRigoberto Sanchez\n(right foot)\nVIKINGS\nQUESTIONABLE:\nRB\nJordan",
+      "following_context": "\nOLB\nThomas Incoom\n(calf), OLB\nJaelan Phillips\n(hamstring)\nQUESTIONABLE:\nOT\nMonroe Freeling\n(knee), LB\nBam Martin-Scott\n(hamstring)\nNew York Giants\n3-2-1\nAT\nHouston Texans\n2-4\nWHERE:\nNRG Stadium (Houston)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nGIANTS\nOUT:\nLB\nTremaine Edmunds\n(shoulder), CB\nGreg Newsome II\n(concussion)\nDOUBTFUL:\nTE\nTheo Johnson\n(neck)\nQUESTIONABLE:\nOT\nJermaine Eluemunor\n(calf), OL\nMarcus Mbow\n(knee), CB\nPaulson Adebo\n(knee), S\nJevon Holland\n(concussion), S\nTyler Nubin\n(neck)\nTEXANS\nOUT:\nRB\nDavid Montgomery\n(groin), OT\nBlake Fisher\n(thumb), S\nReed Blankenship\n(concussion/hand), S\nJalen Pitre\n(shoulder)\nQUESTIONABLE:\nWR\nTank Dell\n(knee)\nRELATED CONTENT\nArticle\nNFL Week 7 fantasy sleepers: Broncos QB Bo Nix, Jets TE Kenyon Sadiq among sneaky-good options\nabout 2 hours ago\nArticle\nNFL Week 7 bold predictions: Giants' J.J. McCarthy shreds Texans; Kenneth Walker III revenge game?\nabout 6 hours ago\nArticle\nNFL Week 7 picks: Upset and score predictions, matchup breakdowns for every game\nOct ",
       "team_verified": false,
       "player_status_verified": false
     },
     {
       "preceding_context": " OT\nLuke Goedeke\n(calf), S\nAntoine Winfield Jr.\n(rib)\nQUESTIONABLE:\nQB\nBaker Mayfield\n(right thumb)\nPANTHERS\nOUT:\nOLB\nThomas Incoom\n(calf), OLB\nJaelan Phillips\n(hamstring)\nQUESTIONABLE:\nOT\nMonroe Freeling\n(knee), LB\nBam Martin-Scott\n(hamstring)\nNew York Giants\n3-2-1\nAT\nHouston Texans\n2-4\nWHERE:\nNRG Stadium (Houston)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nGIANTS\n",
-      "following_context": "\nLB\nTremaine Edmunds\n(shoulder), CB\nGreg Newsome II\n(concussion)\nDOUBTFUL:\nTE\nTheo Johnson\n(neck)\nQUESTIONABLE:\nOT\nJermaine Eluemunor\n(calf), OL\nMarcus Mbow\n(knee), CB\nPaulson Adebo\n(knee), S\nJevon Holland\n(concussion), S\nTyler Nubin\n(neck)\nTEXANS\nOUT:\nRB\nDavid Montgomery\n(groin), OT\nBlake Fisher\n(thumb), S\nReed Blankenship\n(concussion/hand), S\nJalen Pitre\n(shoulder)\nQUESTIONABLE:\nWR\nTank Dell\n(knee)\nIndianapolis Colts\n2-4\nAT\nMinnesota Vikings\n5-0\nWHERE:\nU.S. Bank Stadium (Minneapolis)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nCOLTS\nOUT:\nWR\nAnthony Gould\n(concussion), TE\nTyler Warren\n(groin), CB\nSauce Gardner\n(calf)\nQUESTIONABLE:\nLB\nCJ Allen\n(ankle), LB\nBryce Boettcher\n(groin), CB\nJustin Walley\n(knee), P\nRigoberto Sanchez\n(right foot)\nVIKINGS\nQUESTIONABLE:\nRB\nJordan Mason\n(thumb)\nMiami Dolphins\n0-5\nAT\nNew York Jets\n2-4\nWHERE:\nMetLife Stadium (East Rutherford, N.J.)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nDOLPHINS\nOUT:\nCB\nReese Taylor\n(quad)\nDOUBTFUL:\nEDGE\nRobert Beal Jr.\n(hamstring)\nQUESTIONABLE:\nLB\nWillie Gay Jr.\n(i",
+      "following_context": "\nLB\nTremaine Edmunds\n(shoulder), CB\nGreg Newsome II\n(concussion)\nDOUBTFUL:\nTE\nTheo Johnson\n(neck)\nQUESTIONABLE:\nOT\nJermaine Eluemunor\n(calf), OL\nMarcus Mbow\n(knee), CB\nPaulson Adebo\n(knee), S\nJevon Holland\n(concussion), S\nTyler Nubin\n(neck)\nTEXANS\nOUT:\nRB\nDavid Montgomery\n(groin), OT\nBlake Fisher\n(thumb), S\nReed Blankenship\n(concussion/hand), S\nJalen Pitre\n(shoulder)\nQUESTIONABLE:\nWR\nTank Dell\n(knee)\nRELATED CONTENT\nArticle\nNFL Week 7 fantasy sleepers: Broncos QB Bo Nix, Jets TE Kenyon Sadiq among sneaky-good options\nabout 2 hours ago\nArticle\nNFL Week 7 bold predictions: Giants' J.J. McCarthy shreds Texans; Kenneth Walker III revenge game?\nabout 6 hours ago\nArticle\nNFL Week 7 picks: Upset and score predictions, matchup breakdowns for every game\nOct 22, 2026\nIndianapolis Colts\n2-4\nAT\nMinnesota Vikings\n5-0\nWHERE:\nU.S. Bank Stadium (Minneapolis)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nCOLTS\nOUT:\nWR\nAnthony Gould\n(concussion), TE\nTyler Warren\n(groin), CB\nSauce Gardner\n(calf)\nQUESTIONABLE:\nLB\nCJ Allen\n(an",
       "team_verified": false,
       "player_status_verified": false
     },
     {
       "preceding_context": "k Giants\n3-2-1\nAT\nHouston Texans\n2-4\nWHERE:\nNRG Stadium (Houston)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nGIANTS\nOUT:\nLB\nTremaine Edmunds\n(shoulder), CB\nGreg Newsome II\n(concussion)\nDOUBTFUL:\nTE\nTheo Johnson\n(neck)\nQUESTIONABLE:\nOT\nJermaine Eluemunor\n(calf), OL\nMarcus Mbow\n(knee), CB\nPaulson Adebo\n(knee), S\nJevon Holland\n(concussion), S\nTyler Nubin\n(neck)\nTEXANS\n",
-      "following_context": "\nRB\nDavid Montgomery\n(groin), OT\nBlake Fisher\n(thumb), S\nReed Blankenship\n(concussion/hand), S\nJalen Pitre\n(shoulder)\nQUESTIONABLE:\nWR\nTank Dell\n(knee)\nIndianapolis Colts\n2-4\nAT\nMinnesota Vikings\n5-0\nWHERE:\nU.S. Bank Stadium (Minneapolis)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nCOLTS\nOUT:\nWR\nAnthony Gould\n(concussion), TE\nTyler Warren\n(groin), CB\nSauce Gardner\n(calf)\nQUESTIONABLE:\nLB\nCJ Allen\n(ankle), LB\nBryce Boettcher\n(groin), CB\nJustin Walley\n(knee), P\nRigoberto Sanchez\n(right foot)\nVIKINGS\nQUESTIONABLE:\nRB\nJordan Mason\n(thumb)\nMiami Dolphins\n0-5\nAT\nNew York Jets\n2-4\nWHERE:\nMetLife Stadium (East Rutherford, N.J.)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nDOLPHINS\nOUT:\nCB\nReese Taylor\n(quad)\nDOUBTFUL:\nEDGE\nRobert Beal Jr.\n(hamstring)\nQUESTIONABLE:\nLB\nWillie Gay Jr.\n(illness), S\nKyle Louis\n(knee)\nJETS\nOUT:\nOL\nMax Mitchell\n(concussion), EDGE\nJoseph Ossai\n(ankle), LB\nFrancisco Mauigoa\n(quad)\nQUESTIONABLE:\nRB\nBreece Hall\n(quad), RB\nKene Nwangwu\n(knee), OL\nDylan Parham\n(knee)\nCleveland Browns\n4-2\nAT\nTennessee Titans\n1-5",
+      "following_context": "\nRB\nDavid Montgomery\n(groin), OT\nBlake Fisher\n(thumb), S\nReed Blankenship\n(concussion/hand), S\nJalen Pitre\n(shoulder)\nQUESTIONABLE:\nWR\nTank Dell\n(knee)\nRELATED CONTENT\nArticle\nNFL Week 7 fantasy sleepers: Broncos QB Bo Nix, Jets TE Kenyon Sadiq among sneaky-good options\nabout 2 hours ago\nArticle\nNFL Week 7 bold predictions: Giants' J.J. McCarthy shreds Texans; Kenneth Walker III revenge game?\nabout 6 hours ago\nArticle\nNFL Week 7 picks: Upset and score predictions, matchup breakdowns for every game\nOct 22, 2026\nIndianapolis Colts\n2-4\nAT\nMinnesota Vikings\n5-0\nWHERE:\nU.S. Bank Stadium (Minneapolis)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nCOLTS\nOUT:\nWR\nAnthony Gould\n(concussion), TE\nTyler Warren\n(groin), CB\nSauce Gardner\n(calf)\nQUESTIONABLE:\nLB\nCJ Allen\n(ankle), LB\nBryce Boettcher\n(groin), CB\nJustin Walley\n(knee), P\nRigoberto Sanchez\n(right foot)\nVIKINGS\nQUESTIONABLE:\nRB\nJordan Mason\n(thumb)\nMiami Dolphins\n0-5\nAT\nNew York Jets\n2-4\nWHERE:\nMetLife Stadium (East Rutherford, N.J.)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nDO",
       "team_verified": false,
       "player_status_verified": false
     },
     {
-      "preceding_context": "son Adebo\n(knee), S\nJevon Holland\n(concussion), S\nTyler Nubin\n(neck)\nTEXANS\nOUT:\nRB\nDavid Montgomery\n(groin), OT\nBlake Fisher\n(thumb), S\nReed Blankenship\n(concussion/hand), S\nJalen Pitre\n(shoulder)\nQUESTIONABLE:\nWR\nTank Dell\n(knee)\nIndianapolis Colts\n2-4\nAT\nMinnesota Vikings\n5-0\nWHERE:\nU.S. Bank Stadium (Minneapolis)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nCOLTS\n",
+      "preceding_context": " ago\nArticle\nNFL Week 7 bold predictions: Giants' J.J. McCarthy shreds Texans; Kenneth Walker III revenge game?\nabout 6 hours ago\nArticle\nNFL Week 7 picks: Upset and score predictions, matchup breakdowns for every game\nOct 22, 2026\nIndianapolis Colts\n2-4\nAT\nMinnesota Vikings\n5-0\nWHERE:\nU.S. Bank Stadium (Minneapolis)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nCOLTS\n",
       "following_context": "\nWR\nAnthony Gould\n(concussion), TE\nTyler Warren\n(groin), CB\nSauce Gardner\n(calf)\nQUESTIONABLE:\nLB\nCJ Allen\n(ankle), LB\nBryce Boettcher\n(groin), CB\nJustin Walley\n(knee), P\nRigoberto Sanchez\n(right foot)\nVIKINGS\nQUESTIONABLE:\nRB\nJordan Mason\n(thumb)\nMiami Dolphins\n0-5\nAT\nNew York Jets\n2-4\nWHERE:\nMetLife Stadium (East Rutherford, N.J.)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nDOLPHINS\nOUT:\nCB\nReese Taylor\n(quad)\nDOUBTFUL:\nEDGE\nRobert Beal Jr.\n(hamstring)\nQUESTIONABLE:\nLB\nWillie Gay Jr.\n(illness), S\nKyle Louis\n(knee)\nJETS\nOUT:\nOL\nMax Mitchell\n(concussion), EDGE\nJoseph Ossai\n(ankle), LB\nFrancisco Mauigoa\n(quad)\nQUESTIONABLE:\nRB\nBreece Hall\n(quad), RB\nKene Nwangwu\n(knee), OL\nDylan Parham\n(knee)\nCleveland Browns\n4-2\nAT\nTennessee Titans\n1-5\nWHERE:\nNissan Stadium (Nashville, Tenn.)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nBROWNS\nOUT:\nQB\nDillon Gabriel\n(back), G\nTeven Jenkins\n(back), DT\nKhalil Davis\n(quad), DT\nMike Hall\n(ankle)\nQUESTIONABLE:\nRB\nDylan Sampson\n(knee), LB\nQuincy Williams\n(neck), CB\nDenzel Ward\n(hand), S\nGrant Del",
       "team_verified": false,
       "player_status_verified": false
@@ -141,12 +149,18 @@
     },
     {
       "preceding_context": "-2\nWHERE:\nSoldier Field (Chicago)\nWHEN:\n8:15 p.m. ET\n|\nPrime Video, NFL+\nPATRIOTS\nOUT:\nG\nAlijah Vera-Tucker\n(hamstring), OL\nBen Brown\n(knee), CB\nChanning Canada\n(hamstring), CB\nCarlton Davis\n(neck), CB\nKaron Prunty\n(hamstring)\nQUESTIONABLE:\nOT\nMorgan Moses\n(foot), LB\nChristian Elliss\n(chest), S\nKevin Byard\n(chest), S\nCraig Woodson\n(shoulder)\nBEARS\n",
-      "following_context": "\nRB\nKyle Monangai\n(thumb/toe), LB\nJack Sanborn\n(concussion)\nDOUBTFUL:\nLB\nT.J. Edwards\n(hamstring)\nQUESTIONABLE:\nDB\nTyrique Stevenson\n(hip)\nRelated Content\n1 of 4\nNEWS\nLamar (ankle) questionable to make return vs. Bengals, 'headed in the right direction'\nNEWS\nSteelers vs. Saints: Three must-know storylines for NFL's first-ever Paris game\nNEWS\nThumbs up: Mayfield will start vs. Panthers after 3-game absence, but Bucs WR ruled out\nNEWS\nGoodell teases future Tokyo game, 'new opportunities' for international growth\n{\"@context\":\"https://schema.org\",\"@type\":\"NewsArticle\",\"articleBody\":\"NFL.com tracks player statuses for all 14 games in Week 7 of the 2026 NFL season.\\n\\nFans can stream live local and primetime games on mobile with NFL+.\\n\\nSUNDAY, OCT. 25\\n\\nSTEELERS\\n\\nOUT: WR Ben Skowronek (calf), CB Brandin Echols (hamstring)\\nQUESTIONABLE: RB Rico Dowdle (knee), S DeShon Elliott (knee)\\n\\nSAINTS\\n\\nQUESTIONABLE: G Cesar Ruiz (knee), DT Nathan Shepherd (illness)\\n\\nFALCONS\\n\\nOUT: RB Brian ",
+      "following_context": "\nRB\nKyle Monangai\n(thumb/toe), LB\nJack Sanborn\n(concussion)\nDOUBTFUL:\nLB\nT.J. Edwards\n(hamstring)\nQUESTIONABLE:\nDB\nTyrique Stevenson\n(hip)\nRelated Content\n1 of 4\nNEWS\nLamar (ankle) questionable to make return vs. Bengals, 'headed in the right direction'\nNEWS\nSteelers vs. Saints: Three must-know storylines for NFL's first-ever Paris game\nNEWS\nThumbs up: Mayfield will start vs. Panthers after 3-game absence, but Bucs WR ruled out\nNEWS\nGoodell teases future Tokyo game, 'new opportunities' for international growth\n{\"@context\":\"https://schema.org\",\"@type\":\"NewsArticle\",\"articleBody\":\"NFL.com tracks player statuses for all 14 games in Week 7 of the 2026 NFL season.\\n\\nFans can stream live local and primetime games on mobile with NFL+.\\n\\nSUNDAY, OCT. 25\\n\\nSTEELERS\\n\\nOUT: WR Ben Skowronek (calf), CB Brandin Echols (hamstring)\\nQUESTIONABLE: RB Rico Dowdle (knee), S DeShon Elliott (knee)\\n\\nSAINTS\\n\\nQUESTIONABLE: G Cesar Ruiz (knee), DT Nathan Shepherd (illness)\\n\\n49ERS\\n\\nOUT: WR Mike Eva",
       "team_verified": false,
       "player_status_verified": false
     },
     {
-      "preceding_context": "_editorial_landscape_12_desktop/league/njy8xg1ozwroe7yk3onk.png\\\",\\n \\\"mainEntityOfPage\\\": {\\\"@type\\\":\\\"WebPage\\\",\\\"@id\\\":\\\"https://www.nfl.com/news/nfl-week-7-injury-report-2026-season\\\"},\\n \\\"url\\\": \\\"https://www.nfl.com/news/nfl-week-7-injury-report-2026-season\\\"\\n}\"])\nself.__next_f.push([1,\"18:T697,\"])\nself.__next_f.push([1,\"### FALCONS\\n\\n* **",
+      "preceding_context": "/t_editorial_landscape_12_desktop/league/njy8xg1ozwroe7yk3onk.png\\\",\\n \\\"mainEntityOfPage\\\": {\\\"@type\\\":\\\"WebPage\\\",\\\"@id\\\":\\\"https://www.nfl.com/news/nfl-week-7-injury-report-2026-season\\\"},\\n \\\"url\\\": \\\"https://www.nfl.com/news/nfl-week-7-injury-report-2026-season\\\"\\n}\"])\nself.__next_f.push([1,\"18:Taa5,\"])\nself.__next_f.push([1,\"### 49ERS\\n\\n* **",
+      "following_context": "** WR \\u003cforge-entity title=\\\"Mike Evans\\\" slug=\\\"mike-evans\\\" code=\\\"player\\\"\\u003eMike Evans\\u003c/forge-entity\\u003e (ribs/Achilles), WR \\u003cforge-entity title=\\\"Deebo Samuel\\\" slug=\\\"deebo-samuel\\\" code=\\\"player\\\"\\u003eDeebo Samuel\\u003c/forge-entity\\u003e (hamstring), DE \\u003cforge-entity title=\\\"Nick Bosa\\\" slug=\\\"nick-bosa\\\" code=\\\"player\\\"\\u003eNick Bosa\\u003c/forge-entity\\u003e (knee, calf), LB \\u003cforge-entity title=\\\"Luke Gifford\\\" slug=\\\"luke-gifford\\\" code=\\\"player\\\"\\u003eLuke Gifford\\u003c/forge-entity\\u003e (groin), LB \\u003cforge-entity title=\\\"Garret Wallow\\\" slug=\\\"garret-wallow\\\" code=\\\"player\\\"\\u003eGarret Wallow\\u003c/forge-entity\\u003e (hamstring), S \\u003cforge-entity title=\\\"Marques Sigle\\\" slug=\\\"marques-sigle\\\" code=\\\"player\\\"\\u003eMarques Sigle\\u003c/forge-entity\\u003e (ankle)\\n* **QUESTIONABLE:** WR \\u003cforge-entity title=\\\"Christian Kirksey\\\" slug=\\\"christian-kirksey\\\" code=\\\"player\\\"\\u003eChristian Kirksey\\u003c/forge-entity\\u003e, CB \\u003cforge",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": " code=\\\"player\\\"\\u003eChristian Kirksey\\u003c/forge-entity\\u003e, CB \\u003cforge-entity title=\\\"Upton Stout\\\" slug=\\\"upton-stout\\\" code=\\\"player\\\"\\u003eUpton Stout\\u003c/forge-entity\\u003e (shoulder), S \\u003cforge-entity title=\\\"Siran Neal\\\" slug=\\\"siran-neal\\\" code=\\\"player\\\"\\u003eSiran Neal\\u003c/forge-entity\\u003e (knee) \\n\\n### FALCONS\\n\\n* **",
       "following_context": "** RB \\u003cforge-entity title=\\\"Brian Robinson\\\" slug=\\\"brian-robinson\\\" code=\\\"player\\\"\\u003eBrian Robinson\\u003c/forge-entity\\u003e (hamstring), OT \\u003cforge-entity title=\\\"Michael Jerrell\\\" slug=\\\"michael-jerrell\\\" code=\\\"player\\\"\\u003eMichael Jerrell\\u003c/forge-entity\\u003e (bicep), LB \\u003cforge-entity title=\\\"Divine Deablo\\\" slug=\\\"divine-deablo\\\" code=\\\"player\\\"\\u003eDivine Deablo\\u003c/forge-entity\\u003e (forearm), DB \\u003cforge-entity title=\\\"Billy Bowman Jr.\\\" slug=\\\"billy-bowman-jr\\\" code=\\\"player\\\"\\u003eBilly Bowman Jr.\\u003c/forge-entity\\u003e (hamstring)\\n* **QUESTIONABLE:** WR \\u003cforge-entity title=\\\"Beaux Collins\\\" slug=\\\"beaux-collins\\\" code=\\\"player\\\"\\u003eBeaux Collins\\u003c/forge-entity\\u003e (hip), WR \\u003cforge-entity title=\\\"Olamide Zaccheaus\\\" slug=\\\"olamide-zaccheaus\\\" code=\\\"player\\\"\\u003eOlamide Zaccheaus\\u003c/forge-entity\\u003e (shoulder), OT \\u003cforge-entity title=\\\"Cameron Williams\\\" slug=\\\"cameron-williams\\\" code=\\\"player\\\"\\u003eCameron Willi",
       "team_verified": false,
       "player_status_verified": false
@@ -248,7 +262,13 @@
       "player_status_verified": false
     },
     {
-      "preceding_context": ",\\\"static/chunks/7682-3788b7885798f005.js\\\",\\\"8969\\\",\\\"static/chunks/8969-531ff466bc83e67f.js\\\",\\\"8843\\\",\\\"static/chunks/8843-6242203ee8365b83.js\\\",\\\"3950\\\",\\\"static/chunks/3950-7463cc970045e87d.js\\\",\\\"1605\\\",\\\"static/chunks/app/%5B%5B...pages%5D%5D/page-09d02b2fc7e01a72.js\\\"],\\\"StoryClient\\\"]\\n37:T697,\"])\nself.__next_f.push([1,\"### FALCONS\\n\\n* **",
+      "preceding_context": "\\\",\\\"static/chunks/7682-3788b7885798f005.js\\\",\\\"8969\\\",\\\"static/chunks/8969-531ff466bc83e67f.js\\\",\\\"8843\\\",\\\"static/chunks/8843-6242203ee8365b83.js\\\",\\\"3950\\\",\\\"static/chunks/3950-7463cc970045e87d.js\\\",\\\"1605\\\",\\\"static/chunks/app/%5B%5B...pages%5D%5D/page-09d02b2fc7e01a72.js\\\"],\\\"StoryClient\\\"]\\n37:Taa5,\"])\nself.__next_f.push([1,\"### 49ERS\\n\\n* **",
+      "following_context": "** WR \\u003cforge-entity title=\\\"Mike Evans\\\" slug=\\\"mike-evans\\\" code=\\\"player\\\"\\u003eMike Evans\\u003c/forge-entity\\u003e (ribs/Achilles), WR \\u003cforge-entity title=\\\"Deebo Samuel\\\" slug=\\\"deebo-samuel\\\" code=\\\"player\\\"\\u003eDeebo Samuel\\u003c/forge-entity\\u003e (hamstring), DE \\u003cforge-entity title=\\\"Nick Bosa\\\" slug=\\\"nick-bosa\\\" code=\\\"player\\\"\\u003eNick Bosa\\u003c/forge-entity\\u003e (knee, calf), LB \\u003cforge-entity title=\\\"Luke Gifford\\\" slug=\\\"luke-gifford\\\" code=\\\"player\\\"\\u003eLuke Gifford\\u003c/forge-entity\\u003e (groin), LB \\u003cforge-entity title=\\\"Garret Wallow\\\" slug=\\\"garret-wallow\\\" code=\\\"player\\\"\\u003eGarret Wallow\\u003c/forge-entity\\u003e (hamstring), S \\u003cforge-entity title=\\\"Marques Sigle\\\" slug=\\\"marques-sigle\\\" code=\\\"player\\\"\\u003eMarques Sigle\\u003c/forge-entity\\u003e (ankle)\\n* **QUESTIONABLE:** WR \\u003cforge-entity title=\\\"Christian Kirksey\\\" slug=\\\"christian-kirksey\\\" code=\\\"player\\\"\\u003eChristian Kirksey\\u003c/forge-entity\\u003e, CB \\u003cforge",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": " code=\\\"player\\\"\\u003eChristian Kirksey\\u003c/forge-entity\\u003e, CB \\u003cforge-entity title=\\\"Upton Stout\\\" slug=\\\"upton-stout\\\" code=\\\"player\\\"\\u003eUpton Stout\\u003c/forge-entity\\u003e (shoulder), S \\u003cforge-entity title=\\\"Siran Neal\\\" slug=\\\"siran-neal\\\" code=\\\"player\\\"\\u003eSiran Neal\\u003c/forge-entity\\u003e (knee) \\n\\n### FALCONS\\n\\n* **",
       "following_context": "** RB \\u003cforge-entity title=\\\"Brian Robinson\\\" slug=\\\"brian-robinson\\\" code=\\\"player\\\"\\u003eBrian Robinson\\u003c/forge-entity\\u003e (hamstring), OT \\u003cforge-entity title=\\\"Michael Jerrell\\\" slug=\\\"michael-jerrell\\\" code=\\\"player\\\"\\u003eMichael Jerrell\\u003c/forge-entity\\u003e (bicep), LB \\u003cforge-entity title=\\\"Divine Deablo\\\" slug=\\\"divine-deablo\\\" code=\\\"player\\\"\\u003eDivine Deablo\\u003c/forge-entity\\u003e (forearm), DB \\u003cforge-entity title=\\\"Billy Bowman Jr.\\\" slug=\\\"billy-bowman-jr\\\" code=\\\"player\\\"\\u003eBilly Bowman Jr.\\u003c/forge-entity\\u003e (hamstring)\\n* **QUESTIONABLE:** WR \\u003cforge-entity title=\\\"Beaux Collins\\\" slug=\\\"beaux-collins\\\" code=\\\"player\\\"\\u003eBeaux Collins\\u003c/forge-entity\\u003e (hip), WR \\u003cforge-entity title=\\\"Olamide Zaccheaus\\\" slug=\\\"olamide-zaccheaus\\\" code=\\\"player\\\"\\u003eOlamide Zaccheaus\\u003c/forge-entity\\u003e (shoulder), OT \\u003cforge-entity title=\\\"Cameron Williams\\\" slug=\\\"cameron-williams\\\" code=\\\"player\\\"\\u003eCameron Willi",
       "team_verified": false,
       "player_status_verified": false
@@ -356,8 +376,14 @@
       "player_status_verified": false
     },
     {
-      "preceding_context": "{\\\"className\\\":\\\"rounded-2xl mb-5\\\",\\\"id\\\":\\\"$undefined\\\",\\\"children\\\":[\\\"$\\\",\\\"div\\\",null,{\\\"className\\\":\\\"story-part-rich-text-editor-wrapper\\\",\\\"children\\\":[[\\\"$\\\",\\\"h3\\\",\\\"h3-0\\\",{\\\"children\\\":\\\"FALCONS\\\"}],\\\"\\\\n\\\",[\\\"$\\\",\\\"ul\\\",\\\"ul-0\\\",{\\\"children\\\":[\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-0\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"",
-      "following_context": "\\\"}],\\\" RB \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/brian-robinson\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Brian Robinson\\\"}],\\\" (hamstring), OT \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/michael-jerrell\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Michael Jerrell\\\"}],\\\" (bicep), LB \\\",\\\"$L4c\\\",\\\" (forearm), DB \\\",\\\"$L4d\\\",\\\" (hamstring)\\\"]}],\\\"\\\\n\\\",\\\"$L4e\\\",\\\"\\\\n\\\"]}]]}]}]]}],\\\"$L4f\\\",\\\"$L50\\\",\\\"$L51\\\",\\\"$L52\\\",\\\"$L53\\\",\\\"$L54\\\",\\\"$L55\\\",\\\"$L56\\\",\\\"$L57\\\",\\\"$L58\\\",\\\"$L59\\\",\\\"$L5a\\\",\\\"$L5b\\\",\\\"$L5c\\\",\\\"$L5d\\\",\\\"$L5e\\\",\\\"$L5f\\\",\\\"$L60\\\",\\\"$L61\\\",\\\"$L62\\\",\\\"$L63\\\",\\\"$L64\\\",\\\"$L65\\\",\\\"$L66\\\",\\\"$L67\\\",\\\"$L68\\\",\\\"$L69\\\",\\\"$L6a\\\"]}]}]\\n\"])\nself.__next_f.push([1,\"46:[\\\"$\\\",\\\"footer\\\",null,{\\\"className\\\":\\\"bg-white d",
+      "preceding_context": "l,{\\\"className\\\":\\\"rounded-2xl mb-5\\\",\\\"id\\\":\\\"$undefined\\\",\\\"children\\\":[\\\"$\\\",\\\"div\\\",null,{\\\"className\\\":\\\"story-part-rich-text-editor-wrapper\\\",\\\"children\\\":[[\\\"$\\\",\\\"h3\\\",\\\"h3-0\\\",{\\\"children\\\":\\\"49ERS\\\"}],\\\"\\\\n\\\",[\\\"$\\\",\\\"ul\\\",\\\"ul-0\\\",{\\\"children\\\":[\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-0\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"",
+      "following_context": "\\\"}],\\\" WR \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/mike-evans\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Mike Evans\\\"}],\\\" (ribs/Achilles), WR \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/deebo-samuel\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Deebo Samuel\\\"}],\\\" (hamstring), DE \\\",\\\"$L4c\\\",\\\" (knee, calf), LB \\\",\\\"$L4d\\\",\\\" (groin), LB \\\",\\\"$L4e\\\",\\\" (hamstring), S \\\",\\\"$L4f\\\",\\\" (ankle)\\\"]}],\\\"\\\\n\\\",\\\"$L50\\\",\\\"\\\\n\\\"]}],\\\"\\\\n\\\",\\\"$L51\\\",\\\"\\\\n\\\",\\\"$L52\\\"]}]}]]}],\\\"$L53\\\",\\\"$L54\\\",\\\"$L55\\\",\\\"$L56\\\",\\\"$L57\\\",\\\"$L58\\\",\\\"$L59\\\",\\\"$L5a\\\",\\\"$L5b\\\",\\\"$L5c\\\",\\\"$L5d\\\",\\\"$L5e\\\",\\\"$L5f\\\",\\\"$L60\\\",\\\"$L61\\\",\\\"$L62\\\",\\\"$L63\\\",\\\"$L64\\\",\\\"$L65\\\",\\\"$L66\\\",\\\"$L67\\\",\\\"$L68\\\",\\\"$L69\\\",\\\"$L6a\\\",\\\"$L6b\\\",\\\"$L6c\\\",\\\"$L6d\\\",\\\"$L6e\\\",\\\"",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "erline\\\",\\\"href\\\":\\\"/players/siran-neal\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Siran Neal\\\"}],\\\" (knee) \\\"]}]\\n51:[\\\"$\\\",\\\"h3\\\",\\\"h3-1\\\",{\\\"children\\\":\\\"FALCONS\\\"}]\\n\"])\nself.__next_f.push([1,\"52:[\\\"$\\\",\\\"ul\\\",\\\"ul-1\\\",{\\\"children\\\":[\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-0\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"",
+      "following_context": "\\\"}],\\\" RB \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/brian-robinson\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Brian Robinson\\\"}],\\\" (hamstring), OT \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/michael-jerrell\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Michael Jerrell\\\"}],\\\" (bicep), LB \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-2\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/divine-deablo\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Divine Deablo\\\"}],\\\" (forearm), DB \\\",[\\\"$\\\",\\\"$L3f\\\",\\\"a-3\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/player",
       "team_verified": false,
       "player_status_verified": false
     },
@@ -457,6 +483,15 @@
       "team_heading_unverified": "STEELERS",
       "fantasy_player_names_unverified": [
         "Ben Skowronek"
+      ],
+      "section_boundary_detected": true,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": "ERS",
+      "fantasy_player_names_unverified": [
+        "Mike Evans",
+        "Deebo Samuel"
       ],
       "section_boundary_detected": true,
       "eligible_for_projection_adjustment": false
@@ -881,6 +916,24 @@
       "fantasy_player_names_unverified": [],
       "section_boundary_detected": false,
       "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
     }
   ],
   "out_section_player_matches_unverified": [
@@ -888,6 +941,22 @@
       "reported_name": "Ben Skowronek",
       "official_team_heading": "STEELERS",
       "expected_team": "PIT",
+      "match_status": "unmatched",
+      "matches": [],
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Mike Evans",
+      "official_team_heading": "ERS",
+      "expected_team": null,
+      "match_status": "unmatched",
+      "matches": [],
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Deebo Samuel",
+      "official_team_heading": "ERS",
+      "expected_team": null,
       "match_status": "unmatched",
       "matches": [],
       "eligible_for_projection_adjustment": false
@@ -1010,6 +1079,9 @@
     }
   ],
   "unverified_name_candidates": [
+    "Mike Evans",
+    "Deebo Samuel",
+    "Nick Bosa",
     "Brian Robinson",
     "Michael Jerrell",
     "Divine Deablo",
@@ -1039,6 +1111,44 @@
     "T.J. Edwards"
   ],
   "directory_name_matches_unverified": [
+    {
+      "reported_name": "Mike Evans",
+      "match_status": "unique_name_only",
+      "matches": [
+        {
+          "player_id": "2216",
+          "player_name": "Mike Evans",
+          "team": "SF",
+          "position": "WR"
+        }
+      ],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Deebo Samuel",
+      "match_status": "unique_name_only",
+      "matches": [
+        {
+          "player_id": "5872",
+          "player_name": "Deebo Samuel Sr.",
+          "team": "SF",
+          "position": "WR"
+        }
+      ],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Nick Bosa",
+      "match_status": "unmatched",
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
+    },
     {
       "reported_name": "Brian Robinson",
       "match_status": "unique_name_only",
