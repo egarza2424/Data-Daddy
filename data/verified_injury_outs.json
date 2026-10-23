@@ -67,6 +67,28 @@
       "status": "OUT",
       "verified_date": "2026-10-23",
       "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-friday-oct-23"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "5892",
+      "player_name": "David Montgomery",
+      "position": "RB",
+      "team": "HOU",
+      "status": "OUT",
+      "verified_date": "2026-10-23",
+      "source": "https://www.nfl.com/news/nfl-week-7-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "12455",
+      "player_name": "Brashard Smith",
+      "position": "RB",
+      "team": "KC",
+      "status": "OUT",
+      "verified_date": "2026-10-23",
+      "source": "https://www.nfl.com/news/nfl-week-7-injury-report-2026-season"
     }
   ]
 }
