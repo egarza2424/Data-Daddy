@@ -130,6 +130,15 @@ def fetch_position_rankings(
             f"FantasyPros returned invalid "
             f"JSON for {position}."
         ) from error
+    # Report endpoint pagination metadata without exposing the API key.
+    # Do not guess an offset parameter or combine overlapping pages.
+    if isinstance(payload, dict):
+        for key in ("pagination", "paging", "meta", "total", "total_count",
+                    "next", "next_page", "page", "per_page", "limit", "offset"):
+            if key in payload:
+                print(f"  Response {key}: {str(payload[key])[:500]}")
+    else:
+        print(f"  Response type: {type(payload).__name__}")
     if position == "QB":
         print(
             "  FantasyPros response keys:",
