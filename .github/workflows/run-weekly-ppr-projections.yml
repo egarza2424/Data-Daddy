@@ -520,6 +520,7 @@ jobs:
           git add projection-model/
           git add -f projection-model/validation/*-analyst-adjustments-audit.csv 2>/dev/null || true
           git add -f projection-model/validation/starter-absence-evidence.csv 2>/dev/null || true
+          git add -f projection-model/validation/2026-week7-rb-injury-rushing-scenarios.csv 2>/dev/null || true
 
           if git diff --cached --quiet; then
             echo "No projection changes to commit."
