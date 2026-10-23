@@ -60,6 +60,29 @@ def main():
             if not history.empty:
                 starter_targets = round(float(history["targets"].mean()), 2)
                 starter_carries = round(float(history[carry_col].mean()), 2)
+        # Compare the starter's latest observed absence week with their prior
+        # active games. This is an observed team-level change, not an allocation.
+        absence_week = int(matches["recent_week"].max()) if not matches.empty else None
+        observed_position_change = None
+        if stats is not None and absence_week is not None:
+            starter_absent = not bool(stats[
+                (stats["week"] == absence_week)
+                & (stats[team_col].astype(str) == str(starter["team"]))
+                & (stats["position"].astype(str) == str(starter["position"]))
+                & (stats[name_col].astype(str).str.lower().str.replace(r"[^a-z0-9]", "", regex=True)
+                   == "".join(c for c in str(starter["player_name"]).lower() if c.isalnum()))
+            ].shape[0])
+            if starter_absent:
+                position_stats = stats[
+                    (stats[team_col].astype(str) == str(starter["team"]))
+                    & (stats["position"].astype(str) == str(starter["position"]))
+                ]
+                totals = position_stats.groupby("week")[["targets", carry_col]].sum()
+                prior = totals[totals.index < absence_week].tail(4)
+                if not prior.empty and absence_week in totals.index:
+                    observed_position_change = round(
+                        float(totals.loc[absence_week].sum() - prior.sum(axis=1).mean()), 2
+                    )
         total_recent = float(matches["candidate_opportunities"].sum())
         # Shares describe observed same-position participation only.
         # Do not convert the starter's full historical volume into a beneficiary
@@ -107,6 +130,7 @@ def main():
                 "starter_carries_per_game": starter_carries,
                 "candidate_recent_share_pct": round(100 * float(candidate["candidate_opportunities"]) / total_recent, 2) if total_recent else None,
                 "illustrative_vacated_opportunities": None,
+                "observed_position_opportunity_change": observed_position_change,
                 "approved_for_scoring": False,
             })
 
@@ -120,6 +144,7 @@ def main():
         "role_confidence", "opportunity_status", "projected_workload",
         "starter_targets_per_game", "starter_carries_per_game",
         "candidate_recent_share_pct", "illustrative_vacated_opportunities",
+        "observed_position_opportunity_change",
         "approved_for_scoring",
     ]
     output = Path(args.output)
