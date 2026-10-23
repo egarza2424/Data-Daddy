@@ -40,3 +40,5 @@ jobs:
         run: python scripts/audit_high_volume_te_wr_errors.py
       - name: Audit TE WR top-K recall target volume
         run: python scripts/audit_te_wr_topk_target_volume.py
+      - name: Audit TE WR breakout and ranking misses
+        run: python scripts/audit_te_wr_breakout_misses.py
