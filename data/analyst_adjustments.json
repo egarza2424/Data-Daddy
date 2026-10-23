@@ -1,7 +1,19 @@
 {
   "schema_version": 1,
   "description": "Week-scoped editorial adjustments. Values are deltas, not replacements. This file is configuration only until the projection and ranking pipelines consume it.",
-  "adjustments": [],
+  "adjustments": [
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "6865",
+      "player_name": "Colby Parkinson",
+      "ai_score_delta": "3.90",
+      "projected_ppr_delta": "3.88",
+      "reason": "Analyst adjustment to target AI Score 44.30 and projected PPR 9.51",
+      "source": "Analyst Week 7 review",
+      "author": "egarza2424"
+    }
+  ],
   "example_not_applied": {
     "season": 2026,
     "week": 7,
