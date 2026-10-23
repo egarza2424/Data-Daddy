@@ -55,6 +55,12 @@ def main():
                str(info.get("position", "")).upper())
         by_identity.setdefault(key, []).append(str(sleeper_id))
 
+    # Explicit cross-provider aliases, still constrained by team and position.
+    name_aliases = {
+        ("kylepitts", "ATL", "TE"): "kylepittssr",
+        ("bamknight", "ARI", "RB"): "zonovanknight",
+    }
+
     def resolve_identity(player):
         gsis = str(player.player_id)
         if gsis in gsis_to_sleeper and gsis_to_sleeper[gsis]:
@@ -62,6 +68,8 @@ def main():
         key = (normalized_name(player[name_col]), str(player[team_col]).upper(),
                str(player.position).upper())
         matches = by_identity.get(key, [])
+        if not matches and key in name_aliases:
+            matches = by_identity.get((name_aliases[key], key[1], key[2]), [])
         if len(matches) == 1:
             return matches[0], "NAME_TEAM_POSITION_MATCH"
         return None, "AMBIGUOUS" if len(matches) > 1 else "UNRESOLVED"
