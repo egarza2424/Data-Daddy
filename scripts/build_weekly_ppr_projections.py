@@ -1876,6 +1876,16 @@ def main():
         )
     )
 
+    # Keep a separate immutable first-seen pregame projection record.
+    # This file is created only once per week and never rewritten by
+    # hourly injury updates or postgame recalculations.
+    frozen_path = OUTPUT_DIR / f"2026-week{target_week}-ppr-pregame-frozen.csv"
+    if not frozen_path.exists():
+        projections.to_csv(frozen_path, index=False)
+        print(f"Created frozen pregame projection baseline: {frozen_path}")
+    else:
+        print(f"Preserved existing frozen pregame baseline: {frozen_path}")
+
     projections.to_csv(
         projection_path,
         index=False,
