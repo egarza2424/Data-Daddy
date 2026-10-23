@@ -447,6 +447,17 @@ Usage: {
   }
 };
 let players = [];
+let actualPprResults = [];
+async function loadActualPprResults() {
+  try {
+    const response = await fetch("./data/actual-ppr-2026.json?v=" + Date.now(), {cache: "no-store"});
+    if (!response.ok) return;
+    const payload = await response.json();
+    actualPprResults = Array.isArray(payload.players) ? payload.players : [];
+  } catch (error) {
+    console.warn("Actual PPR results unavailable:", error);
+  }
+}
 let weeklyStats = [];
 let fantasyAiScores = {};
 let nflPlayerLookup = {};
@@ -516,6 +527,7 @@ const response = await fetch(
     const data = await response.json();
 
 weeklyStats = data.players || [];
+await loadActualPprResults();
 fantasyAiScores = data.fantasy_ai_scores || {};
 nflPlayerLookup = data.player_lookup || {};
 
@@ -10256,7 +10268,16 @@ function getActualPprForRanking(player) {
     snapshotWeek || document.documentElement.dataset.targetWeek
   );
   if (!Number.isInteger(week) || week < 1) return null;
-  const games = getPlayerWeeklyStats(player).filter(game =>
+  const name = normalizeName(player.name);
+  const team = value => ({LA:"LAR", JAC:"JAX", WSH:"WAS"})[String(value || "").toUpperCase()] || String(value || "").toUpperCase();
+  const results = actualPprResults.filter(game =>
+    Number(game.season) === 2026 &&
+    Number(game.week) === week &&
+    normalizeName(game.player_display_name) === name &&
+    String(game.position).toUpperCase() === String(player.position).toUpperCase() &&
+    team(game.team) === team(player.team)
+  );
+  const games = results.length ? results : getPlayerWeeklyStats(player).filter(game =>
     Number(game.season) === 2026 &&
     Number(game.week) === week
   );
