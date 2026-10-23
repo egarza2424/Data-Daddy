@@ -1248,6 +1248,7 @@ def main():
         "roster_status",
         "injury_status",
         "model_score",
+        "original_model_score",
         "position_rank",
         "projected_ppr",
         "original_projected_ppr",
