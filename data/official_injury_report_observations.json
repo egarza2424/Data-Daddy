@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 7,
   "source_url": "https://www.nfl.com/news/nfl-week-7-injury-report-2026-season",
-  "retrieved_at_utc": "2026-10-23T20:00:30.534066+00:00",
+  "retrieved_at_utc": "2026-10-23T20:03:55.364558+00:00",
   "verification_status": "official_source_text_unresolved_player_identity",
   "automatically_verified_outs": [],
   "out_text_observations": [
@@ -27,5 +27,24 @@
     "OUT:\\\"}],\\\" RB \\\",[\\\"$\\\",\\\"$L3b\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/brashard-smith\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Brashard Smith\\\"}],\\\" (hamstring), WR \\\",[\\\"$\\\",\\\"$L3b\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopen",
     "OUT:\\\"}],\\\" G \\\",[\\\"$\\\",\\\"$L3b\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/alijah-vera-tucker\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Alijah Vera-Tucker\\\"}],\\\" (hamstring), OL \\\",[\\\"$\\\",\\\"$L3b\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\",
     "OUT:\\\"}],\\\" RB \\\",[\\\"$\\\",\\\"$L3b\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/kyle-monangai\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Kyle Monangai\\\"}],\\\" (thumb/toe), LB \\\",[\\\"$\\\",\\\"$L3b\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener"
+  ],
+  "unverified_name_candidates": [
+    "Brian Robinson",
+    "Michael Jerrell",
+    "Divine Deablo",
+    "Emeka Egbuka",
+    "Luke Goedeke",
+    "Antoine Winfield Jr.",
+    "Thomas Incoom",
+    "Jaelan Phillips",
+    "Dillon Gabriel",
+    "Teven Jenkins",
+    "Khalil Davis",
+    "Alijah Vera-Tucker",
+    "Ben Brown",
+    "Channing Canada",
+    "Kyle Monangai",
+    "Jack Sanborn",
+    "T.J. Edwards"
   ]
 }
