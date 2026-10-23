@@ -53,6 +53,11 @@ jobs:
         run: |
           python -m py_compile scripts/build_live_rb_j2_features.py scripts/build_rb_returning_player_audit.py scripts/build_week7_rb_j2_experiment.py scripts/build_weekly_ppr_projections.py scripts/audit_te_ppg_challenger.py
 
+      - name: Refresh current player injury availability from Sleeper
+        run: |
+          python -m py_compile scripts/build_gameday_availability.py
+          python scripts/build_gameday_availability.py
+
       - name: Generate Week 7 J2 RB projections
         run: |
           python scripts/build_live_rb_j2_features.py
