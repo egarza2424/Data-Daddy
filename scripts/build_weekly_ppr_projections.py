@@ -1192,6 +1192,47 @@ def main():
 
     pre_injury_ppr = projections.set_index("player_id")["projected_ppr"].copy()
 
+    # Generalized, evidence-gated starter-absence adjustment.
+    # Configured observations can cover any team/week and are applied only
+    # when the named starter is excluded from this week's projections.
+    # This intentionally does not infer beneficiaries from depth charts alone.
+    from pathlib import Path as _Path
+    absence_config = _Path("data/starter_absence_opportunities.json")
+    if absence_config.exists():
+        config = json.loads(absence_config.read_text(encoding="utf-8"))
+        for case in config.get("cases", []):
+            if int(case["season"]) != 2026 or int(case["week"]) != target_week:
+                continue
+            starter_id = str(case["starter_player_id"])
+            if starter_id in projections["player_id"].astype(str).values:
+                print(f"Starter absence skipped: {starter_id} still projected")
+                continue
+            for beneficiary in case["beneficiaries"]:
+                matches = projections.index[
+                    projections["player_id"].astype(str).eq(
+                        str(beneficiary["player_id"])
+                    )
+                ]
+                if len(matches) != 1:
+                    print(f"Starter absence skipped: missing beneficiary {beneficiary['player_id']}")
+                    continue
+                idx = matches[0]
+                baseline = float(projections.at[idx, "projected_ppr"])
+                before = float(beneficiary["healthy_target_share"])
+                absent = float(beneficiary["absent_target_share"])
+                if not (0 < before <= 100 and 0 <= absent <= 100):
+                    raise RuntimeError("Invalid starter-absence target share")
+                weight = min(0.5, max(0.0, float(beneficiary.get("evidence_weight", 0.35))))
+                uplift = min(0.15, weight * max(0.0, absent / before - 1.0))
+                projections.at[idx, "projected_ppr"] = round(
+                    baseline * (1 + uplift), 2
+                )
+                projections.at[idx, "projection_model"] = (
+                    "StarterAbsence_WR_target_share_shrinkage"
+                )
+                print(f"Starter absence {starter_id}: {beneficiary['player_id']} "
+                      f"{baseline:.2f} -> {projections.at[idx, 'projected_ppr']:.2f}")
+
     # Warren-out Week 7 receiving redistribution, grounded in Week 5
     # vs Week 6 adjusted target shares (FantasyPros usage review).
     # Apply only a shrunken fraction of the observed role change because
