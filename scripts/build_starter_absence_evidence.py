@@ -47,6 +47,25 @@ def main():
                 gsis_to_sleeper[gsis] = None  # ambiguous mapping
             else:
                 gsis_to_sleeper[gsis] = str(sleeper_id)
+    # Fallback only when GSIS is absent: require a unique exact normalized
+    # name + team + position in the Sleeper availability snapshot.
+    by_identity = {}
+    for sleeper_id, info in availability.get("players", {}).items():
+        key = (normalized_name(info.get("name")), str(info.get("team", "")).upper(),
+               str(info.get("position", "")).upper())
+        by_identity.setdefault(key, []).append(str(sleeper_id))
+
+    def resolve_identity(player):
+        gsis = str(player.player_id)
+        if gsis in gsis_to_sleeper and gsis_to_sleeper[gsis]:
+            return gsis_to_sleeper[gsis], "GSIS_MATCH"
+        key = (normalized_name(player[name_col]), str(player[team_col]).upper(),
+               str(player.position).upper())
+        matches = by_identity.get(key, [])
+        if len(matches) == 1:
+            return matches[0], "NAME_TEAM_POSITION_MATCH"
+        return None, "AMBIGUOUS" if len(matches) > 1 else "UNRESOLVED"
+
     rows = []
     for starter in outs:
         if starter.get("season") != args.season or starter.get("week") != args.week:
@@ -65,13 +84,14 @@ def main():
                 continue
             baseline = float(earlier.share.tail(4).mean())
             recent = float(player.share)
+            sleeper_id, match_status = resolve_identity(player)
             rows.append({
                 "season": args.season, "week": args.week,
                 "starter_player_id": str(starter["player_id"]),
                 "starter_name": starter["player_name"], "team": team,
                 "beneficiary_player_id": str(player.player_id),
-                "beneficiary_sleeper_id": gsis_to_sleeper.get(str(player.player_id)),
-                "identity_match_status": ("GSIS_MATCH" if gsis_to_sleeper.get(str(player.player_id)) else "UNRESOLVED"),
+                "beneficiary_sleeper_id": sleeper_id,
+                "identity_match_status": match_status,
                 "beneficiary_name": player[name_col],
                 "position": player.position, "recent_week": last_week,
                 "baseline_share_pct": round(baseline * 100, 2),
