@@ -39,8 +39,8 @@ def main():
         raise RuntimeError("Official NFL article identity could not be validated")
     # Keep snippets for review; team/player identity must be independently resolved.
     snippets = []
-    for match in re.finditer(r"\\bOUT\\s*:", text, re.I):
-        snippet = text[match.start():match.start()+500].split("\\n")[0][:350]
+    for match in re.finditer(r"\bOUT\s*:", text, re.I):
+        snippet = text[match.start():match.start()+500].split("\n")[0][:350]
         if snippet and snippet not in snippets:
             snippets.append(snippet)
     if not snippets:
