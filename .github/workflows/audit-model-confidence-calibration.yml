@@ -42,3 +42,5 @@ jobs:
         run: python scripts/audit_te_wr_topk_target_volume.py
       - name: Audit TE WR breakout and ranking misses
         run: python scripts/audit_te_wr_breakout_misses.py
+      - name: Audit TE WR ranking miss evidence
+        run: python scripts/audit_te_wr_miss_evidence.py
