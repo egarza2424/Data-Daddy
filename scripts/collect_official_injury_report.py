@@ -57,6 +57,14 @@ def main():
     # Candidate matching is diagnostic only. A name match does not establish
     # team, report section, game status, or confirmed absence.
     directory_path = Path("data/gameday_availability.json")
+    def normalized_name(value):
+        # Normalize punctuation and common suffixes, but never use fuzzy matching
+        # to auto-confirm an OUT designation.
+        parts = re.findall(r"[a-z0-9]+", str(value).casefold())
+        while parts and parts[-1] in {"jr", "sr", "ii", "iii", "iv"}:
+            parts.pop()
+        return " ".join(parts)
+
     directory_matches = []
     if directory_path.exists():
         directory = json.loads(directory_path.read_text(encoding="utf-8"))
@@ -64,13 +72,13 @@ def main():
         if isinstance(players, dict):
             players = list(players.values())
         for name in candidates:
-            normalized = " ".join(name.casefold().split())
+            normalized = normalized_name(name)
             matches = []
             for player in players:
                 if not isinstance(player, dict):
                     continue
                 player_name = player.get("player_name") or player.get("full_name") or player.get("name") or ""
-                if " ".join(str(player_name).casefold().split()) == normalized:
+                if normalized_name(player_name) == normalized:
                     matches.append({
                         "player_id": str(player.get("player_id") or player.get("sleeper_id") or ""),
                         "player_name": player_name,
