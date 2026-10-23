@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "description": "Week-scoped editorial adjustments. Values are deltas, not replacements. This file is configuration only until the projection and ranking pipelines consume it.",
+  "adjustments": [],
+  "example_not_applied": {
+    "season": 2026,
+    "week": 7,
+    "player_id": "REPLACE_WITH_CANONICAL_PLAYER_ID",
+    "player_name": "Ollie Gordon II",
+    "ai_score_delta": "0.12",
+    "projected_ppr_delta": "0.16",
+    "reason": "Document the verified injury, role, or matchup evidence",
+    "source": "REPLACE_WITH_EVIDENCE_REFERENCE",
+    "author": "admin"
+  }
+}
