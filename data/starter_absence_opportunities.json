@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "description": "Evidence-reviewed, week-scoped starter absences. Cases apply only if starter is absent from projections; never infer target shares from a depth chart alone.",
+  "cases": []
+}
