@@ -8872,7 +8872,20 @@ window.dataDaddyAuditWilson = function () {
 // Single source of truth for AI Scores displayed in Rankings and Projections.
 // Weekly PPR snapshot model_score is historical metadata, not a live display score.
 function getDisplayedAiScore(player, profile) {
-  return player ? calculateScore(player, profile) : NaN;
+  if (!player) return NaN;
+  const liveScore = calculateScore(player, profile);
+  const projection = getPlayerPprProjection(player);
+  const adjustedScore = Number(projection?.model_score);
+  const originalScore = Number(projection?.original_model_score);
+  const weekMatches = Number(projection?.snapshot_week) ===
+    Number(document.documentElement.dataset.targetWeek);
+  // Apply only the analyst's delta to the live AI score. This keeps
+  // the live 11-signal model and profile weighting intact for everyone.
+  if (weekMatches && Number.isFinite(adjustedScore) &&
+      Number.isFinite(originalScore) && adjustedScore !== originalScore) {
+    return Math.round((liveScore + adjustedScore - originalScore) * 100) / 100;
+  }
+  return liveScore;
 }
 
 // A weekly projection may have a valid frozen model score even when
