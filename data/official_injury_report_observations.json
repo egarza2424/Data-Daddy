@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 7,
   "source_url": "https://www.nfl.com/news/nfl-week-7-injury-report-2026-season",
-  "retrieved_at_utc": "2026-10-23T20:06:17.330232+00:00",
+  "retrieved_at_utc": "2026-10-23T20:07:27.737002+00:00",
   "verification_status": "official_source_text_unresolved_player_identity",
   "automatically_verified_outs": [],
   "out_text_observations": [
@@ -58,17 +58,26 @@
           "team": "ATL",
           "position": "RB"
         }
-      ]
+      ],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     },
     {
       "reported_name": "Michael Jerrell",
       "match_status": "unmatched",
-      "matches": []
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     },
     {
       "reported_name": "Divine Deablo",
       "match_status": "unmatched",
-      "matches": []
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     },
     {
       "reported_name": "Emeka Egbuka",
@@ -80,27 +89,42 @@
           "team": "TB",
           "position": "WR"
         }
-      ]
+      ],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     },
     {
       "reported_name": "Luke Goedeke",
       "match_status": "unmatched",
-      "matches": []
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     },
     {
       "reported_name": "Antoine Winfield Jr.",
       "match_status": "unmatched",
-      "matches": []
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     },
     {
       "reported_name": "Thomas Incoom",
       "match_status": "unmatched",
-      "matches": []
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     },
     {
       "reported_name": "Jaelan Phillips",
       "match_status": "unmatched",
-      "matches": []
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     },
     {
       "reported_name": "Dillon Gabriel",
@@ -112,32 +136,50 @@
           "team": "CLE",
           "position": "QB"
         }
-      ]
+      ],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     },
     {
       "reported_name": "Teven Jenkins",
       "match_status": "unmatched",
-      "matches": []
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     },
     {
       "reported_name": "Khalil Davis",
       "match_status": "unmatched",
-      "matches": []
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     },
     {
       "reported_name": "Alijah Vera-Tucker",
       "match_status": "unmatched",
-      "matches": []
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     },
     {
       "reported_name": "Ben Brown",
       "match_status": "unmatched",
-      "matches": []
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     },
     {
       "reported_name": "Channing Canada",
       "match_status": "unmatched",
-      "matches": []
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     },
     {
       "reported_name": "Kyle Monangai",
@@ -149,17 +191,26 @@
           "team": "CHI",
           "position": "RB"
         }
-      ]
+      ],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     },
     {
       "reported_name": "Jack Sanborn",
       "match_status": "unmatched",
-      "matches": []
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     },
     {
       "reported_name": "T.J. Edwards",
       "match_status": "unmatched",
-      "matches": []
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
     }
   ]
 }
