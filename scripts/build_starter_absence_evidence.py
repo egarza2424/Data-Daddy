@@ -23,6 +23,12 @@ def main():
     required = {"season", "week", "position", "targets", "player_id"}
     if not name_col or not team_col or not required.issubset(data.columns):
         raise ValueError("Weekly stats missing player/team/targets columns")
+    # Resolve cross-provider identity by normalized player name within team.
+    # nflverse IDs and Sleeper IDs are not interchangeable.
+    def normalized_name(value):
+        import re
+        return re.sub(r"[^a-z0-9]", "", str(value).lower().replace("jr.", "").replace("iii", ""))
+
     data = data[(data.season == args.season) & (data.week < args.week)].copy()
     data = data[data.position.isin(["WR", "TE", "RB"])]
     data["targets"] = pd.to_numeric(data.targets, errors="coerce").fillna(0)
@@ -41,7 +47,7 @@ def main():
         last_week = int(previous.week.max())
         last = previous[previous.week == last_week]
         for _, player in last.iterrows():
-            if str(player.player_id) == str(starter["player_id"]):
+            if normalized_name(player[name_col]) == normalized_name(starter["player_name"]):
                 continue
             earlier = previous[(previous.player_id.astype(str) == str(player.player_id)) & (previous.week < last_week)]
             if earlier.empty:
