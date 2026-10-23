@@ -1049,6 +1049,19 @@ const SLEEPER_ELITE_CUTOFFS = {
 };
 
 
+// Week 7-only reviewed injury-opportunity eligibility; no automatic uplift.
+// Roles are conditional and must be re-reviewed for subsequent weeks.
+function hasReviewedInjurySleeperOpportunity(projection) {
+  if (Number(projection.snapshot_week) !== 7 ||
+      Number(projection.season || 2026) !== 2026 ||
+      String(projection.position || "").toUpperCase() !== "RB") return false;
+  const team = String(projection.team || "").toUpperCase();
+  const name = normalizeName(projection.player_name || "");
+  return (team === "HOU" && name === normalizeName("Woody Marks")) ||
+         (team === "ARI" && name === normalizeName("Tyler Allgeier")) ||
+         (team === "ARI" && name === normalizeName("Bam Knight"));
+}
+
 function getWeeklySleeperCandidates() {
   const candidates =
     weeklyPprProjections
@@ -1169,11 +1182,14 @@ function getWeeklySleeperCandidates() {
          * Model RB45 vs PPR RB22 = -23
          * does not qualify.
          */
-        if (rankAdvantage <= 0) {
+        const injuryOpportunityEligible =
+          hasReviewedInjurySleeperOpportunity(projection);
+        if (rankAdvantage <= 0 && !injuryOpportunityEligible) {
           return null;
         }
 
         return {
+          injuryOpportunityEligible,
           projection,
           player,
           position,
@@ -1235,7 +1251,7 @@ function getWeeklySleeperCandidates() {
       const rankAdvantages =
         group.map(
           candidate =>
-            candidate.rankAdvantage
+            Math.max(0, candidate.rankAdvantage)
         );
 
       const minAi =
@@ -1278,7 +1294,7 @@ function getWeeklySleeperCandidates() {
 
           const disagreementComponent =
             normalizeSleeperMetric(
-              candidate.rankAdvantage,
+              Math.max(0, candidate.rankAdvantage),
               minRankAdvantage,
               maxRankAdvantage
             );
