@@ -84,6 +84,11 @@ def main():
             continue
         last_week = int(previous.week.max())
         last = previous[previous.week == last_week]
+        # An OUT designation for the upcoming week does not establish that
+        # the starter was absent during the prior game's usage sample.
+        starter_played_last_week = bool(last[name_col].map(normalized_name).eq(
+            normalized_name(starter["player_name"])
+        ).any())
         for _, player in last.iterrows():
             if normalized_name(player[name_col]) == normalized_name(starter["player_name"]):
                 continue
@@ -107,7 +112,9 @@ def main():
                 "recent_targets": float(player.targets),
                 "baseline_games": len(earlier),
                 "candidate_uplift_pct": round(max(0, recent / baseline - 1) * 100, 2) if baseline > 0 else 0,
-                "activation_status": "REVIEW_REQUIRED",
+                "starter_played_recent_week": starter_played_last_week,
+                "activation_status": ("NO_ABSENCE_EVIDENCE" if starter_played_last_week
+                                      else "REVIEW_REQUIRED"),
             })
     out = Path(args.output)
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -116,7 +123,8 @@ def main():
         "beneficiary_player_id", "beneficiary_sleeper_id", "identity_match_status",
         "beneficiary_name", "position", "recent_week",
         "baseline_share_pct", "recent_share_pct", "recent_targets",
-        "baseline_games", "candidate_uplift_pct", "activation_status",
+        "baseline_games", "candidate_uplift_pct",
+        "starter_played_recent_week", "activation_status",
     ]).to_csv(out, index=False)
     print(f"Saved {len(rows)} evidence candidates to {out}; no projections changed.")
 
