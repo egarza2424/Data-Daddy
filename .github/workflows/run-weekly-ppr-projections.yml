@@ -383,10 +383,12 @@ jobs:
               if projections["player_name"].eq("Mike Evans").any():
                   raise SystemExit("Mike Evans must be excluded for Week 7.")
               board = editorial.sort_values("projected_position_rank")
-              if board["projected_position_rank"].astype(int).tolist() != list(range(1, len(board) + 1)):
-                  raise SystemExit("Available editorial WR ranks must be contiguous.")
+              # Injury-based receiving boosts can move non-editorial WRs between
+              # editorial players. Validate global WR ranking below instead.
+              if board["projected_position_rank"].duplicated().any():
+                  raise SystemExit("Duplicate editorial WR projected ranks.")
               if not board["projected_ppr"].is_monotonic_decreasing:
-                  raise SystemExit("Editorial WR PPR must descend by rank.")
+                  raise SystemExit("Editorial WR PPR must descend by projected rank.")
               wr_top24 = projections.loc[
                   projections["position"].eq("WR")
               ].sort_values("projected_position_rank").head(24)
