@@ -135,9 +135,9 @@ def main():
             if normalized_name(player[name_col]) == normalized_name(starter["player_name"]):
                 continue
             earlier = previous[(previous.player_id.astype(str) == str(player.player_id)) & (previous.week < last_week)]
-            if earlier.empty:
-                continue
-            baseline = float(earlier.share.tail(4).mean())
+            # Preserve first-time beneficiaries; missing history is unknown,
+            # not evidence that their new workload will be zero.
+            baseline = float(earlier.share.tail(4).mean()) if not earlier.empty else 0.0
             recent = float(player.share)
             sleeper_id, match_status = resolve_identity(player)
             rows.append({
@@ -153,27 +153,28 @@ def main():
                 "recent_share_pct": round(recent * 100, 2),
                 "recent_targets": float(player.targets),
                 "baseline_games": len(earlier),
-                "baseline_targets_per_game": round(float(earlier.targets.tail(4).mean()), 2),
+                "baseline_targets_per_game": round(float(earlier.targets.tail(4).mean()), 2) if not earlier.empty else None,
                 "target_change_per_game": round(
                     float(player.targets) - float(earlier.targets.tail(4).mean()), 2
-                ),
-                "candidate_uplift_pct": round(max(0, recent / baseline - 1) * 100, 2) if baseline > 0 else 0,
+                ) if not earlier.empty else None,
+                "candidate_uplift_pct": round(max(0, recent / baseline - 1) * 100, 2) if baseline > 0 else None,
                 **{
-                    f"baseline_{zone}_per_game": round(float(earlier[col].tail(4).mean()), 2)
+                    f"baseline_{zone}_per_game": round(float(earlier[col].tail(4).mean()), 2) if not earlier.empty else None
                     for zone, col in (("inside_20", "rush_inside_20"), ("inside_10", "rush_inside_10"), ("inside_5", "rush_inside_5"))
                 },
                 **{
                     f"recent_{zone}_carries": float(player[col])
                     for zone, col in (("inside_20", "rush_inside_20"), ("inside_10", "rush_inside_10"), ("inside_5", "rush_inside_5"))
                 },
-                "baseline_carries_per_game": round(float(earlier.rush_attempts.tail(4).mean()), 2),
+                "baseline_carries_per_game": round(float(earlier.rush_attempts.tail(4).mean()), 2) if not earlier.empty else None,
                 "recent_carries": float(player.rush_attempts),
                 "carry_change_per_game": round(
                     float(player.rush_attempts) - float(earlier.rush_attempts.tail(4).mean()), 2
-                ),
-                "baseline_rush_share_pct": round(float(earlier.rush_share.tail(4).mean()) * 100, 2),
+                ) if not earlier.empty else None,
+                "baseline_rush_share_pct": round(float(earlier.rush_share.tail(4).mean()) * 100, 2) if not earlier.empty else None,
                 "recent_rush_share_pct": round(float(player.rush_share) * 100, 2),
                 "starter_played_recent_week": starter_played_last_week,
+                "beneficiary_history_status": "NO_PRIOR_BASELINE" if earlier.empty else "HAS_PRIOR_BASELINE",
                 "starter_prior_games_in_stats": starter_prior_games,
                 "activation_status": ("NO_ABSENCE_EVIDENCE" if starter_played_last_week
                                       else "NO_STARTER_HISTORY" if starter_prior_games == 0
@@ -192,7 +193,7 @@ def main():
         "baseline_rush_share_pct", "recent_rush_share_pct",
         "baseline_inside_20_per_game", "baseline_inside_10_per_game", "baseline_inside_5_per_game",
         "recent_inside_20_carries", "recent_inside_10_carries", "recent_inside_5_carries",
-        "starter_played_recent_week", "starter_prior_games_in_stats", "activation_status",
+        "starter_played_recent_week", "beneficiary_history_status", "starter_prior_games_in_stats", "activation_status",
     ]).to_csv(out, index=False)
     print(f"Saved {len(rows)} evidence candidates to {out}; no projections changed.")
 
