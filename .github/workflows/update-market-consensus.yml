@@ -32,7 +32,7 @@ jobs:
 
           echo ""
           echo "First 10 rows:"
-          head -n 11 projection-model/2026-week4-market-consensus.csv
+          head -n 11 projection-model/2026-week7-market-consensus.csv
 
       - name: Commit market consensus snapshot
         run: |
@@ -46,5 +46,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git commit -m "Update Week 4 market consensus"
+          git commit -m "Update Week 7 market consensus"
           git push
