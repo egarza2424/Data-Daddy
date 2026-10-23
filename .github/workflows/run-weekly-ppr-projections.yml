@@ -353,6 +353,7 @@ jobs:
               "Editorial_Week7_WR_team_total_adjusted",
               "WarrenOut_WR_target_share_shrinkage_Week7",
               "StarterAbsence_WR_target_share_shrinkage",
+              "StarterAbsence_Receiving_25pct_retention",
           }):
               raise SystemExit(
                   "Unexpected WR projection models: "
