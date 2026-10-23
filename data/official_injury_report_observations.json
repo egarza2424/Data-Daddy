@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 7,
   "source_url": "https://www.nfl.com/news/nfl-week-7-injury-report-2026-season",
-  "retrieved_at_utc": "2026-10-23T20:13:50.491420+00:00",
+  "retrieved_at_utc": "2026-10-23T20:15:16.132722+00:00",
   "verification_status": "official_source_text_unresolved_player_identity",
   "automatically_verified_outs": [],
   "out_text_observations": [
@@ -272,97 +272,79 @@
   ],
   "out_section_candidates_unverified": [
     {
-      "team_heading_unverified": null,
+      "team_heading_unverified": "STEELERS",
       "fantasy_player_names_unverified": [
-        "Ben Skowronek",
-        "Rico Dowdle",
+        "Ben Skowronek"
+      ],
+      "section_boundary_detected": true,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": "FALCONS",
+      "fantasy_player_names_unverified": [
         "Brian Robinson"
       ],
-      "section_boundary_detected": false,
+      "section_boundary_detected": true,
       "eligible_for_projection_adjustment": false
     },
     {
-      "team_heading_unverified": null,
+      "team_heading_unverified": "RAVENS",
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": true,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": "BUCCANEERS",
       "fantasy_player_names_unverified": [
-        "Brian Robinson",
-        "Beaux Collins",
-        "Olamide Zaccheaus"
+        "Emeka Egbuka"
       ],
-      "section_boundary_detected": false,
+      "section_boundary_detected": true,
       "eligible_for_projection_adjustment": false
     },
     {
-      "team_heading_unverified": null,
-      "fantasy_player_names_unverified": [
-        "Lamar Jackson",
-        "Emeka Egbuka",
-        "Baker Mayfield"
-      ],
-      "section_boundary_detected": false,
+      "team_heading_unverified": "PANTHERS",
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": true,
       "eligible_for_projection_adjustment": false
     },
     {
-      "team_heading_unverified": null,
-      "fantasy_player_names_unverified": [
-        "Emeka Egbuka",
-        "Baker Mayfield"
-      ],
-      "section_boundary_detected": false,
-      "eligible_for_projection_adjustment": false
-    },
-    {
-      "team_heading_unverified": null,
+      "team_heading_unverified": "COLTS",
       "fantasy_player_names_unverified": [
         "Anthony Gould",
         "Tyler Warren"
       ],
-      "section_boundary_detected": false,
+      "section_boundary_detected": true,
       "eligible_for_projection_adjustment": false
     },
     {
-      "team_heading_unverified": null,
+      "team_heading_unverified": "BROWNS",
       "fantasy_player_names_unverified": [
-        "Anthony Gould",
-        "Tyler Warren",
-        "Jordan Mason"
+        "Dillon Gabriel"
       ],
-      "section_boundary_detected": false,
+      "section_boundary_detected": true,
       "eligible_for_projection_adjustment": false
     },
     {
-      "team_heading_unverified": null,
-      "fantasy_player_names_unverified": [
-        "Dillon Gabriel",
-        "Dylan Sampson",
-        "Tyjae Spears",
-        "Calvin Ridley"
-      ],
-      "section_boundary_detected": false,
-      "eligible_for_projection_adjustment": false
-    },
-    {
-      "team_heading_unverified": null,
+      "team_heading_unverified": "CHIEFS",
       "fantasy_player_names_unverified": [
         "Brashard Smith",
         "Rashee Rice"
       ],
-      "section_boundary_detected": false,
+      "section_boundary_detected": true,
       "eligible_for_projection_adjustment": false
     },
     {
-      "team_heading_unverified": null,
-      "fantasy_player_names_unverified": [
-        "Kyle Monangai"
-      ],
-      "section_boundary_detected": false,
+      "team_heading_unverified": "PATRIOTS",
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": true,
       "eligible_for_projection_adjustment": false
     },
     {
-      "team_heading_unverified": null,
+      "team_heading_unverified": "BEARS",
       "fantasy_player_names_unverified": [
         "Kyle Monangai"
       ],
-      "section_boundary_detected": false,
+      "section_boundary_detected": true,
       "eligible_for_projection_adjustment": false
     },
     {
