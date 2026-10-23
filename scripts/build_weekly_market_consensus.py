@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 SEASON = 2026
-WEEK = 4
+WEEK = 7
 SCORING = "PPR"
 
 POSITIONS = ("QB", "RB", "WR", "TE")
