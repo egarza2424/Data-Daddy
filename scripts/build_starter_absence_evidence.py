@@ -36,6 +36,17 @@ def main():
     data["share"] = data.targets.div(data.team_targets.where(data.team_targets > 0)).fillna(0)
     with open("data/verified_injury_outs.json", encoding="utf-8") as handle:
         outs = json.load(handle)["out"]
+    # Map nflverse GSIS identifiers to Sleeper IDs when explicitly available.
+    # Never silently substitute an nflverse ID as a Sleeper player ID.
+    availability = json.loads(Path("data/gameday_availability.json").read_text(encoding="utf-8"))
+    gsis_to_sleeper = {}
+    for sleeper_id, info in availability.get("players", {}).items():
+        gsis = info.get("gsis_id")
+        if gsis:
+            if gsis in gsis_to_sleeper:
+                gsis_to_sleeper[gsis] = None  # ambiguous mapping
+            else:
+                gsis_to_sleeper[gsis] = str(sleeper_id)
     rows = []
     for starter in outs:
         if starter.get("season") != args.season or starter.get("week") != args.week:
@@ -59,6 +70,8 @@ def main():
                 "starter_player_id": str(starter["player_id"]),
                 "starter_name": starter["player_name"], "team": team,
                 "beneficiary_player_id": str(player.player_id),
+                "beneficiary_sleeper_id": gsis_to_sleeper.get(str(player.player_id)),
+                "identity_match_status": ("GSIS_MATCH" if gsis_to_sleeper.get(str(player.player_id)) else "UNRESOLVED"),
                 "beneficiary_name": player[name_col],
                 "position": player.position, "recent_week": last_week,
                 "baseline_share_pct": round(baseline * 100, 2),
@@ -72,7 +85,8 @@ def main():
     out.parent.mkdir(parents=True, exist_ok=True)
     pd.DataFrame(rows, columns=[
         "season", "week", "starter_player_id", "starter_name", "team",
-        "beneficiary_player_id", "beneficiary_name", "position", "recent_week",
+        "beneficiary_player_id", "beneficiary_sleeper_id", "identity_match_status",
+        "beneficiary_name", "position", "recent_week",
         "baseline_share_pct", "recent_share_pct", "recent_targets",
         "baseline_games", "candidate_uplift_pct", "activation_status",
     ]).to_csv(out, index=False)
