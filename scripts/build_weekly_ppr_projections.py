@@ -1250,10 +1250,18 @@ def main():
     absence_config = _Path("data/starter_absence_opportunities.json")
     if absence_config.exists():
         config = json.loads(absence_config.read_text(encoding="utf-8"))
+        if config.get("schema_version") != 1 or not isinstance(config.get("cases"), list):
+            raise RuntimeError("Invalid starter absence opportunity configuration")
+        verified_out_ids = {
+            str(item["player_id"]) for item in load_verified_injury_outs(target_week)
+        }
         for case in config.get("cases", []):
             if int(case["season"]) != 2026 or int(case["week"]) != target_week:
                 continue
             starter_id = str(case["starter_player_id"])
+            if starter_id not in verified_out_ids:
+                print(f"Starter absence skipped: {starter_id} not officially verified OUT")
+                continue
             if starter_id in projections["player_id"].astype(str).values:
                 print(f"Starter absence skipped: {starter_id} still projected")
                 continue
