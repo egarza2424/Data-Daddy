@@ -54,3 +54,24 @@ for category in sorted({k for p in ranked for k in p["rankings"]}):
         if sample and isinstance(sample[0], dict):
             print("  item fields:", sorted(sample[0].keys()))
 print("No rank data exported or used in Sleeper Score.")
+
+# Final classification: summarize ranking types, sources, published flags,
+# and representative rank ranges. Never print player names or export ranks.
+from collections import defaultdict
+groups = defaultdict(list)
+for player in ranked:
+    for category, entries in player["rankings"].items():
+        if not isinstance(entries, list):
+            continue
+        for entry in entries:
+            if not isinstance(entry, dict):
+                continue
+            key = (str(category), str(entry.get("rankType")),
+                   str(entry.get("rankSourceId")), str(entry.get("published")))
+            rank = entry.get("rank")
+            if isinstance(rank, (int, float)) and rank > 0:
+                groups[key].append(rank)
+print("Ranking classifications (category, type, source, published, count, min/max rank):")
+for key, values in sorted(groups.items(), key=lambda item: (-len(item[1]), item[0])):
+    print(key, "count=", len(values), "range=", min(values), max(values))
+print("These records must not be treated as weekly PPR rankings without explicit validation.")
