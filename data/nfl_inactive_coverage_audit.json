@@ -1,21 +1,13 @@
 {
-  "generated_at_utc": "2026-10-23T05:21:56.198842+00:00",
+  "generated_at_utc": "2026-10-23T10:22:18.174367+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 1,
+    "missing_near_kickoff": 0,
     "pending": 14
   },
   "games": [
-    {
-      "game_id": "2026_07_NE_CHI",
-      "week": 7,
-      "kickoff_utc": "2026-10-23T00:15:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
     {
       "game_id": "2026_07_PIT_NO",
       "week": 7,
