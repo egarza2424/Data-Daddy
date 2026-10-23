@@ -72,6 +72,17 @@ jobs:
             --season 2026 --week 7 \
             --output projection-model/validation/starter-absence-evidence.csv
 
+      - name: Backtest historical RB absence carry retention
+        run: |
+          python -m py_compile scripts/backtest_rb_absence_carry_retention.py
+          curl --fail --location --retry 3 --max-time 120 \
+            https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2025.csv \
+            -o historical-data/player_stats_2025.csv
+          python scripts/backtest_rb_absence_carry_retention.py \
+            --stats historical-data/player_stats_2025.csv \
+            --season 2025 \
+            --output projection-model/validation/2025-rb-absence-retention-backtest.csv
+
       - name: Run weekly PPR projection model
         run: |
           python scripts/build_weekly_ppr_projections.py
@@ -521,6 +532,7 @@ jobs:
           git add -f projection-model/validation/*-analyst-adjustments-audit.csv 2>/dev/null || true
           git add -f projection-model/validation/starter-absence-evidence.csv 2>/dev/null || true
           git add -f projection-model/validation/2026-week7-rb-injury-rushing-scenarios.csv 2>/dev/null || true
+          git add -f projection-model/validation/2025-rb-absence-retention-backtest.csv 2>/dev/null || true
 
           if git diff --cached --quiet; then
             echo "No projection changes to commit."
