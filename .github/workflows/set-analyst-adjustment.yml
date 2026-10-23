@@ -1,0 +1,94 @@
+
+name: Set Analyst Adjustment
+
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: NFL season
+        required: true
+        default: "2026"
+        type: string
+      week:
+        description: NFL week
+        required: true
+        default: "7"
+        type: string
+      player_id:
+        description: Canonical player ID
+        required: true
+        type: string
+      ai_delta:
+        description: AI Score change (0.01 precision)
+        required: true
+        default: "0.00"
+        type: string
+      ppr_delta:
+        description: PPR change (0.01 precision)
+        required: true
+        default: "0.00"
+        type: string
+      reason:
+        description: Reason for adjustment
+        required: true
+        type: string
+      source:
+        description: Evidence reference
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: analyst-adjustment-main
+  cancel-in-progress: false
+
+jobs:
+  save:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pandas
+
+      - name: Save adjustment
+        env:
+          NFL_SEASON: ${{ inputs.season }}
+          NFL_WEEK: ${{ inputs.week }}
+          PLAYER_ID: ${{ inputs.player_id }}
+          AI_DELTA: ${{ inputs.ai_delta }}
+          PPR_DELTA: ${{ inputs.ppr_delta }}
+          REASON: ${{ inputs.reason }}
+          EVIDENCE: ${{ inputs.source }}
+          ANALYST: ${{ github.actor }}
+        run: |
+          python scripts/set_analyst_adjustment.py \
+            --season "$NFL_SEASON" \
+            --week "$NFL_WEEK" \
+            --player-id "$PLAYER_ID" \
+            --ai-delta "$AI_DELTA" \
+            --ppr-delta "$PPR_DELTA" \
+            --reason "$REASON" \
+            --source "$EVIDENCE" \
+            --author "$ANALYST"
+
+      - name: Commit configuration
+        run: |
+          if git diff --quiet -- data/analyst_adjustments.json; then
+            echo "No changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/analyst_adjustments.json
+          git commit -m "Update analyst adjustment"
+          git pull --rebase origin main
+          git push origin HEAD:main
