@@ -1567,6 +1567,22 @@ def main():
                 pd.DataFrame(audit_rows).to_csv(audit_path, index=False)
                 print(f"Saved {len(audit_rows)} research-only rushing scenarios: {audit_path}")
 
+    # Record fresh, preliminary OUT reports for the hourly injury audit.
+    # They do NOT activate verified-only opportunity redistribution.
+    preliminary_outs = load_preliminary_injury_signals(target_week)
+    official_ids = {str(item["player_id"]) for item in load_verified_injury_outs(target_week)}
+    pending_outs = [
+        item for item in preliminary_outs
+        if item["player_id"] not in official_ids
+    ]
+    audit_path = Path("projection-model/validation") / f"2026-week{target_week}-pending-injury-verification.csv"
+    audit_path.parent.mkdir(parents=True, exist_ok=True)
+    pd.DataFrame(pending_outs, columns=[
+        "player_id", "player_name", "position", "team", "status", "source", "week"
+    ]).to_csv(audit_path, index=False)
+    print(f"Preliminary OUT signals: {len(preliminary_outs)}; "
+          f"pending official verification: {len(pending_outs)}")
+
     # Automated RB opportunity redistribution from verified starter OUTs.
     # Only use observed beneficiary workload; no depth-chart-only guesses.
     evidence_path = Path("projection-model/validation/starter-absence-evidence.csv")
