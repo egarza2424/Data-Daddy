@@ -45,6 +45,19 @@ def main():
             snippets.append(snippet)
     if not snippets:
         raise RuntimeError("No explicit OUT labels parsed from NFL article")
+    # Preserve bounded context around each OUT heading for team-section review.
+    # This is audit evidence, not a verified player designation.
+    out_section_context = []
+    for match in re.finditer(r"\\bOUT\\s*:", text, re.I):
+        before = text[max(0, match.start() - 350):match.start()]
+        after = text[match.end():match.end() + 1000]
+        out_section_context.append({
+            "preceding_context": before[-350:],
+            "following_context": after[:1000],
+            "team_verified": False,
+            "player_status_verified": False,
+        })
+
     # Extract names only as review candidates. Encoded NFL markup is not a
     # sufficient basis for a verified OUT or teammate opportunity adjustment.
     candidates = []
@@ -103,6 +116,7 @@ def main():
         "verification_status": "official_source_text_unresolved_player_identity",
         "automatically_verified_outs": [],
         "out_text_observations": snippets,
+        "out_section_context_unverified": out_section_context,
         "unverified_name_candidates": candidates,
         "directory_name_matches_unverified": directory_matches,
     }
