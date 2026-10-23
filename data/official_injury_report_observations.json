@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 7,
   "source_url": "https://www.nfl.com/news/nfl-week-7-injury-report-2026-season",
-  "retrieved_at_utc": "2026-10-23T20:05:16.604626+00:00",
+  "retrieved_at_utc": "2026-10-23T20:06:17.330232+00:00",
   "verification_status": "official_source_text_unresolved_player_identity",
   "automatically_verified_outs": [],
   "out_text_observations": [
@@ -50,8 +50,15 @@
   "directory_name_matches_unverified": [
     {
       "reported_name": "Brian Robinson",
-      "match_status": "unmatched",
-      "matches": []
+      "match_status": "unique_name_only",
+      "matches": [
+        {
+          "player_id": "8154",
+          "player_name": "Brian Robinson Jr.",
+          "team": "ATL",
+          "position": "RB"
+        }
+      ]
     },
     {
       "reported_name": "Michael Jerrell",
