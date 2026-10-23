@@ -237,7 +237,6 @@ def validate_snapshot(
         "team",
         "opponent",
         "model_score",
-        "original_model_score",
         "position_rank",
         "opportunity_score",
         "production_score",
