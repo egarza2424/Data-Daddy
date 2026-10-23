@@ -109,6 +109,23 @@ def main():
         item["status_verification"] = "not_verified"
         item["team_verification"] = "not_verified"
         item["eligible_for_projection_adjustment"] = False
+    # Parse only bounded OUT sections; never include QUESTIONABLE/DOUBTFUL.
+    # This remains review-only until exact team and player identity validation.
+    section_candidates = []
+    for section in out_section_context:
+        before = section["preceding_context"]
+        after = section["following_context"]
+        heading = re.search(r"([A-Z][A-Z ]{2,28})\\s*$", before)
+        team_heading = heading.group(1).strip() if heading else None
+        end = re.search(r"\\n(?:QUESTIONABLE|DOUBTFUL|OUT|No injury designations\\.)\\s*:", after, re.I)
+        bounded = after[:end.start()] if end else after[:450]
+        entries = re.findall(r"\\b(QB|RB|WR|TE)\\s*\\n([^\\n]+)\\n\\(", bounded)
+        section_candidates.append({
+            "team_heading_unverified": team_heading,
+            "fantasy_player_names_unverified": [name.strip() for _, name in entries],
+            "section_boundary_detected": end is not None,
+            "eligible_for_projection_adjustment": False,
+        })
     result = {
         "season": args.season, "week": args.week,
         "source_url": url,
@@ -117,6 +134,7 @@ def main():
         "automatically_verified_outs": [],
         "out_text_observations": snippets,
         "out_section_context_unverified": out_section_context,
+        "out_section_candidates_unverified": section_candidates,
         "unverified_name_candidates": candidates,
         "directory_name_matches_unverified": directory_matches,
     }
