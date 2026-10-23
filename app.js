@@ -1411,6 +1411,24 @@ function getRoleCompetitionWatch(projection) {
   }
   const name = normalizeName(projection.player_name || "");
   const team = String(projection.team || "").toUpperCase();
+  // Week 7 only: documented opportunity created by confirmed starter absences.
+  // This is editorial role context, NOT an automatic Sleeper Score uplift.
+  // Sources: official team reporting and 2026 Week 7 injury statuses;
+  // observed touches: projection-model/validation/injury-opportunity-candidates.csv.
+  // Re-evaluate for Week 8; never carry these warnings into later weeks.
+  const snapshotWeek = Number(projection.snapshot_week);
+  const snapshotSeason = Number(projection.season || 2026);
+  if (snapshotSeason === 2026 && snapshotWeek === 7) {
+    if (team === "ARI" && name === normalizeName("Tyler Allgeier")) {
+      return "Week 7 injury opportunity: Jeremiyah Love is ruled out. Allgeier led Arizona's backfield in Week 6 with 18 carries and 40 snaps, but Bam Knight earned 15 carries and 32 snaps. Expect a shared backfield, not a guaranteed feature workload. Reassess when Love returns.";
+    }
+    if (team === "ARI" && name === normalizeName("Bam Knight")) {
+      return "Week 7 injury opportunity: Jeremiyah Love is ruled out again. Knight carried 15 times for 80 yards in Week 6, but Allgeier led 18-15 in carries and 40-32 in snaps. Knight's increased role is real but conditional on Love remaining out, and the workload is shared.";
+    }
+    if (team === "HOU" && name === normalizeName("Woody Marks")) {
+      return "Week 7 injury opportunity: David Montgomery is ruled out again and Jawhar Jordan is injured. Marks led Houston's backfield last week with 15 carries and 3 targets, and is expected to handle most meaningful carries. This is a one-week role outlook, not a permanent workload projection.";
+    }
+  }
   if (name === normalizeName("Emanuel Wilson") && team === "SEA") {
     return "Conditional sleeper: If Seattle's competing running backs are active and share carries this week, Wilson's workload could decline and he may no longer qualify as a sleeper. Check game-day availability and backfield usage before starting him.";
   }
