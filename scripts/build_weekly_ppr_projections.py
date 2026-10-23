@@ -237,6 +237,7 @@ def validate_snapshot(
         "team",
         "opponent",
         "model_score",
+        "original_model_score",
         "position_rank",
         "opportunity_score",
         "production_score",
@@ -1224,6 +1225,20 @@ def main():
         for rank, idx in enumerate(order, start=1):
             projections.loc[idx, "position_rank"] = rank
 
+    # Apply optional week-scoped analyst deltas after baseline and editorial logic.
+    # Keep original model values in separate columns for accuracy comparisons.
+    from analyst_adjustments import apply_adjustments
+
+    projections, analyst_audit = apply_adjustments(
+        projections, season=2026, week=target_week
+    )
+    if not analyst_audit.empty:
+        audit_dir = Path("projection-model/validation")
+        audit_dir.mkdir(parents=True, exist_ok=True)
+        audit_path = audit_dir / f"2026-week{target_week}-analyst-adjustments-audit.csv"
+        analyst_audit.to_csv(audit_path, index=False)
+        print(f"Applied {len(analyst_audit)} analyst adjustments; audit: {audit_path}")
+
     output_columns = [
         "snapshot_week",
         "player_id",
@@ -1236,6 +1251,7 @@ def main():
         "model_score",
         "position_rank",
         "projected_ppr",
+        "original_projected_ppr",
         "projected_position_rank",
         "opportunity_score",
         "production_score",
