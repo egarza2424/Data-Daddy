@@ -1,0 +1,18 @@
+name: Inspect ESPN Weekly Rank Fields
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Inspect ESPN player schema without changing production
+        run: python scripts/inspect_espn_weekly_rank_fields.py
