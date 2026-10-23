@@ -14,6 +14,7 @@ def main():
     parser.add_argument("--evidence", default="projection-model/validation/starter-absence-evidence.csv")
     parser.add_argument("--verified-outs", default="data/verified_injury_outs.json")
     parser.add_argument("--output", default="projection-model/validation/injury-opportunity-candidates.csv")
+    parser.add_argument("--stats", help="Pregame nflverse weekly player statistics for starter workload")
     parser.add_argument("--season", type=int, default=2026)
     parser.add_argument("--week", type=int, required=True)
     args = parser.parse_args()
@@ -22,6 +23,14 @@ def main():
     evidence = pd.read_csv(args.evidence, dtype={"starter_player_id": str, "beneficiary_sleeper_id": str})
     evidence = evidence.fillna("")
     rows = []
+    stats = pd.read_csv(args.stats) if args.stats else None
+    if stats is not None:
+        stats = stats[(stats["season"] == args.season) & (stats["week"] < args.week)].copy()
+        name_col = "player_display_name" if "player_display_name" in stats else "player_name"
+        team_col = "recent_team" if "recent_team" in stats else "team"
+        carry_col = "carries" if "carries" in stats else "rushing_attempts"
+        for col in ("targets", carry_col):
+            stats[col] = pd.to_numeric(stats[col], errors="coerce").fillna(0)
     for starter in outs:
         if int(starter.get("season", -1)) != args.season or int(starter.get("week", -1)) != args.week:
             continue
@@ -37,6 +46,23 @@ def main():
             + pd.to_numeric(matches["recent_carries"], errors="coerce").fillna(0)
         )
         matches = matches.sort_values("candidate_opportunities", ascending=False)
+        # Historical starter volume is an upper-bound reference, NOT a guaranteed
+        # transferable workload. No automatic uplift or replacement designation.
+        starter_targets = None
+        starter_carries = None
+        if stats is not None:
+            history = stats[
+                (stats[team_col].astype(str) == str(starter["team"]))
+                & (stats["position"].astype(str) == str(starter["position"]))
+                & (stats[name_col].astype(str).str.lower().str.replace(r"[^a-z0-9]", "", regex=True)
+                   == "".join(c for c in str(starter["player_name"]).lower() if c.isalnum()))
+            ].sort_values("week").tail(4)
+            if not history.empty:
+                starter_targets = round(float(history["targets"].mean()), 2)
+                starter_carries = round(float(history[carry_col].mean()), 2)
+        total_recent = float(matches["candidate_opportunities"].sum())
+        # Allocation shares are historical participation proxies, not projections.
+        # A zero-history player remains visible with an unknown allocation.
         if matches.empty:
             rows.append({
                 "season": args.season, "week": args.week,
@@ -49,7 +75,10 @@ def main():
                 "recent_rush_share_pct": "", "prior_week_opportunities": "",
                 "starter_played_recent_week": "", "beneficiary_history_status": "UNKNOWN", "role_confidence": "UNKNOWN",
                 "opportunity_status": "REVIEW_REQUIRED_NO_CANDIDATE",
-                "projected_workload": "", "approved_for_scoring": False,
+                "projected_workload": "", "starter_targets_per_game": starter_targets,
+                "starter_carries_per_game": starter_carries,
+                "candidate_recent_share_pct": "", "illustrative_vacated_opportunities": "",
+                "approved_for_scoring": False,
             })
         for _, candidate in matches.iterrows():
             # Same-team participation is not proof of replacement hierarchy.
@@ -72,7 +101,14 @@ def main():
                 "starter_played_recent_week": candidate["starter_played_recent_week"],
                 "role_confidence": "UNCONFIRMED",
                 "opportunity_status": "REVIEW_REQUIRED_ROLE_UNCONFIRMED",
-                "projected_workload": "", "approved_for_scoring": False,
+                "projected_workload": "",
+                "starter_targets_per_game": starter_targets,
+                "starter_carries_per_game": starter_carries,
+                "candidate_recent_share_pct": round(100 * float(candidate["candidate_opportunities"]) / total_recent, 2) if total_recent else None,
+                "illustrative_vacated_opportunities": round(
+                    (starter_targets + starter_carries) * float(candidate["candidate_opportunities"]) / total_recent, 2
+                ) if total_recent and starter_targets is not None and starter_carries is not None else None,
+                "approved_for_scoring": False,
             })
 
     columns = [
@@ -83,6 +119,8 @@ def main():
         "baseline_carries_per_game", "recent_rush_share_pct",
         "prior_week_opportunities", "beneficiary_history_status", "starter_played_recent_week",
         "role_confidence", "opportunity_status", "projected_workload",
+        "starter_targets_per_game", "starter_carries_per_game",
+        "candidate_recent_share_pct", "illustrative_vacated_opportunities",
         "approved_for_scoring",
     ]
     output = Path(args.output)
