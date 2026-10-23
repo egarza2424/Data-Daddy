@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "description": "Only officially verified game-status OUT designations. Week scoped; does not imply injury redistribution.",
+  "out": [
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "12518",
+      "player_name": "Tyler Warren",
+      "position": "TE",
+      "team": "IND",
+      "status": "OUT",
+      "verified_date": "2026-10-23",
+      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-friday-oct-23"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "12514",
+      "player_name": "Emeka Egbuka",
+      "position": "WR",
+      "team": "TB",
+      "status": "OUT",
+      "verified_date": "2026-10-23",
+      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-friday-oct-23"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "8154",
+      "player_name": "Brian Robinson Jr.",
+      "position": "RB",
+      "team": "ATL",
+      "status": "OUT",
+      "verified_date": "2026-10-23",
+      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-friday-oct-23"
+    }
+  ]
+}
