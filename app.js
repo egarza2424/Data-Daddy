@@ -1062,6 +1062,13 @@ function getWeeklySleeperCandidates() {
           return null;
         }
 
+        // Sleepers are actionable pregame recommendations, not a
+        // postgame leaderboard. Keep completed players in Rankings
+        // and Projections for accuracy evaluation, but not here.
+        if (getActualPprForRanking(player) !== null) {
+          return null;
+        }
+
         const position =
           String(
             projection.position || ""
