@@ -1062,6 +1062,13 @@ function getWeeklySleeperCandidates() {
           return null;
         }
 
+        // Historical PPR rows are for prediction-vs-actual audits only.
+        // Never reintroduce a player removed from the current live
+        // projection pool as an actionable sleeper.
+        if (projection.pregame_archived) {
+          return null;
+        }
+
         // Sleepers are actionable pregame recommendations, not a
         // postgame leaderboard. Keep completed players in Rankings
         // and Projections for accuracy evaluation, but not here.
