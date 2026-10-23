@@ -958,4 +958,21 @@ jobs:
           fi
 
           git commit -m "Save pregame model snapshot"
-          git push
+          # Hourly projection workflows may push while Playwright captures.
+          # Replay the snapshot commit on the newest main instead of
+          # overwriting or discarding concurrent updates.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if ! git rebase origin/main; then
+              echo "Snapshot rebase conflict; aborting rather than overwriting remote data."
+              git rebase --abort || true
+              exit 1
+            fi
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Concurrent update during push; retrying ($attempt/5)."
+            sleep 3
+          done
+          echo "Snapshot push failed after 5 safe retries."
+          exit 1
