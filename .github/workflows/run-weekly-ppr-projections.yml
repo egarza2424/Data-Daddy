@@ -1,6 +1,11 @@
 name: Run Weekly PPR Projections
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "data/verified_injury_outs.json"
+      - "scripts/build_weekly_ppr_projections.py"
   workflow_dispatch:
 
   workflow_run:
@@ -16,6 +21,7 @@ jobs:
   project:
     if: >-
       ${{
+        github.event_name == 'push' ||
         github.event_name == 'workflow_dispatch' ||
         (
           github.event_name == 'workflow_run' &&
