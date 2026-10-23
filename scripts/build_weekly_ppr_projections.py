@@ -867,6 +867,30 @@ def main():
             if len(matches) == 1:
                 projections.at[idx, "player_id"] = matches[0]
                 canonicalized += 1
+        # Explicit alias reconciliation for nflverse-only identities.
+        # Keep the existing canonical Sleeper row rather than merging
+        # potentially different model features or double-counting workload.
+        alias_rows = [
+            ("00-0037157", "8122", "ARI", "RB"),  # Bam / Zonovan Knight
+        ]
+        for gsis_id, sleeper_id, team, position in alias_rows:
+            legacy = (
+                projections["player_id"].astype(str).eq(gsis_id)
+                & projections["team"].astype(str).eq(team)
+                & projections["position"].astype(str).eq(position)
+            )
+            canonical = (
+                projections["player_id"].astype(str).eq(sleeper_id)
+                & projections["team"].astype(str).eq(team)
+                & projections["position"].astype(str).eq(position)
+            )
+            if legacy.sum() == 1 and canonical.sum() == 1:
+                projections = projections.loc[~legacy].copy()
+                print(f"Removed duplicate alias {gsis_id}; retained Sleeper {sleeper_id}")
+            elif legacy.sum() == 1 and canonical.sum() == 0:
+                projections.loc[legacy, "player_id"] = sleeper_id
+                projections.loc[legacy, "player_name"] = "Zonovan Knight"
+                print(f"Canonicalized alias {gsis_id} to Sleeper {sleeper_id}")
         if projections["player_id"].astype(str).duplicated().any():
             raise RuntimeError("Duplicate player ID after GSIS-to-Sleeper reconciliation")
         print(f"Canonicalized {canonicalized} GSIS projection IDs to Sleeper IDs")
