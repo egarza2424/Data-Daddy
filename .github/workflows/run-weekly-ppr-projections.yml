@@ -78,10 +78,17 @@ jobs:
           curl --fail --location --retry 3 --max-time 120 \
             https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2025.csv \
             -o historical-data/player_stats_2025.csv
-          python scripts/backtest_rb_absence_carry_retention.py \
-            --stats historical-data/player_stats_2025.csv \
-            --season 2025 \
-            --output projection-model/validation/2025-rb-absence-retention-backtest.csv
+          for season in 2023 2024 2025; do
+            if [ "$season" != "2025" ]; then
+              curl --fail --location --retry 3 --max-time 120 \
+                "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_${season}.csv" \
+                -o "historical-data/player_stats_${season}.csv"
+            fi
+            python scripts/backtest_rb_absence_carry_retention.py \
+              --stats "historical-data/player_stats_${season}.csv" \
+              --season "$season" \
+              --output "projection-model/validation/${season}-rb-absence-retention-backtest.csv"
+          done
 
       - name: Run weekly PPR projection model
         run: |
@@ -533,6 +540,8 @@ jobs:
           git add -f projection-model/validation/starter-absence-evidence.csv 2>/dev/null || true
           git add -f projection-model/validation/2026-week7-rb-injury-rushing-scenarios.csv 2>/dev/null || true
           git add -f projection-model/validation/2025-rb-absence-retention-backtest.csv 2>/dev/null || true
+          git add -f projection-model/validation/2023-rb-absence-retention-backtest.csv 2>/dev/null || true
+          git add -f projection-model/validation/2024-rb-absence-retention-backtest.csv 2>/dev/null || true
 
           if git diff --cached --quiet; then
             echo "No projection changes to commit."
