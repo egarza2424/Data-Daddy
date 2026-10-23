@@ -1059,7 +1059,8 @@ function hasReviewedInjurySleeperOpportunity(projection) {
   const name = normalizeName(projection.player_name || "");
   return (team === "HOU" && name === normalizeName("Woody Marks")) ||
          (team === "ARI" && name === normalizeName("Tyler Allgeier")) ||
-         (team === "ARI" && name === normalizeName("Bam Knight"));
+         (team === "ARI" && (name === normalizeName("Bam Knight") ||
+           name === normalizeName("Zonovan Knight")));
 }
 
 function getWeeklySleeperCandidates() {
@@ -1485,8 +1486,15 @@ function renderWeeklySleepers() {
    * Top 10 overall or Top 10 within the
    * selected position.
    */
-  const sleepers =
-    filteredSleepers.slice(0, 10);
+  // Preserve the ranked Top 10; append reviewed injury opportunities
+  // as watchlist entries rather than falsely labeling them Top-10 scores.
+  const topTenSleepers = filteredSleepers.slice(0, 10);
+  const additionalInjuryWatch = filteredSleepers.filter(
+    sleeper =>
+      sleeper.injuryOpportunityEligible &&
+      !topTenSleepers.includes(sleeper)
+  );
+  const sleepers = [...topTenSleepers, ...additionalInjuryWatch];
 
   const projectionWeek =
     weeklyPprProjections
@@ -1594,7 +1602,7 @@ function renderWeeklySleepers() {
       card.innerHTML = `
         <div class="sleeper-card-top">
           <div class="sleeper-number">
-            #${index + 1}
+            ${index < topTenSleepers.length ? "#" + (index + 1) : "WATCH"}
           </div>
 
           <div class="sleeper-score">
