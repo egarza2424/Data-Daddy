@@ -188,7 +188,7 @@ snapshot_week,player_id,player_name,position,team,opponent,roster_status,injury_
 7,12519,Luther Burden III,WR,CHI,Unknown,Active,,47.9,47.9,21,12.5,12.5,22,54,47,26,24,81,50,,Editorial_Week7_WR_team_total_adjusted,2025
 7,10213,Tre Tucker,WR,LV,LAR,Active,,44.8,44.8,30,11.991666666666667,11.991666666666667,26,48,53,20,8,74,29,65.0,F_WR_50pct_prior_PPG,2025
 7,5846,DK Metcalf,WR,PIT,NO,Active,,50.4,50.4,14,11.856666666666667,11.856666666666667,27,63,52,25,10,64,57,72.0,F_WR_50pct_prior_PPG,2025
-7,1479,Keenan Allen,WR,IND,MIN,Active,,46.9,46.9,22,13.38,13.38,25,63,54,25,11,82,20,34.0,WarrenOut_WR_target_share_shrinkage_Week7,2025
+7,1479,Keenan Allen,WR,IND,MIN,Active,,46.9,46.9,22,13.38,11.765,25,63,54,25,11,82,20,34.0,WarrenOut_WR_target_share_shrinkage_Week7,2025
 7,10232,Michael Wilson,WR,ARI,DEN,Active,,46.0,46.0,24,11.371666666666666,11.371666666666666,28,59,38,24,32,68,45,46.0,F_WR_50pct_prior_PPG,2025
 7,10229,Rashee Rice,WR,KC,SEA,Active,Questionable,37.5,37.5,64,11.288333333333334,11.288333333333334,29,37,47,20,9,56,28,48.0,F_WR_50pct_prior_PPG,2025
 7,13274,Germie Bernard,WR,PIT,NO,Active,,46.8,46.8,23,13.4,13.4,20,52,53,22,10,47,57,72.0,Editorial_Week7_WR_team_total_adjusted,2025
@@ -205,7 +205,7 @@ snapshot_week,player_id,player_name,position,team,opponent,roster_status,injury_
 7,13296,Caleb Douglas,WR,MIA,NYJ,Active,Questionable,35.4,35.4,73,8.855,8.855,41,33,34,19,3,51,52,34.0,F_WR_50pct_prior_PPG,2025
 7,11783,Ryan Flournoy,WR,DAL,PHI,Active,,45.1,45.1,29,8.606666666666666,8.606666666666666,42,39,45,13,21,70,68,77.0,F_WR_50pct_prior_PPG,2025
 7,4454,Kendrick Bourne,WR,ARI,DEN,Active,,38.7,38.7,59,8.530000000000001,8.530000000000001,43,41,32,16,15,64,45,46.0,F_WR_50pct_prior_PPG,2025
-7,9500,Josh Downs,WR,IND,MIN,Active,,35.4,35.4,74,9.1,9.1,40,41,26,17,8,77,20,34.0,WarrenOut_WR_target_share_shrinkage_Week7,2025
+7,9500,Josh Downs,WR,IND,MIN,Active,,35.4,35.4,74,9.1,8.516666666666666,40,41,26,17,8,77,20,34.0,WarrenOut_WR_target_share_shrinkage_Week7,2025
 7,4037,Chris Godwin Jr.,WR,TB,CAR,Active,,40.7,40.7,47,8.361666666666666,8.361666666666666,44,41,29,20,2,79,42,54.0,F_WR_50pct_prior_PPG,2025
 7,9486,Dontayvion Wicks,WR,PHI,DAL,Active,Questionable,38.0,38.0,61,8.31,8.31,45,37,25,17,8,62,73,49.0,F_WR_50pct_prior_PPG,2025
 7,12732,Dominic Lovett,WR,DET,GB,Active,,45.2,45.2,28,8.23,8.23,46,50,20,20,50,50,45,100.0,F_position_specific,2025
