@@ -66,6 +66,7 @@ def fetch_position_rankings(
             "week": WEEK,
             "position": position,
             "scoring": SCORING,
+            "limit": 200,
         }
     )
 
@@ -434,6 +435,15 @@ def validate_rows(rows):
             "No usable rankings returned for: "
             + ", ".join(missing_positions)
         )
+
+    # Sleepers usually sit outside the top 10. Never treat a truncated
+    # endpoint response as complete market consensus.
+    required = {"QB": 24, "RB": 36, "WR": 48, "TE": 24}
+    short = [f"{p}: {counts[p]}/{minimum}" for p, minimum in required.items()
+             if counts[p] < minimum]
+    if short:
+        raise RuntimeError("Insufficient weekly ECR coverage (" + ", ".join(short)
+                           + "). No truncated snapshot will be published; verify API pagination/access.")
 
     seen = set()
 
