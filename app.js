@@ -10259,8 +10259,12 @@ function getActualPprForRanking(player) {
   );
   // Do not display zero for an unplayed game or silently combine duplicates.
   if (games.length !== 1) return null;
-  const raw = games[0].fantasy_points_ppr;
-  if (raw === null || raw === undefined || raw === "") return null;
+  // The stats and historical-result feeds may use different PPR keys.
+  // Never convert a missing result into a misleading zero.
+  const game = games[0];
+  const raw = [game.fantasy_points_ppr, game.ppr_points, game.ppr]
+    .find(value => value !== null && value !== undefined && value !== "");
+  if (raw === undefined) return null;
   const value = Number(raw);
   return Number.isFinite(value) ? value : null;
 }
