@@ -9104,6 +9104,13 @@ const depthOrder =
  * depth-chart requirement.
  */
   if (position === "QB") {
+    // Week 7 TB: keep the practicing/questionable expected starter.
+    // Backup Jalon Daniels only becomes eligible after a confirmed
+    // Mayfield OUT and a confirmed starting-QB change.
+    if (displayedWeek === 7 && playerTeam === "TB") {
+      if (player.name === "Baker Mayfield") return true;
+      if (player.name === "Jalon Daniels") return false;
+    }
     // Week 7 verified NYG starter change: Sleeper still lists
     // McCarthy third on its depth chart. Keep the verified starter
     // and exclude the benched QB until the feed catches up.
