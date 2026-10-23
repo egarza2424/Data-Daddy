@@ -1598,6 +1598,7 @@ def main():
             "WarrenOut_WR_target_share_shrinkage_Week7",
             "StarterAbsence_WR_target_share_shrinkage",
             "StarterAbsence_TE_target_shrinkage_Week7",
+            "StarterAbsence_RB_50pct_carry_retention_Week7",
         ])
         original = projections.loc[injury_mask, "player_id"].map(pre_injury_ppr)
         if original.isna().any():
