@@ -118,6 +118,14 @@ jobs:
             --season 2026 --week 7 \
             --output projection-model/validation/starter-absence-evidence.csv
 
+      - name: Audit injury-created sleeper opportunities
+        run: |
+          python -m py_compile scripts/build_injury_opportunity_candidates.py
+          python scripts/build_injury_opportunity_candidates.py \
+            --season 2026 --week 7 \
+            --evidence projection-model/validation/starter-absence-evidence.csv \
+            --output projection-model/validation/injury-opportunity-candidates.csv
+
       - name: Publish actual PPR player-game results
         run: |
           python scripts/publish_actual_ppr.py \
@@ -599,6 +607,7 @@ jobs:
           git add data/official_injury_report_observations.json 2>/dev/null || true
           git add -f projection-model/validation/*-analyst-adjustments-audit.csv 2>/dev/null || true
           git add -f projection-model/validation/starter-absence-evidence.csv 2>/dev/null || true
+          git add -f projection-model/validation/injury-opportunity-candidates.csv 2>/dev/null || true
           git add -f projection-model/validation/*-pending-injury-verification.csv 2>/dev/null || true
           git add -f projection-model/validation/2026-week7-rb-injury-rushing-scenarios.csv 2>/dev/null || true
           git add -f projection-model/validation/2025-rb-absence-retention-backtest.csv 2>/dev/null || true
