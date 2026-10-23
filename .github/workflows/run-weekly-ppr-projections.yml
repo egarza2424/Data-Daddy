@@ -56,6 +56,18 @@ jobs:
           python scripts/build_rb_returning_player_audit.py
           python scripts/build_week7_rb_j2_experiment.py
 
+      - name: Collect injury opportunity evidence from 2026 weekly stats
+        run: |
+          python -m py_compile scripts/build_starter_absence_evidence.py
+          mkdir -p historical-data
+          curl --fail --location --retry 3 --max-time 120 \
+            https://github.com/nflverse/nflverse-data/releases/download/player_stats/player_stats_2026.csv \
+            -o historical-data/player_stats_2026.csv
+          python scripts/build_starter_absence_evidence.py \
+            --stats historical-data/player_stats_2026.csv \
+            --season 2026 --week 7 \
+            --output projection-model/validation/starter-absence-evidence.csv
+
       - name: Run weekly PPR projection model
         run: |
           python scripts/build_weekly_ppr_projections.py
