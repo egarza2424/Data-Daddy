@@ -38,3 +38,5 @@ jobs:
         run: python scripts/backtest_sustained_target_volume.py
       - name: Audit high-volume TE WR signed projection errors
         run: python scripts/audit_high_volume_te_wr_errors.py
+      - name: Audit TE WR top-K recall target volume
+        run: python scripts/audit_te_wr_topk_target_volume.py
