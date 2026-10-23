@@ -5,6 +5,8 @@ reviewable evidence, NOT automatic projection uplifts: absent-week target shares
 must be established separately before an adjustment is activated.
 """
 import argparse
+import csv
+import gzip
 import json
 from pathlib import Path
 import pandas as pd
@@ -13,6 +15,7 @@ import pandas as pd
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--stats", required=True, help="Historical weekly player stats CSV")
+    parser.add_argument("--pbp", help="2026 play-by-play CSV or CSV.gz for red-zone rushing evidence")
     parser.add_argument("--season", type=int, default=2026)
     parser.add_argument("--week", type=int, required=True)
     parser.add_argument("--output", default="projection-model/validation/starter-absence-evidence.csv")
@@ -41,6 +44,33 @@ def main():
     data["rush_share"] = data.rush_attempts.div(
         data.team_rush_attempts.where(data.team_rush_attempts > 0)
     ).fillna(0)
+    # PBP supplies high-value rushing opportunities; never infer them
+    # from ordinary carry totals. Counts are pregame (weeks < target).
+    rz = {}
+    if args.pbp:
+        opener = gzip.open if args.pbp.endswith(".gz") else open
+        with opener(args.pbp, "rt", encoding="utf-8", newline="") as handle:
+            for play in csv.DictReader(handle):
+                if play.get("season_type") != "REG" or play.get("rush_attempt") != "1":
+                    continue
+                try:
+                    week = int(float(play.get("week") or 0))
+                    season = int(float(play.get("season") or args.season))
+                    yardline = float(play.get("yardline_100") or 999)
+                except (TypeError, ValueError):
+                    continue
+                rusher = play.get("rusher_player_id")
+                if season != args.season or week >= args.week or week < 1 or not rusher:
+                    continue
+                counts = rz.setdefault((str(rusher), week), [0, 0, 0])
+                for idx, limit in enumerate((20, 10, 5)):
+                    if 0 < yardline <= limit:
+                        counts[idx] += 1
+    for idx, col in enumerate(("rush_inside_20", "rush_inside_10", "rush_inside_5")):
+        data[col] = [
+            rz.get((str(pid), int(week)), [0, 0, 0])[idx]
+            for pid, week in zip(data.player_id, data.week)
+        ]
     data["team_targets"] = data.groupby([team_col, "week"])["targets"].transform("sum")
     data["share"] = data.targets.div(data.team_targets.where(data.team_targets > 0)).fillna(0)
     with open("data/verified_injury_outs.json", encoding="utf-8") as handle:
@@ -128,6 +158,14 @@ def main():
                     float(player.targets) - float(earlier.targets.tail(4).mean()), 2
                 ),
                 "candidate_uplift_pct": round(max(0, recent / baseline - 1) * 100, 2) if baseline > 0 else 0,
+                **{
+                    f"baseline_{zone}_per_game": round(float(earlier[col].tail(4).mean()), 2)
+                    for zone, col in (("inside_20", "rush_inside_20"), ("inside_10", "rush_inside_10"), ("inside_5", "rush_inside_5"))
+                },
+                **{
+                    f"recent_{zone}_carries": float(player[col])
+                    for zone, col in (("inside_20", "rush_inside_20"), ("inside_10", "rush_inside_10"), ("inside_5", "rush_inside_5"))
+                },
                 "baseline_carries_per_game": round(float(earlier.rush_attempts.tail(4).mean()), 2),
                 "recent_carries": float(player.rush_attempts),
                 "carry_change_per_game": round(
@@ -152,6 +190,8 @@ def main():
         "target_change_per_game", "candidate_uplift_pct",
         "baseline_carries_per_game", "recent_carries", "carry_change_per_game",
         "baseline_rush_share_pct", "recent_rush_share_pct",
+        "baseline_inside_20_per_game", "baseline_inside_10_per_game", "baseline_inside_5_per_game",
+        "recent_inside_20_carries", "recent_inside_10_carries", "recent_inside_5_carries",
         "starter_played_recent_week", "starter_prior_games_in_stats", "activation_status",
     ]).to_csv(out, index=False)
     print(f"Saved {len(rows)} evidence candidates to {out}; no projections changed.")
