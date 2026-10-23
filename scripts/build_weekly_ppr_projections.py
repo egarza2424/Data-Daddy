@@ -318,8 +318,18 @@ def prepare_snapshot(
             )
         )
 
+    # A missing matchup feed is not a confirmed bye. Retain the
+    # established Week 7 editorial WR while matchup data catches up.
+    editorial_wr_feed_gap = (
+        snapshot["snapshot_week"].eq(7)
+        & snapshot["player_name"].eq("Luther Burden III")
+        & snapshot["position"].eq("WR")
+        & snapshot["team"].eq("CHI")
+    )
+    if (bye_week_mask & editorial_wr_feed_gap).any():
+        print("Week 7: retaining Luther Burden III despite missing opponent feed.")
     snapshot = snapshot.loc[
-        ~bye_week_mask
+        ~(bye_week_mask & ~editorial_wr_feed_gap)
     ].copy()
     # Exclude confirmed unavailable players when
     # roster status is present in the snapshot.
@@ -357,6 +367,15 @@ def prepare_snapshot(
         unavailable_mask |= statuses.isin(
             unavailable_statuses
         )
+
+    # Confirmed Week 7 Colts absence: Warren is OUT; the
+    # roster feed still labels him Questionable. Do not project him.
+    unavailable_mask |= (
+        snapshot["snapshot_week"].eq(7)
+        & snapshot["player_name"].eq("Tyler Warren")
+        & snapshot["position"].eq("TE")
+        & snapshot["team"].eq("IND")
+    )
 
     unavailable_players = snapshot.loc[
         unavailable_mask,
