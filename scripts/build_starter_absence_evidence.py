@@ -82,6 +82,9 @@ def main():
         previous = data[data[team_col] == team]
         if previous.empty:
             continue
+        starter_prior_games = int(previous[name_col].map(normalized_name).eq(
+            normalized_name(starter["player_name"])
+        ).sum())
         last_week = int(previous.week.max())
         last = previous[previous.week == last_week]
         # An OUT designation for the upcoming week does not establish that
@@ -113,7 +116,9 @@ def main():
                 "baseline_games": len(earlier),
                 "candidate_uplift_pct": round(max(0, recent / baseline - 1) * 100, 2) if baseline > 0 else 0,
                 "starter_played_recent_week": starter_played_last_week,
+                "starter_prior_games_in_stats": starter_prior_games,
                 "activation_status": ("NO_ABSENCE_EVIDENCE" if starter_played_last_week
+                                      else "NO_STARTER_HISTORY" if starter_prior_games == 0
                                       else "REVIEW_REQUIRED"),
             })
     out = Path(args.output)
@@ -124,7 +129,7 @@ def main():
         "beneficiary_name", "position", "recent_week",
         "baseline_share_pct", "recent_share_pct", "recent_targets",
         "baseline_games", "candidate_uplift_pct",
-        "starter_played_recent_week", "activation_status",
+        "starter_played_recent_week", "starter_prior_games_in_stats", "activation_status",
     ]).to_csv(out, index=False)
     print(f"Saved {len(rows)} evidence candidates to {out}; no projections changed.")
 
