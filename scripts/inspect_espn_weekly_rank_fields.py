@@ -37,3 +37,20 @@ for key in ("rankings", "ranks", "rank", "draftRanksByRankType", "ratings",
         else:
             print("  value type:", type(sample).__name__)
 print("Diagnostic only: ESPN weekly expert PPR ranks are NOT verified by this run.")
+
+# Examine schema of rank categories without publishing individual player rankings.
+ranked = [p for p in rows if isinstance(p, dict) and isinstance(p.get("rankings"), dict)]
+for category in sorted({k for p in ranked for k in p["rankings"]}):
+    examples = [p["rankings"][category] for p in ranked if category in p["rankings"]]
+    sample = examples[0]
+    print(f"Ranking category {category}: players={len(examples)}, value_type={type(sample).__name__}")
+    if isinstance(sample, dict):
+        print("  fields:", sorted(sample.keys()))
+        print("  field types:", {k: type(v).__name__ for k, v in sample.items()})
+        print("  scoring/period hints:", {k: v for k, v in sample.items()
+              if any(term in k.lower() for term in ("period", "season", "type", "date", "week", "source"))})
+    elif isinstance(sample, list):
+        print("  list length:", len(sample))
+        if sample and isinstance(sample[0], dict):
+            print("  item fields:", sorted(sample[0].keys()))
+print("No rank data exported or used in Sleeper Score.")
