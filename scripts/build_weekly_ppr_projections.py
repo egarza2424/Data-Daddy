@@ -1186,6 +1186,57 @@ def main():
             projections.loc[idx, "projected_position_rank"] = rank
         print("Week 7 editorial WR Top 24 applied; Mike Evans excluded.")
 
+    # Warren-out Week 7 receiving redistribution, grounded in Week 5
+    # vs Week 6 adjusted target shares (FantasyPros usage review).
+    # Apply only a shrunken fraction of the observed role change because
+    # Week 6 is a single game and Minnesota is a difficult matchup.
+    if target_week == 7:
+        for name, before_share, absent_share in (
+            ("Keenan Allen", 19.6, 27.3),
+            ("Josh Downs", 15.2, 18.2),
+        ):
+            mask = (
+                projections["position"].eq("WR")
+                & projections["team"].eq("IND")
+                & projections["player_name"].eq(name)
+            )
+            if mask.sum() != 1:
+                raise RuntimeError(f"Missing Warren-out WR beneficiary: {name}")
+            idx = projections.index[mask][0]
+            baseline = float(projections.at[idx, "projected_ppr"])
+            # 35% one-game evidence weight; cap at 15% uplift.
+            uplift = min(
+                0.15,
+                0.35 * max(0.0, absent_share / before_share - 1.0),
+            )
+            adjusted = round(baseline * (1.0 + uplift), 2)
+            projections.at[idx, "projected_ppr"] = adjusted
+            projections.at[idx, "projection_model"] = (
+                "WarrenOut_WR_target_share_shrinkage_Week7"
+            )
+            print(
+                f"Warren-out {name}: {baseline:.2f} -> "
+                f"{adjusted:.2f} PPR ({before_share}% to "
+                f"{absent_share}% adjusted target share; "
+                f"{uplift:.1%} shrunken uplift)"
+            )
+        wr_mask = projections["position"].eq("WR")
+        # Keep the editorial Top 24 intact; these beneficiaries were
+        # outside the curated board and only rerank among other WRs.
+        editorial = projections.loc[
+            wr_mask & projections["projection_model"].eq(
+                "Editorial_Week7_WR_team_total_adjusted"
+            )
+        ].sort_values("projected_position_rank").index.tolist()
+        remaining = projections.loc[
+            wr_mask & ~projections.index.isin(editorial)
+        ].sort_values(
+            ["projected_ppr", "player_name"], ascending=[False, True]
+        ).index.tolist()
+        projections.loc[editorial + remaining, "projected_position_rank"] = (
+            list(range(1, len(editorial) + len(remaining) + 1))
+        )
+
     # Starter-absence opportunity challenger: use observed target volume
     # while the starter was unavailable, shrink a one-game sample toward
     # a conservative replacement-role prior, and retain model efficiency.
