@@ -118,6 +118,12 @@ jobs:
             --season 2026 --week 7 \
             --output projection-model/validation/starter-absence-evidence.csv
 
+      - name: Publish actual PPR player-game results
+        run: |
+          python scripts/publish_actual_ppr.py \
+            --stats historical-data/player_stats_2026.csv \
+            --output data/actual-ppr-2026.json
+
       - name: Backtest historical RB absence carry retention
         run: |
           python -m py_compile scripts/backtest_rb_absence_carry_retention.py
@@ -589,6 +595,7 @@ jobs:
 
           git add projection-model/
           git add data/gameday_availability.json
+          git add data/actual-ppr-2026.json
           git add data/official_injury_report_observations.json 2>/dev/null || true
           git add -f projection-model/validation/*-analyst-adjustments-audit.csv 2>/dev/null || true
           git add -f projection-model/validation/starter-absence-evidence.csv 2>/dev/null || true
