@@ -563,9 +563,9 @@ jobs:
           # Replay this generated-output commit on the latest main, then push.
           for attempt in 1 2 3 4 5; do
             git fetch origin main
-            git rebase origin/main || {
+            git -c merge.renormalize=true -c merge.default=ort rebase -X ours origin/main || {
               git rebase --abort || true
-              echo "Generated projection files conflict with newer main; stopping safely."
+              echo "Generated outputs could not be reconciled with newer main."
               exit 1
             }
             if git push origin HEAD:main; then
