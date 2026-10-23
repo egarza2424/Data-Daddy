@@ -292,6 +292,7 @@ jobs:
               "F_position_specific",
               "F_WR_50pct_prior_PPG",
               "Editorial_Week7_WR_team_total_adjusted",
+              "WarrenOut_WR_target_share_shrinkage_Week7",
           }):
               raise SystemExit(
                   "Unexpected WR projection models: "
