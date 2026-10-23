@@ -49,6 +49,38 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas numpy
 
+      - name: Audit actual PPR feed for displayed week
+        run: |
+          python - <<'PY'
+          import json
+          from collections import Counter
+          from pathlib import Path
+          path = Path("nfl-stats.json")
+          if not path.exists():
+              print("ACTUAL_PPR_AUDIT: nfl-stats.json missing")
+          else:
+              data = json.loads(path.read_text(encoding="utf-8"))
+              rows = data.get("players", [])
+              if isinstance(rows, dict):
+                  rows = list(rows.values())
+              print("ACTUAL_PPR_AUDIT: target_week=", data.get("target_week"),
+                    "total_rows=", len(rows))
+              print("ACTUAL_PPR_AUDIT: season_week_counts=",
+                    dict(Counter((r.get("season"), r.get("week"))
+                                 for r in rows if isinstance(r, dict)
+                                 and str(r.get("season")) == "2026")))
+              week = int(data.get("target_week") or 7)
+              current = [r for r in rows if isinstance(r, dict)
+                         and str(r.get("season")) == "2026"
+                         and str(r.get("week")) == str(week)]
+              fields = ("fantasy_points_ppr", "ppr_points", "ppr")
+              print("ACTUAL_PPR_AUDIT: current_week_rows=", len(current),
+                    "populated_ppr_fields=",
+                    {f: sum(r.get(f) is not None for r in current) for f in fields})
+              print("ACTUAL_PPR_AUDIT: sample_keys=",
+                    sorted(current[0]) if current else [])
+          PY
+
       - name: Check projection scripts
         run: |
           python -m py_compile scripts/build_live_rb_j2_features.py scripts/build_rb_returning_player_audit.py scripts/build_week7_rb_j2_experiment.py scripts/build_weekly_ppr_projections.py scripts/audit_te_ppg_challenger.py
