@@ -1186,6 +1186,45 @@ def main():
             projections.loc[idx, "projected_position_rank"] = rank
         print("Week 7 editorial WR Top 24 applied; Mike Evans excluded.")
 
+    # Starter-absence opportunity challenger: use observed target volume
+    # while the starter was unavailable, shrink a one-game sample toward
+    # a conservative replacement-role prior, and retain model efficiency.
+    # Week 7 Colts: Mallory drew six targets with Warren absent in Week 6.
+    if target_week == 7:
+        mallory = (
+            projections["position"].eq("TE")
+            & projections["team"].eq("IND")
+            & projections["player_name"].eq("Will Mallory")
+        )
+        if mallory.sum() == 1:
+            idx = projections.index[mallory][0]
+            baseline = float(projections.at[idx, "projected_ppr"])
+            observed_targets, prior_targets, prior_games = 6.0, 3.0, 2.0
+            expected_targets = (
+                observed_targets + prior_games * prior_targets
+            ) / (1.0 + prior_games)
+            # Conservative PPR per target until routes/efficiency samples
+            # justify a stronger assumption. Not a guaranteed target share.
+            challenger = round(expected_targets * 1.35, 2)
+            adjusted = round(max(baseline, challenger), 2)
+            projections.at[idx, "projected_ppr"] = adjusted
+            projections.at[idx, "projection_model"] = (
+                "StarterAbsence_TE_target_shrinkage_Week7"
+            )
+            print(
+                f"Mallory Warren-out role challenger: "
+                f"{baseline:.2f} -> {adjusted:.2f} PPR "
+                f"({expected_targets:.1f} expected targets)."
+            )
+            te_mask = projections["position"].eq("TE")
+            te_order = projections.loc[te_mask].sort_values(
+                ["projected_ppr", "player_name"],
+                ascending=[False, True],
+            ).index
+            projections.loc[te_order, "projected_position_rank"] = (
+                list(range(1, len(te_order) + 1))
+            )
+
     # Week 7 TE editorial placements, distinct from the validated TE model.
     # Preserve Model F AI scores; adjust only weekly PPR and PPR ranks.
     if target_week == 7:
