@@ -47,7 +47,7 @@ def main():
                 "prior_week_targets": "", "prior_week_carries": "",
                 "baseline_targets_per_game": "", "baseline_carries_per_game": "",
                 "recent_rush_share_pct": "", "prior_week_opportunities": "",
-                "starter_played_recent_week": "", "role_confidence": "UNKNOWN",
+                "starter_played_recent_week": "", "beneficiary_history_status": "UNKNOWN", "role_confidence": "UNKNOWN",
                 "opportunity_status": "REVIEW_REQUIRED_NO_CANDIDATE",
                 "projected_workload": "", "approved_for_scoring": False,
             })
@@ -68,6 +68,7 @@ def main():
                 "baseline_carries_per_game": candidate["baseline_carries_per_game"],
                 "recent_rush_share_pct": candidate["recent_rush_share_pct"],
                 "prior_week_opportunities": candidate["candidate_opportunities"],
+                "beneficiary_history_status": candidate.get("beneficiary_history_status", "UNKNOWN"),
                 "starter_played_recent_week": candidate["starter_played_recent_week"],
                 "role_confidence": "UNCONFIRMED",
                 "opportunity_status": "REVIEW_REQUIRED_ROLE_UNCONFIRMED",
@@ -80,7 +81,7 @@ def main():
         "candidate_sleeper_id", "identity_match_status",
         "prior_week_targets", "prior_week_carries", "baseline_targets_per_game",
         "baseline_carries_per_game", "recent_rush_share_pct",
-        "prior_week_opportunities", "starter_played_recent_week",
+        "prior_week_opportunities", "beneficiary_history_status", "starter_played_recent_week",
         "role_confidence", "opportunity_status", "projected_workload",
         "approved_for_scoring",
     ]
