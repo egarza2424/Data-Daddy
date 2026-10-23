@@ -270,6 +270,7 @@ jobs:
               "Editorial_Week7_TE_role_matchup_adjusted",
               "StarterAbsence_TE_target_shrinkage_Week7",
               "WarrenOut_WR_target_share_shrinkage_Week7",
+              "StarterAbsence_WR_target_share_shrinkage",
           }
 
           if not models.issubset(allowed_models):
@@ -299,6 +300,7 @@ jobs:
               "F_WR_50pct_prior_PPG",
               "Editorial_Week7_WR_team_total_adjusted",
               "WarrenOut_WR_target_share_shrinkage_Week7",
+              "StarterAbsence_WR_target_share_shrinkage",
           }):
               raise SystemExit(
                   "Unexpected WR projection models: "
