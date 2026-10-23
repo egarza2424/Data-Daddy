@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "data/verified_injury_outs.json"
+      - "data/starter_absence_opportunities.json"
       - "scripts/build_weekly_ppr_projections.py"
   workflow_dispatch:
 
