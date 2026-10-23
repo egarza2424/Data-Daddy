@@ -358,6 +358,16 @@ def prepare_snapshot(
             unavailable_statuses
         )
 
+    # Verified Week 7 (2026) Colts inactive: Tyler Warren (groin).
+    # Source: NBC Sports / Rotoworld, 2026-10-23.
+    # Week-scoped so his eligibility is reassessed next week.
+    if target_week == 7:
+        unavailable_mask |= (
+            snapshot["player_name"].eq("Tyler Warren")
+            & snapshot["team"].eq("IND")
+            & snapshot["position"].eq("TE")
+        )
+
     unavailable_players = snapshot.loc[
         unavailable_mask,
         [
