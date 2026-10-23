@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 7,
   "source_url": "https://www.nfl.com/news/nfl-week-7-injury-report-2026-season",
-  "retrieved_at_utc": "2026-10-23T20:03:55.364558+00:00",
+  "retrieved_at_utc": "2026-10-23T20:05:16.604626+00:00",
   "verification_status": "official_source_text_unresolved_player_identity",
   "automatically_verified_outs": [],
   "out_text_observations": [
@@ -46,5 +46,113 @@
     "Kyle Monangai",
     "Jack Sanborn",
     "T.J. Edwards"
+  ],
+  "directory_name_matches_unverified": [
+    {
+      "reported_name": "Brian Robinson",
+      "match_status": "unmatched",
+      "matches": []
+    },
+    {
+      "reported_name": "Michael Jerrell",
+      "match_status": "unmatched",
+      "matches": []
+    },
+    {
+      "reported_name": "Divine Deablo",
+      "match_status": "unmatched",
+      "matches": []
+    },
+    {
+      "reported_name": "Emeka Egbuka",
+      "match_status": "unique_name_only",
+      "matches": [
+        {
+          "player_id": "12514",
+          "player_name": "Emeka Egbuka",
+          "team": "TB",
+          "position": "WR"
+        }
+      ]
+    },
+    {
+      "reported_name": "Luke Goedeke",
+      "match_status": "unmatched",
+      "matches": []
+    },
+    {
+      "reported_name": "Antoine Winfield Jr.",
+      "match_status": "unmatched",
+      "matches": []
+    },
+    {
+      "reported_name": "Thomas Incoom",
+      "match_status": "unmatched",
+      "matches": []
+    },
+    {
+      "reported_name": "Jaelan Phillips",
+      "match_status": "unmatched",
+      "matches": []
+    },
+    {
+      "reported_name": "Dillon Gabriel",
+      "match_status": "unique_name_only",
+      "matches": [
+        {
+          "player_id": "12486",
+          "player_name": "Dillon Gabriel",
+          "team": "CLE",
+          "position": "QB"
+        }
+      ]
+    },
+    {
+      "reported_name": "Teven Jenkins",
+      "match_status": "unmatched",
+      "matches": []
+    },
+    {
+      "reported_name": "Khalil Davis",
+      "match_status": "unmatched",
+      "matches": []
+    },
+    {
+      "reported_name": "Alijah Vera-Tucker",
+      "match_status": "unmatched",
+      "matches": []
+    },
+    {
+      "reported_name": "Ben Brown",
+      "match_status": "unmatched",
+      "matches": []
+    },
+    {
+      "reported_name": "Channing Canada",
+      "match_status": "unmatched",
+      "matches": []
+    },
+    {
+      "reported_name": "Kyle Monangai",
+      "match_status": "unique_name_only",
+      "matches": [
+        {
+          "player_id": "12534",
+          "player_name": "Kyle Monangai",
+          "team": "CHI",
+          "position": "RB"
+        }
+      ]
+    },
+    {
+      "reported_name": "Jack Sanborn",
+      "match_status": "unmatched",
+      "matches": []
+    },
+    {
+      "reported_name": "T.J. Edwards",
+      "match_status": "unmatched",
+      "matches": []
+    }
   ]
 }
