@@ -25,9 +25,12 @@ def main():
     for starter in outs:
         if int(starter.get("season", -1)) != args.season or int(starter.get("week", -1)) != args.week:
             continue
+        # Direct replacement candidates must share the injured player's position.
+        # Cross-position target redistribution requires separate evidence and review.
         matches = evidence[
             (evidence["starter_player_id"].astype(str) == str(starter["player_id"]))
             & (evidence["team"].astype(str) == str(starter["team"]))
+            & (evidence["position"].astype(str) == str(starter["position"]))
         ].copy()
         matches["candidate_opportunities"] = (
             pd.to_numeric(matches["recent_targets"], errors="coerce").fillna(0)
