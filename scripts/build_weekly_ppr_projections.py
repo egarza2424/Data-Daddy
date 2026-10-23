@@ -50,6 +50,34 @@ def load_verified_injury_outs(week):
     return selected
 
 
+def load_preliminary_injury_signals(week):
+    """Read fresh Sleeper OUT signals without treating them as NFL verification."""
+    path = Path("data/gameday_availability.json")
+    if not path.exists():
+        return []
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if payload.get("season") != 2026 or not payload.get("generated_at_utc"):
+        raise RuntimeError("Missing season or timestamp in injury availability snapshot")
+    from datetime import datetime, timezone
+    observed = datetime.fromisoformat(payload["generated_at_utc"].replace("Z", "+00:00"))
+    if observed.tzinfo is None or (datetime.now(timezone.utc) - observed).total_seconds() > 7200:
+        raise RuntimeError("Preliminary injury availability snapshot is older than two hours")
+    return [
+        {
+            "player_id": str(pid),
+            "player_name": item.get("name"),
+            "position": item.get("position"),
+            "team": item.get("team"),
+            "status": item.get("injury_status"),
+            "source": "Sleeper (preliminary, not NFL-verified)",
+            "week": week,
+        }
+        for pid, item in payload.get("players", {}).items()
+        if item.get("injury_status") == "OUT"
+        and item.get("position") in ("QB", "RB", "WR", "TE")
+    ]
+
+
 POSITIONS = ["QB", "RB", "WR", "TE"]
 
 
