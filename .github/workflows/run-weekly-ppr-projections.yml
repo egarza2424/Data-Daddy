@@ -262,6 +262,7 @@ jobs:
               "Manual_Week7_RB_override",
               "Editorial_Week7_WR_team_total_adjusted",
               "Editorial_Week7_TE_role_matchup_adjusted",
+              "StarterAbsence_TE_target_shrinkage_Week7",
           }
 
           if not models.issubset(allowed_models):
