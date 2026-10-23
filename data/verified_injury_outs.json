@@ -89,6 +89,50 @@
       "status": "OUT",
       "verified_date": "2026-10-23",
       "source": "https://www.nfl.com/news/nfl-week-7-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "9753",
+      "player_name": "Zach Charbonnet",
+      "position": "RB",
+      "team": "SEA",
+      "status": "OUT",
+      "verified_date": "2026-10-23",
+      "source": "https://www.nfl.com/news/nfl-week-7-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "5872",
+      "player_name": "Deebo Samuel Sr.",
+      "position": "WR",
+      "team": "SF",
+      "status": "OUT",
+      "verified_date": "2026-10-23",
+      "source": "https://www.nfl.com/news/nfl-week-7-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "2216",
+      "player_name": "Mike Evans",
+      "position": "WR",
+      "team": "SF",
+      "status": "OUT",
+      "verified_date": "2026-10-23",
+      "source": "https://www.nfl.com/news/nfl-week-7-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "12486",
+      "player_name": "Dillon Gabriel",
+      "position": "QB",
+      "team": "CLE",
+      "status": "OUT",
+      "verified_date": "2026-10-23",
+      "source": "https://www.nfl.com/news/nfl-week-7-injury-report-2026-season"
     }
   ]
 }
