@@ -10248,6 +10248,23 @@ function exportModelSnapshot() {
       : `Live model snapshot exported: ${snapshot.length} players`
   );
 }
+function getActualPprForRanking(player) {
+  const week = Number(
+    snapshotWeek || document.documentElement.dataset.targetWeek
+  );
+  if (!Number.isInteger(week) || week < 1) return null;
+  const games = getPlayerWeeklyStats(player).filter(game =>
+    Number(game.season) === 2026 &&
+    Number(game.week) === week
+  );
+  // Do not display zero for an unplayed game or silently combine duplicates.
+  if (games.length !== 1) return null;
+  const raw = games[0].fantasy_points_ppr;
+  if (raw === null || raw === undefined || raw === "") return null;
+  const value = Number(raw);
+  return Number.isFinite(value) ? value : null;
+}
+
 const RANKINGS_PER_PAGE = 24;
 let currentRankingPage = 1;
 
@@ -10298,7 +10315,7 @@ function renderPositionRankings() {
 
   if (rankings.length === 0) {
     tableBody.innerHTML =
-      '<tr><td colspan="7">No ranked players found.</td></tr>';
+      '<tr><td colspan="8">No ranked players found.</td></tr>';
 
     if (pagination) {
       pagination.innerHTML = "";
@@ -10368,6 +10385,7 @@ function renderPositionRankings() {
           ? `${player.position}${projection.projected_position_rank}`
           : "—";
 
+      const actualPpr = getActualPprForRanking(player);
       const row =
         document.createElement("tr");
       
@@ -10378,6 +10396,7 @@ function renderPositionRankings() {
         opponent,
         projectedPpr,
         projectedRank,
+        actualPpr === null ? "—" : actualPpr.toFixed(2),
         player.injuryStatus ||
           "Available"
       ].forEach((value) => {
