@@ -21,7 +21,7 @@ def main():
 
     outs = json.loads(Path(args.verified_outs).read_text(encoding="utf-8")).get("out", [])
     evidence = pd.read_csv(args.evidence, dtype={"starter_player_id": str, "beneficiary_sleeper_id": str})
-    evidence = evidence.fillna("")
+    evidence = evidence.astype(object).fillna("")
     rows = []
     stats = pd.read_csv(args.stats) if args.stats else None
     if stats is not None:
