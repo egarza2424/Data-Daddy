@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 7,
   "source_url": "https://www.nfl.com/news/nfl-week-7-injury-report-2026-season",
-  "retrieved_at_utc": "2026-10-23T20:15:16.132722+00:00",
+  "retrieved_at_utc": "2026-10-23T20:16:53.680825+00:00",
   "verification_status": "official_source_text_unresolved_player_identity",
   "automatically_verified_outs": [],
   "out_text_observations": [
@@ -525,6 +525,108 @@
       "team_heading_unverified": null,
       "fantasy_player_names_unverified": [],
       "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    }
+  ],
+  "out_section_player_matches_unverified": [
+    {
+      "reported_name": "Ben Skowronek",
+      "official_team_heading": "STEELERS",
+      "expected_team": "PIT",
+      "match_status": "unmatched",
+      "matches": [],
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Brian Robinson",
+      "official_team_heading": "FALCONS",
+      "expected_team": "ATL",
+      "match_status": "unique_name_and_team",
+      "matches": [
+        {
+          "player_id": "8154",
+          "player_name": "Brian Robinson Jr.",
+          "team": "ATL",
+          "position": "RB"
+        }
+      ],
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Emeka Egbuka",
+      "official_team_heading": "BUCCANEERS",
+      "expected_team": "TB",
+      "match_status": "unique_name_and_team",
+      "matches": [
+        {
+          "player_id": "12514",
+          "player_name": "Emeka Egbuka",
+          "team": "TB",
+          "position": "WR"
+        }
+      ],
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Anthony Gould",
+      "official_team_heading": "COLTS",
+      "expected_team": "IND",
+      "match_status": "unmatched",
+      "matches": [],
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Tyler Warren",
+      "official_team_heading": "COLTS",
+      "expected_team": "IND",
+      "match_status": "unmatched",
+      "matches": [],
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Dillon Gabriel",
+      "official_team_heading": "BROWNS",
+      "expected_team": "CLE",
+      "match_status": "unique_name_and_team",
+      "matches": [
+        {
+          "player_id": "12486",
+          "player_name": "Dillon Gabriel",
+          "team": "CLE",
+          "position": "QB"
+        }
+      ],
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Brashard Smith",
+      "official_team_heading": "CHIEFS",
+      "expected_team": "KC",
+      "match_status": "unmatched",
+      "matches": [],
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Rashee Rice",
+      "official_team_heading": "CHIEFS",
+      "expected_team": "KC",
+      "match_status": "unmatched",
+      "matches": [],
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Kyle Monangai",
+      "official_team_heading": "BEARS",
+      "expected_team": "CHI",
+      "match_status": "unique_name_and_team",
+      "matches": [
+        {
+          "player_id": "12534",
+          "player_name": "Kyle Monangai",
+          "team": "CHI",
+          "position": "RB"
+        }
+      ],
       "eligible_for_projection_adjustment": false
     }
   ],
