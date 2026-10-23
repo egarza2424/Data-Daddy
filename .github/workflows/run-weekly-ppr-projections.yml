@@ -61,7 +61,7 @@ jobs:
           python -m py_compile scripts/build_starter_absence_evidence.py
           mkdir -p historical-data
           curl --fail --location --retry 3 --max-time 120 \
-            https://github.com/nflverse/nflverse-data/releases/download/player_stats/player_stats_2026.csv \
+            https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv \
             -o historical-data/player_stats_2026.csv
           python scripts/build_starter_absence_evidence.py \
             --stats historical-data/player_stats_2026.csv \
