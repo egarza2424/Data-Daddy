@@ -91,7 +91,13 @@ def apply_adjustments(frame: pd.DataFrame, *, season: int, week: int,
                       "adjusted_ppr": str(adjusted_ppr),
                       "reason": adj["reason"], "source": adj["source"], "author": adj["author"]})
     if audit:
+        adjusted_ids = {entry["player_id"] for entry in audit}
+        affected_positions = set(
+            result.loc[result["player_id"].astype(str).isin(adjusted_ids), "position"]
+        )
         for position, group in result.groupby("position"):
+            if position not in affected_positions:
+                continue
             order_ai = group.sort_values(["model_score", "player_id"], ascending=[False, True]).index
             order_ppr = group.sort_values(["projected_ppr", "player_id"], ascending=[False, True]).index
             result.loc[order_ai, "position_rank"] = list(range(1, len(order_ai) + 1))
