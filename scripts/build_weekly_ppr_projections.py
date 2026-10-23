@@ -47,6 +47,70 @@ def load_verified_injury_outs(week):
             raise RuntimeError(f"Incomplete verified OUT: {key}")
         seen.add(key)
         selected.append(item)
+    # Merge current-week official NFL article OUT designations automatically.
+    # Fail closed for stale reports, ambiguous identities, missing boundaries or teams.
+    observations_path = Path("data/official_injury_report_observations.json")
+    directory_path = Path("data/gameday_availability.json")
+    if observations_path.exists() and directory_path.exists():
+        from datetime import datetime, timezone
+        import re
+        report = json.loads(observations_path.read_text(encoding="utf-8"))
+        directory = json.loads(directory_path.read_text(encoding="utf-8"))
+        observed_at = datetime.fromisoformat(str(report.get("retrieved_at_utc", "")).replace("Z", "+00:00"))
+        age_seconds = (datetime.now(timezone.utc) - observed_at).total_seconds()
+        expected_source = f"https://www.nfl.com/news/nfl-week-{week}-injury-report-2026-season"
+        if (report.get("season") == 2026 and report.get("week") == week
+                and report.get("source_url") == expected_source
+                and 0 <= age_seconds <= 7200
+                and isinstance(report.get("out_section_candidates_unverified"), list)):
+            team_codes = {
+                "CARDINALS": "ARI", "FALCONS": "ATL", "RAVENS": "BAL",
+                "BILLS": "BUF", "PANTHERS": "CAR", "BEARS": "CHI",
+                "BENGALS": "CIN", "BROWNS": "CLE", "COWBOYS": "DAL",
+                "BRONCOS": "DEN", "LIONS": "DET", "PACKERS": "GB",
+                "TEXANS": "HOU", "COLTS": "IND", "JAGUARS": "JAX",
+                "CHIEFS": "KC", "RAIDERS": "LV", "CHARGERS": "LAC",
+                "RAMS": "LAR", "DOLPHINS": "MIA", "VIKINGS": "MIN",
+                "PATRIOTS": "NE", "SAINTS": "NO", "GIANTS": "NYG",
+                "JETS": "NYJ", "EAGLES": "PHI", "STEELERS": "PIT",
+                "49ERS": "SF", "SEAHAWKS": "SEA", "BUCCANEERS": "TB",
+                "TITANS": "TEN", "COMMANDERS": "WAS",
+            }
+            def norm(value):
+                words = re.findall(r"[a-z0-9]+", str(value).lower())
+                while words and words[-1] in ("jr", "sr", "ii", "iii", "iv"):
+                    words.pop()
+                return " ".join(words)
+            players = directory.get("players", {})
+            if isinstance(players, dict):
+                players = list(players.values())
+            for section in report["out_section_candidates_unverified"]:
+                if not section.get("section_boundary_detected"):
+                    continue
+                heading = section.get("team_heading_unverified")
+                team = team_codes.get(heading)
+                if not team:
+                    continue
+                for name in section.get("fantasy_player_names_unverified", []):
+                    matches = [p for p in players if isinstance(p, dict)
+                               and norm(p.get("name") or p.get("player_name") or p.get("full_name")) == norm(name)
+                               and p.get("team") == team
+                               and p.get("position") in ("QB", "RB", "WR", "TE")
+                               and p.get("player_id")]
+                    if len(matches) != 1:
+                        continue
+                    player = matches[0]
+                    key = str(player["player_id"])
+                    if key in seen:
+                        continue
+                    selected.append({
+                        "season": 2026, "week": week, "player_id": key,
+                        "player_name": player.get("name") or player.get("player_name"),
+                        "position": player["position"], "team": team,
+                        "status": "OUT", "verified_date": observed_at.date().isoformat(),
+                        "source": expected_source, "verification_method": "official_out_section_exact_team_player",
+                    })
+                    seen.add(key)
     return selected
 
 
