@@ -85,6 +85,20 @@ def main():
                     )
         # Observed beneficiary change versus their own pre-absence baseline.
         # Missing baseline is unknown, not a zero-opportunity assumption.
+        # Compare each beneficiary's latest usage with the average of their
+        # earlier games; flag single-week jumps for role review, not scoring.
+        def role_review(candidate):
+            change = individual_change(candidate)
+            if change is None:
+                return "INSUFFICIENT_BASELINE"
+            if str(candidate.get("starter_played_recent_week", "")).lower() == "true":
+                return "STARTER_PLAYED_RECENT_WEEK"
+            if change >= 5:
+                return "LARGE_ABSENCE_WEEK_INCREASE_REVIEW"
+            if change > 0:
+                return "MODEST_ABSENCE_WEEK_INCREASE_REVIEW"
+            return "NO_OBSERVED_INCREASE"
+
         def individual_change(candidate):
             if candidate.get("beneficiary_history_status") != "HAS_PRIOR_BASELINE":
                 return None
@@ -115,6 +129,7 @@ def main():
                 "starter_carries_per_game": starter_carries,
                 "candidate_recent_share_pct": "", "illustrative_vacated_opportunities": "",
                 "observed_individual_opportunity_change": None,
+                "individual_role_review": "NO_EVIDENCE",
                 "approved_for_scoring": False,
             })
         for _, candidate in matches.iterrows():
@@ -145,6 +160,7 @@ def main():
                 "illustrative_vacated_opportunities": None,
                 "observed_position_opportunity_change": observed_position_change,
                 "observed_individual_opportunity_change": individual_change(candidate),
+                "individual_role_review": role_review(candidate),
                 "approved_for_scoring": False,
             })
 
@@ -159,6 +175,7 @@ def main():
         "starter_targets_per_game", "starter_carries_per_game",
         "candidate_recent_share_pct", "illustrative_vacated_opportunities",
         "observed_position_opportunity_change", "observed_individual_opportunity_change",
+        "individual_role_review",
         "approved_for_scoring",
     ]
     output = Path(args.output)
