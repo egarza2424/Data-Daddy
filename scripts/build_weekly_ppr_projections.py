@@ -1801,6 +1801,21 @@ def main():
         analyst_audit.to_csv(audit_path, index=False)
         print(f"Applied {len(analyst_audit)} analyst adjustments; audit: {audit_path}")
 
+    # Final published ranks must be unique and contiguous, including ties
+    # introduced by rounding injury-adjusted PPR to two decimals.
+    # Break equal-PPR ties deterministically by player ID.
+    for pos in POSITIONS:
+        position_rows = projections.loc[
+            projections["position"].eq(pos)
+        ].sort_values(
+            ["projected_ppr", "player_id"],
+            ascending=[False, True],
+            kind="stable",
+        )
+        projections.loc[position_rows.index, "projected_position_rank"] = (
+            np.arange(1, len(position_rows) + 1)
+        )
+
     output_columns = [
         "snapshot_week",
         "player_id",
