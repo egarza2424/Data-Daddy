@@ -45,6 +45,15 @@ def main():
             snippets.append(snippet)
     if not snippets:
         raise RuntimeError("No explicit OUT labels parsed from NFL article")
+    # Extract names only as review candidates. Encoded NFL markup is not a
+    # sufficient basis for a verified OUT or teammate opportunity adjustment.
+    candidates = []
+    for snippet in snippets:
+        for raw in re.findall(r'title=\\\\?"([^"\\\\]+)\\\\?"', snippet):
+            name = raw.strip()
+            if name and name not in candidates:
+                candidates.append(name)
+
     result = {
         "season": args.season, "week": args.week,
         "source_url": url,
@@ -52,6 +61,7 @@ def main():
         "verification_status": "official_source_text_unresolved_player_identity",
         "automatically_verified_outs": [],
         "out_text_observations": snippets,
+        "unverified_name_candidates": candidates,
     }
     path = Path(args.output)
     path.parent.mkdir(parents=True, exist_ok=True)
