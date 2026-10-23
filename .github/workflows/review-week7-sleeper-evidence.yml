@@ -1,0 +1,21 @@
+name: Review Week 7 Sleeper Evidence
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python scripts/review_week7_sleeper_evidence.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: week7-sleeper-evidence-review
+          path: projection-model/validation/week7-sleeper-evidence-review.csv
