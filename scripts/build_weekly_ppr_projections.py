@@ -532,6 +532,19 @@ def prepare_snapshot(
         ~unavailable_mask
     ].copy()
 
+    # Week 7 Tampa Bay starter: Todd Bowles confirmed Baker Mayfield's
+    # return vs Carolina on Oct 23. Daniels is the backup, not a QB sleeper.
+    # Source: https://www.nfl.com/news/buccaneers-baker-mayfield-thumb-will-start-sunday-vs-panthers-three-game-absence
+    if int(snapshot["snapshot_week"].iloc[0]) == 7:
+        tb_backup = (
+            snapshot["player_name"].eq("Jalon Daniels")
+            & snapshot["position"].eq("QB")
+            & snapshot["team"].eq("TB")
+        )
+        if tb_backup.any():
+            print("Week 7: excluding backup QB Jalon Daniels; Baker Mayfield starts.")
+            snapshot = snapshot.loc[~tb_backup].copy()
+
     # Confirmed Week 7 NYG QB change (Oct 21, 2026):
     # J.J. McCarthy starts against Houston; Winston is the backup.
     # Do not project Winston as a starter or transfer his projection
