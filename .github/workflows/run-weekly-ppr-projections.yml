@@ -548,6 +548,7 @@ jobs:
           git add data/gameday_availability.json
           git add -f projection-model/validation/*-analyst-adjustments-audit.csv 2>/dev/null || true
           git add -f projection-model/validation/starter-absence-evidence.csv 2>/dev/null || true
+          git add -f projection-model/validation/*-pending-injury-verification.csv 2>/dev/null || true
           git add -f projection-model/validation/2026-week7-rb-injury-rushing-scenarios.csv 2>/dev/null || true
           git add -f projection-model/validation/2025-rb-absence-retention-backtest.csv 2>/dev/null || true
           git add -f projection-model/validation/2023-rb-absence-retention-backtest.csv 2>/dev/null || true
