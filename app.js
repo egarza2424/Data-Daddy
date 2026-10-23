@@ -458,6 +458,7 @@ let trenchSignalWeek = null;
 let currentPlayerVsDefensiveCaller = {};
 let currentScoringEnvironment = {};
 let weeklyPprProjections = [];
+let verifiedInjuryOutKeys = new Set();
 const pprProjectionByPlayerId = new Map();
 const pprProjectionByPlayerKey = new Map();
 const playerASelect = document.getElementById("playerA");
@@ -656,6 +657,29 @@ console.log(
   weeklyStats = [];
 }
 }
+async function loadVerifiedInjuryOuts() {
+  verifiedInjuryOutKeys = new Set();
+  const week = Number(document.documentElement.dataset.targetWeek);
+  if (!Number.isInteger(week)) return;
+  try {
+    const response = await fetch("./data/verified_injury_outs.json", {
+      cache: "no-store"
+    });
+    if (!response.ok) return;
+    const payload = await response.json();
+    if (payload.schema_version !== 1 || !Array.isArray(payload.out)) return;
+    for (const item of payload.out) {
+      if (item.season !== 2026 || item.week !== week || item.status !== "OUT") continue;
+      verifiedInjuryOutKeys.add(
+        String(item.player_name).trim().toLowerCase() + "|" +
+        String(item.team).trim().toUpperCase()
+      );
+    }
+  } catch (error) {
+    console.warn("Verified injury OUT feed unavailable:", error);
+  }
+}
+
 async function loadWeeklyPprProjections() {
   const targetWeek = Number(
     document.documentElement.dataset.targetWeek
@@ -794,7 +818,19 @@ async function loadWeeklyPprProjections() {
             Number(row.model_score);
 
           return row;
-        });
+        })
+        .filter(row => !verifiedInjuryOutKeys.has(
+          String(row.player_name).trim().toLowerCase() + "|" +
+          String(row.team).trim().toUpperCase()
+        ));
+
+    // Maintain contiguous weekly PPR ranks while the generated CSV catches up.
+    for (const position of ["QB", "RB", "WR", "TE"]) {
+      weeklyPprProjections
+        .filter(row => row.position === position)
+        .sort((a, b) => a.projected_position_rank - b.projected_position_rank)
+        .forEach((row, index) => { row.projected_position_rank = index + 1; });
+    }
 
     pprProjectionByPlayerId.clear();
     pprProjectionByPlayerKey.clear();
@@ -8911,6 +8947,12 @@ const relevantPlayers = players.filter((player) => {
   if (player.position !== position) {
     return false;
   }
+  if (verifiedInjuryOutKeys.has(
+    String(player.name).trim().toLowerCase() + "|" +
+    String(player.team).trim().toUpperCase()
+  )) {
+    return false;
+  }
 
   // Preserve the frozen Week 3 availability override.
   if (
@@ -10438,6 +10480,7 @@ async function initializeApp() {
   // Load weekly NFL data first so the current
   // target week is known.
   await loadWeeklyStats();
+  await loadVerifiedInjuryOuts();
   await loadTrenchRateDetails();
 
   // Load Model F PPR projections for that week.
