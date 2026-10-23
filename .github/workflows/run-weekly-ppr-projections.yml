@@ -475,6 +475,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add projection-model/
+          git add -f projection-model/validation/*-analyst-adjustments-audit.csv 2>/dev/null || true
 
           if git diff --cached --quiet; then
             echo "No projection changes to commit."
