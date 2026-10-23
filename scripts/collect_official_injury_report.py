@@ -119,7 +119,7 @@ def main():
         team_heading = heading.group(1).strip() if heading else None
         end = re.search(r"\\n(?:QUESTIONABLE|DOUBTFUL|OUT|No injury designations\\.)\\s*:", after, re.I)
         bounded = after[:end.start()] if end else after[:450]
-        entries = re.findall(r"\\b(QB|RB|WR|TE)\\s*\\n([^\\n]+)\\n\\(", bounded)
+        entries = re.findall(r"\b(QB|RB|WR|TE)\s*\n([^\n]+)\n\(", bounded)
         section_candidates.append({
             "team_heading_unverified": team_heading,
             "fantasy_player_names_unverified": [name.strip() for _, name in entries],
