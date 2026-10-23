@@ -454,6 +454,13 @@ async function loadActualPprResults() {
     if (!response.ok) return;
     const payload = await response.json();
     actualPprResults = Array.isArray(payload.players) ? payload.players : [];
+    console.info("Actual PPR feed loaded", {
+      rows: actualPprResults.length,
+      week: document.documentElement.dataset.targetWeek,
+      completedWeekRows: actualPprResults.filter(row =>
+        Number(row.week) === Number(document.documentElement.dataset.targetWeek)
+      ).length
+    });
   } catch (error) {
     console.warn("Actual PPR results unavailable:", error);
   }
@@ -10264,27 +10271,28 @@ function exportModelSnapshot() {
   );
 }
 function getActualPprForRanking(player) {
-  const week = Number(
-    snapshotWeek || document.documentElement.dataset.targetWeek
-  );
-  if (!Number.isInteger(week) || week < 1) return null;
+  const week = Number(snapshotWeek || document.documentElement.dataset.targetWeek);
+  if (!Number.isInteger(week) || week < 1 || !player) return null;
+
+  const team = value => ({LA: "LAR", JAC: "JAX", WSH: "WAS"})[
+    String(value || "").toUpperCase()
+  ] || String(value || "").toUpperCase();
   const name = normalizeName(player.name);
-  const team = value => ({LA:"LAR", JAC:"JAX", WSH:"WAS"})[String(value || "").toUpperCase()] || String(value || "").toUpperCase();
+  const position = String(player.position || "").toUpperCase();
+
+  // Use published completed-game results, not the pregame projection dataset.
+  // Require a unique identity match; never assign another player's points.
   const results = actualPprResults.filter(game =>
     Number(game.season) === 2026 &&
     Number(game.week) === week &&
     normalizeName(game.player_display_name) === name &&
-    String(game.position).toUpperCase() === String(player.position).toUpperCase() &&
+    String(game.position || "").toUpperCase() === position &&
     team(game.team) === team(player.team)
   );
   const games = results.length ? results : getPlayerWeeklyStats(player).filter(game =>
-    Number(game.season) === 2026 &&
-    Number(game.week) === week
+    Number(game.season) === 2026 && Number(game.week) === week
   );
-  // Do not display zero for an unplayed game or silently combine duplicates.
   if (games.length !== 1) return null;
-  // The stats and historical-result feeds may use different PPR keys.
-  // Never convert a missing result into a misleading zero.
   const game = games[0];
   const raw = [game.fantasy_points_ppr, game.ppr_points, game.ppr]
     .find(value => value !== null && value !== undefined && value !== "");
