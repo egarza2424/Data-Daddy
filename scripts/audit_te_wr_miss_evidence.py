@@ -35,7 +35,7 @@ for position, group in pred.groupby("position"):
                 "team": row.team, "direction": direction,
                 "actual_rank": row.actual_rank, "projected_rank": row.projected_rank,
                 "actual_ppr": row.actual_ppr, "projected_ppr": row.projected_ppr,
-                "prior_targets": ",".join(str(int(x)) for x in prior.targets.tolist()),
+                "prior_targets": ",".join(str(int(x)) for x in prior["targets"].tolist()),
                 "current_game_stats_record": bool(len(current)),
                 "current_game_targets": int(current.targets.sum()) if len(current) else None,
                 "pregame_availability_verified": False,
