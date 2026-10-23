@@ -844,6 +844,33 @@ def main():
         ignore_index=True,
     )
 
+    # Reconcile GSIS-format snapshot IDs to canonical Sleeper IDs only
+    # when the current availability directory supplies a unique GSIS match.
+    availability_path = Path("data/gameday_availability.json")
+    if availability_path.exists():
+        directory = json.loads(availability_path.read_text(encoding="utf-8"))
+        gsis_map = {}
+        for sleeper_id, info in directory.get("players", {}).items():
+            gsis = info.get("gsis_id")
+            if gsis:
+                gsis_map.setdefault(str(gsis), []).append((str(sleeper_id), info))
+        canonicalized = 0
+        for idx, player in projections.iterrows():
+            raw_id = str(player["player_id"])
+            if not raw_id.startswith("00-"):
+                continue
+            matches = [
+                sid for sid, info in gsis_map.get(raw_id, [])
+                if str(info.get("team", "")).upper() == str(player["team"]).upper()
+                and str(info.get("position", "")).upper() == str(player["position"]).upper()
+            ]
+            if len(matches) == 1:
+                projections.at[idx, "player_id"] = matches[0]
+                canonicalized += 1
+        if projections["player_id"].astype(str).duplicated().any():
+            raise RuntimeError("Duplicate player ID after GSIS-to-Sleeper reconciliation")
+        print(f"Canonicalized {canonicalized} GSIS projection IDs to Sleeper IDs")
+
     projections["projection_model"] = (
         "F_position_specific"
     )
