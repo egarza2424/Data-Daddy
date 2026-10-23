@@ -1489,6 +1489,56 @@ def main():
         for rank, idx in enumerate(order, start=1):
             projections.loc[idx, "position_rank"] = rank
 
+    # Research-only Week 7 rushing-absence scenarios. Never publish these
+    # unvalidated estimates as player projections or ranks.
+    if target_week == 7:
+        evidence_path = Path("projection-model/validation/starter-absence-evidence.csv")
+        if evidence_path.exists():
+            evidence = pd.read_csv(evidence_path)
+            candidates = evidence.loc[
+                evidence["activation_status"].eq("REVIEW_REQUIRED")
+                & evidence["position"].eq("RB")
+                & evidence["team"].eq("ARI")
+                & evidence["starter_name"].eq("Jeremiyah Love")
+            ].copy()
+            audit_rows = []
+            for _, ev in candidates.iterrows():
+                sid = str(ev["beneficiary_sleeper_id"])
+                match = projections.loc[
+                    projections["player_id"].astype(str).eq(sid)
+                    & projections["team"].eq("ARI")
+                    & projections["position"].eq("RB")
+                ]
+                if len(match) != 1:
+                    continue
+                player = match.iloc[0]
+                carry_gain = max(0.0, float(ev["carry_change_per_game"]))
+                # 0.4 fantasy points per retained carry is an illustrative
+                # efficiency assumption, not a fitted or validated model.
+                audit_rows.append({
+                    "player_id": sid,
+                    "player_name": player["player_name"],
+                    "current_projected_ppr": round(float(player["projected_ppr"]), 2),
+                    "baseline_carries_per_game": ev["baseline_carries_per_game"],
+                    "recent_carries": ev["recent_carries"],
+                    "carry_gain_per_game": carry_gain,
+                    "recent_inside_20": ev["recent_inside_20_carries"],
+                    "recent_inside_10": ev["recent_inside_10_carries"],
+                    "recent_inside_5": ev["recent_inside_5_carries"],
+                    "scenario_25pct_retention_ppr": round(
+                        float(player["projected_ppr"]) + carry_gain * 0.25 * 0.4, 2
+                    ),
+                    "scenario_50pct_retention_ppr": round(
+                        float(player["projected_ppr"]) + carry_gain * 0.50 * 0.4, 2
+                    ),
+                    "status": "RESEARCH_ONLY_NOT_PUBLISHED",
+                })
+            if audit_rows:
+                audit_path = Path("projection-model/validation/2026-week7-rb-injury-rushing-scenarios.csv")
+                audit_path.parent.mkdir(parents=True, exist_ok=True)
+                pd.DataFrame(audit_rows).to_csv(audit_path, index=False)
+                print(f"Saved {len(audit_rows)} research-only rushing scenarios: {audit_path}")
+
     # Apply optional week-scoped analyst deltas after baseline and editorial logic.
     # Keep original model values in separate columns for accuracy comparisons.
     from analyst_adjustments import apply_adjustments
