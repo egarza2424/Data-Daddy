@@ -1126,6 +1126,10 @@ def main():
             .str.strip()
         )
 
+    # Freeze the pre-injury opportunity baseline for transparent backtesting.
+    # Editorial and other existing model changes are intentionally preserved.
+    pre_injury_ppr = None
+
     # Week 7 WR editorial PPR board (human-adjusted; not Model F).
     # This board is intentionally distinct from position_rank/model_score.
     if target_week == 7:
@@ -1185,6 +1189,8 @@ def main():
         for rank, idx in enumerate(chosen + others, start=1):
             projections.loc[idx, "projected_position_rank"] = rank
         print("Week 7 editorial WR Top 24 applied; Mike Evans excluded.")
+
+    pre_injury_ppr = projections.set_index("player_id")["projected_ppr"].copy()
 
     # Warren-out Week 7 receiving redistribution, grounded in Week 5
     # vs Week 6 adjusted target shares (FantasyPros usage review).
@@ -1340,6 +1346,18 @@ def main():
     projections, analyst_audit = apply_adjustments(
         projections, season=2026, week=target_week
     )
+    # The analyst layer preserves its own immediate baseline. For injury
+    # challengers, restore the actual pre-injury forecast to the audit column.
+    if pre_injury_ppr is not None:
+        injury_mask = projections["projection_model"].isin([
+            "WarrenOut_WR_target_share_shrinkage_Week7",
+            "StarterAbsence_TE_target_shrinkage_Week7",
+        ])
+        original = projections.loc[injury_mask, "player_id"].map(pre_injury_ppr)
+        if original.isna().any():
+            raise RuntimeError("Missing pre-injury projection audit baseline")
+        projections.loc[injury_mask, "original_projected_ppr"] = original.to_numpy()
+
     if not analyst_audit.empty:
         audit_dir = Path("projection-model/validation")
         audit_dir.mkdir(parents=True, exist_ok=True)
