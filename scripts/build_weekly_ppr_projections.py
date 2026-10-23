@@ -1696,6 +1696,69 @@ def main():
                 .rank(method="min", ascending=False).astype(int)
             )
 
+    # Automatic evidence-gated receiving opportunity response to verified OUTs.
+    # Apply only once per beneficiary, never on top of another absence adjustment.
+    if evidence_path.exists():
+        receiving_evidence = pd.read_csv(evidence_path)
+        verified_absences = {
+            (str(item["player_name"]), str(item["team"]))
+            for item in load_verified_injury_outs(target_week)
+        }
+        eligible_receivers = receiving_evidence.loc[
+            receiving_evidence["activation_status"].eq("REVIEW_REQUIRED")
+            & receiving_evidence["position"].isin(["WR", "TE"])
+            & receiving_evidence["season"].eq(2026)
+            & receiving_evidence["week"].eq(target_week)
+            & receiving_evidence["identity_match_status"].isin(["GSIS_MATCH", "NAME_TEAM_POSITION_MATCH"])
+        ]
+        applied_receivers = set()
+        for _, ev in eligible_receivers.iterrows():
+            if (str(ev["starter_name"]), str(ev["team"])) not in verified_absences:
+                continue
+            sid = str(ev["beneficiary_sleeper_id"])
+            if sid in applied_receivers or sid.lower() in ("nan", "none", ""):
+                continue
+            mask = (
+                projections["player_id"].astype(str).eq(sid)
+                & projections["position"].eq(str(ev["position"]))
+                & projections["team"].eq(str(ev["team"]))
+            )
+            if mask.sum() != 1:
+                continue
+            idx = projections.index[mask][0]
+            # Existing manual/editorial injury responses take precedence.
+            if "Absence" in str(projections.at[idx, "projection_model"]) or (
+                str(ev["team"]) == "IND" and target_week == 7
+            ):
+                continue
+            baseline_targets = float(ev["baseline_targets_per_game"])
+            recent_targets = float(ev["recent_targets"])
+            baseline_games = float(ev["baseline_games"])
+            starter_played = str(ev["starter_played_recent_week"]).lower() == "true"
+            if (starter_played or baseline_games < 3
+                    or not np.isfinite(baseline_targets)
+                    or not np.isfinite(recent_targets)
+                    or baseline_targets < 2 or recent_targets <= baseline_targets):
+                continue
+            # Shrink a single-game receiving spike; max 10% projection uplift.
+            ratio = recent_targets / baseline_targets - 1.0
+            uplift = min(0.10, max(0.0, ratio) * 0.25)
+            if uplift < 0.01:
+                continue
+            baseline = float(projections.at[idx, "projected_ppr"])
+            projections.at[idx, "projected_ppr"] = round(baseline * (1 + uplift), 2)
+            projections.at[idx, "projection_model"] = "StarterAbsence_Receiving_25pct_retention"
+            applied_receivers.add(sid)
+            print(f"Verified receiving absence {ev['starter_name']}: "
+                  f"{projections.at[idx, 'player_name']} {baseline:.2f} -> "
+                  f"{projections.at[idx, 'projected_ppr']:.2f} PPR")
+        for pos in ("WR", "TE"):
+            pos_mask = projections["position"].eq(pos)
+            projections.loc[pos_mask, "projected_position_rank"] = (
+                projections.loc[pos_mask, "projected_ppr"]
+                .rank(method="min", ascending=False).astype(int)
+            )
+
     # Apply optional week-scoped analyst deltas after baseline and editorial logic.
     # Keep original model values in separate columns for accuracy comparisons.
     from analyst_adjustments import apply_adjustments
@@ -1711,6 +1774,7 @@ def main():
             "StarterAbsence_WR_target_share_shrinkage",
             "StarterAbsence_TE_target_shrinkage_Week7",
             "StarterAbsence_RB_50pct_carry_retention_Week7",
+            "StarterAbsence_Receiving_25pct_retention",
         ])
         original = projections.loc[injury_mask, "player_id"].map(pre_injury_ppr)
         if original.isna().any():
