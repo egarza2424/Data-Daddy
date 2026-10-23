@@ -32,6 +32,15 @@ def main():
     data = data[(data.season == args.season) & (data.week < args.week)].copy()
     data = data[data.position.isin(["WR", "TE", "RB"])]
     data["targets"] = pd.to_numeric(data.targets, errors="coerce").fillna(0)
+    # Weekly nflverse rushing attempts; missing columns are not zero evidence.
+    rush_col = next((c for c in ("carries", "rushing_attempts") if c in data.columns), None)
+    if rush_col is None:
+        raise ValueError("Weekly stats missing carries/rushing_attempts; cannot audit rushing redistribution")
+    data["rush_attempts"] = pd.to_numeric(data[rush_col], errors="coerce").fillna(0)
+    data["team_rush_attempts"] = data.groupby([team_col, "week"])["rush_attempts"].transform("sum")
+    data["rush_share"] = data.rush_attempts.div(
+        data.team_rush_attempts.where(data.team_rush_attempts > 0)
+    ).fillna(0)
     data["team_targets"] = data.groupby([team_col, "week"])["targets"].transform("sum")
     data["share"] = data.targets.div(data.team_targets.where(data.team_targets > 0)).fillna(0)
     with open("data/verified_injury_outs.json", encoding="utf-8") as handle:
@@ -119,6 +128,13 @@ def main():
                     float(player.targets) - float(earlier.targets.tail(4).mean()), 2
                 ),
                 "candidate_uplift_pct": round(max(0, recent / baseline - 1) * 100, 2) if baseline > 0 else 0,
+                "baseline_carries_per_game": round(float(earlier.rush_attempts.tail(4).mean()), 2),
+                "recent_carries": float(player.rush_attempts),
+                "carry_change_per_game": round(
+                    float(player.rush_attempts) - float(earlier.rush_attempts.tail(4).mean()), 2
+                ),
+                "baseline_rush_share_pct": round(float(earlier.rush_share.tail(4).mean()) * 100, 2),
+                "recent_rush_share_pct": round(float(player.rush_share) * 100, 2),
                 "starter_played_recent_week": starter_played_last_week,
                 "starter_prior_games_in_stats": starter_prior_games,
                 "activation_status": ("NO_ABSENCE_EVIDENCE" if starter_played_last_week
@@ -134,6 +150,8 @@ def main():
         "baseline_share_pct", "recent_share_pct", "recent_targets",
         "baseline_games", "baseline_targets_per_game",
         "target_change_per_game", "candidate_uplift_pct",
+        "baseline_carries_per_game", "recent_carries", "carry_change_per_game",
+        "baseline_rush_share_pct", "recent_rush_share_pct",
         "starter_played_recent_week", "starter_prior_games_in_stats", "activation_status",
     ]).to_csv(out, index=False)
     print(f"Saved {len(rows)} evidence candidates to {out}; no projections changed.")
