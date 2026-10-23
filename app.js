@@ -9108,7 +9108,17 @@ const depthOrder =
       Number(game.receptions || 0) > 0 ||
       Number(game.receiving_yards || 0) > 0
     );
+    // Week 7: Warren is OUT. Mallory returned from IR and earned
+    // six targets in Week 6, so the two-game minimum would incorrectly
+    // hide an active receiving TE from rankings and model snapshots.
+    const malloryWeek7Role =
+      displayedWeek === 7 &&
+      playerTeam === "IND" &&
+      normalizeName(player.name) === normalizeName("Will Mallory") &&
+      recentTeGames.some(game => Number(game.week) === 6 &&
+        Number(game.targets || 0) >= 6);
     return (
+      malloryWeek7Role ||
       (depthOrder === 1 && hasCurrentTeInvolvement) ||
       (recentTeGames.length >= 2 &&
         targetedGames >= 2 &&
