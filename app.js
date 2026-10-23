@@ -459,6 +459,7 @@ let currentPlayerVsDefensiveCaller = {};
 let currentScoringEnvironment = {};
 let weeklyPprProjections = [];
 let verifiedInjuryOutKeys = new Set();
+let verifiedInjuryOutIds = new Set();
 const pprProjectionByPlayerId = new Map();
 const pprProjectionByPlayerKey = new Map();
 const playerASelect = document.getElementById("playerA");
@@ -659,6 +660,7 @@ console.log(
 }
 async function loadVerifiedInjuryOuts() {
   verifiedInjuryOutKeys = new Set();
+  verifiedInjuryOutIds = new Set();
   const week = Number(document.documentElement.dataset.targetWeek);
   if (!Number.isInteger(week)) return;
   try {
@@ -670,6 +672,7 @@ async function loadVerifiedInjuryOuts() {
     if (payload.schema_version !== 1 || !Array.isArray(payload.out)) return;
     for (const item of payload.out) {
       if (item.season !== 2026 || item.week !== week || item.status !== "OUT") continue;
+      verifiedInjuryOutIds.add(String(item.player_id));
       verifiedInjuryOutKeys.add(
         String(item.player_name).trim().toLowerCase() + "|" +
         String(item.team).trim().toUpperCase()
@@ -819,7 +822,7 @@ async function loadWeeklyPprProjections() {
 
           return row;
         })
-        .filter(row => !verifiedInjuryOutKeys.has(
+        .filter(row => !verifiedInjuryOutIds.has(String(row.player_id)) && !verifiedInjuryOutKeys.has(
           String(row.player_name).trim().toLowerCase() + "|" +
           String(row.team).trim().toUpperCase()
         ));
@@ -8947,7 +8950,9 @@ const relevantPlayers = players.filter((player) => {
   if (player.position !== position) {
     return false;
   }
-  if (verifiedInjuryOutKeys.has(
+  if (verifiedInjuryOutIds.has(String(player.id)) ||
+      verifiedInjuryOutIds.has(String(player.nflId)) ||
+      verifiedInjuryOutKeys.has(
     String(player.name).trim().toLowerCase() + "|" +
     String(player.team).trim().toUpperCase()
   )) {
