@@ -21,8 +21,8 @@ for position, group in pred.groupby("position"):
                                 ("over_ranked", group.nsmallest(8, "rank_miss"))):
         for row in selected.itertuples(index=False):
             history = histories.get((row.season, row.player_id, row.team))
-            prior = history.loc[history.week.lt(row.week)].tail(3) if history is not None else pd.DataFrame()
-            current = history.loc[history.week.eq(row.week)] if history is not None else pd.DataFrame()
+            prior = history.loc[history.week.lt(row.week)].tail(3) if history is not None else pd.DataFrame(columns=["targets"])
+            current = history.loc[history.week.eq(row.week)] if history is not None else pd.DataFrame(columns=["targets"])
             name = getattr(row, "player_name", None)
             if not name and history is not None:
                 for col in ("player_display_name", "player_name"):
