@@ -114,6 +114,10 @@ def main():
                 "recent_share_pct": round(recent * 100, 2),
                 "recent_targets": float(player.targets),
                 "baseline_games": len(earlier),
+                "baseline_targets_per_game": round(float(earlier.targets.tail(4).mean()), 2),
+                "target_change_per_game": round(
+                    float(player.targets) - float(earlier.targets.tail(4).mean()), 2
+                ),
                 "candidate_uplift_pct": round(max(0, recent / baseline - 1) * 100, 2) if baseline > 0 else 0,
                 "starter_played_recent_week": starter_played_last_week,
                 "starter_prior_games_in_stats": starter_prior_games,
@@ -128,7 +132,8 @@ def main():
         "beneficiary_player_id", "beneficiary_sleeper_id", "identity_match_status",
         "beneficiary_name", "position", "recent_week",
         "baseline_share_pct", "recent_share_pct", "recent_targets",
-        "baseline_games", "candidate_uplift_pct",
+        "baseline_games", "baseline_targets_per_game",
+        "target_change_per_game", "candidate_uplift_pct",
         "starter_played_recent_week", "starter_prior_games_in_stats", "activation_status",
     ]).to_csv(out, index=False)
     print(f"Saved {len(rows)} evidence candidates to {out}; no projections changed.")
