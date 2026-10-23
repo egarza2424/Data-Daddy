@@ -58,6 +58,12 @@ jobs:
           python -m py_compile scripts/build_gameday_availability.py
           python scripts/build_gameday_availability.py
 
+      - name: Collect official NFL injury report observations
+        continue-on-error: true
+        run: |
+          python -m py_compile scripts/collect_official_injury_report.py
+          python scripts/collect_official_injury_report.py --season 2026 --week 7
+
       - name: Generate Week 7 J2 RB projections
         run: |
           python scripts/build_live_rb_j2_features.py
@@ -546,6 +552,7 @@ jobs:
 
           git add projection-model/
           git add data/gameday_availability.json
+          git add data/official_injury_report_observations.json 2>/dev/null || true
           git add -f projection-model/validation/*-analyst-adjustments-audit.csv 2>/dev/null || true
           git add -f projection-model/validation/starter-absence-evidence.csv 2>/dev/null || true
           git add -f projection-model/validation/*-pending-injury-verification.csv 2>/dev/null || true
