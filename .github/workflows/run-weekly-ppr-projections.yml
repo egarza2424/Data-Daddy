@@ -320,15 +320,30 @@ jobs:
                       "Editorial_Week7_WR_team_total_adjusted"
                   )
               ]
-              if len(editorial) != 24 or not editorial["position"].eq("WR").all():
-                  raise SystemExit("Week 7 editorial WR board must have 24 WRs.")
+              # Official OUT players may vacate curated positions; available
+              # model-ranked receivers fill those positions without pretending
+              # they received an editorial PPR override.
+              if not (1 <= len(editorial) <= 24) or not editorial["position"].eq("WR").all():
+                  raise SystemExit("Invalid Week 7 available editorial WR board.")
               if projections["player_name"].eq("Mike Evans").any():
                   raise SystemExit("Mike Evans must be excluded for Week 7.")
               board = editorial.sort_values("projected_position_rank")
-              if board["projected_position_rank"].astype(int).tolist() != list(range(1, 25)):
-                  raise SystemExit("Editorial WR ranks must be 1 through 24.")
+              if board["projected_position_rank"].astype(int).tolist() != list(range(1, len(board) + 1)):
+                  raise SystemExit("Available editorial WR ranks must be contiguous.")
               if not board["projected_ppr"].is_monotonic_decreasing:
                   raise SystemExit("Editorial WR PPR must descend by rank.")
+              wr_top24 = projections.loc[
+                  projections["position"].eq("WR")
+              ].sort_values("projected_position_rank").head(24)
+              if wr_top24["projected_position_rank"].astype(int).tolist() != list(range(1, 25)):
+                  raise SystemExit("Week 7 available WR Top 24 must remain contiguous.")
+              import json
+              from pathlib import Path
+              verified_outs = json.loads(Path("data/verified_injury_outs.json").read_text())
+              for item in verified_outs["out"]:
+                  if item["season"] == 2026 and item["week"] == 7:
+                      if projections["player_id"].astype(str).eq(str(item["player_id"])).any():
+                          raise SystemExit("Officially OUT player still projected: " + item["player_name"])
 
           if week == 7:
               te_editorial = projections.loc[
