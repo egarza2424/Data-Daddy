@@ -122,6 +122,7 @@ jobs:
         run: |
           python -m py_compile scripts/build_injury_opportunity_candidates.py
           python scripts/build_injury_opportunity_candidates.py \
+            --stats historical-data/player_stats_2026.csv \
             --season 2026 --week 7 \
             --evidence projection-model/validation/starter-absence-evidence.csv \
             --output projection-model/validation/injury-opportunity-candidates.csv
