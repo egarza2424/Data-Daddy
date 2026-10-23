@@ -36,3 +36,5 @@ jobs:
         run: python scripts/backtest_target_share_trend.py
       - name: Backtest sustained TE WR target volume
         run: python scripts/backtest_sustained_target_volume.py
+      - name: Audit high-volume TE WR signed projection errors
+        run: python scripts/audit_high_volume_te_wr_errors.py
