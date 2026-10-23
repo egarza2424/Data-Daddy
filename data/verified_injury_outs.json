@@ -34,6 +34,39 @@
       "status": "OUT",
       "verified_date": "2026-10-23",
       "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-friday-oct-23"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "10229",
+      "player_name": "Rashee Rice",
+      "position": "WR",
+      "team": "KC",
+      "status": "OUT",
+      "verified_date": "2026-10-23",
+      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-friday-oct-23"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "13287",
+      "player_name": "Jeremiyah Love",
+      "position": "RB",
+      "team": "ARI",
+      "status": "OUT",
+      "verified_date": "2026-10-23",
+      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-friday-oct-23"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "11762",
+      "player_name": "Anthony Gould",
+      "position": "WR",
+      "team": "IND",
+      "status": "OUT",
+      "verified_date": "2026-10-23",
+      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-friday-oct-23"
     }
   ]
 }
