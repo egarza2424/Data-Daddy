@@ -846,13 +846,47 @@ async function loadWeeklyPprProjections() {
           String(row.team).trim().toUpperCase()
         ));
 
-    // Maintain contiguous weekly PPR ranks while the generated CSV catches up.
-    for (const position of ["QB", "RB", "WR", "TE"]) {
-      weeklyPprProjections
-        .filter(row => row.position === position)
-        .sort((a, b) => a.projected_position_rank - b.projected_position_rank)
-        .forEach((row, index) => { row.projected_position_rank = index + 1; });
+    // Restore players dropped from the live feed after their games finish.
+    // Preserve the archived pregame projection, opponent and rank exactly.
+    if (targetWeek === 7) {
+      try {
+        const archivedResponse = await fetch(
+          "./projection-model/2026-week7-ppr-archived-pregame.csv?v=1",
+          { cache: "no-store" }
+        );
+        if (archivedResponse.ok) {
+          const archivedLines = (await archivedResponse.text()).trim().split(/\r?\n/);
+          const archivedHeaders = parseCsvLine(archivedLines[0]);
+          const currentKeys = new Set(weeklyPprProjections.map(row =>
+            [normalizeName(row.player_name), String(row.position).toUpperCase()].join("|")
+          ));
+          for (const line of archivedLines.slice(1)) {
+            if (!line.trim()) continue;
+            const values = parseCsvLine(line);
+            const archived = {};
+            archivedHeaders.forEach((header, index) => { archived[header] = values[index] ?? ""; });
+            const key = [normalizeName(archived.player_name), String(archived.position).toUpperCase()].join("|");
+            if (currentKeys.has(key)) continue;
+            if (verifiedInjuryOutIds.has(String(archived.player_id)) ||
+                verifiedInjuryOutKeys.has(String(archived.player_name).trim().toLowerCase() + "|" +
+                  String(archived.team).trim().toUpperCase())) continue;
+            archived.snapshot_week = Number(archived.snapshot_week);
+            archived.projected_ppr = Number(archived.projected_ppr);
+            archived.projected_position_rank = Number(archived.projected_position_rank);
+            archived.model_score = Number(archived.model_score);
+            archived.pregame_archived = true;
+            weeklyPprProjections.push(archived);
+            currentKeys.add(key);
+          }
+        }
+      } catch (error) {
+        console.warn("Archived pregame projections unavailable:", error);
+      }
     }
+
+    // Keep archived ranks unchanged: these are historical pregame predictions.
+    // Current live ranks also remain as published; never renumber after results.
+
 
     pprProjectionByPlayerId.clear();
     pprProjectionByPlayerKey.clear();
@@ -10399,11 +10433,11 @@ function renderPositionRankings() {
       const matchup =
         teamNextOpponent[player.team];
 
-      const opponent =
-        matchup?.opponent || "TBD";
-
       const projection =
         getPlayerPprProjection(player);
+
+      const opponent =
+        projection?.opponent || matchup?.opponent || "TBD";
 
       const projectedPpr =
         projection &&
