@@ -126,6 +126,35 @@ def main():
             "section_boundary_detected": end is not None,
             "eligible_for_projection_adjustment": False,
         })
+    # Cross-check bounded OUT names against the fantasy directory and team.
+    # A unique name AND exact team match is required even for review eligibility.
+    team_abbreviations = {
+        "STEELERS": "PIT", "FALCONS": "ATL", "RAVENS": "BAL",
+        "BUCCANEERS": "TB", "PANTHERS": "CAR", "COLTS": "IND",
+        "BROWNS": "CLE", "CHIEFS": "KC", "PATRIOTS": "NE",
+        "BEARS": "CHI",
+    }
+    section_player_matches = []
+    for section in section_candidates:
+        team_name = section["team_heading_unverified"]
+        team_code = team_abbreviations.get(team_name)
+        for name in section["fantasy_player_names_unverified"]:
+            matches = [
+                match for item in directory_matches
+                if normalized_name(item["reported_name"]) == normalized_name(name)
+                for match in item["matches"]
+                if team_code and str(match.get("team") or "").upper() == team_code
+            ]
+            section_player_matches.append({
+                "reported_name": name,
+                "official_team_heading": team_name,
+                "expected_team": team_code,
+                "match_status": "unique_name_and_team" if len(matches) == 1 else (
+                    "ambiguous" if len(matches) > 1 else "unmatched"
+                ),
+                "matches": matches,
+                "eligible_for_projection_adjustment": False,
+            })
     result = {
         "season": args.season, "week": args.week,
         "source_url": url,
@@ -135,6 +164,7 @@ def main():
         "out_text_observations": snippets,
         "out_section_context_unverified": out_section_context,
         "out_section_candidates_unverified": section_candidates,
+        "out_section_player_matches_unverified": section_player_matches,
         "unverified_name_candidates": candidates,
         "directory_name_matches_unverified": directory_matches,
     }
