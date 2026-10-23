@@ -1442,6 +1442,7 @@ def main():
     if pre_injury_ppr is not None:
         injury_mask = projections["projection_model"].isin([
             "WarrenOut_WR_target_share_shrinkage_Week7",
+            "StarterAbsence_WR_target_share_shrinkage",
             "StarterAbsence_TE_target_shrinkage_Week7",
         ])
         original = projections.loc[injury_mask, "player_id"].map(pre_injury_ppr)
