@@ -63,8 +63,12 @@ jobs:
           curl --fail --location --retry 3 --max-time 120 \
             https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv \
             -o historical-data/player_stats_2026.csv
+          curl --fail --location --retry 3 --max-time 180 \
+            https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.csv.gz \
+            -o historical-data/play_by_play_2026.csv.gz
           python scripts/build_starter_absence_evidence.py \
             --stats historical-data/player_stats_2026.csv \
+            --pbp historical-data/play_by_play_2026.csv.gz \
             --season 2026 --week 7 \
             --output projection-model/validation/starter-absence-evidence.csv
 
