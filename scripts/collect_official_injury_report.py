@@ -115,9 +115,9 @@ def main():
     for section in out_section_context:
         before = section["preceding_context"]
         after = section["following_context"]
-        heading = re.search(r"([A-Z][A-Z ]{2,28})\\s*$", before)
+        heading = re.search(r"([A-Z][A-Z ]{2,28})\s*$", before)
         team_heading = heading.group(1).strip() if heading else None
-        end = re.search(r"\\n(?:QUESTIONABLE|DOUBTFUL|OUT|No injury designations\\.)\\s*:", after, re.I)
+        end = re.search(r"\n(?:QUESTIONABLE|DOUBTFUL|OUT|No injury designations\.)\s*:", after, re.I)
         bounded = after[:end.start()] if end else after[:450]
         entries = re.findall(r"\b(QB|RB|WR|TE)\s*\n([^\n]+)\n\(", bounded)
         section_candidates.append({
