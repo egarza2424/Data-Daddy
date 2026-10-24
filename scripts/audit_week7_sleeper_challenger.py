@@ -52,6 +52,7 @@ def main():
         # Allen's QUESTIONABLE starter is explicitly two scenarios, not one
         # assumed availability outcome.
         allen=(norm(p["player_name"])=="braelon allen" and decision is not None)
+        knight=(norm(p["player_name"])=="zonovan knight" and decision is not None)
         market=manual.get((norm(p["player_name"]),pos))
         external=clamp(50+5*(market-ai)) if market is not None else None
         # Disagreement alone is not evidence of upside. Require workload
@@ -71,6 +72,8 @@ def main():
         flags=[]
         if injury is None:flags.append("INJURY_SCENARIO_UNRESOLVED" if allen else "INJURY_ROLE_UNVERIFIED")
         if injury is not None:flags.append("INJURY_SCORE_EXPERIMENTAL_NOT_CALIBRATED")
+        if allen:flags.append("SCENARIO_WORKLOAD_UNRESOLVED_NO_SINGLE_SCORE")
+        if knight:flags.append("NEW_ROLE_WORKLOAD_NOT_REFLECTED_IN_HISTORY")
         if market is not None and workload is not None and clamp(50+5*(market-ai))>workload:
             flags.append("EXTERNAL_ADVANTAGE_CAPPED_BY_WORKLOAD")
         if external is None:flags.append("MANUAL_CONSENSUS_MISSING")
@@ -83,8 +86,12 @@ def main():
             ai_rank=int(ai),ppr_rank=int(ppr),manual_rank=market if market is not None else "",
             injury_score=injury if injury is not None else "",injury_score_hall_active=ALLEN_SCENARIOS["hall_active"] if allen else "",
             injury_score_hall_inactive=ALLEN_SCENARIOS["hall_inactive"] if allen else "",
-            scenario_score_hall_active=round(known+30*ALLEN_SCENARIOS["hall_active"]/100,2) if allen else "",
-            scenario_score_hall_inactive=round(known+30*ALLEN_SCENARIOS["hall_inactive"]/100,2) if allen else "",
+            scenario_score_hall_active="",
+            scenario_score_hall_inactive="",
+            scenario_hall_active_lower=round(known-(20*workload/100 if workload is not None else 0)+30*ALLEN_SCENARIOS["hall_active"]/100,2) if allen else "",
+            scenario_hall_active_upper=round(known-(20*workload/100 if workload is not None else 0)+30*ALLEN_SCENARIOS["hall_active"]/100+20,2) if allen else "",
+            scenario_hall_inactive_lower=round(known-(20*workload/100 if workload is not None else 0)+30*ALLEN_SCENARIOS["hall_inactive"]/100,2) if allen else "",
+            scenario_hall_inactive_upper=round(known-(20*workload/100 if workload is not None else 0)+30*ALLEN_SCENARIOS["hall_inactive"]/100+20,2) if allen else "",
             external_score=round(external,2) if external is not None else "",
             workload_score=round(workload,2) if workload is not None else "",
             matchup_score=round(game,2) if game is not None else "",
@@ -99,6 +106,8 @@ def main():
     print("Candidates:",len(rows),"| manual consensus matches:",sum(bool(r["manual_rank"]) for r in rows))
     print("Experimental injury scores applied only to confirmed-role decision rows; Allen has separate Hall-active and Hall-inactive scenarios.")
     print("These scores are illustrative assumptions, not validated injury-opportunity measurements.")
+    print("Allen scenarios now report workload-uncertain intervals, not misleading single scores.")
+    print("Knight flagged for inherited-role usage lag; no fabricated touch projection.")
     print("Market disagreement credit is capped by projected workload; this is a diagnostic guardrail, not a validated production formula.")
     print("Intervals reflect missing evidence; lower bounds are NOT comparable production sleeper scores.")
     for r in rows[:20]:
