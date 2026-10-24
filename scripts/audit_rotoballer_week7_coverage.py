@@ -89,6 +89,14 @@ def main():
     print("Parsed by position:",dict(by_position))
     print("Candidate coverage:",covered,"/",len(rows),f"({covered/len(rows):.1%})" if rows else "")
     print("Coverage target >=80%:",covered>=0.8*len(rows) if rows else False)
+    for pos in CUTOFFS:
+        subset=[r for r in rows if r["position"]==pos]
+        found=sum(r["source_match"] for r in subset)
+        print(f"{pos} coverage: {found}/{len(subset)}")
+    missing=[r for r in rows if not r["source_match"]]
+    print("Unmatched candidate names (investigate spelling, suffixes, missing source coverage):")
+    for r in missing:
+        print(f" - {r['player_name']} | {r['position']} | {r['team']} | DD AI rank {r['data_daddy_ai_rank']}")
     for r in rows:
         if r["injury_watch"]:print("Injury watch:",r["player_name"],"source rank:",r["source_position_rank"] or "missing")
     print("Review CSV:",OUT)
