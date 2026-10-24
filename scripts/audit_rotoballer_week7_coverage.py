@@ -89,6 +89,22 @@ def main():
     print("Parsed by position:",dict(by_position))
     print("Candidate coverage:",covered,"/",len(rows),f"({covered/len(rows):.1%})" if rows else "")
     print("Coverage target >=80%:",covered>=0.8*len(rows) if rows else False)
+    # Report a practical fantasy-relevant subset separately; never remove
+    # unmatched rows or redefine the full-pool coverage denominator.
+    practical=[r for r in rows if r["injury_watch"] or (
+        (r["position"]=="QB" and r["data_daddy_ai_rank"]<=24) or
+        (r["position"]=="RB" and r["data_daddy_ai_rank"]<=48) or
+        (r["position"]=="WR" and r["data_daddy_ai_rank"]<=60) or
+        (r["position"]=="TE" and r["data_daddy_ai_rank"]<=24)
+    )]
+    practical_found=sum(r["source_match"] for r in practical)
+    print("Practical shortlist coverage (AI rank QB24/RB48/WR60/TE24, plus injury watches):",
+          practical_found,"/",len(practical),
+          f"({practical_found/len(practical):.1%})" if practical else "")
+    print("Practical shortlist unmatched:")
+    for r in practical:
+        if not r["source_match"]:
+            print(f" - {r['player_name']} | {r['position']} | {r['team']} | AI rank {r['data_daddy_ai_rank']}")
     for pos in CUTOFFS:
         subset=[r for r in rows if r["position"]==pos]
         found=sum(r["source_match"] for r in subset)
