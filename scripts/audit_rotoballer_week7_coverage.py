@@ -131,6 +131,28 @@ def main():
     print("Actionable ranking disagreements — DD lower than RotoBaller:")
     for r in comparison[-8:]:
         print(f" {r['market_vs_ai_rank_advantage']:+.0f} | {r['player_name']} ({r['position']}) | DD {r['data_daddy_ai_rank']} vs external {r['source_position_rank']}")
+    manual_path=Path("projection-model/validation/week7-manual-consensus-rankings.csv")
+    if manual_path.exists():
+        with manual_path.open(newline="",encoding="utf-8") as f:
+            manual={(norm(x["player_name"]),x["position"]):int(x["rank"]) for x in csv.DictReader(f)}
+        manual_aliases={"zonovan knight":"bam knight","omar cooper":"omar cooper jr"}
+        comparisons=[]
+        for row in actionable:
+            key=(norm(row["player_name"]),row["position"])
+            m=manual.get(key)
+            if m is None:
+                m=manual.get((manual_aliases.get(key[0],key[0]),key[1]))
+            if m is not None:
+                comparisons.append((m-row["data_daddy_ai_rank"],row,m))
+        print("Manual screenshot consensus coverage of actionable candidates:",
+              len(comparisons),"/",len(actionable))
+        print("Largest DD-vs-manual consensus rank advantages (positive = DD higher):")
+        for gap,row,m in sorted(comparisons,key=lambda x:x[0],reverse=True)[:15]:
+            print(f" {gap:+d} | {row['player_name']} ({row['position']}) | DD {row['data_daddy_ai_rank']} vs manual {m}")
+        print("Manual consensus and RotoBaller both available:",
+              sum(row["source_match"] for _,row,_ in comparisons))
+    else:
+        print("Manual screenshot consensus CSV not found.")
     print("Source is not yet approved for recurring import or live scoring.")
     print("Practical shortlist unmatched:")
     for r in practical:
