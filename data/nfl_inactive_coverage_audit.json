@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-10-24T19:27:58.844001+00:00",
+  "generated_at_utc": "2026-10-24T21:50:07.965040+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
     "missing_near_kickoff": 0,
-    "pending": 22
+    "pending": 25
   },
   "games": [
     {
@@ -180,6 +180,30 @@
       "game_id": "2026_08_ATL_TB",
       "week": 8,
       "kickoff_utc": "2026-11-01T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_08_LAC_LA",
+      "week": 8,
+      "kickoff_utc": "2026-11-01T21:05:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_08_KC_DEN",
+      "week": 8,
+      "kickoff_utc": "2026-11-01T21:25:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_08_NE_MIA",
+      "week": 8,
+      "kickoff_utc": "2026-11-01T21:25:00+00:00",
       "status": "pending",
       "official_inactives_verified": false,
       "source_url": null
