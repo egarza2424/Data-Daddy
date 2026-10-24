@@ -155,6 +155,28 @@
       "status": "OUT",
       "verified_date": "2026-10-24",
       "source": "https://www.baltimoreravens.com/news/lamar-jackson-out-against-bengals-week-7-tyler-huntley-third-straight-start"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "7525",
+      "player_name": "DeVonta Smith",
+      "position": "WR",
+      "team": "PHI",
+      "status": "OUT",
+      "verified_date": "2026-10-24",
+      "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "9486",
+      "player_name": "Dontayvion Wicks",
+      "position": "WR",
+      "team": "PHI",
+      "status": "OUT",
+      "verified_date": "2026-10-24",
+      "source": "https://www.nfl.com/injuries/"
     }
   ]
 }
