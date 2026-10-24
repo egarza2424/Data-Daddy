@@ -1,0 +1,19 @@
+name: Audit Sleeper Challenger Readiness
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Audit Week 7 evidence and market coverage
+        run: python scripts/audit_sleeper_challenger_readiness.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: week7-sleeper-challenger-readiness
+          path: projection-model/validation/week7-sleeper-challenger-readiness.csv
