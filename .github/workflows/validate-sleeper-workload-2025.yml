@@ -12,6 +12,19 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install pandas numpy
+      - name: Download 2025 historical player stats
+        run: |
+          mkdir -p historical-data
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.request import urlopen
+          url = "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2025.csv"
+          dest = Path("historical-data/player_stats_2025.csv")
+          with urlopen(url, timeout=120) as response, dest.open("wb") as out:
+              import shutil
+              shutil.copyfileobj(response, out)
+          print("Downloaded", dest, "bytes:", dest.stat().st_size)
+          PY
       - name: Compare 2025 held-out workload proxy to Model F
         run: python scripts/validate_sleeper_workload_2025.py
       - uses: actions/upload-artifact@v4
