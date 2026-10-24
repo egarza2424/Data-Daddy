@@ -1,0 +1,20 @@
+name: Validate Sleeper Workload Historical
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install pandas numpy
+      - name: Compare 2025 held-out workload proxy to Model F
+        run: python scripts/validate_sleeper_workload_2025.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 2025-sleeper-workload-heldout
+          path: projection-model/validation/2025-sleeper-workload-heldout.csv
