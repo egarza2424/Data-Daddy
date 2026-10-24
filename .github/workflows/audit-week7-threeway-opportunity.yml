@@ -1,0 +1,15 @@
+name: Audit Week 7 Three-Way Opportunity
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Inspect projection signals for three-way flags
+        run: python scripts/audit_week7_threeway_opportunity.py
