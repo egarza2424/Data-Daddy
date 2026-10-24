@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "description": "Official team-confirmed returns to active roster, not game-day active guarantees or fantasy workload assignments. Week-scoped and expires automatically.",
+  "season": 2026,
+  "week": 7,
+  "expires_at_utc": "2026-10-26T12:00:00+00:00",
+  "activated": [
+    {
+      "player_id": "8408",
+      "player_name": "Jordan Mason",
+      "position": "RB",
+      "team": "MIN",
+      "verified_date": "2026-10-24",
+      "source": "https://www.vikings.com/news/jordan-mason-activated-colts-game-week-7-2026"
+    },
+    {
+      "player_id": "4950",
+      "player_name": "Christian Kirk",
+      "position": "WR",
+      "team": "SF",
+      "verified_date": "2026-10-24",
+      "source": "https://www.49ers.com/news/49ers-announce-roster-moves-ahead-of-sfvsatl"
+    }
+  ]
+}
