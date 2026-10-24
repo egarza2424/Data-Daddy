@@ -1,0 +1,19 @@
+name: Audit Week 7 Sleeper Challenger
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compare experimental sleeper weights with missing-evidence bounds
+        run: python scripts/audit_week7_sleeper_challenger.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: week7-sleeper-challenger-review
+          path: projection-model/validation/week7-sleeper-challenger-review.csv
