@@ -120,6 +120,18 @@ def main():
     for r in actionable:
         if not r["source_match"]:
             print(f" - {r['player_name']} | {r['position']} | {r['team']}")
+    # Market disagreement: positive gap means DATA DADDY ranks player higher
+    # (lower rank number) than the external PPR list.
+    comparison=sorted(
+        (r for r in actionable if r["source_match"]),
+        key=lambda r: r["market_vs_ai_rank_advantage"],reverse=True)
+    print("Actionable ranking disagreements — DD higher than RotoBaller:")
+    for r in comparison[:12]:
+        print(f" +{r['market_vs_ai_rank_advantage']:.0f} | {r['player_name']} ({r['position']}) | DD {r['data_daddy_ai_rank']} vs external {r['source_position_rank']}")
+    print("Actionable ranking disagreements — DD lower than RotoBaller:")
+    for r in comparison[-8:]:
+        print(f" {r['market_vs_ai_rank_advantage']:+.0f} | {r['player_name']} ({r['position']}) | DD {r['data_daddy_ai_rank']} vs external {r['source_position_rank']}")
+    print("Source is not yet approved for recurring import or live scoring.")
     print("Practical shortlist unmatched:")
     for r in practical:
         if not r["source_match"]:
