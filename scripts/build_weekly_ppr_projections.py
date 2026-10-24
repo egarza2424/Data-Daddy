@@ -41,8 +41,8 @@ def load_verified_injury_outs(week):
         key = str(item.get("player_id"))
         if key in seen or item.get("status") != "OUT":
             raise RuntimeError(f"Invalid or duplicate verified OUT: {key}")
-        if not str(item.get("source", "")).startswith("https://www.nfl.com/"):
-            raise RuntimeError(f"Missing official NFL source for verified OUT: {key}")
+        if not str(item.get("source", "")).startswith(("https://www.nfl.com/", "https://www.baltimoreravens.com/")):
+            raise RuntimeError(f"Missing official NFL or team source for verified OUT: {key}")
         if not all(item.get(k) for k in ("player_name", "position", "team", "verified_date")):
             raise RuntimeError(f"Incomplete verified OUT: {key}")
         seen.add(key)
