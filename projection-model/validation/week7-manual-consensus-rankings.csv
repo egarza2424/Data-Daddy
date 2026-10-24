@@ -1,0 +1,161 @@
+position,rank,player_name,source,week,season
+QB,1,"Brock Purdy",manual_user_screenshot,7,2026
+QB,2,"Jordan Love",manual_user_screenshot,7,2026
+QB,3,"Joe Burrow",manual_user_screenshot,7,2026
+QB,4,"Lamar Jackson",manual_user_screenshot,7,2026
+QB,5,"C.J. Stroud",manual_user_screenshot,7,2026
+QB,6,"Jared Goff",manual_user_screenshot,7,2026
+QB,7,"Matthew Stafford",manual_user_screenshot,7,2026
+QB,8,"Aaron Rodgers",manual_user_screenshot,7,2026
+QB,9,"Bryce Young",manual_user_screenshot,7,2026
+QB,10,"Kyler Murray",manual_user_screenshot,7,2026
+QB,11,"Dak Prescott",manual_user_screenshot,7,2026
+QB,12,"Kirk Cousins",manual_user_screenshot,7,2026
+QB,13,"Patrick Mahomes",manual_user_screenshot,7,2026
+QB,14,"Tyler Shough",manual_user_screenshot,7,2026
+QB,15,"Bo Nix",manual_user_screenshot,7,2026
+QB,16,"Geno Smith",manual_user_screenshot,7,2026
+QB,17,"J.J. McCarthy",manual_user_screenshot,7,2026
+QB,18,"Baker Mayfield",manual_user_screenshot,7,2026
+QB,19,"Tanner McKee",manual_user_screenshot,7,2026
+QB,20,"Michael Penix Jr.",manual_user_screenshot,7,2026
+QB,21,"Deshaun Watson",manual_user_screenshot,7,2026
+QB,22,"Jacoby Brissett",manual_user_screenshot,7,2026
+QB,23,"Sam Darnold",manual_user_screenshot,7,2026
+QB,24,"Malik Willis",manual_user_screenshot,7,2026
+QB,25,"Cam Ward",manual_user_screenshot,7,2026
+RB,1,"Jahmyr Gibbs",manual_user_screenshot,7,2026
+RB,2,"Bijan Robinson",manual_user_screenshot,7,2026
+RB,3,"Christian McCaffrey",manual_user_screenshot,7,2026
+RB,4,"Kenneth Walker III",manual_user_screenshot,7,2026
+RB,5,"Derrick Henry",manual_user_screenshot,7,2026
+RB,6,"Kyren Williams",manual_user_screenshot,7,2026
+RB,7,"Jaylen Warren",manual_user_screenshot,7,2026
+RB,8,"Javonte Williams",manual_user_screenshot,7,2026
+RB,9,"Jonathan Taylor",manual_user_screenshot,7,2026
+RB,10,"Ashton Jeanty",manual_user_screenshot,7,2026
+RB,11,"Breece Hall",manual_user_screenshot,7,2026
+RB,12,"Chuba Hubbard",manual_user_screenshot,7,2026
+RB,13,"Chase Brown",manual_user_screenshot,7,2026
+RB,14,"Saquon Barkley",manual_user_screenshot,7,2026
+RB,15,"Bucky Irving",manual_user_screenshot,7,2026
+RB,16,"Quinshon Judkins",manual_user_screenshot,7,2026
+RB,17,"Josh Jacobs",manual_user_screenshot,7,2026
+RB,18,"J.K. Dobbins",manual_user_screenshot,7,2026
+RB,19,"Tony Pollard",manual_user_screenshot,7,2026
+RB,20,"Woody Marks",manual_user_screenshot,7,2026
+RB,21,"Aaron Jones Sr.",manual_user_screenshot,7,2026
+RB,22,"Ollie Gordon II",manual_user_screenshot,7,2026
+RB,23,"Tyler Allgeier",manual_user_screenshot,7,2026
+RB,24,"RJ Harvey",manual_user_screenshot,7,2026
+RB,25,"Jordan Mason",manual_user_screenshot,7,2026
+RB,26,"Blake Corum",manual_user_screenshot,7,2026
+RB,27,"Emanuel Wilson",manual_user_screenshot,7,2026
+RB,28,"Kendre Miller",manual_user_screenshot,7,2026
+RB,29,"Alvin Kamara",manual_user_screenshot,7,2026
+RB,30,"Braelon Allen",manual_user_screenshot,7,2026
+RB,31,"Rico Dowdle",manual_user_screenshot,7,2026
+RB,32,"Kenny Gainwell",manual_user_screenshot,7,2026
+RB,33,"Dameon Pierce",manual_user_screenshot,7,2026
+RB,34,"Tyjae Spears",manual_user_screenshot,7,2026
+RB,35,"Mike Washington Jr.",manual_user_screenshot,7,2026
+RB,36,"Samaje Perine",manual_user_screenshot,7,2026
+RB,37,"Justice Hill",manual_user_screenshot,7,2026
+RB,38,"Bam Knight",manual_user_screenshot,7,2026
+RB,39,"George Holani",manual_user_screenshot,7,2026
+RB,40,"Cam Skattebo",manual_user_screenshot,7,2026
+RB,41,"Kaelon Black",manual_user_screenshot,7,2026
+RB,42,"Tyrone Tracy Jr.",manual_user_screenshot,7,2026
+RB,43,"Emmett Johnson",manual_user_screenshot,7,2026
+RB,44,"Dylan Sampson",manual_user_screenshot,7,2026
+RB,45,"Jaylen Wright",manual_user_screenshot,7,2026
+RB,46,"Devin Singletary",manual_user_screenshot,7,2026
+RB,47,"CJ Donaldson",manual_user_screenshot,7,2026
+RB,48,"Dare Ogunbowale",manual_user_screenshot,7,2026
+RB,49,"Sione Vaki",manual_user_screenshot,7,2026
+RB,50,"Pierre Strong Jr.",manual_user_screenshot,7,2026
+WR,1,"Ja'Marr Chase",manual_user_screenshot,7,2026
+WR,2,"Jaxon Smith-Njigba",manual_user_screenshot,7,2026
+WR,3,"Amon-Ra St. Brown",manual_user_screenshot,7,2026
+WR,4,"CeeDee Lamb",manual_user_screenshot,7,2026
+WR,5,"Justin Jefferson",manual_user_screenshot,7,2026
+WR,6,"Malik Nabers",manual_user_screenshot,7,2026
+WR,7,"Matthew Golden",manual_user_screenshot,7,2026
+WR,8,"Drake London",manual_user_screenshot,7,2026
+WR,9,"Zay Flowers",manual_user_screenshot,7,2026
+WR,10,"Christian Watson",manual_user_screenshot,7,2026
+WR,11,"Nico Collins",manual_user_screenshot,7,2026
+WR,12,"Chris Olave",manual_user_screenshot,7,2026
+WR,13,"Tetairoa McMillan",manual_user_screenshot,7,2026
+WR,14,"Jalen Coker",manual_user_screenshot,7,2026
+WR,15,"Garrett Wilson",manual_user_screenshot,7,2026
+WR,16,"DK Metcalf",manual_user_screenshot,7,2026
+WR,17,"Tee Higgins",manual_user_screenshot,7,2026
+WR,18,"George Pickens",manual_user_screenshot,7,2026
+WR,19,"Germie Bernard",manual_user_screenshot,7,2026
+WR,20,"Michael Wilson",manual_user_screenshot,7,2026
+WR,21,"Carnell Tate",manual_user_screenshot,7,2026
+WR,22,"Denzel Boston",manual_user_screenshot,7,2026
+WR,23,"Jameson Williams",manual_user_screenshot,7,2026
+WR,24,"Jaylen Waddle",manual_user_screenshot,7,2026
+WR,25,"Xavier Worthy",manual_user_screenshot,7,2026
+WR,26,"Jordan Addison",manual_user_screenshot,7,2026
+WR,27,"Tre Tucker",manual_user_screenshot,7,2026
+WR,28,"Devaughn Vele",manual_user_screenshot,7,2026
+WR,29,"Chris Godwin Jr.",manual_user_screenshot,7,2026
+WR,30,"Malik Washington",manual_user_screenshot,7,2026
+WR,31,"Keenan Allen",manual_user_screenshot,7,2026
+WR,32,"KC Concepcion",manual_user_screenshot,7,2026
+WR,33,"Ted Hurst III",manual_user_screenshot,7,2026
+WR,34,"Josh Downs",manual_user_screenshot,7,2026
+WR,35,"Omar Cooper Jr.",manual_user_screenshot,7,2026
+WR,36,"Wan'Dale Robinson",manual_user_screenshot,7,2026
+WR,37,"Ryan Flournoy",manual_user_screenshot,7,2026
+WR,38,"Courtland Sutton",manual_user_screenshot,7,2026
+WR,39,"Jaylin Noel",manual_user_screenshot,7,2026
+WR,40,"Christian Kirk",manual_user_screenshot,7,2026
+WR,41,"Kendrick Bourne",manual_user_screenshot,7,2026
+WR,42,"Konata Mumpfield",manual_user_screenshot,7,2026
+WR,43,"Makai Lemon",manual_user_screenshot,7,2026
+WR,44,"Rashid Shaheed",manual_user_screenshot,7,2026
+WR,45,"Jahan Dotson",manual_user_screenshot,7,2026
+WR,46,"Savion Williams",manual_user_screenshot,7,2026
+WR,47,"Marvin Harrison Jr.",manual_user_screenshot,7,2026
+WR,48,"Malachi Fields",manual_user_screenshot,7,2026
+WR,49,"Darius Cooper",manual_user_screenshot,7,2026
+WR,50,"Adonai Mitchell",manual_user_screenshot,7,2026
+WR,51,"Tez Johnson",manual_user_screenshot,7,2026
+WR,52,"Brandin Cooks",manual_user_screenshot,7,2026
+WR,53,"Isaac TeSlaa",manual_user_screenshot,7,2026
+WR,54,"Caleb Douglas",manual_user_screenshot,7,2026
+WR,55,"Jordan Watkins",manual_user_screenshot,7,2026
+WR,56,"Puka Nacua",manual_user_screenshot,7,2026
+WR,57,"Jordan Whittington",manual_user_screenshot,7,2026
+WR,58,"DeVonta Smith",manual_user_screenshot,7,2026
+WR,59,"Ja'Kobi Lane",manual_user_screenshot,7,2026
+WR,60,"Rashod Bateman",manual_user_screenshot,7,2026
+TE,1,"Brock Bowers",manual_user_screenshot,7,2026
+TE,2,"Trey McBride",manual_user_screenshot,7,2026
+TE,3,"George Kittle",manual_user_screenshot,7,2026
+TE,4,"Isaiah Likely",manual_user_screenshot,7,2026
+TE,5,"Sam LaPorta",manual_user_screenshot,7,2026
+TE,6,"Tucker Kraft",manual_user_screenshot,7,2026
+TE,7,"Dallas Goedert",manual_user_screenshot,7,2026
+TE,8,"Travis Kelce",manual_user_screenshot,7,2026
+TE,9,"T.J. Hockenson",manual_user_screenshot,7,2026
+TE,10,"Pat Freiermuth",manual_user_screenshot,7,2026
+TE,11,"Kyle Pitts Sr.",manual_user_screenshot,7,2026
+TE,12,"Juwan Johnson",manual_user_screenshot,7,2026
+TE,13,"Mark Andrews",manual_user_screenshot,7,2026
+TE,14,"Michael Mayer",manual_user_screenshot,7,2026
+TE,15,"Dalton Schultz",manual_user_screenshot,7,2026
+TE,16,"Harold Fannin Jr.",manual_user_screenshot,7,2026
+TE,17,"Colby Parkinson",manual_user_screenshot,7,2026
+TE,18,"Tyler Higbee",manual_user_screenshot,7,2026
+TE,19,"Darnell Washington",manual_user_screenshot,7,2026
+TE,20,"AJ Barner",manual_user_screenshot,7,2026
+TE,21,"Cade Otton",manual_user_screenshot,7,2026
+TE,22,"Mike Gesicki",manual_user_screenshot,7,2026
+TE,23,"Darren Waller",manual_user_screenshot,7,2026
+TE,24,"Jake Ferguson",manual_user_screenshot,7,2026
+TE,25,"Will Mallory",manual_user_screenshot,7,2026
