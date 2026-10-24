@@ -144,6 +144,17 @@
       "status": "OUT",
       "verified_date": "2026-10-24",
       "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-saturday-oct-24"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "4881",
+      "player_name": "Lamar Jackson",
+      "position": "QB",
+      "team": "BAL",
+      "status": "OUT",
+      "verified_date": "2026-10-24",
+      "source": "https://www.baltimoreravens.com/news/lamar-jackson-out-against-bengals-week-7-tyler-huntley-third-straight-start"
     }
   ]
 }
