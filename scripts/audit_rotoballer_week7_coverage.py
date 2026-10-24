@@ -149,6 +149,17 @@ def main():
         print("Largest DD-vs-manual consensus rank advantages (positive = DD higher):")
         for gap,row,m in sorted(comparisons,key=lambda x:x[0],reverse=True)[:15]:
             print(f" {gap:+d} | {row['player_name']} ({row['position']}) | DD {row['data_daddy_ai_rank']} vs manual {m}")
+        print("Three-way disagreement review (both external ranks available):")
+        flagged=[]
+        for gap,row,m in comparisons:
+            if not row["source_match"]:continue
+            external=int(row["source_position_rank"])
+            both_advantage=min(m-row["data_daddy_ai_rank"],external-row["data_daddy_ai_rank"])
+            if both_advantage>=5:
+                flagged.append((both_advantage,row,m,external))
+        for advantage,row,m,external in sorted(flagged,key=lambda x:x[0],reverse=True):
+            print(f" +{advantage} minimum | {row['player_name']} ({row['position']}) | DD {row['data_daddy_ai_rank']} | manual {m} | RotoBaller {external} | injury watch {row['injury_watch']}")
+        print("These are review flags, not validated sleeper picks or approved scoring inputs.")
         print("Manual consensus and RotoBaller both available:",
               sum(row["source_match"] for _,row,_ in comparisons))
     else:
