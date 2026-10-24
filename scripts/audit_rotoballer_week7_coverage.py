@@ -101,6 +101,25 @@ def main():
     print("Practical shortlist coverage (AI rank QB24/RB48/WR60/TE24, plus injury watches):",
           practical_found,"/",len(practical),
           f"({practical_found/len(practical):.1%})" if practical else "")
+    # Additional diagnostic: distinguish actionable opportunities from deep reserves.
+    # These thresholds are audit-only and do not alter live eligibility.
+    actionable=[]
+    for row in practical:
+        projection=next((p for p in projections if p["player_name"]==row["player_name"] and p["position"]==row["position"] and p["team"]==row["team"]),None)
+        if projection is None:continue
+        try: points=float(projection["projected_ppr"])
+        except (TypeError,ValueError):continue
+        floor={"QB":12,"RB":7,"WR":7,"TE":6}[row["position"]]
+        if row["injury_watch"] or points>=floor:
+            actionable.append(row)
+    actionable_found=sum(r["source_match"] for r in actionable)
+    print("Actionable PPR shortlist coverage (QB>=12, RB/WR>=7, TE>=6; injury watches exempt):",
+          actionable_found,"/",len(actionable),
+          f"({actionable_found/len(actionable):.1%})" if actionable else "")
+    print("Actionable shortlist unmatched:")
+    for r in actionable:
+        if not r["source_match"]:
+            print(f" - {r['player_name']} | {r['position']} | {r['team']}")
     print("Practical shortlist unmatched:")
     for r in practical:
         if not r["source_match"]:
