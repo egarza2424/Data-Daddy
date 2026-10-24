@@ -133,6 +133,17 @@
       "status": "OUT",
       "verified_date": "2026-10-23",
       "source": "https://www.nfl.com/news/nfl-week-7-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "11597",
+      "player_name": "Theo Johnson",
+      "position": "TE",
+      "team": "NYG",
+      "status": "OUT",
+      "verified_date": "2026-10-24",
+      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-saturday-oct-24"
     }
   ]
 }
