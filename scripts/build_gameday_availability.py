@@ -46,6 +46,9 @@ def apply_official_roster_activations(players, checked_at):
     sources = {
         "MIN": "https://www.vikings.com/",
         "SF": "https://www.49ers.com/",
+        "GB": "https://www.packers.com/",
+        "HOU": "https://www.houstontexans.com/",
+        "DEN": "https://www.denverbroncos.com/",
     }
     seen = set()
     corrected = 0
