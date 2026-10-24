@@ -148,11 +148,10 @@ snapshot_week,player_id,player_name,position,team,opponent,roster_status,injury_
 7,4144,Jonnu Smith,TE,GB,DET,Active,,35.9,35.9,30,5.03,5.03,35,19,17,9,4,65,80,82.0,F_TE_50pct_prior_PPG,2025
 7,7828,Noah Gray,TE,KC,SEA,Active,,37.0,37.0,24,4.99,4.99,36,25,28,15,5,85,21,49.0,F_TE_50pct_prior_PPG,2025
 7,11592,Erick All Jr.,TE,CIN,BAL,Active,,33.2,33.2,36,4.7,4.7,37,25,17,10,0,85,24,80.0,F_TE_50pct_prior_PPG,2025
-7,11597,Theo Johnson,TE,NYG,HOU,Active,Doubtful,25.2,25.2,42,3.71,3.71,38,22,22,11,2,38,24,25.0,F_TE_50pct_prior_PPG,2025
-7,11593,Brevyn Spann-Ford,TE,DAL,PHI,Active,,32.6,32.6,38,3.63,3.63,39,22,16,11,2,40,43,77.0,F_TE_50pct_prior_PPG,2025
-7,6001,Drew Sample,TE,CIN,BAL,Active,,27.1,27.1,39,2.64,2.64,40,17,9,2,2,51,24,80.0,F_TE_50pct_prior_PPG,2025
-7,12502,Gunnar Helm,TE,TEN,CLE,Active,,25.3,25.3,41,2.14,2.14,41,17,5,1,10,37,40,34.0,F_TE_50pct_prior_PPG,2025
-7,1339,Zach Ertz,TE,PHI,DAL,Active,,25.9,25.9,40,2.02,2.02,42,22,6,3,2,51,25,49.0,F_TE_50pct_prior_PPG,2025
+7,11593,Brevyn Spann-Ford,TE,DAL,PHI,Active,,32.6,32.6,38,3.63,3.63,38,22,16,11,2,40,43,77.0,F_TE_50pct_prior_PPG,2025
+7,6001,Drew Sample,TE,CIN,BAL,Active,,27.1,27.1,39,2.64,2.64,39,17,9,2,2,51,24,80.0,F_TE_50pct_prior_PPG,2025
+7,12502,Gunnar Helm,TE,TEN,CLE,Active,,25.3,25.3,41,2.14,2.14,40,17,5,1,10,37,40,34.0,F_TE_50pct_prior_PPG,2025
+7,1339,Zach Ertz,TE,PHI,DAL,Active,,25.9,25.9,40,2.02,2.02,41,22,6,3,2,51,25,49.0,F_TE_50pct_prior_PPG,2025
 7,9488,Jaxon Smith-Njigba,WR,SEA,KC,Active,,54.0,54.0,9,21.1,21.1,2,67,75,33,15,77,25,65.0,Editorial_Week7_WR_team_total_adjusted,2025
 7,9493,Puka Nacua,WR,LA,LV,Active,Questionable,71.0,71.0,1,22.1,22.1,1,100,98,34,21,60,72,85.0,Editorial_Week7_WR_team_total_adjusted,2025
 7,6786,CeeDee Lamb,WR,DAL,PHI,Active,,64.8,64.8,2,18.8,18.8,5,98,75,33,24,48,68,77.0,Editorial_Week7_WR_team_total_adjusted,2025
