@@ -1,0 +1,12 @@
+name: Week 7 Sleeper Shortlist
+on:
+  workflow_dispatch:
+jobs:
+  shortlist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python scripts/week7_sleeper_shortlist.py
