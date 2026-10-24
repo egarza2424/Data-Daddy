@@ -41,8 +41,12 @@ def main():
         injury=None
         market=manual.get((norm(p["player_name"]),pos))
         external=clamp(50+5*(market-ai)) if market is not None else None
+        # Disagreement alone is not evidence of upside. Require workload
+        # support before granting a large market-disagreement bonus.
         opp=val(p,"opportunity_score");usage=val(p,"usage_score")
         workload=(.5*opp+.5*usage) if opp is not None and usage is not None else None
+        if external is not None and workload is not None:
+            external=min(external,workload)
         matchup=val(p,"matchup_score");environment=val(p,"scoring_environment_score")
         game=(.7*matchup+.3*environment) if matchup is not None and environment is not None else None
         production=val(p,"production_score")
@@ -53,6 +57,8 @@ def main():
         # contribute between zero and their full weights.
         flags=[]
         if injury is None:flags.append("INJURY_ROLE_UNVERIFIED")
+        if market is not None and workload is not None and clamp(50+5*(market-ai))>workload:
+            flags.append("EXTERNAL_ADVANTAGE_CAPPED_BY_WORKLOAD")
         if external is None:flags.append("MANUAL_CONSENSUS_MISSING")
         if val(p,"model_confidence_score") is not None and val(p,"model_confidence_score")<50:
             flags.append("LOW_MODEL_CONFIDENCE")
@@ -74,6 +80,7 @@ def main():
     print("WEEK 7 SLEEPER CHALLENGER — READ ONLY (30/25/20/10/15)")
     print("Candidates:",len(rows),"| manual consensus matches:",sum(bool(r["manual_rank"]) for r in rows))
     print("Injury weight (30%) intentionally UNRESOLVED for all candidates pending verified beneficiary role.")
+    print("Market disagreement credit is capped by projected workload; this is a diagnostic guardrail, not a validated production formula.")
     print("Intervals reflect missing evidence; lower bounds are NOT comparable production sleeper scores.")
     for r in rows[:20]:
         print(f'{r["player_name"]} ({r["position"]} {r["team"]}): [{r["score_lower_bound"]:.1f}, {r["score_upper_bound"]:.1f}] | missing {r["missing_weight_pct"]}% | {r["review_flags"]}')
