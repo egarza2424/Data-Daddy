@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - "data/verified_injury_outs.json"
+      - "data/verified_roster_activations.json"
+      - "scripts/build_gameday_availability.py"
       - "data/starter_absence_opportunities.json"
       - "scripts/build_weekly_ppr_projections.py"
   schedule:
