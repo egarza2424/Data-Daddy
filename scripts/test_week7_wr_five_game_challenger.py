@@ -3,8 +3,22 @@ import json,csv
 from pathlib import Path
 from collections import defaultdict
 D=json.loads(Path("nfl-stats.json").read_text())
-rows=D.get("recent_player_performance",[])
-if isinstance(rows,dict):rows=rows.get("players",rows.get("rows",[]))
+rows=D.get("players",[])
+if isinstance(rows,dict):rows=rows.get("weekly_stats",rows.get("weekly",rows.get("stats",[])))
+if not rows:
+    def search(o):
+        if isinstance(o,list):
+            if o and isinstance(o[0],dict) and ("player_display_name" in o[0] or "receiving_yards" in o[0]):return o
+            for v in o[:4]:
+                found=search(v)
+                if found:return found
+        if isinstance(o,dict):
+            for v in o.values():
+                if isinstance(v,(dict,list)):
+                    found=search(v)
+                    if found:return found
+        return []
+    rows=search(D.get("recent_player_performance",{})) or search(D)
 if not isinstance(rows,list):raise RuntimeError("Unsupported weekly row structure")
 def norm(s):return " ".join(str(s or "").lower().replace(".","").split())
 by=defaultdict(list)
@@ -20,6 +34,8 @@ def metrics(g,n):
 scores={}
 for name,g in by.items():
     if g:scores[name]=(metrics(g,3),metrics(g,5))
+if not scores:
+    raise RuntimeError("No 2026 WR game rows found; inspect nfl-stats.json source schema")
 base_prod=max(v[0][0] for v in scores.values())
 new_prod=max(v[1][0] for v in scores.values())
 base_opp=max(v[0][1] for v in scores.values())
