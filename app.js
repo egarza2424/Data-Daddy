@@ -9784,34 +9784,6 @@ function renderPlayerCard(
       </div>
 
 
-      ${injuryBoost > 0 && !["OUT", "IR", "PUP"].includes(
-        String(player.injuryStatus || "").toUpperCase()
-      ) ? `
-
-<div class="injury-opportunity-boost">
-  <strong>Injury Opportunity Boost</strong>
-  <span>+${injuryBoost} model points</span>
-
-  ${(injuryOpportunityDetailsCache.get(player.id) || [])
-    .map((detail) => `
-      <div class="injury-boost-detail">
-        <strong>${detail.name}</strong>
-        <span>
-          ${detail.status}
-          ${detail.provisional ? " · Provisional" : ""}
-          · +${detail.points} points
-        </span>
-      </div>
-    `).join("")}
-
-  <p>
-    Experimental adjustment based on teammate
-    availability and recent usage.
-  </p>
-</div>
-
-      ` : ""}
-
       <div class="why-section">
   <h4>Why this player?</h4>
 
@@ -10026,6 +9998,35 @@ function renderPlayerCard(
 
         </div>
         `}
+
+      ${injuryBoost > 0 && !["OUT", "IR", "PUP"].includes(
+        String(player.injuryStatus || "").toUpperCase()
+      ) ? `
+
+<div class="injury-opportunity-boost">
+  <strong>Injury Opportunity Boost</strong>
+  <span>+${injuryBoost} model points</span>
+
+  ${(injuryOpportunityDetailsCache.get(player.id) || [])
+    .map((detail) => `
+      <div class="injury-boost-detail">
+        <strong>${detail.name}</strong>
+        <span>
+          ${detail.status}
+          ${detail.provisional ? " · Provisional" : ""}
+          · +${detail.points} points
+        </span>
+      </div>
+    `).join("")}
+
+  <p>
+    Experimental adjustment based on teammate
+    availability and recent usage.
+  </p>
+</div>
+
+      ` : ""}
+
       </article>
   `;
 } 
