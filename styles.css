@@ -5088,3 +5088,19 @@ section:has(#waiverWireList) {
 .model-comparison-summary{font-weight:600;margin:18px 0 8px}
 .model-comparison-disclaimer{font-size:.82rem;opacity:.75}
 @media(max-width:480px){.model-comparison-chart{padding:14px}.model-comparison-bar-row{grid-template-columns:60px minmax(0,1fr) 48px 34px;gap:6px;font-size:.78rem}}
+
+/* Compact comparison cards: show more of the eleven signals on screen. */
+.player-result-card { padding: 1rem; }
+.player-result-card .player-status { margin-top: 7px; gap: 6px; }
+@media (min-width: 901px) {
+  .results .player-status { min-height: 0; }
+  .results .player-comparison-header { min-height: 0; height: auto; }
+}
+.player-result-card .player-status span { padding: 4px 7px; font-size: 11px; }
+.player-result-card .player-score-summary { margin: 10px 0; gap: 8px; }
+.player-result-card .player-score-block { padding: 9px 7px; }
+.player-result-card .player-score { font-size: clamp(2.2rem, 4vw, 3.25rem); margin: 0.55rem 0; }
+.player-result-card .player-projected-ppr { font-size: 1.55rem; }
+.player-result-card .why-section { margin-top: 0.65rem; margin-bottom: 0.8rem; min-height: 0; }
+.player-result-card .why-section h4 { margin-bottom: 0.4rem; }
+.player-result-card .why-section li { margin-bottom: 0.2rem; }
