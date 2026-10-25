@@ -1,6 +1,8 @@
 player_id,player_name,position,team,status,source,week
 13295,Behren Morton,QB,NE,OUT,"Sleeper (preliminary, not NFL-verified)",7
+5854,Drew Lock,QB,SEA,OUT,"Sleeper (preliminary, not NFL-verified)",7
 11579,Audric Estime,RB,CLE,OUT,"Sleeper (preliminary, not NFL-verified)",7
+13418,Robert Henry Jr.,RB,SEA,OUT,"Sleeper (preliminary, not NFL-verified)",7
 829,Andy Dalton,QB,ATL,OUT,"Sleeper (preliminary, not NFL-verified)",7
 13554,CJ Williams,WR,JAX,OUT,"Sleeper (preliminary, not NFL-verified)",7
 13047,Jacardia Wright,RB,SEA,OUT,"Sleeper (preliminary, not NFL-verified)",7
@@ -8,6 +10,7 @@ player_id,player_name,position,team,status,source,week
 7538,Zach Wilson,QB,NO,OUT,"Sleeper (preliminary, not NFL-verified)",7
 11635,Ladd McConkey,WR,LAC,OUT,"Sleeper (preliminary, not NFL-verified)",7
 13347,Demond Claiborne,RB,MIN,OUT,"Sleeper (preliminary, not NFL-verified)",7
+11273,Ben VanSumeren,RB,KC,OUT,"Sleeper (preliminary, not NFL-verified)",7
 7583,Sam Ehlinger,QB,DEN,OUT,"Sleeper (preliminary, not NFL-verified)",7
 1737,Case Keenum,QB,CHI,OUT,"Sleeper (preliminary, not NFL-verified)",7
 12509,Tre' Harris,WR,LAC,OUT,"Sleeper (preliminary, not NFL-verified)",7
@@ -28,6 +31,7 @@ player_id,player_name,position,team,status,source,week
 7720,Kene Nwangwu,RB,NYJ,OUT,"Sleeper (preliminary, not NFL-verified)",7
 13577,Dallen Bentley,TE,DEN,OUT,"Sleeper (preliminary, not NFL-verified)",7
 5927,Terry McLaurin,WR,WAS,OUT,"Sleeper (preliminary, not NFL-verified)",7
+13404,Garrett Nussmeier,QB,KC,OUT,"Sleeper (preliminary, not NFL-verified)",7
 11748,Bub Means,WR,CLE,OUT,"Sleeper (preliminary, not NFL-verified)",7
 2307,Marcus Mariota,QB,WAS,OUT,"Sleeper (preliminary, not NFL-verified)",7
 11588,Jawhar Jordan,RB,HOU,OUT,"Sleeper (preliminary, not NFL-verified)",7
