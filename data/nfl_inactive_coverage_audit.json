@@ -1,21 +1,13 @@
 {
-  "generated_at_utc": "2026-10-25T17:09:41.517845+00:00",
+  "generated_at_utc": "2026-10-25T19:39:41.190425+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 9,
-    "pending": 17
+    "missing_near_kickoff": 10,
+    "pending": 15
   },
   "games": [
-    {
-      "game_id": "2026_07_PIT_NO",
-      "week": 7,
-      "kickoff_utc": "2026-10-25T13:30:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
     {
       "game_id": "2026_07_SF_ATL",
       "week": 7,
@@ -84,7 +76,7 @@
       "game_id": "2026_07_GB_DET",
       "week": 7,
       "kickoff_utc": "2026-10-25T20:25:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -92,7 +84,7 @@
       "game_id": "2026_07_LA_LV",
       "week": 7,
       "kickoff_utc": "2026-10-25T20:25:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
