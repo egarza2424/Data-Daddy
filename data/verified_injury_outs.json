@@ -276,6 +276,39 @@
       "status": "OUT",
       "verified_date": "2026-10-25",
       "source": "https://www.nfl.com/news/nfl-week-7-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "12504",
+      "player_name": "Kaleb Johnson",
+      "position": "RB",
+      "team": "GB",
+      "status": "OUT",
+      "verified_date": "2026-10-25",
+      "source": "https://www.nfl.com/news/nfl-week-7-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "13278",
+      "player_name": "Max Klare",
+      "position": "TE",
+      "team": "LAR",
+      "status": "OUT",
+      "verified_date": "2026-10-25",
+      "source": "https://www.nfl.com/news/nfl-week-7-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "12938",
+      "player_name": "Jackson Meeks",
+      "position": "TE",
+      "team": "DET",
+      "status": "OUT",
+      "verified_date": "2026-10-25",
+      "source": "https://www.nfl.com/news/nfl-week-7-inactives-players-ruled-out-sunday-2026-season"
     }
   ]
 }
