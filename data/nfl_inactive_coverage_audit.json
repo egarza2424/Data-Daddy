@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-10-25T13:22:33.644517+00:00",
+  "generated_at_utc": "2026-10-25T17:09:41.517845+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 1,
-    "pending": 25
+    "missing_near_kickoff": 9,
+    "pending": 17
   },
   "games": [
     {
@@ -20,7 +20,7 @@
       "game_id": "2026_07_SF_ATL",
       "week": 7,
       "kickoff_utc": "2026-10-25T17:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -28,7 +28,7 @@
       "game_id": "2026_07_CIN_BAL",
       "week": 7,
       "kickoff_utc": "2026-10-25T17:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -36,7 +36,7 @@
       "game_id": "2026_07_TB_CAR",
       "week": 7,
       "kickoff_utc": "2026-10-25T17:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -44,7 +44,7 @@
       "game_id": "2026_07_NYG_HOU",
       "week": 7,
       "kickoff_utc": "2026-10-25T17:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -52,7 +52,7 @@
       "game_id": "2026_07_IND_MIN",
       "week": 7,
       "kickoff_utc": "2026-10-25T17:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -60,7 +60,7 @@
       "game_id": "2026_07_MIA_NYJ",
       "week": 7,
       "kickoff_utc": "2026-10-25T17:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -68,7 +68,7 @@
       "game_id": "2026_07_CLE_TEN",
       "week": 7,
       "kickoff_utc": "2026-10-25T17:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -76,7 +76,7 @@
       "game_id": "2026_07_DEN_ARI",
       "week": 7,
       "kickoff_utc": "2026-10-25T20:05:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
