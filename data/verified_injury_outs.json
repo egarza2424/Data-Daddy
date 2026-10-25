@@ -177,6 +177,61 @@
       "status": "OUT",
       "verified_date": "2026-10-24",
       "source": "https://www.nfl.com/injuries/"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "8155",
+      "player_name": "Breece Hall",
+      "position": "RB",
+      "team": "NYJ",
+      "status": "OUT",
+      "verified_date": "2026-10-25",
+      "source": "https://www.nfl.com/news/nfl-week-7-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "6271",
+      "player_name": "Olamide Zaccheaus",
+      "position": "WR",
+      "team": "ATL",
+      "status": "OUT",
+      "verified_date": "2026-10-25",
+      "source": "https://www.nfl.com/news/nfl-week-7-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "4981",
+      "player_name": "Calvin Ridley",
+      "position": "WR",
+      "team": "TEN",
+      "status": "OUT",
+      "verified_date": "2026-10-25",
+      "source": "https://www.nfl.com/news/nfl-week-7-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "9508",
+      "player_name": "Tyjae Spears",
+      "position": "RB",
+      "team": "TEN",
+      "status": "OUT",
+      "verified_date": "2026-10-25",
+      "source": "https://www.nfl.com/news/nfl-week-7-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 7,
+      "player_id": "11600",
+      "player_name": "Ja'Tavion Sanders",
+      "position": "TE",
+      "team": "CAR",
+      "status": "OUT",
+      "verified_date": "2026-10-25",
+      "source": "https://www.nfl.com/news/nfl-week-7-inactives-players-ruled-out-sunday-2026-season"
     }
   ]
 }
