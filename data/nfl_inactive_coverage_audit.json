@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-10-25T19:39:41.190425+00:00",
+  "generated_at_utc": "2026-10-25T22:04:50.362290+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 10,
-    "pending": 15
+    "missing_near_kickoff": 11,
+    "pending": 14
   },
   "games": [
     {
@@ -92,7 +92,7 @@
       "game_id": "2026_07_KC_SEA",
       "week": 7,
       "kickoff_utc": "2026-10-26T00:20:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
