@@ -3,7 +3,7 @@
   "season": 2026,
   "injury_event_week": 7,
   "review_week": 8,
-  "verified_date": "2026-10-25",
+  "verified_date": "2026-10-26",
   "description": "Review-only verified Week 7 in-game injury events; no Week 8 OUT designation, workload redistribution, or projection change implied.",
   "events": [
     {
@@ -67,6 +67,22 @@
         "Seattle rushing efficiency"
       ],
       "review_focus": "Starting LT Charles Cross left in the fourth quarter and Josh Jones replaced him. Check Week 8 practice and starting lineup, pass-blocking pressure and run-blocking efficiency before any changes to Sam Darnold, Emanuel Wilson or Seahawks pass-catchers. No Week 8 OUT designation.",
+      "week8_status": "UNDETERMINED",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": "4199",
+      "player_name": "Aaron Jones Sr.",
+      "team": "MIN",
+      "position": "RB",
+      "week7_status": "DID_NOT_RETURN",
+      "injury": "left knee (aggravation of previously sprained MCL)",
+      "source": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/aaron-jones-will-have-an-mri-on-his-knee",
+      "beneficiary_review": [
+        "Jordan Mason",
+        "Minnesota backup running backs"
+      ],
+      "review_focus": "Coach Kevin O'Connell said Jones aggravated his earlier knee injury; MRI reportedly scheduled for 2026-10-26. Jordan Mason returned from thumb injury and logged 15 carries for 68 yards in Week 7. Check MRI results, Week 8 practice participation, Mason snap share, routes, targets and goal-line work, and other healthy backs before reallocating touches. Do not infer Week 8 OUT.",
       "week8_status": "UNDETERMINED",
       "automatic_projection_adjustment": false
     }
