@@ -1,0 +1,23 @@
+name: Week 7 Pregame Provenance Audit
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch 2026 NFL kickoff schedule
+        run: python scripts/fetch_nfl_schedule.py
+      - name: Audit Week 7 kickoff snapshot coverage
+        run: python scripts/audit_week7_pregame_provenance.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: week7-pregame-provenance
+          path: model-validation/2026-week7-pregame-provenance.json
