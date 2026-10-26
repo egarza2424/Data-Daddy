@@ -151,6 +151,23 @@ jobs:
           assert project(10.0, 20.0, 10.0, 0.35) == 10.0
           print("PASS: four scenarios evaluated against actual production uplift expression")
           PY
+      - name: Test injury eligibility gates against production code
+        if: (steps.window.outputs.eligible == 'true' || inputs.validate_only == true)
+        run: |
+          python - <<'PY'
+          import ast
+          from pathlib import Path
+          tree = ast.parse(Path("scripts/build_weekly_ppr_projections.py").read_text())
+          source = Path("scripts/build_weekly_ppr_projections.py").read_text()
+          required = (
+              "starter_id not in verified_out_ids",
+              'starter_id in projections["player_id"].astype(str).values',
+              'projections["player_id"].astype(str).eq(',
+          )
+          for gate in required:
+              assert gate in source, "Missing injury eligibility gate: " + gate
+          print("PASS: verified OUT, starter exclusion, and beneficiary ID gates present")
+          PY
       - name: Audit starter-absence projection boosts
         if: (steps.window.outputs.eligible == 'true' || inputs.validate_only == true)
         run: |
