@@ -202,6 +202,24 @@
       "review_focus": "2026-10-26 coach Mike Macdonald: 21-day return-to-practice window planned this week. Price remains on IR; practice designation is not activation or clearance to play Week 8. His return could reduce Emanuel Wilson/George Holani opportunities; separately verify Zach Charbonnet Week 8 availability and observed snaps, rushes, targets, routes and goal-line work before ranking changes.",
       "week8_status": "RETURN_TO_PRACTICE_WINDOW_PLANNED_NOT_ACTIVATED",
       "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Zaire Franklin",
+      "team": "GB",
+      "position": "LB",
+      "week7_status": "OUT",
+      "injury": "hairline fracture of leg (shin injury)",
+      "source": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/zaire-franklin-dealing-with-hairline-fracture-sean-rhyan-believed-to-have-high-ankle-sprain",
+      "beneficiary_review": [
+        "Isaiah McDuffie (IDP snaps)",
+        "Ty'Ron Hopper (IDP snaps)",
+        "Nick Niemann (IDP depth)",
+        "Carolina rushing matchup review"
+      ],
+      "review_focus": "New 2026-10-26 NFL Network Ian Rapoport report: hairline fracture confirmed after Week 7 absence; expected minimal games missed, not placed on IR. Week 8 Thursday vs CAR availability unresolved; Green Bay already without Edgerrin Cooper (Achilles). Check official Thursday designation and Week 7 linebacker snaps/tackles before IDP boost or Carolina run matchup adjustments. No verified offensive targets/routes redistribution; do not change standard PPR projections.",
+      "week8_status": "HAIRLINE_FRACTURE_EXPECTED_TO_MISS_TIME_NOT_OFFICIALLY_OUT",
+      "automatic_projection_adjustment": false
     }
   ]
 }
