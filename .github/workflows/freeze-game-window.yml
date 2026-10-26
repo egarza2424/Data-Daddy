@@ -160,6 +160,18 @@ jobs:
                       raise SystemExit("Starter-absence projection not applied: " + row["player_name"])
           print("Validated active starter-absence adjustments:", checked)
           PY
+      - name: Verify injury opportunity scenario configuration
+        if: (steps.window.outputs.eligible == 'true' || inputs.validate_only == true)
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          config = json.loads(Path("data/starter_absence_opportunities.json").read_text())
+          cases = config.get("cases", [])
+          print("Evidence-backed starter absence cases:", len(cases))
+          if not cases:
+              print("WARNING: No configured starter-absence scenarios exist; opportunity uplift has not been validated")
+          PY
       - name: Confirm live model inputs are current
         if: (steps.window.outputs.eligible == 'true' || inputs.validate_only == true)
         run: |
