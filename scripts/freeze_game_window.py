@@ -5,6 +5,7 @@ before scheduled kickoff, or if source/schedule evidence is missing.
 """
 import csv
 import json
+import hashlib
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -46,6 +47,13 @@ def main():
         source = SOURCE / f"2026-week{week}-ppr-projections.csv"
         if not source.exists():
             raise RuntimeError(f"Missing current PPR projections for {game_id}")
+        source_age_seconds = now.timestamp() - source.stat().st_mtime
+        if not 0 <= source_age_seconds <= 1800:
+            raise RuntimeError(
+                f"Projection source was not rebuilt recently for {game_id}: "
+                f"age={source_age_seconds:.0f}s"
+            )
+        source_sha256 = hashlib.sha256(source.read_bytes()).hexdigest()
         with source.open(newline="", encoding="utf-8") as f:
             rows = list(csv.DictReader(f))
         required = {"player_id", "player_name", "position", "team", "position_rank", "projected_ppr", "projected_position_rank", "model_score", "snapshot_week"}
@@ -89,6 +97,8 @@ def main():
             "kickoff_utc": kickoff.isoformat(),
             "minutes_before_kickoff": round(until.total_seconds() / 60, 2),
             "source": str(source), "players": len(selected),
+            "source_sha256": source_sha256,
+            "source_age_seconds": round(source_age_seconds, 1),
             "availability_feed": freshness,
             "official_inactives_feed_verified": official_verified,
             "audit_status": "captured_requires_source_and_inactive_verification"
