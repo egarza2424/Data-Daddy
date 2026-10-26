@@ -957,6 +957,60 @@ jobs:
           ls -lh model-snapshots/
           head -n 2 model-snapshots/*.csv
 
+      - name: Freeze PPR projections with immutable dated snapshot
+        if: steps.capture.outputs.captured == 'true'
+        run: |
+          python - <<'PY'
+          import csv
+          import json
+          import re
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          root = Path("model-snapshots")
+          today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+          frozen = root / f"{today}-pregame-ppr-projections.csv"
+          metadata = root / f"{today}-pregame-ppr-projections.json"
+          if frozen.exists() or metadata.exists():
+              raise SystemExit("Immutable PPR snapshot already exists; refusing replacement")
+          source_files = sorted(Path("projection-model").glob("2026-week*-ppr-projections.csv"))
+          if not source_files:
+              raise SystemExit("No PPR projections available to freeze")
+          live = Path("projection-model/current-live-model-snapshot.csv")
+          if not live.exists():
+              raise SystemExit("Live model snapshot missing")
+          with live.open(newline="", encoding="utf-8") as f:
+              ai_rows = list(csv.DictReader(f))
+          if not ai_rows:
+              raise SystemExit("AI snapshot is empty")
+          weeks = {str(r.get("snapshot_week", "")).strip() for r in ai_rows}
+          if len(weeks) != 1:
+              raise SystemExit("AI snapshot has mixed weeks")
+          week = next(iter(weeks))
+          candidate = Path(f"projection-model/2026-week{week}-ppr-projections.csv")
+          if not candidate.exists():
+              raise SystemExit(f"No PPR projections for captured AI week {week}")
+          with candidate.open(newline="", encoding="utf-8") as f:
+              ppr_rows = list(csv.DictReader(f))
+          required = {"snapshot_week", "player_id", "position", "projected_ppr", "projected_position_rank", "position_rank"}
+          if not ppr_rows or not required.issubset(ppr_rows[0]):
+              raise SystemExit("PPR source is missing required fields")
+          if {str(r["snapshot_week"]).strip() for r in ppr_rows} != {week}:
+              raise SystemExit("PPR week mismatch")
+          with frozen.open("x", newline="", encoding="utf-8") as f:
+              writer = csv.DictWriter(f, fieldnames=list(ppr_rows[0]))
+              writer.writeheader()
+              writer.writerows(ppr_rows)
+          metadata.write_text(json.dumps({
+              "snapshot_utc": datetime.now(timezone.utc).isoformat(),
+              "week": int(week),
+              "source": str(candidate),
+              "rows": len(ppr_rows),
+              "audit_status": "requires per-game kickoff verification"
+          }, indent=2) + "\\n", encoding="utf-8")
+          print("Frozen PPR projections:", frozen, len(ppr_rows))
+          PY
+
       - name: Commit snapshot
         if: steps.capture.outputs.captured == 'true'
         run: |
