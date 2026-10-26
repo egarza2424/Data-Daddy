@@ -1,21 +1,13 @@
 {
-  "generated_at_utc": "2026-10-26T05:02:08.796598+00:00",
+  "generated_at_utc": "2026-10-26T11:00:31.475648+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 1,
+    "missing_near_kickoff": 0,
     "pending": 15
   },
   "games": [
-    {
-      "game_id": "2026_07_KC_SEA",
-      "week": 7,
-      "kickoff_utc": "2026-10-26T00:20:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
     {
       "game_id": "2026_07_DAL_PHI",
       "week": 7,
