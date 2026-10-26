@@ -41,9 +41,14 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python scripts/audit_week7_historical_commits.py
+      - name: Calculate provisional Week 7 accuracy from pregame commits
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/audit_week7_provisional_accuracy.py
       - uses: actions/upload-artifact@v4
         with:
           name: week7-pregame-provenance
           path: |
             model-validation/2026-week7-pregame-provenance.json
             model-validation/2026-week7-historical-commit-coverage.json
+            model-validation/2026-week7-pregame-provisional-accuracy.json
