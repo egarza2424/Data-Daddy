@@ -28,13 +28,13 @@
       "position": "WR",
       "week7_status": "RULED_OUT_IN_GAME",
       "injury": "knee",
-      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-7-games-2026",
+      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-monday-oct-26",
       "beneficiary_review": [
         "Tory Horton",
         "Seattle WR rotation"
       ],
-      "review_focus": "Separate special-teams return replacement from offensive route/target replacement; assess Week 7 route participation.",
-      "week8_status": "UNDETERMINED",
+      "review_focus": "2026-10-26 coach Mike Macdonald reports positive early returns on knee injury. Still no Week 8 clearance. Do not redistribute targets to Tory Horton or Seattle WRs without official absence and measured routes/targets.",
+      "week8_status": "EARLY_TESTS_POSITIVE_NO_OFFICIAL_GAME_DESIGNATION",
       "automatic_projection_adjustment": false
     },
     {
@@ -49,7 +49,7 @@
         "George Holani",
         "Emanuel Wilson"
       ],
-      "review_focus": "Week 7 observed: Emanuel Wilson 24 carries, 100 rushing yards, 1 TD with Zach Charbonnet unavailable and Velus Jones Jr. exiting; review George Holani's snaps/routes and Charbonnet's Week 8 return before any projection change.",
+      "review_focus": "Week 7 observed: Emanuel Wilson 24 carries, 100 rushing yards, 1 TD with Zach Charbonnet unavailable and Velus Jones Jr. exiting. 2026-10-26: Jadarian Price return-to-practice window planned, while Charbonnet was activated from PUP Oct 22 but OUT Week 7. Check both players' Week 8 activation/status and George Holani snaps/routes before giving Wilson a starter-absence boost.",
       "week8_status": "UNDETERMINED",
       "automatic_projection_adjustment": false
     },
@@ -59,15 +59,15 @@
       "team": "SEA",
       "position": "OT",
       "week7_status": "RULED_OUT_IN_GAME",
-      "injury": "ankle",
-      "source": "https://www.seahawks.com/news/2026-week-7-seahawks-vs-chiefs-in-game-injury-updates",
+      "injury": "MRI-confirmed high ankle sprain",
+      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-monday-oct-26",
       "beneficiary_review": [
         "Josh Jones (backup left tackle)",
         "Sam Darnold pass protection",
         "Seattle rushing efficiency"
       ],
-      "review_focus": "Starting LT Charles Cross left in the fourth quarter and Josh Jones replaced him. Check Week 8 practice and starting lineup, pass-blocking pressure and run-blocking efficiency before any changes to Sam Darnold, Emanuel Wilson or Seahawks pass-catchers. No Week 8 OUT designation.",
-      "week8_status": "UNDETERMINED",
+      "review_focus": "2026-10-26 NFL Network: MRI confirmed high ankle sprain; Seattle hopes absence limited to 1-2 weeks, not a Week 8 OUT designation. Josh Jones replaced Cross in Week 7. Monitor Week 8 practice/official game status, pressure rates and run-blocking before adjusting Darnold, pass catchers or RBs.",
+      "week8_status": "EXPECTED_TO_MISS_1_TO_2_WEEKS_NOT_OFFICIALLY_OUT",
       "automatic_projection_adjustment": false
     },
     {
@@ -184,6 +184,23 @@
       ],
       "review_focus": "Coach DeMeco Ryans confirmed turf toe and Noel reportedly wore a boot after the game. Texans have Week 8 bye; review Noel's Week 7 routes/targets and teammates' route share and absences before making any Week 9 target redistribution. No severity grade or recovery timeline confirmed.",
       "week8_status": "BYE_NO_GAME",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": "13286",
+      "player_name": "Jadarian Price",
+      "team": "SEA",
+      "position": "RB",
+      "week7_status": "ON_INJURED_RESERVE",
+      "injury": "chest",
+      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-monday-oct-26",
+      "beneficiary_review": [
+        "Emanuel Wilson",
+        "George Holani",
+        "Zach Charbonnet"
+      ],
+      "review_focus": "2026-10-26 coach Mike Macdonald: 21-day return-to-practice window planned this week. Price remains on IR; practice designation is not activation or clearance to play Week 8. His return could reduce Emanuel Wilson/George Holani opportunities; separately verify Zach Charbonnet Week 8 availability and observed snaps, rushes, targets, routes and goal-line work before ranking changes.",
+      "week8_status": "RETURN_TO_PRACTICE_WINDOW_PLANNED_NOT_ACTIVATED",
       "automatic_projection_adjustment": false
     }
   ]
