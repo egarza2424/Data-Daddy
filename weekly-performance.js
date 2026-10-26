@@ -118,16 +118,33 @@
       // Latest completed model-validation report; missing future weeks are not displayed.
       let latest=null, ranking=null;
       for(let week=22;week>=1;week--){
-        try { const result=await load("model-validation/2026-week"+week+"-validation.csv");if(result.length){latest=week;ranking=result;break;} }
+        try { let result; try { result=await load("model-validation/2026-week"+week+"-validation.csv"); } catch(e) { result=await load("model-validation/2026-week"+week+"-provisional-validation.csv"); state.provisional=true; } if(result.length){latest=week;ranking=result;break;} }
         catch(e){continue;}
       }
       if(!latest) throw new Error("No completed ranking audit found.");
       state.week=latest;state.reports.ranking=ranking;
+      if(state.provisional){const label="PRELIMINARY — completed games only; Monday players excluded. ";root.querySelector("#trackerNote").setAttribute("data-audit-status",label);}
       try {state.reports.projections=await load("projection-model/2026-week"+latest+"-ppr-projections.csv");}catch(e){state.reports.projections=[];}
       try {state.reports.comparison=await load("model-validation/ai-vs-ppr-ranking-audit.csv");}catch(e){state.reports.comparison=[];}
       renderAccuracyChart(ranking, latest);
+      if(state.provisional){const chartTitle=document.querySelector("#trackerAccuracyChart .tracker-chart-week");if(chartTitle)chartTitle.textContent="Week "+latest+" · PRELIMINARY · Monday players excluded";}
       const chart=document.getElementById("trackerAccuracyChart");
-      const comparison=state.reports.comparison.filter(r=>Number(r.week)===latest);
+      let comparison=state.reports.comparison.filter(r=>Number(r.week)===latest);
+      if(!comparison.length&&state.provisional){
+        const cutoffs={QB:24,RB:36,WR:36,TE:24};
+        comparison=[];
+        for(const pos of Object.keys(cutoffs)){
+          const group=ranking.filter(r=>r.position===pos&&r.actual_ppr!=="");
+          const cutoff=cutoffs[pos];
+          const actualTop=new Set([...group].sort((a,b)=>number(b.actual_ppr)-number(a.actual_ppr)).slice(0,cutoff).map(r=>r.player_id));
+          for(const [model,col] of [["AI Rankings","position_rank"],["PPR Projection Rankings","projected_position_rank"]]){
+            const rows=group.map(r=>({...r,projected_position_rank:(state.reports.projections.find(p=>p.player_id===r.player_id&&p.position===r.position)||{}).projected_position_rank})).filter(r=>r[col]!==undefined&&r[col]!=="");
+            const chosen=rows.sort((a,b)=>number(a[col])-number(b[col])).slice(0,cutoff);
+            const hits=chosen.filter(r=>actualTop.has(r.player_id)).length;
+            comparison.push({position:pos,model,cutoff,top_group_hits:hits,evaluated_picks:chosen.length,top_group_accuracy_pct:chosen.length?100*hits/chosen.length:0});
+          }
+        }
+      }
       if(chart&&comparison.length){
         const order=["QB","RB","WR","TE"];
         const blocks=order.map(pos=>{
@@ -144,6 +161,7 @@
       try {state.reports.waiver=await load("data/waiver_validation/waiver_prediction_audit.csv");}
       catch(e){state.reports.waiver=[];}
       render();
+      if(state.provisional){const note=root.querySelector("#trackerNote");note.textContent="PRELIMINARY · Monday players excluded · "+note.textContent;}
     }catch(e){status.textContent="Weekly audit data is not available yet.";const chart=document.getElementById("trackerAccuracyChart");if(chart)chart.textContent="No completed weekly accuracy audit available yet.";root.querySelector("#trackerCards").innerHTML="";}
   }
   initialize();
