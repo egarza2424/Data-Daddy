@@ -25,6 +25,8 @@ jobs:
           python-version: "3.12"
       - name: Refresh authoritative schedule
         run: python scripts/fetch_nfl_schedule.py
+      - name: Refresh injury availability before game lock
+        run: python scripts/build_gameday_availability.py
       - name: Freeze eligible games
         run: python scripts/freeze_game_window.py
       - name: Commit immutable game locks
