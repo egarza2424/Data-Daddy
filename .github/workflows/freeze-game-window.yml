@@ -213,6 +213,9 @@ jobs:
           config = json.loads(Path("data/starter_absence_opportunities.json").read_text())
           cases = config.get("cases", [])
           print("Evidence-backed starter absence cases:", len(cases))
+          for case in cases:
+              print("Case:", case.get("week"), case.get("starter_player_id"),
+                    "beneficiaries:", len(case.get("beneficiaries", [])))
           if not cases:
               print("WARNING: No configured starter-absence scenarios exist; opportunity uplift has not been validated")
           PY
