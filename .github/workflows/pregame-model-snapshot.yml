@@ -875,7 +875,9 @@ jobs:
           if not snapshots:
               raise RuntimeError("Dated snapshot not found")
 
-          shutil.copyfile(snapshot_path, snapshots[-1])
+          # Do not rewrite dated frozen captures during downstream normalization.
+          # The original dated file is immutable; the live copy may be normalized.
+          print("Preserving dated pregame capture:", snapshots[-1])
           PY
 
 
