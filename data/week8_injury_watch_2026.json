@@ -4,7 +4,7 @@
   "injury_event_week": 7,
   "review_week": 8,
   "verified_date": "2026-10-26",
-  "description": "Review-only verified Week 7 in-game injury events; no Week 8 OUT designation, workload redistribution, or projection change implied.",
+  "description": "Review-only verified Week 7 injury events and Oct 26 follow-ups; Week 8 projections remain unchanged absent confirmed designations and measured usage.",
   "events": [
     {
       "player_id": "7526",
@@ -77,13 +77,13 @@
       "position": "RB",
       "week7_status": "DID_NOT_RETURN",
       "injury": "left knee (aggravation of previously sprained MCL)",
-      "source": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/aaron-jones-will-have-an-mri-on-his-knee",
+      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-monday-oct-26",
       "beneficiary_review": [
         "Jordan Mason",
         "Minnesota backup running backs"
       ],
-      "review_focus": "Coach Kevin O'Connell said Jones aggravated his earlier knee injury; MRI reportedly scheduled for 2026-10-26. Jordan Mason returned from thumb injury and logged 15 carries for 68 yards in Week 7. Check MRI results, Week 8 practice participation, Mason snap share, routes, targets and goal-line work, and other healthy backs before reallocating touches. Do not infer Week 8 OUT.",
-      "week8_status": "UNDETERMINED",
+      "review_focus": "2026-10-26 ESPN Schefter reports knee issue not considered significant and Jones is day-to-day; Week 8 at DET remains unresolved. Week 7: Jordan Mason 38 offensive snaps and 15 carries for 68 yards versus Jones 15 snaps, 8 carries and 1 target; review Mason routes, pass protection, red-zone work and Jones practice before reallocating. Do not treat Jones as ruled out or assign full backfield to Mason.",
+      "week8_status": "DAY_TO_DAY_REPORTED_NOT_OFFICIAL_GAME_DESIGNATION",
       "automatic_projection_adjustment": false
     },
     {
@@ -101,6 +101,89 @@
       ],
       "review_focus": "2026-10-26 NFL Network reporting indicates a suspected high-ankle sprain, with X-rays negative and MRI pending. Packers coach Matt LaFleur already expected both Sean Rhyan and Jacob Monk to miss Thursday Week 8 against Carolina. Review John Williams' Week 7 center snaps, pass-blocking pressure, rushing efficiency, and short-week offensive line lineup. Do not assign a confirmed diagnosis, Week 8 OUT designation, IR transaction, or automatic projection change without official confirmation.",
       "week8_status": "UNDETERMINED",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Taylor Moton",
+      "team": "CAR",
+      "position": "OT",
+      "week7_status": "FRACTURED_FIBULA_CONFIRMED_BY_HEAD_COACH",
+      "injury": "left fibula fracture",
+      "source": "https://www.panthers.com/news/dave-canales-taylor-moton-out-for-a-while-fractured-fibula",
+      "beneficiary_review": [
+        "Monroe Freeling (replacement right tackle)",
+        "Bryce Young pass protection",
+        "Carolina rushing efficiency"
+      ],
+      "review_focus": "Coach Dave Canales confirmed fracture and extended absence; rookie Monroe Freeling replaced Moton and started Carolina's first four games. Panthers at Packers Thursday Oct 29. Review Freeling's Week 1-4 and Week 7 pressure rates, run-blocking and team pass-protection, especially with GB center Sean Rhyan also injured. This is a protection downgrade watch, not an offensive target redistribution or an unmeasured PPR penalty.",
+      "week8_status": "EXPECTED_TO_MISS_TIME_NO_OFFICIAL_WEEK8_DESIGNATION",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Jacob Monk",
+      "team": "GB",
+      "position": "C",
+      "week7_status": "DID_NOT_RETURN",
+      "injury": "quadriceps",
+      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-7-games-2026",
+      "beneficiary_review": [
+        "John Williams (emergency center)",
+        "Jordan Love pass protection",
+        "Josh Jacobs run-blocking"
+      ],
+      "review_focus": "Backup center Jacob Monk injured after Sean Rhyan exited. Check Monday/Tuesday practices and whether John Williams will start Thursday Oct 29 versus Carolina; quantify center pressure/run blocking before adjusting offensive projections. No official Week 8 OUT.",
+      "week8_status": "UNDETERMINED",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Tyrone Tracy Jr.",
+      "team": "NYG",
+      "position": "RB",
+      "week7_status": "DID_NOT_RETURN",
+      "injury": "hamstring",
+      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-7-games-2026",
+      "beneficiary_review": [
+        "Cam Skattebo",
+        "Devin Singletary"
+      ],
+      "review_focus": "Week 7 Tracy left with hamstring issue. Cam Skattebo logged 17 rushes for 124 yards and one TD but also reported hamstring discomfort; Devin Singletary scored in overtime. Giants are on Week 8 bye; no Week 8 fantasy start recommendation. Reassess for Week 9, with both backs' recovery and route/target splits.",
+      "week8_status": "BYE_NO_GAME",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Cam Skattebo",
+      "team": "NYG",
+      "position": "RB",
+      "week7_status": "REPORTED_HAMSTRING_DISCOMFORT",
+      "injury": "hamstring concern",
+      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-monday-oct-26",
+      "beneficiary_review": [
+        "Devin Singletary",
+        "Tyrone Tracy Jr."
+      ],
+      "review_focus": "NFL Network's Mike Garafolo reports Skattebo expected to be OK after late-game hamstring concern. Week 8 bye means no immediate waiver or PPR redistribution. Week 7 17 rushes, 124 yards and 1 TD; assess practice/health before Week 9.",
+      "week8_status": "BYE_EXPECTED_OK_NOT_CLEARED_FOR_WEEK9",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Jaylin Noel",
+      "team": "HOU",
+      "position": "WR",
+      "week7_status": "LEFT_GAME_TURF_TOE_CONFIRMED_BY_COACH",
+      "injury": "turf toe",
+      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-7-games-2026",
+      "beneficiary_review": [
+        "Tank Dell",
+        "Marvin Harrison Jr.",
+        "Nico Collins"
+      ],
+      "review_focus": "Coach DeMeco Ryans confirmed turf toe and Noel reportedly wore a boot after the game. Texans have Week 8 bye; review Noel's Week 7 routes/targets and teammates' route share and absences before making any Week 9 target redistribution. No severity grade or recovery timeline confirmed.",
+      "week8_status": "BYE_NO_GAME",
       "automatic_projection_adjustment": false
     }
   ]
