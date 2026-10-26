@@ -110,9 +110,21 @@ jobs:
                       f"No frozen pregame snapshot for Week {requested_week}. "
                       "Audit blocked: do not substitute a later-week snapshot."
                   )
-              snapshot = max(matching, key=lambda item: item[0])[1]
+              snapshot = min(matching, key=lambda item: item[0])[1]
           else:
-              snapshot = max(dated_files, key=lambda item: item[0])[1]
+              latest_path = max(dated_files, key=lambda item: item[0])[1]
+              with latest_path.open("r", encoding="utf-8", newline="") as f:
+                  latest_first = next(csv.DictReader(f), None)
+              latest_week = str((latest_first or {}).get("snapshot_week") or "").strip()
+              same_week = []
+              for date, path in dated_files:
+                  with path.open("r", encoding="utf-8", newline="") as f:
+                      first = next(csv.DictReader(f), None)
+                  if first and str(first.get("snapshot_week") or "").strip() == latest_week:
+                      same_week.append((date, path))
+              if not same_week:
+                  raise SystemExit("No eligible week snapshots")
+              snapshot = min(same_week, key=lambda item: item[0])[1]
 
           with snapshot.open(
               "r",
