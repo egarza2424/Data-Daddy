@@ -37,7 +37,13 @@ jobs:
                   print(date, item["sha"][:12])
           print("Historical prediction versions:", len(commits))
           PY
+      - name: Reconstruct pregame predictions from historical commits
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/audit_week7_historical_commits.py
       - uses: actions/upload-artifact@v4
         with:
           name: week7-pregame-provenance
-          path: model-validation/2026-week7-pregame-provenance.json
+          path: |
+            model-validation/2026-week7-pregame-provenance.json
+            model-validation/2026-week7-historical-commit-coverage.json
