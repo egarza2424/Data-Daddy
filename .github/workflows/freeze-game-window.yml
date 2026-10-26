@@ -112,6 +112,47 @@ jobs:
         if: steps.window.outputs.eligible == 'true'
         run: |
           python scripts/build_weekly_ppr_projections.py
+      - name: Audit starter-absence projection boosts
+        if: steps.window.outputs.eligible == 'true'
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          source = Path("projection-model")
+          files = sorted(source.glob("2026-week*-ppr-projections.csv"))
+          if not files:
+              raise SystemExit("No rebuilt projection output")
+          config_path = Path("data/starter_absence_opportunities.json")
+          if not config_path.exists():
+              print("No starter-absence configuration")
+              raise SystemExit(0)
+          config = json.loads(config_path.read_text())
+          with files[-1].open(newline="") as stream:
+              rows = list(csv.DictReader(stream))
+          if not rows:
+              raise SystemExit("Empty projection output")
+          week = int(rows[0]["snapshot_week"])
+          ids = {str(r["player_id"]): r for r in rows}
+          verified_path = Path("data/verified_injury_outs.json")
+          verified = json.loads(verified_path.read_text()) if verified_path.exists() else {}
+          out = {str(x["player_id"]) for x in verified.get("out", [])
+                 if x.get("week") == week and x.get("season") == 2026}
+          checked = 0
+          for case in config.get("cases", []):
+              if case.get("season") != 2026 or case.get("week") != week:
+                  continue
+              starter = str(case["starter_player_id"])
+              if starter not in out or starter in ids:
+                  continue
+              for benefit in case.get("beneficiaries", []):
+                  row = ids.get(str(benefit["player_id"]))
+                  if not row:
+                      continue
+                  checked += 1
+                  if row.get("projection_model") != "StarterAbsence_WR_target_share_shrinkage":
+                      raise SystemExit("Starter-absence projection not applied: " + row["player_name"])
+          print("Validated active starter-absence adjustments:", checked)
+          PY
       - name: Confirm live model inputs are current
         if: steps.window.outputs.eligible == 'true'
         run: |
