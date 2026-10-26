@@ -4,7 +4,11 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: "0 19 * * 2-6"
+    # Early kickoff buffers in UTC for Thursday, Sunday, and Monday.
+    - cron: "0 20 * * 4"
+    - cron: "0 13 * * 0"
+    - cron: "0 20 * * 1"
+    - cron: "0 19 * * 2,3,5,6"
 
 permissions:
   contents: write
@@ -226,13 +230,10 @@ jobs:
                   "model-snapshots",
                   filename
                 );
-
-                           if (fs.existsSync(destination)) {
-                console.log(
-                  `Replacing existing pregame snapshot: ${destination}`
-                );
-
-                fs.unlinkSync(destination);
+              if (fs.existsSync(destination)) {
+                console.log(`Immutable snapshot exists: ${destination}; preserving original.`);
+                fs.appendFileSync(process.env.GITHUB_OUTPUT, "captured=false\n");
+                return;
               }
 
                             const csv =
