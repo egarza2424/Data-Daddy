@@ -85,6 +85,23 @@
       "review_focus": "Coach Kevin O'Connell said Jones aggravated his earlier knee injury; MRI reportedly scheduled for 2026-10-26. Jordan Mason returned from thumb injury and logged 15 carries for 68 yards in Week 7. Check MRI results, Week 8 practice participation, Mason snap share, routes, targets and goal-line work, and other healthy backs before reallocating touches. Do not infer Week 8 OUT.",
       "week8_status": "UNDETERMINED",
       "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Sean Rhyan",
+      "team": "GB",
+      "position": "C",
+      "week7_status": "LEFT_GAME",
+      "injury": "ankle (suspected high-ankle sprain; MRI pending)",
+      "source": "https://www.acmepackingcompany.com/green-bay-packers-injuries/88743/packers-injury-updates-sean-rhyan-zaire-franklin-likely-to-miss-time",
+      "beneficiary_review": [
+        "John Williams (potential replacement center)",
+        "Jordan Love pass protection",
+        "Josh Jacobs rushing efficiency"
+      ],
+      "review_focus": "2026-10-26 NFL Network reporting indicates a suspected high-ankle sprain, with X-rays negative and MRI pending. Packers coach Matt LaFleur already expected both Sean Rhyan and Jacob Monk to miss Thursday Week 8 against Carolina. Review John Williams' Week 7 center snaps, pass-blocking pressure, rushing efficiency, and short-week offensive line lineup. Do not assign a confirmed diagnosis, Week 8 OUT designation, IR transaction, or automatic projection change without official confirmation.",
+      "week8_status": "UNDETERMINED",
+      "automatic_projection_adjustment": false
     }
   ]
 }
