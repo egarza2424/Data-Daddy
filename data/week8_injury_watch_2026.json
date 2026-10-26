@@ -4,7 +4,7 @@
   "injury_event_week": 7,
   "review_week": 8,
   "verified_date": "2026-10-26",
-  "description": "Review-only verified Week 7 injury events and Oct 26 Week 8 updates; Panthers confirmed Taylor Moton IR and Monday estimated injury report (Coker limited, Lewis DNP). Week 8 projections unchanged absent measured beneficiary usage.",
+  "description": "Review-only verified Week 7 injury events and Oct 26 Week 8 updates; Panthers Moton IR and Monday estimates; Packers Golden newly listed foot/shoulder estimated DNP, Rhyan estimated DNP. No Week 8 PPR projection changes absent official absences and measured usage.",
   "events": [
     {
       "player_id": "7526",
@@ -99,8 +99,8 @@
         "Jordan Love pass protection",
         "Josh Jacobs rushing efficiency"
       ],
-      "review_focus": "2026-10-26 NFL Network reporting indicates a suspected high-ankle sprain, with X-rays negative and MRI pending. Packers coach Matt LaFleur already expected both Sean Rhyan and Jacob Monk to miss Thursday Week 8 against Carolina. Review John Williams' Week 7 center snaps, pass-blocking pressure, rushing efficiency, and short-week offensive line lineup. Do not assign a confirmed diagnosis, Week 8 OUT designation, IR transaction, or automatic projection change without official confirmation.",
-      "week8_status": "UNDETERMINED",
+      "review_focus": "2026-10-26 NFL Network reporting indicates a suspected high-ankle sprain, with X-rays negative and MRI pending. Packers coach Matt LaFleur already expected both Sean Rhyan and Jacob Monk to miss Thursday Week 8 against Carolina. Review John Williams' Week 7 center snaps, pass-blocking pressure, rushing efficiency, and short-week offensive line lineup. Do not assign a confirmed diagnosis, Week 8 OUT designation, IR transaction, or automatic projection change without official confirmation. OFFICIAL NEW Oct 26 Packers Week 8 injury report: estimated DNP Monday (ankle), not a confirmed OUT designation. Tuesday/Wednesday practice and Wednesday final designation are next decision points.",
+      "week8_status": "ESTIMATED_DNP_MONDAY_OCT26_NO_GAME_DESIGNATION",
       "automatic_projection_adjustment": false
     },
     {
@@ -295,6 +295,26 @@
         "Chuba Hubbard rushing efficiency"
       ],
       "review_focus": "NEW Oct 26 official Panthers estimated Monday walk-through: starting guard Damien Lewis DNP (knee), NOT ruled out for Week 8 Thursday at GB. Fellow guard Torricelli Simpkins III also estimated DNP (ankle). Week 7 Lewis played 43/56 offensive snaps (77%); team reports he and other starters were pulled late in blowout. Verify Tuesday/Wednesday participation and replacement guards, pressure rates and run-blocking before any Bryce Young, Hubbard or WR/TE projection changes. Separate from confirmed Taylor Moton IR.",
+      "week8_status": "ESTIMATED_DNP_MONDAY_OCT26_NO_GAME_DESIGNATION",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Matthew Golden",
+      "team": "GB",
+      "position": "WR",
+      "week7_status": "PLAYED_WEEK7_57_OF_67_OFFENSIVE_SNAPS_12_TARGETS",
+      "injury": "shoulder / foot (foot newly listed Week 8)",
+      "source": "https://www.packers.com/team/injury-report/week/REG-8",
+      "beneficiary_review": [
+        "Christian Watson",
+        "Tucker Kraft",
+        "Savion Williams",
+        "Bo Melton",
+        "Skyy Moore",
+        "Jonnu Smith"
+      ],
+      "review_focus": "NEW Oct 26 OFFICIAL Packers Week 8 Monday estimated practice: DNP with shoulder/foot injuries; foot newly listed versus last week, shoulder ongoing. Week 7 at DET: Golden 6 receptions on 12 of 42 GB targets (28.6%) for 39 yards and 57 of 67 offensive snaps (85%); Watson 8 targets/54 snaps; Kraft 6 targets/59 snaps; Savion Williams 3 targets/40 snaps; Bo Melton 2 targets. Season Golden 69 of 263 GB targets (26.2%) and Watson 56 of 263 (21.3%) per secondary usage aggregation, verify denominators before model use. Short-week Thu Oct 29 vs CAR. Prioritize Watson/Kraft existing full-time routes and Williams next WR opportunity; check Golden Tuesday/Wednesday practice, official game designation, verified routes per dropback, target share, alignment, red-zone looks, and teammate health. DO NOT mark Golden OUT or automatically redistribute 12 Week 7 targets without confirmed absence.",
       "week8_status": "ESTIMATED_DNP_MONDAY_OCT26_NO_GAME_DESIGNATION",
       "automatic_projection_adjustment": false
     }
