@@ -122,33 +122,18 @@
         catch(e){continue;}
       }
       if(state.provisional){
-        try {
-          const response=await fetch("data/week7-pregame-ranking-preliminary.json?t="+Date.now(),{cache:"no-store"});
-          if(!response.ok)throw new Error("No verified historical ranking summary");
-          const audit=await response.json();
-          if(Number(audit.week)!==latest||audit.status!=="PRELIMINARY")throw new Error("Audit week mismatch");
-          state.week=latest;
-          const chart=document.getElementById("trackerAccuracyChart");
-          const rows=audit.rows||[];
-          const totalAI=rows.reduce((n,r)=>n+r.ai_hits,0),totalPPR=rows.reduce((n,r)=>n+r.ppr_hits,0);
-          status.textContent="Week "+latest+" · PRELIMINARY historical pregame ranking audit · "+audit.matched_players+" matched of "+audit.pregame_players+" pregame predictions; "+audit.unmatched_players+" unmatched. Monday results pending.";
-          if(chart){
-            chart.setAttribute("aria-label","Week "+latest+" preliminary historical pregame AI versus projected PPR top-group ranking overlaps");
-            chart.innerHTML='<p class="tracker-chart-week">Week '+esc(latest)+' · PRELIMINARY · historical pre-kickoff predictions</p>'+
-              rows.map(r=>{
-                const denom=Math.min(r.top_n,r.matched);
-                return '<div class="tracker-chart-row"><strong>'+esc(r.position)+' · Top '+r.top_n+' · '+r.matched+' matched</strong></div>'+
-                  [["AI Score",r.ai_hits],["Projected PPR",r.ppr_hits]].map(([name,hits])=>
-                    '<div class="tracker-chart-row"><span class="tracker-chart-label">'+name+'</span><div class="tracker-chart-track"><div class="tracker-chart-fill" style="width:'+(denom?100*hits/denom:0).toFixed(1)+'%"></div></div><strong class="tracker-chart-value">'+hits+'/'+denom+'</strong></div>'
-                  ).join("");
-              }).join("")+
-              '<p class="tracker-chart-caption">AI '+totalAI+' hits · Projected PPR '+totalPPR+' hits. Matched-cohort top-group overlap ONLY; missing results excluded, not final weekly accuracy. QB has 23 matched players. No postgame projections used.</p>';
-          }
-          root.querySelector("#trackerCards").innerHTML='<p><strong>Week '+esc(latest)+' audit in progress.</strong> Historical pregame ranking overlap is displayed above. Individual rank misses and final top-N rates will be added after remaining games and full-cohort verification. Week 6 remains the last completed audit.</p>';
-          root.querySelectorAll("[data-tracker-category]").forEach(b=>{b.disabled=true;b.setAttribute("aria-pressed","false");});
-          root.querySelector("#trackerPosition").disabled=true;
-          return;
-        }catch(e){ /* Preserve existing safe withholding if summary unavailable. */ }
+        state.week=latest;
+        status.textContent="Week "+latest+" accuracy audit pending completion of tonight's game. Historical pregame predictions have been preserved; results will appear after the full-week review.";
+        const chart=document.getElementById("trackerAccuracyChart");
+        if(chart){
+          chart.removeAttribute("role");
+          chart.setAttribute("aria-label","Week "+latest+" accuracy pending final game results");
+          chart.innerHTML='<div class="tracker-audit-pending"><strong>Week '+esc(latest)+' · Audit pending</strong><p>Ranking accuracy will be posted after tonight\'s game and verification of the complete Week 7 results.</p></div>';
+        }
+        root.querySelector("#trackerCards").innerHTML="<p>Week "+latest+" player ranking results will be available after the final game and validation.</p>";
+        root.querySelectorAll("[data-tracker-category]").forEach(b=>{b.disabled=true;b.setAttribute("aria-pressed","false");});
+        root.querySelector("#trackerPosition").disabled=true;
+        return;
       }
       if(state.provisional){
         status.textContent="Week "+latest+" preliminary audit suspended: prediction snapshot was not verified as frozen before kickoff.";
