@@ -119,7 +119,7 @@ jobs:
           import csv, json
           from pathlib import Path
           source = Path("projection-model")
-          files = sorted(source.glob("2026-week*-ppr-projections.csv"))
+          files = sorted(source.glob("2026-week*-ppr-projections.csv"), key=lambda p: p.stat().st_mtime, reverse=True)
           if not files:
               raise SystemExit("No rebuilt projection output")
           config_path = Path("data/starter_absence_opportunities.json")
@@ -127,7 +127,7 @@ jobs:
               print("No starter-absence configuration")
               raise SystemExit(0)
           config = json.loads(config_path.read_text())
-          with files[-1].open(newline="") as stream:
+          with files[0].open(newline="") as stream:
               rows = list(csv.DictReader(stream))
           if not rows:
               raise SystemExit("Empty projection output")
