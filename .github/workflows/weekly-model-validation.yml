@@ -187,6 +187,13 @@ jobs:
                   f"week={week}\n"
               )
           PY
+      - name: Verify AI snapshot was captured before every included kickoff
+        env:
+          SNAPSHOT: ${{ steps.snapshot.outputs.snapshot }}
+        run: |
+          python scripts/fetch_nfl_schedule.py
+          python scripts/verify_frozen_ppr_kickoffs.py --ai-snapshot "$SNAPSHOT"
+
       - name: Validate frozen rankings
         env:
           SNAPSHOT: ${{ steps.snapshot.outputs.snapshot }}
