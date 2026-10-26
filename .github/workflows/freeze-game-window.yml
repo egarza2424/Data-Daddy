@@ -59,6 +59,55 @@ jobs:
       - name: Install projection model dependencies
         if: steps.window.outputs.eligible == 'true'
         run: python -m pip install pandas numpy
+      - name: Verify upcoming-game injury inputs match fresh feed
+        if: steps.window.outputs.eligible == 'true'
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+          from zoneinfo import ZoneInfo
+          feed = json.loads(Path("data/gameday_availability.json").read_text())
+          schedule = json.loads(Path("data/nfl_schedule_2026.json").read_text())
+          now = datetime.now(timezone.utc)
+          teams = set()
+          for g in schedule["games"]:
+              day, clock = g.get("gameday"), g.get("gametime")
+              if not day or not clock or int(g.get("season", 2026)) != 2026:
+                  continue
+              kickoff = datetime.fromisoformat(day + "T" + clock).replace(
+                  tzinfo=ZoneInfo("America/New_York")).astimezone(timezone.utc)
+              if timedelta(minutes=55) <= kickoff - now <= timedelta(minutes=95):
+                  teams.update((g["home_team"], g["away_team"]))
+          aliases = {"LAR": "LA", "JAC": "JAX", "WSH": "WAS"}
+          norm = lambda x: aliases.get(str(x or "").upper(), str(x or "").upper())
+          teams = {norm(t) for t in teams}
+          players = feed.get("players", {})
+          directory = {(norm(p.get("team")), str(p.get("position") or "").upper(),
+                        str(p.get("name") or "").strip().casefold()): p
+                       for p in players.values() if isinstance(p, dict)}
+          with Path("projection-model/current-live-model-snapshot.csv").open(newline="") as fp:
+              rows = list(csv.DictReader(fp))
+          if not rows or not {"team", "position", "player_name", "injury_status", "roster_status"}.issubset(rows[0]):
+              raise SystemExit("Missing model injury status columns")
+          checked = 0
+          differences = []
+          for row in rows:
+              if norm(row["team"]) not in teams:
+                  continue
+              key = (norm(row["team"]), row["position"].upper(),
+                     row["player_name"].strip().casefold())
+              fresh = directory.get(key)
+              if fresh is None:
+                  continue
+              checked += 1
+              for field in ("injury_status", "roster_status"):
+                  if str(row.get(field) or "").upper() != str(fresh.get(field) or "").upper():
+                      differences.append((row["player_name"], field))
+          if checked == 0 or differences:
+              raise SystemExit(f"Model injury input sync failed: checked={checked}, mismatches={differences[:10]}")
+          print(f"Checked {checked} live model injury statuses against fresh feed")
+          PY
       - name: Rebuild predictions after injury refresh
         if: steps.window.outputs.eligible == 'true'
         run: |
