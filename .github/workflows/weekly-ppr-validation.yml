@@ -13,6 +13,8 @@ permissions:
 
 jobs:
   validate-ppr:
+    # Block mutable weekly PPR files from being scored as pregame predictions.
+    if: ${{ false }}
     runs-on: ubuntu-latest
 
     steps:
