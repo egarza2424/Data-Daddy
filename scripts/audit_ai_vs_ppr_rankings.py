@@ -4,6 +4,8 @@ Only matched player IDs with recorded actual PPR are scored. Never changes model
 """
 from pathlib import Path
 import argparse
+import json
+from datetime import datetime
 import numpy as np
 import pandas as pd
 
@@ -12,9 +14,23 @@ OUT = Path("model-validation/ai-vs-ppr-ranking-audit.csv")
 
 def evaluate(week):
     actual_path = Path(f"model-validation/2026-week{week}-validation.csv")
-    projection_path = Path(f"projection-model/2026-week{week}-ppr-projections.csv")
-    if not actual_path.exists() or not projection_path.exists():
-        raise FileNotFoundError(f"Completed validation and frozen PPR projections required for week {week}")
+    snapshots = []
+    for candidate in Path("model-snapshots").glob("*-pregame-ppr-projections.csv"):
+        metadata = candidate.with_suffix(".json")
+        if not metadata.exists():
+            continue
+        try:
+            info = json.loads(metadata.read_text(encoding="utf-8"))
+            captured = datetime.fromisoformat(info["snapshot_utc"].replace("Z", "+00:00"))
+            if int(info["week"]) == week and captured.tzinfo is not None:
+                snapshots.append((captured, candidate, info))
+        except (ValueError, KeyError, TypeError):
+            continue
+    if not actual_path.exists() or not snapshots:
+        raise FileNotFoundError(f"Week {week}: completed validation and timestamped frozen PPR snapshot required")
+    captured, projection_path, info = min(snapshots, key=lambda row: row[0])
+    if info.get("audit_status") != "kickoff_verified":
+        raise ValueError(f"Week {week}: PPR snapshot not verified against kickoffs; withholding results")
     actual = pd.read_csv(actual_path, dtype={"player_id": str})
     projections = pd.read_csv(projection_path, dtype={"player_id": str})
     required_actual = {"player_id", "position", "position_rank", "actual_ppr"}
@@ -64,10 +80,10 @@ def main():
     weeks = [args.week] if args.week else sorted(int(p.stem.split("-week")[1].split("-")[0]) for p in Path("model-validation").glob("2026-week*-validation.csv") if "-week" in p.stem)
     frames = []
     for week in weeks:
-        if not Path(f"projection-model/2026-week{week}-ppr-projections.csv").exists():
-            print(f"Skipping Week {week}: no frozen PPR projection file")
-            continue
-        frames.append(evaluate(week))
+        try:
+            frames.append(evaluate(week))
+        except (FileNotFoundError, ValueError) as error:
+            print(f"Skipping Week {week}: {error}")
     if not frames:
         raise ValueError("No completed weeks with both ranking models available")
     result = pd.concat(frames, ignore_index=True)
