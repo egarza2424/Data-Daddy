@@ -1,0 +1,49 @@
+name: Freeze Game-Time AI and PPR Predictions
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Every 5 minutes; the script only captures games 90-60 minutes from kickoff.
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: game-time-prediction-locks
+  cancel-in-progress: false
+
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Refresh authoritative schedule
+        run: python scripts/fetch_nfl_schedule.py
+      - name: Freeze eligible games
+        run: python scripts/freeze_game_window.py
+      - name: Commit immutable game locks
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add model-snapshots/game-locks/
+          if git diff --cached --quiet; then
+            echo "No games in capture window."
+            exit 0
+          fi
+          git commit -m "Freeze game-time AI and PPR predictions"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort || true
+              exit 1
+            fi
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 3
+          done
+          exit 1
