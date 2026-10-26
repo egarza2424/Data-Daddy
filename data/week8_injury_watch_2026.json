@@ -4,7 +4,7 @@
   "injury_event_week": 7,
   "review_week": 8,
   "verified_date": "2026-10-26",
-  "description": "Review-only verified Week 7 injury events and Oct 26 follow-ups; official GB Jacob Monk IR transaction and previously untracked NE Romeo Doubs IR status added. Week 8 projections unchanged absent measured beneficiary usage.",
+  "description": "Review-only verified Week 7 injury events and Oct 26 Week 8 updates; Panthers confirmed Taylor Moton IR and Monday estimated injury report (Coker limited, Lewis DNP). Week 8 projections unchanged absent measured beneficiary usage.",
   "events": [
     {
       "player_id": "7526",
@@ -110,14 +110,14 @@
       "position": "OT",
       "week7_status": "FRACTURED_FIBULA_CONFIRMED_BY_HEAD_COACH",
       "injury": "left fibula fracture",
-      "source": "https://www.panthers.com/news/dave-canales-taylor-moton-out-for-a-while-fractured-fibula",
+      "source": "https://www.panthers.com/news/panthers-place-right-tackle-taylor-moton-on-injured-reserve",
       "beneficiary_review": [
         "Monroe Freeling (replacement right tackle)",
         "Bryce Young pass protection",
         "Carolina rushing efficiency"
       ],
-      "review_focus": "Coach Dave Canales confirmed fracture and extended absence; rookie Monroe Freeling replaced Moton and started Carolina's first four games. Panthers at Packers Thursday Oct 29. Review Freeling's Week 1-4 and Week 7 pressure rates, run-blocking and team pass-protection, especially with GB center Sean Rhyan also injured. This is a protection downgrade watch, not an offensive target redistribution or an unmeasured PPR penalty.",
-      "week8_status": "EXPECTED_TO_MISS_TIME_NO_OFFICIAL_WEEK8_DESIGNATION",
+      "review_focus": "NEW OFFICIAL Oct 26 Panthers transaction: placed Taylor Moton on injured reserve following left fibula fracture; confirmed OUT Week 8 Thursday at GB and at least four games. Monroe Freeling, who started first four games in Moton's absence, played 33/56 offensive snaps Week 7 after Moton exited (Moton 23/56). Compare Freeling's first-four-game pressure/run-blocking, Week 7 33 snaps, and Panthers guard availability (Damien Lewis and Torricelli Simpkins III estimated DNP Oct 26) before adjusting Bryce Young, Chuba Hubbard or receivers. No direct target redistribution and no automatic PPR adjustment.",
+      "week8_status": "OUT_ON_INJURED_RESERVE_CONFIRMED_2026_10_26",
       "automatic_projection_adjustment": false
     },
     {
@@ -257,6 +257,45 @@
       ],
       "review_focus": "Previously untracked, NOT a new Oct 26 injury: Patriots officially placed Doubs on IR Oct 19; out Week 8 at Miami Nov 1. In Week 7 without Doubs, Brown 49/54 offensive snaps, 6 targets; Douglas 35 snaps, 4 targets; Hunter Henry 41 snaps, 7 targets; Chism 34 snaps, 1 target; Kyle Williams 21 snaps, 1 target (Week 7 snap and box-score reports). Check routes per dropback, targets per route, slot/outside alignments, Week 6 usage with Brown back, and continuing Mack Hollins absence before projecting redistribution. Prioritize Brown's full-time role and Henry's proven Week 7 targets, Douglas secondary; do not simply add all Doubs targets or automatically boost PPR.",
       "week8_status": "OUT_ON_INJURED_RESERVE_CONFIRMED_OCT_19",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Jalen Coker",
+      "team": "CAR",
+      "position": "WR",
+      "week7_status": "PLAYED_WEEK7_37_OF_56_OFFENSIVE_SNAPS",
+      "injury": "shoulder",
+      "source": "https://www.panthers.com/news/week-8-monday-injury-report-banged-up-in-a-short-week",
+      "beneficiary_review": [
+        "Tetairoa McMillan",
+        "John Metchie III",
+        "Brycen Tremayne",
+        "David Moore",
+        "Darren Waller",
+        "Mitchell Evans",
+        "Tommy Tremble"
+      ],
+      "review_focus": "NEW Oct 26 official Panthers estimated Monday walk-through: Jalen Coker limited with shoulder injury, NOT ruled out for Week 8 Thursday at GB. Week 7 official snaps: Coker 37/56 (66%), Tetairoa McMillan 38/56 (68%), John Metchie 26/56 (46%), Brycen Tremayne 21/56 (38%), David Moore 13/56 (23%), Darren Waller 25/56 (45%), Mitchell Evans 28/56 (50%), Tommy Tremble 27/56 (48%). Check Coker's next two practices and official game designation; if ruled out, confirm routes per dropback, target share, alignment, red-zone usage and teammate availability before reallocating any targets. No automatic projection change.",
+      "week8_status": "ESTIMATED_LIMITED_MONDAY_OCT26_NO_GAME_DESIGNATION",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Damien Lewis",
+      "team": "CAR",
+      "position": "G",
+      "week7_status": "PLAYED_WEEK7_43_OF_56_OFFENSIVE_SNAPS",
+      "injury": "knee",
+      "source": "https://www.panthers.com/news/week-8-monday-injury-report-banged-up-in-a-short-week",
+      "beneficiary_review": [
+        "Carolina replacement guard rotation",
+        "Monroe Freeling",
+        "Bryce Young pass protection",
+        "Chuba Hubbard rushing efficiency"
+      ],
+      "review_focus": "NEW Oct 26 official Panthers estimated Monday walk-through: starting guard Damien Lewis DNP (knee), NOT ruled out for Week 8 Thursday at GB. Fellow guard Torricelli Simpkins III also estimated DNP (ankle). Week 7 Lewis played 43/56 offensive snaps (77%); team reports he and other starters were pulled late in blowout. Verify Tuesday/Wednesday participation and replacement guards, pressure rates and run-blocking before any Bryce Young, Hubbard or WR/TE projection changes. Separate from confirmed Taylor Moton IR.",
+      "week8_status": "ESTIMATED_DNP_MONDAY_OCT26_NO_GAME_DESIGNATION",
       "automatic_projection_adjustment": false
     }
   ]
