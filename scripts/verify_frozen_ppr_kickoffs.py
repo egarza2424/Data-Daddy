@@ -52,7 +52,51 @@ def verify(date):
     metadata_path.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
     print(f"Verified {len(rows)} frozen PPR rows, {len(included)} teams before kickoff")
 
+def verify_ai_snapshot(path):
+    """Fail closed: date-only AI captures have no exact time; use end of UTC date."""
+    from datetime import timedelta
+    path = Path(path)
+    date_text = path.name.replace("-pregame-model-snapshot.csv", "")
+    captured_upper_bound = datetime.fromisoformat(date_text).replace(tzinfo=timezone.utc) + timedelta(days=1)
+    with path.open(newline="", encoding="utf-8") as file:
+        rows = list(csv.DictReader(file))
+    if not rows:
+        raise RuntimeError("Empty frozen AI snapshot")
+    weeks = {str(row.get("snapshot_week", "")).strip() for row in rows}
+    if len(weeks) != 1:
+        raise RuntimeError("Mixed AI snapshot weeks")
+    week = next(iter(weeks))
+    schedule = json.loads(Path("data/nfl_schedule_2026.json").read_text(encoding="utf-8"))
+    games = [game for game in schedule["games"] if str(game.get("week")) == week]
+    kickoffs = {}
+    for game in games:
+        day = str(game.get("gameday") or "").strip()
+        clock = str(game.get("gametime") or "").strip()
+        if not day or not clock:
+            raise RuntimeError("Missing game kickoff in schedule")
+        if len(clock.split(":")) == 2:
+            clock += ":00"
+        kickoff = datetime.fromisoformat(f"{day}T{clock}").replace(tzinfo=ZoneInfo("America/New_York")).astimezone(timezone.utc)
+        for field in ("home_team", "away_team"):
+            club = team(game.get(field))
+            if club in kickoffs:
+                raise RuntimeError("Duplicate team in schedule")
+            kickoffs[club] = kickoff
+    teams = {team(row.get("team")) for row in rows}
+    missing = teams - set(kickoffs)
+    late = sorted(t for t in teams if t in kickoffs and captured_upper_bound >= kickoffs[t])
+    if missing or late:
+        raise RuntimeError(f"AI accuracy blocked: unknown teams={sorted(missing)}; potentially postkickoff teams={late}")
+    print(f"AI snapshot eligible: {path}; {len(rows)} rows, {len(teams)} teams")
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--date", required=True)
-    verify(parser.parse_args().date)
+    parser.add_argument("--date")
+    parser.add_argument("--ai-snapshot")
+    args = parser.parse_args()
+    if bool(args.date) == bool(args.ai_snapshot):
+        parser.error("Provide exactly one of --date or --ai-snapshot")
+    if args.date:
+        verify(args.date)
+    else:
+        verify_ai_snapshot(args.ai_snapshot)
