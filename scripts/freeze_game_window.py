@@ -1,0 +1,78 @@
+"""Freeze each game's AI and PPR predictions during the 90-minute inactive-report window.
+
+Never overwrite a captured game. Capture is rejected outside 90-60 minutes
+before scheduled kickoff, or if source/schedule evidence is missing.
+"""
+import csv
+import json
+from datetime import datetime, timezone, timedelta
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+ROOT = Path("model-snapshots/game-locks")
+SCHEDULE = Path("data/nfl_schedule_2026.json")
+SOURCE = Path("projection-model")
+
+def normalize(team):
+    return {"LAR": "LA", "JAC": "JAX", "WSH": "WAS", "OAK": "LV"}.get(str(team).strip().upper(), str(team).strip().upper())
+
+def main():
+    now = datetime.now(timezone.utc)
+    schedule = json.loads(SCHEDULE.read_text(encoding="utf-8"))
+    locked = 0
+    for game in schedule["games"]:
+        if str(game.get("season")) not in ("", "2026"):
+            continue
+        day, clock = str(game.get("gameday", "")), str(game.get("gametime", ""))
+        if not day or not clock:
+            continue
+        if len(clock.split(":")) == 2:
+            clock += ":00"
+        kickoff = datetime.fromisoformat(f"{day}T{clock}").replace(tzinfo=ZoneInfo("America/New_York")).astimezone(timezone.utc)
+        until = kickoff - now
+        if not timedelta(minutes=60) <= until <= timedelta(minutes=90):
+            continue
+        week = int(game["week"])
+        home, away = normalize(game["home_team"]), normalize(game["away_team"])
+        game_id = f"{day}-{away}-at-{home}"
+        folder = ROOT / f"2026-week{week}"
+        dest = folder / f"{game_id}.csv"
+        meta = folder / f"{game_id}.json"
+        if dest.exists() or meta.exists():
+            print("Already frozen:", game_id)
+            continue
+        source = SOURCE / f"2026-week{week}-ppr-projections.csv"
+        if not source.exists():
+            raise RuntimeError(f"Missing current PPR projections for {game_id}")
+        with source.open(newline="", encoding="utf-8") as f:
+            rows = list(csv.DictReader(f))
+        required = {"player_id", "player_name", "position", "team", "position_rank", "projected_ppr", "projected_position_rank", "model_score", "snapshot_week"}
+        if not rows or not required.issubset(rows[0]):
+            raise RuntimeError(f"Missing AI/PPR fields for {game_id}")
+        selected = [row for row in rows if normalize(row["team"]) in {home, away} and str(row["snapshot_week"]) == str(week)]
+        if not selected or {normalize(r["team"]) for r in selected} != {home, away}:
+            raise RuntimeError(f"Both teams not represented in {game_id}")
+        if len({(r["player_id"], r["position"]) for r in selected}) != len(selected):
+            raise RuntimeError(f"Duplicate player IDs in {game_id}")
+        # Never silently claim this is a validated inactive feed: the capture
+        # records its actual source and time for subsequent provenance checks.
+        folder.mkdir(parents=True, exist_ok=True)
+        with dest.open("x", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=rows[0].keys())
+            writer.writeheader()
+            writer.writerows(selected)
+        meta.write_text(json.dumps({
+            "game_id": game_id, "week": week,
+            "home_team": home, "away_team": away,
+            "capture_utc": now.isoformat(),
+            "kickoff_utc": kickoff.isoformat(),
+            "minutes_before_kickoff": round(until.total_seconds() / 60, 2),
+            "source": str(source), "players": len(selected),
+            "audit_status": "captured_requires_source_and_inactive_verification"
+        }, indent=2) + "\n", encoding="utf-8")
+        print("Frozen", game_id, len(selected), "players", round(until.total_seconds()/60), "minutes pre-kickoff")
+        locked += 1
+    print("New game locks:", locked)
+
+if __name__ == "__main__":
+    main()
