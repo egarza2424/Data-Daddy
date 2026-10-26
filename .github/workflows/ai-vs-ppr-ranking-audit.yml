@@ -11,7 +11,8 @@ permissions:
 
 jobs:
   audit:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    # Fail closed until the audit reads immutable kickoff-verified PPR snapshots.
+    if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
