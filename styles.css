@@ -5104,3 +5104,12 @@ section:has(#waiverWireList) {
 .player-result-card .why-section { margin-top: 0.65rem; margin-bottom: 0.8rem; min-height: 0; }
 .player-result-card .why-section h4 { margin-bottom: 0.4rem; }
 .player-result-card .why-section li { margin-bottom: 0.2rem; }
+
+/* Performance tracker: clear pending state and stable left-side labels */
+#ranking-hits .tracker-audit-pending{padding:24px 20px;border:1px dashed #43536a;border-radius:12px;background:#142235;text-align:center;max-width:100%;}
+#ranking-hits .tracker-audit-pending strong{display:block;color:#f1c66a;font-size:1.05rem;margin-bottom:8px;}
+#ranking-hits .tracker-audit-pending p{margin:0;line-height:1.55;color:#d9e1ec;}
+#ranking-hits .tracker-chart-row{grid-template-columns:minmax(112px,155px) minmax(0,1fr) 65px 45px;gap:12px;}
+#ranking-hits .tracker-chart-label{min-width:0;white-space:normal;overflow-wrap:normal;line-height:1.3;}
+#ranking-hits .tracker-chart-row>strong:first-child{grid-column:1/-1;white-space:normal;line-height:1.35;}
+@media(max-width:600px){#ranking-hits .tracker-chart-row{grid-template-columns:minmax(82px,105px) minmax(0,1fr) 58px 36px;gap:8px;}#ranking-hits .tracker-audit-pending{padding:18px 12px;}}
