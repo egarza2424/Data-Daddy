@@ -49,7 +49,24 @@
         "George Holani",
         "Emanuel Wilson"
       ],
-      "review_focus": "Review available backs and snap/carry/route split; check Zach Charbonnet return before Week 8 adjustment.",
+      "review_focus": "Week 7 observed: Emanuel Wilson 24 carries, 100 rushing yards, 1 TD with Zach Charbonnet unavailable and Velus Jones Jr. exiting; review George Holani's snaps/routes and Charbonnet's Week 8 return before any projection change.",
+      "week8_status": "UNDETERMINED",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Charles Cross",
+      "team": "SEA",
+      "position": "OT",
+      "week7_status": "RULED_OUT_IN_GAME",
+      "injury": "ankle",
+      "source": "https://www.seahawks.com/news/2026-week-7-seahawks-vs-chiefs-in-game-injury-updates",
+      "beneficiary_review": [
+        "Josh Jones (backup left tackle)",
+        "Sam Darnold pass protection",
+        "Seattle rushing efficiency"
+      ],
+      "review_focus": "Starting LT Charles Cross left in the fourth quarter and Josh Jones replaced him. Check Week 8 practice and starting lineup, pass-blocking pressure and run-blocking efficiency before any changes to Sam Darnold, Emanuel Wilson or Seahawks pass-catchers. No Week 8 OUT designation.",
       "week8_status": "UNDETERMINED",
       "automatic_projection_adjustment": false
     }
