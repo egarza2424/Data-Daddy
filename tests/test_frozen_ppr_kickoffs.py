@@ -53,7 +53,7 @@ class FreezeTests(unittest.TestCase):
 
     def test_date_only_ai_snapshot_blocks_after_thursday_game(self):
         ai = self.root / "model-snapshots" / "2026-10-24-pregame-model-snapshot.csv"
-        ai.write_text("snapshot_week,player_id,team,position,position_rank\n7,1,NE,QB,1\n")
+        ai.write_text("snapshot_week,player_id,team,position,position_rank\n7,1,NE,QB,1\n".replace("\\n", "\n"))
         schedule = self.root / "data" / "nfl_schedule_2026.json"
         data = json.loads(schedule.read_text())
         data["games"][0]["gameday"] = "2026-10-22"
