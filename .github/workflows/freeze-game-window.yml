@@ -109,7 +109,9 @@ jobs:
               for field in ("injury_status", "roster_status"):
                   if str(row.get(field) or "").upper() != str(fresh.get(field) or "").upper():
                       differences.append((row["player_name"], field))
-          if checked == 0 or differences:
+          if not teams:
+              print('No kickoff teams currently eligible; matchup injury comparison not applicable')
+          elif checked == 0 or differences:
               raise SystemExit(f"Model injury input sync failed: checked={checked}, mismatches={differences[:10]}")
           print(f"Checked {checked} live model injury statuses against fresh feed")
           PY
