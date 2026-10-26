@@ -1,0 +1,29 @@
+name: Test Pregame Snapshot Audit Safety
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/verify_frozen_ppr_kickoffs.py"
+      - "scripts/audit_ai_vs_ppr_rankings.py"
+      - "tests/test_frozen_ppr_kickoffs.py"
+      - ".github/workflows/test-pregame-audit-safety.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile audit scripts
+        run: |
+          python -m py_compile scripts/verify_frozen_ppr_kickoffs.py
+          python -m py_compile scripts/audit_ai_vs_ppr_rankings.py
+      - name: Run kickoff verification regression tests
+        run: python -m unittest discover -s tests -p "test_frozen_ppr_kickoffs.py" -v
