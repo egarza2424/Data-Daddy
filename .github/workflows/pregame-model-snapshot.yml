@@ -1007,7 +1007,7 @@ jobs:
               "source": str(candidate),
               "rows": len(ppr_rows),
               "audit_status": "requires per-game kickoff verification"
-          }, indent=2) + "\\n", encoding="utf-8")
+          }, indent=2) + "\n", encoding="utf-8")
           print("Frozen PPR projections:", frozen, len(ppr_rows))
           PY
 
