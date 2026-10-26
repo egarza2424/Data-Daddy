@@ -1,37 +1,13 @@
 {
-  "generated_at_utc": "2026-10-26T00:18:18.021345+00:00",
+  "generated_at_utc": "2026-10-26T05:02:08.796598+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 4,
-    "pending": 14
+    "missing_near_kickoff": 1,
+    "pending": 15
   },
   "games": [
-    {
-      "game_id": "2026_07_DEN_ARI",
-      "week": 7,
-      "kickoff_utc": "2026-10-25T20:05:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
-    {
-      "game_id": "2026_07_GB_DET",
-      "week": 7,
-      "kickoff_utc": "2026-10-25T20:25:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
-    {
-      "game_id": "2026_07_LA_LV",
-      "week": 7,
-      "kickoff_utc": "2026-10-25T20:25:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
     {
       "game_id": "2026_07_KC_SEA",
       "week": 7,
@@ -148,6 +124,14 @@
       "game_id": "2026_08_PHI_WAS",
       "week": 8,
       "kickoff_utc": "2026-11-02T01:20:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_08_CHI_SEA",
+      "week": 8,
+      "kickoff_utc": "2026-11-03T01:15:00+00:00",
       "status": "pending",
       "official_inactives_verified": false,
       "source_url": null
