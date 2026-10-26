@@ -1,0 +1,40 @@
+{
+  "season": 2026,
+  "week": 7,
+  "status": "PRELIMINARY",
+  "source": "Week 7 historical per-game pre-kickoff GitHub commit reconstruction, Actions run 40383898984",
+  "methodology": "Top-N overlap within players matched to provisional actual PPR results; not full-week accuracy. QB denominator 23.",
+  "pregame_players": 318,
+  "matched_players": 221,
+  "unmatched_players": 97,
+  "rows": [
+    {
+      "position": "QB",
+      "top_n": 24,
+      "matched": 23,
+      "ai_hits": 23,
+      "ppr_hits": 23
+    },
+    {
+      "position": "RB",
+      "top_n": 36,
+      "matched": 57,
+      "ai_hits": 29,
+      "ppr_hits": 30
+    },
+    {
+      "position": "WR",
+      "top_n": 36,
+      "matched": 105,
+      "ai_hits": 24,
+      "ppr_hits": 23
+    },
+    {
+      "position": "TE",
+      "top_n": 24,
+      "matched": 36,
+      "ai_hits": 16,
+      "ppr_hits": 17
+    }
+  ]
+}
