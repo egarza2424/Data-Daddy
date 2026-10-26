@@ -25,16 +25,49 @@ jobs:
           python-version: "3.12"
       - name: Refresh authoritative schedule
         run: python scripts/fetch_nfl_schedule.py
+      - name: Check for games inside capture window
+        id: window
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timedelta, timezone
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          schedule = json.loads(Path("data/nfl_schedule_2026.json").read_text())
+          now = datetime.now(timezone.utc)
+          eligible = False
+          for game in schedule["games"]:
+              if str(game.get("season")) not in ("", "2026"):
+                  continue
+              day, clock = str(game.get("gameday") or ""), str(game.get("gametime") or "")
+              if not day or not clock:
+                  continue
+              if len(clock.split(":")) == 2:
+                  clock += ":00"
+              kickoff = datetime.fromisoformat(f"{day}T{clock}").replace(
+                  tzinfo=ZoneInfo("America/New_York")).astimezone(timezone.utc)
+              if timedelta(minutes=60) <= kickoff - now <= timedelta(minutes=90):
+                  eligible = True
+                  break
+          with open(os.environ["GITHUB_OUTPUT"], "a") as out:
+              out.write("eligible=" + str(eligible).lower() + "\\n")
+          print("Game in freeze window:", eligible)
+          PY
       - name: Refresh injury availability before game lock
+        if: steps.window.outputs.eligible == 'true'
         run: python scripts/build_gameday_availability.py
       - name: Install projection model dependencies
+        if: steps.window.outputs.eligible == 'true'
         run: python -m pip install pandas numpy
       - name: Rebuild predictions after injury refresh
+        if: steps.window.outputs.eligible == 'true'
         run: |
           python scripts/build_weekly_ppr_projections.py
       - name: Freeze eligible games
+        if: steps.window.outputs.eligible == 'true'
         run: python scripts/freeze_game_window.py
       - name: Commit immutable game locks
+        if: steps.window.outputs.eligible == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
