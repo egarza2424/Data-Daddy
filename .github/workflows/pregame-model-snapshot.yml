@@ -1011,6 +1011,15 @@ jobs:
           print("Frozen PPR projections:", frozen, len(ppr_rows))
           PY
 
+      - name: Verify frozen PPR snapshot against every team's kickoff
+        if: steps.capture.outputs.captured == 'true'
+        continue-on-error: true
+        run: |
+          python -m py_compile scripts/verify_frozen_ppr_kickoffs.py
+          python scripts/verify_frozen_ppr_kickoffs.py --date "$(date -u +%F)"
+          # If verification fails, the metadata remains unverified.
+          # Downstream accuracy audits must reject unverified captures.
+
       - name: Commit snapshot
         if: steps.capture.outputs.captured == 'true'
         run: |
