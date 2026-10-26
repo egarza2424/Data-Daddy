@@ -17,6 +17,26 @@ jobs:
         run: python scripts/fetch_nfl_schedule.py
       - name: Audit Week 7 kickoff snapshot coverage
         run: python scripts/audit_week7_pregame_provenance.py
+      - name: Inspect historical projection commits
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json, os, urllib.request
+          url = "https://api.github.com/repos/egarza2424/Data-Daddy/commits?path=projection-model/2026-week7-ppr-projections.csv&per_page=100"
+          req = urllib.request.Request(url, headers={
+              "Authorization": "Bearer " + os.environ["GH_TOKEN"],
+              "Accept": "application/vnd.github+json",
+              "User-Agent": "Data-Daddy-Audit",
+          })
+          with urllib.request.urlopen(req, timeout=30) as response:
+              commits = json.load(response)
+          for item in commits:
+              date = item["commit"]["committer"]["date"]
+              if "2026-10-2" in date:
+                  print(date, item["sha"][:12])
+          print("Historical prediction versions:", len(commits))
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: week7-pregame-provenance
