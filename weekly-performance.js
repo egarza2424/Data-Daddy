@@ -71,7 +71,9 @@
         const group=all.filter(x=>x.position===r.position);
         const predicted=group.filter(x=>number(x.position_rank)<number(r.position_rank)).length+1;
         const actual=group.filter(x=>number(x.actual_ppr)>number(r.actual_ppr)).length+1;
-        return {...r,predicted,actual,delta:Math.abs(predicted-actual)};
+        const projection=(reports.projections||[]).find(p=>p.player_id===r.player_id&&p.position===r.position);
+        const projectedPpr=projection&&projection.projected_ppr!==""?number(projection.projected_ppr):null;
+        return {...r,predicted,actual,delta:Math.abs(predicted-actual),projectedPpr,pprError:projectedPpr===null?null:number(r.actual_ppr)-projectedPpr};
       });
       if (category==="rankings") {
         items=enriched.filter(r=>r.predicted<=15&&r.actual<=15&&r.delta<=3&&number(r.actual_ppr)>=5)
@@ -83,23 +85,26 @@
         // Sleeper candidates are not identifiable from the ranking-only report.
         const verified=(reports.sleepers||[]).filter(r=>Number(r.target_week)===week&&r.timing_status==="verified_pregame"&&r.result_status==="recorded_game"&&r.sleeper_hit==="True"&&(position==="ALL"||r.position===position));
         note.textContent="Week "+week+" · kickoff-verified frozen sleeper picks: actual PPR ≥ QB 16 / RB-WR 10 / TE 8, and at least 20% above frozen projected PPR. Sleeper Score is not projected PPR.";
-        list.innerHTML=verified.sort((a,b)=>number(b.actual_ppr)-number(a.actual_ppr)).slice(0,12).map(r=>card(r.player_name+" · "+r.position,"Sleeper pick #"+r.rank+" · Sleeper Score "+r.sleeper_score,number(r.actual_ppr).toFixed(1)+" actual PPR · "+number(r.ppr_lift_pct).toFixed(1)+"% over projection"+(r.breakout_hit==="True"?" · Breakout":""))).join("")||'<p>No independently verified sleeper hits available in the published audit.</p>';
+        list.innerHTML=verified.sort((a,b)=>number(b.actual_ppr)-number(a.actual_ppr)).slice(0,12).map(r=>card(r.player_name+" · "+r.position,"Sleeper pick #"+r.rank+" · Sleeper Score "+r.sleeper_score,number(r.actual_ppr).toFixed(1)+" actual PPR · "+number(r.ppr_lift_pct).toFixed(1)+"% over projection"+(r.breakout_hit==="True"?" · Breakout":""))).join("")||'<p>No verified sleeper hits are published for this week. This is unavailable data, not zero successful picks.</p>';
         return;
       }
       note.textContent="Week "+week+" · matched-player cohort only. Predicted and actual ranks are recalculated among matched players by position. This is ranking agreement, not PPR projection accuracy.";
       list.innerHTML=items.map(r=>card(r.player_name+" · "+r.position,
         "Predicted #"+r.predicted+" → actual #"+r.actual,
-        number(r.actual_ppr).toFixed(1)+" PPR · "+r.delta+"-rank difference")).join("")||"<p>No qualifying examples.</p>";
+        number(r.actual_ppr).toFixed(1)+" actual PPR"+(r.projectedPpr===null?"": " vs "+r.projectedPpr.toFixed(1)+" projected ("+(r.pprError>=0?"+":"")+r.pprError.toFixed(1)+")")+" · "+r.delta+"-rank difference")).join("")||"<p>No qualifying examples.</p>";
     } else {
-      items=(reports.waiver||[]).filter(r=>Number(r.target_week)===week&&
+      const records=(reports.waiver||[]).filter(r=>Number(r.target_week)===week&&
         r.eligible_for_predictive_accuracy==="True"&&r.result_status==="recorded_game"&&
-        Number.isFinite(number(r.actual_ppr))&&number(r.actual_ppr)>=({QB:16,RB:10,WR:10,TE:8}[r.position]??Infinity)&&
-        (position==="ALL"||r.position===position))
-        .sort((a,b)=>number(b.actual_ppr)-number(a.actual_ppr)).slice(0,12);
-      note.textContent="Week "+week+" · verified pregame waiver recommendations with recorded results and position-specific minimum PPR (QB 16, RB/WR 10, TE 8). This is a display threshold, not a validated prediction-accuracy metric.";
-      list.innerHTML=items.map(r=>card(r.name+" · "+r.position,
-        "Waiver recommendation #"+r.rank+" · evidence score "+r.waiver_evidence_score,
-        number(r.actual_ppr).toFixed(1)+" actual PPR")).join("")||"<p>No qualifying verified waiver results for this week.</p>";
+        r.actual_ppr!==""&&Number.isFinite(number(r.actual_ppr))&&
+        (position==="ALL"||r.position===position));
+      const minimum={QB:16,RB:10,WR:10,TE:8};
+      const hits=records.filter(r=>number(r.actual_ppr)>=(minimum[r.position]??Infinity)).length;
+      items=records.sort((a,b)=>number(a.rank)-number(b.rank));
+      note.textContent="Week "+week+" · "+hits+"/"+records.length+" verified waiver recommendations met the position PPR threshold (QB 16, RB/WR 10, TE 8). This is a threshold hit rate, not overall prediction accuracy. Unverified recommendations are excluded.";
+      list.innerHTML=items.map(r=>{const hit=number(r.actual_ppr)>=(minimum[r.position]??Infinity);
+        return card(r.name+" · "+r.position+(hit?" · HIT":" · MISS"),
+          "Waiver pick #"+r.rank+" · evidence score "+r.waiver_evidence_score,
+          number(r.actual_ppr).toFixed(1)+" actual PPR · threshold "+minimum[r.position]);}).join("")||"<p>No kickoff-verified waiver outcomes published for this week.</p>";
     }
   }
   root.addEventListener("click",event=>{
@@ -118,7 +123,22 @@
       }
       if(!latest) throw new Error("No completed ranking audit found.");
       state.week=latest;state.reports.ranking=ranking;
+      try {state.reports.projections=await load("projection-model/2026-week"+latest+"-ppr-projections.csv");}catch(e){state.reports.projections=[];}
+      try {state.reports.comparison=await load("model-validation/ai-vs-ppr-ranking-audit.csv");}catch(e){state.reports.comparison=[];}
       renderAccuracyChart(ranking, latest);
+      const chart=document.getElementById("trackerAccuracyChart");
+      const comparison=state.reports.comparison.filter(r=>Number(r.week)===latest);
+      if(chart&&comparison.length){
+        const order=["QB","RB","WR","TE"];
+        const blocks=order.map(pos=>{
+          const group=comparison.filter(r=>r.position===pos);
+          if(!group.length)return "";
+          return '<div class="tracker-chart-row"><strong>'+pos+' · Top '+group[0].cutoff+'</strong></div>'+group.map(r=>{
+            const pct=Math.max(0,Math.min(100,number(r.top_group_accuracy_pct)||0));
+            return '<div class="tracker-chart-row"><span class="tracker-chart-label">'+(r.model==="AI Rankings"?"AI Rank":"PPR Rank")+'</span><div class="tracker-chart-track"><div class="tracker-chart-fill" style="width:'+pct+'%"></div></div><strong class="tracker-chart-value">'+pct.toFixed(1)+'%</strong><small class="tracker-chart-count">'+r.top_group_hits+'/'+r.evaluated_picks+'</small></div>';}).join("");
+        }).join("");
+        chart.innerHTML+='<h5>AI Rankings vs. PPR Rankings — Week '+latest+'</h5>'+blocks+'<p class="tracker-chart-caption">Top-24 QB/TE and top-36 RB/WR. Matched-cohort ranking agreement only; these are not projection accuracy percentages.</p>';
+      }
       try {state.reports.sleepers=await load("data/sleeper_validation/sleeper_prediction_audit.csv");}
       catch(e){state.reports.sleepers=[];}
       try {state.reports.waiver=await load("data/waiver_validation/waiver_prediction_audit.csv");}
