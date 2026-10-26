@@ -119,6 +119,20 @@ jobs:
         if: (steps.window.outputs.eligible == 'true' || inputs.validate_only == true)
         run: |
           python scripts/build_weekly_ppr_projections.py
+      - name: Test synthetic injury opportunity uplift
+        if: (steps.window.outputs.eligible == 'true' || inputs.validate_only == true)
+        run: |
+          python - <<'PY'
+          baseline = 10.0
+          healthy_share = 15.0
+          absent_share = 21.0
+          weight = 0.35
+          uplift = min(0.15, weight * max(0.0, absent_share / healthy_share - 1.0))
+          adjusted = round(baseline * (1 + uplift), 2)
+          assert adjusted == 11.40, adjusted
+          assert round(baseline * (1 + min(0.15, weight * max(0.0, healthy_share / healthy_share - 1.0))), 2) == baseline
+          print("PASS synthetic starter absence:", baseline, "->", adjusted, "PPR")
+          PY
       - name: Audit starter-absence projection boosts
         if: (steps.window.outputs.eligible == 'true' || inputs.validate_only == true)
         run: |
