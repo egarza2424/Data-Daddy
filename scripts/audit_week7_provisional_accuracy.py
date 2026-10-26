@@ -86,12 +86,40 @@ def main():
             "largest_misses": sorted(rows, key=lambda r: abs(r["error"]), reverse=True)[:10],
             "ranking_status": "deferred_until_final_results_and_full_cohort"
         }
+    # Actual ranks are calculated only within players with provisional results.
+    # This avoids claiming that an unfinished week has final NFL-wide ranks.
+    for pos, rows in grouped.items():
+        ordered = sorted(rows, key=lambda r: (-r["actual_ppr"], r["player_id"]))
+        for index, row in enumerate(ordered, 1):
+            row["actual_matched_rank"] = index
+        cutoff = CUTOFFS[pos]
+        top_actual = {r["player_id"] for r in ordered[:cutoff]}
+        ranking = {}
+        for key, label in (("ai_rank", "ai_score"), ("ppr_rank", "projected_ppr")):
+            predicted = sorted(rows, key=lambda r: (r[key], r["player_id"]))
+            top_predicted = {r["player_id"] for r in predicted[:cutoff]}
+            errors = [abs(r[key] - r["actual_matched_rank"]) for r in rows]
+            ranking[label] = {
+                "top_n": cutoff,
+                "top_n_hits_matched_only": len(top_actual & top_predicted),
+                "top_n_denominator_matched_only": min(cutoff, len(rows)),
+                "mean_absolute_rank_error_raw_pregame_rank": round(sum(errors) / len(errors), 3),
+                "largest_rank_misses": sorted(
+                    [{"player": r["player"], "pregame_rank": r[key],
+                      "actual_matched_rank": r["actual_matched_rank"],
+                      "absolute_rank_error": abs(r[key] - r["actual_matched_rank"])}
+                     for r in rows],
+                    key=lambda r: r["absolute_rank_error"], reverse=True
+                )[:10]
+            }
+        summary[pos]["ranking"] = ranking
+        summary[pos]["ranking_status"] = "provisional_matched_cohort_only"
     result = {
         "week": 7,
         "status": "PROVISIONAL_NOT_FOR_PUBLICATION",
         "source_results": "model-validation/2026-week7-provisional-validation.csv",
         "source_predictions": "per-game historical GitHub commits before kickoff",
-        "warning": "Provisional actuals may omit unplayed games; ranking accuracy and final MAE withheld.",
+        "warning": "Rankings are provisional matched-cohort comparisons only; actual rank is among matched players, and raw pregame ranks can include players not yet matched. Do not publish as final.",
         "games": game_details, "positions": summary,
         "pregame_player_count": len(predictions),
         "matched_provisional_player_count": sum(len(x) for x in grouped.values()),
@@ -103,7 +131,7 @@ def main():
     print("Pregame players:", len(predictions), "matched:", result["matched_provisional_player_count"])
     for pos in ("QB", "RB", "WR", "TE"):
         if pos in summary:
-            print(pos, summary[pos]["matched"], "provisional MAE", summary[pos]["provisional_mae"])
+            print(pos, summary[pos]["matched"], "provisional MAE", summary[pos]["provisional_mae"], "AI hits", summary[pos]["ranking"]["ai_score"]["top_n_hits_matched_only"], "PPR hits", summary[pos]["ranking"]["projected_ppr"]["top_n_hits_matched_only"])
     print("Saved", OUT)
 
 if __name__ == "__main__":
