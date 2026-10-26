@@ -220,6 +220,25 @@
       "review_focus": "New 2026-10-26 NFL Network Ian Rapoport report: hairline fracture confirmed after Week 7 absence; expected minimal games missed, not placed on IR. Week 8 Thursday vs CAR availability unresolved; Green Bay already without Edgerrin Cooper (Achilles). Check official Thursday designation and Week 7 linebacker snaps/tackles before IDP boost or Carolina run matchup adjustments. No verified offensive targets/routes redistribution; do not change standard PPR projections.",
       "week8_status": "HAIRLINE_FRACTURE_EXPECTED_TO_MISS_TIME_NOT_OFFICIALLY_OUT",
       "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": "5927",
+      "player_name": "Terry McLaurin",
+      "team": "WAS",
+      "position": "WR",
+      "week7_status": "BYE_SEASON_ENDING_INJURY_CONFIRMED_WEEK6",
+      "injury": "torn patellar tendon (season-ending; confirmed by head coach Oct 20)",
+      "source": "https://www.commanders.com/news/terry-mclaurin-knee-injury-commanders",
+      "beneficiary_review": [
+        "Antonio Williams",
+        "Stefon Diggs",
+        "Chig Okonkwo",
+        "Treylon Burks",
+        "Dyami Brown"
+      ],
+      "review_focus": "Official Oct 20 team confirmation: out for remainder of 2026; Oct 26 coach comments point to increased Antonio Williams activity. Week 6 after McLaurin left: Antonio Williams 45/67 offensive snaps (67%), 4/35 targets (11%), 3-50 receiving; Diggs 41 snaps, 7 targets; Okonkwo 51 snaps, 7 targets; Burks 37 snaps, 6 targets; Brown 33 snaps, 1 target. Through Week 6 season target shares: Diggs 20.3%, McLaurin 14.4%, Williams 13.9%, Okonkwo 10.7%, Burks 9.1%. Review routes, personnel, coverage and red-zone use; prioritize Williams opportunity and Diggs/Okonkwo stable roles, avoid automatic fixed target redistribution or unsupported PPR boosts.",
+      "week8_status": "OUT_SEASON_ENDING_CONFIRMED",
+      "automatic_projection_adjustment": false
     }
   ]
 }
