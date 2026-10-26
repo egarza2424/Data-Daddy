@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "season": 2026,
+  "injury_event_week": 7,
+  "review_week": 8,
+  "verified_date": "2026-10-25",
+  "description": "Review-only verified Week 7 in-game injury events; no Week 8 OUT designation, workload redistribution, or projection change implied.",
+  "events": [
+    {
+      "player_id": "7526",
+      "player_name": "Jaylen Waddle",
+      "team": "DEN",
+      "position": "WR",
+      "week7_status": "DID_NOT_RETURN",
+      "injury": "chest",
+      "source": "https://fieldlevelmedia.com/news/broncos-wr-jaylen-waddle-chest-exits-vs-cardinals/",
+      "beneficiary_review": [
+        "DEN active wide receivers"
+      ],
+      "review_focus": "Week 7 routes and targets by receiver; Waddle's prior 38 targets and 7 Week 7 targets; do not redistribute until Week 8 availability confirmed.",
+      "week8_status": "UNDETERMINED",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": "8676",
+      "player_name": "Rashid Shaheed",
+      "team": "SEA",
+      "position": "WR",
+      "week7_status": "RULED_OUT_IN_GAME",
+      "injury": "knee",
+      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-7-games-2026",
+      "beneficiary_review": [
+        "Tory Horton",
+        "Seattle WR rotation"
+      ],
+      "review_focus": "Separate special-teams return replacement from offensive route/target replacement; assess Week 7 route participation.",
+      "week8_status": "UNDETERMINED",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": "8223",
+      "player_name": "Velus Jones Jr.",
+      "team": "SEA",
+      "position": "RB",
+      "week7_status": "RULED_OUT_IN_GAME",
+      "injury": "hamstring",
+      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-7-games-2026",
+      "beneficiary_review": [
+        "George Holani",
+        "Emanuel Wilson"
+      ],
+      "review_focus": "Review available backs and snap/carry/route split; check Zach Charbonnet return before Week 8 adjustment.",
+      "week8_status": "UNDETERMINED",
+      "automatic_projection_adjustment": false
+    }
+  ]
+}
