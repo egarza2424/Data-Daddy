@@ -217,6 +217,17 @@ jobs:
                 `Week ${deployedWeek}.`
               );
 
+              // Reject late scheduled runs instead of capturing post-kickoff rankings.
+              // UTC cutoff buffers: Sunday 13:30, Thursday/Monday 23:00.
+              const now = new Date();
+              const weekday = now.getUTCDay();
+              const utcMinute = now.getUTCHours() * 60 + now.getUTCMinutes();
+              const cutoff = weekday === 0 ? 13 * 60 + 30 :
+                (weekday === 1 || weekday === 4) ? 23 * 60 : null;
+              if (cutoff !== null && utcMinute >= cutoff) {
+                throw new Error("Pregame snapshot blocked: scheduled capture started after the kickoff safety cutoff.");
+              }
+
               const snapshotDate =
                 new Date()
                   .toISOString()
