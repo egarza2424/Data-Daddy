@@ -2,6 +2,11 @@ name: Freeze Game-Time AI and PPR Predictions
 
 on:
   workflow_dispatch:
+    inputs:
+      validate_only:
+        description: 'Run pregame checks without creating or publishing game locks'
+        type: boolean
+        default: true
   schedule:
     # Every 5 minutes; the script only captures games 90-60 minutes from kickoff.
     - cron: "*/5 * * * *"
@@ -54,7 +59,7 @@ jobs:
           print("Game in freeze window:", eligible)
           PY
       - name: Refresh injury availability before game lock
-        if: steps.window.outputs.eligible == 'true'
+        if: (steps.window.outputs.eligible == 'true' || inputs.validate_only == true)
         run: python scripts/build_gameday_availability.py
       - name: Install projection model dependencies
         if: steps.window.outputs.eligible == 'true'
