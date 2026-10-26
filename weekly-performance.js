@@ -121,6 +121,13 @@
         try { let result; try { result=await load("model-validation/2026-week"+week+"-validation.csv"); } catch(e) { result=await load("model-validation/2026-week"+week+"-provisional-validation.csv"); state.provisional=true; } if(result.length){latest=week;ranking=result;break;} }
         catch(e){continue;}
       }
+      if(state.provisional){
+        status.textContent="Week "+latest+" preliminary audit suspended: prediction snapshot was not verified as frozen before kickoff.";
+        const chart=document.getElementById("trackerAccuracyChart");
+        if(chart)chart.textContent="Week "+latest+" accuracy withheld pending pregame snapshot verification. Postgame rankings cannot be scored as predictions.";
+        root.querySelector("#trackerCards").innerHTML="<p>Week "+latest+" provisional ranking hits and misses are withheld until kickoff-safe snapshots are validated.</p>";
+        return;
+      }
       if(!latest) throw new Error("No completed ranking audit found.");
       state.week=latest;state.reports.ranking=ranking;
       if(state.provisional){const label="PRELIMINARY — completed games only; Monday players excluded. ";root.querySelector("#trackerNote").setAttribute("data-audit-status",label);}
