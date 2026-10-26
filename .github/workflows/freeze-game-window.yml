@@ -50,7 +50,7 @@ jobs:
                   eligible = True
                   break
           with open(os.environ["GITHUB_OUTPUT"], "a") as out:
-              out.write("eligible=" + str(eligible).lower() + "\\n")
+              out.write("eligible=" + str(eligible).lower() + "\n")
           print("Game in freeze window:", eligible)
           PY
       - name: Refresh injury availability before game lock
