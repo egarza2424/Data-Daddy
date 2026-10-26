@@ -4,7 +4,7 @@
   "injury_event_week": 7,
   "review_week": 8,
   "verified_date": "2026-10-26",
-  "description": "Review-only verified Week 7 injury events and Oct 26 follow-ups; Week 8 projections remain unchanged absent confirmed designations and measured usage.",
+  "description": "Review-only verified Week 7 injury events and Oct 26 follow-ups; official GB Jacob Monk IR transaction and previously untracked NE Romeo Doubs IR status added. Week 8 projections unchanged absent measured beneficiary usage.",
   "events": [
     {
       "player_id": "7526",
@@ -127,14 +127,14 @@
       "position": "C",
       "week7_status": "DID_NOT_RETURN",
       "injury": "quadriceps",
-      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-7-games-2026",
+      "source": "https://www.packers.com/news/packers-sign-g-mekhi-becton-sr-to-active-roster-oct-26-2026",
       "beneficiary_review": [
         "John Williams (emergency center)",
         "Jordan Love pass protection",
         "Josh Jacobs run-blocking"
       ],
-      "review_focus": "Backup center Jacob Monk injured after Sean Rhyan exited. Check Monday/Tuesday practices and whether John Williams will start Thursday Oct 29 versus Carolina; quantify center pressure/run blocking before adjusting offensive projections. No official Week 8 OUT.",
-      "week8_status": "UNDETERMINED",
+      "review_focus": "OFFICIAL Packers Oct 26: Jacob Monk placed on injured reserve (quadriceps), unavailable for Week 8 Thursday vs Carolina and at least four games. Mekhi Becton promoted from practice squad as guard roster depth, not confirmed as replacement center. Sean Rhyan's high ankle sprain remains suspected with no official Week 8 OUT designation; John Williams played emergency center Week 7. Verify starting center and compare Williams/Rhyan pass-blocking pressure, run-blocking and center snap data before changing Jordan Love or Josh Jacobs PPR. No direct WR/TE target redistribution.",
+      "week8_status": "OUT_ON_INJURED_RESERVE_CONFIRMED_2026_10_26",
       "automatic_projection_adjustment": false
     },
     {
@@ -238,6 +238,25 @@
       ],
       "review_focus": "Official Oct 20 team confirmation: out for remainder of 2026; Oct 26 coach comments point to increased Antonio Williams activity. Week 6 after McLaurin left: Antonio Williams 45/67 offensive snaps (67%), 4/35 targets (11%), 3-50 receiving; Diggs 41 snaps, 7 targets; Okonkwo 51 snaps, 7 targets; Burks 37 snaps, 6 targets; Brown 33 snaps, 1 target. Through Week 6 season target shares: Diggs 20.3%, McLaurin 14.4%, Williams 13.9%, Okonkwo 10.7%, Burks 9.1%. Review routes, personnel, coverage and red-zone use; prioritize Williams opportunity and Diggs/Okonkwo stable roles, avoid automatic fixed target redistribution or unsupported PPR boosts.",
       "week8_status": "OUT_SEASON_ENDING_CONFIRMED",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Romeo Doubs",
+      "team": "NE",
+      "position": "WR",
+      "week7_status": "ON_INJURED_RESERVE",
+      "injury": "shoulder",
+      "source": "https://www.patriots.com/news/patriots-place-wr-romeo-doubs-on-injured-reserve-sign-db-elliott-davison-to-the-53-man-roster-from-the-practice-squad-announce-additional-practice-squad-moves",
+      "beneficiary_review": [
+        "A.J. Brown",
+        "DeMario Douglas",
+        "Hunter Henry",
+        "Efton Chism III",
+        "Kyle Williams"
+      ],
+      "review_focus": "Previously untracked, NOT a new Oct 26 injury: Patriots officially placed Doubs on IR Oct 19; out Week 8 at Miami Nov 1. In Week 7 without Doubs, Brown 49/54 offensive snaps, 6 targets; Douglas 35 snaps, 4 targets; Hunter Henry 41 snaps, 7 targets; Chism 34 snaps, 1 target; Kyle Williams 21 snaps, 1 target (Week 7 snap and box-score reports). Check routes per dropback, targets per route, slot/outside alignments, Week 6 usage with Brown back, and continuing Mack Hollins absence before projecting redistribution. Prioritize Brown's full-time role and Henry's proven Week 7 targets, Douglas secondary; do not simply add all Doubs targets or automatically boost PPR.",
+      "week8_status": "OUT_ON_INJURED_RESERVE_CONFIRMED_OCT_19",
       "automatic_projection_adjustment": false
     }
   ]
