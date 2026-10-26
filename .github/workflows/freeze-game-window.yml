@@ -119,19 +119,37 @@ jobs:
         if: (steps.window.outputs.eligible == 'true' || inputs.validate_only == true)
         run: |
           python scripts/build_weekly_ppr_projections.py
-      - name: Test synthetic injury opportunity uplift
+      - name: Test production injury uplift code with controlled fixture
         if: (steps.window.outputs.eligible == 'true' || inputs.validate_only == true)
         run: |
           python - <<'PY'
-          baseline = 10.0
-          healthy_share = 15.0
-          absent_share = 21.0
-          weight = 0.35
-          uplift = min(0.15, weight * max(0.0, absent_share / healthy_share - 1.0))
-          adjusted = round(baseline * (1 + uplift), 2)
-          assert adjusted == 11.40, adjusted
-          assert round(baseline * (1 + min(0.15, weight * max(0.0, healthy_share / healthy_share - 1.0))), 2) == baseline
-          print("PASS synthetic starter absence:", baseline, "->", adjusted, "PPR")
+          import ast
+          from pathlib import Path
+          source = Path("scripts/build_weekly_ppr_projections.py").read_text()
+          tree = ast.parse(source)
+          formula = None
+          for node in ast.walk(tree):
+              if isinstance(node, ast.Assign) and any(
+                  isinstance(t, ast.Name) and t.id == "uplift" for t in node.targets
+              ):
+                  segment = ast.get_source_segment(source, node.value)
+                  if segment and "absent / before" in segment:
+                      formula = compile(ast.Expression(node.value), "<production-injury-uplift>", "eval")
+                      break
+          if formula is None:
+              raise SystemExit("Production injury uplift expression not found")
+          def project(base, before, absent, evidence_weight):
+              weight = min(0.5, max(0.0, evidence_weight))
+              uplift = eval(formula, {"__builtins__": {}}, {
+                  "min": min, "max": max, "weight": weight,
+                  "absent": absent, "before": before
+              })
+              return round(base * (1 + uplift), 2)
+          assert project(10.0, 15.0, 21.0, 0.35) == 11.40
+          assert project(10.0, 15.0, 15.0, 0.35) == 10.0
+          assert project(10.0, 10.0, 30.0, 0.5) == 11.5
+          assert project(10.0, 20.0, 10.0, 0.35) == 10.0
+          print("PASS: four scenarios evaluated against actual production uplift expression")
           PY
       - name: Audit starter-absence projection boosts
         if: (steps.window.outputs.eligible == 'true' || inputs.validate_only == true)
