@@ -63,6 +63,23 @@ jobs:
         if: steps.window.outputs.eligible == 'true'
         run: |
           python scripts/build_weekly_ppr_projections.py
+      - name: Confirm live model inputs are current
+        if: steps.window.outputs.eligible == 'true'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone
+          feed = json.loads(Path("data/gameday_availability.json").read_text())
+          updated = datetime.fromisoformat(feed["generated_at_utc"].replace("Z", "+00:00"))
+          age = (datetime.now(timezone.utc) - updated).total_seconds() / 60
+          if not 0 <= age <= 30:
+              raise SystemExit("Fresh injury data unavailable; game lock blocked")
+          source = Path("projection-model/current-live-model-snapshot.csv")
+          if not source.exists():
+              raise SystemExit("Missing live model inputs; game lock blocked")
+          print("Feed freshness verified; model feature synchronization still requires validation")
+          PY
       - name: Freeze eligible games
         if: steps.window.outputs.eligible == 'true'
         run: python scripts/freeze_game_window.py
