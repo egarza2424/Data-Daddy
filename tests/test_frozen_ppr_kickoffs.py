@@ -51,6 +51,17 @@ class FreezeTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "missing teams"):
             self.run_verify()
 
+    def test_date_only_ai_snapshot_blocks_after_thursday_game(self):
+        ai = self.root / "model-snapshots" / "2026-10-24-pregame-model-snapshot.csv"
+        ai.write_text("snapshot_week,player_id,team,position,position_rank\\n7,1,NE,QB,1\\n")
+        import os
+        os.chdir(self.root)
+        try:
+            with self.assertRaisesRegex(RuntimeError, "potentially postkickoff"):
+                verifier.verify_ai_snapshot(ai)
+        finally:
+            os.chdir(self.cwd)
+
     def test_missing_kickoff_is_rejected(self):
         path = self.root / "data" / "nfl_schedule_2026.json"
         obj = json.loads(path.read_text())
