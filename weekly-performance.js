@@ -30,6 +30,12 @@
   function renderAccuracyChart(rows, week) {
     const chart = document.getElementById("trackerAccuracyChart");
     if (!chart) return;
+    if (Number(week) === 7) {
+      chart.removeAttribute("role");
+      chart.innerHTML = '<p class="tracker-chart-week">Week 7 · QB/TE Top 24 · RB/WR Top 36</p>' +
+        '<p>View confirmed AI Score vs. PPR top-position hits and average ranking error in the <a href="#model-explainer">AI Score vs. Projected PPR</a> section below. Results are provisional while unmatched players are reviewed.</p>';
+      return;
+    }
     const positions = ["QB", "RB", "WR", "TE"];
     const results = positions.map(position => {
       const cohort = rows.filter(r => r.position === position &&
