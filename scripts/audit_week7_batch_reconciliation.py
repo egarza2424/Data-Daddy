@@ -162,10 +162,17 @@ def main():
         subset = merged[merged.position == position].copy()
         eligible = subset[(subset.position_rank <= cutoff) | (subset.projected_position_rank <= cutoff)]
         common = eligible[(eligible.position_rank <= cutoff) & (eligible.projected_position_rank <= cutoff) & eligible.actual_rank.notna()]
+        union_matched = eligible[eligible.actual_rank.notna()].copy()
+        ai_union_mae = (union_matched.position_rank - union_matched.actual_rank).abs().mean()
+        ppr_union_mae = (union_matched.projected_position_rank - union_matched.actual_rank).abs().mean()
+        one_sided = union_matched[(union_matched.position_rank <= cutoff) != (union_matched.projected_position_rank <= cutoff)]
+
         summary.append({
             "position": position, "cutoff": cutoff, "predictions": len(subset),
             "eligible_union": len(eligible), "unmatched_eligible": int(eligible.actual_rank.isna().sum()),
             "common_matched": len(common),
+            "union_matched": len(union_matched), "one_sided_matched": len(one_sided),
+            "ai_mae_union": round(ai_union_mae, 3), "ppr_mae_union": round(ppr_union_mae, 3),
             "ai_mae_common": round((common.position_rank - common.actual_rank).abs().mean(), 3),
             "ppr_mae_common": round((common.projected_position_rank - common.actual_rank).abs().mean(), 3),
         })
@@ -178,21 +185,21 @@ def main():
     svg = ['<svg xmlns="http://www.w3.org/2000/svg" width="860" height="400" viewBox="0 0 860 400">',
            '<rect width="860" height="400" fill="#101725"/>',
            '<text x="32" y="38" fill="#fff" font-family="Arial" font-size="22" font-weight="bold">Week 7 AI Score vs PPR Rankings</text>',
-           '<text x="32" y="61" fill="#b5c0d2" font-family="Arial" font-size="13">Provisional common-player positional rank MAE (lower is better)</text>']
+           '<text x="32" y="61" fill="#b5c0d2" font-family="Arial" font-size="13">Provisional union-of-top-cutoffs positional rank MAE (lower is better)</text>']
     for idx, (_, r) in enumerate(chart.iterrows()):
         y = 100 + idx * 70
-        svg.append(f'<text x="32" y="{y+23}" fill="#fff" font-family="Arial" font-size="17">{r.position} top {int(r.cutoff)} (n={int(r.common_matched)})</text>')
-        for offset, metric, color, label in [(0, r.ai_mae_common, "#45b5f6", "AI"), (25, r.ppr_mae_common, "#f6a94b", "PPR")]:
+        svg.append(f'<text x="32" y="{y+23}" fill="#fff" font-family="Arial" font-size="17">{r.position} top {int(r.cutoff)} (n={int(r.union_matched)})</text>')
+        for offset, metric, color, label in [(0, r.ai_mae_union, "#45b5f6", "AI"), (25, r.ppr_mae_union, "#f6a94b", "PPR")]:
             bar_width = max(0, float(metric) / 22 * 480)
             svg.append(f'<rect x="265" y="{y+offset}" width="{bar_width:.1f}" height="19" rx="4" fill="{color}"/>')
             svg.append(f'<text x="{275+bar_width:.1f}" y="{y+offset+15}" fill="#fff" font-family="Arial" font-size="13">{label} {float(metric):.3f}</text>')
-    svg.append('<text x="32" y="386" fill="#f3b2a8" font-family="Arial" font-size="12">NOT FOR PUBLICATION: unresolved participation, duplicate identity, and intersection-only sample</text>')
+    svg.append('<text x="32" y="386" fill="#f3b2a8" font-family="Arial" font-size="12">NOT FOR PUBLICATION: unresolved participation, duplicate identity, and unverified participation</text>')
     svg.append('</svg>')
     (OUT / "2026-week7-ai-vs-ppr-PROVISIONAL.svg").write_text("\\n".join(svg), encoding="utf-8")
-    chart["publication_status"] = "BLOCKED_PENDING_COVERAGE_AND_METHODOLOGY_REVIEW"
-    chart["methodology"] = "intersection_of_both_top_cutoffs_with_actual_stats; excludes one-sided top-cutoff misses"
+    chart["publication_status"] = "BLOCKED_PENDING_PARTICIPATION_AND_IDENTITY_REVIEW"
+    chart["methodology"] = "union_of_either_top_cutoff_with_actual_stats; includes one-sided top-cutoff misses; common-player figures retained as diagnostic"
     chart.to_csv(OUT / "2026-week7-graph-methodology-review.csv", index=False)
-    print("Generated review-only SVG. NOT published: intersection-only sample excludes one-sided ranking misses.")
+    print("Generated review-only SVG with union-of-cutoffs metrics. NOT published: participation and identity checks remain.")
     print(pd.DataFrame(summary).to_string(index=False))
     print("Review-only outputs saved. Unmatched IDs require manual crosswalk; no zero scores or exclusions inferred.")
     print("No historical snapshots, live rankings, model weights, or website files changed.")
