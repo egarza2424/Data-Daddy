@@ -39,7 +39,8 @@ def main():
             errors.append(f"{url}: {exc}")
     if actual is None:
         raise SystemExit("No authoritative stats dataset available; no outputs written. " + " | ".join(errors))
-    actual = actual[(actual.season == 2026) & (actual.week == args.week)].copy()
+    season_stats = actual[actual.season == 2026].copy()
+    actual = season_stats[season_stats.week == args.week].copy()
     if actual.empty:
         raise SystemExit("Week 7 stats are not populated; no outputs written.")
     actual["player_id"] = actual["player_id"].astype(str)
@@ -113,6 +114,13 @@ def main():
                     details.append(f"{candidate_name} [{candidate.get('recent_team', '?')}] {candidate.actual_ppr:.2f} PPR")
             print(f"{row.player_name} ({row.team}/{row.position}): " + ("; ".join(details) if details else "NO CLOSE NAME IN STATS"))
 
+    # Distinguish players entirely absent from season stats from Week 7-only gaps.
+    season_stats["identity"] = season_stats["player_display_name"].map(key) + "|" + season_stats["position"].astype(str)
+    print("\\nUNMATCHED PLAYER SEASON-HISTORY DIAGNOSTIC:")
+    for _, row in unresolved.iterrows():
+        history = season_stats[season_stats.identity == row.identity]
+        weeks = sorted(pd.to_numeric(history.week, errors="coerce").dropna().astype(int).unique().tolist())
+        print(f"{row.player_name} ({row.position}): season_weeks={weeks if weeks else 'NONE'}; week7_stat_row=NO; participation=UNVERIFIED")
     summary = []
     for position, cutoff in CAPS.items():
         subset = merged[merged.position == position].copy()
