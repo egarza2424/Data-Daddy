@@ -135,7 +135,8 @@ jobs:
         run: |
           python scripts/build_live_rb_j2_features.py
           python scripts/build_rb_returning_player_audit.py
-          python scripts/build_week7_rb_j2_experiment.py
+          # Week 7-only frozen-snapshot challenger: skip for Week 8.
+          # Production RB J2 features and returning-player audit run above.
 
       - name: Collect injury opportunity evidence from 2026 weekly stats
         run: |
