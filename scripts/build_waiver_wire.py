@@ -1102,7 +1102,11 @@ def main():
     # verified ownership and evidence can appear on the website.
     # Never fabricate a roster percentage or score for an unmatched player.
     editorial_names = {'Tyler Higbee', 'C.J. Stroud'}
-    review_pool = eligible[:50]
+    # Export the complete eligible review pool, not just the highest 50.
+    # Keep evidence ranks and provisional Top 10 unchanged. The website
+    # continues to apply its own display limits; lower-ranked candidates
+    # remain available for injury/trade/return research and diagnostics.
+    review_pool = list(eligible)
     exported_ids = {c['player_id'] for c in review_pool}
     for candidate in candidates:
         if (candidate.get('name') in editorial_names
@@ -1145,6 +1149,7 @@ def main():
         'unverified_ownership_count': len(unverified),
         'above_cutoff_count': len(above_cutoff),
         'candidates': review_pool,
+        'candidate_export_policy': 'all_ownership_eligible_plus_existing_editorial_records',
         'provisional_top_10_status': 'review_only_not_officially_verified_or_published',
         'provisional_verification_policy': 'ESPN statuses only prioritize review; official clearance, role, injury opportunity, and matchup remain unverified',
         'provisional_top_10': provisional_top_10,
@@ -1175,7 +1180,7 @@ def main():
     print(f'Players with verified ownership below {OWNERSHIP_CUTOFF}%: {len(eligible)}')
     print(f'Players with unverified ownership: {len(unverified)}')
     print(f'Players at or above {OWNERSHIP_CUTOFF}%: {len(above_cutoff)}')
-    print(f'Preliminary ranked candidates saved: {len(review_pool)}')
+    print(f'Eligible review candidates exported: {len(review_pool)}')
     print('Top 50 position counts: ' + ', '.join(
         f'{pos}={sum(c["position"] == pos for c in review_pool)}'
         for pos in ('QB', 'RB', 'WR', 'TE')))
