@@ -78,6 +78,18 @@ def main():
         print("\nUNMATCHED TOP-CUTOFF PLAYERS:")
         print(missing[["player_name", "position", "team", "position_rank", "projected_position_rank"]].to_string(index=False))
 
+    # Export every unresolved identity together, without treating missing stats as DNP.
+    eligible_mask = (merged.position_rank <= merged.position.map(CAPS)) | (merged.projected_position_rank <= merged.position.map(CAPS))
+    unresolved = merged[eligible_mask & merged.actual_rank.isna()].copy()
+    unresolved["review_status"] = "UNVERIFIED_NO_STATS_MATCH"
+    unresolved["audit_treatment"] = "EXCLUDE_FROM_OFFICIAL_METRIC_PENDING_PARTICIPATION_CHECK"
+    ambiguous = pred[pred.identity.duplicated(keep=False)].copy()
+    ambiguous["review_status"] = "AMBIGUOUS_DUPLICATE_PREDICTION_IDENTITY"
+    OUT.mkdir(parents=True, exist_ok=True)
+    unresolved.to_csv(OUT / "2026-week7-unresolved-players-review.csv", index=False)
+    ambiguous.to_csv(OUT / "2026-week7-ambiguous-identities-review.csv", index=False)
+    print("Unresolved records:", len(unresolved), "| Ambiguous prediction rows:", len(ambiguous))
+    print("IMPORTANT: missing nflverse row does NOT establish inactivity.")
     summary = []
     for position, cutoff in CAPS.items():
         subset = merged[merged.position == position].copy()
