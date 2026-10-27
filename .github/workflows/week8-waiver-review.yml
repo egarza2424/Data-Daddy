@@ -11,3 +11,5 @@ jobs:
         uses: actions/checkout@v4
       - name: Print Week 8 Top 10 and positional candidate lists
         run: python scripts/export_week8_waiver_review.py
+      - name: Audit immediate fantasy thresholds and future watchlist
+        run: python scripts/audit_week8_waiver_thresholds.py
