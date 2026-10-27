@@ -52,6 +52,26 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas numpy
 
+      - name: Guard Week 8 projection inputs against stale Week 7 data
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          expected_week = 8
+          stats_path = Path("nfl-stats.json")
+          if not stats_path.exists():
+              raise SystemExit("Missing nfl-stats.json; refusing to publish unverified Week 8 projections.")
+          stats = json.loads(stats_path.read_text(encoding="utf-8"))
+          actual_week = int(stats.get("target_week") or 0)
+          if actual_week != expected_week:
+              raise SystemExit(
+                  f"Week 8 projection refresh blocked: nfl-stats.json target_week={actual_week}. "
+                  "Update the weekly snapshot and Week 7-specific workflow steps before publishing."
+              )
+          print("Week 8 target week verified.")
+          PY
+
       - name: Audit actual PPR feed for displayed week
         run: |
           python - <<'PY'
