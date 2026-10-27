@@ -91,7 +91,7 @@
       note.textContent="Week "+week+" · matched-player cohort only. Predicted and actual ranks are recalculated among matched players by position. This is ranking agreement, not PPR projection accuracy.";
       list.innerHTML=items.map(r=>card(r.player_name+" · "+r.position,
         "Predicted #"+r.predicted+" → actual #"+r.actual,
-        number(r.actual_ppr).toFixed(1)+" actual PPR"+(r.projectedPpr===null?"": " vs "+r.projectedPpr.toFixed(1)+" projected ("+(r.pprError>=0?"+":"")+r.pprError.toFixed(1)+")")+" · "+r.delta+"-rank difference"+(category==="misses" && r.in_game_injury_verified==="True" ? " · Injured During Game" : ""))).join("")||"<p>No qualifying examples.</p>";
+        number(r.actual_ppr).toFixed(1)+" actual PPR"+(r.projectedPpr===null?"": " vs "+r.projectedPpr.toFixed(1)+" projected ("+(r.pprError>=0?"+":"")+r.pprError.toFixed(1)+")")+" · "+r.delta+"-rank difference"+(category==="misses" && (reports.injuries||[]).some(i=>Number(i.week)===week && i.player_name===r.player_name && i.position===r.position && i.in_game_injury_verified==="True") ? " · Injured During Game" : ""))).join("")||"<p>No qualifying examples.</p>";
     } else {
       const records=(reports.waiver||[]).filter(r=>Number(r.target_week)===week&&
         r.eligible_for_predictive_accuracy==="True"&&r.result_status==="recorded_game"&&
@@ -180,6 +180,8 @@
       catch(e){state.reports.sleepers=[];}
       try {state.reports.waiver=await load("data/waiver_validation/waiver_prediction_audit.csv");}
       catch(e){state.reports.waiver=[];}
+      try {state.reports.injuries=await load("data/verified_in_game_injuries_2026.csv");}
+      catch(e){state.reports.injuries=[];}
       render();
       if(state.provisional){const note=root.querySelector("#trackerNote");note.textContent="PRELIMINARY · Monday players excluded · "+note.textContent;}
     }catch(e){status.textContent="Weekly audit data is not available yet.";const chart=document.getElementById("trackerAccuracyChart");if(chart)chart.textContent="No completed weekly accuracy audit available yet.";root.querySelector("#trackerCards").innerHTML="";}
