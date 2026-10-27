@@ -1,0 +1,49 @@
+name: Week 8 Waiver Candidate Refresh
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: week8-waiver-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Confirm source is Week 8
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("nfl-stats.json").read_text())
+          assert (int(d.get("season",0)),int(d.get("target_week",0))) == (2026,8), "Expected 2026 Week 8"
+          PY
+      - name: Refresh waiver candidate review pool
+        run: python scripts/build_waiver_wire.py
+      - name: Confirm full eligible pool exported
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("waiver_wire_candidates.json").read_text())
+          candidates=d["candidates"]
+          assert len(candidates)>=d["eligible_candidate_count"], "Eligible candidates truncated"
+          for name in ("Antonio Williams","Caleb Douglas"):
+              assert any(c["name"]==name for c in candidates), f"{name} missing from export"
+          print(f"Exported {len(candidates)} candidates; both players included.")
+          PY
+      - name: Commit review candidate export only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add waiver_wire_candidates.json waiver_wire_ownership.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Refresh Week 8 waiver candidate review export"
+            git push
+          fi
