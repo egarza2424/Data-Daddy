@@ -109,15 +109,15 @@
       "team": "CAR",
       "position": "OT",
       "week7_status": "FRACTURED_FIBULA_CONFIRMED_BY_HEAD_COACH",
-      "injury": "left fibula fracture",
-      "source": "https://www.panthers.com/news/panthers-place-right-tackle-taylor-moton-on-injured-reserve",
+      "injury": "left fibula fracture plus ankle ligament damage; season-ending ankle tightrope surgery planned",
+      "source": "https://www.panthers.com/news/monday-brew-working-on-run-defense-and-position-numbers",
       "beneficiary_review": [
         "Monroe Freeling (replacement right tackle)",
         "Bryce Young pass protection",
         "Carolina rushing efficiency"
       ],
-      "review_focus": "NEW OFFICIAL Oct 26 Panthers transaction: placed Taylor Moton on injured reserve following left fibula fracture; confirmed OUT Week 8 Thursday at GB and at least four games. Monroe Freeling, who started first four games in Moton's absence, played 33/56 offensive snaps Week 7 after Moton exited (Moton 23/56). Compare Freeling's first-four-game pressure/run-blocking, Week 7 33 snaps, and Panthers guard availability (Damien Lewis and Torricelli Simpkins III estimated DNP Oct 26) before adjusting Bryce Young, Chuba Hubbard or receivers. No direct target redistribution and no automatic PPR adjustment.",
-      "week8_status": "OUT_ON_INJURED_RESERVE_CONFIRMED_2026_10_26",
+      "review_focus": "UPDATE Oct 26: Panthers coach Dave Canales confirms additional ankle ligament damage requiring tightrope surgery; ESPN reports surgery is season-ending. This upgrades prior Week 8 IR-only absence to remainder-of-2026 absence. Monroe Freeling already replaced Moton and started the first four games at RT; treat Freeling as ongoing starter in line-context inputs. Compare Freeling's first-four-game pass-block pressure, run-blocking and Week 7 33/56 snaps, plus guards Damien Lewis and Torricelli Simpkins III practice status, before adjusting Bryce Young, Chuba Hubbard or receiving efficiency. No target redistribution or automatic PPR adjustment.",
+      "week8_status": "OUT_ON_IR_SEASON_ENDING_SURGERY_CONFIRMED_2026_10_26",
       "automatic_projection_adjustment": false
     },
     {
