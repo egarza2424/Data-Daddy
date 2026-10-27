@@ -121,6 +121,14 @@ def main():
         history = season_stats[season_stats.identity == row.identity]
         weeks = sorted(pd.to_numeric(history.week, errors="coerce").dropna().astype(int).unique().tolist())
         print(f"{row.player_name} ({row.position}): season_weeks={weeks if weeks else 'NONE'}; week7_stat_row=NO; participation=UNVERIFIED")
+    # Flag coverage anomalies separately from performance, without rewriting predictions.
+    schedule_candidates = unresolved[["player_name", "position", "team", "identity", "position_rank", "projected_position_rank"]].copy()
+    season_keys = set(season_stats.identity.dropna())
+    schedule_candidates["season_stats_presence"] = schedule_candidates.identity.map(lambda k: "SEEN_OTHER_WEEKS" if k in season_keys else "NO_2026_STATS")
+    schedule_candidates["week7_participation"] = "NOT_VERIFIED"
+    schedule_candidates["possible_reason"] = "BYE_OR_INACTIVE_OR_INJURED_OR_DATA_GAP"
+    schedule_candidates.to_csv(OUT / "2026-week7-participation-review.csv", index=False)
+    print("Participation review exported; do not infer DNP from missing weekly rows.")
     summary = []
     for position, cutoff in CAPS.items():
         subset = merged[merged.position == position].copy()
