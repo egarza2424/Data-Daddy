@@ -111,6 +111,29 @@
         html += '</div>';
       }
 
+      // Week 7 rank-error audit uses the frozen Oct 22 snapshot and matched
+      // union of either method's top cutoff. This is not a top-hit percentage.
+      if (latestSeason === 2026 && latestWeek === 7) {
+        const rankError = {
+          QB: {ai:7.000, ppr:7.280, matched:25, unresolved:0},
+          TE: {ai:13.115, ppr:13.923, matched:26, unresolved:1},
+          RB: {ai:14.588, ppr:13.059, matched:34, unresolved:4},
+          WR: {ai:17.472, ppr:19.139, matched:36, unresolved:6}
+        };
+        html += '<section class="model-comparison-rank-error">' +
+          '<h5>Average Ranking Error · Week 7</h5>' +
+          '<p class="model-comparison-disclaimer">Mean absolute positional rank error; lower is better. Matched players selected in either model\'s top group. Provisional: unmatched players are excluded.</p>' +
+          '<table><thead><tr><th>Position</th><th>AI Score</th><th>Projected PPR</th><th>Matched</th></tr></thead><tbody>';
+        for (const position of positions) {
+          const r = rankError[position];
+          html += '<tr><th>' + position + '</th><td>' + r.ai.toFixed(2) +
+            '</td><td>' + r.ppr.toFixed(2) + '</td><td>' + r.matched +
+            '</td></tr>';
+        }
+        html += '</tbody></table><p class="model-comparison-disclaimer">' +
+          'WR warning: three fringe players (Dominic Lovett, Xavier Gipson, Malik Turner) were incorrectly selected in AI\'s top 36. They are documented selection errors, but are not assigned invented actual ranks or PPR points. The WR ranking-error result does not capture those mistakes.</p></section>';
+      }
+
       html += '<p class="model-comparison-disclaimer">' +
         'Percentages show provisional top-group overlap among ' +
         'verified results, not overall prediction accuracy. ' +
