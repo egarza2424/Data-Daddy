@@ -31,4 +31,6 @@ jobs:
             projection-model/validation/2026-week7-unresolved-players-review.csv
             projection-model/validation/2026-week7-ambiguous-identities-review.csv
             projection-model/validation/2026-week7-participation-review.csv
+            projection-model/validation/2026-week7-ai-vs-ppr-PROVISIONAL.svg
+            projection-model/validation/2026-week7-graph-methodology-review.csv
           if-no-files-found: warn
