@@ -89,7 +89,8 @@ def main():
     unresolved.to_csv(OUT / "2026-week7-unresolved-players-review.csv", index=False)
     ambiguous.to_csv(OUT / "2026-week7-ambiguous-identities-review.csv", index=False)
     print("Unresolved records:", len(unresolved), "| Ambiguous prediction rows:", len(ambiguous))
-    print("IMPORTANT: missing nflverse row does NOT establish inactivity.")\n    # Inspect likely name variants from actual statistics without auto-accepting them.
+    print("IMPORTANT: missing nflverse row does NOT establish inactivity.")
+    # Inspect likely name variants from actual statistics without auto-accepting them.
     import difflib
     if not unresolved.empty:
         print("\\nCANDIDATE ACTUAL-STATS NAMES (DIAGNOSTIC ONLY):")
