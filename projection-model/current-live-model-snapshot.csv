@@ -1,329 +1,325 @@
 snapshot_week,player_id,player_name,position,team,roster_status,injury_status,opponent,offensive_play_caller,defensive_play_caller,play_caller_matchup_score,play_caller_historical_ppr,play_caller_sample_size,player_vs_defensive_caller_score,player_vs_defensive_caller_ppr,player_vs_defensive_caller_sample_size,opportunity_score,production_score,usage_score,matchup_score,redzone_score,expert_score,risk_score,trench_score,scoring_environment_score,implied_team_total,game_total,spread_line,model_score,position_rank,recommendation
-7,11564,Drake Maye,QB,NE,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,84,100,75,50,93,88,2,,,,,,79.9,1,START
-7,6770,Joe Burrow,QB,CIN,Active,,BAL,Zac Taylor,Jesse Minter,50,,0,58,29.04,1,91,84,59,41,81,91,2,45.88,77,24.5,47.5,-1.5,72.1,2,START
-7,9758,C.J. Stroud,QB,HOU,Active,,NYG,Nick Caley,Dennard Wilson,57,17.39,2,63,14.7,3,74,75,49,77,67,93,2,50.85,88,26.2,42.5,10,70.3,3,START
-7,8183,Brock Purdy,QB,SF,Active,,ATL,Kyle Shanahan,Jeff Ulbrich,44,8.71,2,50,10.34,1,74,58,89,58,78,94,2,44.68,86,26,49.5,-2.5,69.5,4,START
-7,11560,Caleb Williams,QB,CHI,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,76,69,72,50,81,75,2,,,,,,69.2,5,START
-7,6804,Jordan Love,QB,GB,Active,,DET,Matt LaFleur,Kelvin Sheppard,63,20.84,2,60,20.84,2,77,66,47,79,70,88,2,45.54,81,25.2,53.5,3,68.3,6,START
-7,421,Matthew Stafford,QB,LA,Active,,LV,Sean McVay,Rob Leonard,50,,0,50,,0,97,63,16,79,89,81,10,50.82,84,25.8,48.5,-3,67,7,START
-7,3294,Dak Prescott,QB,DAL,Active,,PHI,Brian Schottenheimer,Vic Fangio,59,18.44,2,75,19.17,3,100,54,28,59,78,91,10,53.39,77,24.5,44.5,-4.5,66.9,8,START
-7,3163,Jared Goff,QB,DET,Active,,GB,Drew Petzing,Jonathan Gannon,50,,0,53,17.5,1,82,75,22,40,100,85,6,48.97,100,28.2,53.5,3,66.8,9,START
-7,9228,Bryce Young,QB,CAR,Active,,TB,Brad Idzik,Todd Bowles,50,,0,75,19.18,4,92,62,26,51,63,93,2,49.38,72,23.8,44.5,3,64.2,10,START
-7,5849,Kyler Murray,QB,MIN,Active,,IND,Kevin O'Connell,Lou Anarumo,56,21.12,1,50,,0,79,46,74,50,59,87,2,48.54,73,24,41.5,6.5,63.4,11,START
-7,96,Aaron Rodgers,QB,PIT,Active,,NO,Mike McCarthy,Brandon Staley,50,,0,50,,0,84,70,12,60,89,89,10,45.9,72,23.8,44.5,-3,63.3,12,START
-7,4892,Baker Mayfield,QB,TB,Active,Questionable,CAR,Zac Robinson,Ejiro Evero,58,14.61,4,76,19.67,4,74,49,67,52,81,86,36,47.04,53,20.8,44.5,3,63.1,13,SIT
-7,3257,Jacoby Brissett,QB,ARI,Active,,DEN,Mike LaFleur,Vance Joseph,50,,0,50,,0,86,58,43,47,100,79,10,42.7,45,19.5,43.5,-4.5,62.6,14,SIT
-7,4017,Deshaun Watson,QB,CLE,Active,,TEN,Todd Monken,Robert Saleh,50,,0,50,,0,78,44,100,64,30,89,6,37.64,45,19.5,36.5,-2.5,61.8,15,SIT
-7,8161,Malik Willis,QB,MIA,Active,,NYJ,Bobby Slowik,Aaron Glenn,51,13.78,1,50,,0,68,45,85,49,48,70,2,47.51,33,17.5,39.5,4.5,57.9,16,SIT
-7,11559,Michael Penix Jr.,QB,ATL,Active,,SF,Tommy Rees,Raheem Morris,50,,0,50,,0,62,53,29,47,78,85,2,45.1,70,23.5,49.5,-2.5,56.8,17,SIT
-7,1166,Kirk Cousins,QB,LV,Active,,LAR,Klint Kubiak,Chris Shula,58,14.77,3,50,9.14,1,83,62,0,54,56,82,10,49.68,66,22.8,48.5,-3,56.7,18,SIT
-7,11563,Bo Nix,QB,DEN,Active,,ARI,Davis Webb,Nick Rallis,50,,0,50,,0,73,31,50,71,37,80,2,48.4,73,24,43.5,-4.5,55.8,19,SIT
-7,4046,Patrick Mahomes,QB,KC,Active,,SEA,Andy Reid,Mike Macdonald,50,,0,50,,0,63,52,41,35,70,88,6,44.49,47,19.8,42.5,3,54.9,20,SIT
-7,12545,Tyler Shough,QB,NO,Active,,PIT,Kellen Moore,Patrick Graham,68,24.38,2,50,,0,76,51,32,43,41,68,6,50.37,53,20.8,44.5,-3,54.7,21,SIT
-7,5870,Daniel Jones,QB,IND,Active,,MIN,Shane Steichen,Brian Flores,46,7.06,1,50,8.94,1,90,45,48,20,48,89,2,43.42,33,17.5,41.5,6.5,54.4,22,SIT
-7,4943,Sam Darnold,QB,SEA,Active,,KC,Brian Fleury,Steve Spagnuolo,50,,0,50,,0,74,44,28,48,41,86,2,41.99,66,22.8,42.5,3,53.3,23,SIT
-7,9230,Tanner McKee,QB,PHI,Active,,DAL,Sean Mannion,Christian Parker,50,,0,50,,0,95,41,31,61,11,50,2,47.03,48,20,44.5,-4.5,52.1,24,SIT
-7,12522,Cam Ward,QB,TEN,Active,,CLE,Brian Daboll,Mike Rutenberg,50,,0,50,,0,67,34,45,50,37,81,6,42.49,30,17,36.5,-2.5,49.4,25,SIT
-7,1373,Geno Smith,QB,NYJ,Active,,MIA,Frank Reich,Jeff Hafley,50,,0,49,6.46,1,57,38,31,55,37,81,10,41.09,61,22,39.5,4.5,49.1,26,SIT
-7,11565,J.J. McCarthy,QB,NYG,Active,,HOU,Matt Nagy,Matt Burke,50,,0,50,,0,26,27,34,56,39,32,2,46.89,25,16.2,42.5,10,38.6,27,SIT
-7,9221,Jahmyr Gibbs,RB,DET,Active,,GB,Drew Petzing,Jonathan Gannon,50,,0,50,,0,100,100,100,47,76,81,2,46.1,100,28.2,53.5,3,82.5,1,START
-7,8151,Kenneth Walker III,RB,KC,Active,,SEA,Andy Reid,Mike Macdonald,50,,0,47,2.7,1,80,83,86,62,100,90,2,43.7,47,19.8,42.5,3,74.2,2,START
-7,8150,Kyren Williams,RB,LA,Active,,LV,Sean McVay,Rob Leonard,50,,0,50,,0,85,68,81,72,45,72,2,43.79,84,25.8,48.5,-3,69.4,3,START
-7,4034,Christian McCaffrey,RB,SF,Active,,ATL,Kyle Shanahan,Jeff Ulbrich,64,32.45,2,57,39.1,1,74,68,70,78,48,78,6,47.74,86,26,49.5,-2.5,68.9,4,START
-7,7588,Javonte Williams,RB,DAL,Active,,PHI,Brian Schottenheimer,Vic Fangio,52,21.3,2,49,13.67,3,64,60,88,51,68,74,2,43.98,77,24.5,44.5,-4.5,68.4,5,START
-7,4199,Aaron Jones Sr.,RB,MIN,Active,,IND,Kevin O'Connell,Lou Anarumo,53,24.8,1,50,,0,98,53,89,37,18,90,6,40.92,73,24,41.5,6.5,67.3,6,START
-7,8228,Jaylen Warren,RB,PIT,Active,,NO,Mike McCarthy,Brandon Staley,50,,0,50,,0,77,64,89,80,18,74,2,49.53,72,23.8,44.5,-3,66.5,7,START
-7,9509,Bijan Robinson,RB,ATL,Active,,SF,Tommy Rees,Raheem Morris,50,,0,50,,0,69,52,77,53,65,71,2,38.88,70,23.5,49.5,-2.5,65.1,8,START
-7,7594,Chuba Hubbard,RB,CAR,Active,,TB,Brad Idzik,Todd Bowles,50,,0,35,5.9,4,93,62,86,28,40,86,2,41.25,72,23.8,44.5,3,64.8,9,START
-7,3198,Derrick Henry,RB,BAL,Active,,CIN,Declan Doyle,Al Golden,50,,0,50,13.7,2,85,43,79,35,84,81,6,42.31,67,23,47.5,-1.5,63.6,10,START
-7,6790,D'Andre Swift,RB,CHI,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,64,51,49,50,68,78,2,,,,,,61.5,11,START
-7,6813,Jonathan Taylor,RB,IND,Active,,MIN,Shane Steichen,Brian Flores,46,11.2,1,49,8.9,1,84,59,78,21,56,85,2,38.02,33,17.5,41.5,6.5,60.1,12,START
-7,12527,Ashton Jeanty,RB,LV,Active,,LAR,Klint Kubiak,Chris Shula,77,28.6,3,50,,0,68,47,72,46,44,84,6,39.13,66,22.8,48.5,-3,59.8,13,START
-7,11584,Bucky Irving,RB,TB,Active,,CAR,Zac Robinson,Ejiro Evero,100,36.38,4,55,17.1,4,77,46,67,33,34,64,2,40.44,53,20.8,44.5,3,58.4,14,START
-7,11576,Braelon Allen,RB,NYJ,Active,,MIA,Frank Reich,Jeff Hafley,50,,0,50,,0,78,41,91,47,11,76,13,43.99,61,22,39.5,4.5,57.6,15,START
-7,12474,Woody Marks,RB,HOU,Active,,NYG,Nick Caley,Dennard Wilson,54,22.9,2,52,17,2,54,32,57,45,29,77,6,39.13,88,26.2,42.5,10,57.4,16,START
-7,8129,Dameon Pierce,RB,PHI,Active,,DAL,Sean Mannion,Christian Parker,50,,0,50,,0,61,28,89,42,23,70,13,34.89,48,20,44.5,-4.5,57,17,START
-7,11435,Emanuel Wilson,RB,SEA,Active,,KC,Brian Fleury,Steve Spagnuolo,50,,0,50,,0,77,49,75,30,27,71,2,32.63,66,22.8,42.5,3,62.6,18,START
-7,8155,Breece Hall,RB,NYJ,Active,Questionable,MIA,Frank Reich,Jeff Hafley,50,,0,50,,0,75,44,72,47,34,77,32,43.99,61,22,39.5,4.5,56.5,19,START
-7,12495,Ollie Gordon II,RB,MIA,Active,,NYJ,Bobby Slowik,Aaron Glenn,49,18.1,1,50,,0,60,49,59,43,42,88,6,40.19,33,17.5,39.5,4.5,56.1,20,START
-7,12512,Quinshon Judkins,RB,CLE,Active,,TEN,Todd Monken,Robert Saleh,50,,0,50,13.9,1,77,41,75,37,32,79,6,37.94,45,19.5,36.5,-2.5,55.2,21,START
-7,6806,J.K. Dobbins,RB,DEN,Active,,ARI,Davis Webb,Nick Rallis,50,,0,49,9.6,1,65,37,67,52,31,82,2,39.36,73,24,43.5,-4.5,55.1,22,START
-7,9224,Chase Brown,RB,CIN,Active,,BAL,Zac Taylor,Jesse Minter,50,,0,51,19.3,1,64,38,71,27,21,78,2,39.86,77,24.5,47.5,-1.5,52.9,23,START
-7,5967,Tony Pollard,RB,TEN,Active,,CLE,Brian Daboll,Mike Rutenberg,50,,0,50,,0,68,27,81,25,48,80,2,40.17,30,17,36.5,-2.5,51.6,24,START
-7,12481,Cam Skattebo,RB,NYG,Active,,HOU,Matt Nagy,Matt Burke,50,,0,50,,0,73,31,67,60,18,83,6,40.52,25,16.2,42.5,10,51.4,25,FLEX
-7,7611,Rhamondre Stevenson,RB,NE,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,59,39,47,50,31,78,2,,,,,,50.9,26,FLEX
-7,8132,Tyler Allgeier,RB,ARI,Active,,DEN,Mike LaFleur,Vance Joseph,50,,0,46,8.7,2,43,23,38,34,24,57,2,39.17,45,19.5,43.5,-4.5,47.7,27,FLEX
-7,4035,Alvin Kamara,RB,NO,Active,,PIT,Kellen Moore,Patrick Graham,44,13.9,2,58,42.8,1,37,42,36,36,13,57,17,33.32,53,20.8,44.5,-3,47.2,28,FLEX
-7,9757,Kendre Miller,RB,NO,Active,,PIT,Kellen Moore,Patrick Graham,44,13.9,2,47,2.9,1,51,23,52,36,31,70,2,33.32,53,20.8,44.5,-3,47.1,29,FLEX
-7,10235,Roschon Johnson,RB,CHI,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,40,30,31,50,24,55,13,,,,,,46.5,30,FLEX
-7,11586,Blake Corum,RB,LA,Active,,LV,Sean McVay,Rob Leonard,50,,0,50,,0,33,34,35,72,13,67,13,43.79,84,25.8,48.5,-3,45.5,31,FLEX
-7,7021,Rico Dowdle,RB,PIT,Active,Questionable,NO,Mike McCarthy,Brandon Staley,50,,0,50,13.85,2,41,19,43,80,9,78,43,49.53,72,23.8,44.5,-3,44.1,32,FLEX
-7,8116,Pierre Strong Jr.,RB,GB,Active,,DET,Matt LaFleur,Kelvin Sheppard,45,15.05,2,50,,0,48,26,45,24,29,65,21,35.32,81,25.2,53.5,3,43.3,33,FLEX
-7,12489,RJ Harvey,RB,DEN,Active,,ARI,Davis Webb,Nick Rallis,50,,0,50,,0,38,36,37,52,15,50,17,39.36,73,24,43.5,-4.5,43.3,34,FLEX
-7,12048,George Holani,RB,SEA,Active,,KC,Brian Fleury,Steve Spagnuolo,50,,0,50,,0,26,19,25,30,11,77,13,32.63,66,22.8,42.5,3,43,35,FLEX
-7,11581,MarShawn Lloyd,RB,GB,Active,,DET,Matt LaFleur,Kelvin Sheppard,45,15.05,2,50,,0,41,29,41,24,31,67,13,35.32,81,25.2,53.5,3,42.9,36,FLEX
-7,8122,Zonovan Knight,RB,ARI,Active,,DEN,Mike LaFleur,Vance Joseph,50,,0,50,,0,20,20,20,34,50,50,13,39.17,45,19.5,43.5,-4.5,42.9,37,SIT
-7,11649,Kendall Milton,RB,CIN,Active,,BAL,Zac Taylor,Jesse Minter,50,,0,50,,0,50,20,20,27,50,50,5,39.86,77,24.5,47.5,-1.5,41.6,38,SIT
-7,5850,Josh Jacobs,RB,GB,Active,,DET,Matt LaFleur,Kelvin Sheppard,45,15.05,2,50,,0,50,20,20,24,50,50,2,35.32,81,25.2,53.5,3,41.1,39,SIT
-7,8207,Tyler Goodson,RB,DAL,Active,,PHI,Brian Schottenheimer,Vic Fangio,52,21.3,2,50,,0,20,6,19,51,9,75,13,43.98,77,24.5,44.5,-4.5,40.1,40,SIT
-7,00-0037157,Bam Knight,RB,ARI,UNKNOWN,,DEN,Mike LaFleur,Vance Joseph,50,,0,50,,0,25,15,22,34,17,31,5,39.17,45,19.5,43.5,-4.5,39.5,41,SIT
-7,13414,Kaelon Black,RB,SF,Active,,ATL,Kyle Shanahan,Jeff Ulbrich,64,32.45,2,50,,0,26,8,24,78,13,66,21,47.74,86,26,49.5,-2.5,39.5,42,SIT
-7,8181,Connor Heyward,RB,LV,Active,,LAR,Klint Kubiak,Chris Shula,77,28.6,3,50,,0,20,20,20,46,50,50,21,39.13,66,22.8,48.5,-3,38.7,43,SIT
-7,00-0039373,Audric Estimé,RB,CLE,UNKNOWN,,TEN,Todd Monken,Robert Saleh,50,,0,50,,0,33,24,32,37,32,50,5,37.94,45,19.5,36.5,-2.5,38.2,44,SIT
-7,4866,Saquon Barkley,RB,PHI,Active,Questionable,DAL,Sean Mannion,Christian Parker,50,,0,50,,0,32,14,39,42,15,35,32,34.89,48,20,44.5,-4.5,37.1,45,SIT
-7,12471,DJ Giddens,RB,IND,Active,,MIN,Shane Steichen,Brian Flores,46,11.2,1,50,,0,50,20,20,21,50,50,25,38.02,33,17.5,41.5,6.5,36.8,46,SIT
-7,4147,Samaje Perine,RB,CIN,Active,,BAL,Zac Taylor,Jesse Minter,50,,0,44,5.15,2,32,20,33,27,16,42,17,39.86,77,24.5,47.5,-1.5,36.3,47,SIT
-7,7567,Kenny Gainwell,RB,TB,Active,,CAR,Zac Robinson,Ejiro Evero,100,36.38,4,47,5.3,1,20,21,18,33,8,68,13,40.44,53,20.8,44.5,3,35.6,48,SIT
-7,13305,Mike Washington Jr.,RB,LV,Active,Questionable,LAR,Klint Kubiak,Chris Shula,77,28.6,3,50,,0,28,11,33,46,10,48,51,39.13,66,22.8,48.5,-3,35.1,49,SIT
-7,12529,TreVeyon Henderson,RB,NE,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,36,14,28,50,6,71,17,,,,,,34.8,50,SIT
-7,13277,CJ Donaldson,RB,NO,Active,,PIT,Kellen Moore,Patrick Graham,44,13.9,2,50,,0,21,12,22,36,8,81,29,33.32,53,20.8,44.5,-3,34.1,51,SIT
-7,11643,Jaylen Wright,RB,MIA,Active,,NYJ,Bobby Slowik,Aaron Glenn,49,18.1,1,50,,0,16,3,18,43,5,70,13,40.19,33,17.5,39.5,4.5,33.9,52,SIT
-7,11729,Sione Vaki,RB,DET,Active,,GB,Drew Petzing,Jonathan Gannon,50,,0,50,,0,19,9,15,47,0,53,13,46.1,100,28.2,53.5,3,33.3,53,SIT
-7,11199,Emari Demercado,RB,DAL,Active,,PHI,Brian Schottenheimer,Vic Fangio,52,21.3,2,50,,0,9,2,13,51,3,85,30,43.98,77,24.5,44.5,-4.5,33.1,54,SIT
-7,6130,Devin Singletary,RB,NYG,Active,,HOU,Matt Nagy,Matt Burke,50,,0,50,,0,23,20,23,60,9,54,21,40.52,25,16.2,42.5,10,33,55,SIT
-7,9506,Sean Tucker,RB,TB,Active,,CAR,Zac Robinson,Ejiro Evero,100,36.38,4,30,2.83,4,15,14,11,33,26,66,21,40.44,53,20.8,44.5,3,32.6,56,SIT
-7,11655,Tyrone Tracy Jr.,RB,NYG,Active,,HOU,Matt Nagy,Matt Burke,50,,0,50,,0,20,24,19,60,11,36,13,40.52,25,16.2,42.5,10,32.4,57,SIT
-7,13347,Demond Claiborne,RB,MIN,Active,,IND,Kevin O'Connell,Lou Anarumo,53,24.8,1,50,,0,9,3,9,37,0,47,21,40.92,73,24,41.5,6.5,32.3,58,SIT
-7,00-0036893,Najee Harris,RB,NYG,UNKNOWN,,HOU,Matt Nagy,Matt Burke,50,,0,50,,0,23,6,24,60,16,62,5,40.52,25,16.2,42.5,10,32.2,59,SIT
-7,4718,Dare Ogunbowale,RB,HOU,Active,,NYG,Nick Caley,Dennard Wilson,54,22.9,2,29,2.07,3,0,0,0,45,0,50,17,39.13,88,26.2,42.5,10,31.9,60,SIT
-7,5995,Justice Hill,RB,BAL,Active,,CIN,Declan Doyle,Al Golden,50,,0,50,,0,19,19,16,35,0,54,13,42.31,67,23,47.5,-1.5,31.8,61,SIT
-7,13337,Emmett Johnson,RB,KC,Active,,SEA,Andy Reid,Mike Macdonald,50,,0,50,,0,16,8,16,62,3,49,21,43.7,47,19.8,42.5,3,29.9,62,SIT
-7,11574,Dylan Laube,RB,LV,Active,,LAR,Klint Kubiak,Chris Shula,77,28.6,3,50,,0,11,13,13,46,5,28,30,39.13,66,22.8,48.5,-3,29.7,63,SIT
-7,00-0038738,Hunter Luepke,RB,DAL,UNKNOWN,,PHI,Brian Schottenheimer,Vic Fangio,52,21.3,2,27,1.23,4,6,6,5,51,2,39,5,43.98,77,24.5,44.5,-4.5,29.6,64,SIT
-7,11439,Jaleel McLaughlin,RB,CLE,Active,,TEN,Todd Monken,Robert Saleh,50,,0,50,,0,19,19,19,37,2,32,21,37.94,45,19.5,36.5,-2.5,29.2,65,SIT
-7,00-0036425,DeeJay Dallas,RB,MIN,UNKNOWN,,IND,Kevin O'Connell,Lou Anarumo,53,24.8,1,42,1.5,2,4,4,4,37,0,62,5,40.92,73,24,41.5,6.5,29.1,66,SIT
-7,12467,Jordan James,RB,SF,Active,,ATL,Kyle Shanahan,Jeff Ulbrich,64,32.45,2,50,,0,5,2,5,78,0,27,34,47.74,86,26,49.5,-2.5,29,67,SIT
-7,12491,Corey Kiner,RB,NE,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,22,13,18,50,16,33,25,,,,,,28.9,68,SIT
-7,6828,AJ Dillon,RB,CAR,Active,,TB,Brad Idzik,Todd Bowles,50,,0,44,3.75,2,17,4,18,28,2,60,13,41.25,72,23.8,44.5,3,28.7,69,SIT
-7,12504,Kaleb Johnson,RB,GB,Active,,DET,Matt LaFleur,Kelvin Sheppard,45,15.05,2,50,,0,20,7,21,24,10,38,34,35.32,81,25.2,53.5,3,28.7,70,SIT
-7,13424,Seth McGowan,RB,IND,Active,,MIN,Shane Steichen,Brian Flores,46,11.2,1,50,,0,22,11,21,21,8,75,21,38.02,33,17.5,41.5,6.5,28.7,71,SIT
-7,6012,Travis Homer,RB,PIT,Active,,NO,Mike McCarthy,Brandon Staley,50,,0,46,0,1,4,0,5,80,6,39,21,49.53,72,23.8,44.5,-3,28.4,72,SIT
-7,11571,Isaiah Davis,RB,NYJ,Active,,MIA,Frank Reich,Jeff Hafley,50,,0,50,,0,15,7,14,47,5,31,21,43.99,61,22,39.5,4.5,28.3,73,SIT
-7,13516,Max Bredeson,RB,MIN,Active,,IND,Kevin O'Connell,Lou Anarumo,53,24.8,1,50,,0,0,0,0,37,0,50,29,40.92,73,24,41.5,6.5,27.3,74,SIT
-7,11280,Brady Russell,RB,SEA,Active,,KC,Brian Fleury,Steve Spagnuolo,50,,0,50,,0,0,0,0,30,0,53,30,32.63,66,22.8,42.5,3,27.2,75,SIT
-7,13423,Eli Heidenreich,RB,PIT,Active,,NO,Mike McCarthy,Brandon Staley,50,,0,50,,0,0,0,0,80,0,52,38,49.53,72,23.8,44.5,-3,27.1,76,SIT
-7,13315,Dean Connors,RB,LA,Active,,LV,Sean McVay,Rob Leonard,50,,0,50,,0,0,0,0,72,0,53,29,43.79,84,25.8,48.5,-3,26.9,77,SIT
-7,9510,Lew Nichols,RB,PIT,Active,,NO,Mike McCarthy,Brandon Staley,50,,0,50,,0,1,1,2,80,3,28,30,49.53,72,23.8,44.5,-3,26.7,78,SIT
-7,11237,Jacob Saylors,RB,DET,Active,,GB,Drew Petzing,Jonathan Gannon,50,,0,50,,0,0,0,0,47,0,54,21,46.1,100,28.2,53.5,3,26.5,79,SIT
-7,9508,Tyjae Spears,RB,TEN,Active,Questionable,CLE,Brian Daboll,Mike Rutenberg,50,,0,50,,0,20,16,19,25,2,36,43,40.17,30,17,36.5,-2.5,26.1,80,SIT
-7,00-0039325,Carson Steele,RB,PHI,INACTIVE,,DAL,Sean Mannion,Christian Parker,50,,0,50,,0,4,2,2,42,0,37,5,34.89,48,20,44.5,-4.5,25.7,81,SIT
-7,14026,DJ Herman,RB,MIA,Active,,NYJ,Bobby Slowik,Aaron Glenn,49,18.1,1,50,,0,6,4,7,43,0,34,29,40.19,33,17.5,39.5,4.5,25.2,82,SIT
-7,12787,Josh Williams,RB,TB,Active,,CAR,Zac Robinson,Ejiro Evero,100,36.38,4,50,,0,0,0,0,33,0,50,9,40.44,53,20.8,44.5,3,24.9,83,SIT
-7,00-0033376,Patrick Ricard,RB,NYG,UNKNOWN,,HOU,Matt Nagy,Matt Burke,50,,0,50,,0,6,2,5,60,0,51,5,40.52,25,16.2,42.5,10,24.4,84,SIT
-7,13288,Nicholas Singleton,RB,TEN,Active,,CLE,Brian Daboll,Mike Rutenberg,50,,0,50,,0,13,2,13,25,6,65,38,40.17,30,17,36.5,-2.5,24.3,85,SIT
-7,11273,Ben VanSumeren,RB,KC,Active,,SEA,Andy Reid,Mike Macdonald,50,,0,50,,0,0,0,0,62,0,54,21,43.7,47,19.8,42.5,3,23.9,86,SIT
-7,12969,Lan Larison,RB,NE,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,7,9,6,50,0,50,9,,,,,,23.7,87,SIT
-7,11299,Zavier Scott,RB,CHI,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,0,0,0,50,0,57,5,,,,,,23.2,88,SIT
-7,11570,Rasheen Ali,RB,BAL,Active,,CIN,Declan Doyle,Al Golden,50,,0,45,6.45,2,0,0,0,35,0,54,21,42.31,67,23,47.5,-1.5,22.6,89,SIT
-7,12531,Trevor Etienne,RB,CAR,Active,,TB,Brad Idzik,Todd Bowles,50,,0,41,0,2,4,0,3,28,0,50,25,41.25,72,23.8,44.5,3,22.6,90,SIT
-7,12543,Tahj Brooks,RB,CIN,Active,,BAL,Zac Taylor,Jesse Minter,50,,0,50,,0,0,0,0,27,0,54,25,39.86,77,24.5,47.5,-1.5,22.5,91,SIT
-7,12939,Anthony Tyus III,RB,CAR,Active,,TB,Brad Idzik,Todd Bowles,50,,0,50,,0,0,0,0,28,0,52,34,41.25,72,23.8,44.5,3,21.9,92,SIT
-7,7720,Kene Nwangwu,RB,NYJ,Active,Questionable,MIA,Frank Reich,Jeff Hafley,50,,0,50,,0,0,0,0,47,0,49,60,43.99,61,22,39.5,4.5,21.7,93,SIT
-7,12469,Dylan Sampson,RB,CLE,INACTIVE,,TEN,Todd Monken,Robert Saleh,50,,0,47,2.3,1,0,0,0,37,0,50,17,37.94,45,19.5,36.5,-2.5,21,94,SIT
-7,12516,Kalel Mullings,RB,TEN,Active,,CLE,Brian Daboll,Mike Rutenberg,50,,0,50,,0,4,1,6,25,0,50,34,40.17,30,17,36.5,-2.5,20.1,95,SIT
-7,8254,Julius Chestnut,RB,TEN,Active,,CLE,Brian Daboll,Mike Rutenberg,50,,0,50,,0,0,0,0,25,0,54,21,40.17,30,17,36.5,-2.5,19.3,96,SIT
-7,9493,Puka Nacua,WR,LA,Active,Questionable,LV,Sean McVay,Rob Leonard,50,,0,50,,0,100,98,34,72,21,60,32,50.82,84,25.8,48.5,-3,70.9,1,START
-7,6786,CeeDee Lamb,WR,DAL,Active,,PHI,Brian Schottenheimer,Vic Fangio,59,38.5,2,65,15.78,4,98,75,33,68,24,48,2,53.39,77,24.5,44.5,-4.5,64.8,2,START
-7,11632,Malik Nabers,WR,NYG,Active,,HOU,Matt Nagy,Matt Burke,50,,0,50,,0,91,100,32,58,23,81,2,46.89,25,16.2,42.5,10,63.5,3,START
-7,12526,Tetairoa McMillan,WR,CAR,Active,,TB,Brad Idzik,Todd Bowles,50,,0,55,15.9,2,65,79,26,65,23,49,6,49.38,72,23.8,44.5,3,57.3,4,START
-7,12501,Matthew Golden,WR,GB,Active,,DET,Matt LaFleur,Kelvin Sheppard,68,45.9,2,47,3.6,1,61,65,27,64,23,77,17,45.54,81,25.2,53.5,3,56,5,START
-7,7547,Amon-Ra St. Brown,WR,DET,Active,,GB,Drew Petzing,Jonathan Gannon,50,,0,54,20.4,1,65,50,28,45,32,87,2,48.97,100,28.2,53.5,3,55.1,6,START
-7,9997,Zay Flowers,WR,BAL,Active,,CIN,Declan Doyle,Al Golden,50,,0,49,9.2,2,70,66,35,49,11,84,2,40.16,67,23,47.5,-1.5,55,7,START
-7,9488,Jaxon Smith-Njigba,WR,SEA,Active,,KC,Brian Fleury,Steve Spagnuolo,50,,0,50,,0,67,75,33,25,15,77,2,41.99,66,22.8,42.5,3,54,8,START
-7,8137,George Pickens,WR,DAL,Active,,PHI,Brian Schottenheimer,Vic Fangio,59,38.5,2,57,17.8,2,59,63,19,68,18,57,13,53.39,77,24.5,44.5,-4.5,53.7,9,START
-7,7569,Nico Collins,WR,HOU,Active,,NYG,Nick Caley,Dennard Wilson,58,37.85,2,70,17.77,4,46,65,24,36,15,72,2,50.85,88,26.2,42.5,10,52.3,10,START
-7,8112,Drake London,WR,ATL,Active,,SF,Tommy Rees,Raheem Morris,50,,0,55,22.6,1,59,54,31,49,10,83,2,45.1,70,23.5,49.5,-2.5,51.3,11,START
-7,7564,Ja'Marr Chase,WR,CIN,Active,,BAL,Zac Taylor,Jesse Minter,50,,0,57,26.5,1,54,62,23,48,18,58,2,45.88,77,24.5,47.5,-1.5,51,12,START
-7,5846,DK Metcalf,WR,PIT,Active,,NO,Mike McCarthy,Brandon Staley,50,,0,50,,0,63,52,25,57,10,64,2,45.9,72,23.8,44.5,-3,50.4,13,START
-7,1479,Keenan Allen,WR,IND,Active,,MIN,Shane Steichen,Brian Flores,47,26.4,1,86,24.41,4,63,54,25,20,11,84,10,43.42,33,17.5,41.5,6.5,50.4,14,START
-7,8167,Christian Watson,WR,GB,Active,,DET,Matt LaFleur,Kelvin Sheppard,68,45.9,2,53,18.3,1,41,61,19,64,11,58,2,45.54,81,25.2,53.5,3,50.1,15,START
-7,6801,Tee Higgins,WR,CIN,Active,,BAL,Zac Taylor,Jesse Minter,50,,0,58,29.8,1,59,64,21,48,3,55,13,45.88,77,24.5,47.5,-1.5,50,16,START
-7,8144,Chris Olave,WR,NO,Active,,PIT,Kellen Moore,Patrick Graham,60,39.5,2,50,10.2,1,54,53,25,44,13,78,2,50.37,53,20.8,44.5,-3,48.6,17,START
-7,11646,Jalen Coker,WR,CAR,Active,,TB,Brad Idzik,Todd Bowles,50,,0,50,9.97,3,57,42,25,65,16,60,13,49.38,72,23.8,44.5,3,48.3,18,START
-7,11610,Malik Washington,WR,MIA,Active,,NYJ,Bobby Slowik,Aaron Glenn,50,30.4,1,50,,0,61,44,36,52,8,91,2,47.51,33,17.5,39.5,4.5,48.1,19,START
-7,12519,Luther Burden III,WR,CHI,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,54,47,26,50,24,81,6,,,,,,47.9,20,START
-7,11306,Xavier Gipson,WR,PHI,Active,,DAL,Sean Mannion,Christian Parker,50,,0,50,,0,50,20,20,73,50,50,5,47.03,48,20,44.5,-4.5,47,21,START
-7,13274,Germie Bernard,WR,PIT,Active,,NO,Mike McCarthy,Brandon Staley,50,,0,50,,0,52,53,22,57,10,47,21,45.9,72,23.8,44.5,-3,46.8,22,START
-7,8148,Jameson Williams,WR,DET,Active,,GB,Drew Petzing,Jonathan Gannon,50,,0,50,,0,35,54,14,45,5,76,13,48.97,100,28.2,53.5,3,45.9,23,START
-7,10232,Michael Wilson,WR,ARI,Active,,DEN,Mike LaFleur,Vance Joseph,50,,0,50,,0,59,38,24,45,32,68,2,42.7,45,19.5,43.5,-4.5,45.9,24,START
-7,12732,Dominic Lovett,WR,DET,Active,,GB,Drew Petzing,Jonathan Gannon,50,,0,50,,0,50,20,20,45,50,50,9,48.97,100,28.2,53.5,3,45.2,25,FLEX
-7,11783,Ryan Flournoy,WR,DAL,Active,,PHI,Brian Schottenheimer,Vic Fangio,59,38.5,2,26,0.43,3,39,45,13,68,21,70,21,53.39,77,24.5,44.5,-4.5,45.1,26,FLEX
-7,12536,Jaylin Noel,WR,HOU,Active,,NYG,Nick Caley,Dennard Wilson,58,37.85,2,42,1.6,2,30,59,16,36,6,81,17,50.85,88,26.2,42.5,10,45,27,FLEX
-7,10213,Tre Tucker,WR,LV,Active,,LAR,Klint Kubiak,Chris Shula,43,29.13,3,49,7.7,1,48,53,20,29,8,74,2,49.68,66,22.8,48.5,-3,44.9,28,FLEX
-7,13279,Carnell Tate,WR,TEN,Active,,CLE,Brian Daboll,Mike Rutenberg,50,,0,50,,0,52,55,30,46,6,57,10,42.49,30,17,36.5,-2.5,44.7,29,FLEX
-7,9756,Jordan Addison,WR,MIN,Active,,IND,Kevin O'Connell,Lou Anarumo,58,45.8,1,58,29.1,1,46,41,28,37,2,65,13,48.54,73,24,41.5,6.5,44.4,30,FLEX
-7,5781,Malik Turner,WR,SF,Active,,ATL,Kyle Shanahan,Jeff Ulbrich,41,23.95,2,50,,0,50,20,20,57,50,50,9,44.68,86,26,49.5,-2.5,44.4,31,FLEX
-7,8076,Michael Bandy,WR,DEN,Active,,ARI,Davis Webb,Nick Rallis,50,,0,50,,0,50,20,20,46,50,50,5,48.4,73,24,43.5,-4.5,43.5,32,FLEX
-7,11834,Devaughn Vele,WR,NO,Active,,PIT,Kellen Moore,Patrick Graham,60,39.5,2,52,14,1,46,39,21,44,11,73,13,50.37,53,20.8,44.5,-3,43.4,33,FLEX
-7,11474,Dylan Drummond,WR,ATL,Active,,SF,Tommy Rees,Raheem Morris,50,,0,50,,0,50,20,20,49,50,50,5,45.1,70,23.5,49.5,-2.5,43.4,34,FLEX
-7,8146,Garrett Wilson,WR,NYJ,Active,,MIA,Frank Reich,Jeff Hafley,50,,0,50,,0,46,46,28,29,8,60,2,41.09,61,22,39.5,4.5,43.1,35,FLEX
-7,4037,Chris Godwin Jr.,WR,TB,Active,,CAR,Zac Robinson,Ejiro Evero,62,34.85,4,43,7.3,4,41,29,20,42,2,81,6,47.04,53,20.8,44.5,3,42.7,36,FLEX
-7,9501,DeMario Douglas,WR,NE,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,35,59,17,50,10,58,13,,,,,,42.7,37,SIT
-7,7526,Jaylen Waddle,WR,DEN,Active,,ARI,Davis Webb,Nick Rallis,50,,0,49,8.5,1,41,32,24,46,8,75,2,48.4,73,24,43.5,-4.5,42.7,38,SIT
-7,13150,Darius Cooper,WR,PHI,Active,,DAL,Sean Mannion,Christian Parker,50,,0,50,,0,26,44,14,73,10,44,25,47.03,48,20,44.5,-4.5,42.5,39,SIT
-7,6794,Justin Jefferson,WR,MIN,Active,,IND,Kevin O'Connell,Lou Anarumo,58,45.8,1,52,15.4,1,35,40,22,37,13,58,2,48.54,73,24,41.5,6.5,42.5,40,SIT
-7,12718,Konata Mumpfield,WR,LA,Active,,LV,Sean McVay,Rob Leonard,50,,0,50,,0,30,30,11,72,2,46,17,50.82,84,25.8,48.5,-3,42.5,41,SIT
-7,00-0038839,Mitchell Tinsley,WR,CIN,UNKNOWN,,BAL,Zac Taylor,Jesse Minter,50,,0,50,,0,46,29,13,48,32,50,5,45.88,77,24.5,47.5,-1.5,42.5,42,SIT
-7,13294,Makai Lemon,WR,PHI,Active,,DAL,Sean Mannion,Christian Parker,50,,0,50,,0,41,25,19,73,0,78,38,47.03,48,20,44.5,-4.5,42.2,43,SIT
-7,13346,Denzel Boston,WR,CLE,Active,,TEN,Todd Monken,Robert Saleh,50,,0,50,,0,41,36,21,64,10,75,10,37.64,45,19.5,36.5,-2.5,41.8,44,SIT
-7,8119,Jahan Dotson,WR,ATL,Active,,SF,Tommy Rees,Raheem Morris,50,,0,47,2.2,1,26,48,14,49,10,79,13,45.1,70,23.5,49.5,-2.5,41.7,45,SIT
-7,12482,Savion Williams,WR,GB,Active,,DET,Matt LaFleur,Kelvin Sheppard,68,45.9,2,46,1.1,1,39,30,18,64,6,50,25,45.54,81,25.2,53.5,3,41.6,46,SIT
-7,9497,Jalin Hyatt,WR,NYG,Active,,HOU,Matt Nagy,Matt Burke,50,,0,50,,0,50,20,20,58,50,50,5,46.89,25,16.2,42.5,10,41.1,47,SIT
-7,13276,Omar Cooper Jr.,WR,NYJ,Active,,MIA,Frank Reich,Jeff Hafley,50,,0,50,,0,26,49,14,29,3,36,21,41.09,61,22,39.5,4.5,41,48,SIT
-7,11625,Adonai Mitchell,WR,NYJ,Active,,MIA,Frank Reich,Jeff Hafley,50,,0,48,4,1,49,40,23,29,3,65,21,41.09,61,22,39.5,4.5,40.7,49,SIT
-7,8126,Wan'Dale Robinson,WR,TEN,Active,,CLE,Brian Daboll,Mike Rutenberg,50,,0,50,,0,43,34,25,46,16,80,13,42.49,30,17,36.5,-2.5,40.6,50,SIT
-7,11620,Rome Odunze,WR,CHI,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,43,36,19,50,15,69,13,,,,,,40.5,51,SIT
-7,8223,Velus Jones Jr.,WR,SEA,Active,,KC,Brian Fleury,Steve Spagnuolo,50,,0,46,0,1,50,20,20,25,50,50,21,41.99,66,22.8,42.5,3,39.9,52,SIT
-7,12520,Xavier Restrepo,WR,TEN,Active,,CLE,Brian Daboll,Mike Rutenberg,50,,0,50,,0,50,20,20,46,50,50,9,42.49,30,17,36.5,-2.5,39.9,53,SIT
-7,5859,A.J. Brown,WR,NE,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,46,21,23,50,13,78,2,,,,,,39.2,54,SIT
-7,8676,Rashid Shaheed,WR,SEA,Active,,KC,Brian Fleury,Steve Spagnuolo,50,,0,54,18.6,1,39,35,19,25,8,72,13,41.99,66,22.8,42.5,3,39.2,55,SIT
-7,4454,Kendrick Bourne,WR,ARI,Active,,DEN,Mike LaFleur,Vance Joseph,50,,0,50,9.7,1,41,32,16,45,15,64,17,42.7,45,19.5,43.5,-4.5,38.7,56,SIT
-7,13317,Ted Hurst III,WR,TB,Active,,CAR,Zac Robinson,Ejiro Evero,62,34.85,4,50,,0,26,28,12,42,5,70,21,47.04,53,20.8,44.5,3,38.7,57,SIT
-7,11624,Xavier Worthy,WR,KC,Active,,SEA,Andy Reid,Mike Macdonald,50,,0,50,,0,35,36,20,28,11,63,2,44.49,47,19.8,42.5,3,38.1,58,SIT
-7,12535,Isaac TeSlaa,WR,DET,Active,,GB,Drew Petzing,Jonathan Gannon,50,,0,50,,0,28,29,11,45,10,45,25,48.97,100,28.2,53.5,3,38,59,SIT
-7,8147,John Metchie III,WR,CAR,Active,,TB,Brad Idzik,Todd Bowles,50,,0,44,2.7,2,28,26,11,65,8,75,30,49.38,72,23.8,44.5,3,38,60,SIT
-7,9500,Josh Downs,WR,IND,Active,,MIN,Shane Steichen,Brian Flores,47,26.4,1,51,12,1,41,26,17,20,8,76,13,43.42,33,17.5,41.5,6.5,37.8,61,SIT
-7,13296,Caleb Douglas,WR,MIA,Active,,NYJ,Bobby Slowik,Aaron Glenn,50,30.4,1,50,,0,33,34,19,52,3,58,21,47.51,33,17.5,39.5,4.5,37.5,62,SIT
-7,13264,Dohnte Meyers,WR,CIN,Active,,BAL,Zac Taylor,Jesse Minter,50,,0,50,,0,35,30,12,48,0,50,29,45.88,77,24.5,47.5,-1.5,37,63,SIT
-7,13298,KC Concepcion Jr.,WR,CLE,Active,,TEN,Todd Monken,Robert Saleh,50,,0,50,,0,37,26,20,64,5,47,21,37.64,45,19.5,36.5,-2.5,36.8,64,SIT
-7,11628,Marvin Harrison Jr.,WR,HOU,Active,,NYG,Nick Caley,Dennard Wilson,58,37.85,2,49,8.2,1,28,24,13,36,8,50,21,50.85,88,26.2,42.5,10,36.5,65,SIT
-7,3155,Laquon Treadwell,WR,IND,Active,,MIN,Shane Steichen,Brian Flores,47,26.4,1,50,,0,41,23,17,20,6,74,25,43.42,33,17.5,41.5,6.5,36.4,66,SIT
-7,10218,Xavier Hutchinson,WR,HOU,Active,,NYG,Nick Caley,Dennard Wilson,58,37.85,2,33,3.1,4,28,26,15,36,5,68,30,50.85,88,26.2,42.5,10,36.4,67,SIT
-7,6783,Jerry Jeudy,WR,CLE,Active,,TEN,Todd Monken,Robert Saleh,50,,0,48,5.6,1,30,28,16,64,0,68,21,37.64,45,19.5,36.5,-2.5,36.1,68,SIT
-7,9504,Kayshon Boutte,WR,HOU,Active,,NYG,Nick Caley,Dennard Wilson,58,37.85,2,49,8.65,2,26,21,13,36,3,76,30,50.85,88,26.2,42.5,10,36.1,69,SIT
-7,5045,Courtland Sutton,WR,DEN,Active,,ARI,Davis Webb,Nick Rallis,50,,0,50,,0,26,19,14,46,15,60,17,48.4,73,24,43.5,-4.5,35.9,70,SIT
-7,13293,Ja'Kobi Lane,WR,BAL,Active,,CIN,Declan Doyle,Al Golden,50,,0,50,,0,26,19,14,49,16,65,29,40.16,67,23,47.5,-1.5,35.8,71,SIT
-7,7562,Tutu Atwell,WR,LA,Active,,LV,Sean McVay,Rob Leonard,50,,0,50,,0,9,8,4,72,0,61,30,50.82,84,25.8,48.5,-3,34.2,72,SIT
-7,5086,Marquez Valdes-Scantling,WR,PIT,Active,,NO,Mike McCarthy,Brandon Staley,50,,0,46,0,1,11,20,20,57,0,50,9,45.9,72,23.8,44.5,-3,33.5,73,SIT
-7,13338,Kevin Coleman Jr.,WR,MIA,Active,,NYJ,Bobby Slowik,Aaron Glenn,50,30.4,1,50,,0,33,18,21,52,8,52,38,47.51,33,17.5,39.5,4.5,33.4,74,SIT
-7,12634,Jordan Watkins,WR,SF,Active,,ATL,Kyle Shanahan,Jeff Ulbrich,41,23.95,2,50,,0,10,21,6,57,0,67,6,44.68,86,26,49.5,-2.5,33.3,75,SIT
-7,12485,Tez Johnson,WR,TB,Active,,CAR,Zac Robinson,Ejiro Evero,62,34.85,4,43,2.05,2,15,18,7,42,0,65,25,47.04,53,20.8,44.5,3,33.1,76,SIT
-7,13285,Malachi Fields,WR,NYG,Active,,HOU,Matt Nagy,Matt Burke,50,,0,50,,0,28,26,11,58,5,46,21,46.89,25,16.2,42.5,10,32.9,77,SIT
-7,13297,Reggie Virgil,WR,ARI,Active,,DEN,Mike LaFleur,Vance Joseph,50,,0,50,,0,33,18,11,45,13,50,38,42.7,45,19.5,43.5,-4.5,32.9,78,SIT
-7,9494,Marvin Mims Jr.,WR,DEN,Active,,ARI,Davis Webb,Nick Rallis,50,,0,50,,0,22,10,12,46,0,79,21,48.4,73,24,43.5,-4.5,32.8,79,SIT
-7,11157,Brycen Tremayne,WR,CAR,Active,,TB,Brad Idzik,Todd Bowles,50,,0,43,2.35,2,20,22,7,65,0,29,21,49.38,72,23.8,44.5,3,32.7,80,SIT
-7,13420,Bryce Lance,WR,NO,Active,,PIT,Kellen Moore,Patrick Graham,60,39.5,2,50,,0,26,13,12,44,8,60,29,50.37,53,20.8,44.5,-3,32.5,81,SIT
-7,4039,Cooper Kupp,WR,SEA,Active,,KC,Brian Fleury,Steve Spagnuolo,50,,0,50,,0,33,20,14,25,6,45,29,41.99,66,22.8,42.5,3,32.3,82,SIT
-7,7571,Rashod Bateman,WR,BAL,Active,,CIN,Declan Doyle,Al Golden,50,,0,46,0,1,20,22,10,49,6,36,13,40.16,67,23,47.5,-1.5,32.2,83,SIT
-7,11623,Jordan Whittington,WR,LA,Active,,LV,Sean McVay,Rob Leonard,50,,0,50,,0,7,4,3,72,0,33,21,50.82,84,25.8,48.5,-3,32,84,SIT
-7,3269,Chris Moore,WR,BAL,Active,,CIN,Declan Doyle,Al Golden,50,,0,50,,0,13,19,8,49,6,63,13,40.16,67,23,47.5,-1.5,31.9,85,SIT
-7,12542,Efton Chism III,WR,NE,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,26,29,12,50,8,42,25,,,,,,31.9,86,SIT
-7,7596,Elijah Moore,WR,PHI,Active,,DAL,Sean Mannion,Christian Parker,50,,0,50,,0,13,5,5,73,0,50,30,47.03,48,20,44.5,-4.5,31.1,87,SIT
-7,5848,Marquise Brown,WR,PHI,Active,,DAL,Sean Mannion,Christian Parker,50,,0,50,,0,13,4,6,73,0,50,30,47.03,48,20,44.5,-4.5,31.1,88,SIT
-7,2197,Brandin Cooks,WR,SF,Active,,ATL,Kyle Shanahan,Jeff Ulbrich,41,23.95,2,50,,0,11,12,6,57,6,55,21,44.68,86,26,49.5,-2.5,31,89,SIT
-7,13311,Chris Bell,WR,MIA,Active,,NYJ,Bobby Slowik,Aaron Glenn,50,30.4,1,50,,0,28,16,16,52,0,47,29,47.51,33,17.5,39.5,4.5,31,90,SIT
-7,13320,Zachariah Branch,WR,ATL,Active,,SF,Tommy Rees,Raheem Morris,50,,0,50,,0,13,12,7,49,5,86,38,45.1,70,23.5,49.5,-2.5,31,91,SIT
-7,8180,Jalen Nailor,WR,LV,Active,,LAR,Klint Kubiak,Chris Shula,43,29.13,3,47,3.6,1,22,8,10,29,2,88,13,49.68,66,22.8,48.5,-3,30.7,92,SIT
-7,6386,Alex Bachman,WR,LA,Active,,LV,Sean McVay,Rob Leonard,50,,0,50,,0,0,0,0,72,0,52,34,50.82,84,25.8,48.5,-3,30.2,93,SIT
-7,12497,Tory Horton,WR,SEA,Active,,KC,Brian Fleury,Steve Spagnuolo,50,,0,50,,0,20,22,8,25,4,57,34,41.99,66,22.8,42.5,3,30.1,94,SIT
-7,7039,Cody White,WR,LV,Active,,LAR,Klint Kubiak,Chris Shula,43,29.13,3,30,2.13,3,22,15,8,29,16,58,21,49.68,66,22.8,48.5,-3,30,95,SIT
-7,11629,Devontez Walker,WR,BAL,Active,,CIN,Declan Doyle,Al Golden,50,,0,46,0,1,13,15,7,49,3,67,30,40.16,67,23,47.5,-1.5,30,96,SIT
-7,4351,Tim Patrick,WR,NYJ,Active,,MIA,Frank Reich,Jeff Hafley,50,,0,53,12.75,2,20,13,10,29,0,84,34,41.09,61,22,39.5,4.5,29.9,97,SIT
-7,10225,Jonathan Mingo,WR,DAL,Active,,PHI,Brian Schottenheimer,Vic Fangio,59,38.5,2,44,3.15,2,13,5,5,68,2,28,30,53.39,77,24.5,44.5,-4.5,29.4,98,SIT
-7,13268,Elijah Sarratt,WR,BAL,Active,,CIN,Declan Doyle,Al Golden,50,,0,50,,0,13,9,7,49,0,50,38,40.16,67,23,47.5,-1.5,29.1,99,SIT
-7,13477,Colbie Young,WR,CIN,Active,,BAL,Zac Taylor,Jesse Minter,50,,0,50,,0,7,5,3,48,0,87,38,45.88,77,24.5,47.5,-1.5,29,100,SIT
-7,11627,Troy Franklin,WR,DEN,Active,,ARI,Davis Webb,Nick Rallis,50,,0,50,,0,9,10,5,46,5,62,30,48.4,73,24,43.5,-4.5,29,101,SIT
-7,12503,Isaiah Bond,WR,CLE,Active,,TEN,Todd Monken,Robert Saleh,50,,0,47,3.7,1,20,17,9,64,0,27,34,37.64,45,19.5,36.5,-2.5,28.8,102,SIT
-7,11608,Isaiah Williams,WR,NYJ,Active,,MIA,Frank Reich,Jeff Hafley,50,,0,46,0,1,15,23,11,29,0,40,30,41.09,61,22,39.5,4.5,28.6,103,SIT
-7,13179,Ja'seem Reed,WR,CAR,Active,,TB,Brad Idzik,Todd Bowles,50,,0,50,,0,7,0,3,65,6,50,9,49.38,72,23.8,44.5,3,28.6,104,SIT
-7,7090,Darnell Mooney,WR,NYG,Active,,HOU,Matt Nagy,Matt Burke,50,,0,50,,0,26,7,10,58,0,44,21,46.89,25,16.2,42.5,10,28.3,105,SIT
-7,3634,Kalif Raymond,WR,CHI,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,20,12,9,50,5,72,25,,,,,,28.2,106,SIT
-7,12496,Tai Felton,WR,MIN,Active,,IND,Kevin O'Connell,Lou Anarumo,58,45.8,1,50,,0,13,9,7,37,2,46,34,48.54,73,24,41.5,6.5,28.2,107,SIT
-7,12829,Coleman Owen,WR,GB,Active,,DET,Matt LaFleur,Kelvin Sheppard,68,45.9,2,50,,0,0,0,0,64,0,50,9,45.54,81,25.2,53.5,3,28,108,SIT
-7,11034,Jalen Brooks,WR,ARI,Active,,DEN,Mike LaFleur,Vance Joseph,50,,0,50,,0,22,11,8,45,5,32,21,42.7,45,19.5,43.5,-4.5,28,109,SIT
-7,13075,Myles Price,WR,MIN,Active,,IND,Kevin O'Connell,Lou Anarumo,58,45.8,1,50,,0,15,10,8,37,3,29,34,48.54,73,24,41.5,6.5,28,110,SIT
-7,8414,Britain Covey,WR,PHI,Active,,DAL,Sean Mannion,Christian Parker,50,,0,50,,0,0,0,0,73,0,53,30,47.03,48,20,44.5,-4.5,27.7,111,SIT
-7,13541,Lewis Bond,WR,HOU,Active,,NYG,Nick Caley,Dennard Wilson,58,37.85,2,50,,0,7,0,4,36,0,50,13,50.85,88,26.2,42.5,10,27.7,112,SIT
-7,6427,Ashton Dulin,WR,IND,Active,,MIN,Shane Steichen,Brian Flores,47,26.4,1,47,1.7,1,23,11,12,20,0,32,30,43.42,33,17.5,41.5,6.5,27.6,113,SIT
-7,8204,Bo Melton,WR,GB,Active,Questionable,DET,Matt LaFleur,Kelvin Sheppard,68,45.9,2,42,0.75,2,11,6,5,64,0,23,60,45.54,81,25.2,53.5,3,27.4,114,SIT
-7,7049,Jauan Jennings,WR,MIN,Active,,IND,Kevin O'Connell,Lou Anarumo,58,45.8,1,49,9.05,2,9,4,5,37,2,50,21,48.54,73,24,41.5,6.5,27.1,115,SIT
-7,12863,Andrew Armstrong,WR,KC,Active,,SEA,Andy Reid,Mike Macdonald,50,,0,50,,0,13,9,7,28,19,50,25,44.49,47,19.8,42.5,3,26.9,116,SIT
-7,11616,Jacob Cowing,WR,SF,Active,,ATL,Kyle Shanahan,Jeff Ulbrich,41,23.95,2,46,0,1,9,3,5,57,0,32,21,44.68,86,26,49.5,-2.5,26.9,117,SIT
-7,5938,Lil'Jordan Humphrey,WR,DEN,Active,,ARI,Davis Webb,Nick Rallis,50,,0,50,,0,10,3,6,46,0,49,30,48.4,73,24,43.5,-4.5,26.9,118,SIT
-7,12547,Kyle Williams,WR,NE,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,13,25,6,50,0,46,34,,,,,,26.8,119,SIT
-7,12499,Elic Ayomanor,WR,TEN,Active,,CLE,Brian Daboll,Mike Rutenberg,50,,0,50,,0,11,9,6,46,8,69,25,42.49,30,17,36.5,-2.5,26.7,120,SIT
-7,00-0037231,Kevin Austin Jr.,WR,NO,UNKNOWN,,PIT,Kellen Moore,Patrick Graham,60,39.5,2,47,3.3,1,7,6,3,44,0,50,5,50.37,53,20.8,44.5,-3,26.7,121,SIT
-7,4274,David Moore,WR,CAR,Active,,TB,Brad Idzik,Todd Bowles,50,,0,46,5.85,2,7,5,3,65,0,28,34,49.38,72,23.8,44.5,3,26.6,122,SIT
-7,13333,Deion Burks,WR,IND,Active,,MIN,Shane Steichen,Brian Flores,47,26.4,1,50,,0,15,10,7,20,0,57,38,43.42,33,17.5,41.5,6.5,26.6,123,SIT
-7,13770,J. Michael Sturdivant,WR,GB,Active,,DET,Matt LaFleur,Kelvin Sheppard,68,45.9,2,50,,0,2,0,1,64,0,37,38,45.54,81,25.2,53.5,3,26.5,124,SIT
-7,12505,Jalen Royals,WR,KC,Active,,SEA,Andy Reid,Mike Macdonald,50,,0,50,,0,15,8,9,28,10,44,17,44.49,47,19.8,42.5,3,26.5,125,SIT
-7,11911,Jeshaun Jones,WR,MIN,Active,,IND,Kevin O'Connell,Lou Anarumo,58,45.8,1,50,,0,3,8,2,37,0,31,5,48.54,73,24,41.5,6.5,26.1,126,SIT
-7,00-0034854,KhaDarel Hodge,WR,SF,UNKNOWN,,ATL,Kyle Shanahan,Jeff Ulbrich,41,23.95,2,46,0,1,2,3,2,57,0,31,5,44.68,86,26,49.5,-2.5,26.1,127,SIT
-7,3200,Sterling Shepard,WR,NYJ,Active,,MIA,Frank Reich,Jeff Hafley,50,,0,50,,0,7,2,5,29,16,62,13,41.09,61,22,39.5,4.5,26.1,128,SIT
-7,8250,Tay Martin,WR,DET,Active,,GB,Drew Petzing,Jonathan Gannon,50,,0,50,,0,0,0,0,45,0,53,30,48.97,100,28.2,53.5,3,26.1,129,SIT
-7,8117,Jalen Tolbert,WR,MIA,Active,,NYJ,Bobby Slowik,Aaron Glenn,50,30.4,1,46,5.1,2,10,6,7,52,3,55,30,47.51,33,17.5,39.5,4.5,25.6,130,SIT
-7,8253,Deven Thompkins,WR,LV,Active,,LAR,Klint Kubiak,Chris Shula,43,29.13,3,46,0,1,7,7,3,29,0,50,5,49.68,66,22.8,48.5,-3,25.4,131,SIT
-7,7865,Brandon Smith,WR,PIT,Active,,NO,Mike McCarthy,Brandon Staley,50,,0,50,,0,0,0,0,57,0,50,21,45.9,72,23.8,44.5,-3,25.2,132,SIT
-7,12971,Ke'Shawn Williams,WR,CIN,Active,,BAL,Zac Taylor,Jesse Minter,50,,0,46,0,1,0,0,0,48,0,50,9,45.88,77,24.5,47.5,-1.5,25,133,SIT
-7,6271,Olamide Zaccheaus,WR,ATL,Active,Questionable,SF,Tommy Rees,Raheem Morris,50,,0,50,10.1,1,11,0,6,49,2,35,51,45.1,70,23.5,49.5,-2.5,24.9,134,SIT
-7,11994,Kameron Johnson,WR,TB,Active,,CAR,Zac Robinson,Ejiro Evero,62,34.85,4,26,0.37,3,4,2,3,42,0,28,30,47.04,53,20.8,44.5,3,24.8,135,SIT
-7,13981,Kolbe Katsis,WR,DEN,Active,,ARI,Davis Webb,Nick Rallis,50,,0,50,,0,0,0,0,46,0,50,13,48.4,73,24,43.5,-4.5,24.8,136,SIT
-7,4981,Calvin Ridley,WR,TEN,Active,Questionable,CLE,Brian Daboll,Mike Rutenberg,50,,0,50,,0,15,9,8,46,2,54,64,42.49,30,17,36.5,-2.5,24.6,137,SIT
-7,7521,Chris Blair,WR,ATL,Active,,SF,Tommy Rees,Raheem Morris,50,,0,50,,0,0,0,0,49,5,53,30,45.1,70,23.5,49.5,-2.5,24.5,138,SIT
-7,13491,Kaden Wetjen,WR,PIT,Active,,NO,Mike McCarthy,Brandon Staley,50,,0,50,,0,0,0,0,57,0,52,38,45.9,72,23.8,44.5,-3,24.5,139,SIT
-7,11506,Jalen Cropper,WR,NO,Active,,PIT,Kellen Moore,Patrick Graham,60,39.5,2,50,,0,0,0,0,44,0,50,5,50.37,53,20.8,44.5,-3,24.3,140,SIT
-7,10228,Charlie Jones,WR,NYG,Active,,HOU,Matt Nagy,Matt Burke,50,,0,50,,0,7,11,2,58,0,28,30,46.89,25,16.2,42.5,10,23.9,141,SIT
-7,12540,Chimere Dike,WR,TEN,Active,,CLE,Brian Daboll,Mike Rutenberg,50,,0,50,,0,11,10,5,46,0,27,34,42.49,30,17,36.5,-2.5,23.5,142,SIT
-7,13413,Cyrus Allen,WR,KC,Active,,SEA,Andy Reid,Mike Macdonald,50,,0,50,,0,9,6,5,28,0,50,38,44.49,47,19.8,42.5,3,23.3,143,SIT
-7,13533,Barion Brown,WR,NO,Active,,PIT,Kellen Moore,Patrick Graham,60,39.5,2,50,,0,4,1,3,44,2,29,38,50.37,53,20.8,44.5,-3,23.2,144,SIT
-7,7595,Tylan Wallace,WR,CLE,Active,,TEN,Todd Monken,Robert Saleh,50,,0,50,,0,3,4,2,64,0,28,30,37.64,45,19.5,36.5,-2.5,23.2,145,SIT
-7,12699,LaJohntay Wester,WR,BAL,Active,,CIN,Declan Doyle,Al Golden,50,,0,46,0,1,0,0,0,49,0,52,34,40.16,67,23,47.5,-1.5,23,146,SIT
-7,7496,Nick Westbrook-Ikhine,WR,IND,Active,,MIN,Shane Steichen,Brian Flores,47,26.4,1,54,19.7,1,3,0,1,20,0,42,5,43.42,33,17.5,41.5,6.5,23,147,SIT
-7,13329,Malik Benson,WR,LV,Active,,LAR,Klint Kubiak,Chris Shula,43,29.13,3,50,,0,9,2,4,29,5,26,38,49.68,66,22.8,48.5,-3,22.9,148,SIT
-7,11617,Malachi Corley,WR,CLE,Active,,TEN,Todd Monken,Robert Saleh,50,,0,46,0.9,1,0,0,0,64,0,53,30,37.64,45,19.5,36.5,-2.5,22.8,149,SIT
-7,12888,Dalen Cambre,WR,NYG,Active,,HOU,Matt Nagy,Matt Burke,50,,0,50,,0,0,0,0,58,0,50,9,46.89,25,16.2,42.5,10,22.5,150,SIT
-7,12925,Jamaal Pritchett,WR,NYJ,Active,,MIA,Frank Reich,Jeff Hafley,50,,0,50,,0,0,0,0,29,0,50,9,41.09,61,22,39.5,4.5,22.2,151,SIT
-7,13411,Zavion Thomas,WR,CHI,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,11,11,5,50,0,29,38,,,,,,22,152,SIT
-7,6847,Devin Duvernay,WR,ARI,Active,,DEN,Mike LaFleur,Vance Joseph,50,,0,50,,0,0,0,0,45,0,53,30,42.7,45,19.5,43.5,-4.5,21.8,153,SIT
-7,7812,Simi Fehoko,WR,ARI,Active,,DEN,Mike LaFleur,Vance Joseph,50,,0,49,6.4,1,0,0,0,45,0,53,30,42.7,45,19.5,43.5,-4.5,21.7,154,SIT
-7,8527,Dareke Young,WR,LV,Active,,LAR,Klint Kubiak,Chris Shula,43,29.13,3,46,0,1,4,2,1,29,0,28,30,49.68,66,22.8,48.5,-3,21.5,155,SIT
-7,8861,Irvin Charles,WR,SEA,Active,,KC,Brian Fleury,Steve Spagnuolo,50,,0,50,,0,0,0,0,25,0,50,30,41.99,66,22.8,42.5,3,21.3,156,SIT
-7,13199,Montorie Foster Jr.,WR,SEA,Active,,KC,Brian Fleury,Steve Spagnuolo,50,,0,50,,0,0,0,0,25,0,50,34,41.99,66,22.8,42.5,3,21.1,157,SIT
-7,13825,Malik McClain,WR,NYJ,Active,,MIA,Frank Reich,Jeff Hafley,50,,0,50,,0,0,0,0,29,0,52,38,41.09,61,22,39.5,4.5,21,158,SIT
-7,13079,Jahdae Walker,WR,CHI,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,4,9,2,50,6,31,34,,,,,,20.8,159,SIT
-7,11320,Nikko Remigio,WR,KC,Active,,SEA,Andy Reid,Mike Macdonald,50,,0,50,,0,0,0,0,28,0,53,30,44.49,47,19.8,42.5,3,20.6,160,SIT
-7,8755,Kaden Davis,WR,CHI,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,0,0,0,50,0,50,5,,,,,,19.8,161,SIT
-7,8131,Isaiah Likely,TE,NYG,Active,,HOU,Matt Nagy,Matt Burke,50,,0,47,2.2,1,100,100,23,24,16,81,2,43.705,25,16.2,42.5,10,59.8,1,START
-7,11604,Brock Bowers,TE,LV,Active,,LAR,Klint Kubiak,Chris Shula,100,17.67,3,58,19.3,1,83,73,28,25,16,85,2,44.405,66,22.8,48.5,-3,59.6,2,START
-7,10859,Sam LaPorta,TE,DET,Active,,GB,Drew Petzing,Jonathan Gannon,50,,0,50,,0,61,77,23,24,21,64,2,47.535,100,28.2,53.5,3,54.7,3,START
-7,8130,Trey McBride,TE,ARI,Active,,DEN,Mike LaFleur,Vance Joseph,50,,0,50,,0,86,63,31,33,23,80,2,40.935,45,19.5,43.5,-4.5,54.4,4,START
-7,9484,Tucker Kraft,TE,GB,Active,,DET,Matt LaFleur,Kelvin Sheppard,50,7.9,2,52,9.9,1,61,48,22,80,23,84,2,40.43,81,25.2,53.5,3,53.4,5,START
-7,4217,George Kittle,TE,SF,Active,,ATL,Kyle Shanahan,Jeff Ulbrich,45,5.05,2,47,4,2,56,62,32,39,21,80,10,46.21,86,26,49.5,-2.5,52.5,6,START
-7,12517,Colston Loveland,TE,CHI,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,58,55,27,50,21,68,6,,,,,,49.5,7,START
-7,7553,Kyle Pitts Sr.,TE,ATL,Active,,SF,Tommy Rees,Raheem Morris,50,,0,48,3.9,1,44,75,23,23,16,73,2,41.99,70,23.5,49.5,-2.5,49,8,START
-7,9482,Michael Mayer,TE,LV,Active,,LAR,Klint Kubiak,Chris Shula,100,17.67,3,50,,0,56,51,32,25,5,46,13,44.405,66,22.8,48.5,-3,47.9,9,START
-7,3271,Tyler Higbee,TE,LA,Active,,LV,Sean McVay,Rob Leonard,50,,0,50,,0,44,40,19,38,6,82,10,47.305,84,25.8,48.5,-3,46.9,10,START
-7,3214,Hunter Henry,TE,NE,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,39,58,23,50,11,90,6,,,,,,46.4,11,START
-7,7694,Tommy Tremble,TE,CAR,Active,,TB,Brad Idzik,Todd Bowles,50,,0,54,7.55,4,33,57,18,41,5,74,13,45.315,72,23.8,44.5,3,44.2,12,START
-7,6865,Colby Parkinson,TE,LA,Active,,LV,Sean McVay,Rob Leonard,50,,0,50,,0,25,32,18,38,11,32,13,47.305,84,25.8,48.5,-3,44,13,SIT
-7,5022,Dallas Goedert,TE,PHI,Active,,DAL,Sean Mannion,Christian Parker,50,,0,50,,0,53,40,19,25,3,54,6,40.96,48,20,44.5,-4.5,42.7,14,SIT
-7,9479,Darnell Washington,TE,PIT,Active,,NO,Mike McCarthy,Brandon Staley,50,,0,50,,0,39,41,20,38,15,71,13,47.715,72,23.8,44.5,-3,42.7,15,SIT
-7,7600,Pat Freiermuth,TE,PIT,Active,,NO,Mike McCarthy,Brandon Staley,50,,0,50,,0,44,43,12,38,11,56,2,47.715,72,23.8,44.5,-3,42.2,16,SIT
-7,5001,Dalton Schultz,TE,HOU,Active,,NYG,Nick Caley,Dennard Wilson,53,9.55,2,53,7.25,4,33,26,28,33,11,68,6,44.99,88,26.2,42.5,10,40.7,17,SIT
-7,5844,T.J. Hockenson,TE,MIN,Active,,IND,Kevin O'Connell,Lou Anarumo,58,17,1,54,12.3,1,50,38,10,26,6,33,2,44.730000000000004,73,24,41.5,6.5,39.9,18,SIT
-7,12498,Mason Taylor,TE,NYJ,Active,,MIA,Frank Reich,Jeff Hafley,50,,0,50,,0,33,24,30,59,2,65,17,42.540000000000006,61,22,39.5,4.5,39,19,SIT
-7,4993,Mike Gesicki,TE,CIN,Active,,BAL,Zac Taylor,Jesse Minter,50,,0,46,0,1,28,43,6,24,16,77,6,42.870000000000005,77,24.5,47.5,-1.5,38.9,20,SIT
-7,8172,Greg Dulcich,TE,MIA,Active,,NYJ,Bobby Slowik,Aaron Glenn,52,10.8,1,50,,0,42,33,20,32,10,73,2,43.849999999999994,33,17.5,39.5,4.5,38.4,21,SIT
-7,5012,Mark Andrews,TE,BAL,Active,,CIN,Declan Doyle,Al Golden,50,,0,50,6.25,2,42,23,13,39,19,61,6,41.235,67,23,47.5,-1.5,38.3,22,SIT
-7,8110,Jake Ferguson,TE,DAL,Active,,PHI,Brian Schottenheimer,Vic Fangio,59,12.9,2,54,7.4,4,36,17,10,43,2,78,2,48.685,77,24.5,44.5,-4.5,37.8,23,SIT
-7,11603,AJ Barner,TE,SEA,Active,,KC,Brian Fleury,Steve Spagnuolo,50,,0,50,,0,33,18,6,56,16,77,2,37.31,66,22.8,42.5,3,36.9,24,SIT
-7,8145,Jeremy Ruckert,TE,NYJ,Active,,MIA,Frank Reich,Jeff Hafley,50,,0,50,,0,22,36,17,59,9,39,21,42.540000000000006,61,22,39.5,4.5,36.9,25,SIT
-7,1466,Travis Kelce,TE,KC,Active,,SEA,Andy Reid,Mike Macdonald,50,,0,50,,0,31,36,25,21,5,66,10,44.095,47,19.8,42.5,3,36.7,26,SIT
-7,8111,Cade Otton,TE,TB,Active,,CAR,Zac Robinson,Ejiro Evero,41,6.33,4,61,9.22,4,33,17,5,52,0,58,2,43.739999999999995,53,20.8,44.5,3,36.6,27,SIT
-7,5985,Foster Moreau,TE,HOU,Active,,NYG,Nick Caley,Dennard Wilson,53,9.55,2,50,,0,17,36,6,33,15,51,13,44.99,88,26.2,42.5,10,36.2,28,SIT
-7,10220,Will Mallory,TE,IND,Active,,MIN,Shane Steichen,Brian Flores,46,3.2,1,50,,0,50,17,16,20,6,50,2,40.72,33,17.5,41.5,6.5,36,29,SIT
-7,2505,Darren Waller,TE,CAR,Active,,TB,Brad Idzik,Todd Bowles,50,,0,47,1,1,44,17,9,41,8,50,10,45.315,72,23.8,44.5,3,35.9,30,SIT
-7,4144,Jonnu Smith,TE,GB,Active,,DET,Matt LaFleur,Kelvin Sheppard,50,7.9,2,48,2.8,1,19,17,9,80,4,65,17,40.43,81,25.2,53.5,3,35.9,31,SIT
-7,4066,Evan Engram,TE,DEN,Active,,ARI,Davis Webb,Nick Rallis,50,,0,50,,0,31,21,6,53,3,58,6,43.879999999999995,73,24,43.5,-4.5,35.6,32,SIT
-7,10231,Elijah Higgins,TE,ARI,Active,,DEN,Mike LaFleur,Vance Joseph,50,,0,50,,0,22,32,16,33,5,82,13,40.935,45,19.5,43.5,-4.5,34.8,33,SIT
-7,13273,Josh Cuevas,TE,BAL,Active,,CIN,Declan Doyle,Al Golden,50,,0,50,,0,19,37,18,39,5,28,29,41.235,67,23,47.5,-1.5,34.1,34,SIT
-7,7828,Noah Gray,TE,KC,Active,,SEA,Andy Reid,Mike Macdonald,50,,0,50,,0,25,28,15,21,5,85,13,44.095,47,19.8,42.5,3,33.9,35,SIT
-7,7002,Juwan Johnson,TE,NO,Active,,PIT,Kellen Moore,Patrick Graham,50,8.25,2,52,8,2,42,17,5,37,11,48,6,41.845,53,20.8,44.5,-3,33.8,36,SIT
-7,12506,Harold Fannin Jr.,TE,CLE,Active,,TEN,Todd Monken,Robert Saleh,50,,0,54,13.3,1,33,16,12,36,11,63,6,37.79,45,19.5,36.5,-2.5,33.1,37,SIT
-7,13330,Kenyon Sadiq,TE,NYJ,Active,,MIA,Frank Reich,Jeff Hafley,50,,0,50,,0,28,8,14,59,2,60,10,42.540000000000006,61,22,39.5,4.5,33.1,38,SIT
-7,11592,Erick All Jr.,TE,CIN,Active,,BAL,Zac Taylor,Jesse Minter,50,,0,50,,0,25,17,10,24,0,85,13,42.870000000000005,77,24.5,47.5,-1.5,33,39,SIT
-7,11593,Brevyn Spann-Ford,TE,DAL,Active,,PHI,Brian Schottenheimer,Vic Fangio,59,12.9,2,46,3.7,2,22,16,11,43,2,40,13,48.685,77,24.5,44.5,-4.5,32.6,40,SIT
-7,13421,Eli Raridon,TE,NE,Active,,Unknown,Unknown,Unknown,50,,0,50,,0,28,20,16,50,10,50,21,,,,,,31.8,41,SIT
-7,1339,Zach Ertz,TE,PHI,Active,,DAL,Sean Mannion,Christian Parker,50,,0,50,,0,22,6,3,25,2,51,13,40.96,48,20,44.5,-4.5,28.9,42,SIT
-7,6001,Drew Sample,TE,CIN,Active,,BAL,Zac Taylor,Jesse Minter,50,,0,47,1.5,1,17,9,2,24,2,51,25,42.870000000000005,77,24.5,47.5,-1.5,26.9,43,SIT
-7,12502,Gunnar Helm,TE,TEN,Active,,CLE,Brian Daboll,Mike Rutenberg,50,,0,50,,0,17,5,1,40,10,37,6,41.33,30,17,36.5,-2.5,25,44,SIT
+8,11564,Drake Maye,QB,NE,Active,,MIA,Josh McDaniels,Jeff Hafley,50,,0,50,,0,79,100,76,63,59,89,2,49.66,73,26,44.5,-7.5,74.9,1,START
+8,6770,Joe Burrow,QB,CIN,Active,,TEN,Zac Taylor,Robert Saleh,50,,0,50,,0,89,88,57,63,74,89,2,48.26,86,28.2,46.5,10,73.8,2,START
+8,4984,Josh Allen,QB,BUF,Active,,BAL,Joe Brady,Jesse Minter,50,,0,50,,0,74,75,92,58,74,87,6,45.91,88,28.5,53.5,3.5,72.8,3,START
+8,11566,Jayden Daniels,QB,WAS,Active,,PHI,David Blough,Vic Fangio,52,17.66,1,54,17.66,1,72,71,100,68,56,77,2,46.46,52,22.5,40.5,4.5,69.6,4,START
+8,3257,Jacoby Brissett,QB,ARI,Active,,DAL,Mike LaFleur,Christian Parker,50,,0,50,,0,100,57,61,53,100,77,10,47.76,61,24,54.5,6.5,68.8,5,START
+8,7523,Trevor Lawrence,QB,JAX,Active,,IND,Liam Coen,Lou Anarumo,64,22.25,2,95,23.2,3,79,71,44,49,68,82,2,51.65,79,27,46.5,7.5,68.6,6,START
+8,3294,Dak Prescott,QB,DAL,Active,,ARI,Brian Schottenheimer,Nick Rallis,52,17.4,1,58,16.88,2,90,57,25,75,71,84,10,53.53,100,30.5,54.5,6.5,66.1,7,START
+8,5849,Kyler Murray,QB,MIN,Active,,DET,Kevin O'Connell,Kelvin Sheppard,46,12.28,2,50,,0,79,47,86,71,59,87,2,44.21,48,21.8,46.5,3,64.3,8,START
+8,6804,Jordan Love,QB,GB,Active,,CAR,Matt LaFleur,Ejiro Evero,55,17.49,2,59,17.49,2,87,70,26,44,56,91,2,51,70,25.5,47.5,3.5,62.9,9,START
+8,11559,Michael Penix Jr.,QB,ATL,Active,,TB,Tommy Rees,Todd Bowles,50,,0,58,24.02,1,76,60,44,54,68,91,2,47.43,49,22,46.5,2.5,61.4,10,START
+8,3163,Jared Goff,QB,DET,Active,,MIN,Drew Petzing,Brian Flores,54,19.2,1,70,15.87,4,83,75,12,20,76,85,6,47.02,66,24.8,46.5,3,60.6,11,START
+8,421,Matthew Stafford,QB,LA,Active,,LAC,Sean McVay,Chris O'Leary,50,,0,50,,0,84,69,11,43,74,83,10,50.54,70,25.5,44.5,6.5,60.1,12,START
+8,1373,Geno Smith,QB,NYJ,Active,,LV,Frank Reich,Rob Leonard,50,,0,50,,0,70,53,44,80,56,86,10,45.85,58,23.5,45.5,1.5,59.8,13,SIT
+8,1166,Kirk Cousins,QB,LV,Active,,NYJ,Klint Kubiak,Aaron Glenn,50,,0,64,21.65,2,82,59,24,67,62,83,10,45.37,49,22,45.5,1.5,59.7,14,SIT
+8,6797,Justin Herbert,QB,LAC,Active,,LAR,Mike McDaniel,Chris Shula,48,12.18,1,50,,0,77,44,79,63,38,90,2,45.3,31,19,44.5,6.5,59.2,15,SIT
+8,11560,Caleb Williams,QB,CHI,Active,,SEA,Ben Johnson,Mike Macdonald,58,19.27,2,49,8.58,1,77,52,60,34,56,83,2,42.47,48,21.8,46.5,3,58.5,16,SIT
+8,4017,Deshaun Watson,QB,CLE,Active,,PIT,Todd Monken,Patrick Graham,52,16.92,1,54,16.92,1,79,47,87,47,26,85,6,40.48,25,18,39.5,3.5,58,17,SIT
+8,9228,Bryce Young,QB,CAR,Active,,GB,Brad Idzik,Jonathan Gannon,50,,0,50,,0,81,57,34,49,50,84,2,47.44,49,22,47.5,3.5,57.5,18,SIT
+8,8161,Malik Willis,QB,MIA,Active,,NE,Bobby Slowik,Zak Kuhr,50,,0,50,,0,59,58,72,56,38,73,2,43.61,28,18.5,44.5,-7.5,56.5,19,SIT
+8,11563,Bo Nix,QB,DEN,Active,,KC,Davis Webb,Steve Spagnuolo,46,9.44,1,50,9.44,1,70,44,74,54,35,73,2,51.93,37,20,41.5,-1.5,56.3,20,SIT
+8,96,Aaron Rodgers,QB,PIT,Active,,CLE,Mike McCarthy,Mike Rutenberg,57,23.96,1,58,23.96,1,82,57,25,38,56,84,10,43.86,46,21.5,39.5,3.5,56.2,21,SIT
+8,4943,Sam Darnold,QB,SEA,Active,,CHI,Brian Fleury,Dennis Allen,50,,0,47,4.92,1,80,45,22,77,29,86,2,42.36,66,24.8,46.5,3,54.9,22,SIT
+8,4892,Baker Mayfield,QB,TB,Active,,ATL,Zac Robinson,Jeff Ulbrich,50,,0,63,20.88,2,61,37,37,60,65,75,6,46.53,64,24.5,46.5,2.5,54.4,23,SIT
+8,5870,Daniel Jones,QB,IND,Active,,JAX,Shane Steichen,Anthony Campanile,46,12.44,2,46,2.8,1,84,37,46,69,35,77,2,47.32,34,19.5,46.5,7.5,54.3,24,SIT
+8,4046,Patrick Mahomes,QB,KC,Active,,DEN,Andy Reid,Vance Joseph,57,23.66,1,57,23.66,1,72,40,52,48,32,87,6,42.87,46,21.5,41.5,-1.5,53.9,25,SIT
+8,9230,Tanner McKee,QB,PHI,Active,,WAS,Sean Mannion,Daronte Jones,58,24.72,1,50,,0,87,41,23,61,18,96,2,50.67,25,18,40.5,4.5,52,26,SIT
+8,12522,Cam Ward,QB,TEN,Active,,CIN,Brian Daboll,Al Golden,50,,0,50,,0,67,25,34,57,50,91,6,44.63,26,18.2,46.5,10,48.4,27,SIT
+8,9221,Jahmyr Gibbs,RB,DET,Active,,MIN,Drew Petzing,Brian Flores,48,15.6,1,76,23.05,4,100,100,100,35,100,79,2,43.27,66,24.8,46.5,3,82.3,1,START
+8,8151,Kenneth Walker III,RB,KC,Active,,DEN,Andy Reid,Vance Joseph,58,42.9,1,58,34.1,1,73,92,93,33,100,81,2,37.88,46,21.5,41.5,-1.5,73.4,2,START
+8,7588,Javonte Williams,RB,DAL,Active,,ARI,Brian Schottenheimer,Nick Rallis,46,9.6,1,49,9.3,1,60,65,81,68,90,80,2,48.22,100,30.5,54.5,6.5,73.1,3,START
+8,11584,Bucky Irving,RB,TB,Active,,ATL,Zac Robinson,Jeff Ulbrich,50,,0,50,11.3,2,82,84,72,80,69,76,2,48.66,64,24.5,46.5,2.5,72.7,4,START
+8,11576,Braelon Allen,RB,NYJ,Active,,LV,Frank Reich,Rob Leonard,50,,0,50,,0,81,67,89,72,20,84,13,45.31,58,23.5,45.5,1.5,71.9,5,START
+8,8138,James Cook III,RB,BUF,Active,,BAL,Joe Brady,Jesse Minter,50,,0,50,,0,74,88,75,30,63,84,2,45.3,88,28.5,53.5,3.5,69.7,6,START
+8,6790,D'Andre Swift,RB,CHI,Active,,SEA,Ben Johnson,Mike Macdonald,60,32.95,2,50,12.1,1,69,79,67,37,67,83,2,38.28,48,21.8,46.5,3,67.4,7,START
+8,5850,Josh Jacobs,RB,GB,Active,,CAR,Matt LaFleur,Ejiro Evero,54,25.05,2,79,24.5,3,61,81,75,56,65,50,2,40.42,70,25.5,47.5,3.5,67.4,8,START
+8,8150,Kyren Williams,RB,LA,Active,,LAC,Sean McVay,Chris O'Leary,50,,0,50,,0,66,66,67,55,63,80,2,44.31,70,25.5,44.5,6.5,63.9,9,START
+8,11435,Emanuel Wilson,RB,SEA,Active,,CHI,Brian Fleury,Dennis Allen,50,,0,45,4.6,2,70,52,68,39,29,73,13,36.87,66,24.8,46.5,3,63.7,10,START
+8,12495,Ollie Gordon II,RB,MIA,Active,,NE,Bobby Slowik,Zak Kuhr,50,,0,50,,0,65,67,63,37,82,84,6,43.35,28,18.5,44.5,-7.5,63.5,11,START
+8,8228,Jaylen Warren,RB,PIT,Active,,CLE,Mike McCarthy,Mike Rutenberg,48,15.5,1,51,15.6,1,69,85,78,47,22,77,2,44.52,46,21.5,39.5,3.5,63.2,12,START
+8,9509,Bijan Robinson,RB,ATL,Active,,TB,Tommy Rees,Todd Bowles,50,,0,75,22.55,4,68,54,84,32,43,77,2,34.25,49,22,46.5,2.5,62.6,13,START
+8,6813,Jonathan Taylor,RB,IND,Active,,JAX,Shane Steichen,Anthony Campanile,47,17.55,2,53,15.4,2,74,71,74,30,67,84,2,35.63,34,19.5,46.5,7.5,62.2,14,START
+8,7594,Chuba Hubbard,RB,CAR,Active,,GB,Brad Idzik,Jonathan Gannon,50,,0,50,,0,73,74,74,41,37,71,2,46.54,49,22,47.5,3.5,62.1,15,START
+8,5967,Tony Pollard,RB,TEN,Active,,CIN,Brian Daboll,Al Golden,50,,0,50,,0,72,66,87,28,76,64,2,41.2,26,18.2,46.5,10,62,16,START
+8,12490,Bhayshul Tuten,RB,JAX,Active,,IND,Liam Coen,Lou Anarumo,49,19.05,2,46,0.5,1,68,63,72,34,49,75,6,41.69,79,27,46.5,7.5,61,17,START
+8,3198,Derrick Henry,RB,BAL,Active,,BUF,Declan Doyle,Jim Leonhard,50,,0,50,,0,72,43,74,55,71,73,6,37.97,67,25,53.5,3.5,60.8,18,START
+8,8129,Dameon Pierce,RB,PHI,Active,,WAS,Sean Mannion,Daronte Jones,47,11.5,1,50,,0,55,40,79,57,49,74,13,47.02,25,18,40.5,4.5,59.8,19,START
+8,12512,Quinshon Judkins,RB,CLE,Active,,PIT,Todd Monken,Patrick Graham,55,34,1,54,21.6,1,68,71,73,21,51,81,6,37.56,25,18,39.5,3.5,58.7,20,START
+8,9224,Chase Brown,RB,CIN,Active,,TEN,Zac Taylor,Robert Saleh,50,,0,50,,0,60,51,69,49,33,81,2,44.68,86,28.2,46.5,10,58.5,21,START
+8,12527,Ashton Jeanty,RB,LV,Active,,NYJ,Klint Kubiak,Aaron Glenn,50,,0,50,,0,55,64,68,20,37,88,6,34.04,49,22,45.5,1.5,54.7,22,START
+8,7611,Rhamondre Stevenson,RB,NE,Active,,MIA,Josh McDaniels,Jeff Hafley,50,,0,50,,0,47,58,47,48,39,75,2,43.4,73,26,44.5,-7.5,54,23,START
+8,11586,Blake Corum,RB,LA,Active,,LAC,Sean McVay,Chris O'Leary,50,,0,50,,0,43,63,43,55,33,80,13,44.31,70,25.5,44.5,6.5,53.6,24,START
+8,4199,Aaron Jones Sr.,RB,MIN,Active,Questionable,DET,Kevin O'Connell,Kelvin Sheppard,47,17.1,2,52,13.55,2,74,55,67,36,24,57,36,37.57,48,21.8,46.5,3,53.3,25,FLEX
+8,8132,Tyler Allgeier,RB,ARI,Active,,DAL,Mike LaFleur,Christian Parker,50,,0,50,,0,41,23,39,60,29,64,13,40.34,61,24,54.5,6.5,51.5,26,FLEX
+8,00-0037157,Bam Knight,RB,ARI,UNKNOWN,,DAL,Mike LaFleur,Christian Parker,50,,0,50,,0,34,29,32,60,31,45,5,40.34,61,24,54.5,6.5,50.2,27,FLEX
+8,6806,J.K. Dobbins,RB,DEN,Active,,KC,Davis Webb,Steve Spagnuolo,47,11.7,1,47,3.6,1,52,50,57,36,33,71,2,38.48,37,20,41.5,-1.5,49.6,28,FLEX
+8,8408,Jordan Mason,RB,MIN,Active,,DET,Kevin O'Connell,Kelvin Sheppard,47,17.1,2,48,4.7,1,55,38,52,36,33,85,13,37.57,48,21.8,46.5,3,48.2,29,FLEX
+8,8116,Pierre Strong Jr.,RB,GB,Active,,CAR,Matt LaFleur,Ejiro Evero,54,25.05,2,50,,0,44,33,45,56,37,64,30,40.42,70,25.5,47.5,3.5,47.2,30,FLEX
+8,8122,Zonovan Knight,RB,ARI,Active,,DAL,Mike LaFleur,Christian Parker,50,,0,50,,0,20,20,20,60,50,50,21,40.34,61,24,54.5,6.5,46,31,FLEX
+8,12507,Omarion Hampton,RB,LAC,Active,,LAR,Mike McDaniel,Chris Shula,48,15.9,1,50,,0,42,35,41,58,39,77,6,38.38,31,19,44.5,6.5,45.5,32,FLEX
+8,8136,Rachaad White,RB,WAS,Active,,PHI,David Blough,Vic Fangio,49,18.9,1,48,4.7,1,33,40,37,35,20,70,2,42.08,52,22.5,40.5,4.5,45.4,33,FLEX
+8,11649,Kendall Milton,RB,CIN,Active,,TEN,Zac Taylor,Robert Saleh,50,,0,50,,0,50,20,20,49,50,50,5,44.68,86,28.2,46.5,10,44.5,34,FLEX
+8,7021,Rico Dowdle,RB,PIT,Active,,CLE,Mike McCarthy,Mike Rutenberg,48,15.5,1,50,,0,40,39,43,47,16,78,13,44.52,46,21.5,39.5,3.5,44.5,35,FLEX
+8,11581,MarShawn Lloyd,RB,GB,Active,,CAR,Matt LaFleur,Ejiro Evero,54,25.05,2,50,,0,33,31,38,56,31,63,13,40.42,70,25.5,47.5,3.5,44.3,36,FLEX
+8,8207,Tyler Goodson,RB,DAL,Active,,ARI,Brian Schottenheimer,Nick Rallis,46,9.6,1,50,,0,22,9,20,68,16,61,13,48.22,100,30.5,54.5,6.5,44,37,SIT
+8,4866,Saquon Barkley,RB,PHI,Active,Questionable,WAS,Sean Mannion,Daronte Jones,47,11.5,1,49,9,1,33,35,44,57,24,40,32,47.02,25,18,40.5,4.5,43.2,38,SIT
+8,10235,Roschon Johnson,RB,CHI,Active,,SEA,Ben Johnson,Mike Macdonald,60,32.95,2,46,0.5,1,33,36,30,37,31,44,21,38.28,48,21.8,46.5,3,42.7,39,SIT
+8,12048,George Holani,RB,SEA,Active,,CHI,Brian Fleury,Dennis Allen,50,,0,50,,0,23,25,23,39,16,76,21,36.87,66,24.8,46.5,3,42.5,40,SIT
+8,11647,Kimani Vidal,RB,LAC,Active,,LAR,Mike McDaniel,Chris Shula,48,15.9,1,50,,0,33,42,34,58,10,81,13,38.38,31,19,44.5,6.5,42,41,SIT
+8,4147,Samaje Perine,RB,CIN,Active,,TEN,Zac Taylor,Robert Saleh,50,,0,50,,0,27,32,31,49,29,41,17,44.68,86,28.2,46.5,10,41.8,42,SIT
+8,12928,Amar Johnson,RB,LAC,Active,,LAR,Mike McDaniel,Chris Shula,48,15.9,1,50,,0,50,20,20,58,50,50,9,38.38,31,19,44.5,6.5,40.6,43,SIT
+8,9506,Sean Tucker,RB,TB,Active,,ATL,Zac Robinson,Jeff Ulbrich,50,,0,44,3.45,2,17,27,12,80,30,63,21,48.66,64,24.5,46.5,2.5,38.9,44,SIT
+8,11571,Isaiah Davis,RB,NYJ,Active,,LV,Frank Reich,Rob Leonard,50,,0,50,,0,18,20,19,72,8,53,21,45.31,58,23.5,45.5,1.5,38.3,45,SIT
+8,7567,Kenny Gainwell,RB,TB,Active,Questionable,ATL,Zac Robinson,Jeff Ulbrich,50,,0,47,2.7,1,28,24,22,80,8,53,43,48.66,64,24.5,46.5,2.5,38.2,46,SIT
+8,10219,Chris Rodriguez Jr.,RB,JAX,Active,,IND,Liam Coen,Lou Anarumo,49,19.05,2,50,,0,24,23,25,34,33,52,13,41.69,79,27,46.5,7.5,37.9,47,SIT
+8,00-0039373,Audric Estimé,RB,CLE,UNKNOWN,,PIT,Todd Monken,Patrick Graham,55,34,1,47,1.5,1,31,32,32,21,41,50,5,37.56,25,18,39.5,3.5,37.5,48,SIT
+8,12471,DJ Giddens,RB,IND,Active,,JAX,Shane Steichen,Anthony Campanile,47,17.55,2,50,,0,50,20,20,30,50,50,25,35.63,34,19.5,46.5,7.5,37.5,49,SIT
+8,12491,Corey Kiner,RB,NE,Active,,MIA,Josh McDaniels,Jeff Hafley,50,,0,50,,0,25,19,26,48,20,63,25,43.4,73,26,44.5,-7.5,37.3,50,SIT
+8,4663,Austin Ekeler,RB,WAS,Active,,PHI,David Blough,Vic Fangio,49,18.9,1,58,22,2,15,14,17,35,8,68,17,42.08,52,22.5,40.5,4.5,37,51,SIT
+8,7561,Elijah Mitchell,RB,PHI,Active,,WAS,Sean Mannion,Daronte Jones,47,11.5,1,50,,0,24,26,24,57,0,50,21,47.02,25,18,40.5,4.5,36.5,52,SIT
+8,12529,TreVeyon Henderson,RB,NE,Active,,MIA,Josh McDaniels,Jeff Hafley,50,,0,50,,0,20,19,21,48,6,85,17,43.4,73,26,44.5,-7.5,36.2,53,SIT
+8,5995,Justice Hill,RB,BAL,Active,,BUF,Declan Doyle,Jim Leonhard,50,,0,50,,0,20,27,19,55,2,60,13,37.97,67,25,53.5,3.5,35.8,54,SIT
+8,9511,Keaton Mitchell,RB,LAC,Active,,LAR,Mike McDaniel,Chris Shula,48,15.9,1,46,0,1,33,24,33,58,8,44,21,38.38,31,19,44.5,6.5,35.8,55,SIT
+8,12489,RJ Harvey,RB,DEN,Active,,KC,Davis Webb,Steve Spagnuolo,47,11.7,1,49,8.1,1,22,39,24,36,10,54,25,38.48,37,20,41.5,-1.5,34.9,56,SIT
+8,13419,Jaydn Ott,RB,KC,Active,,DEN,Andy Reid,Vance Joseph,58,42.9,1,50,,0,20,20,20,33,50,50,29,37.88,46,21.5,41.5,-1.5,34.6,57,SIT
+8,13345,Jonah Coleman,RB,DEN,Active,,KC,Davis Webb,Steve Spagnuolo,47,11.7,1,46,0,1,27,32,30,36,16,34,21,38.48,37,20,41.5,-1.5,34.6,58,SIT
+8,11643,Jaylen Wright,RB,MIA,Active,Questionable,NE,Bobby Slowik,Zak Kuhr,50,,0,50,,0,20,3,22,37,12,77,43,43.35,28,18.5,44.5,-7.5,34.2,59,SIT
+8,4219,Jeremy McNichols,RB,WAS,Active,,PHI,David Blough,Vic Fangio,49,18.9,1,32,3.17,4,17,5,29,35,41,50,25,42.08,52,22.5,40.5,4.5,34.1,60,SIT
+8,13405,Kaytron Allen,RB,MIA,Active,,NE,Bobby Slowik,Zak Kuhr,50,,0,50,,0,20,20,20,37,19,50,29,43.35,28,18.5,44.5,-7.5,33.9,61,SIT
+8,00-0038738,Hunter Luepke,RB,DAL,UNKNOWN,,ARI,Brian Schottenheimer,Nick Rallis,46,9.6,1,42,1.55,2,6,6,5,68,6,38,5,48.22,100,30.5,54.5,6.5,33.8,62,SIT
+8,6039,Ty Johnson,RB,BUF,Active,,BAL,Joe Brady,Jesse Minter,50,,0,50,,0,11,26,15,30,4,60,13,45.3,88,28.5,53.5,3.5,33.7,63,SIT
+8,8181,Connor Heyward,RB,LV,Active,,NYJ,Klint Kubiak,Aaron Glenn,50,,0,50,,0,20,20,20,20,50,50,21,34.04,49,22,45.5,1.5,33.3,64,SIT
+8,7608,Khalil Herbert,RB,ATL,Active,,TB,Tommy Rees,Todd Bowles,50,,0,48,6.8,1,10,15,10,32,16,50,5,34.25,49,22,46.5,2.5,31.2,65,SIT
+8,13305,Mike Washington Jr.,RB,LV,Active,,NYJ,Klint Kubiak,Aaron Glenn,50,,0,50,,0,22,14,31,20,16,52,21,34.04,49,22,45.5,1.5,31.1,66,SIT
+8,13424,Seth McGowan,RB,IND,Active,,JAX,Shane Steichen,Anthony Campanile,47,17.55,2,50,,0,25,15,25,30,8,63,21,35.63,34,19.5,46.5,7.5,30.6,67,SIT
+8,11575,Ray Davis,RB,BUF,Active,,BAL,Joe Brady,Jesse Minter,50,,0,50,,0,8,11,9,30,0,72,21,45.3,88,28.5,53.5,3.5,29.5,68,SIT
+8,12969,Lan Larison,RB,NE,Active,,MIA,Josh McDaniels,Jeff Hafley,50,,0,50,,0,7,12,6,48,0,50,9,43.4,73,26,44.5,-7.5,28.9,69,SIT
+8,11280,Brady Russell,RB,SEA,Active,,CHI,Brian Fleury,Dennis Allen,50,,0,50,,0,0,0,0,39,0,53,30,36.87,66,24.8,46.5,3,28.3,70,SIT
+8,12531,Trevor Etienne,RB,CAR,Active,,GB,Brad Idzik,Jonathan Gannon,50,,0,50,,0,15,9,22,41,4,29,25,46.54,49,22,47.5,3.5,28.2,71,SIT
+8,6659,Craig Reynolds,RB,WAS,Active,,PHI,David Blough,Vic Fangio,49,18.9,1,50,,0,7,2,9,35,0,50,9,42.08,52,22.5,40.5,4.5,27.7,72,SIT
+8,13337,Emmett Johnson,RB,KC,Active,,DEN,Andy Reid,Vance Joseph,58,42.9,1,49,8.8,1,11,14,12,33,4,52,21,37.88,46,21.5,41.5,-1.5,27.5,73,SIT
+8,12787,Josh Williams,RB,TB,Active,,ATL,Zac Robinson,Jeff Ulbrich,50,,0,50,,0,0,0,0,80,0,50,9,48.66,64,24.5,46.5,2.5,27.3,74,SIT
+8,00-0039325,Carson Steele,RB,PHI,INACTIVE,,WAS,Sean Mannion,Daronte Jones,47,11.5,1,50,,0,3,3,2,57,0,37,5,47.02,25,18,40.5,4.5,26.1,75,SIT
+8,12469,Dylan Sampson,RB,CLE,Active,,PIT,Todd Monken,Patrick Graham,55,34,1,52,16.2,1,15,21,15,21,0,29,17,37.56,25,18,39.5,3.5,25.9,76,SIT
+8,11573,Frank Gore Jr.,RB,BUF,Active,,BAL,Joe Brady,Jesse Minter,50,,0,50,,0,3,1,5,30,0,50,5,45.3,88,28.5,53.5,3.5,25.9,77,SIT
+8,11299,Zavier Scott,RB,CHI,Active,,SEA,Ben Johnson,Mike Macdonald,60,32.95,2,47,3.1,1,0,0,0,37,0,57,5,38.28,48,21.8,46.5,3,25.7,78,SIT
+8,12543,Tahj Brooks,RB,CIN,Active,,TEN,Zac Taylor,Robert Saleh,50,,0,50,,0,3,1,5,49,0,28,25,44.68,86,28.2,46.5,10,25.3,79,SIT
+8,11574,Dylan Laube,RB,LV,Active,,NYJ,Klint Kubiak,Aaron Glenn,50,,0,50,,0,10,17,13,20,6,28,30,34.04,49,22,45.5,1.5,25,80,SIT
+8,7607,Michael Carter,RB,TEN,Active,,CIN,Brian Daboll,Al Golden,50,,0,48,6.3,1,14,10,13,28,8,50,30,41.2,26,18.2,46.5,10,25,81,SIT
+8,11570,Rasheen Ali,RB,BAL,Active,,BUF,Declan Doyle,Jim Leonhard,50,,0,50,,0,5,3,5,55,0,29,21,37.97,67,25,53.5,3.5,25,82,SIT
+8,11439,Jaleel McLaughlin,RB,CLE,Active,,PIT,Todd Monken,Patrick Graham,55,34,1,49,8.8,1,16,13,17,21,2,29,21,37.56,25,18,39.5,3.5,24.6,83,SIT
+8,11729,Sione Vaki,RB,DET,Active,,MIN,Drew Petzing,Brian Flores,48,15.6,1,25,0,3,10,6,9,35,0,38,13,43.27,66,24.8,46.5,3,24.6,84,SIT
+8,13315,Dean Connors,RB,LA,Active,,LAC,Sean McVay,Chris O'Leary,50,,0,50,,0,0,0,0,55,0,53,29,44.31,70,25.5,44.5,6.5,24.5,85,SIT
+8,14026,DJ Herman,RB,MIA,Active,,NE,Bobby Slowik,Zak Kuhr,50,,0,50,,0,5,6,7,37,0,32,38,43.35,28,18.5,44.5,-7.5,24.3,86,SIT
+8,12939,Anthony Tyus III,RB,CAR,Active,,GB,Brad Idzik,Jonathan Gannon,50,,0,50,,0,3,11,6,41,3,27,34,46.54,49,22,47.5,3.5,24,87,SIT
+8,6931,DeeJay Dallas,RB,MIN,Active,,DET,Kevin O'Connell,Kelvin Sheppard,47,17.1,2,50,,0,2,5,2,36,0,43,5,37.57,48,21.8,46.5,3,22.7,88,SIT
+8,11237,Jacob Saylors,RB,DET,Active,,MIN,Drew Petzing,Brian Flores,48,15.6,1,46,0,1,0,0,0,35,0,54,21,43.27,66,24.8,46.5,3,22.5,89,SIT
+8,6012,Travis Homer,RB,PIT,Active,,CLE,Mike McCarthy,Mike Rutenberg,48,15.5,1,46,-0.1,1,2,0,4,47,8,38,30,44.52,46,21.5,39.5,3.5,22.5,90,SIT
+8,12544,LeQuint Allen Jr.,RB,JAX,Active,,IND,Liam Coen,Lou Anarumo,49,19.05,2,42,1.55,2,3,0,3,34,0,28,25,41.69,79,27,46.5,7.5,22.4,91,SIT
+8,9510,Lew Nichols,RB,PIT,Active,,CLE,Mike McCarthy,Mike Rutenberg,48,15.5,1,46,0,1,1,1,2,47,0,29,21,44.52,46,21.5,39.5,3.5,21.5,92,SIT
+8,13516,Max Bredeson,RB,MIN,Active,,DET,Kevin O'Connell,Kelvin Sheppard,47,17.1,2,50,,0,2,0,2,36,0,43,38,37.57,48,21.8,46.5,3,21.3,93,SIT
+8,2359,Ameer Abdullah,RB,JAX,Active,Questionable,IND,Liam Coen,Lou Anarumo,49,19.05,2,48,5.6,1,0,0,0,34,2,47,68,41.69,79,27,46.5,7.5,21.2,94,SIT
+8,12516,Kalel Mullings,RB,TEN,Active,,CIN,Brian Daboll,Al Golden,50,,0,50,,0,3,1,6,28,0,50,9,41.2,26,18.2,46.5,10,21.1,95,SIT
+8,8254,Julius Chestnut,RB,TEN,Active,,CIN,Brian Daboll,Al Golden,50,,0,50,,0,0,0,0,28,0,53,30,41.2,26,18.2,46.5,10,18.9,96,SIT
+8,9493,Puka Nacua,WR,LA,Active,,LAC,Sean McVay,Chris O'Leary,50,,0,50,,0,100,92,38,45,29,64,2,50.54,70,25.5,44.5,6.5,69.1,1,START
+8,9488,Jaxon Smith-Njigba,WR,SEA,Active,,CHI,Brian Fleury,Dennis Allen,50,,0,50,,0,87,100,39,58,8,85,2,42.36,66,24.8,46.5,3,65.3,2,START
+8,9997,Zay Flowers,WR,BAL,Active,,BUF,Declan Doyle,Jim Leonhard,50,,0,50,,0,73,69,35,80,12,83,2,47.76,67,25,53.5,3.5,59.3,3,START
+8,6786,CeeDee Lamb,WR,DAL,Active,,ARI,Brian Schottenheimer,Nick Rallis,58,41.9,1,58,12.85,2,78,54,30,44,37,55,2,53.53,100,30.5,54.5,6.5,57.9,4,START
+8,8137,George Pickens,WR,DAL,Active,,ARI,Brian Schottenheimer,Nick Rallis,58,41.9,1,59,13.25,2,67,72,25,44,12,74,13,53.53,100,30.5,54.5,6.5,57.4,5,START
+8,12526,Tetairoa McMillan,WR,CAR,Active,,GB,Brad Idzik,Jonathan Gannon,50,,0,50,,0,69,85,29,69,12,56,6,47.44,49,22,47.5,3.5,57.2,6,START
+8,7547,Amon-Ra St. Brown,WR,DET,Active,Questionable,MIN,Drew Petzing,Brian Flores,53,30.2,1,92,18.1,4,76,66,33,20,33,80,32,47.02,66,24.8,46.5,3,56.8,7,START
+8,8112,Drake London,WR,ATL,Active,Questionable,TB,Tommy Rees,Todd Bowles,50,,0,100,20.38,4,69,61,32,63,16,84,32,47.43,49,22,46.5,2.5,56.2,8,START
+8,12501,Matthew Golden,WR,GB,Active,Questionable,CAR,Matt LaFleur,Ejiro Evero,62,35.5,2,48,2.9,1,71,64,28,54,37,72,47,51,70,25.5,47.5,3.5,55.6,9,START
+8,6801,Tee Higgins,WR,CIN,Active,,TEN,Zac Taylor,Robert Saleh,50,,0,50,,0,60,73,23,65,6,55,13,48.26,86,28.2,46.5,10,54.2,10,START
+8,8167,Christian Watson,WR,GB,Active,,CAR,Matt LaFleur,Ejiro Evero,62,35.5,2,51,7.8,1,53,66,22,54,2,76,2,51,70,25.5,47.5,3.5,51.8,11,START
+8,10213,Tre Tucker,WR,LV,Active,,NYJ,Klint Kubiak,Aaron Glenn,50,,0,50,,0,58,70,24,58,12,70,2,45.37,49,22,45.5,1.5,51.8,12,START
+8,7564,Ja'Marr Chase,WR,CIN,Active,,TEN,Zac Taylor,Robert Saleh,50,,0,50,,0,44,54,21,65,27,61,2,48.26,86,28.2,46.5,10,50.4,13,START
+8,9487,Parker Washington,WR,JAX,Active,,IND,Liam Coen,Lou Anarumo,67,41.05,2,65,18.55,2,53,54,24,32,24,54,2,51.65,79,27,46.5,7.5,50.4,14,START
+8,8134,Khalil Shakir,WR,BUF,Active,,BAL,Joe Brady,Jesse Minter,50,,0,50,,0,38,50,21,55,12,79,13,45.91,88,28.5,53.5,3.5,50,15,START
+8,8148,Jameson Williams,WR,DET,Active,,MIN,Drew Petzing,Brian Flores,53,30.2,1,55,8.08,4,47,77,20,20,20,74,13,47.02,66,24.8,46.5,3,49.8,16,START
+8,11637,Keon Coleman,WR,BUF,Active,,BAL,Joe Brady,Jesse Minter,50,,0,50,,0,33,59,18,55,12,64,21,45.91,88,28.5,53.5,3.5,49.4,17,START
+8,2449,Stefon Diggs,WR,WAS,Active,,PHI,David Blough,Vic Fangio,56,36.7,1,55,15.5,1,51,41,23,77,16,80,6,46.46,52,22.5,40.5,4.5,48.4,18,START
+8,12519,Luther Burden III,WR,CHI,Active,,SEA,Ben Johnson,Mike Macdonald,66,39.69,2,50,,0,51,63,24,32,16,73,6,42.47,48,21.8,46.5,3,48.2,19,START
+8,10232,Michael Wilson,WR,ARI,Active,,DAL,Mike LaFleur,Christian Parker,50,,0,50,,0,53,32,21,57,43,85,2,47.76,61,24,54.5,6.5,47.8,20,START
+8,1479,Keenan Allen,WR,IND,Active,,JAX,Shane Steichen,Anthony Campanile,51,23.25,2,51,9.3,1,51,40,21,79,14,64,21,47.32,34,19.5,46.5,7.5,47.7,21,START
+8,13274,Germie Bernard,WR,PIT,Active,,CLE,Mike McCarthy,Mike Rutenberg,58,41.2,1,48,3.1,1,60,58,27,40,12,64,21,43.86,46,21.5,39.5,3.5,47.6,22,START
+8,11783,Ryan Flournoy,WR,DAL,Active,,ARI,Brian Schottenheimer,Nick Rallis,58,41.9,1,51,9.2,1,38,50,14,44,14,73,21,53.53,100,30.5,54.5,6.5,46.6,23,START
+8,9501,DeMario Douglas,WR,NE,Active,,MIA,Josh McDaniels,Jeff Hafley,50,,0,50,,0,38,62,19,37,10,66,13,49.66,73,26,44.5,-7.5,45.9,24,START
+8,5846,DK Metcalf,WR,PIT,Active,,CLE,Mike McCarthy,Mike Rutenberg,58,41.2,1,56,16.5,1,58,42,24,40,12,56,2,43.86,46,21.5,39.5,3.5,44.7,25,FLEX
+8,8146,Garrett Wilson,WR,NYJ,Active,,LV,Frank Reich,Rob Leonard,50,,0,50,,0,44,46,23,64,4,52,2,45.85,58,23.5,45.5,1.5,44.5,26,FLEX
+8,7746,Austin Trammell,WR,JAX,Active,,IND,Liam Coen,Lou Anarumo,67,41.05,2,50,,0,50,20,20,32,50,50,5,51.65,79,27,46.5,7.5,44,27,FLEX
+8,8013,Tim Jones,WR,JAX,Active,,IND,Liam Coen,Lou Anarumo,67,41.05,2,50,,0,50,20,20,32,50,50,5,51.65,79,27,46.5,7.5,44,28,FLEX
+8,9500,Josh Downs,WR,IND,Active,,JAX,Shane Steichen,Anthony Campanile,51,23.25,2,49,5.85,2,42,25,19,79,6,76,2,47.32,34,19.5,46.5,7.5,43.8,29,FLEX
+8,5947,Jakobi Meyers,WR,JAX,Active,,IND,Liam Coen,Lou Anarumo,67,41.05,2,71,12.6,4,38,32,18,32,29,58,13,51.65,79,27,46.5,7.5,43.7,30,FLEX
+8,13276,Omar Cooper Jr.,WR,NYJ,Active,,LV,Frank Reich,Rob Leonard,50,,0,50,,0,29,61,15,64,11,50,21,45.85,58,23.5,45.5,1.5,43.7,31,FLEX
+8,4454,Kendrick Bourne,WR,ARI,Active,,DAL,Mike LaFleur,Christian Parker,50,,0,50,,0,49,32,18,57,18,75,17,47.76,61,24,54.5,6.5,43.5,32,FLEX
+8,13294,Makai Lemon,WR,PHI,Active,,WAS,Sean Mannion,Daronte Jones,51,26.1,1,47,2.5,1,47,43,19,40,6,71,10,50.67,25,18,40.5,4.5,43.5,33,FLEX
+8,4037,Chris Godwin Jr.,WR,TB,Active,,ATL,Zac Robinson,Jeff Ulbrich,50,,0,53,12,1,38,27,27,47,6,75,17,46.53,64,24.5,46.5,2.5,43.4,34,FLEX
+8,11474,Dylan Drummond,WR,ATL,Active,,TB,Tommy Rees,Todd Bowles,50,,0,50,,0,50,20,20,63,50,50,5,47.43,49,22,46.5,2.5,43.3,35,FLEX
+8,11624,Xavier Worthy,WR,KC,Active,,DEN,Andy Reid,Vance Joseph,47,14.7,1,49,4.8,1,44,37,23,42,0,78,13,42.87,46,21.5,41.5,-1.5,43.2,36,FLEX
+8,9756,Jordan Addison,WR,MIN,Active,,DET,Kevin O'Connell,Kelvin Sheppard,51,23.6,2,55,10.45,2,44,42,24,65,0,59,13,44.21,48,21.8,46.5,3,43.1,37,SIT
+8,11306,Xavier Gipson,WR,PHI,Active,,WAS,Sean Mannion,Daronte Jones,51,26.1,1,50,,0,50,20,20,40,50,50,5,50.67,25,18,40.5,4.5,42.9,38,SIT
+8,11610,Malik Washington,WR,MIA,Active,,NE,Bobby Slowik,Zak Kuhr,50,,0,50,,0,47,38,31,46,12,78,2,43.61,28,18.5,44.5,-7.5,42.7,39,SIT
+8,6794,Justin Jefferson,WR,MIN,Active,,DET,Kevin O'Connell,Kelvin Sheppard,51,23.6,2,57,11.85,2,38,41,21,65,6,58,2,44.21,48,21.8,46.5,3,42.6,40,SIT
+8,12670,KeAndre Lambert-Smith,WR,LAC,Active,,LAR,Mike McDaniel,Chris Shula,55,34.5,1,50,,0,60,31,25,34,8,50,34,45.3,31,19,44.5,6.5,42.1,41,SIT
+8,12482,Savion Williams,WR,GB,Active,,CAR,Matt LaFleur,Ejiro Evero,62,35.5,2,48,3.2,1,37,31,18,54,4,90,25,51,70,25.5,47.5,3.5,41.9,42,SIT
+8,5859,A.J. Brown,WR,NE,Active,,MIA,Josh McDaniels,Jeff Hafley,50,,0,58,13.1,2,44,24,22,37,11,75,2,49.66,73,26,44.5,-7.5,41.5,43,SIT
+8,12732,Dominic Lovett,WR,DET,Active,,MIN,Drew Petzing,Brian Flores,53,30.2,1,50,,0,50,20,20,20,50,50,9,47.02,66,24.8,46.5,3,40.7,44,SIT
+8,13279,Carnell Tate,WR,TEN,Active,,CIN,Brian Daboll,Al Golden,50,,0,50,,0,42,41,23,53,6,65,10,44.63,26,18.2,46.5,10,40.5,45,SIT
+8,8076,Michael Bandy,WR,DEN,Active,,KC,Davis Webb,Steve Spagnuolo,46,13,1,50,,0,50,20,20,40,50,50,5,51.93,37,20,41.5,-1.5,40.5,46,SIT
+8,12520,Xavier Restrepo,WR,TEN,Active,,CIN,Brian Daboll,Al Golden,50,,0,50,,0,50,20,20,53,50,50,9,44.63,26,18.2,46.5,10,40.4,47,SIT
+8,13298,KC Concepcion Jr.,WR,CLE,Active,,PIT,Todd Monken,Patrick Graham,54,32.1,1,53,11.4,1,49,41,25,54,8,37,21,40.48,25,18,39.5,3.5,40.2,48,SIT
+8,8135,Treylon Burks,WR,WAS,Active,,PHI,David Blough,Vic Fangio,56,36.7,1,37,3.27,3,31,34,16,77,8,70,21,46.46,52,22.5,40.5,4.5,40.1,49,SIT
+8,13293,Ja'Kobi Lane,WR,BAL,Active,,BUF,Declan Doyle,Jim Leonhard,50,,0,50,,0,29,20,14,80,22,71,29,47.76,67,25,53.5,3.5,39.6,50,SIT
+8,8126,Wan'Dale Robinson,WR,TEN,Active,,CIN,Brian Daboll,Al Golden,50,,0,50,,0,44,27,24,53,14,77,13,44.63,26,18.2,46.5,10,39.5,51,SIT
+8,00-0036988,Josh Palmer,WR,BUF,UNKNOWN,,BAL,Joe Brady,Jesse Minter,50,,0,50,,0,20,22,10,55,6,61,5,45.91,88,28.5,53.5,3.5,39.4,52,SIT
+8,11646,Jalen Coker,WR,CAR,Active,Questionable,GB,Brad Idzik,Jonathan Gannon,50,,0,50,,0,47,27,20,69,16,35,43,47.44,49,22,47.5,3.5,39.3,53,SIT
+8,13301,Antonio Williams,WR,WAS,Active,,PHI,David Blough,Vic Fangio,56,36.7,1,56,16.4,1,33,24,16,77,0,71,21,46.46,52,22.5,40.5,4.5,39,54,SIT
+8,3155,Laquon Treadwell,WR,IND,Active,,JAX,Shane Steichen,Anthony Campanile,51,23.25,2,41,0,2,33,17,14,79,8,71,25,47.32,34,19.5,46.5,7.5,38.7,55,SIT
+8,11620,Rome Odunze,WR,CHI,Active,,SEA,Ben Johnson,Mike Macdonald,66,39.69,2,47,2.5,1,40,31,17,32,12,74,13,42.47,48,21.8,46.5,3,38.7,56,SIT
+8,13346,Denzel Boston,WR,CLE,Active,,PIT,Todd Monken,Patrick Graham,54,32.1,1,54,12.9,1,44,27,22,54,6,70,10,40.48,25,18,39.5,3.5,38.5,57,SIT
+8,11625,Adonai Mitchell,WR,NYJ,Active,,LV,Frank Reich,Rob Leonard,50,,0,50,,0,40,27,19,64,5,39,21,45.85,58,23.5,45.5,1.5,38.4,58,SIT
+8,13296,Caleb Douglas,WR,MIA,Active,,NE,Bobby Slowik,Zak Kuhr,50,,0,50,,0,29,49,18,46,8,58,21,43.61,28,18.5,44.5,-7.5,38.1,59,SIT
+8,7526,Jaylen Waddle,WR,DEN,Active,Questionable,KC,Davis Webb,Steve Spagnuolo,46,13,1,47,1.2,1,44,25,28,40,6,82,32,51.93,37,20,41.5,-1.5,38.1,60,SIT
+8,8119,Jahan Dotson,WR,ATL,Active,,TB,Tommy Rees,Todd Bowles,50,,0,43,1.55,2,27,34,12,63,12,62,13,47.43,49,22,46.5,2.5,37.9,61,SIT
+8,00-0038839,Mitchell Tinsley,WR,CIN,UNKNOWN,,TEN,Zac Taylor,Robert Saleh,50,,0,50,,0,27,18,8,65,20,43,5,48.26,86,28.2,46.5,10,37.6,62,SIT
+8,13264,Dohnte Meyers,WR,CIN,Active,,TEN,Zac Taylor,Robert Saleh,50,,0,50,,0,29,23,10,65,6,35,29,48.26,86,28.2,46.5,10,36.5,63,SIT
+8,8147,John Metchie III,WR,CAR,Active,,GB,Brad Idzik,Jonathan Gannon,50,,0,50,,0,27,19,12,69,10,79,21,47.44,49,22,47.5,3.5,36.4,64,SIT
+8,7571,Rashod Bateman,WR,BAL,Active,,BUF,Declan Doyle,Jim Leonhard,50,,0,50,,0,24,21,11,80,2,42,13,47.76,67,25,53.5,3.5,36.1,65,SIT
+8,12485,Tez Johnson,WR,TB,Active,,ATL,Zac Robinson,Jeff Ulbrich,50,,0,41,0,2,16,29,11,47,4,52,34,46.53,64,24.5,46.5,2.5,35.5,66,SIT
+8,4039,Cooper Kupp,WR,SEA,Active,,CHI,Brian Fleury,Dennis Allen,50,,0,50,,0,33,22,13,58,4,47,29,42.36,66,24.8,46.5,3,35.4,67,SIT
+8,9754,Quentin Johnston,WR,LAC,Active,,LAR,Mike McDaniel,Chris Shula,55,34.5,1,50,,0,27,24,13,34,0,72,13,45.3,31,19,44.5,6.5,35.4,68,SIT
+8,13297,Reggie Virgil,WR,ARI,Active,,DAL,Mike LaFleur,Christian Parker,50,,0,50,,0,33,18,11,57,16,50,29,47.76,61,24,54.5,6.5,35.4,69,SIT
+8,3269,Chris Moore,WR,BAL,Active,,BUF,Declan Doyle,Jim Leonhard,50,,0,50,,0,13,19,8,80,8,63,13,47.76,67,25,53.5,3.5,35.3,70,SIT
+8,6783,Jerry Jeudy,WR,CLE,Active,,PIT,Todd Monken,Patrick Graham,54,32.1,1,50,6.6,1,33,28,17,54,2,71,21,40.48,25,18,39.5,3.5,35.3,71,SIT
+8,12718,Konata Mumpfield,WR,LA,Active,,LAC,Sean McVay,Chris O'Leary,50,,0,50,,0,18,10,7,45,2,78,17,50.54,70,25.5,44.5,6.5,34.7,72,SIT
+8,13317,Ted Hurst III,WR,TB,Active,,ATL,Zac Robinson,Jeff Ulbrich,50,,0,50,,0,22,14,12,47,8,47,29,46.53,64,24.5,46.5,2.5,34.6,73,SIT
+8,5045,Courtland Sutton,WR,DEN,Active,,KC,Davis Webb,Steve Spagnuolo,46,13,1,48,3.1,1,24,27,15,40,8,74,17,51.93,37,20,41.5,-1.5,34.2,74,SIT
+8,8180,Jalen Nailor,WR,LV,Active,,NYJ,Klint Kubiak,Aaron Glenn,50,,0,49,6.63,3,27,10,11,58,12,82,13,45.37,49,22,45.5,1.5,34,75,SIT
+8,13150,Darius Cooper,WR,PHI,Active,,WAS,Sean Mannion,Daronte Jones,51,26.1,1,46,0,1,18,25,7,40,12,59,17,50.67,25,18,40.5,4.5,33.6,76,SIT
+8,11629,Devontez Walker,WR,BAL,Active,,BUF,Declan Doyle,Jim Leonhard,50,,0,50,,0,13,15,7,80,4,67,30,47.76,67,25,53.5,3.5,33.5,77,SIT
+8,11631,Brian Thomas Jr.,WR,JAX,Active,,IND,Liam Coen,Lou Anarumo,67,41.05,2,54,9.8,2,16,12,7,32,20,59,21,51.65,79,27,46.5,7.5,33,78,SIT
+8,4351,Tim Patrick,WR,NYJ,Active,,LV,Frank Reich,Rob Leonard,50,,0,50,,0,20,13,10,64,0,84,34,45.85,58,23.5,45.5,1.5,32.8,79,SIT
+8,13402,Skyler Bell,WR,BUF,Active,,BAL,Joe Brady,Jesse Minter,50,,0,50,,0,10,0,7,55,8,56,38,45.91,88,28.5,53.5,3.5,32.5,80,SIT
+8,13333,Deion Burks,WR,IND,Active,,JAX,Shane Steichen,Anthony Campanile,51,23.25,2,50,,0,13,11,6,79,0,53,38,47.32,34,19.5,46.5,7.5,31.8,81,SIT
+8,13320,Zachariah Branch,WR,ATL,Active,,TB,Tommy Rees,Todd Bowles,50,,0,50,,0,16,11,7,63,8,86,29,47.43,49,22,46.5,2.5,31.8,82,SIT
+8,12535,Isaac TeSlaa,WR,DET,Active,,MIN,Drew Petzing,Brian Flores,53,30.2,1,54,13.9,1,27,19,10,20,12,38,25,47.02,66,24.8,46.5,3,31.4,83,SIT
+8,7587,Dyami Brown,WR,WAS,Active,,PHI,David Blough,Vic Fangio,56,36.7,1,46,0,1,16,15,8,77,0,42,30,46.46,52,22.5,40.5,4.5,31.2,84,SIT
+8,12863,Andrew Armstrong,WR,KC,Active,,DEN,Andy Reid,Vance Joseph,47,14.7,1,50,,0,13,7,7,42,12,84,34,42.87,46,21.5,41.5,-1.5,31.1,85,SIT
+8,7039,Cody White,WR,LV,Active,,NYJ,Klint Kubiak,Aaron Glenn,50,,0,50,,0,20,10,8,58,14,54,21,45.37,49,22,45.5,1.5,31,86,SIT
+8,13477,Colbie Young,WR,CIN,Active,,TEN,Zac Taylor,Robert Saleh,50,,0,50,,0,7,5,3,65,0,87,38,48.26,86,28.2,46.5,10,31,87,SIT
+8,5848,Marquise Brown,WR,PHI,Active,,WAS,Sean Mannion,Daronte Jones,51,26.1,1,50,,0,23,12,11,40,0,47,21,50.67,25,18,40.5,4.5,30.9,88,SIT
+8,7562,Tutu Atwell,WR,LA,Active,,LAC,Sean McVay,Chris O'Leary,50,,0,50,,0,9,8,4,45,0,61,30,50.54,70,25.5,44.5,6.5,30.9,89,SIT
+8,13394,Josh Cameron,WR,JAX,Active,,IND,Liam Coen,Lou Anarumo,67,41.05,2,50,,0,18,17,8,32,8,29,38,51.65,79,27,46.5,7.5,30.8,90,SIT
+8,5086,Marquez Valdes-Scantling,WR,PIT,Active,,CLE,Mike McCarthy,Mike Rutenberg,58,41.2,1,50,,0,11,20,20,40,0,50,9,43.86,46,21.5,39.5,3.5,30.8,91,SIT
+8,6427,Ashton Dulin,WR,IND,Active,,JAX,Shane Steichen,Anthony Campanile,51,23.25,2,46,0,1,16,7,8,79,0,28,30,47.32,34,19.5,46.5,7.5,30.6,92,SIT
+8,9494,Marvin Mims Jr.,WR,DEN,Active,,KC,Davis Webb,Steve Spagnuolo,46,13,1,46,0,1,22,17,14,40,0,70,21,51.93,37,20,41.5,-1.5,30.6,93,SIT
+8,12547,Kyle Williams,WR,NE,Active,,MIA,Josh McDaniels,Jeff Hafley,50,,0,50,,0,11,26,5,37,0,40,25,49.66,73,26,44.5,-7.5,30.3,94,SIT
+8,13338,Kevin Coleman Jr.,WR,MIA,Active,,NE,Bobby Slowik,Zak Kuhr,50,,0,50,,0,27,17,18,46,10,37,38,43.61,28,18.5,44.5,-7.5,30.1,95,SIT
+8,13380,Brenen Thompson,WR,LAC,Active,Questionable,LAR,Mike McDaniel,Chris Shula,55,34.5,1,50,,0,20,9,12,34,0,50,68,45.3,31,19,44.5,6.5,30,96,SIT
+8,12542,Efton Chism III,WR,NE,Active,,MIA,Josh McDaniels,Jeff Hafley,50,,0,50,,0,20,17,10,37,4,27,34,49.66,73,26,44.5,-7.5,30,97,SIT
+8,12505,Jalen Royals,WR,KC,Active,,DEN,Andy Reid,Vance Joseph,47,14.7,1,46,0,1,18,6,9,42,6,51,25,42.87,46,21.5,41.5,-1.5,29.9,98,SIT
+8,12860,Theo Wease Jr.,WR,LAC,Active,,LAR,Mike McDaniel,Chris Shula,55,34.5,1,50,,0,13,13,7,34,8,67,34,45.3,31,19,44.5,6.5,29.9,99,SIT
+8,12499,Elic Ayomanor,WR,TEN,Active,,CIN,Brian Daboll,Al Golden,50,,0,50,,0,24,14,13,53,8,41,25,44.63,26,18.2,46.5,10,29.6,100,SIT
+8,3200,Sterling Shepard,WR,NYJ,Active,,LV,Frank Reich,Rob Leonard,50,,0,50,,0,7,2,5,64,20,62,13,45.85,58,23.5,45.5,1.5,29.6,101,SIT
+8,5154,Trent Sherfield,WR,BUF,Active,,BAL,Joe Brady,Jesse Minter,50,,0,50,,0,0,0,0,55,0,50,9,45.91,88,28.5,53.5,3.5,29.6,102,SIT
+8,7596,Elijah Moore,WR,PHI,Active,,WAS,Sean Mannion,Daronte Jones,51,26.1,1,50,,0,13,9,5,40,0,77,30,50.67,25,18,40.5,4.5,29.2,103,SIT
+8,12497,Tory Horton,WR,SEA,Active,,CHI,Brian Fleury,Dennis Allen,50,,0,50,,0,16,12,7,58,4,33,34,42.36,66,24.8,46.5,3,29.1,104,SIT
+8,5970,Greg Dortch,WR,BUF,Active,,BAL,Joe Brady,Jesse Minter,50,,0,50,7.5,1,0,0,0,55,0,53,30,45.91,88,28.5,53.5,3.5,28.9,105,SIT
+8,10225,Jonathan Mingo,WR,DAL,Active,,ARI,Brian Schottenheimer,Nick Rallis,58,41.9,1,50,,0,11,5,4,44,2,28,30,53.53,100,30.5,54.5,6.5,28.8,106,SIT
+8,8204,Bo Melton,WR,GB,Active,,CAR,Matt LaFleur,Ejiro Evero,62,35.5,2,51,9.1,1,13,8,6,54,0,28,30,51,70,25.5,47.5,3.5,28.7,107,SIT
+8,7496,Nick Westbrook-Ikhine,WR,IND,Active,,JAX,Shane Steichen,Anthony Campanile,51,23.25,2,50,,0,3,0,1,79,0,42,5,47.32,34,19.5,46.5,7.5,28.4,108,SIT
+8,13311,Chris Bell,WR,MIA,Active,,NE,Bobby Slowik,Zak Kuhr,50,,0,50,,0,22,10,16,46,0,57,29,43.61,28,18.5,44.5,-7.5,28.3,109,SIT
+8,13413,Cyrus Allen,WR,KC,Active,,DEN,Andy Reid,Vance Joseph,47,14.7,1,46,0,1,11,9,6,42,0,54,38,42.87,46,21.5,41.5,-1.5,28.1,110,SIT
+8,3634,Kalif Raymond,WR,CHI,Active,,SEA,Ben Johnson,Mike Macdonald,66,39.69,2,45,2.95,2,20,9,9,32,4,53,25,42.47,48,21.8,46.5,3,28,111,SIT
+8,7049,Jauan Jennings,WR,MIN,Active,,DET,Kevin O'Connell,Kelvin Sheppard,51,23.6,2,50,,0,11,9,6,65,2,38,21,44.21,48,21.8,46.5,3,27.8,112,SIT
+8,12971,Ke'Shawn Williams,WR,CIN,Active,,TEN,Zac Taylor,Robert Saleh,50,,0,50,,0,0,0,0,65,0,50,9,48.26,86,28.2,46.5,10,27.5,113,SIT
+8,13179,Ja'seem Reed,WR,CAR,Active,,GB,Brad Idzik,Jonathan Gannon,50,,0,50,,0,7,0,3,69,8,50,9,47.44,49,22,47.5,3.5,27.4,114,SIT
+8,11623,Jordan Whittington,WR,LA,Active,,LAC,Sean McVay,Chris O'Leary,50,,0,50,,0,4,2,1,45,0,29,21,50.54,70,25.5,44.5,6.5,27.3,115,SIT
+8,12496,Tai Felton,WR,MIN,Active,,DET,Kevin O'Connell,Kelvin Sheppard,51,23.6,2,46,0,1,11,9,6,65,2,39,34,44.21,48,21.8,46.5,3,27.1,116,SIT
+8,12503,Isaiah Bond,WR,CLE,Active,,PIT,Todd Monken,Patrick Graham,54,32.1,1,47,1.2,1,20,17,9,54,0,27,34,40.48,25,18,39.5,3.5,27,117,SIT
+8,11157,Brycen Tremayne,WR,CAR,Active,,GB,Brad Idzik,Jonathan Gannon,50,,0,50,,0,9,7,4,69,6,28,30,47.44,49,22,47.5,3.5,26.9,118,SIT
+8,8253,Deven Thompkins,WR,LV,Active,,NYJ,Klint Kubiak,Aaron Glenn,50,,0,47,2.3,1,7,7,3,58,0,50,5,45.37,49,22,45.5,1.5,26.9,119,SIT
+8,6386,Alex Bachman,WR,LA,Active,,LAC,Sean McVay,Chris O'Leary,50,,0,50,,0,0,0,0,45,0,52,34,50.54,70,25.5,44.5,6.5,26.8,120,SIT
+8,5374,Justin Watson,WR,KC,Active,,DEN,Andy Reid,Vance Joseph,47,14.7,1,34,2.58,4,7,6,3,42,0,50,9,42.87,46,21.5,41.5,-1.5,26.8,121,SIT
+8,6154,David Sills V,WR,TB,Active,,ATL,Zac Robinson,Jeff Ulbrich,50,,0,50,,0,0,0,0,47,0,50,34,46.53,64,24.5,46.5,2.5,26.2,122,SIT
+8,12699,LaJohntay Wester,WR,BAL,Active,,BUF,Declan Doyle,Jim Leonhard,50,,0,50,,0,2,3,1,80,0,27,34,47.76,67,25,53.5,3.5,26.2,123,SIT
+8,13075,Myles Price,WR,MIN,Active,Questionable,DET,Kevin O'Connell,Kelvin Sheppard,51,23.6,2,41,0,2,16,10,8,65,4,25,64,44.21,48,21.8,46.5,3,26.2,124,SIT
+8,11608,Isaiah Williams,WR,NYJ,Active,,LV,Frank Reich,Rob Leonard,50,,0,50,,0,9,4,5,64,0,28,30,45.85,58,23.5,45.5,1.5,26,125,SIT
+8,11911,Jeshaun Jones,WR,MIN,Active,,DET,Kevin O'Connell,Kelvin Sheppard,51,23.6,2,50,,0,3,8,2,65,0,31,5,44.21,48,21.8,46.5,3,26,126,SIT
+8,11994,Kameron Johnson,WR,TB,Active,,ATL,Zac Robinson,Jeff Ulbrich,50,,0,41,0,2,0,0,0,47,0,53,30,46.53,64,24.5,46.5,2.5,26,127,SIT
+8,12829,Coleman Owen,WR,GB,Active,,CAR,Matt LaFleur,Ejiro Evero,62,35.5,2,50,,0,0,0,0,54,0,52,34,51,70,25.5,47.5,3.5,25.4,128,SIT
+8,12925,Jamaal Pritchett,WR,NYJ,Active,,LV,Frank Reich,Rob Leonard,50,,0,50,,0,0,0,0,64,0,50,9,45.85,58,23.5,45.5,1.5,25.3,129,SIT
+8,00-0040621,Montorie Foster Jr,WR,SEA,UNKNOWN,,CHI,Brian Fleury,Dennis Allen,50,,0,50,,0,0,0,0,58,0,50,5,42.36,66,24.8,46.5,3,25.3,130,SIT
+8,13770,J. Michael Sturdivant,WR,GB,Active,,CAR,Matt LaFleur,Ejiro Evero,62,35.5,2,50,,0,0,0,0,54,0,52,38,51,70,25.5,47.5,3.5,25.2,131,SIT
+8,7865,Brandon Smith,WR,PIT,Active,,CLE,Mike McCarthy,Mike Rutenberg,58,41.2,1,50,,0,7,8,4,40,0,31,5,43.86,46,21.5,39.5,3.5,25,132,SIT
+8,4274,David Moore,WR,CAR,Active,,GB,Brad Idzik,Jonathan Gannon,50,,0,50,,0,4,5,2,69,0,31,34,47.44,49,22,47.5,3.5,25,133,SIT
+8,13329,Malik Benson,WR,LV,Active,,NYJ,Klint Kubiak,Aaron Glenn,50,,0,50,,0,11,2,4,58,8,26,38,45.37,49,22,45.5,1.5,24.9,134,SIT
+8,11627,Troy Franklin,WR,DEN,Active,,KC,Davis Webb,Steve Spagnuolo,46,13,1,46,0.5,1,11,6,7,40,2,53,30,51.93,37,20,41.5,-1.5,24.9,135,SIT
+8,11650,Luke McCaffrey,WR,WAS,Active,,PHI,David Blough,Vic Fangio,56,36.7,1,42,1.15,2,2,0,1,77,0,38,30,46.46,52,22.5,40.5,4.5,24.8,136,SIT
+8,13411,Zavion Thomas,WR,CHI,Active,,SEA,Ben Johnson,Mike Macdonald,66,39.69,2,50,,0,11,11,5,32,0,29,38,42.47,48,21.8,46.5,3,24.7,137,SIT
+8,6847,Devin Duvernay,WR,ARI,Active,,DAL,Mike LaFleur,Christian Parker,50,,0,50,,0,0,0,0,57,0,53,30,47.76,61,24,54.5,6.5,24.3,138,SIT
+8,8861,Irvin Charles,WR,SEA,Active,,CHI,Brian Fleury,Dennis Allen,50,,0,50,,0,0,0,0,58,0,53,30,42.36,66,24.8,46.5,3,24.3,139,SIT
+8,7812,Simi Fehoko,WR,ARI,Active,,DAL,Mike LaFleur,Christian Parker,50,,0,50,,0,0,0,0,57,0,53,30,47.76,61,24,54.5,6.5,24.3,140,SIT
+8,11320,Nikko Remigio,WR,KC,Active,,DEN,Andy Reid,Vance Joseph,47,14.7,1,46,0,1,0,0,0,42,0,53,30,42.87,46,21.5,41.5,-1.5,24.2,141,SIT
+8,7521,Chris Blair,WR,ATL,Active,,TB,Tommy Rees,Todd Bowles,50,,0,50,,0,2,0,1,63,6,38,30,47.43,49,22,46.5,2.5,24.1,142,SIT
+8,13825,Malik McClain,WR,NYJ,Active,,LV,Frank Reich,Rob Leonard,50,,0,50,,0,0,0,0,64,0,52,38,45.85,58,23.5,45.5,1.5,24.1,143,SIT
+8,10234,Derius Davis,WR,LAC,Active,,LAR,Mike McDaniel,Chris Shula,55,34.5,1,50,,0,4,3,3,34,0,30,30,45.3,31,19,44.5,6.5,23.7,144,SIT
+8,5938,Lil'Jordan Humphrey,WR,DEN,Active,,KC,Davis Webb,Steve Spagnuolo,46,13,1,41,4.4,3,9,4,6,40,0,51,30,51.93,37,20,41.5,-1.5,23.5,145,SIT
+8,12540,Chimere Dike,WR,TEN,Active,,CIN,Brian Daboll,Al Golden,50,,0,50,,0,9,7,4,53,0,27,34,44.63,26,18.2,46.5,10,23,146,SIT
+8,8527,Dareke Young,WR,LV,Active,,NYJ,Klint Kubiak,Aaron Glenn,50,,0,46,0,1,4,2,1,58,0,28,30,45.37,49,22,45.5,1.5,23,147,SIT
+8,8755,Kaden Davis,WR,CHI,Active,,SEA,Ben Johnson,Mike Macdonald,66,39.69,2,50,,0,0,0,0,32,0,50,5,42.47,48,21.8,46.5,3,22.7,148,SIT
+8,13079,Jahdae Walker,WR,CHI,Active,,SEA,Ben Johnson,Mike Macdonald,66,39.69,2,50,,0,2,0,1,32,6,37,34,42.47,48,21.8,46.5,3,21.8,149,SIT
+8,13981,Kolbe Katsis,WR,DEN,Active,,KC,Davis Webb,Steve Spagnuolo,46,13,1,50,,0,0,0,0,40,0,50,13,51.93,37,20,41.5,-1.5,21.8,150,SIT
+8,8250,Tay Martin,WR,DET,Active,,MIN,Drew Petzing,Brian Flores,53,30.2,1,50,,0,0,0,0,20,0,53,30,47.02,66,24.8,46.5,3,21.6,151,SIT
+8,7595,Tylan Wallace,WR,CLE,Active,,PIT,Todd Monken,Patrick Graham,54,32.1,1,50,,0,3,4,2,54,0,28,30,40.48,25,18,39.5,3.5,21.4,152,SIT
+8,13491,Kaden Wetjen,WR,PIT,Active,,CLE,Mike McCarthy,Mike Rutenberg,58,41.2,1,46,0,1,0,0,0,40,0,52,38,43.86,46,21.5,39.5,3.5,21.3,153,SIT
+8,11617,Malachi Corley,WR,CLE,Active,,PIT,Todd Monken,Patrick Graham,54,32.1,1,46,0,1,0,0,0,54,0,53,30,40.48,25,18,39.5,3.5,21,154,SIT
+8,2750,DeAndre Carter,WR,DET,Active,,MIN,Drew Petzing,Brian Flores,53,30.2,1,41,0,2,0,0,0,20,0,50,38,47.02,66,24.8,46.5,3,20.5,155,SIT
+8,8130,Trey McBride,TE,ARI,Active,,DAL,Mike LaFleur,Christian Parker,50,,0,50,,0,100,100,37,32,31,82,2,44.05,61,24,54.5,6.5,66.4,1,START
+8,7553,Kyle Pitts Sr.,TE,ATL,Active,,TB,Tommy Rees,Todd Bowles,50,,0,100,24.85,4,56,77,20,47,27,84,2,40.84,49,22,46.5,2.5,56,2,START
+8,12517,Colston Loveland,TE,CHI,Active,,SEA,Ben Johnson,Mike Macdonald,48,11.9,2,50,,0,75,76,41,33,24,61,6,40.375,48,21.8,46.5,3,55.5,3,START
+8,3214,Hunter Henry,TE,NE,Active,,MIA,Josh McDaniels,Jeff Hafley,50,,0,50,,0,50,66,33,80,14,86,6,46.53,73,26,44.5,-7.5,55.4,4,START
+8,11604,Brock Bowers,TE,LV,Active,,NYJ,Klint Kubiak,Aaron Glenn,50,,0,50,,0,84,69,23,38,14,81,2,39.705,49,22,45.5,1.5,54.1,5,START
+8,5022,Dallas Goedert,TE,PHI,Active,,WAS,Sean Mannion,Daronte Jones,56,23.7,1,58,23.7,1,75,49,21,69,2,90,6,48.845,25,18,40.5,4.5,53.4,6,START
+8,9480,Brenton Strange,TE,JAX,Active,,IND,Liam Coen,Lou Anarumo,42,7.05,2,49,7.05,2,72,56,22,46,4,85,2,46.67,79,27,46.5,7.5,51.8,7,START
+8,12498,Mason Taylor,TE,NYJ,Active,,LV,Frank Reich,Rob Leonard,50,,0,50,,0,47,69,28,71,14,60,17,45.58,58,23.5,45.5,1.5,51.2,8,START
+8,9484,Tucker Kraft,TE,GB,Active,,CAR,Matt LaFleur,Ejiro Evero,46,10.2,2,49,7,2,63,57,14,43,31,85,2,45.71,70,25.5,47.5,3.5,51.1,9,START
+8,5844,T.J. Hockenson,TE,MIN,Active,,DET,Kevin O'Connell,Kelvin Sheppard,41,6.1,2,50,9.1,1,59,57,20,79,18,37,2,40.89,48,21.8,46.5,3,48.7,10,START
+8,8172,Greg Dulcich,TE,MIA,Active,,NE,Bobby Slowik,Zak Kuhr,50,,0,50,,0,53,52,25,69,14,85,2,43.480000000000004,28,18.5,44.5,-7.5,48,11,START
+8,1466,Travis Kelce,TE,KC,Active,,DEN,Andy Reid,Vance Joseph,50,13.5,1,51,10.1,1,53,36,34,56,4,72,10,40.375,46,21.5,41.5,-1.5,47.3,12,START
+8,6865,Colby Parkinson,TE,LA,Active,,LAC,Sean McVay,Chris O'Leary,50,,0,50,,0,44,44,29,35,14,53,13,47.425,70,25.5,44.5,6.5,46.8,13,SIT
+8,13421,Eli Raridon,TE,NE,Active,,MIA,Josh McDaniels,Jeff Hafley,50,,0,50,,0,38,47,19,80,14,67,21,46.53,73,26,44.5,-7.5,46.6,14,SIT
+8,10859,Sam LaPorta,TE,DET,Active,,MIN,Drew Petzing,Brian Flores,58,27.8,1,65,13.1,4,63,55,6,20,22,49,2,45.145,66,24.8,46.5,3,46.5,15,SIT
+8,11603,AJ Barner,TE,SEA,Active,,CHI,Brian Fleury,Dennis Allen,50,,0,50,,0,53,31,23,69,8,74,2,39.614999999999995,66,24.8,46.5,3,45.1,16,SIT
+8,8210,Chig Okonkwo,TE,WAS,Active,,PHI,David Blough,Vic Fangio,46,6.9,1,48,3.6,1,53,48,20,47,0,68,2,44.269999999999996,52,22.5,40.5,4.5,44,17,SIT
+8,10236,Dalton Kincaid,TE,BUF,Active,Questionable,BAL,Joe Brady,Jesse Minter,50,,0,50,,0,38,29,25,50,18,34,32,45.605,88,28.5,53.5,3.5,43.5,18,SIT
+8,10214,Davis Allen,TE,LA,Active,,LAC,Sean McVay,Chris O'Leary,50,,0,50,,0,25,46,19,35,18,34,21,47.425,70,25.5,44.5,6.5,42,19,SIT
+8,3271,Tyler Higbee,TE,LA,Active,,LAC,Sean McVay,Chris O'Leary,50,,0,50,,0,41,29,16,35,0,69,10,47.425,70,25.5,44.5,6.5,41.6,20,SIT
+8,5012,Mark Andrews,TE,BAL,Active,,BUF,Declan Doyle,Jim Leonhard,50,,0,50,,0,41,21,17,64,24,66,6,42.864999999999995,67,25,53.5,3.5,41.2,21,SIT
+8,7828,Noah Gray,TE,KC,Active,,DEN,Andy Reid,Vance Joseph,50,13.5,1,47,1.5,1,28,32,15,56,6,86,13,40.375,46,21.5,41.5,-1.5,40.7,22,SIT
+8,8127,Charlie Kolar,TE,LAC,Active,,LAR,Mike McDaniel,Chris Shula,48,9.1,1,46,0,1,41,26,23,48,6,80,13,41.84,31,19,44.5,6.5,40.5,23,SIT
+8,7600,Pat Freiermuth,TE,PIT,Active,,CLE,Mike McCarthy,Mike Rutenberg,55,22.4,1,51,10.7,1,47,34,21,36,14,50,2,44.19,46,21.5,39.5,3.5,40.2,24,SIT
+8,12506,Harold Fannin Jr.,TE,CLE,Active,,PIT,Todd Monken,Patrick Graham,49,11.7,1,52,11.7,1,50,39,27,42,6,49,6,39.019999999999996,25,18,39.5,3.5,39.9,25,SIT
+8,13273,Josh Cuevas,TE,BAL,Active,,BUF,Declan Doyle,Jim Leonhard,50,,0,50,,0,31,37,14,64,8,58,29,42.864999999999995,67,25,53.5,3.5,39.6,26,SIT
+8,4993,Mike Gesicki,TE,CIN,Active,,TEN,Zac Taylor,Robert Saleh,50,,0,50,,0,25,40,2,42,12,63,6,46.47,86,28.2,46.5,10,38.9,27,SIT
+8,12493,Oronde Gadsden,TE,LAC,Active,,LAR,Mike McDaniel,Chris Shula,48,9.1,1,50,,0,47,19,15,48,14,40,6,41.84,31,19,44.5,6.5,38.2,28,SIT
+8,9479,Darnell Washington,TE,PIT,Active,,CLE,Mike McCarthy,Mike Rutenberg,55,22.4,1,52,11.7,1,31,38,7,36,24,53,13,44.19,46,21.5,39.5,3.5,37.3,29,SIT
+8,11592,Erick All Jr.,TE,CIN,Active,Questionable,TEN,Zac Taylor,Robert Saleh,50,,0,50,,0,28,23,17,42,3,81,43,46.47,86,28.2,46.5,10,36.7,30,SIT
+8,10231,Elijah Higgins,TE,ARI,Active,,DAL,Mike LaFleur,Christian Parker,50,,0,50,,0,28,27,12,32,10,86,13,44.05,61,24,54.5,6.5,36.2,31,SIT
+8,11593,Brevyn Spann-Ford,TE,DAL,Active,,ARI,Brian Schottenheimer,Nick Rallis,50,12.4,1,46,0,1,28,18,8,49,2,51,13,50.875,100,30.5,54.5,6.5,35.9,32,SIT
+8,7694,Tommy Tremble,TE,CAR,Active,,GB,Brad Idzik,Jonathan Gannon,50,,0,50,,0,31,38,12,27,4,58,13,46.989999999999995,49,22,47.5,3.5,35.7,33,SIT
+8,9482,Michael Mayer,TE,LV,Active,,NYJ,Klint Kubiak,Aaron Glenn,50,,0,47,2.9,1,41,38,11,38,0,31,13,39.705,49,22,45.5,1.5,35.6,34,SIT
+8,10220,Will Mallory,TE,IND,Active,,JAX,Shane Steichen,Anthony Campanile,50,13.3,2,47,2.6,1,42,9,15,52,4,58,21,41.475,34,19.5,46.5,7.5,35.5,35,SIT
+8,13299,Nate Boerkircher,TE,JAX,Active,,IND,Liam Coen,Lou Anarumo,42,7.05,2,50,,0,19,28,5,46,10,74,21,46.67,79,27,46.5,7.5,35.3,36,SIT
+8,8110,Jake Ferguson,TE,DAL,Active,,ARI,Brian Schottenheimer,Nick Rallis,50,12.4,1,52,9.9,2,31,9,8,49,4,43,2,50.875,100,30.5,54.5,6.5,35.2,37,SIT
+8,4066,Evan Engram,TE,DEN,Active,,KC,Davis Webb,Steve Spagnuolo,52,17.3,1,53,14.3,1,28,16,12,73,4,58,6,45.205,37,20,41.5,-1.5,34.6,38,SIT
+8,5906,Dawson Knox,TE,BUF,Active,,BAL,Joe Brady,Jesse Minter,50,,0,50,,0,19,8,1,50,8,55,13,45.605,88,28.5,53.5,3.5,34.5,39,SIT
+8,8111,Cade Otton,TE,TB,Active,,ATL,Zac Robinson,Jeff Ulbrich,50,,0,46,0,1,22,7,9,56,4,47,2,47.595,64,24.5,46.5,2.5,34.3,40,SIT
+8,2505,Darren Waller,TE,CAR,Active,,GB,Brad Idzik,Jonathan Gannon,50,,0,50,,0,31,34,5,27,4,45,10,46.989999999999995,49,22,47.5,3.5,33.5,41,SIT
+8,13330,Kenyon Sadiq,TE,NYJ,Active,,LV,Frank Reich,Rob Leonard,50,,0,50,,0,22,9,7,71,2,73,10,45.58,58,23.5,45.5,1.5,33.2,42,SIT
+8,8145,Jeremy Ruckert,TE,NYJ,Active,,LV,Frank Reich,Rob Leonard,50,,0,50,,0,22,23,0,71,8,29,21,45.58,58,23.5,45.5,1.5,32.7,43,SIT
+8,1339,Zach Ertz,TE,PHI,Active,,WAS,Sean Mannion,Daronte Jones,56,23.7,1,50,,0,25,6,3,69,3,51,13,48.845,25,18,40.5,4.5,32.5,44,SIT
+8,12502,Gunnar Helm,TE,TEN,Active,,CIN,Brian Daboll,Al Golden,50,,0,50,,0,19,14,17,44,10,35,6,42.915000000000006,26,18.2,46.5,10,29.1,45,SIT
+8,8225,Daniel Bellinger,TE,TEN,Active,,CIN,Brian Daboll,Al Golden,50,,0,50,,0,19,5,6,44,2,69,13,42.915000000000006,26,18.2,46.5,10,26.8,46,SIT
