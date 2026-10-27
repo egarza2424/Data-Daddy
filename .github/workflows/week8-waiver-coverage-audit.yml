@@ -1,0 +1,39 @@
+name: Week 8 Waiver Coverage Audit (Review Only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate Week 8 source
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("nfl-stats.json")
+          if not p.exists() or not p.stat().st_size:
+              raise RuntimeError("nfl-stats.json is missing or empty. Run Update NFL Stats before this audit.")
+          d = json.loads(p.read_text())
+          if int(d.get("season", 0)) != 2026 or int(d.get("target_week", 0)) != 8:
+              raise RuntimeError(f"Expected 2026 Week 8, got {d.get('season')} Week {d.get('target_week')}")
+          PY
+      - name: Run coverage diagnostic
+        run: python scripts/audit_week8_waiver_coverage.py
+      - name: Upload review results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: week8-waiver-coverage-review
+          path: projection-model/validation/2026-week8-waiver-coverage-diagnostic.csv
+          if-no-files-found: warn
