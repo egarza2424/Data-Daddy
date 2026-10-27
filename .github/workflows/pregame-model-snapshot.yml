@@ -958,11 +958,13 @@ jobs:
           head -n 2 model-snapshots/*.csv
 
       - name: Freeze PPR projections with immutable dated snapshot
+        id: freeze_ppr
         if: steps.capture.outputs.captured == 'true'
         run: |
           python - <<'PY'
           import csv
           import json
+          import os
           import re
           from datetime import datetime, timezone
           from pathlib import Path
@@ -989,7 +991,10 @@ jobs:
           week = next(iter(weeks))
           candidate = Path(f"projection-model/2026-week{week}-ppr-projections.csv")
           if not candidate.exists():
-              raise SystemExit(f"No PPR projections for captured AI week {week}")
+              print(f"Week {week} PPR projections not generated yet; preserving AI snapshot without freezing PPR.")
+              with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+                  output.write("frozen=false\\n".replace("\\n", "\n"))
+              raise SystemExit(0)
           with candidate.open(newline="", encoding="utf-8") as f:
               ppr_rows = list(csv.DictReader(f))
           required = {"snapshot_week", "player_id", "position", "projected_ppr", "projected_position_rank", "position_rank"}
@@ -1009,10 +1014,12 @@ jobs:
               "audit_status": "requires per-game kickoff verification"
           }, indent=2) + "\n", encoding="utf-8")
           print("Frozen PPR projections:", frozen, len(ppr_rows))
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              output.write("frozen=true\\n".replace("\\n", "\n"))
           PY
 
       - name: Verify frozen PPR snapshot against every team's kickoff
-        if: steps.capture.outputs.captured == 'true'
+        if: steps.capture.outputs.captured == 'true' && steps.freeze_ppr.outputs.frozen == 'true'
         continue-on-error: true
         run: |
           python -m py_compile scripts/verify_frozen_ppr_kickoffs.py
