@@ -69,7 +69,19 @@ jobs:
                   f"Week 8 projection refresh blocked: nfl-stats.json target_week={actual_week}. "
                   "Update the weekly snapshot and Week 7-specific workflow steps before publishing."
               )
-          print("Week 8 target week verified.")
+          import csv
+          with Path("projection-model/current-live-model-snapshot.csv").open(
+              encoding="utf-8", newline=""
+          ) as handle:
+              snapshot_weeks = {
+                  row["snapshot_week"] for row in csv.DictReader(handle)
+              }
+          if snapshot_weeks != {"8"}:
+              raise SystemExit(
+                  f"Week 8 refresh blocked: live model snapshot weeks={sorted(snapshot_weeks)}. "
+                  "Generate and verify the Week 8 snapshot before publishing."
+              )
+          print("Week 8 target week and live snapshot verified.")
           PY
 
       - name: Audit actual PPR feed for displayed week
