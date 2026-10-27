@@ -89,7 +89,21 @@ def main():
     unresolved.to_csv(OUT / "2026-week7-unresolved-players-review.csv", index=False)
     ambiguous.to_csv(OUT / "2026-week7-ambiguous-identities-review.csv", index=False)
     print("Unresolved records:", len(unresolved), "| Ambiguous prediction rows:", len(ambiguous))
-    print("IMPORTANT: missing nflverse row does NOT establish inactivity.")
+    print("IMPORTANT: missing nflverse row does NOT establish inactivity.")\n    # Inspect likely name variants from actual statistics without auto-accepting them.
+    import difflib
+    if not unresolved.empty:
+        print("\\nCANDIDATE ACTUAL-STATS NAMES (DIAGNOSTIC ONLY):")
+        for _, row in unresolved.iterrows():
+            pool = actual[actual.position == row.position]
+            names = pool.player_display_name.dropna().astype(str).unique().tolist()
+            candidates = difflib.get_close_matches(str(row.player_name), names, n=4, cutoff=0.48)
+            details = []
+            for candidate_name in candidates:
+                candidate_rows = pool[pool.player_display_name == candidate_name]
+                for _, candidate in candidate_rows.iterrows():
+                    details.append(f"{candidate_name} [{candidate.get('recent_team', '?')}] {candidate.actual_ppr:.2f} PPR")
+            print(f"{row.player_name} ({row.team}/{row.position}): " + ("; ".join(details) if details else "NO CLOSE NAME IN STATS"))
+
     summary = []
     for position, cutoff in CAPS.items():
         subset = merged[merged.position == position].copy()
