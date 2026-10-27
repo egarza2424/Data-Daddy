@@ -1,0 +1,21 @@
+review_rank,preliminary_rank,player,position,team,rostered_pct,latest_opportunity,opportunity_change,recent_avg_ppr,waiver_evidence_score,injury_signal,review_status
+1,1,Tre Tucker,WR,LV,61,12,6,18.5,97.95,injury_flag_and_observed_usage_growth,ROLE_AND_AVAILABILITY_UNVERIFIED
+2,2,Kirk Cousins,QB,LV,56.9,47,12.5,18.21,94.09,usage_growth_without_qualifying_injury_flag,ROLE_AND_AVAILABILITY_UNVERIFIED
+3,3,KC Concepcion,WR,CLE,42.95,10,6.5,10.87,93.81,usage_growth_without_qualifying_injury_flag,ROLE_AND_AVAILABILITY_UNVERIFIED
+4,4,Hunter Henry,TE,NE,47.17,7,2.5,14.1,93.57,usage_growth_without_qualifying_injury_flag,ROLE_AND_AVAILABILITY_UNVERIFIED
+5,5,Rico Dowdle,RB,PIT,56.44,15,5,9.63,87.69,usage_growth_without_qualifying_injury_flag,ROLE_AND_AVAILABILITY_UNVERIFIED
+6,6,Alvin Kamara,RB,NO,61.57,13,5,10.23,87.22,usage_growth_without_qualifying_injury_flag,ROLE_AND_AVAILABILITY_UNVERIFIED
+7,7,Kaelon Black,RB,SF,21.85,15,7.5,6.4,85.53,usage_growth_without_qualifying_injury_flag,ROLE_AND_AVAILABILITY_UNVERIFIED
+8,8,Jacoby Brissett,QB,ARI,19.6,55,12,17.56,85.5,usage_growth_without_qualifying_injury_flag,ROLE_AND_AVAILABILITY_UNVERIFIED
+9,9,Michael Penix Jr.,QB,ATL,12.82,39,5,18.64,85.13,usage_growth_without_qualifying_injury_flag,ROLE_AND_AVAILABILITY_UNVERIFIED
+10,12,Kenny Gainwell,RB,TB,51.12,14,8.5,6,83.38,usage_growth_without_qualifying_injury_flag,ROLE_AND_AVAILABILITY_UNVERIFIED
+11,15,Rachaad White,RB,WAS,56.43,12,3.5,9.93,79.2,injury_flag_without_material_usage_growth,ROLE_AND_AVAILABILITY_UNVERIFIED
+12,16,Jonah Coleman,RB,DEN,24.2,11,4.5,7.9,77.13,injury_flag_and_observed_usage_growth,ROLE_AND_AVAILABILITY_UNVERIFIED
+13,17,Makai Lemon,WR,PHI,37.42,8,1.5,11.3,76.73,usage_growth_without_qualifying_injury_flag,ROLE_AND_AVAILABILITY_UNVERIFIED
+14,18,Chris Rodriguez Jr.,RB,JAX,11.39,12,7.5,5.7,76.47,usage_growth_without_qualifying_injury_flag,ROLE_AND_AVAILABILITY_UNVERIFIED
+15,20,Keon Coleman,WR,BUF,28.79,6,1.5,15.73,75.28,usage_growth_without_qualifying_injury_flag,ROLE_AND_AVAILABILITY_UNVERIFIED
+16,21,Kimani Vidal,RB,LAC,5.62,11,2,10.4,75.16,no_combined_injury_usage_signal,ROLE_AND_AVAILABILITY_UNVERIFIED
+17,22,Dylan Sampson,RB,CLE,8.63,9,9,5.35,74.72,injury_flag_usage_trend_unverified,ROLE_AND_AVAILABILITY_UNVERIFIED
+18,23,Jordan Watkins,WR,SF,0.79,6,4.5,6.6,72.96,injury_flag_and_observed_usage_growth,ROLE_AND_AVAILABILITY_UNVERIFIED
+19,24,Treylon Burks,WR,WAS,0.5,6,2,8.97,72.51,injury_flag_and_observed_usage_growth,ROLE_AND_AVAILABILITY_UNVERIFIED
+20,25,Bam Knight,RB,ARI,16.85,12,3,7.3,71.97,no_combined_injury_usage_signal,ROLE_AND_AVAILABILITY_UNVERIFIED
