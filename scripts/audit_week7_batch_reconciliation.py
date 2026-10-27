@@ -172,6 +172,27 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     merged.to_csv(OUT / "2026-week7-batch-reconciliation-review.csv", index=False)
     pd.DataFrame(summary).to_csv(OUT / "2026-week7-batch-ai-vs-ppr-review.csv", index=False)
+    # Review-only SVG; do not publish to the website while coverage is incomplete.
+    chart = pd.DataFrame(summary)
+    width, height = 860, 400
+    svg = ['<svg xmlns="http://www.w3.org/2000/svg" width="860" height="400" viewBox="0 0 860 400">',
+           '<rect width="860" height="400" fill="#101725"/>',
+           '<text x="32" y="38" fill="#fff" font-family="Arial" font-size="22" font-weight="bold">Week 7 AI Score vs PPR Rankings</text>',
+           '<text x="32" y="61" fill="#b5c0d2" font-family="Arial" font-size="13">Provisional common-player positional rank MAE (lower is better)</text>']
+    for idx, (_, r) in enumerate(chart.iterrows()):
+        y = 100 + idx * 70
+        svg.append(f'<text x="32" y="{y+23}" fill="#fff" font-family="Arial" font-size="17">{r.position} top {int(r.cutoff)} (n={int(r.common_matched)})</text>')
+        for offset, metric, color, label in [(0, r.ai_mae_common, "#45b5f6", "AI"), (25, r.ppr_mae_common, "#f6a94b", "PPR")]:
+            bar_width = max(0, float(metric) / 22 * 480)
+            svg.append(f'<rect x="265" y="{y+offset}" width="{bar_width:.1f}" height="19" rx="4" fill="{color}"/>')
+            svg.append(f'<text x="{275+bar_width:.1f}" y="{y+offset+15}" fill="#fff" font-family="Arial" font-size="13">{label} {float(metric):.3f}</text>')
+    svg.append('<text x="32" y="386" fill="#f3b2a8" font-family="Arial" font-size="12">NOT FOR PUBLICATION: unresolved participation, duplicate identity, and intersection-only sample</text>')
+    svg.append('</svg>')
+    (OUT / "2026-week7-ai-vs-ppr-PROVISIONAL.svg").write_text("\\n".join(svg), encoding="utf-8")
+    chart["publication_status"] = "BLOCKED_PENDING_COVERAGE_AND_METHODOLOGY_REVIEW"
+    chart["methodology"] = "intersection_of_both_top_cutoffs_with_actual_stats; excludes one-sided top-cutoff misses"
+    chart.to_csv(OUT / "2026-week7-graph-methodology-review.csv", index=False)
+    print("Generated review-only SVG. NOT published: intersection-only sample excludes one-sided ranking misses.")
     print(pd.DataFrame(summary).to_string(index=False))
     print("Review-only outputs saved. Unmatched IDs require manual crosswalk; no zero scores or exclusions inferred.")
     print("No historical snapshots, live rankings, model weights, or website files changed.")
