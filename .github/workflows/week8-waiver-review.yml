@@ -1,0 +1,13 @@
+name: Week 8 Waiver Final Review (Read Only)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Print Week 8 Top 10 and positional candidate lists
+        run: python scripts/export_week8_waiver_review.py
