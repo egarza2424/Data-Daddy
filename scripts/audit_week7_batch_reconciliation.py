@@ -200,6 +200,35 @@ def main():
     chart["methodology"] = "union_of_either_top_cutoff_with_actual_stats; includes one-sided top-cutoff misses; common-player figures retained as diagnostic"
     chart.to_csv(OUT / "2026-week7-graph-methodology-review.csv", index=False)
     print("Generated review-only SVG with union-of-cutoffs metrics. NOT published: participation and identity checks remain.")
+    # Explicitly score verified roster-relevance failures without fabricating actual PPR.
+    # These three players were in the frozen AI WR top 36 but outside the PPR top 36.
+    # This is a separate top-K selection-quality audit, NOT an imputed rank MAE.
+    fringe_names = {"dominiclovett|WR", "malikturner|WR", "xaviergipson|WR"}
+    fringe = merged[merged.identity.isin(fringe_names)].copy()
+    if len(fringe) != 3:
+        raise ValueError("Expected exactly three fringe WR identities in frozen snapshot")
+    if not ((fringe.position_rank <= 36) & (fringe.projected_position_rank > 36) & fringe.actual_rank.isna()).all():
+        raise ValueError("Fringe WR review assumptions changed; manual audit required")
+    fringe["issue"] = "FROZEN_AI_TOP36_FRINGE_ROSTER_SELECTION"
+    fringe["actual_ppr"] = pd.NA
+    fringe["audit_treatment"] = "COUNT_AS_AI_TOP36_SELECTION_ERROR; DO_NOT_IMPUTE_PPR_OR_ACTUAL_RANK"
+    fringe.to_csv(OUT / "2026-week7-wr-selection-errors-review.csv", index=False)
+    wr_matched = merged[(merged.position == "WR") & merged.actual_rank.notna()]
+    ai_matched_top = int((wr_matched.position_rank <= 36).sum())
+    ppr_matched_top = int((wr_matched.projected_position_rank <= 36).sum())
+    selection = pd.DataFrame([{
+        "position": "WR", "cutoff": 36,
+        "confirmed_ai_fringe_top36": len(fringe),
+        "confirmed_ppr_fringe_top36": 0,
+        "ai_matched_top36": ai_matched_top,
+        "ppr_matched_top36": ppr_matched_top,
+        "metric": "documented selection errors; separate from rank MAE",
+        "publication_status": "PROVISIONAL",
+        "note": "AI has 3 confirmed fringe selections; cannot assign fictional actual PPR/rank or claim comprehensive precision",
+    }])
+    selection.to_csv(OUT / "2026-week7-wr-selection-quality-review.csv", index=False)
+    print("WR selection quality: 3 confirmed AI top-36 fringe errors; 0 of these 3 in PPR top 36.")
+    print("Ranking MAE unchanged; no invented actual PPR or rank assigned.")
     print(pd.DataFrame(summary).to_string(index=False))
     print("Review-only outputs saved. Unmatched IDs require manual crosswalk; no zero scores or exclusions inferred.")
     print("No historical snapshots, live rankings, model weights, or website files changed.")
