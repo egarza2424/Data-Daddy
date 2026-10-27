@@ -61,10 +61,6 @@ def main():
         return re.sub(r"[^a-z0-9]", "", value)
     actual["identity"] = actual["player_display_name"].map(key) + "|" + actual["position"]
     pred["identity"] = pred["player_name"].map(key) + "|" + pred["position"]
-    # Verified suffix aliases only; do not fuzzy-match other players.
-    verified_aliases = {"aaronjones|RB": "aaronjones|RB", "kylepitts|TE": "kylepitts|TE"}
-    # The normalization above already strips Sr/Jr suffixes. Record explicit provenance.
-    print("Verified name-variant checks: Aaron Jones Sr. -> Aaron Jones; Kyle Pitts Sr. -> Kyle Pitts")
     # Refuse duplicate keys on either side to prevent incorrect joins.
     safe_actual = actual[~actual.identity.duplicated(keep=False)]
     safe_pred = pred[~pred.identity.duplicated(keep=False)].copy()
@@ -72,6 +68,14 @@ def main():
                              on="identity", how="left", validate="one_to_one", indicator=True)
     merged["match_status"] = merged["_merge"].map({"both": "matched_unique_name_position", "left_only": "unmatched", "right_only": "unexpected"})
     merged = merged.drop(columns=["_merge"])
+    # Report verified suffix variants only when actual statistics truly join.
+    for source_name, actual_name, pos in [("Aaron Jones Sr.", "Aaron Jones", "RB"), ("Kyle Pitts Sr.", "Kyle Pitts", "TE")]:
+        rows = merged[(merged.player_name == source_name) & (merged.position == pos)]
+        candidates = actual[(actual.player_display_name == actual_name) & (actual.position == pos)]
+        if len(rows) == 1 and len(candidates) == 1 and pd.notna(rows.iloc[0].actual_ppr):
+            print(f"VERIFIED: {source_name} -> {actual_name}: {rows.iloc[0].actual_ppr:.2f} PPR")
+        else:
+            print(f"REQUIRES REVIEW: {source_name} -> {actual_name}; exact normalized join unavailable")
     print("Excluded ambiguous prediction identities:", len(pred) - len(safe_pred))
     ambiguous = pred[pred.identity.duplicated(keep=False)]
     if not ambiguous.empty:
