@@ -25,6 +25,32 @@ BOOTSTRAP_WEEK7_OUTS = [
 ]
 
 
+VERIFIED_IR_ABSENCES_PATH = Path("data/verified_ir_absences.json")
+
+
+def load_verified_ir_absences(week):
+    """Official IR exclusions; never use these to infer beneficiary workloads."""
+    if not VERIFIED_IR_ABSENCES_PATH.exists():
+        return []
+    payload = json.loads(VERIFIED_IR_ABSENCES_PATH.read_text(encoding="utf-8"))
+    if payload.get("schema_version") != 1 or not isinstance(payload.get("ir"), list):
+        raise RuntimeError("Invalid verified IR absence schema")
+    selected, seen = [], set()
+    for item in payload["ir"]:
+        if item.get("season") != 2026 or item.get("week") != week:
+            continue
+        key = (str(item.get("player_id")), str(item.get("team")))
+        if key in seen or item.get("status") != "IR":
+            raise RuntimeError(f"Invalid or duplicate verified IR absence: {key}")
+        if not str(item.get("source", "")).startswith("https://www.bengals.com/news/"):
+            raise RuntimeError(f"Missing verified official team source for IR: {key}")
+        if not all(item.get(k) for k in ("player_id", "player_name", "position", "team", "verified_date")):
+            raise RuntimeError(f"Incomplete verified IR absence: {key}")
+        seen.add(key)
+        selected.append(item)
+    return selected
+
+
 def load_verified_injury_outs(week):
     if not VERIFIED_INJURY_OUTS_PATH.exists():
         return [
@@ -507,6 +533,21 @@ def prepare_snapshot(
         )
         if match.sum() > 1:
             raise RuntimeError(f"Duplicate verified OUT player: {item['player_name']}")
+        unavailable_mask |= match
+
+    # Official IR transactions override stale snapshot status for eligibility,
+    # but do not activate starter-absence beneficiary redistribution.
+    for item in load_verified_ir_absences(target_week):
+        match = (
+            snapshot["player_id"].astype(str).eq(str(item["player_id"]))
+            & snapshot["player_name"].eq(item["player_name"])
+            & snapshot["position"].eq(item["position"])
+            & snapshot["team"].eq(item["team"])
+        )
+        if match.sum() > 1:
+            raise RuntimeError(f"Duplicate verified IR player: {item['player_name']}")
+        if match.sum() == 0:
+            print(f"Verified IR player absent from snapshot: {item['player_name']}")
         unavailable_mask |= match
 
     unavailable_players = snapshot.loc[
