@@ -49,10 +49,26 @@ def main():
     actual = actual[actual.position.isin(CAPS) & actual.actual_ppr.notna()].copy()
     actual = actual.sort_values(["position", "actual_ppr", "player_id"], ascending=[True, False, True])
     actual["actual_rank"] = actual.groupby("position")["actual_ppr"].rank(method="min", ascending=False)
-    # Player IDs may use different namespaces. Never guess identity matches.
-    merged = pred.merge(actual[["player_id", "position", "actual_ppr", "actual_rank"]], on=["player_id", "position"], how="left", validate="many_to_one", indicator=True)
-    merged["match_status"] = merged["_merge"].map({"both": "matched", "left_only": "unmatched_id", "right_only": "unexpected"})
+    # Match unique exact normalized player names + position, never fuzzy identities.
+    import re
+    import unicodedata
+    if "player_display_name" not in actual.columns:
+        raise SystemExit("Missing player_display_name; cannot match safely.")
+    def key(value):
+        value = unicodedata.normalize("NFKD", str(value))
+        value = "".join(c for c in value if not unicodedata.combining(c)).lower()
+        value = re.sub(r"\\b(jr|sr|ii|iii|iv)\\b", "", value)
+        return re.sub(r"[^a-z0-9]", "", value)
+    actual["identity"] = actual["player_display_name"].map(key) + "|" + actual["position"]
+    pred["identity"] = pred["player_name"].map(key) + "|" + pred["position"]
+    # Refuse duplicate keys on either side to prevent incorrect joins.
+    safe_actual = actual[~actual.identity.duplicated(keep=False)]
+    safe_pred = pred[~pred.identity.duplicated(keep=False)].copy()
+    merged = safe_pred.merge(safe_actual[["identity", "actual_ppr", "actual_rank"]],
+                             on="identity", how="left", validate="one_to_one", indicator=True)
+    merged["match_status"] = merged["_merge"].map({"both": "matched_unique_name_position", "left_only": "unmatched", "right_only": "unexpected"})
     merged = merged.drop(columns=["_merge"])
+    print("Excluded ambiguous prediction identities:", len(pred) - len(safe_pred))
     summary = []
     for position, cutoff in CAPS.items():
         subset = merged[merged.position == position].copy()
