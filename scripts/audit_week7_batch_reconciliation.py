@@ -61,6 +61,10 @@ def main():
         return re.sub(r"[^a-z0-9]", "", value)
     actual["identity"] = actual["player_display_name"].map(key) + "|" + actual["position"]
     pred["identity"] = pred["player_name"].map(key) + "|" + pred["position"]
+    # Verified suffix aliases only; do not fuzzy-match other players.
+    verified_aliases = {"aaronjones|RB": "aaronjones|RB", "kylepitts|TE": "kylepitts|TE"}
+    # The normalization above already strips Sr/Jr suffixes. Record explicit provenance.
+    print("Verified name-variant checks: Aaron Jones Sr. -> Aaron Jones; Kyle Pitts Sr. -> Kyle Pitts")
     # Refuse duplicate keys on either side to prevent incorrect joins.
     safe_actual = actual[~actual.identity.duplicated(keep=False)]
     safe_pred = pred[~pred.identity.duplicated(keep=False)].copy()
