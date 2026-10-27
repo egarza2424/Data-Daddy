@@ -91,7 +91,7 @@
       note.textContent="Week "+week+" · matched-player cohort only. Predicted and actual ranks are recalculated among matched players by position. This is ranking agreement, not PPR projection accuracy.";
       list.innerHTML=items.map(r=>card(r.player_name+" · "+r.position,
         "Predicted #"+r.predicted+" → actual #"+r.actual,
-        number(r.actual_ppr).toFixed(1)+" actual PPR"+(r.projectedPpr===null?"": " vs "+r.projectedPpr.toFixed(1)+" projected ("+(r.pprError>=0?"+":"")+r.pprError.toFixed(1)+")")+" · "+r.delta+"-rank difference")).join("")||"<p>No qualifying examples.</p>";
+        number(r.actual_ppr).toFixed(1)+" actual PPR"+(r.projectedPpr===null?"": " vs "+r.projectedPpr.toFixed(1)+" projected ("+(r.pprError>=0?"+":"")+r.pprError.toFixed(1)+")")+" · "+r.delta+"-rank difference"+(category==="misses" && r.in_game_injury_verified==="True" ? " · Injured During Game" : ""))).join("")||"<p>No qualifying examples.</p>";
     } else {
       const records=(reports.waiver||[]).filter(r=>Number(r.target_week)===week&&
         r.eligible_for_predictive_accuracy==="True"&&r.result_status==="recorded_game"&&
@@ -99,10 +99,9 @@
         (position==="ALL"||r.position===position));
       const minimum={QB:16,RB:10,WR:10,TE:8};
       const hits=records.filter(r=>number(r.actual_ppr)>=(minimum[r.position]??Infinity)).length;
-      items=records.sort((a,b)=>number(a.rank)-number(b.rank));
+      items=records.filter(r=>number(r.actual_ppr)>=(minimum[r.position]??Infinity)).sort((a,b)=>number(a.rank)-number(b.rank));
       note.textContent="Week "+week+" · "+hits+"/"+records.length+" verified waiver recommendations met the position PPR threshold (QB 16, RB/WR 10, TE 8). This is a threshold hit rate, not overall prediction accuracy. Unverified recommendations are excluded.";
-      list.innerHTML=items.map(r=>{const hit=number(r.actual_ppr)>=(minimum[r.position]??Infinity);
-        return card(r.name+" · "+r.position+(hit?" · HIT":" · MISS"),
+      list.innerHTML=items.map(r=>{return card(r.name+" · "+r.position+" · HIT",
           "Waiver pick #"+r.rank+" · evidence score "+r.waiver_evidence_score,
           number(r.actual_ppr).toFixed(1)+" actual PPR · threshold "+minimum[r.position]);}).join("")||"<p>No kickoff-verified waiver outcomes published for this week.</p>";
     }
