@@ -58,7 +58,7 @@
         ' · Verified-player comparison</p>';
 
       html += '<p class="model-comparison-disclaimer">' +
-        'Top-group hits are provisional. Missing player results are ' +
+        'Top-group hits are provisional confirmed counts; percentages use the target cutoff. Missing player results are ' +
         'not counted as verified misses.</p>';
 
       for (const position of positions) {
@@ -80,8 +80,7 @@
           const hits = Number(r.top_n_hits);
           const verified = Number(r.verified_players);
           const selected = Number(r.selected_players);
-          const coverage = selected > 0
-            ? 100 * verified / selected : 0;
+          const coverage = r.verified_players == null ? null : (selected > 0 ? 100 * verified / selected : 0);
           const pct = 100 * hits / cutoff;
 
           if (![hits, verified, selected, pct].every(Number.isFinite)) {
@@ -103,8 +102,7 @@
               '<small>' + hits + '/' + cutoff + '</small>' +
             '</div>' +
             '<p class="model-comparison-disclaimer">' +
-              'Verified selections: ' + verified + '/' + selected +
-              ' (' + coverage.toFixed(1) + '%)' +
+              'Verified selections: ' + (coverage === null ? 'pending reconciliation' : verified + '/' + selected + ' (' + coverage.toFixed(1) + '%)') +
             '</p>';
         }
 
