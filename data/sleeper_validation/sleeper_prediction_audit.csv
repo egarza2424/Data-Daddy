@@ -1,1 +1,9 @@
 season,target_week,player_name,position,team,rank,sleeper_score,projected_ppr,actual_ppr,ppr_lift_pct,timing_status,result_status,sleeper_hit,breakout_hit
+2026,7,Caleb Williams,QB,CHI,1,100,18.83,22.12,17.5,verified_pregame,recorded_game,False,False
+2026,7,Christian Watson,WR,GB,2,84.5,10.85,10.7,-1.4,verified_pregame,recorded_game,False,False
+2026,7,D'Andre Swift,RB,CHI,3,83.871,11.62,19.0,63.5,verified_pregame,recorded_game,True,True
+2026,7,Woody Marks,RB,HOU,5,73.559,11.39,9.1,-20.1,verified_pregame,recorded_game,False,False
+2026,7,Michael Mayer,TE,LV,6,72.79,8.42,6.2,-26.4,verified_pregame,recorded_game,False,False
+2026,7,Jameson Williams,WR,DET,7,71.337,9.31,26.1,180.3,verified_pregame,recorded_game,True,True
+2026,7,Justin Jefferson,WR,MIN,9,68.359,9.78,8.4,-14.1,verified_pregame,recorded_game,False,False
+2026,7,DeMario Douglas,WR,NE,10,67.922,10.08,5.3,-47.4,verified_pregame,recorded_game,False,False
