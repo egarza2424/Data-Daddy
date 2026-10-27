@@ -323,16 +323,16 @@
       "player_name": "Saquon Barkley",
       "team": "PHI",
       "position": "RB",
-      "week7_status": "QUESTIONABLE_TO_RETURN_IN_GAME_REPORTED_BACK_INJURY",
-      "injury": "back (new in-game designation Oct 26) plus previously known hamstring issue",
-      "source": "https://www.bleedinggreennation.com/philadelphia-eagles-injuries/188270/saquon-barkleys-hamstring-is-still-an-issue-but-the-eagles-needed-him",
+      "week7_status": "LEFT_GAME_WITH_BACK_INJURY_POSTGAME_REPORTED_HAMSTRING_TWEAK",
+      "injury": "back (in-game designation Oct 26) and self-reported hamstring tweak during early Week 7 carries; severity unconfirmed",
+      "source": "https://nypost.com/2026/10/27/sports/saquon-barkley-suffers-new-back-injury-in-disastrous-eagles-return/",
       "beneficiary_review": [
         "Dameon Pierce (first replacement RB)",
         "Elijah Mitchell (secondary RB depth)",
         "Tanner McKee / Eagles pass catchers (conditional scoring environment)"
       ],
-      "review_focus": "NEW after prior Oct 26 evening check: Barkley returned from hamstring absence for Week 7 Monday vs DAL, was managed on limited snaps and listed by Philadelphia as questionable to return early in fourth quarter with a back injury per Eagles beat report. He was not declared OUT for Week 8 at WAS and injury severity is unknown. Dameon Pierce handled increased carries after Barkley left; Elijah Mitchell is active secondary depth. Week 6 without Barkley: Pierce 61/64 offensive snaps, 12 rushes, 5 targets (4 receptions), only 15 routes on 52 dropbacks; Week 7 initial reports show Barkley 62 rushing yards and Pierce taking most subsequent work. Verify official Week 7 box, RB snaps, routes, targets, inside-5 carries, practice, back/hamstring diagnosis and Week 8 game status before any PPR or injury opportunity boost. Do not assume Pierce will get all targets or make a numerical projection adjustment.",
-      "week8_status": "NEW_IN_GAME_BACK_INJURY_WEEK8_AVAILABILITY_UNDETERMINED",
+      "review_focus": "POSTGAME NEW Oct 26 (published Oct 27 ET): Barkley reportedly said he tweaked his previously injured hamstring on his opening run against Dallas, then hurt his back while trying to play through discomfort. The Eagles previously listed him questionable to return with back injury in fourth quarter; neither a formal Week 8 OUT designation nor medical diagnosis/timeline is confirmed. Week 7 game reporting: Barkley 7 carries, 62 rushing yards, 1 TD; Pierce 14 carries, 47 yards, 1 TD; Elijah Mitchell 3 carries, 11 yards. Week 6 with Barkley out: Pierce 61/64 offensive snaps, 12 rushes, 5 targets (4 receptions), 15 routes on 52 QB dropbacks. Review official final Week 7 snap counts, routes, RB targets, inside-5 carries, back/hamstring medical updates and first Week 8 practice report before any projection or injury-opportunity boost. Do not mark Barkley OUT or assume Pierce inherits all receiving work.",
+      "week8_status": "POSTGAME_SELF_REPORTED_HAMSTRING_TWEAK_AND_BACK_INJURY_WEEK8_UNDETERMINED",
       "automatic_projection_adjustment": false
     }
   ]
