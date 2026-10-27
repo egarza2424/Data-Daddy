@@ -134,7 +134,7 @@ def main():
     #          https://www.fantasypros.com/nfl/players/inactives.php
     #          https://www.fftoday.com/nfl/26-inactives-wk7.html
     verified_inactive = {
-        "breecehall|RB", "davidmontgomery|RB", "tylerwarren|TE",
+        "breecehall|RB", "davidmontgomery|RB", "tylerwarren|TE", "jeremiyahlove|RB",
         "emekaegbuka|WR", "rasheerice|WR", "devontasmith|WR",
     }
     participation_review = schedule_candidates.copy()
@@ -147,6 +147,13 @@ def main():
     participation_review["source_urls"] = participation_review.verified_week7_status.map(
         lambda status: "https://www.thescore.com/nfl/news/3629831/nfl-week-7-inactives-see-whos-in-and-out ; https://www.fftoday.com/nfl/26-inactives-wk7.html" if status == "CONFIRMED_INACTIVE" else ""
     )
+    participation_review["review_note"] = participation_review.identity.map({
+        "jeremiyahlove|RB": "OUT ankle; NFL Week 7 injury report",
+        "pierrestrong|RB": "No Week 7 stats row; Josh Jacobs returned; participation still unverified",
+        "dominiclovett|WR": "No season stats; investigate why ranked WR29; do not erase historical miss",
+        "malikturner|WR": "No season stats; investigate why ranked WR35; do not erase historical miss",
+        "xaviergipson|WR": "No season stats; investigate why ranked WR34; do not erase historical miss",
+    }).fillna("")
     participation_review.to_csv(OUT / "2026-week7-participation-review.csv", index=False)
     print("Verified inactives:", int((participation_review.verified_week7_status == "CONFIRMED_INACTIVE").sum()))
     print("Still unverified:", int((participation_review.verified_week7_status == "UNVERIFIED").sum()))
