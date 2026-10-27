@@ -1,0 +1,31 @@
+name: Week 7 Batch Audit (Review Only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install pandas requests
+      - name: Run Week 7 reconciliation
+        run: python scripts/audit_week7_batch_reconciliation.py
+      - name: Upload review-only results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: week7-batch-audit-review
+          path: |
+            projection-model/validation/2026-week7-batch-reconciliation-review.csv
+            projection-model/validation/2026-week7-batch-ai-vs-ppr-review.csv
+          if-no-files-found: warn
