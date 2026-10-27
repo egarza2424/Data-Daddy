@@ -1789,10 +1789,11 @@ def main():
             "StarterAbsence_RB_50pct_carry_retention_Week7",
             "StarterAbsence_Receiving_25pct_retention",
         ])
-        original = projections.loc[injury_mask, "player_id"].map(pre_injury_ppr)
-        if original.isna().any():
-            raise RuntimeError("Missing pre-injury projection audit baseline")
-        projections.loc[injury_mask, "original_projected_ppr"] = original.to_numpy()
+        if injury_mask.any():
+            original = projections.loc[injury_mask, "player_id"].map(pre_injury_ppr)
+            if original.isna().any():
+                raise RuntimeError("Missing pre-injury projection audit baseline")
+            projections.loc[injury_mask, "original_projected_ppr"] = original.to_numpy()
 
     if not analyst_audit.empty:
         audit_dir = Path("projection-model/validation")
