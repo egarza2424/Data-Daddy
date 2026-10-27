@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "description": "Week-scoped, officially documented injured-reserve exclusions for fantasy projection eligibility. This does not imply beneficiary redistribution or a verified game-status OUT designation.",
+  "ir": [
+    {
+      "season": 2026,
+      "week": 8,
+      "player_id": "11592",
+      "player_name": "Erick All Jr.",
+      "position": "TE",
+      "team": "CIN",
+      "status": "IR",
+      "verified_date": "2026-10-27",
+      "source": "https://www.bengals.com/news/cam-grandy-signed-erick-all-jr-reserve-injured-list-bengals-roster-update"
+    }
+  ]
+}
