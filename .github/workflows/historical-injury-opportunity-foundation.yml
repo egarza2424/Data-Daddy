@@ -30,10 +30,14 @@ jobs:
           PY
       - name: Build historical injury opportunity foundation
         run: python scripts/build_historical_injury_opportunity_foundation.py
+      - name: Evaluate historical absence proxy (descriptive only)
+        run: python scripts/evaluate_historical_injury_opportunity_foundation.py
       - name: Upload review-only historical dataset
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: historical-injury-opportunity-foundation-review
-          path: projection-model/validation/historical-injury-opportunity-foundation.csv
+          path: |
+            projection-model/validation/historical-injury-opportunity-foundation.csv
+            projection-model/validation/historical-injury-opportunity-summary.csv
           if-no-files-found: warn
