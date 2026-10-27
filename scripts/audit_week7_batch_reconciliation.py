@@ -129,6 +129,27 @@ def main():
     schedule_candidates["possible_reason"] = "BYE_OR_INACTIVE_OR_INJURED_OR_DATA_GAP"
     schedule_candidates.to_csv(OUT / "2026-week7-participation-review.csv", index=False)
     print("Participation review exported; do not infer DNP from missing weekly rows.")
+    # Source-verified Week 7 inactive list, kept separate from frozen predictions.
+    # Sources: https://www.thescore.com/nfl/news/3629831/nfl-week-7-inactives-see-whos-in-and-out
+    #          https://www.fantasypros.com/nfl/players/inactives.php
+    #          https://www.fftoday.com/nfl/26-inactives-wk7.html
+    verified_inactive = {
+        "breecehall|RB", "davidmontgomery|RB", "tylerwarren|TE",
+        "emekaegbuka|WR", "rasheerice|WR", "devontasmith|WR",
+    }
+    participation_review = schedule_candidates.copy()
+    participation_review["verified_week7_status"] = participation_review.identity.map(
+        lambda identity: "CONFIRMED_INACTIVE" if identity in verified_inactive else "UNVERIFIED"
+    )
+    participation_review["accuracy_treatment"] = participation_review.verified_week7_status.map(
+        lambda status: "EXCLUDE_CONFIRMED_NONPARTICIPANT" if status == "CONFIRMED_INACTIVE" else "HOLD_FOR_VERIFICATION"
+    )
+    participation_review["source_urls"] = participation_review.verified_week7_status.map(
+        lambda status: "https://www.thescore.com/nfl/news/3629831/nfl-week-7-inactives-see-whos-in-and-out ; https://www.fftoday.com/nfl/26-inactives-wk7.html" if status == "CONFIRMED_INACTIVE" else ""
+    )
+    participation_review.to_csv(OUT / "2026-week7-participation-review.csv", index=False)
+    print("Verified inactives:", int((participation_review.verified_week7_status == "CONFIRMED_INACTIVE").sum()))
+    print("Still unverified:", int((participation_review.verified_week7_status == "UNVERIFIED").sum()))
     summary = []
     for position, cutoff in CAPS.items():
         subset = merged[merged.position == position].copy()
