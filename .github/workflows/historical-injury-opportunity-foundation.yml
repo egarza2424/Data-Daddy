@@ -15,6 +15,19 @@ jobs:
           python-version: '3.11'
       - name: Install dependencies
         run: python -m pip install pandas
+      - name: Download historical player stats (2025)
+        run: |
+          mkdir -p historical-data
+          python - <<'PY'
+          import urllib.request
+          from pathlib import Path
+          url = "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2025.csv"
+          target = Path("historical-data/player_stats_2025.csv")
+          urllib.request.urlretrieve(url, target)
+          if target.stat().st_size < 10000:
+              raise RuntimeError("Downloaded historical stats file is unexpectedly small")
+          print(f"Downloaded {target}: {target.stat().st_size} bytes")
+          PY
       - name: Build historical injury opportunity foundation
         run: python scripts/build_historical_injury_opportunity_foundation.py
       - name: Upload review-only historical dataset
