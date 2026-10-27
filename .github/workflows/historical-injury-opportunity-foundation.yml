@@ -1,0 +1,28 @@
+name: Historical Injury Opportunity Foundation (Review Only)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  historical-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: requirements.txt
+      - name: Install dependencies
+        run: python -m pip install pandas
+      - name: Build historical injury opportunity foundation
+        run: python scripts/build_historical_injury_opportunity_foundation.py
+      - name: Upload review-only historical dataset
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: historical-injury-opportunity-foundation-review
+          path: projection-model/validation/historical-injury-opportunity-foundation.csv
+          if-no-files-found: warn
