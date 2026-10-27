@@ -4,7 +4,7 @@
   "injury_event_week": 7,
   "review_week": 8,
   "verified_date": "2026-10-27",
-  "description": "Review-only verified Week 7 injury events and Oct 26 Week 8 updates; Panthers Moton IR and Monday estimates; Packers Golden newly listed foot/shoulder estimated DNP, Rhyan estimated DNP. No Week 8 PPR projection changes absent official absences and measured usage. Oct 26 MNF: Barkley reported questionable to return with new back injury; review-only, no automatic Week 8 projections. Oct 27 review: Brooks self-reported season-ending wrist surgery (newly tracked, announced Oct 26); Pierce reported in-game injury, unconfirmed Week 8 status; Barkley postgame says hamstring fine and back not expected to keep him out. All review-only; no automatic projection changes. Oct 27 official Bengals IR: Erick All Jr. out Week 8; Giants GM Tracy IR after Week 7 (Giants Week 8 bye); Ravens starting G Ioane MCL sprain expected to miss time. Review-only; live projections unchanged.",
+  "description": "Review-only verified Week 7 injury events and Oct 26 Week 8 updates; Panthers Moton IR and Monday estimates; Packers Golden newly listed foot/shoulder estimated DNP, Rhyan estimated DNP. No Week 8 PPR projection changes absent official absences and measured usage. Oct 26 MNF: Barkley reported questionable to return with new back injury; review-only, no automatic Week 8 projections. Oct 27 review: Brooks self-reported season-ending wrist surgery (newly tracked, announced Oct 26); Pierce reported in-game injury, unconfirmed Week 8 status; Barkley postgame says hamstring fine and back not expected to keep him out. All review-only; no automatic projection changes. Oct 27 official Bengals IR: Erick All Jr. out Week 8; Giants GM Tracy IR after Week 7 (Giants Week 8 bye); Ravens starting G Ioane MCL sprain expected to miss time. Review-only; live projections unchanged. Oct 27 Tuesday Panthers projected walk-through: Coker upgraded to FULL; starting G Damien Lewis and G Torricelli Simpkins III remain DNP. Oct 27 Seattle/Indianapolis Quenton Nelson trade agreement pending physical changes line context, not a confirmed Week 8 starting assignment. No live PPR changes.",
   "events": [
     {
       "player_id": "7526",
@@ -66,7 +66,7 @@
         "Sam Darnold pass protection",
         "Seattle rushing efficiency"
       ],
-      "review_focus": "2026-10-26 NFL Network: MRI confirmed high ankle sprain; Seattle hopes absence limited to 1-2 weeks, not a Week 8 OUT designation. Josh Jones replaced Cross in Week 7. Monitor Week 8 practice/official game status, pressure rates and run-blocking before adjusting Darnold, pass catchers or RBs.",
+      "review_focus": "2026-10-26 NFL Network: MRI confirmed high ankle sprain; Seattle hopes absence limited to 1-2 weeks, not a Week 8 OUT designation. Josh Jones replaced Cross in Week 7. Monitor Week 8 practice/official game status, pressure rates and run-blocking before adjusting Darnold, pass catchers or RBs. NEW Oct 27 context: Seahawks announced agreement to acquire G Quenton Nelson from Colts, pending physical (not a Week 8 starter confirmation). This may strengthen interior run/pass blocking but does not directly replace Cross at LT. Assess Seattle Week 8 vs CHI line configuration and Colts Week 8 vs JAX loss of Nelson before adjusting Sam Darnold, Emanuel Wilson, Jonathan Taylor or Daniel Jones efficiency; no automatic PPR adjustment.",
       "week8_status": "EXPECTED_TO_MISS_1_TO_2_WEEKS_NOT_OFFICIALLY_OUT",
       "automatic_projection_adjustment": false
     },
@@ -266,7 +266,7 @@
       "position": "WR",
       "week7_status": "PLAYED_WEEK7_37_OF_56_OFFENSIVE_SNAPS",
       "injury": "shoulder",
-      "source": "https://www.panthers.com/news/week-8-monday-injury-report-banged-up-in-a-short-week",
+      "source": "https://www.panthers.com/news/week-8-tuesday-injury-report-four-players-held-out-jaelan-phillips-damien-lews",
       "beneficiary_review": [
         "Tetairoa McMillan",
         "John Metchie III",
@@ -276,8 +276,8 @@
         "Mitchell Evans",
         "Tommy Tremble"
       ],
-      "review_focus": "NEW Oct 26 official Panthers estimated Monday walk-through: Jalen Coker limited with shoulder injury, NOT ruled out for Week 8 Thursday at GB. Week 7 official snaps: Coker 37/56 (66%), Tetairoa McMillan 38/56 (68%), John Metchie 26/56 (46%), Brycen Tremayne 21/56 (38%), David Moore 13/56 (23%), Darren Waller 25/56 (45%), Mitchell Evans 28/56 (50%), Tommy Tremble 27/56 (48%). Check Coker's next two practices and official game designation; if ruled out, confirm routes per dropback, target share, alignment, red-zone usage and teammate availability before reallocating any targets. No automatic projection change.",
-      "week8_status": "ESTIMATED_LIMITED_MONDAY_OCT26_NO_GAME_DESIGNATION",
+      "review_focus": "NEW Oct 26 official Panthers estimated Monday walk-through: Jalen Coker limited with shoulder injury, NOT ruled out for Week 8 Thursday at GB. Week 7 official snaps: Coker 37/56 (66%), Tetairoa McMillan 38/56 (68%), John Metchie 26/56 (46%), Brycen Tremayne 21/56 (38%), David Moore 13/56 (23%), Darren Waller 25/56 (45%), Mitchell Evans 28/56 (50%), Tommy Tremble 27/56 (48%). Check Coker's next two practices and official game designation; if ruled out, confirm routes per dropback, target share, alignment, red-zone usage and teammate availability before reallocating any targets. No automatic projection change. UPDATE Oct 27 official Panthers Tuesday walk-through: upgraded from Monday estimated LIMITED to Tuesday estimated FULL (shoulder). Stronger Week 8 availability signal, but Wednesday final designation still pending. Preserve Coker baseline role and do not grant John Metchie III or Brycen Tremayne an injury-absence target boost unless he is ruled out.",
+      "week8_status": "ESTIMATED_FULL_TUESDAY_OCT27_NO_GAME_DESIGNATION",
       "automatic_projection_adjustment": false
     },
     {
@@ -287,15 +287,15 @@
       "position": "G",
       "week7_status": "PLAYED_WEEK7_43_OF_56_OFFENSIVE_SNAPS",
       "injury": "knee",
-      "source": "https://www.panthers.com/news/week-8-monday-injury-report-banged-up-in-a-short-week",
+      "source": "https://www.panthers.com/news/week-8-tuesday-injury-report-four-players-held-out-jaelan-phillips-damien-lews",
       "beneficiary_review": [
         "Carolina replacement guard rotation",
         "Monroe Freeling",
         "Bryce Young pass protection",
         "Chuba Hubbard rushing efficiency"
       ],
-      "review_focus": "NEW Oct 26 official Panthers estimated Monday walk-through: starting guard Damien Lewis DNP (knee), NOT ruled out for Week 8 Thursday at GB. Fellow guard Torricelli Simpkins III also estimated DNP (ankle). Week 7 Lewis played 43/56 offensive snaps (77%); team reports he and other starters were pulled late in blowout. Verify Tuesday/Wednesday participation and replacement guards, pressure rates and run-blocking before any Bryce Young, Hubbard or WR/TE projection changes. Separate from confirmed Taylor Moton IR.",
-      "week8_status": "ESTIMATED_DNP_MONDAY_OCT26_NO_GAME_DESIGNATION",
+      "review_focus": "NEW Oct 26 official Panthers estimated Monday walk-through: starting guard Damien Lewis DNP (knee), NOT ruled out for Week 8 Thursday at GB. Fellow guard Torricelli Simpkins III also estimated DNP (ankle). Week 7 Lewis played 43/56 offensive snaps (77%); team reports he and other starters were pulled late in blowout. Verify Tuesday/Wednesday participation and replacement guards, pressure rates and run-blocking before any Bryce Young, Hubbard or WR/TE projection changes. Separate from confirmed Taylor Moton IR. UPDATE Oct 27 official Panthers Tuesday projected walk-through: still DNP (knee); Torricelli Simpkins III also still DNP (ankle). Both unresolved until Wednesday final game designations; audit starting guards and protection/run blocking rather than automatic fantasy PPR changes.",
+      "week8_status": "ESTIMATED_DNP_MONDAY_AND_TUESDAY_OCT27_NO_GAME_DESIGNATION",
       "automatic_projection_adjustment": false
     },
     {
