@@ -57,7 +57,7 @@ def main():
     def key(value):
         value = unicodedata.normalize("NFKD", str(value))
         value = "".join(c for c in value if not unicodedata.combining(c)).lower()
-        value = re.sub(r"\\b(jr|sr|ii|iii|iv)\\b", "", value)
+        value = re.sub(r"\b(jr|sr|ii|iii|iv)\b", "", value)
         return re.sub(r"[^a-z0-9]", "", value)
     actual["identity"] = actual["player_display_name"].map(key) + "|" + actual["position"]
     pred["identity"] = pred["player_name"].map(key) + "|" + pred["position"]
