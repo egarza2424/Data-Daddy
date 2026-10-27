@@ -129,7 +129,7 @@ jobs:
         continue-on-error: true
         run: |
           python -m py_compile scripts/collect_official_injury_report.py
-          python scripts/collect_official_injury_report.py --season 2026 --week 7
+          python scripts/collect_official_injury_report.py --season 2026 --week 8
 
       - name: Generate Week 7 J2 RB projections
         run: |
@@ -150,7 +150,7 @@ jobs:
           python scripts/build_starter_absence_evidence.py \
             --stats historical-data/player_stats_2026.csv \
             --pbp historical-data/play_by_play_2026.csv.gz \
-            --season 2026 --week 7 \
+            --season 2026 --week 8 \
             --output projection-model/validation/starter-absence-evidence.csv
 
       - name: Audit injury-created sleeper opportunities
@@ -158,7 +158,7 @@ jobs:
           python -m py_compile scripts/build_injury_opportunity_candidates.py
           python scripts/build_injury_opportunity_candidates.py \
             --stats historical-data/player_stats_2026.csv \
-            --season 2026 --week 7 \
+            --season 2026 --week 8 \
             --evidence projection-model/validation/starter-absence-evidence.csv \
             --output projection-model/validation/injury-opportunity-candidates.csv
 
