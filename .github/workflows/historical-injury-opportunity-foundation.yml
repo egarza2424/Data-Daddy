@@ -36,6 +36,8 @@ jobs:
         run: python scripts/validate_wr_absence_walkforward.py
       - name: Build historical injury-report candidate events (review only)
         run: python scripts/build_historical_pregame_injury_events.py
+      - name: Evaluate injury replacement target opportunities (descriptive only)
+        run: python scripts/evaluate_2025_injury_replacement_opportunity.py
       - name: Upload review-only historical dataset
         if: always()
         uses: actions/upload-artifact@v4
@@ -47,4 +49,6 @@ jobs:
             projection-model/validation/wr-lagged-absence-walkforward-summary.csv
             projection-model/validation/wr-lagged-absence-walkforward-detail.csv
             projection-model/validation/2025-pregame-injury-event-candidates.csv
+            projection-model/validation/2025-injury-replacement-opportunity-summary.csv
+            projection-model/validation/2025-injury-replacement-opportunity-detail.csv
           if-no-files-found: warn
