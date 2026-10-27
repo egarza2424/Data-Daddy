@@ -69,6 +69,15 @@ def main():
     merged["match_status"] = merged["_merge"].map({"both": "matched_unique_name_position", "left_only": "unmatched", "right_only": "unexpected"})
     merged = merged.drop(columns=["_merge"])
     print("Excluded ambiguous prediction identities:", len(pred) - len(safe_pred))
+    ambiguous = pred[pred.identity.duplicated(keep=False)]
+    if not ambiguous.empty:
+        print("\nAMBIGUOUS PREDICTION IDENTITIES:")
+        print(ambiguous[["player_name", "position", "player_id", "identity"]].to_string(index=False))
+    missing = merged[(merged.actual_rank.isna()) & ((merged.position_rank <= merged.position.map(CAPS)) | (merged.projected_position_rank <= merged.position.map(CAPS)))]
+    if not missing.empty:
+        print("\nUNMATCHED TOP-CUTOFF PLAYERS:")
+        print(missing[["player_name", "position", "team", "position_rank", "projected_position_rank"]].to_string(index=False))
+
     summary = []
     for position, cutoff in CAPS.items():
         subset = merged[merged.position == position].copy()
