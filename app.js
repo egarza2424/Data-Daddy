@@ -1102,6 +1102,18 @@ function getWeeklySleeperCandidates() {
           return null;
         }
 
+        // Practice-squad depth WRs without a demonstrated weekly role
+        // must not be recommended solely on AI/PPR rank disagreement.
+        if (
+          position === "WR" &&
+          String(projection.team || "").toUpperCase() === "JAX" &&
+          ["Austin Trammell", "Tim Jones"].includes(
+            String(projection.player_name || player.player_name || player.name || "").trim()
+          )
+        ) {
+          return null;
+        }
+
         // TE sleepers require a credible weekly receiving role.
         // Rank disagreement alone cannot qualify a low-volume TE.
         if (position === "TE") {
