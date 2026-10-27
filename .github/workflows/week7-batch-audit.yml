@@ -28,4 +28,6 @@ jobs:
           path: |
             projection-model/validation/2026-week7-batch-reconciliation-review.csv
             projection-model/validation/2026-week7-batch-ai-vs-ppr-review.csv
+            projection-model/validation/2026-week7-unresolved-players-review.csv
+            projection-model/validation/2026-week7-ambiguous-identities-review.csv
           if-no-files-found: warn
