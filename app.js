@@ -1114,6 +1114,28 @@ function getWeeklySleeperCandidates() {
           return null;
         }
 
+        // WR sleepers need real current-season target opportunity.
+        // Rank disagreement alone cannot promote depth receivers.
+        // Use the most recent three recorded player-games; require
+        // at least two games and 3 targets per game on average.
+        // Injury-created WR opportunities require a separate reviewed
+        // exception backed by role evidence, not a guessed boost.
+        if (position === "WR") {
+          const recentWrGames = getPlayerWeeklyStats(player)
+            .filter(game => Number(game.season) === 2026)
+            .sort((a, b) => Number(b.week || 0) - Number(a.week || 0))
+            .slice(0, 3);
+          const totalWrTargets = recentWrGames.reduce(
+            (sum, game) => sum + Number(game.targets || 0), 0
+          );
+          if (
+            recentWrGames.length < 2 ||
+            totalWrTargets / recentWrGames.length < 3
+          ) {
+            return null;
+          }
+        }
+
         // TE sleepers require a credible weekly receiving role.
         // Rank disagreement alone cannot qualify a low-volume TE.
         if (position === "TE") {
