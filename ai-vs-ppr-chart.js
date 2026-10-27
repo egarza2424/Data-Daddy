@@ -78,12 +78,12 @@
           }
 
           const hits = Number(r.top_n_hits);
-          const verified = Number(r.verified_players);
+          const verified = r.verified_players == null ? null : Number(r.verified_players);
           const selected = Number(r.selected_players);
           const coverage = r.verified_players == null ? null : (selected > 0 ? 100 * verified / selected : 0);
           const pct = 100 * hits / cutoff;
 
-          if (![hits, verified, selected, pct].every(Number.isFinite)) {
+          if (![hits, selected, pct].every(Number.isFinite) || (verified !== null && !Number.isFinite(verified))) {
             throw new Error("Invalid comparison values");
           }
 
