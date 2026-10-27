@@ -4,7 +4,7 @@
   "injury_event_week": 7,
   "review_week": 8,
   "verified_date": "2026-10-26",
-  "description": "Review-only verified Week 7 injury events and Oct 26 Week 8 updates; Panthers Moton IR and Monday estimates; Packers Golden newly listed foot/shoulder estimated DNP, Rhyan estimated DNP. No Week 8 PPR projection changes absent official absences and measured usage.",
+  "description": "Review-only verified Week 7 injury events and Oct 26 Week 8 updates; Panthers Moton IR and Monday estimates; Packers Golden newly listed foot/shoulder estimated DNP, Rhyan estimated DNP. No Week 8 PPR projection changes absent official absences and measured usage. Oct 26 MNF: Barkley reported questionable to return with new back injury; review-only, no automatic Week 8 projections.",
   "events": [
     {
       "player_id": "7526",
@@ -316,6 +316,23 @@
       ],
       "review_focus": "NEW Oct 26 OFFICIAL Packers Week 8 Monday estimated practice: DNP with shoulder/foot injuries; foot newly listed versus last week, shoulder ongoing. Week 7 at DET: Golden 6 receptions on 12 of 42 GB targets (28.6%) for 39 yards and 57 of 67 offensive snaps (85%); Watson 8 targets/54 snaps; Kraft 6 targets/59 snaps; Savion Williams 3 targets/40 snaps; Bo Melton 2 targets. Season Golden 69 of 263 GB targets (26.2%) and Watson 56 of 263 (21.3%) per secondary usage aggregation, verify denominators before model use. Short-week Thu Oct 29 vs CAR. Prioritize Watson/Kraft existing full-time routes and Williams next WR opportunity; check Golden Tuesday/Wednesday practice, official game designation, verified routes per dropback, target share, alignment, red-zone looks, and teammate health. DO NOT mark Golden OUT or automatically redistribute 12 Week 7 targets without confirmed absence.",
       "week8_status": "ESTIMATED_DNP_MONDAY_OCT26_NO_GAME_DESIGNATION",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Saquon Barkley",
+      "team": "PHI",
+      "position": "RB",
+      "week7_status": "QUESTIONABLE_TO_RETURN_IN_GAME_REPORTED_BACK_INJURY",
+      "injury": "back (new in-game designation Oct 26) plus previously known hamstring issue",
+      "source": "https://www.bleedinggreennation.com/philadelphia-eagles-injuries/188270/saquon-barkleys-hamstring-is-still-an-issue-but-the-eagles-needed-him",
+      "beneficiary_review": [
+        "Dameon Pierce (first replacement RB)",
+        "Elijah Mitchell (secondary RB depth)",
+        "Tanner McKee / Eagles pass catchers (conditional scoring environment)"
+      ],
+      "review_focus": "NEW after prior Oct 26 evening check: Barkley returned from hamstring absence for Week 7 Monday vs DAL, was managed on limited snaps and listed by Philadelphia as questionable to return early in fourth quarter with a back injury per Eagles beat report. He was not declared OUT for Week 8 at WAS and injury severity is unknown. Dameon Pierce handled increased carries after Barkley left; Elijah Mitchell is active secondary depth. Week 6 without Barkley: Pierce 61/64 offensive snaps, 12 rushes, 5 targets (4 receptions), only 15 routes on 52 dropbacks; Week 7 initial reports show Barkley 62 rushing yards and Pierce taking most subsequent work. Verify official Week 7 box, RB snaps, routes, targets, inside-5 carries, practice, back/hamstring diagnosis and Week 8 game status before any PPR or injury opportunity boost. Do not assume Pierce will get all targets or make a numerical projection adjustment.",
+      "week8_status": "NEW_IN_GAME_BACK_INJURY_WEEK8_AVAILABILITY_UNDETERMINED",
       "automatic_projection_adjustment": false
     }
   ]
