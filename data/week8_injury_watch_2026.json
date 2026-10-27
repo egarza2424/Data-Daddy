@@ -3,8 +3,8 @@
   "season": 2026,
   "injury_event_week": 7,
   "review_week": 8,
-  "verified_date": "2026-10-26",
-  "description": "Review-only verified Week 7 injury events and Oct 26 Week 8 updates; Panthers Moton IR and Monday estimates; Packers Golden newly listed foot/shoulder estimated DNP, Rhyan estimated DNP. No Week 8 PPR projection changes absent official absences and measured usage. Oct 26 MNF: Barkley reported questionable to return with new back injury; review-only, no automatic Week 8 projections.",
+  "verified_date": "2026-10-27",
+  "description": "Review-only verified Week 7 injury events and Oct 26 Week 8 updates; Panthers Moton IR and Monday estimates; Packers Golden newly listed foot/shoulder estimated DNP, Rhyan estimated DNP. No Week 8 PPR projection changes absent official absences and measured usage. Oct 26 MNF: Barkley reported questionable to return with new back injury; review-only, no automatic Week 8 projections. Oct 27 review: Brooks self-reported season-ending wrist surgery (newly tracked, announced Oct 26); Pierce reported in-game injury, unconfirmed Week 8 status; Barkley postgame says hamstring fine and back not expected to keep him out. All review-only; no automatic projection changes.",
   "events": [
     {
       "player_id": "7526",
@@ -325,14 +325,49 @@
       "position": "RB",
       "week7_status": "LEFT_GAME_WITH_BACK_INJURY_POSTGAME_REPORTED_HAMSTRING_TWEAK",
       "injury": "back (in-game designation Oct 26) and self-reported hamstring tweak during early Week 7 carries; severity unconfirmed",
-      "source": "https://nypost.com/2026/10/27/sports/saquon-barkley-suffers-new-back-injury-in-disastrous-eagles-return/",
+      "source": "https://www.inquirer.com/eagles/saquon-barkley-cowboys-loss-2026-nfl-week-7-20261027.html",
       "beneficiary_review": [
         "Dameon Pierce (first replacement RB)",
         "Elijah Mitchell (secondary RB depth)",
         "Tanner McKee / Eagles pass catchers (conditional scoring environment)"
       ],
-      "review_focus": "POSTGAME NEW Oct 26 (published Oct 27 ET): Barkley reportedly said he tweaked his previously injured hamstring on his opening run against Dallas, then hurt his back while trying to play through discomfort. The Eagles previously listed him questionable to return with back injury in fourth quarter; neither a formal Week 8 OUT designation nor medical diagnosis/timeline is confirmed. Week 7 game reporting: Barkley 7 carries, 62 rushing yards, 1 TD; Pierce 14 carries, 47 yards, 1 TD; Elijah Mitchell 3 carries, 11 yards. Week 6 with Barkley out: Pierce 61/64 offensive snaps, 12 rushes, 5 targets (4 receptions), 15 routes on 52 QB dropbacks. Review official final Week 7 snap counts, routes, RB targets, inside-5 carries, back/hamstring medical updates and first Week 8 practice report before any projection or injury-opportunity boost. Do not mark Barkley OUT or assume Pierce inherits all receiving work.",
-      "week8_status": "POSTGAME_SELF_REPORTED_HAMSTRING_TWEAK_AND_BACK_INJURY_WEEK8_UNDETERMINED",
+      "review_focus": "POSTGAME NEW Oct 26 (published Oct 27 ET): Barkley reportedly said he tweaked his previously injured hamstring on his opening run against Dallas, then hurt his back while trying to play through discomfort. The Eagles previously listed him questionable to return with back injury in fourth quarter; neither a formal Week 8 OUT designation nor medical diagnosis/timeline is confirmed. Week 7 game reporting: Barkley 7 carries, 62 rushing yards, 1 TD; Pierce 14 carries, 47 yards, 1 TD; Elijah Mitchell 3 carries, 11 yards. Week 6 with Barkley out: Pierce 61/64 offensive snaps, 12 rushes, 5 targets (4 receptions), 15 routes on 52 QB dropbacks. Review official final Week 7 snap counts, routes, RB targets, inside-5 carries, back/hamstring medical updates and first Week 8 practice report before any projection or injury-opportunity boost. Do not mark Barkley OUT or assume Pierce inherits all receiving work. OCT 27 postgame clarification from Philadelphia Inquirer/FantasyGuru: Barkley says hamstring 'came out fine' and does not expect back issue to keep him out Week 8; this is PLAYER OPTIMISM, not team medical clearance, and differs in emphasis from initial postgame 'tweak' report. Official Week 8 practice and snap-limit assessment required; keep conditional Pierce scenario only.",
+      "week8_status": "BACK_INJURY_POSTGAME_PLAYER_OPTIMISTIC_HAMSTRING_FINE_NO_OFFICIAL_WEEK8_DESIGNATION",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Jalen Brooks",
+      "team": "ARI",
+      "position": "WR",
+      "week7_status": "PLAYED_WEEK7_INJURED_WRIST_SEASON_ENDING_SURGERY_SELF_REPORTED",
+      "injury": "wrist (player announced emergency season-ending surgery Oct 26; team IR transaction not yet verified)",
+      "source": "https://arizonasports.com/nfl/arizona-cardinals/cardinals-jalen-brooks-says-he-is-out-for-the-season",
+      "beneficiary_review": [
+        "Kendrick Bourne (established WR2)",
+        "Michael Wilson (WR1)",
+        "Simi Fehoko (possible WR3 snaps)",
+        "Reggie Virgil (possible WR3 snaps)",
+        "Trey McBride (established TE target leader)"
+      ],
+      "review_focus": "NEWLY TRACKED Oct 27, injury announcement published Oct 26 (not a new Oct 27 event). Brooks self-reported season-ending wrist surgery after Week 7 vs DEN; 52/81 offensive snaps (64%) and 6/44 team targets (13.6%) Week 7; 17 targets on season. Arizona Week 7: Michael Wilson 73/81 snaps, 8/44 targets; Kendrick Bourne 45/81 snaps, 6/44 targets; Trey McBride 75/81 snaps, 13/44 targets; Simi Fehoko 7 snaps, Reggie Virgil 3 snaps. Brooks' 52 snaps create a meaningful WR3 route opportunity but cannot be assigned entirely to Fehoko or Virgil without verified routes, personnel and practice reports. Verify Arizona Week 8 WR3 rotation, targets per route, red-zone usage and teammate availability. No automatic projections or fixed target redistribution.",
+      "week8_status": "OUT_REMAINDER_2026_PLAYER_CONFIRMED_SURGERY_NOT_TEAM_IR_VERIFIED",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Dameon Pierce",
+      "team": "PHI",
+      "position": "RB",
+      "week7_status": "REPORTED_IN_GAME_INJURY_FOURTH_QUARTER_UNCONFIRMED_DIAGNOSIS",
+      "injury": "unspecified (reported late fourth-quarter exit; no team medical status or Week 8 designation)",
+      "source": "https://www.fantasyguru.com/eagles-rb-dameon-pierce-injured-in-the-fourth-quarter-vs-cowboys",
+      "beneficiary_review": [
+        "Elijah Mitchell (conditional backup if Barkley and Pierce unavailable)",
+        "Saquon Barkley (self-reported hamstring fine, back discomfort)"
+      ],
+      "review_focus": "NEWLY TRACKED Oct 27 (reported Oct 26 MNF): FantasyGuru reports Pierce injured with 8:38 left in fourth quarter, no official return designation or diagnosis confirmed. Pierce had 14 rushes for 47 yards and one TD vs DAL per game reports; Barkley played 9 snaps, 7 rushes, 2 catches and reported back tightness. Pierce had Week 6 replacement workload of 61/64 snaps, 12 rushes, 5 targets, 15 routes on 52 QB dropbacks. Verify team Week 8 injury report and game film/snap logs before assigning Elijah Mitchell any starter absence workload; do not assume Pierce is OUT or change projections.",
+      "week8_status": "UNDETERMINED_REPORTED_GAME_EXIT_NO_OFFICIAL_STATUS",
       "automatic_projection_adjustment": false
     }
   ]
