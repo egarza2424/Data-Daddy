@@ -46,8 +46,12 @@ jobs:
           week = max(weeks)
           source = Path("historical-data/player_stats_2026.csv")
           if not source.exists():
-              print("Recent usage dataset unavailable; WR audit skipped rather than implying zero usage.")
-              sys.exit(0)
+              import urllib.request
+              source.parent.mkdir(parents=True, exist_ok=True)
+              url = ("https://github.com/nflverse/nflverse-data/releases/"
+                     "download/stats_player/stats_player_week_2026.csv")
+              print("Downloading 2026 weekly stats for read-only WR audit", flush=True)
+              urllib.request.urlretrieve(url, source)
           subprocess.run(
               [sys.executable, "scripts/audit_weekly_wr_role_eligibility.py",
                "--week", str(week)], check=True
