@@ -26,6 +26,24 @@ jobs:
         run: |
           python scripts/build_weekly_rb_j2.py
           python scripts/validate_weekly_rb_j2_gate.py
+      - name: Review Jordan Mason J2 versus Model F
+        run: |
+          python - <<'PY'
+          import pandas as pd
+          j2 = pd.read_csv('projection-model/validation/2026-week8-rb-j2-experimental.csv')
+          mason = j2.loc[(j2['player_name'] == 'Jordan Mason') & (j2['team'] == 'MIN')]
+          if len(mason) != 1:
+              raise SystemExit('Missing or duplicate Jordan Mason J2 row')
+          print('JORDAN MASON J2:')
+          print(mason[['player_name','team','j2_projection_status','j2_projected_ppr','j2_rank_2026_data_only']].to_string(index=False))
+          try:
+              f = pd.read_csv('projection-model/2026-week8-ppr-projections.csv')
+              print('MODEL F FILE COLUMNS:', ', '.join(f.columns))
+              print('MODEL F MASON ROW:')
+              print(f.loc[f.astype(str).apply(lambda c: c.str.contains('Jordan Mason', case=False, regex=False)).any(axis=1)].to_string(index=False))
+          except FileNotFoundError:
+              print('Model F comparison file unavailable; no estimate invented.')
+          PY
       - name: Upload audit evidence
         if: always()
         uses: actions/upload-artifact@v4
