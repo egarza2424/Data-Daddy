@@ -1,0 +1,108 @@
+{
+  "season": 2026,
+  "week": 8,
+  "position": "TE",
+  "type": "analyst_editorial_order",
+  "status": "approved",
+  "preserve_original_ai_scores": true,
+  "preserve_original_ppr_projections": true,
+  "ranking": [
+    {
+      "rank": 1,
+      "player_name": "Trey McBride"
+    },
+    {
+      "rank": 2,
+      "player_name": "Brock Bowers"
+    },
+    {
+      "rank": 3,
+      "player_name": "Colston Loveland"
+    },
+    {
+      "rank": 4,
+      "player_name": "Hunter Henry"
+    },
+    {
+      "rank": 5,
+      "player_name": "Kyle Pitts Sr."
+    },
+    {
+      "rank": 6,
+      "player_name": "Chig Okonkwo"
+    },
+    {
+      "rank": 7,
+      "player_name": "Mason Taylor"
+    },
+    {
+      "rank": 8,
+      "player_name": "Brenton Strange"
+    },
+    {
+      "rank": 9,
+      "player_name": "Tyler Higbee"
+    },
+    {
+      "rank": 10,
+      "player_name": "Tucker Kraft"
+    },
+    {
+      "rank": 11,
+      "player_name": "T.J. Hockenson"
+    },
+    {
+      "rank": 12,
+      "player_name": "Travis Kelce"
+    },
+    {
+      "rank": 13,
+      "player_name": "Dallas Goedert"
+    },
+    {
+      "rank": 14,
+      "player_name": "Colby Parkinson"
+    },
+    {
+      "rank": 15,
+      "player_name": "Eli Raridon"
+    },
+    {
+      "rank": 16,
+      "player_name": "Dalton Kincaid"
+    },
+    {
+      "rank": 17,
+      "player_name": "Greg Dulcich"
+    },
+    {
+      "rank": 18,
+      "player_name": "Sam LaPorta"
+    },
+    {
+      "rank": 19,
+      "player_name": "AJ Barner"
+    },
+    {
+      "rank": 20,
+      "player_name": "Pat Freiermuth"
+    },
+    {
+      "rank": 21,
+      "player_name": "Mark Andrews"
+    },
+    {
+      "rank": 22,
+      "player_name": "Davis Allen"
+    },
+    {
+      "rank": 23,
+      "player_name": "Noah Gray"
+    },
+    {
+      "rank": 24,
+      "player_name": "Charlie Kolar"
+    }
+  ],
+  "note": "Approved Week 8 analyst Top 24. Model scores and PPR unchanged."
+}
