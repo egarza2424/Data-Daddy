@@ -80,6 +80,32 @@ def main():
         valid.loc[strong] = False
         live.loc[strong, 'j2_projection_status'] = 'role_review_required_starter_return'
         print('J2 ROLE GUARD: Pierre Strong excluded while Josh Jacobs is not confirmed inactive.')
+    # General low-sample backup guard: a player with fewer than three
+    # recorded games must not inherit a temporary lead role automatically
+    # when a higher-ranked teammate is listed active. Exclude rather than
+    # invent a reduced carry share; Model F remains the fallback.
+    rb_snapshot = snap.loc[snap['position'].eq('RB')].copy()
+    rb_snapshot['position_rank'] = pd.to_numeric(rb_snapshot['position_rank'], errors='coerce')
+    for idx in live.index[valid]:
+        games = pd.to_numeric(pd.Series([live.at[idx, 'rb_season_games']]), errors='coerce').iloc[0]
+        if pd.isna(games) or games >= 3:
+            continue
+        team = live.at[idx, 'team']
+        name = live.at[idx, 'player_name']
+        current = rb_snapshot.loc[(rb_snapshot['team'].eq(team)) & rb_snapshot['player_name'].eq(name)]
+        if current.empty:
+            continue
+        rank = current.iloc[0]['position_rank']
+        teammates = rb_snapshot.loc[
+            rb_snapshot['team'].eq(team) &
+            rb_snapshot['player_name'].ne(name) &
+            rb_snapshot['position_rank'].lt(rank) &
+            ~rb_snapshot['roster_status'].astype(str).str.lower().isin(['inactive','out','ir'])
+        ]
+        if not teammates.empty:
+            valid.loc[idx] = False
+            live.loc[idx, 'j2_projection_status'] = 'role_review_required_low_sample_backup'
+            print(f'J2 ROLE GUARD: {name} ({team}) excluded: <3 games and higher-ranked available teammate.')
     if not valid.any():
         raise ValueError('No eligible 2026 RBs with complete J2 features')
     # Fail closed if historical training includes the target season.
