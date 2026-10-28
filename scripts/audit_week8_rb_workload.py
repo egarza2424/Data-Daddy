@@ -8,7 +8,7 @@ FEATURES = Path('projection-model/validation/2026-live-rb-j2-features-audit.csv'
 SNAPSHOT = Path('projection-model/current-live-model-snapshot.csv')
 OUT = Path('projection-model/validation/2026-week8-rb-workload-review.csv')
 URL = 'https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv'
-WATCH = {'Pierre Strong Jr.', 'Josh Jacobs', 'Tony Pollard', 'Emanuel Wilson', 'Braelon Allen'}
+WATCH = {'Pierre Strong Jr.', 'Josh Jacobs', 'Tony Pollard', 'Emanuel Wilson', 'Braelon Allen', 'Ashton Jeanty', 'Chase Brown'}
 COLS = ['carries','targets','receptions','rushing_yards','receiving_yards']
 
 def main():
