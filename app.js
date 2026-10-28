@@ -1833,6 +1833,7 @@ async function loadWaiverWire() {
       const positions = Object.fromEntries(
         ["QB","RB","WR","TE"].flatMap(pos => editorial[pos].map(name => [name,pos]))
       );
+      positions["Antonio Williams"] = "WR";
       container.replaceChildren();
       const title = document.createElement("h3");
       title.textContent = "DATA DADDY — WEEK 8 WAIVER WIRE";
