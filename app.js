@@ -9437,8 +9437,7 @@ const depthOrder =
   // verified low-information fallback profiles in the published audit.
   // Apply the rule to the live AI rankings independently of CSV loading,
   // because this tab ranks its own live player pool.
-  if (position === "WR" &&
-      Number(document.documentElement.dataset.targetWeek) === 8) {
+  if (position === "WR") {
     const flaggedIds = new Set([
       "7746", "8013", "11474", "11306", "12732", "8076", "12520"
     ]);
