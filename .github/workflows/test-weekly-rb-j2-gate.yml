@@ -20,11 +20,12 @@ jobs:
         run: |
           python scripts/build_live_rb_j2_features.py
           python scripts/build_rb_returning_player_audit.py
-          python scripts/build_weekly_rb_j2.py
-      - name: Validate weekly J2 gate
-        run: python scripts/validate_weekly_rb_j2_gate.py
-      - name: Audit excluded low-sample RB workloads
+      - name: Audit low-sample RB workloads before J2
         run: python scripts/audit_weekly_rb_low_sample_roles.py
+      - name: Generate J2 and validate gate
+        run: |
+          python scripts/build_weekly_rb_j2.py
+          python scripts/validate_weekly_rb_j2_gate.py
       - name: Upload audit evidence
         if: always()
         uses: actions/upload-artifact@v4
