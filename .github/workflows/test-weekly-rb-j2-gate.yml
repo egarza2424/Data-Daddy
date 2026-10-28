@@ -23,6 +23,8 @@ jobs:
           python scripts/build_weekly_rb_j2.py
       - name: Validate weekly J2 gate
         run: python scripts/validate_weekly_rb_j2_gate.py
+      - name: Audit excluded low-sample RB workloads
+        run: python scripts/audit_weekly_rb_low_sample_roles.py
       - name: Upload audit evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -32,4 +34,5 @@ jobs:
             projection-model/validation/2026-live-rb-j2-features-audit.csv
             projection-model/validation/2026-rb-returning-player-audit.csv
             projection-model/validation/2026-week*-rb-j2-experimental.csv
+            projection-model/validation/2026-week*-rb-low-sample-role-review.csv
           if-no-files-found: warn
