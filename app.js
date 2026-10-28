@@ -9443,9 +9443,9 @@ const depthOrder =
       "7746", "8013", "11474", "11306", "12732", "8076", "12520"
     ]);
     const flaggedNames = new Set([
-      "austintrammell", "timjones", "dylandrummond",
-      "xaviergipson", "dominiclovett", "michaelbandy",
-      "xavierrestrepo"
+      "austin trammell", "tim jones", "dylan drummond",
+      "xavier gipson", "dominic lovett", "michael bandy",
+      "xavier restrepo"
     ]);
     const isFlagged = ({ player }) =>
       flaggedIds.has(String(player.id)) ||
