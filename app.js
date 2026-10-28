@@ -9191,11 +9191,11 @@ const relevantPlayers = players.filter((player) => {
   if (player.position !== position) {
     return false;
   }
-  // The current NFL roster lists Velus Jones Jr. as a Seattle RB.
-  // Do not display him as a WR while the upstream player feed is stale.
-  // This changes eligibility only, not AI scores or PPR projections.
-  if (position === "WR" &&
-      normalizeName(player.name) === "velus jones") {
+  // Week 8 editorial exclusion: these players must not appear
+  // in the WR AI rankings. Keep model scores and PPR data untouched.
+  if (position === "WR" && [
+    "velus jones", "zay jones", "donte thornton"
+  ].includes(normalizeName(player.name))) {
     return false;
   }
   if (verifiedInjuryOutIds.has(String(player.id)) ||
