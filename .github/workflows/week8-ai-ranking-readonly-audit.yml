@@ -1,0 +1,48 @@
+name: Week 8 AI Rankings Read-Only Audit
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: python -m pip install pandas numpy
+      - name: Check available verified inputs and compile scripts
+        run: |
+          python -m py_compile scripts/audit_ai_vs_ppr_rankings.py scripts/triage_week7_rankings.py
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          validations=sorted(Path("model-validation").glob("2026-week*-validation.csv"))
+          verified=[]
+          for p in Path("model-snapshots").glob("*-pregame-ppr-projections.csv"):
+              meta=p.with_suffix(".json")
+              if meta.exists():
+                  try:
+                      d=json.loads(meta.read_text())
+                      if d.get("audit_status")=="kickoff_verified":
+                          verified.append((d.get("week"),str(p)))
+                  except (ValueError, OSError):
+                      pass
+          print("Completed validation files:", [str(p) for p in validations])
+          print("Kickoff-verified snapshot files:", verified)
+          PY
+      - name: Run historical AI vs PPR audit (read-only)
+        run: |
+          python scripts/audit_ai_vs_ppr_rankings.py
+      - name: Upload report for review only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: week8-ai-ranking-readonly-audit
+          path: model-validation/ai-vs-ppr-ranking-audit.csv
+          if-no-files-found: warn
