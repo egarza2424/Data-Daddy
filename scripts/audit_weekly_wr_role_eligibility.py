@@ -52,8 +52,9 @@ def main():
   raise ValueError('Multiple ranking WRs resolved to the same GSIS ID')
  wr=wr.merge(matched,on='player_id',how='left',validate='one_to_one')
  for col in ['recent_games','recent_targets','recent_receptions','recent_yards']:wr[col]=wr[col].fillna(0)
- wr['needs_role_verification']=((wr.position_rank<=60)|(wr.projected_position_rank<=60)) & wr.stats_id_matched & (wr.recent_targets<3)
- wr['review_reason']=wr.apply(lambda r:'UNRESOLVED_IDENTITY_NO_USAGE_CONCLUSION' if not r.stats_id_matched else ('LOW_VERIFIED_TARGETS_CHECK_SNAPS_ROUTES_OR_INJURY_OPPORTUNITY' if r.needs_role_verification else 'NOT_FLAGGED'),axis=1)
+ wr['generic_fallback_profile']=(wr.opportunity_score.eq(50)&wr.usage_score.eq(20)&wr.production_score.le(20))
+ wr['needs_role_verification']=((wr.position_rank<=60)|(wr.projected_position_rank<=60)) & ((wr.stats_id_matched & (wr.recent_targets<3)) | wr.generic_fallback_profile)
+ wr['review_reason']=wr.apply(lambda r:'GENERIC_FALLBACK_PROFILE_REQUIRES_ROLE_EVIDENCE' if r.generic_fallback_profile else ('UNRESOLVED_IDENTITY_NO_USAGE_CONCLUSION' if not r.stats_id_matched else ('LOW_VERIFIED_TARGETS_CHECK_SNAPS_ROUTES_OR_INJURY_OPPORTUNITY' if r.needs_role_verification else 'NOT_FLAGGED')),axis=1)
  print('Resolved identities:',int(wr.stats_id_matched.sum()),'/',len(wr))
  if wr.stats_id_matched.sum()<len(wr)*0.5:
   print('WARNING: Low ID match rate; no ranking eligibility decisions supported.')
