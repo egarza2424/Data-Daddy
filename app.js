@@ -1824,13 +1824,10 @@ async function loadWaiverWire() {
       // Editorial roster-watch notes: conditional roles, not injury confirmations.
       // Keep rankings stable while clearly separating pickups from start decisions.
       const rosterWatch = {
-        "Malik Willis": "Monitor the starting QB's availability. Start value depends on Willis being named the starter.",
         "Elijah Mitchell": "Monitor Eagles RB injuries, game-day elevation and active status before relying on an expanded role.",
-        "Seth McGowan": "Monitor Jonathan Taylor's status. A lead-back workload depends on Taylor being ruled out or limited.",
+        "Seth McGowan": "ROSTER WATCH: Potential role expansion if Jonathan Taylor is traded. Monitor trade developments; no trade is assumed.",
         "Kaelon Black": "Monitor the RB depth chart and starter availability. Week 8 bye: stash only.",
-        "Mike Washington Jr.": "Monitor Ashton Jeanty's availability. A meaningful workload boost depends on Jeanty being out or limited.",
-        "Antonio Williams": "Monitor Terry McLaurin's availability. Expanded WR opportunity depends on the injured starter's status.",
-        "Colby Parkinson": "Monitor Rams TE availability and personnel usage before counting on a larger role."
+        "Mike Washington Jr.": "Monitor Ashton Jeanty's availability. A meaningful workload boost depends on Jeanty being out or limited."
       };
       const positions = Object.fromEntries(
         ["QB","RB","WR","TE"].flatMap(pos => editorial[pos].map(name => [name,pos]))
