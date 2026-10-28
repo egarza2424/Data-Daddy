@@ -135,6 +135,7 @@ jobs:
         run: |
           python scripts/build_live_rb_j2_features.py
           python scripts/build_rb_returning_player_audit.py
+          python scripts/audit_weekly_rb_low_sample_roles.py
           python scripts/build_weekly_rb_j2.py
           python scripts/validate_weekly_rb_j2_gate.py
 
