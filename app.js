@@ -9563,7 +9563,7 @@ const depthOrder =
   // Approved Week 8 QB editorial ordering, independent of AI/PPR values.
   if (position === "QB" && !snapshotWeek &&
       Number(document.documentElement.dataset.targetWeek) === 8) {
-    const approved = ["Drake Maye","Joe Burrow","Josh Allen","Lamar Jackson","Trevor Lawrence","Jayden Daniels","Dak Prescott","Jordan Love","Jared Goff","Matthew Stafford","Jacoby Brissett","Patrick Mahomes","Caleb Williams","Geno Smith","Michael Penix Jr.","Bryce Young","Kirk Cousins","Kyler Murray","Deshaun Watson","Bo Nix","Malik Willis","Justin Herbert","Aaron Rodgers","Sam Darnold"];
+    const approved = ["Drake Maye","Joe Burrow","Josh Allen","Lamar Jackson","Trevor Lawrence","Jayden Daniels","Dak Prescott","Jordan Love","Matthew Stafford","Jacoby Brissett","Patrick Mahomes","Jared Goff","Caleb Williams","Geno Smith","Michael Penix Jr.","Bryce Young","Kirk Cousins","Kyler Murray","Deshaun Watson","Bo Nix","Malik Willis","Justin Herbert","Aaron Rodgers","Sam Darnold"];
     const priority = new Map(approved.map((name, i) => [normalizeName(name), i]));
     // Lamar Jackson is absent from the weekly projection CSV. Include him
     // only if he exists in the live player roster; never fabricate a score.
