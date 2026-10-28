@@ -54,6 +54,8 @@ jobs:
         run: |
           python scripts/validate_rb_model_j2.py --season 2025
           python scripts/audit_rb_j2_rush_receive_bias.py
+          python scripts/validate_rb_model_j2.py --season 2024
+          python scripts/audit_rb_j2_receiving_outliers.py
       - name: Upload audit evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -67,4 +69,5 @@ jobs:
             projection-model/validation/2026-week8-rb-ai-j2-divergence.csv
             projection-model/validation/2026-week8-rb-workload-review.csv
             projection-model/validation/2025-rb-j2-rush-receive-bias.csv
+            projection-model/validation/rb-j2-receiving-heavy-outliers-2024-2025.csv
           if-no-files-found: warn
