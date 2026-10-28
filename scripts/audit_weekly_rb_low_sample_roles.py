@@ -5,9 +5,8 @@ import pandas as pd
 ROOT=Path('projection-model')
 snap=pd.read_csv(ROOT/'current-live-model-snapshot.csv',dtype={'player_id':str})
 week=int(pd.to_numeric(snap['snapshot_week'],errors='coerce').dropna().iloc[0])
-j2=pd.read_csv(ROOT/'validation'/f'2026-week{week}-rb-j2-experimental.csv')
 features=pd.read_csv(ROOT/'validation/2026-live-rb-j2-features-audit.csv',dtype={'j2_stats_player_id':str})
-excluded=j2.loc[j2['j2_projection_status'].eq('role_review_required_low_sample_backup')].copy()
+excluded=features.loc[pd.to_numeric(features['rb_season_games'],errors='coerce').lt(3) & features['j2_match_status'].isin(['matched','matched_name_only'])].copy()
 if excluded.empty:
     print('No low-sample RB exclusions to audit')
     raise SystemExit(0)
@@ -30,7 +29,7 @@ for player in excluded.itertuples(index=False):
     last_week=int(latest.iloc[0]['week']) if len(latest) else None
     carries=float(latest.iloc[0]['carries']) if len(latest) else None
     targets=float(latest.iloc[0]['targets']) if len(latest) else None
-    rows.append(dict(player_name=player.player_name,team=player.team,recorded_games=len(hist),last_recorded_week=last_week,last_carries=carries,last_targets=targets,last_opportunities=(carries+targets if carries is not None else None),last_3_carries=round(float(hist.tail(3)['carries'].sum()),1),last_3_targets=round(float(hist.tail(3)['targets'].sum()),1),current_roster_status=player.roster_status,current_injury_status=player.injury_status,teammate_snapshot=peers,review='MANUAL_ROLE_REVIEW_REQUIRED'))
+    rows.append(dict(player_name=player.player_name,team=player.team,recorded_games=len(hist),last_recorded_week=last_week,last_carries=carries,last_targets=targets,last_opportunities=(carries+targets if carries is not None else None),last_3_carries=round(float(hist.tail(3)['carries'].sum()),1),last_3_targets=round(float(hist.tail(3)['targets'].sum()),1),current_roster_status=(snap.loc[(snap['player_name'].eq(player.player_name))&(snap['team'].eq(player.team)),'roster_status'].iloc[0]),current_injury_status=(snap.loc[(snap['player_name'].eq(player.player_name))&(snap['team'].eq(player.team)),'injury_status'].iloc[0]),teammate_snapshot=peers,review='MANUAL_ROLE_REVIEW_REQUIRED'))
 out=pd.DataFrame(rows).sort_values(['team','player_name'])
 path=ROOT/'validation'/f'2026-week{week}-rb-low-sample-role-review.csv'
 path.parent.mkdir(parents=True,exist_ok=True)
