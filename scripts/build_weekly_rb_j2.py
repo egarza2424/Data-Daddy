@@ -90,6 +90,26 @@ def main():
         games = pd.to_numeric(pd.Series([live.at[idx, 'rb_season_games']]), errors='coerce').iloc[0]
         if pd.isna(games) or games >= 3:
             continue
+        # Verified current-week usage can establish a real role even for
+        # a player with fewer than three recorded games. This bypasses only
+        # the low-sample AI-rank proxy; explicit starter-return guard remains.
+        evidence_path = ROOT / 'validation' / f'2026-week{target_week}-rb-low-sample-role-review.csv'
+        if not evidence_path.exists():
+            raise FileNotFoundError(f'Missing pre-J2 role evidence: {evidence_path}')
+        evidence = pd.read_csv(evidence_path)
+        role = evidence.loc[evidence['player_name'].eq(live.at[idx, 'player_name']) &
+                            evidence['team'].eq(live.at[idx, 'team'])]
+        if len(role) == 1:
+            r = role.iloc[0]
+            recent_week = pd.to_numeric(r['last_recorded_week'], errors='coerce')
+            carries = pd.to_numeric(r['last_carries'], errors='coerce')
+            targets = pd.to_numeric(r['last_targets'], errors='coerce')
+            status = str(r['current_roster_status']).strip().lower()
+            if (recent_week == target_week - 1 and pd.notna(carries) and
+                    pd.notna(targets) and carries >= 12 and carries + targets >= 14
+                    and status == 'active'):
+                print(f"J2 ROLE EVIDENCE: {live.at[idx, 'player_name']} verified recent workload; retaining eligibility.")
+                continue
         team = live.at[idx, 'team']
         name = live.at[idx, 'player_name']
         current = rb_snapshot.loc[(rb_snapshot['team'].eq(team)) & rb_snapshot['player_name'].eq(name)]
