@@ -1858,6 +1858,50 @@ def main():
             np.arange(1, len(position_rows) + 1)
         )
 
+    # Weekly WR ranking eligibility: generic missing-evidence profiles
+    # must not occupy a Top-50 slot in either ranking. Preserve model
+    # scores, PPR values, and player rows for transparency.
+    wr_mask = projections["position"].eq("WR")
+    generic_wr = wr_mask.copy()
+    for column, expected in {
+        "opportunity_score": 50.0,
+        "production_score": 0.0,
+        "usage_score": 20.0,
+        "redzone_score": 50.0,
+        "model_confidence_score": 50.0,
+    }.items():
+        generic_wr &= pd.to_numeric(
+            projections[column], errors="coerce"
+        ).eq(expected)
+    # A known low-information production variant has a small nonzero
+    # production signal; the conservative rank-only safeguard covers it.
+    generic_wr |= (
+        wr_mask
+        & pd.to_numeric(projections["opportunity_score"], errors="coerce").eq(50)
+        & pd.to_numeric(projections["usage_score"], errors="coerce").eq(20)
+        & pd.to_numeric(projections["production_score"], errors="coerce").le(20)
+    )
+    if generic_wr.any():
+        print("WR low-information rank safeguard (rank-only):")
+        print(projections.loc[generic_wr, [
+            "player_name", "team", "position_rank", "projected_position_rank"
+        ]].to_string(index=False))
+        for rank_column, sort_column, ascending in (
+            ("position_rank", "position_rank", True),
+            ("projected_position_rank", "projected_position_rank", True),
+        ):
+            wr_order = projections.loc[wr_mask].assign(
+                _low_information=generic_wr.loc[wr_mask].to_numpy()
+            ).sort_values(
+                ["_low_information", sort_column, "player_id"],
+                ascending=[True, ascending, True], kind="stable"
+            )
+            projections.loc[wr_order.index, rank_column] = (
+                np.arange(1, len(wr_order) + 1)
+            )
+        assert (projections.loc[generic_wr, "position_rank"] > 50).all()
+        assert (projections.loc[generic_wr, "projected_position_rank"] > 50).all()
+
     output_columns = [
         "snapshot_week",
         "player_id",
