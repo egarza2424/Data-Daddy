@@ -1821,6 +1821,17 @@ async function loadWaiverWire() {
         "Elijah Mitchell":"PHI","Seth McGowan":"IND","Kaelon Black":"SF",
         "Mike Washington Jr.":"LV","Colby Parkinson":"LAR","Brenton Strange":"JAX"
       };
+      // Editorial roster-watch notes: conditional roles, not injury confirmations.
+      // Keep rankings stable while clearly separating pickups from start decisions.
+      const rosterWatch = {
+        "Malik Willis": "Monitor the starting QB's availability. Start value depends on Willis being named the starter.",
+        "Elijah Mitchell": "Monitor Eagles RB injuries, game-day elevation and active status before relying on an expanded role.",
+        "Seth McGowan": "Monitor Jonathan Taylor's status. A lead-back workload depends on Taylor being ruled out or limited.",
+        "Kaelon Black": "Monitor the RB depth chart and starter availability. Week 8 bye: stash only.",
+        "Mike Washington Jr.": "Monitor Ashton Jeanty's availability. A meaningful workload boost depends on Jeanty being out or limited.",
+        "Antonio Williams": "Monitor Terry McLaurin's availability. Expanded WR opportunity depends on the injured starter's status.",
+        "Colby Parkinson": "Monitor Rams TE availability and personnel usage before counting on a larger role."
+      };
       const positions = Object.fromEntries(
         ["QB","RB","WR","TE"].flatMap(pos => editorial[pos].map(name => [name,pos]))
       );
@@ -1851,6 +1862,18 @@ async function loadWaiverWire() {
           const heading = document.createElement("strong");
           heading.textContent = "#" + (index+1) + " " + name + " (" + positions[name] + " • " + (candidate?.team || teamFallback[name] || "Team pending") + ")";
           row.appendChild(heading);
+          if (rosterWatch[name]) {
+            const watch = document.createElement("p");
+            watch.className = "sleeper-reason waiver-roster-watch";
+            watch.style.borderLeft = "3px solid #e3ae32";
+            watch.style.padding = "6px 10px";
+            watch.style.margin = "8px 0";
+            const tag = document.createElement("strong");
+            tag.textContent = "⚠ ROSTER WATCH — ";
+            watch.appendChild(tag);
+            watch.appendChild(document.createTextNode(rosterWatch[name]));
+            row.appendChild(watch);
+          }
           if (candidate) {
             const info = document.createElement("p");
             const score = Number(candidate.waiver_evidence_score);
