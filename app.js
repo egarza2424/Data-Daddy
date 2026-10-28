@@ -1824,6 +1824,7 @@ async function loadWaiverWire() {
       // Editorial roster-watch notes: conditional roles, not injury confirmations.
       // Keep rankings stable while clearly separating pickups from start decisions.
       const rosterWatch = {
+        "Keon Coleman": "Monitor the Bills receiving depth chart and player availability; expanded opportunity is conditional.",
         "Elijah Mitchell": "Monitor Eagles RB injuries, game-day elevation and active status before relying on an expanded role.",
         "Seth McGowan": "ROSTER WATCH: Potential role expansion if Jonathan Taylor is traded. Monitor trade developments; no trade is assumed.",
         "Kaelon Black": "Monitor the RB depth chart and starter availability. Week 8 bye: stash only.",
