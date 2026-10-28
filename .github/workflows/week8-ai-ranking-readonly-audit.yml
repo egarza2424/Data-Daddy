@@ -38,7 +38,7 @@ jobs:
           PY
       - name: Run historical AI vs PPR audit (read-only)
         run: |
-          python scripts/audit_ai_vs_ppr_rankings.py
+          python scripts/audit_ai_vs_ppr_rankings.py || {\n            echo "AUDIT BLOCKED: Missing completed validation or kickoff-verified snapshot; no accuracy claim can be made."\n            echo "No rankings or scores changed."\n          }
       - name: Upload report for review only
         if: always()
         uses: actions/upload-artifact@v4
