@@ -1,0 +1,111 @@
+{
+  "season": 2026,
+  "week": 8,
+  "position": "QB",
+  "type": "analyst_editorial_order",
+  "status": "approved",
+  "preserve_original_ai_scores": true,
+  "preserve_original_ppr_projections": true,
+  "ranking": [
+    {
+      "rank": 1,
+      "player_name": "Drake Maye"
+    },
+    {
+      "rank": 2,
+      "player_name": "Joe Burrow"
+    },
+    {
+      "rank": 3,
+      "player_name": "Josh Allen"
+    },
+    {
+      "rank": 4,
+      "player_name": "Lamar Jackson"
+    },
+    {
+      "rank": 5,
+      "player_name": "Trevor Lawrence"
+    },
+    {
+      "rank": 6,
+      "player_name": "Jayden Daniels"
+    },
+    {
+      "rank": 7,
+      "player_name": "Dak Prescott"
+    },
+    {
+      "rank": 8,
+      "player_name": "Jordan Love"
+    },
+    {
+      "rank": 9,
+      "player_name": "Jared Goff"
+    },
+    {
+      "rank": 10,
+      "player_name": "Matthew Stafford"
+    },
+    {
+      "rank": 11,
+      "player_name": "Jacoby Brissett"
+    },
+    {
+      "rank": 12,
+      "player_name": "Patrick Mahomes"
+    },
+    {
+      "rank": 13,
+      "player_name": "Caleb Williams"
+    },
+    {
+      "rank": 14,
+      "player_name": "Geno Smith"
+    },
+    {
+      "rank": 15,
+      "player_name": "Michael Penix Jr."
+    },
+    {
+      "rank": 16,
+      "player_name": "Bryce Young"
+    },
+    {
+      "rank": 17,
+      "player_name": "Kirk Cousins"
+    },
+    {
+      "rank": 18,
+      "player_name": "Kyler Murray"
+    },
+    {
+      "rank": 19,
+      "player_name": "Deshaun Watson"
+    },
+    {
+      "rank": 20,
+      "player_name": "Bo Nix"
+    },
+    {
+      "rank": 21,
+      "player_name": "Malik Willis"
+    },
+    {
+      "rank": 22,
+      "player_name": "Justin Herbert"
+    },
+    {
+      "rank": 23,
+      "player_name": "Aaron Rodgers"
+    },
+    {
+      "rank": 24,
+      "player_name": "Sam Darnold"
+    }
+  ],
+  "unmatched_projection_players": [
+    "Lamar Jackson"
+  ],
+  "note": "Approved editorial ranking. Lamar Jackson absent from weekly projection file; do not fabricate AI/PPR values."
+}
