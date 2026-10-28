@@ -1,0 +1,35 @@
+name: Week 8 RB J2 Read-Only Comparison
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: python -m pip install pandas numpy
+      - name: Compile audit scripts
+        run: python -m py_compile scripts/build_live_rb_j2_features.py scripts/build_rb_returning_player_audit.py scripts/build_week8_rb_j2_readonly_comparison.py
+      - name: Generate Week 8 pregame RB features
+        run: python scripts/build_live_rb_j2_features.py
+      - name: Generate returning RB audit
+        run: python scripts/build_rb_returning_player_audit.py
+      - name: Compare J2 to published Model F without modifying production
+        run: python scripts/build_week8_rb_j2_readonly_comparison.py
+      - name: Upload read-only audit files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: week8-rb-j2-readonly-comparison
+          path: |
+            projection-model/validation/2026-live-rb-j2-features-audit.csv
+            projection-model/validation/2026-rb-returning-player-audit.csv
+            projection-model/validation/2026-week8-rb-j2-experimental.csv
+            projection-model/validation/2026-week8-rb-j2-vs-current-readonly.csv
+          if-no-files-found: warn
