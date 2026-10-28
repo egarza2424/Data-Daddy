@@ -9440,6 +9440,27 @@ const depthOrder =
       a.player.name.localeCompare(b.player.name)
     );
 
+  // Weekly WR eligibility must agree with the published weekly projection
+  // player universe. This runs for every future week, not just Week 8.
+  // Do not invent a live AI rank for a WR absent from the weekly model.
+  // Players with verified rookie/injury opportunity remain eligible when
+  // the weekly builder includes them. Historical snapshots stay unchanged.
+  if (position === "WR" && !snapshotWeek &&
+      weeklyPprProjections.some(row =>
+        Number(row.snapshot_week) ===
+        Number(document.documentElement.dataset.targetWeek) &&
+        String(row.position).toUpperCase() === "WR")) {
+    const eligible = rankings.filter(({ player }) =>
+      Boolean(getPlayerPprProjection(player))
+    );
+    const missing = rankings.length - eligible.length;
+    if (missing) {
+      console.info("Weekly WR eligibility: excluded", missing,
+        "players absent from published weekly projection universe");
+    }
+    rankings.splice(0, rankings.length, ...eligible);
+  }
+
   // Week 8 editorial role eligibility: these seven receivers have
   // verified low-information fallback profiles in the published audit.
   // Apply the rule to the live AI rankings independently of CSV loading,
