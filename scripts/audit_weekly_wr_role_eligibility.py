@@ -19,13 +19,42 @@ def main():
   stats[col]=pd.to_numeric(stats[col],errors='coerce').fillna(0)
  print('Ranking ID examples:',wr[['player_name','player_id']].head(4).to_dict('records'))
  print('Stats ID examples:',stats[['player_id']].head(4).to_dict('records'))
- recent=stats.groupby('player_id',as_index=False).agg(recent_games=('week','nunique'),recent_targets=('targets','sum'),recent_receptions=('receptions','sum'),recent_yards=('receiving_yards','sum'))
- wr=wr.merge(recent,on='player_id',how='left',validate='one_to_one')
- wr['stats_id_matched']=wr.recent_games.notna()
- for c in ['recent_games','recent_targets','recent_receptions','recent_yards']:wr[c]=wr[c].fillna(0)
+ import re
+ def norm(v):
+  v=re.sub(r'\\s+(jr\\.?|sr\\.?|ii|iii|iv)$','',str(v).lower().strip())
+  return re.sub(r'[^a-z0-9]','',v)
+ if 'player_display_name' not in stats.columns or 'team' not in stats.columns:
+  raise ValueError('Missing name/team fields required for safe identity resolution')
+ wr['match_name']=wr.player_name.map(norm)
+ wr['match_team']=wr.team.astype(str).str.upper().replace({'LA':'LAR','JAC':'JAX','WSH':'WAS'})
+ stats['match_name']=stats.player_display_name.map(norm)
+ stats['match_team']=stats.team.astype(str).str.upper().replace({'LA':'LAR','JAC':'JAX','WSH':'WAS'})
+ groups=stats.groupby(['match_name','match_team'])
+ names=stats.groupby('match_name')
+ records=[]
+ for row in wr.itertuples(index=False):
+  key=(row.match_name,row.match_team)
+  subset=groups.get_group(key) if key in groups.groups else stats.iloc[0:0]
+  status='matched_name_team'
+  if subset.empty:
+   subset=names.get_group(row.match_name) if row.match_name in names.groups else stats.iloc[0:0]
+   status='matched_name_only'
+  unique_ids=subset.player_id.dropna().unique()
+  if len(unique_ids)!=1:
+   records.append({'player_id':row.player_id,'stats_id_matched':False,'match_status':'ambiguous' if len(unique_ids)>1 else 'unmatched'})
+   continue
+  records.append({'player_id':row.player_id,'stats_id_matched':True,'match_status':status,
+    'recent_games':subset.week.nunique(),'recent_targets':subset.targets.sum(),
+    'recent_receptions':subset.receptions.sum(),'recent_yards':subset.receiving_yards.sum(),
+    'gsis_id':str(unique_ids[0])})
+ matched=pd.DataFrame(records)
+ if matched.loc[matched.stats_id_matched,'gsis_id'].duplicated().any():
+  raise ValueError('Multiple ranking WRs resolved to the same GSIS ID')
+ wr=wr.merge(matched,on='player_id',how='left',validate='one_to_one')
+ for col in ['recent_games','recent_targets','recent_receptions','recent_yards']:wr[col]=wr[col].fillna(0)
  wr['needs_role_verification']=((wr.position_rank<=60)|(wr.projected_position_rank<=60)) & wr.stats_id_matched & (wr.recent_targets<3)
- wr['review_reason']=wr.apply(lambda r:'UNMATCHED_PLAYER_ID_NO_USAGE_CONCLUSION' if not r.stats_id_matched else ('LOW_VERIFIED_TARGETS_CHECK_SNAPS_ROUTES_OR_INJURY_OPPORTUNITY' if r.needs_role_verification else 'NOT_FLAGGED'),axis=1)
- print('Matched IDs:',int(wr.stats_id_matched.sum()),'/',len(wr))
+ wr['review_reason']=wr.apply(lambda r:'UNRESOLVED_IDENTITY_NO_USAGE_CONCLUSION' if not r.stats_id_matched else ('LOW_VERIFIED_TARGETS_CHECK_SNAPS_ROUTES_OR_INJURY_OPPORTUNITY' if r.needs_role_verification else 'NOT_FLAGGED'),axis=1)
+ print('Resolved identities:',int(wr.stats_id_matched.sum()),'/',len(wr))
  if wr.stats_id_matched.sum()<len(wr)*0.5:
   print('WARNING: Low ID match rate; no ranking eligibility decisions supported.')
  flagged=wr.loc[wr.needs_role_verification].sort_values('position_rank')
