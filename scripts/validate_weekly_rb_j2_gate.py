@@ -33,4 +33,9 @@ if not jacobs.empty and not jacobs['roster_status'].astype(str).str.lower().eq('
     if len(strong)!=1 or strong.iloc[0]['j2_projection_status']!='role_review_required_starter_return':
         raise SystemExit('J2 GATE BLOCKED: returning-starter Strong guard absent')
 print(f'J2 INPUT GATE PASS: week={week}, eligible={eligible.sum()}, excluded={len(excluded)}')
+print('EXCLUDED RB REVIEW:')
+if excluded.empty:
+    print('None')
+else:
+    print(excluded[['player_name','team','j2_source','j2_projection_status']].sort_values(['j2_projection_status','team','player_name']).to_string(index=False))
 print('NOTE: This validates input integrity, NOT comprehensive injury/role accuracy.')
