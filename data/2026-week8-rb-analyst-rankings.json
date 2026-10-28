@@ -1,0 +1,162 @@
+{
+  "season": 2026,
+  "week": 8,
+  "position": "RB",
+  "type": "analyst_editorial_order",
+  "status": "approved",
+  "preserve_original_ai_scores": true,
+  "preserve_original_ppr_projections": true,
+  "ranking": [
+    {
+      "rank": 1,
+      "player_name": "Jahmyr Gibbs"
+    },
+    {
+      "rank": 2,
+      "player_name": "Kenneth Walker III"
+    },
+    {
+      "rank": 3,
+      "player_name": "Bijan Robinson"
+    },
+    {
+      "rank": 4,
+      "player_name": "Javonte Williams"
+    },
+    {
+      "rank": 5,
+      "player_name": "Bucky Irving"
+    },
+    {
+      "rank": 6,
+      "player_name": "James Cook III"
+    },
+    {
+      "rank": 7,
+      "player_name": "D'Andre Swift"
+    },
+    {
+      "rank": 8,
+      "player_name": "Derrick Henry"
+    },
+    {
+      "rank": 9,
+      "player_name": "Kyren Williams"
+    },
+    {
+      "rank": 10,
+      "player_name": "Jonathan Taylor"
+    },
+    {
+      "rank": 11,
+      "player_name": "Ashton Jeanty"
+    },
+    {
+      "rank": 12,
+      "player_name": "Jaylen Warren"
+    },
+    {
+      "rank": 13,
+      "player_name": "Ollie Gordon II"
+    },
+    {
+      "rank": 14,
+      "player_name": "Chuba Hubbard"
+    },
+    {
+      "rank": 15,
+      "player_name": "Breece Hall"
+    },
+    {
+      "rank": 16,
+      "player_name": "Bhayshul Tuten"
+    },
+    {
+      "rank": 17,
+      "player_name": "Josh Jacobs"
+    },
+    {
+      "rank": 18,
+      "player_name": "Aaron Jones Sr."
+    },
+    {
+      "rank": 19,
+      "player_name": "Saquon Barkley"
+    },
+    {
+      "rank": 20,
+      "player_name": "Chase Brown"
+    },
+    {
+      "rank": 21,
+      "player_name": "Zach Charbonnet"
+    },
+    {
+      "rank": 22,
+      "player_name": "Tony Pollard"
+    },
+    {
+      "rank": 23,
+      "player_name": "Jeremiyah Love"
+    },
+    {
+      "rank": 24,
+      "player_name": "Jonah Coleman"
+    },
+    {
+      "rank": 25,
+      "player_name": "Rachaad White"
+    },
+    {
+      "rank": 26,
+      "player_name": "Quinshon Judkins"
+    },
+    {
+      "rank": 27,
+      "player_name": "Rhamondre Stevenson"
+    },
+    {
+      "rank": 28,
+      "player_name": "Blake Corum"
+    },
+    {
+      "rank": 29,
+      "player_name": "Braelon Allen"
+    },
+    {
+      "rank": 30,
+      "player_name": "Dameon Pierce"
+    },
+    {
+      "rank": 31,
+      "player_name": "Kyle Monangai"
+    },
+    {
+      "rank": 32,
+      "player_name": "Tyler Allgeier"
+    },
+    {
+      "rank": 33,
+      "player_name": "Jordan Mason"
+    },
+    {
+      "rank": 34,
+      "player_name": "Emanuel Wilson"
+    },
+    {
+      "rank": 35,
+      "player_name": "Omarion Hampton"
+    },
+    {
+      "rank": 36,
+      "player_name": "Rico Dowdle"
+    }
+  ],
+  "unmatched_projection_players": [
+    "Breece Hall",
+    "Zach Charbonnet",
+    "Jeremiyah Love",
+    "Kyle Monangai"
+  ],
+  "note": "Approved RB Top 36. Never fabricate missing AI scores or PPR values."
+}
