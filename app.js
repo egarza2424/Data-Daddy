@@ -9433,35 +9433,29 @@ const depthOrder =
       a.player.name.localeCompare(b.player.name)
     );
 
-  // Keep low-information WR placeholders outside the Top 50 in the
-  // live AI rankings too. PPR CSV ranks alone do not drive this tab.
-  // Match the weekly projection by Sleeper ID or normalized name/team.
-  if (position === "WR" && weeklyPprProjections.length) {
-    const targetWeek = Number(document.documentElement.dataset.targetWeek);
-    const wrRows = weeklyPprProjections.filter(row =>
-      row.position === "WR" && Number(row.snapshot_week) === targetWeek
-    );
-    const byId = new Map(wrRows.map(row => [String(row.player_id), row]));
-    const byNameTeam = new Map(wrRows.map(row => [
-      normalizeName(row.player_name) + "|" + String(row.team).toUpperCase(), row
-    ]));
-    const lowInformation = entry => {
-      const p = entry.player;
-      const row = byId.get(String(p.id)) ||
-        byNameTeam.get(normalizeName(p.name) + "|" + String(p.team).toUpperCase());
-      return !!row &&
-        Number(row.opportunity_score) === 50 &&
-        Number(row.usage_score) === 20 &&
-        Number(row.production_score) <= 20;
-    };
-    // Stable partition: preserve the model's relative order and scores
-    // for all eligible receivers; do not remove players from comparisons.
-    const normal = rankings.filter(entry => !lowInformation(entry));
-    const fallback = rankings.filter(lowInformation);
-    if (fallback.length) {
-      rankings.splice(0, rankings.length, ...normal, ...fallback);
-      console.info("WR fallback role safeguard: moved", fallback.length,
-        "low-information receivers below verified ranking entries.");
+  // Week 8 editorial role eligibility: these seven receivers have
+  // verified low-information fallback profiles in the published audit.
+  // Apply the rule to the live AI rankings independently of CSV loading,
+  // because this tab ranks its own live player pool.
+  if (position === "WR" &&
+      Number(document.documentElement.dataset.targetWeek) === 8) {
+    const flaggedIds = new Set([
+      "7746", "8013", "11474", "11306", "12732", "8076", "12520"
+    ]);
+    const flaggedNames = new Set([
+      "austintrammell", "timjones", "dylandrummond",
+      "xaviergipson", "dominiclovett", "michaelbandy",
+      "xavierrestrepo"
+    ]);
+    const isFlagged = ({ player }) =>
+      flaggedIds.has(String(player.id)) ||
+      flaggedNames.has(normalizeName(player.name));
+    const eligible = rankings.filter(entry => !isFlagged(entry));
+    const flagged = rankings.filter(isFlagged);
+    if (flagged.length) {
+      rankings.splice(0, rankings.length, ...eligible, ...flagged);
+      console.info("Week 8 WR editorial role safeguard:",
+        flagged.map(entry => entry.player.name).join(", "));
     }
   }
 
