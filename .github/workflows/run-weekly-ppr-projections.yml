@@ -118,7 +118,7 @@ jobs:
 
       - name: Check projection scripts
         run: |
-          python -m py_compile scripts/build_live_rb_j2_features.py scripts/build_rb_returning_player_audit.py scripts/build_week7_rb_j2_experiment.py scripts/build_weekly_ppr_projections.py scripts/audit_te_ppg_challenger.py
+          python -m py_compile scripts/build_live_rb_j2_features.py scripts/build_rb_returning_player_audit.py scripts/build_week7_rb_j2_experiment.py scripts/build_weekly_rb_j2.py scripts/build_weekly_ppr_projections.py scripts/audit_te_ppg_challenger.py
 
       - name: Refresh current player injury availability from Sleeper
         run: |
@@ -131,12 +131,11 @@ jobs:
           python -m py_compile scripts/collect_official_injury_report.py
           python scripts/collect_official_injury_report.py --season 2026 --week 8
 
-      - name: Generate Week 7 J2 RB projections
+      - name: Generate weekly RB J2 projections
         run: |
           python scripts/build_live_rb_j2_features.py
           python scripts/build_rb_returning_player_audit.py
-          # Week 7-only frozen-snapshot challenger: skip for Week 8.
-          # Production RB J2 features and returning-player audit run above.
+          python scripts/build_weekly_rb_j2.py
 
       - name: Collect injury opportunity evidence from 2026 weekly stats
         run: |
