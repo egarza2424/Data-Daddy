@@ -48,6 +48,8 @@ jobs:
         run: python scripts/audit_week8_rb_workload.py
       - name: Audit Week 8 AI versus J2 RB divergence
         run: python scripts/audit_week8_rb_ai_j2_divergence.py
+      - name: Inspect J2 feature alignment for priority RBs
+        run: python scripts/audit_week8_rb_j2_feature_alignment.py
       - name: Upload audit evidence
         if: always()
         uses: actions/upload-artifact@v4
