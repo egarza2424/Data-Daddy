@@ -1,4 +1,4 @@
-"""Audit-only weekly RB J2 challenger. Does not write production projections.
+"""Weekly RB J2 input builder; production consumes only eligible, role-reviewed rows.
 Run after the two live RB audits. Train on 2025 historical RB player-weeks
 with pregame features; never train on 2026 weekly results.
 """
@@ -68,6 +68,18 @@ def main():
         # Red-zone stats are unavailable in this fallback: mark it unrankable rather than assume zero.
     live['j2_projection_status'] = 'not_projected'
     valid = live['j2_source'].eq('2026_pregame') & live[CORE].notna().all(axis=1)
+    # Role-safety exclusion: the last-three-game workload can reflect a
+    # temporary starter absence. Strong's Week 5-6 role is not verified
+    # as sustainable with Jacobs back. Fail closed until a separate
+    # current-role validation is implemented; do not guess a reduction.
+    jacobs = snap.loc[
+        (snap['player_name'].eq('Josh Jacobs')) & snap['team'].eq('GB')
+    ]
+    if not jacobs.empty and not jacobs['roster_status'].astype(str).str.lower().eq('inactive').all():
+        strong = live['player_name'].eq('Pierre Strong Jr.') & live['team'].eq('GB')
+        valid.loc[strong] = False
+        live.loc[strong, 'j2_projection_status'] = 'role_review_required_starter_return'
+        print('J2 ROLE GUARD: Pierre Strong excluded while Josh Jacobs is not confirmed inactive.')
     if not valid.any():
         raise ValueError('No eligible 2026 RBs with complete J2 features')
     # Fail closed if historical training includes the target season.
