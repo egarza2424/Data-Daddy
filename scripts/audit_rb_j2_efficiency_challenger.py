@@ -84,6 +84,39 @@ def main():
     out = VAL / "rb-j2-efficiency-challenger-2024-selection-2025-holdout.csv"
     report.to_csv(out, index=False)
     print("Saved", out)
+    # Independent 2025 weekly and player-level diagnostic; selected amount fixed by 2024.
+    detail = heldout.copy()
+    detail["challenger_ppr"] = (detail.projected_ppr - selected * detail.low_eff_volume.astype(float)).clip(lower=0)
+    detail["baseline_abs_error"] = (detail.projected_ppr - detail.actual_ppr).abs()
+    detail["challenger_abs_error"] = (detail.challenger_ppr - detail.actual_ppr).abs()
+    detail["mae_improvement"] = detail.baseline_abs_error - detail.challenger_abs_error
+    weekly = []
+    for week_number, frame in detail.groupby("week"):
+        actual_top = set(frame.nlargest(24, "actual_ppr").player_id)
+        baseline_top = set(frame.nlargest(24, "projected_ppr").player_id)
+        challenger_top = set(frame.nlargest(24, "challenger_ppr").player_id)
+        affected = frame.loc[frame.low_eff_volume]
+        weekly.append(dict(week=int(week_number), rb_count=len(frame),
+            affected_count=len(affected), baseline_mae=frame.baseline_abs_error.mean(),
+            challenger_mae=frame.challenger_abs_error.mean(),
+            mae_improvement=frame.mae_improvement.mean(),
+            affected_mae_improvement=affected.mae_improvement.mean(),
+            baseline_top24_recall=len(actual_top & baseline_top)/len(actual_top),
+            challenger_top24_recall=len(actual_top & challenger_top)/len(actual_top)))
+    weekly = pd.DataFrame(weekly).sort_values("week")
+    weekly_path = VAL / "2025-rb-j2-efficiency-challenger-weekly.csv"
+    weekly.to_csv(weekly_path, index=False)
+    print("\\n2025 HELD-OUT WEEKLY RESULTS (positive MAE improvement is better):")
+    print(weekly.round(4).to_string(index=False))
+    affected = detail.loc[detail.low_eff_volume].copy()
+    affected_path = VAL / "2025-rb-j2-efficiency-challenger-player-impact.csv"
+    affected.sort_values("mae_improvement").to_csv(affected_path, index=False)
+    cols = ["week", "player_name", "projected_ppr", "challenger_ppr", "actual_ppr", "mae_improvement"]
+    print("\\nBIGGEST REGRESSIONS (affected players):")
+    print(affected.nsmallest(10, "mae_improvement")[cols].round(3).to_string(index=False))
+    print("\\nBIGGEST IMPROVEMENTS (affected players):")
+    print(affected.nlargest(10, "mae_improvement")[cols].round(3).to_string(index=False))
+    print("Saved", weekly_path, "and", affected_path)
     print("READ ONLY: no live model, rankings or projections changed.")
 
 
