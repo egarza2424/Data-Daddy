@@ -58,6 +58,9 @@ jobs:
           )
           PY
 
+      - name: Audit historical RB volume versus efficiency (read-only)
+        run: python scripts/audit_rb_j2_rush_receive_bias.py
+
       - name: Audit latest published weekly player pool
         shell: bash
         run: |
