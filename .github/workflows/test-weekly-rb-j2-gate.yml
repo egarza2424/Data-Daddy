@@ -1,0 +1,35 @@
+name: Test Weekly RB J2 Gate (Read Only)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test-j2-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: python -m pip install pandas numpy
+      - name: Check syntax
+        run: python -m py_compile scripts/build_live_rb_j2_features.py scripts/build_rb_returning_player_audit.py scripts/build_weekly_rb_j2.py scripts/validate_weekly_rb_j2_gate.py
+      - name: Generate read-only J2 inputs
+        run: |
+          python scripts/build_live_rb_j2_features.py
+          python scripts/build_rb_returning_player_audit.py
+          python scripts/build_weekly_rb_j2.py
+      - name: Validate weekly J2 gate
+        run: python scripts/validate_weekly_rb_j2_gate.py
+      - name: Upload audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-rb-j2-gate-test
+          path: |
+            projection-model/validation/2026-live-rb-j2-features-audit.csv
+            projection-model/validation/2026-rb-returning-player-audit.csv
+            projection-model/validation/2026-week*-rb-j2-experimental.csv
+          if-no-files-found: warn
