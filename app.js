@@ -9560,6 +9560,37 @@ const depthOrder =
     if (absent.length) console.warn("Week 8 analyst TE players missing from eligible roster:", absent);
   }
 
+  // Approved Week 8 QB editorial ordering, independent of AI/PPR values.
+  if (position === "QB" && !snapshotWeek &&
+      Number(document.documentElement.dataset.targetWeek) === 8) {
+    const approved = ["Drake Maye","Joe Burrow","Josh Allen","Lamar Jackson","Trevor Lawrence","Jayden Daniels","Dak Prescott","Jordan Love","Jared Goff","Matthew Stafford","Jacoby Brissett","Patrick Mahomes","Caleb Williams","Geno Smith","Michael Penix Jr.","Bryce Young","Kirk Cousins","Kyler Murray","Deshaun Watson","Bo Nix","Malik Willis","Justin Herbert","Aaron Rodgers","Sam Darnold"];
+    const priority = new Map(approved.map((name, i) => [normalizeName(name), i]));
+    // Lamar Jackson is absent from the weekly projection CSV. Include him
+    // only if he exists in the live player roster; never fabricate a score.
+    const missing = players.filter(player =>
+      priority.has(normalizeName(player.name)) &&
+      !rankings.some(entry => String(entry.player.id) === String(player.id)) &&
+      !verifiedInjuryOutIds.has(String(player.id)) &&
+      !verifiedInjuryOutIds.has(String(player.nflId)) &&
+      !verifiedInjuryOutKeys.has(String(player.name).trim().toLowerCase() + "|" + String(player.team).trim().toUpperCase())
+    );
+    for (const player of missing) {
+      const score = getDisplayedAiScore(player, profile);
+      rankings.push({player, score: Number.isFinite(score) ? score : null});
+    }
+    rankings.sort((a, b) => {
+      const ai = priority.get(normalizeName(a.player.name));
+      const bi = priority.get(normalizeName(b.player.name));
+      if (ai !== undefined && bi !== undefined) return ai - bi;
+      if (ai !== undefined) return -1;
+      if (bi !== undefined) return 1;
+      return (Number(b.score) || 0) - (Number(a.score) || 0) || a.player.name.localeCompare(b.player.name);
+    });
+    const absent = approved.filter(name =>
+      !rankings.some(({player}) => normalizeName(player.name) === normalizeName(name)));
+    if (absent.length) console.warn("Week 8 approved QB players missing from live roster:", absent);
+  }
+
   rankingCache[cacheKey] = rankings;
  
   return rankings;
