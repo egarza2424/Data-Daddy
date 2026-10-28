@@ -44,6 +44,8 @@ jobs:
           except FileNotFoundError:
               print('Model F comparison file unavailable; no estimate invented.')
           PY
+      - name: Audit priority RB weekly workloads
+        run: python scripts/audit_week8_rb_workload.py
       - name: Audit Week 8 AI versus J2 RB divergence
         run: python scripts/audit_week8_rb_ai_j2_divergence.py
       - name: Upload audit evidence
@@ -57,4 +59,5 @@ jobs:
             projection-model/validation/2026-week*-rb-j2-experimental.csv
             projection-model/validation/2026-week*-rb-low-sample-role-review.csv
             projection-model/validation/2026-week8-rb-ai-j2-divergence.csv
+            projection-model/validation/2026-week8-rb-workload-review.csv
           if-no-files-found: warn
