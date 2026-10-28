@@ -144,13 +144,14 @@
       "position": "RB",
       "week7_status": "DID_NOT_RETURN",
       "injury": "hamstring",
-      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-tuesday-oct-27",
+      "source": "https://www.giants.com/news/tyrone-tracy-jr-injured-reserve-gregory-desrosiers-dean-lowry-practice-squad-roster-moves-bye-week-joe-schoen",
       "beneficiary_review": [
         "Cam Skattebo",
-        "Devin Singletary"
+        "Devin Singletary",
+        "Gregory Desrosiers (newly signed active roster, NFL usage unverified)"
       ],
-      "review_focus": "NEW Oct 27: Giants GM Joe Schoen confirms Tracy will be placed on injured reserve after Week 7 hamstring injury, missing at least four games; no indication of season-ending injury. Giants have Week 8 bye, so no Week 8 projection redistribution. For Week 9 onward evaluate Cam Skattebo health and routes/targets, Devin Singletary snaps/receiving and red-zone use, plus new RB depth before changing PPR.",
-      "week8_status": "IR_PLACEMENT_ANNOUNCED_2026_10_27_WEEK8_BYE",
+      "review_focus": "NEW Oct 27: Giants GM Joe Schoen confirms Tracy will be placed on injured reserve after Week 7 hamstring injury, missing at least four games; no indication of season-ending injury. Giants have Week 8 bye, so no Week 8 projection redistribution. For Week 9 onward evaluate Cam Skattebo health and routes/targets, Devin Singletary snaps/receiving and red-zone use, plus new RB depth before changing PPR. OFFICIAL Oct 27 Giants roster transaction confirms Tracy actually placed on IR, with Gregory Desrosiers signed from Chargers practice squad. Team has Week 8 bye; prioritize Week 9+ Skattebo/Singletary route and target splits and Desrosiers role, not an immediate Week 8 projection change.",
+      "week8_status": "OUT_ON_INJURED_RESERVE_OFFICIAL_2026_10_27_WEEK8_BYE",
       "automatic_projection_adjustment": false
     },
     {
@@ -341,17 +342,18 @@
       "team": "ARI",
       "position": "WR",
       "week7_status": "PLAYED_WEEK7_INJURED_WRIST_SEASON_ENDING_SURGERY_SELF_REPORTED",
-      "injury": "wrist (player announced emergency season-ending surgery Oct 26; team IR transaction not yet verified)",
-      "source": "https://arizonasports.com/nfl/arizona-cardinals/cardinals-jalen-brooks-says-he-is-out-for-the-season",
+      "injury": "wrist (season-ending surgery reported; officially placed on injured reserve October 27)",
+      "source": "https://www.azcardinals.com/team/transactions/2026",
       "beneficiary_review": [
         "Kendrick Bourne (established WR2)",
         "Michael Wilson (WR1)",
         "Simi Fehoko (possible WR3 snaps)",
         "Reggie Virgil (possible WR3 snaps)",
-        "Trey McBride (established TE target leader)"
+        "Trey McBride (established TE target leader)",
+        "Zay Jones (Oct 27 signing reported; roster assignment and game role not yet verified)"
       ],
-      "review_focus": "NEWLY TRACKED Oct 27, injury announcement published Oct 26 (not a new Oct 27 event). Brooks self-reported season-ending wrist surgery after Week 7 vs DEN; 52/81 offensive snaps (64%) and 6/44 team targets (13.6%) Week 7; 17 targets on season. Arizona Week 7: Michael Wilson 73/81 snaps, 8/44 targets; Kendrick Bourne 45/81 snaps, 6/44 targets; Trey McBride 75/81 snaps, 13/44 targets; Simi Fehoko 7 snaps, Reggie Virgil 3 snaps. Brooks' 52 snaps create a meaningful WR3 route opportunity but cannot be assigned entirely to Fehoko or Virgil without verified routes, personnel and practice reports. Verify Arizona Week 8 WR3 rotation, targets per route, red-zone usage and teammate availability. No automatic projections or fixed target redistribution.",
-      "week8_status": "OUT_REMAINDER_2026_PLAYER_CONFIRMED_SURGERY_NOT_TEAM_IR_VERIFIED",
+      "review_focus": "NEWLY TRACKED Oct 27, injury announcement published Oct 26 (not a new Oct 27 event). Brooks self-reported season-ending wrist surgery after Week 7 vs DEN; 52/81 offensive snaps (64%) and 6/44 team targets (13.6%) Week 7; 17 targets on season. Arizona Week 7: Michael Wilson 73/81 snaps, 8/44 targets; Kendrick Bourne 45/81 snaps, 6/44 targets; Trey McBride 75/81 snaps, 13/44 targets; Simi Fehoko 7 snaps, Reggie Virgil 3 snaps. Brooks' 52 snaps create a meaningful WR3 route opportunity but cannot be assigned entirely to Fehoko or Virgil without verified routes, personnel and practice reports. Verify Arizona Week 8 WR3 rotation, targets per route, red-zone usage and teammate availability. No automatic projections or fixed target redistribution. OFFICIAL CONFIRMATION Oct 27: Arizona's transaction log confirms Brooks placed on IR (wrist), with season-ending surgery reported. No Week 8 PPR projection row for Brooks was found on Oct 27, so no eligibility correction is needed in that output. Oct 27 reports also say Arizona is signing Zay Jones; active-roster/practice-squad assignment and routes are unverified. Compare Week 7 Brooks' 52/81 offensive snaps and 6/44 targets with Wilson/Bourne/McBride roles, Fehoko/Virgil and potential Jones routes before any WR3 beneficiary boost; do not redistribute six targets automatically.",
+      "week8_status": "OUT_ON_INJURED_RESERVE_OFFICIAL_2026_10_27_SEASON_ENDING",
       "automatic_projection_adjustment": false
     },
     {
@@ -402,6 +404,23 @@
       ],
       "review_focus": "NEW Oct 27 NFL Network report: rookie starting guard Ioane expected to miss some time with MCL sprain. No official Week 8 game OUT designation or replacement starter confirmed. Review replacement guard practice/snap data and pressure/run-block metrics before any Baltimore QB/RB efficiency change. No direct target redistribution.",
       "week8_status": "EXPECTED_TO_MISS_TIME_NO_OFFICIAL_WEEK8_OUT",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Cam Taylor-Britt",
+      "team": "IND",
+      "position": "CB",
+      "week7_status": "LEFT_WEEK7_WITH_GROIN_INJURY",
+      "injury": "groin (reported by team coverage; official IR transaction Oct 27)",
+      "source": "https://www.colts.com/news/colts-sign-cb-kenneth-harris-to-53-man-roster-from-practice-squad-place-cb-cam-taylor-britt-on-injured-reserve-sign-2-players-to-practice-squad",
+      "beneficiary_review": [
+        "Kenneth Harris (signed to 53-man roster Oct 27; 21 defensive snaps through Week 7 per reporting)",
+        "Colts outside/slot CB rotation",
+        "Jacksonville passing matchup: Parker Washington, Jakobi Meyers, Brian Thomas Jr., Brenton Strange (matchup review only)"
+      ],
+      "review_focus": "NEW OFFICIAL Oct 27 Colts transaction: CB Cam Taylor-Britt placed on IR; Kenneth Harris signed to active roster, with Shemar Bartholomew and Natrone Brooks added to practice squad. Taylor-Britt has appeared in six games in 2026, with only 91 defensive snaps reported; do not treat him as full-time starter. Colts were also without Sauce Gardner (calf) in Week 7 and Justin Walley sustained a knee injury; Week 8 statuses unconfirmed. Review Week 7 replacement CB snaps/coverage assignments, Gardner/Walley official practices, Jacksonville Week 6 routes/targets and opponent-adjusted coverage before any matchup or PPR adjustment. No automatic projection change.",
+      "week8_status": "OUT_ON_INJURED_RESERVE_OFFICIAL_2026_10_27",
       "automatic_projection_adjustment": false
     }
   ]
