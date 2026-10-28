@@ -9508,6 +9508,39 @@ const depthOrder =
     }
   }
 
+  // Week 8 approved editorial WR order. Scores and PPR remain model-generated.
+  // Use the same ordering in AI Rankings and all consumers of position rankings.
+  if (position === "WR" && !snapshotWeek &&
+      Number(document.documentElement.dataset.targetWeek) === 8) {
+    const approved = ["Puka Nacua","Jaxon Smith-Njigba","Zay Flowers","CeeDee Lamb","Amon-Ra St. Brown","Ja'Marr Chase","Drake London","Tetairoa McMillan","Tee Higgins","Stefon Diggs","Christian Watson","DJ Moore","Parker Washington","Justin Jefferson","Matthew Golden","Tre Tucker","George Pickens","Jameson Williams","DeVonta Smith","Rashee Rice","Luther Burden III","Michael Wilson","Caleb Douglas","Jalen Coker","Keenan Allen","Garrett Wilson","Omar Cooper Jr.","Emeka Egbuka","A.J. Brown","Germie Bernard","KC Concepcion Jr.","Keon Coleman","Ryan Flournoy","DK Metcalf","Josh Downs","Denzel Boston","Jaylen Waddle","Kendrick Bourne","Ja'Kobi Lane","Khalil Shakir","Jakobi Meyers","Rome Odunze","Antonio Williams","Treylon Burks","Carnell Tate","Jordan Addison","Malik Washington","Chris Godwin Jr."];
+    const priority = new Map(approved.map((name, i) => [normalizeName(name), i]));
+    const existing = new Set(rankings.map(({player}) => normalizeName(player.name)));
+    // Players missing from the projection CSV may still have a live roster
+    // profile. Never manufacture a projection or an AI score.
+    const missing = players.filter(player =>
+      player.position === "WR" &&
+      priority.has(normalizeName(player.name)) &&
+      !existing.has(normalizeName(player.name)) &&
+      !verifiedInjuryOutIds.has(String(player.id)) &&
+      !verifiedInjuryOutIds.has(String(player.nflId)) &&
+      !verifiedInjuryOutKeys.has(String(player.name).trim().toLowerCase() + "|" + String(player.team).trim().toUpperCase())
+    );
+    for (const player of missing) {
+      const score = getDisplayedAiScore(player, profile);
+      if (Number.isFinite(score)) rankings.push({player, score});
+    }
+    rankings.sort((a,b) => {
+      const ai = priority.get(normalizeName(a.player.name));
+      const bi = priority.get(normalizeName(b.player.name));
+      if (ai !== undefined && bi !== undefined) return ai - bi;
+      if (ai !== undefined) return -1;
+      if (bi !== undefined) return 1;
+      return b.score - a.score || a.player.name.localeCompare(b.player.name);
+    });
+    const absent = approved.filter(name => !rankings.some(({player}) => normalizeName(player.name) === normalizeName(name)));
+    if (absent.length) console.warn("Week 8 approved WR editorial players not in live player pool:", absent);
+  }
+
   rankingCache[cacheKey] = rankings;
  
   return rankings;
