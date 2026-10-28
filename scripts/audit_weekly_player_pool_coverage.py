@@ -42,22 +42,17 @@ def main():
     with Path("data/gameday_availability.json").open(encoding="utf-8") as handle:
         availability = json.load(handle)
     rows = []
-    for pid, player in availability.get("players", {}).items():
-        position = str(player.get("position") or "").upper()
-        if position not in POSITIONS:
-            continue
-        name = player.get("name") or ""
-        team = player.get("team") or ""
-        status = str(player.get("roster_status") or "").upper()
-        injury = str(player.get("injury_status") or "").upper()
-        if status in UNAVAILABLE or injury in UNAVAILABLE:
-            continue
-        if str(pid) in projection_ids or str(player.get("gsis_id") or "") in projection_ids or key(name, position, team) in projection_keys:
-            continue
-        rows.append({"week": args.week, "source": "availability",
-                     "player_name": name, "position": position, "team": team,
-                     "player_id": pid, "reason": "ACTIVE_FEED_PLAYER_MISSING_PROJECTION",
-                     "context": f"roster={status}; injury={injury}"})
+    # The availability directory is a fantasy-feed directory, not an
+    # authoritative active roster. It can contain retired players and
+    # backups with stale ACTIVE metadata. Do not label all such players
+    # as missing projection coverage. Only evidence-backed candidates
+    # below should be flagged for human review.
+    directory_count = sum(
+        str(player.get("position") or "").upper() in POSITIONS
+        for player in availability.get("players", {}).values()
+    )
+    print(f"Availability directory: {directory_count} skill-position records "
+          "(context only; not an active-roster eligibility source)")
     candidates = Path("projection-model/validation/injury-opportunity-candidates.csv")
     if candidates.exists():
         with candidates.open(newline="", encoding="utf-8") as handle:
