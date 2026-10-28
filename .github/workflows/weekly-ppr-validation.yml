@@ -12,6 +12,42 @@ permissions:
   contents: write
 
 jobs:
+  audit-player-pool:
+    name: Read-only weekly player coverage audit
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Audit latest published weekly player pool
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          import subprocess
+          import sys
+
+          weeks = []
+          for path in Path("projection-model").glob("2026-week*-ppr-projections.csv"):
+              match = re.fullmatch(r"2026-week(\d+)-ppr-projections\.csv", path.name)
+              if match:
+                  weeks.append(int(match.group(1)))
+          if not weeks:
+              sys.exit("No weekly PPR projection files found")
+          week = max(weeks)
+          print(f"Running read-only coverage audit for Week {week}", flush=True)
+          subprocess.run(
+              [sys.executable, "scripts/audit_weekly_player_pool_coverage.py",
+               "--week", str(week)], check=True
+          )
+          PY
+
   validate-ppr:
     # Block mutable weekly PPR files from being scored as pregame predictions.
     if: ${{ false }}
