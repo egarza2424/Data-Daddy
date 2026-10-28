@@ -24,6 +24,36 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install WR audit dependency
+        run: python -m pip install pandas
+
+      - name: Audit recent WR usage and ranking eligibility (read-only)
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          import subprocess
+          import sys
+
+          weeks = [
+              int(m.group(1))
+              for p in Path("projection-model").glob("2026-week*-ppr-projections.csv")
+              if (m := re.fullmatch(r"2026-week(\d+)-ppr-projections\.csv", p.name))
+          ]
+          if not weeks:
+              sys.exit("No weekly projection file found")
+          week = max(weeks)
+          source = Path("historical-data/player_stats_2026.csv")
+          if not source.exists():
+              print("Recent usage dataset unavailable; WR audit skipped rather than implying zero usage.")
+              sys.exit(0)
+          subprocess.run(
+              [sys.executable, "scripts/audit_weekly_wr_role_eligibility.py",
+               "--week", str(week)], check=True
+          )
+          PY
+
       - name: Audit latest published weekly player pool
         shell: bash
         run: |
