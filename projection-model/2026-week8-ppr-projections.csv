@@ -41,28 +41,28 @@ snapshot_week,player_id,player_name,position,team,opponent,roster_status,injury_
 8,7588,Javonte Williams,RB,DAL,ARI,Active,,73.1,73.1,3,16.17,16.17,13,60,65,81,90,80,68,100,J2_RB_role_stability,2025
 8,3198,Derrick Henry,RB,BAL,BUF,Active,,60.8,60.8,18,15.78,15.78,14,72,43,74,71,73,55,67,J2_RB_role_stability,2025
 8,12490,Bhayshul Tuten,RB,JAX,IND,Active,,61.0,61.0,17,14.73,14.73,15,68,63,72,49,75,34,79,J2_RB_role_stability,2025
-8,8116,Pierre Strong Jr.,RB,GB,CAR,Active,,47.2,47.2,30,14.71,14.71,16,44,33,45,37,64,56,70,J2_RB_role_stability,2025
-8,7594,Chuba Hubbard,RB,CAR,GB,Active,,62.1,62.1,15,14.2,14.2,17,73,74,74,37,71,41,49,J2_RB_role_stability,2025
-8,4199,Aaron Jones Sr.,RB,MIN,DET,Active,Questionable,53.3,53.3,25,14.03,14.03,18,74,55,67,24,57,36,48,J2_RB_role_stability,2025
-8,7611,Rhamondre Stevenson,RB,NE,MIA,Active,,54.0,54.0,23,13.05,13.05,19,47,58,47,39,75,48,73,J2_RB_role_stability,2025
-8,12495,Ollie Gordon II,RB,MIA,NE,Active,,63.5,63.5,11,12.73,12.73,20,65,67,63,82,84,37,28,J2_RB_role_stability,2025
-8,12512,Quinshon Judkins,RB,CLE,PIT,Active,,58.7,58.7,20,12.59,12.59,21,68,71,73,51,81,21,25,J2_RB_role_stability,2025
-8,5967,Tony Pollard,RB,TEN,CIN,Active,,62.0,62.0,16,11.69,11.69,22,72,66,87,76,64,28,26,J2_RB_role_stability,2025
-8,11576,Braelon Allen,RB,NYJ,LV,Active,,71.9,71.9,5,11.52,11.52,23,81,67,89,20,84,72,58,J2_RB_role_stability,2025
-8,7021,Rico Dowdle,RB,PIT,CLE,Active,,44.5,44.5,35,11.31,11.31,24,40,39,43,16,78,47,46,J2_RB_role_stability,2025
-8,8129,Dameon Pierce,RB,PHI,WAS,Active,,59.8,59.8,19,11.12,11.12,25,55,40,79,49,74,57,25,J2_RB_role_stability,2025
-8,11586,Blake Corum,RB,LA,LAC,Active,,53.6,53.6,24,10.97,10.97,26,43,63,43,33,80,55,70,J2_RB_role_stability,2025
-8,8408,Jordan Mason,RB,MIN,DET,Active,,48.2,48.2,29,10.26,10.26,27,55,38,52,33,85,36,48,J2_RB_role_stability,2025
-8,11435,Emanuel Wilson,RB,SEA,CHI,Active,,63.7,63.7,10,9.8,9.8,28,70,52,68,29,73,39,66,J2_RB_role_stability,2025
+8,7594,Chuba Hubbard,RB,CAR,GB,Active,,62.1,62.1,15,14.2,14.2,16,73,74,74,37,71,41,49,J2_RB_role_stability,2025
+8,4199,Aaron Jones Sr.,RB,MIN,DET,Active,Questionable,53.3,53.3,25,14.03,14.03,17,74,55,67,24,57,36,48,J2_RB_role_stability,2025
+8,7611,Rhamondre Stevenson,RB,NE,MIA,Active,,54.0,54.0,23,13.05,13.05,18,47,58,47,39,75,48,73,J2_RB_role_stability,2025
+8,12495,Ollie Gordon II,RB,MIA,NE,Active,,63.5,63.5,11,12.73,12.73,19,65,67,63,82,84,37,28,J2_RB_role_stability,2025
+8,12512,Quinshon Judkins,RB,CLE,PIT,Active,,58.7,58.7,20,12.59,12.59,20,68,71,73,51,81,21,25,J2_RB_role_stability,2025
+8,5967,Tony Pollard,RB,TEN,CIN,Active,,62.0,62.0,16,11.69,11.69,21,72,66,87,76,64,28,26,J2_RB_role_stability,2025
+8,11576,Braelon Allen,RB,NYJ,LV,Active,,71.9,71.9,5,11.52,11.52,22,81,67,89,20,84,72,58,J2_RB_role_stability,2025
+8,7021,Rico Dowdle,RB,PIT,CLE,Active,,44.5,44.5,35,11.31,11.31,23,40,39,43,16,78,47,46,J2_RB_role_stability,2025
+8,8129,Dameon Pierce,RB,PHI,WAS,Active,,59.8,59.8,19,11.12,11.12,24,55,40,79,49,74,57,25,J2_RB_role_stability,2025
+8,11586,Blake Corum,RB,LA,LAC,Active,,53.6,53.6,24,10.97,10.97,25,43,63,43,33,80,55,70,J2_RB_role_stability,2025
+8,8408,Jordan Mason,RB,MIN,DET,Active,,48.2,48.2,29,10.26,10.26,26,55,38,52,33,85,36,48,J2_RB_role_stability,2025
+8,11435,Emanuel Wilson,RB,SEA,CHI,Active,,63.7,63.7,10,9.8,9.8,27,70,52,68,29,73,39,66,J2_RB_role_stability,2025
+8,8116,Pierre Strong Jr.,RB,GB,CAR,Active,,47.2,47.2,30,9.79,9.79,28,44,33,45,37,64,56,70,F_position_specific,2025
 8,12507,Omarion Hampton,RB,LAC,LAR,Active,,45.5,45.5,32,9.72,9.72,29,42,35,41,39,77,58,31,J2_RB_role_stability,2025
 8,8132,Tyler Allgeier,RB,ARI,DAL,Active,,51.5,51.5,26,9.3,9.3,30,41,23,39,29,64,60,61,J2_RB_role_stability,2025
 8,12489,RJ Harvey,RB,DEN,KC,Active,,34.9,34.9,56,9.17,9.17,31,22,39,24,10,54,36,37,J2_RB_role_stability,2025
 8,6806,J.K. Dobbins,RB,DEN,KC,Active,,49.6,49.6,28,8.52,8.52,32,52,50,57,33,71,36,37,J2_RB_role_stability,2025
 8,8136,Rachaad White,RB,WAS,PHI,Active,,45.4,45.4,33,8.52,8.52,33,33,40,37,20,70,35,52,J2_RB_role_stability,2025
 8,4866,Saquon Barkley,RB,PHI,WAS,Active,Questionable,43.2,43.2,38,8.38,8.38,34,33,35,44,24,40,57,25,J2_RB_role_stability,2025
-8,11581,MarShawn Lloyd,RB,GB,CAR,Active,,44.3,44.3,36,8.18,8.18,35,33,31,38,31,63,56,70,J2_RB_role_stability,2025
-8,6039,Ty Johnson,RB,BUF,BAL,Active,,33.7,33.7,63,8.03,8.03,36,11,26,15,4,60,30,88,J2_RB_role_stability,2025
-8,7561,Elijah Mitchell,RB,PHI,WAS,Active,,36.5,36.5,52,7.9,7.9,37,24,26,24,0,50,57,25,J2_RB_role_stability,2025
+8,00-0039373,Audric Estimé,RB,CLE,PIT,UNKNOWN,,37.5,37.5,48,8.21,8.21,35,31,32,32,41,50,21,25,F_position_specific,2025
+8,11581,MarShawn Lloyd,RB,GB,CAR,Active,,44.3,44.3,36,8.18,8.18,36,33,31,38,31,63,56,70,J2_RB_role_stability,2025
+8,6039,Ty Johnson,RB,BUF,BAL,Active,,33.7,33.7,63,8.03,8.03,37,11,26,15,4,60,30,88,J2_RB_role_stability,2025
 8,4147,Samaje Perine,RB,CIN,TEN,Active,,41.8,41.8,42,7.88,7.88,38,27,32,31,29,41,49,86,J2_RB_role_stability,2025
 8,10235,Roschon Johnson,RB,CHI,SEA,Active,,42.7,42.7,39,7.47,7.47,39,33,36,30,31,44,37,48,J2_RB_role_stability,2025
 8,5995,Justice Hill,RB,BAL,BUF,Active,,35.8,35.8,54,7.38,7.38,40,20,27,19,2,60,55,67,J2_RB_role_stability,2025
@@ -73,52 +73,52 @@ snapshot_week,player_id,player_name,position,team,opponent,roster_status,injury_
 8,9511,Keaton Mitchell,RB,LAC,LAR,Active,,35.8,35.8,55,6.79,6.79,45,33,24,33,8,44,58,31,J2_RB_role_stability,2025
 8,13345,Jonah Coleman,RB,DEN,KC,Active,,34.6,34.6,58,6.77,6.77,46,27,32,30,16,34,36,37,J2_RB_role_stability,2025
 8,10219,Chris Rodriguez Jr.,RB,JAX,IND,Active,,37.9,37.9,47,6.27,6.27,47,24,23,25,33,52,34,79,J2_RB_role_stability,2025
-8,13337,Emmett Johnson,RB,KC,DEN,Active,,27.5,27.5,73,5.98,5.98,48,11,14,12,4,52,33,46,J2_RB_role_stability,2025
-8,8181,Connor Heyward,RB,LV,NYJ,Active,,33.3,33.3,64,5.95,5.95,51,20,20,20,50,50,20,49,F_position_specific,2025
-8,13419,Jaydn Ott,RB,KC,DEN,Active,,34.6,34.6,57,5.95,5.95,49,20,20,20,50,50,33,46,F_position_specific,2025
-8,8122,Zonovan Knight,RB,ARI,DAL,Active,,46.0,46.0,31,5.95,5.95,50,20,20,20,50,50,60,61,F_position_specific,2025
-8,11647,Kimani Vidal,RB,LAC,LAR,Active,,42.0,42.0,41,5.68,5.68,52,33,42,34,10,81,58,31,J2_RB_role_stability,2025
-8,13305,Mike Washington Jr.,RB,LV,NYJ,Active,,31.1,31.1,66,5.65,5.65,53,22,14,31,16,52,20,49,J2_RB_role_stability,2025
-8,12491,Corey Kiner,RB,NE,MIA,Active,,37.3,37.3,50,5.54,5.54,54,25,19,26,20,63,48,73,J2_RB_role_stability,2025
-8,12928,Amar Johnson,RB,LAC,LAR,Active,,40.6,40.6,43,5.52,5.52,57,50,20,20,50,50,58,31,F_position_specific,2025
-8,12471,DJ Giddens,RB,IND,JAX,Active,,37.5,37.5,49,5.52,5.52,56,50,20,20,50,50,30,34,F_position_specific,2025
-8,11649,Kendall Milton,RB,CIN,TEN,Active,,44.5,44.5,34,5.52,5.52,55,50,20,20,50,50,49,86,F_position_specific,2025
-8,4219,Jeremy McNichols,RB,WAS,PHI,Active,,34.1,34.1,60,5.21,5.21,58,17,5,29,41,50,35,52,J2_RB_role_stability,2025
-8,4663,Austin Ekeler,RB,WAS,PHI,Active,,37.0,37.0,51,5.15,5.15,59,15,14,17,8,68,35,52,J2_RB_role_stability,2025
-8,00-0039373,Audric Estimé,RB,CLE,PIT,UNKNOWN,,37.5,37.5,48,5.0,5.0,60,31,32,32,41,50,21,25,J2_RB_role_stability,2025
-8,12969,Lan Larison,RB,NE,MIA,Active,,28.9,28.9,69,4.82,4.82,61,7,12,6,0,50,48,73,J2_RB_role_stability,2025
+8,7561,Elijah Mitchell,RB,PHI,WAS,Active,,36.5,36.5,52,6.14,6.14,48,24,26,24,0,50,57,25,F_position_specific,2025
+8,13337,Emmett Johnson,RB,KC,DEN,Active,,27.5,27.5,73,5.98,5.98,49,11,14,12,4,52,33,46,J2_RB_role_stability,2025
+8,8181,Connor Heyward,RB,LV,NYJ,Active,,33.3,33.3,64,5.95,5.95,52,20,20,20,50,50,20,49,F_position_specific,2025
+8,13419,Jaydn Ott,RB,KC,DEN,Active,,34.6,34.6,57,5.95,5.95,50,20,20,20,50,50,33,46,F_position_specific,2025
+8,8122,Zonovan Knight,RB,ARI,DAL,Active,,46.0,46.0,31,5.95,5.95,51,20,20,20,50,50,60,61,F_position_specific,2025
+8,4219,Jeremy McNichols,RB,WAS,PHI,Active,,34.1,34.1,60,5.92,5.92,53,17,5,29,41,50,35,52,F_position_specific,2025
+8,11647,Kimani Vidal,RB,LAC,LAR,Active,,42.0,42.0,41,5.68,5.68,54,33,42,34,10,81,58,31,J2_RB_role_stability,2025
+8,13305,Mike Washington Jr.,RB,LV,NYJ,Active,,31.1,31.1,66,5.65,5.65,55,22,14,31,16,52,20,49,J2_RB_role_stability,2025
+8,12491,Corey Kiner,RB,NE,MIA,Active,,37.3,37.3,50,5.54,5.54,56,25,19,26,20,63,48,73,J2_RB_role_stability,2025
+8,12928,Amar Johnson,RB,LAC,LAR,Active,,40.6,40.6,43,5.52,5.52,59,50,20,20,50,50,58,31,F_position_specific,2025
+8,12471,DJ Giddens,RB,IND,JAX,Active,,37.5,37.5,49,5.52,5.52,58,50,20,20,50,50,30,34,F_position_specific,2025
+8,11649,Kendall Milton,RB,CIN,TEN,Active,,44.5,44.5,34,5.52,5.52,57,50,20,20,50,50,49,86,F_position_specific,2025
+8,4663,Austin Ekeler,RB,WAS,PHI,Active,,37.0,37.0,51,5.15,5.15,60,15,14,17,8,68,35,52,J2_RB_role_stability,2025
+8,12531,Trevor Etienne,RB,CAR,GB,Active,,28.2,28.2,71,4.76,4.76,61,15,9,22,4,29,41,49,F_position_specific,2025
 8,9506,Sean Tucker,RB,TB,ATL,Active,,38.9,38.9,44,4.7,4.7,62,17,27,12,30,63,80,64,J2_RB_role_stability,2025
-8,11571,Isaiah Davis,RB,NYJ,LV,Active,,38.3,38.3,45,4.52,4.52,63,18,20,19,8,53,72,58,J2_RB_role_stability,2025
-8,12531,Trevor Etienne,RB,CAR,GB,Active,,28.2,28.2,71,4.16,4.16,64,15,9,22,4,29,41,49,J2_RB_role_stability,2025
-8,12469,Dylan Sampson,RB,CLE,PIT,Active,,25.9,25.9,76,4.06,4.06,65,15,21,15,0,29,21,25,J2_RB_role_stability,2025
-8,00-0038738,Hunter Luepke,RB,DAL,ARI,UNKNOWN,,33.8,33.8,62,3.94,3.94,66,6,6,5,6,38,68,100,J2_RB_role_stability,2025
-8,7608,Khalil Herbert,RB,ATL,TB,Active,,31.2,31.2,65,3.83,3.83,67,10,15,10,16,50,32,49,J2_RB_role_stability,2025
-8,11729,Sione Vaki,RB,DET,MIN,Active,,24.6,24.6,84,3.72,3.72,68,10,6,9,0,38,35,66,J2_RB_role_stability,2025
+8,12469,Dylan Sampson,RB,CLE,PIT,Active,,25.9,25.9,76,4.68,4.68,63,15,21,15,0,29,21,25,F_position_specific,2025
+8,11571,Isaiah Davis,RB,NYJ,LV,Active,,38.3,38.3,45,4.52,4.52,64,18,20,19,8,53,72,58,J2_RB_role_stability,2025
+8,00-0038738,Hunter Luepke,RB,DAL,ARI,UNKNOWN,,33.8,33.8,62,3.94,3.94,65,6,6,5,6,38,68,100,J2_RB_role_stability,2025
+8,7608,Khalil Herbert,RB,ATL,TB,Active,,31.2,31.2,65,3.83,3.83,66,10,15,10,16,50,32,49,F_position_specific,2025
+8,11729,Sione Vaki,RB,DET,MIN,Active,,24.6,24.6,84,3.72,3.72,67,10,6,9,0,38,35,66,J2_RB_role_stability,2025
+8,7607,Michael Carter,RB,TEN,CIN,Active,,25.0,25.0,81,3.67,3.67,68,14,10,13,8,50,28,26,F_position_specific,2025
 8,11575,Ray Davis,RB,BUF,BAL,Active,,29.5,29.5,68,3.56,3.56,69,8,11,9,0,72,30,88,J2_RB_role_stability,2025
 8,13424,Seth McGowan,RB,IND,JAX,Active,,30.6,30.6,67,3.33,3.33,70,25,15,25,8,63,30,34,J2_RB_role_stability,2025
 8,12544,LeQuint Allen Jr.,RB,JAX,IND,Active,,22.4,22.4,91,3.14,3.14,71,3,0,3,0,28,34,79,J2_RB_role_stability,2025
 8,2359,Ameer Abdullah,RB,JAX,IND,Active,Questionable,21.2,21.2,94,3.13,3.13,72,0,0,0,2,47,34,79,J2_RB_role_stability,2025
 8,11439,Jaleel McLaughlin,RB,CLE,PIT,Active,,24.6,24.6,83,2.96,2.96,73,16,13,17,2,29,21,25,J2_RB_role_stability,2025
-8,13405,Kaytron Allen,RB,MIA,NE,Active,,33.9,33.9,61,2.8,2.8,74,20,20,20,19,50,37,28,J2_RB_role_stability,2025
-8,7607,Michael Carter,RB,TEN,CIN,Active,,25.0,25.0,81,2.69,2.69,75,14,10,13,8,50,28,26,J2_RB_role_stability,2025
-8,14026,DJ Herman,RB,MIA,NE,Active,,24.3,24.3,86,2.6,2.6,76,5,6,7,0,32,37,28,J2_RB_role_stability,2025
+8,12969,Lan Larison,RB,NE,MIA,Active,,28.9,28.9,69,2.86,2.86,74,7,12,6,0,50,48,73,F_position_specific,2025
+8,13405,Kaytron Allen,RB,MIA,NE,Active,,33.9,33.9,61,2.8,2.8,75,20,20,20,19,50,37,28,J2_RB_role_stability,2025
+8,14026,DJ Herman,RB,MIA,NE,Active,,24.3,24.3,86,2.57,2.57,76,5,6,7,0,32,37,28,F_position_specific,2025
 8,11574,Dylan Laube,RB,LV,NYJ,Active,,25.0,25.0,80,2.5,2.5,77,10,17,13,6,28,20,49,J2_RB_role_stability,2025
-8,11573,Frank Gore Jr.,RB,BUF,BAL,Active,,25.9,25.9,77,2.33,2.33,78,3,1,5,0,50,30,88,J2_RB_role_stability,2025
+8,6659,Craig Reynolds,RB,WAS,PHI,Active,,27.7,27.7,72,2.49,2.49,78,7,2,9,0,50,35,52,F_position_specific,2025
 8,6931,DeeJay Dallas,RB,MIN,DET,Active,,22.7,22.7,88,2.19,2.19,79,2,5,2,0,43,36,48,J2_RB_role_stability,2025
 8,12543,Tahj Brooks,RB,CIN,TEN,Active,,25.3,25.3,79,2.14,2.14,80,3,1,5,0,28,49,86,J2_RB_role_stability,2025
 8,11643,Jaylen Wright,RB,MIA,NE,Active,Questionable,34.2,34.2,59,2.09,2.09,81,20,3,22,12,77,37,28,J2_RB_role_stability,2025
-8,11280,Brady Russell,RB,SEA,CHI,Active,,28.3,28.3,70,1.9,1.9,82,0,0,0,0,53,39,66,J2_RB_role_stability,2025
-8,6012,Travis Homer,RB,PIT,CLE,Active,,22.5,22.5,90,1.69,1.69,83,2,0,4,8,38,47,46,J2_RB_role_stability,2025
-8,6659,Craig Reynolds,RB,WAS,PHI,Active,,27.7,27.7,72,1.68,1.68,84,7,2,9,0,50,35,52,J2_RB_role_stability,2025
-8,13516,Max Bredeson,RB,MIN,DET,Active,,21.3,21.3,93,1.57,1.57,85,2,0,2,0,43,36,48,J2_RB_role_stability,2025
+8,12516,Kalel Mullings,RB,TEN,CIN,Active,,21.1,21.1,95,2.07,2.07,82,3,1,6,0,50,28,26,F_position_specific,2025
+8,11573,Frank Gore Jr.,RB,BUF,BAL,Active,,25.9,25.9,77,1.93,1.93,83,3,1,5,0,50,30,88,F_position_specific,2025
+8,11280,Brady Russell,RB,SEA,CHI,Active,,28.3,28.3,70,1.9,1.9,84,0,0,0,0,53,39,66,J2_RB_role_stability,2025
+8,6012,Travis Homer,RB,PIT,CLE,Active,,22.5,22.5,90,1.69,1.69,85,2,0,4,8,38,47,46,J2_RB_role_stability,2025
 8,11570,Rasheen Ali,RB,BAL,BUF,Active,,25.0,25.0,82,1.53,1.53,86,5,3,5,0,29,55,67,J2_RB_role_stability,2025
 8,12939,Anthony Tyus III,RB,CAR,GB,Active,,24.0,24.0,87,1.5,1.5,87,3,11,6,3,27,41,49,J2_RB_role_stability,2025
-8,13315,Dean Connors,RB,LA,LAC,Active,,24.5,24.5,85,1.41,1.41,88,0,0,0,0,53,55,70,J2_RB_role_stability,2025
-8,11237,Jacob Saylors,RB,DET,MIN,Active,,22.5,22.5,89,1.29,1.29,89,0,0,0,0,54,35,66,J2_RB_role_stability,2025
-8,12787,Josh Williams,RB,TB,ATL,Active,,27.3,27.3,74,1.24,1.24,90,0,0,0,0,50,80,64,J2_RB_role_stability,2025
-8,9510,Lew Nichols,RB,PIT,CLE,Active,,21.5,21.5,92,0.89,0.89,91,1,1,2,0,29,47,46,J2_RB_role_stability,2025
-8,11299,Zavier Scott,RB,CHI,SEA,Active,,25.7,25.7,78,0.78,0.78,92,0,0,0,0,57,37,48,J2_RB_role_stability,2025
-8,12516,Kalel Mullings,RB,TEN,CIN,Active,,21.1,21.1,95,0.56,0.56,93,3,1,6,0,50,28,26,J2_RB_role_stability,2025
+8,13516,Max Bredeson,RB,MIN,DET,Active,,21.3,21.3,93,1.47,1.47,88,2,0,2,0,43,36,48,F_position_specific,2025
+8,13315,Dean Connors,RB,LA,LAC,Active,,24.5,24.5,85,1.41,1.41,89,0,0,0,0,53,55,70,J2_RB_role_stability,2025
+8,11237,Jacob Saylors,RB,DET,MIN,Active,,22.5,22.5,89,1.29,1.29,90,0,0,0,0,54,35,66,J2_RB_role_stability,2025
+8,12787,Josh Williams,RB,TB,ATL,Active,,27.3,27.3,74,1.22,1.22,91,0,0,0,0,50,80,64,F_position_specific,2025
+8,9510,Lew Nichols,RB,PIT,CLE,Active,,21.5,21.5,92,0.89,0.89,92,1,1,2,0,29,47,46,J2_RB_role_stability,2025
+8,11299,Zavier Scott,RB,CHI,SEA,Active,,25.7,25.7,78,0.78,0.78,93,0,0,0,0,57,37,48,J2_RB_role_stability,2025
 8,8254,Julius Chestnut,RB,TEN,CIN,Active,,18.9,18.9,96,0.16,0.16,94,0,0,0,0,53,28,26,J2_RB_role_stability,2025
 8,8130,Trey McBride,TE,ARI,DAL,Active,,66.4,66.4,1,17.26,17.26,1,100,100,37,31,82,32,61,F_position_specific,2025
 8,12517,Colston Loveland,TE,CHI,SEA,Active,,55.5,55.5,3,14.91,14.91,2,75,76,41,24,61,33,48,F_position_specific,2025
