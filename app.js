@@ -1801,6 +1801,79 @@ async function loadWaiverWire() {
       ? data.provisional_top_10
       : [];
 
+    // Week 8 approved editorial waiver order; independent of model weights.
+    // Deliberately render all approved names even if the automated candidate
+    // pool omits a player. This prevents refreshes from silently reordering picks.
+    if (Number(data.target_week) === 8) {
+      const editorial = {
+        overall: ["Omar Cooper Jr.","Tre Tucker","Jonah Coleman","Keon Coleman","KC Concepcion","Caleb Douglas","Hunter Henry","Chig Okonkwo","Antonio Williams","Tyler Higbee"],
+        QB: ["Kirk Cousins","Jacoby Brissett","Malik Willis","Geno Smith","Aaron Rodgers"],
+        RB: ["Jonah Coleman","Elijah Mitchell","Seth McGowan","Kaelon Black","Mike Washington Jr."],
+        WR: ["Omar Cooper Jr.","Tre Tucker","Keon Coleman","KC Concepcion","Caleb Douglas"],
+        TE: ["Hunter Henry","Chig Okonkwo","Tyler Higbee","Colby Parkinson","Brenton Strange"]
+      };
+      const teamFallback = {
+        "Omar Cooper Jr.":"NYJ","Tre Tucker":"LV","Jonah Coleman":"DEN",
+        "Keon Coleman":"BUF","KC Concepcion":"CLE","Caleb Douglas":"MIA",
+        "Hunter Henry":"NE","Chig Okonkwo":"WAS","Antonio Williams":"WAS",
+        "Tyler Higbee":"LAR","Kirk Cousins":"LV","Jacoby Brissett":"ARI",
+        "Malik Willis":"MIA","Geno Smith":"NYJ","Aaron Rodgers":"PIT",
+        "Elijah Mitchell":"PHI","Seth McGowan":"IND","Kaelon Black":"SF",
+        "Mike Washington Jr.":"LV","Colby Parkinson":"LAR","Brenton Strange":"JAX"
+      };
+      const positions = Object.fromEntries(
+        ["QB","RB","WR","TE"].flatMap(pos => editorial[pos].map(name => [name,pos]))
+      );
+      container.replaceChildren();
+      const title = document.createElement("h3");
+      title.textContent = "DATA DADDY — WEEK 8 WAIVER WIRE";
+      container.appendChild(title);
+      const description = document.createElement("p");
+      description.textContent = "Official DATA DADDY editorial waiver priorities. AI projections and evidence scores are calculated independently. Monitor roster availability, injury reports and bye weeks.";
+      container.appendChild(description);
+      const sections = [
+        ["TOP 10 OVERALL",editorial.overall],
+        ["TOP 5 QUARTERBACKS",editorial.QB],
+        ["TOP 5 RUNNING BACKS",editorial.RB],
+        ["TOP 5 WIDE RECEIVERS",editorial.WR],
+        ["TOP 5 TIGHT ENDS",editorial.TE]
+      ];
+      sections.forEach(([label,names]) => {
+        const section = document.createElement("section");
+        section.className = "waiver-editorial-section";
+        const heading = document.createElement("h4");
+        heading.textContent = label;
+        section.appendChild(heading);
+        names.forEach((name,index) => {
+          const candidate = candidates.find(p => normalizeName(p.name) === normalizeName(name));
+          const row = document.createElement("div");
+          row.className = "waiver-player";
+          const heading = document.createElement("strong");
+          heading.textContent = "#" + (index+1) + " " + name + " (" + positions[name] + " • " + (candidate?.team || teamFallback[name] || "Team pending") + ")";
+          row.appendChild(heading);
+          if (candidate) {
+            const info = document.createElement("p");
+            const score = Number(candidate.waiver_evidence_score);
+            info.textContent = "Data Daddy evidence: " + (Number.isFinite(score) ? score.toFixed(2) + "/100" : "Not scored") +
+              " • Rostered: " + (Number.isFinite(Number(candidate.average_rostered)) && candidate.average_rostered !== null ? Number(candidate.average_rostered).toFixed(1) + "%" : "Not verified");
+            row.appendChild(info);
+          } else {
+            const info = document.createElement("p");
+            info.textContent = "Editorial selection • Automated evidence/ownership pending verification";
+            row.appendChild(info);
+          }
+          if (["Kaelon Black"].includes(name)) {
+            const note = document.createElement("p");
+            note.textContent = "Week 8 BYE — future-value stash";
+            row.appendChild(note);
+          }
+          section.appendChild(row);
+        });
+        container.appendChild(section);
+      });
+      return;
+    }
+
     // Week 7 editorial waiver rankings. Evidence scores remain model-generated.
     const editorialWeek7 = {
       overall: ["Germie Bernard","Omar Cooper Jr.","Kendre Miller","Ryan Flournoy","DeMario Douglas","Roschon Johnson","Tyler Higbee","Michael Mayer","Aaron Rodgers","Bam Knight"],
