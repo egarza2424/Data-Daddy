@@ -50,6 +50,10 @@ jobs:
         run: python scripts/audit_week8_rb_ai_j2_divergence.py
       - name: Inspect J2 feature alignment for priority RBs
         run: python scripts/audit_week8_rb_j2_feature_alignment.py
+      - name: Validate historical J2 rushing versus receiving bias
+        run: |
+          python scripts/validate_rb_model_j2.py --season 2025
+          python scripts/audit_rb_j2_rush_receive_bias.py
       - name: Upload audit evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -62,4 +66,5 @@ jobs:
             projection-model/validation/2026-week*-rb-low-sample-role-review.csv
             projection-model/validation/2026-week8-rb-ai-j2-divergence.csv
             projection-model/validation/2026-week8-rb-workload-review.csv
+            projection-model/validation/2025-rb-j2-rush-receive-bias.csv
           if-no-files-found: warn
