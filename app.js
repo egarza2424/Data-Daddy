@@ -9541,6 +9541,25 @@ const depthOrder =
     if (absent.length) console.warn("Week 8 approved WR editorial players not in live player pool:", absent);
   }
 
+  // Week 8 approved analyst TE Top 24: display-only ordering.
+  // Original AI scores and projected PPR remain unchanged.
+  if (position === "TE" && !snapshotWeek &&
+      Number(document.documentElement.dataset.targetWeek) === 8) {
+    const approved = ["Trey McBride","Brock Bowers","Colston Loveland","Hunter Henry","Kyle Pitts Sr.","Chig Okonkwo","Mason Taylor","Brenton Strange","Tyler Higbee","Tucker Kraft","T.J. Hockenson","Travis Kelce","Dallas Goedert","Colby Parkinson","Eli Raridon","Dalton Kincaid","Greg Dulcich","Sam LaPorta","AJ Barner","Pat Freiermuth","Mark Andrews","Davis Allen","Noah Gray","Charlie Kolar"];
+    const priority = new Map(approved.map((name, i) => [normalizeName(name), i]));
+    rankings.sort((a, b) => {
+      const ai = priority.get(normalizeName(a.player.name));
+      const bi = priority.get(normalizeName(b.player.name));
+      if (ai !== undefined && bi !== undefined) return ai - bi;
+      if (ai !== undefined) return -1;
+      if (bi !== undefined) return 1;
+      return b.score - a.score || a.player.name.localeCompare(b.player.name);
+    });
+    const absent = approved.filter(name =>
+      !rankings.some(({player}) => normalizeName(player.name) === normalizeName(name)));
+    if (absent.length) console.warn("Week 8 analyst TE players missing from eligible roster:", absent);
+  }
+
   rankingCache[cacheKey] = rankings;
  
   return rankings;
