@@ -13,7 +13,8 @@ jobs:
           python-version: '3.12'
       - run: pip install pandas numpy
       - name: Generate fresh read-only J2 features
-        run: |
-          python scripts/build_live_rb_j2_features.py
-      - name: Run Jacobs sensitivity scenarios
+        run: python scripts/build_live_rb_j2_features.py
+      - name: Run Jacobs receiving sensitivity
         run: python scripts/audit_week8_jacobs_j2_sensitivity.py
+      - name: Run Jacobs full-workload sensitivity
+        run: python scripts/audit_week8_jacobs_full_workload.py
