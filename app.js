@@ -7929,6 +7929,31 @@ if (Number(document.documentElement.dataset.targetWeek) === 8 &&
   });
 }
 
+// Jacksonville lists Travis Hunter as WR/CB. Sleeper's position-filtered
+// feeds currently omit him, so restore a clearly labeled local roster identity.
+// Never invent a GSIS/Sleeper ID or include defensive production in WR scoring.
+if (!players.some(p => normalizeLookupName(p.name) === "travis hunter" &&
+    normalizeLookupTeam(p.team) === "JAX")) {
+  const hunterLookup = Object.entries(nflPlayerLookup).filter(([, nfl]) =>
+    normalizeLookupName(nfl.name) === "travis hunter" &&
+    normalizeLookupTeam(nfl.team) === "JAX"
+  );
+  const verifiedId = hunterLookup.length === 1 ? hunterLookup[0][0] : null;
+  players.push({
+    id: verifiedId || "jax-travis-hunter-offense",
+    nflId: verifiedId,
+    name: "Travis Hunter",
+    position: "WR",
+    team: "JAX",
+    status: "UNKNOWN",
+    injuryStatus: null,
+    depthChartOrder: null,
+    depthChartPosition: "WR",
+    backendAdded: true
+  });
+  console.warn("DATA DADDY Hunter roster fallback active; backend identity:", verifiedId || "not available");
+}
+
 /*
  * Match Sleeper records to the authoritative
  * NFL/GSIS IDs produced by our backend.
