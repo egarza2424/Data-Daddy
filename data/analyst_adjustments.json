@@ -1416,8 +1416,8 @@
       "player_id": "3271",
       "player_name": "Tyler Higbee",
       "ai_score_delta": "0.00",
-      "projected_ppr_delta": "2.42",
-      "reason": "Approved Week 8 TE analyst PPR projection: original 7.56 to 9.98; retain baseline for audit.",
+      "projected_ppr_delta": "3.64",
+      "reason": "Approved Week 8 TE analyst PPR projection revised from 9.98 to 11.20; original model baseline 7.56 retained for audit.",
       "source": "Week 8 TE manual PPR review and publication approval",
       "author": "egarza2424"
     },
