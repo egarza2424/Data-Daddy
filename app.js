@@ -7798,7 +7798,7 @@ function setupPlayerSearch(input, resultsBox, selectElement) {
 
 async function loadPlayers() {
   try {
-    const positions = ["QB", "RB", "WR", "TE"];
+    const positions = ["QB", "RB", "WR", "TE", "CB"];
 
     const requests = positions.map((position) =>
       fetch(`https://api.sleeper.app/v1/players/nfl?position=${position}&active=true`)
@@ -7824,13 +7824,16 @@ async function loadPlayers() {
         player.first_name &&
         player.last_name &&
         player.team &&
-        ["QB", "RB", "WR", "TE"].includes(player.position)
+        (["QB", "RB", "WR", "TE"].includes(player.position) ||
+          (player.position === "CB" && player.first_name === "Travis" &&
+           player.last_name === "Hunter" && player.team === "JAX"))
       ) {
         uniquePlayers.set(player.player_id, {
           id: player.player_id,
           nflId: player.gsis_id || null,
           name: `${player.first_name} ${player.last_name}`,
-          position: player.position,
+          position: player.position === "CB" && player.first_name === "Travis" &&
+            player.last_name === "Hunter" && player.team === "JAX" ? "WR" : player.position,
           team: player.team,
           status: player.status || "Unknown",
           injuryStatus: player.injury_status || null,
