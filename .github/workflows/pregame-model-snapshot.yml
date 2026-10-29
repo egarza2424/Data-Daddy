@@ -57,6 +57,14 @@ jobs:
               console.log("Opening Fantasy AI Player Lab...");
 
 
+              // Attach browser diagnostics before navigation so startup logs are captured.
+              page.on("console", msg => {
+                if (msg.text().includes("DATA DADDY Hunter roster diagnostic") ||
+                    msg.text().includes("DATA DADDY Hunter not returned")) {
+                  console.log("HUNTER SOURCE:", msg.type(), msg.text());
+                }
+              });
+
               await page.goto(
                 "https://egarza2424.github.io/Data-Daddy/",
                 {
