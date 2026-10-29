@@ -9,6 +9,7 @@ on:
       - "scripts/build_gameday_availability.py"
       - "data/starter_absence_opportunities.json"
       - "scripts/build_weekly_ppr_projections.py"
+      - "data/analyst_adjustments.json"
   schedule:
     # Hourly injury-feed refresh and projection recalculation, all week.
     - cron: "0 * * * *"
