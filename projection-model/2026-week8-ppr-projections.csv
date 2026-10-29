@@ -139,27 +139,27 @@ snapshot_week,player_id,player_name,position,team,opponent,roster_status,injury_
 8,12517,Colston Loveland,TE,CHI,SEA,Active,,55.6,55.6,3,14.96,14.96,3,75,76,41,24,61,33,50,F_position_specific,2025
 8,3214,Hunter Henry,TE,NE,MIA,Active,,55.2,55.2,4,13.41,13.41,6,50,66,33,14,86,80,69,F_position_specific,2025
 8,11604,Brock Bowers,TE,LV,NYJ,Active,Questionable,52.8,52.8,2,16.37,12.39,2,84,69,23,14,77,38,51,F_position_specific,2025
-8,9480,Brenton Strange,TE,JAX,IND,Active,,52.2,52.2,8,10.1,12.15,14,72,56,22,4,85,46,86,F_position_specific,2025
+8,9480,Brenton Strange,TE,JAX,IND,Active,,52.2,52.2,8,10.1,12.15,15,72,56,22,4,85,46,86,F_position_specific,2025
 8,12518,Tyler Warren,TE,IND,JAX,Active,Questionable,53.2,53.2,25,12.14,12.14,9,81,76,23,18,70,52,31,F_position_specific,2025
 8,12498,Mason Taylor,TE,NYJ,LV,Active,,51.3,51.3,7,6.75,11.81,25,47,69,28,14,60,71,60,F_position_specific,2025
-8,1466,Travis Kelce,TE,KC,DEN,Active,,44.3,44.3,12,11.18,11.18,10,53,36,34,4,72,56,46,F_position_specific,2025
+8,1466,Travis Kelce,TE,KC,DEN,Active,,44.3,44.3,12,11.18,11.18,11,53,36,34,4,72,56,46,F_position_specific,2025
 8,7553,Kyle Pitts Sr.,TE,ATL,TB,Active,,55.8,55.8,5,13.88,10.91,5,56,77,20,27,84,47,46,F_position_specific,2025
-8,5022,Dallas Goedert,TE,PHI,WAS,Active,,50.4,50.4,13,10.62,10.62,12,75,49,21,2,90,69,25,F_position_specific,2025
+8,5022,Dallas Goedert,TE,PHI,WAS,Active,,50.4,50.4,13,10.62,10.62,13,75,49,21,2,90,69,25,F_position_specific,2025
 8,6865,Colby Parkinson,TE,LA,LAC,Active,Questionable,46.2,46.2,14,7.65,10.38,22,44,44,29,14,51,35,74,F_position_specific,2025
-8,8172,Greg Dulcich,TE,MIA,NE,Active,Questionable,46.7,46.7,17,10.32,10.32,13,53,52,25,14,80,69,31,F_position_specific,2025
-8,5844,T.J. Hockenson,TE,MIN,DET,Active,,48.8,48.8,11,10.07,10.07,15,59,57,20,18,37,79,50,F_position_specific,2025
+8,8172,Greg Dulcich,TE,MIA,NE,Active,Questionable,46.7,46.7,17,10.32,10.32,14,53,52,25,14,80,69,31,F_position_specific,2025
+8,5844,T.J. Hockenson,TE,MIN,DET,Active,,48.8,48.8,11,10.07,10.07,16,59,57,20,18,37,79,50,F_position_specific,2025
 8,9484,Tucker Kraft,TE,GB,CAR,Active,,51.2,51.2,10,13.94,9.97,4,63,57,14,31,85,43,71,F_position_specific,2025
 8,11603,AJ Barner,TE,SEA,CHI,Active,,45.2,45.2,19,7.86,9.89,20,53,31,23,8,74,69,67,F_position_specific,2025
 8,8210,Chig Okonkwo,TE,WAS,PHI,Active,,44.4,44.4,6,12.44,9.5,8,53,48,20,0,68,47,58,F_position_specific,2025
 8,13421,Eli Raridon,TE,NE,MIA,Active,,46.3,46.3,15,8.29,9.29,18,38,47,19,14,67,80,69,F_position_specific,2025
-8,10236,Dalton Kincaid,TE,BUF,BAL,Active,Questionable,40.6,40.6,16,11.1,9.1,11,38,29,25,18,34,50,89,F_position_specific,2025
+8,10236,Dalton Kincaid,TE,BUF,BAL,Active,Questionable,40.6,40.6,16,11.1,9.1,12,38,29,25,18,34,50,89,F_position_specific,2025
 8,12506,Harold Fannin Jr.,TE,CLE,PIT,Active,,40.1,40.1,26,9.01,9.01,17,50,39,27,6,49,42,29,F_position_specific,2025
 8,7600,Pat Freiermuth,TE,PIT,CLE,Active,,40.4,40.4,20,8.07,8.07,19,47,34,21,14,50,36,49,F_position_specific,2025
 8,8127,Charlie Kolar,TE,LAC,LAR,Active,,38.0,38.0,24,2.98,8.03,44,41,26,23,6,80,48,38,F_position_specific,2025
 8,5012,Mark Andrews,TE,BAL,BUF,Active,,41.6,41.6,21,7.75,7.75,21,41,21,17,24,66,64,72,F_position_specific,2025
 8,10214,Davis Allen,TE,LA,LAC,Active,,42.3,42.3,22,5.54,7.57,34,25,46,19,18,34,35,74,F_position_specific,2025
 8,10859,Sam LaPorta,TE,DET,MIN,Active,,46.5,46.5,18,12.54,7.56,7,63,55,6,22,49,20,67,F_position_specific,2025
-8,3271,Tyler Higbee,TE,LA,LAC,Active,,41.3,41.3,9,9.98,7.56,16,41,29,16,0,67,35,74,F_position_specific,2025
+8,3271,Tyler Higbee,TE,LA,LAC,Active,,41.3,41.3,9,11.2,7.56,10,41,29,16,0,67,35,74,F_position_specific,2025
 8,13273,Josh Cuevas,TE,BAL,BUF,Active,,39.9,39.9,27,7.33,7.33,23,31,37,14,8,58,64,72,F_position_specific,2025
 8,7828,Noah Gray,TE,KC,DEN,Active,,37.7,37.7,23,6.7,6.7,26,28,32,15,6,86,56,46,F_position_specific,2025
 8,12493,Oronde Gadsden,TE,LAC,LAR,Active,,35.7,35.7,35,6.12,6.12,30,47,19,15,14,40,48,38,F_position_specific,2025
