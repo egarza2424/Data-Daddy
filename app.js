@@ -10481,6 +10481,8 @@ function exportModelSnapshot() {
 
   const snapshot = [];
 
+  // Avoid a cached live ranking that was filtered by PPR membership.
+  clearRankingCaches();
   // Bypass only the published-PPR membership filter during snapshot export.
   window.__dataDaddyExportingModelSnapshot = true;
   positions.forEach((position) => {
@@ -10978,14 +10980,13 @@ async function initializeApp() {
   await loadWeeklyPprProjections();
 
  
+  // Load availability before building the player pool so verified
+  // questionable players can be restored when Sleeper omits them.
+  await loadGamedayAvailability();
+
   // Load the current NFL player pool and connect
   // Sleeper players to NFL/GSIS IDs.
   await loadPlayers();
-
-  // Load the latest game-day availability snapshot.
-  // A missing or stale snapshot will not block startup.
-  
-  await loadGamedayAvailability();
   await loadLineupKickoffSchedule();
   await loadNflInactiveObservations();
 
