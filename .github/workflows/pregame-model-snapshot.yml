@@ -711,6 +711,22 @@ jobs:
                 );
               }
 
+              // Week 8 required-player guard: never silently publish
+              // another snapshot without the verified questionable WR.
+              if (deployedWeek === 8) {
+                const hasMcConkey = lines.slice(1).some(line =>
+                  line.split(",")[1] === "11635" &&
+                  line.includes('"Ladd McConkey"')
+                );
+                if (!hasMcConkey) {
+                  throw new Error(
+                    "Week 8 snapshot missing Ladd McConkey (11635). " +
+                    "Check live player loading, availability and ranking eligibility."
+                  );
+                }
+                console.log("Week 8 required player verified: Ladd McConkey");
+              }
+
               fs.appendFileSync(process.env.GITHUB_OUTPUT, "captured=true\n");
 
               console.log(
