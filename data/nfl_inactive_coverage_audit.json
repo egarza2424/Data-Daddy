@@ -1,18 +1,18 @@
 {
-  "generated_at_utc": "2026-10-29T11:36:26.827290+00:00",
+  "generated_at_utc": "2026-10-29T21:59:17.930316+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 0,
-    "pending": 15
+    "missing_near_kickoff": 1,
+    "pending": 14
   },
   "games": [
     {
       "game_id": "2026_08_CAR_GB",
       "week": 8,
       "kickoff_utc": "2026-10-30T00:15:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
