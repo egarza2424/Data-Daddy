@@ -266,6 +266,11 @@ jobs:
 
                   const snapshot = [];
 
+                  // Export must bypass the live PPR membership filter and
+                  // cached rankings; otherwise missing PPR players can never
+                  // enter the model snapshot needed to generate their PPR.
+                  window.__dataDaddyExportingModelSnapshot = true;
+                  clearRankingCaches();
                   positions.forEach((position) => {
                     const rankings =
                       getPositionRankings(
