@@ -7810,7 +7810,14 @@ async function loadPlayers() {
         })
     );
 
-    const responses = await Promise.all(requests);
+    // CB is an optional supplemental feed for dual-position players.
+    // A missing CB endpoint must not break the four fantasy position feeds.
+    const responses = await Promise.all(requests.map((request, index) =>
+      index === 4 ? request.catch((error) => {
+        console.warn("Supplemental CB feed unavailable:", error.message);
+        return {};
+      }) : request
+    ));
     sleeperInjuryFetchedAt = Date.now();
     const sleeperPlayers = responses.flatMap((playerMap) =>
       Object.values(playerMap)
@@ -9401,6 +9408,14 @@ const depthOrder =
   }
 
   if (position === "WR") {
+    // Travis Hunter may be listed as a CB by Sleeper even while active
+    // as a fantasy WR. Do not require a WR depth-chart slot for him.
+    const activeDualPositionHunter =
+      displayedWeek === 8 &&
+      player.name === "Travis Hunter" &&
+      playerTeam === "JAX" &&
+      !confirmedUnavailable &&
+      ["ACTIVE", "UNKNOWN"].includes(rosterStatus);
     const verifiedMcconkey =
       displayedWeek === 8 &&
       String(player.id) === "11635" &&
@@ -9409,6 +9424,7 @@ const depthOrder =
       gamedayAvailability?.players?.["11635"]?.roster_status === "ACTIVE" &&
       gamedayAvailability?.players?.["11635"]?.injury_status === "QUESTIONABLE";
     return (
+      activeDualPositionHunter ||
       verifiedMcconkey ||
       (depthOrder >= 1 &&
         depthOrder <= 3) ||
