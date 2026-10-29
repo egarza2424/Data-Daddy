@@ -1057,6 +1057,17 @@
       "reason": "Approved Week 8 WR analyst PPR projection: original 4.10 to 6.80; retain original baseline for audit.",
       "source": "Approved Week 8 WR Top 60 editorial PPR review",
       "author": "egarza2424"
+    },
+    {
+      "season": 2026,
+      "week": 8,
+      "player_id": "11635",
+      "player_name": "Ladd McConkey",
+      "ai_score_delta": "0.00",
+      "projected_ppr_delta": "6.59",
+      "reason": "Approved Week 8 WR analyst PPR projection: original 4.51 to 11.10; retain original baseline for audit. Questionable, not confirmed OUT.",
+      "source": "Approved Week 8 WR Top 60 editorial PPR review",
+      "author": "egarza2424"
     }
   ],
   "example_not_applied": {
