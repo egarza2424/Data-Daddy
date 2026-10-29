@@ -7823,6 +7823,29 @@ async function loadPlayers() {
       Object.values(playerMap)
     );
 
+    // Diagnostic only: identify dual-position Travis Hunter before any eligibility filtering.
+    // Do not alter rankings, player identities, or projection values here.
+    const hunterFeedMatches = responses.flatMap((playerMap, index) =>
+      Object.values(playerMap || {})
+        .filter(p => /travis\\s+hunter/i.test(
+          [p.first_name, p.last_name].filter(Boolean).join(" ")
+        ))
+        .map(p => ({
+          feed: positions[index],
+          sleeperId: String(p.player_id || ""),
+          gsisId: String(p.gsis_id || ""),
+          position: String(p.position || ""),
+          fantasyPositions: p.fantasy_positions || [],
+          team: String(p.team || ""),
+          status: String(p.status || ""),
+          depthChartOrder: p.depth_chart_order ?? null
+        }))
+    );
+    console.info("DATA DADDY Hunter roster diagnostic:", JSON.stringify(hunterFeedMatches));
+    if (!hunterFeedMatches.length) {
+      console.warn("DATA DADDY Hunter not returned by any queried Sleeper feed");
+    }
+
     const uniquePlayers = new Map();
 
     sleeperPlayers.forEach((player) => {
