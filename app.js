@@ -6031,7 +6031,17 @@ function getPlayerWeeklyStats(player) {
 
     // Never match a different position or a partial name. Partial-name
     // matching can silently attribute another player's targets/production.
-    if (rowPosition && playerPosition && rowPosition !== playerPosition) {
+    const hunterOffenseAlias =
+      playerName === "travis hunter" &&
+      normalizedTeam(player.team) === "JAX" &&
+      playerPosition === "WR" &&
+      ["DB", "CB"].includes(rowPosition) &&
+      (Number(row.targets || 0) > 0 ||
+       Number(row.receptions || 0) > 0 ||
+       Number(row.receiving_yards || 0) > 0 ||
+       Number(row.rushing_attempts || row.carries || 0) > 0);
+    if (rowPosition && playerPosition && rowPosition !== playerPosition &&
+        !hunterOffenseAlias) {
       return false;
     }
     const rowTeam = normalizedTeam(row.team);
