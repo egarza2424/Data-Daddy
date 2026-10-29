@@ -177,14 +177,15 @@
       "position": "WR",
       "week7_status": "LEFT_GAME_TURF_TOE_CONFIRMED_BY_COACH",
       "injury": "turf toe",
-      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-oct-28",
+      "source": "https://www.houstonchronicle.com/sports/texans/article/jaylin-noel-turf-toe-22499362.php",
       "beneficiary_review": [
         "Tank Dell",
         "Marvin Harrison Jr.",
-        "Nico Collins"
+        "Nico Collins",
+        "Xavier Hutchinson"
       ],
-      "review_focus": "Coach DeMeco Ryans confirmed turf toe and Noel reportedly wore a boot after the game. Texans have Week 8 bye; review Noel's Week 7 routes/targets and teammates' route share and absences before making any Week 9 target redistribution. No severity grade or recovery timeline confirmed. OCT 28 WEDNESDAY VERIFIED UPDATE: NFL confirms Texans placed Noel on IR with turf toe. Houston has Week 8 bye; no Week 8 PPR changes. For Week 9+, review Tank Dell, Marvin Harrison Jr. and Nico Collins routes/targets and teammate availability before allocating Noel's role. No automatic projection or AI ranking change.",
-      "week8_status": "OFFICIAL_INJURED_RESERVE_OCT28_WEEK8_BYE_OUT_AT_LEAST_FOUR_GAMES",
+      "review_focus": "Coach DeMeco Ryans confirmed turf toe and Noel reportedly wore a boot after the game. Texans have Week 8 bye; review Noel's Week 7 routes/targets and teammates' route share and absences before making any Week 9 target redistribution. No severity grade or recovery timeline confirmed. OCT 28 WEDNESDAY VERIFIED UPDATE: NFL confirms Texans placed Noel on IR with turf toe. Houston has Week 8 bye; no Week 8 PPR changes. For Week 9+, review Tank Dell, Marvin Harrison Jr. and Nico Collins routes/targets and teammate availability before allocating Noel's role. No automatic projection or AI ranking change. OCT 28 EVENING SEVERITY UPDATE: Houston Chronicle (updated 5:35 p.m.) and ESPN/DJ Bien-Aime (Oct 28 evening) report via sources that Noel is EXPECTED SEASON-ENDING with toe surgery anticipated. Texans officially confirmed IR placement only; surgery and full-season absence are MEDIA-REPORTED, not official team confirmation. Week 8 HOU BYE: no Week 8 lineup or projection adjustment. For Week 9+, evaluate Tank Dell (potential slot role but recently returned from long absence), Xavier Hutchinson (slot alternative), Marvin Harrison Jr., Nico Collins and Kayshon Boutte using routes, target share, personnel and return-to-play workload; do not blindly transfer Noel targets. No automatic rankings/projections/weights changes.",
+      "week8_status": "OFFICIAL_IR_OCT28_WEEK8_BYE_EXPECTED_SEASON_ENDING_REPORTED_NOT_TEAM_CONFIRMED",
       "automatic_projection_adjustment": false
     },
     {
