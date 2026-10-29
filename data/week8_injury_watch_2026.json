@@ -13,12 +13,12 @@
       "position": "WR",
       "week7_status": "DID_NOT_RETURN",
       "injury": "chest",
-      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-oct-28",
+      "source": "https://www.denverbroncos.com/news/injury-report-dl-zach-allen-wr-jaylen-waddle-return-to-practice-for-broncos-ahead-of-week-8",
       "beneficiary_review": [
         "DEN active wide receivers"
       ],
-      "review_focus": "Week 7 routes and targets by receiver; Waddle's prior 38 targets and 7 Week 7 targets; do not redistribute until Week 8 availability confirmed. OCT 28 WEDNESDAY VERIFIED UPDATE: NFL Wednesday report: Waddle DNP after reported aggravation of chest injury in Week 7. Courtland Sutton and Marvin Mims Jr. are potential target beneficiaries, but Mims was LIMITED with ankle injury. Verify both receivers' routes, targets, red-zone work and Waddle's Thursday/Friday practice before changing projections. No automatic projection or AI ranking change.",
-      "week8_status": "OFFICIAL_WEDNESDAY_DNP_OCT28_CHEST_GAME_DESIGNATION_PENDING",
+      "review_focus": "Week 7 routes and targets by receiver; Waddle's prior 38 targets and 7 Week 7 targets; do not redistribute until Week 8 availability confirmed. OCT 28 WEDNESDAY VERIFIED UPDATE: NFL Wednesday report: Waddle DNP after reported aggravation of chest injury in Week 7. Courtland Sutton and Marvin Mims Jr. are potential target beneficiaries, but Mims was LIMITED with ankle injury. Verify both receivers' routes, targets, red-zone work and Waddle's Thursday/Friday practice before changing projections. No automatic projection or AI ranking change. OCT 29 OFFICIAL BRONCOS UPDATE: Waddle upgraded from Wednesday DNP to Thursday LIMITED (chest); Marvin Mims Jr. upgraded from LIMITED to FULL (ankle). Friday game status pending. Do not assume Waddle inactive or increase Sutton/Mims target projections; if Friday OUT, compare last-4 routes/targets/red-zone roles, including Week 7 Waddle 7 targets vs Sutton 5 and Mims 2.",
+      "week8_status": "OFFICIAL_THURSDAY_LIMITED_OCT29_CHEST_AFTER_WEDNESDAY_DNP_GAME_STATUS_PENDING",
       "automatic_projection_adjustment": false
     },
     {
@@ -334,8 +334,8 @@
         "Will Shipley (verify active status and role)",
         "Philadelphia rushing/goal-line and receiving split"
       ],
-      "review_focus": "POSTGAME NEW Oct 26 (published Oct 27 ET): Barkley reportedly said he tweaked his previously injured hamstring on his opening run against Dallas, then hurt his back while trying to play through discomfort. The Eagles previously listed him questionable to return with back injury in fourth quarter; neither a formal Week 8 OUT designation nor medical diagnosis/timeline is confirmed. Week 7 game reporting: Barkley 7 carries, 62 rushing yards, 1 TD; Pierce 14 carries, 47 yards, 1 TD; Elijah Mitchell 3 carries, 11 yards. Week 6 with Barkley out: Pierce 61/64 offensive snaps, 12 rushes, 5 targets (4 receptions), 15 routes on 52 QB dropbacks. Review official final Week 7 snap counts, routes, RB targets, inside-5 carries, back/hamstring medical updates and first Week 8 practice report before any projection or injury-opportunity boost. Do not mark Barkley OUT or assume Pierce inherits all receiving work. OCT 27 postgame clarification from Philadelphia Inquirer/FantasyGuru: Barkley says hamstring 'came out fine' and does not expect back issue to keep him out Week 8; this is PLAYER OPTIMISM, not team medical clearance, and differs in emphasis from initial postgame 'tweak' report. Official Week 8 practice and snap-limit assessment required; keep conditional Pierce scenario only. OCT 28 NEW OFFICIAL EAGLES UPDATE: estimated Wednesday DNP (hamstring/back) after Week 7 exit; Wednesday was a walkthrough, not an actual missed full practice. Dameon Pierce is on IR and Jaydon Blue was promoted to active roster. Review Blue/Mitchell/Shipley active roles, observed carries, routes, targets, goal-line usage and Barkley's Thu/Fri participation before considering any PPR or eligibility adjustment. No official Week 8 OUT status; no automatic changes.",
-      "week8_status": "OFFICIAL_WEDNESDAY_ESTIMATED_DNP_OCT28_HAMSTRING_BACK_GAME_STATUS_PENDING",
+      "review_focus": "POSTGAME NEW Oct 26 (published Oct 27 ET): Barkley reportedly said he tweaked his previously injured hamstring on his opening run against Dallas, then hurt his back while trying to play through discomfort. The Eagles previously listed him questionable to return with back injury in fourth quarter; neither a formal Week 8 OUT designation nor medical diagnosis/timeline is confirmed. Week 7 game reporting: Barkley 7 carries, 62 rushing yards, 1 TD; Pierce 14 carries, 47 yards, 1 TD; Elijah Mitchell 3 carries, 11 yards. Week 6 with Barkley out: Pierce 61/64 offensive snaps, 12 rushes, 5 targets (4 receptions), 15 routes on 52 QB dropbacks. Review official final Week 7 snap counts, routes, RB targets, inside-5 carries, back/hamstring medical updates and first Week 8 practice report before any projection or injury-opportunity boost. Do not mark Barkley OUT or assume Pierce inherits all receiving work. OCT 27 postgame clarification from Philadelphia Inquirer/FantasyGuru: Barkley says hamstring 'came out fine' and does not expect back issue to keep him out Week 8; this is PLAYER OPTIMISM, not team medical clearance, and differs in emphasis from initial postgame 'tweak' report. Official Week 8 practice and snap-limit assessment required; keep conditional Pierce scenario only. OCT 28 NEW OFFICIAL EAGLES UPDATE: estimated Wednesday DNP (hamstring/back) after Week 7 exit; Wednesday was a walkthrough, not an actual missed full practice. Dameon Pierce is on IR and Jaydon Blue was promoted to active roster. Review Blue/Mitchell/Shipley active roles, observed carries, routes, targets, goal-line usage and Barkley's Thu/Fri participation before considering any PPR or eligibility adjustment. No official Week 8 OUT status; no automatic changes. OCT 29 OFFICIAL THURSDAY UPDATE (6:15 PM ET): Barkley DNP in an actual full practice after Wednesday's estimated DNP. Not ruled OUT. Eagles confirm Jaydon Blue only healthy RB on active roster, Elijah Mitchell on practice squad (elevated Week 7); Dameon Pierce on IR, Will Shipley on IR. If Barkley OUT, verify Mitchell game-day elevation, Blue/Mitchell prior route and rushing work, inside-5 carries and team passing environment before updating. Review-only.",
+      "week8_status": "OFFICIAL_THURSDAY_DNP_OCT29_HAMSTRING_BACK_SECOND_CONSECUTIVE_REPORT_GAME_STATUS_PENDING",
       "automatic_projection_adjustment": false
     },
     {
@@ -964,6 +964,40 @@
       ],
       "review_focus": "NEW OFFICIAL OCT 29: Thursday DNP due to illness, not listed Wednesday. No Week 8 game designation or confirmed OUT. Week 7 vs CHI: Henderson 13/54 offensive snaps (24%), 3 carries, 2 targets; Stevenson 37/54 snaps (69%), 6 carries, 5 targets, 58% routes per third-party usage; Kiner 4 carries and 6 snaps. If Henderson OUT, first evaluate Stevenson/Kiner verified snaps, carries, routes, targets and goal-line work. Stevenson already lead RB and may gain modest rotational touches; do not transfer all Henderson work or assume red-zone boost. Review-only; no AI/PPR model changes.",
       "week8_status": "OFFICIAL_THURSDAY_DNP_OCT29_ILLNESS_NO_GAME_DESIGNATION",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Kyle Monangai",
+      "team": "CHI",
+      "position": "RB",
+      "week7_status": "INACTIVE_WEEK7_MISSED_THREE_CONSECUTIVE_GAMES",
+      "injury": "thumb/toe (turf toe reported)",
+      "source": "https://www.nfl.com/injuries/",
+      "beneficiary_review": [
+        "D'Andre Swift",
+        "Roschon Johnson",
+        "Zavier Scott (verify active role)"
+      ],
+      "review_focus": "OCT 29 OFFICIAL FIRST WEEK8 REPORT: Bears list Monangai DNP (estimated, team did not practice Thursday) ahead of Monday Nov 2 at SEA; also missed Wednesday session per local report. NOT ruled out. Week7 PFF: Swift had season-high snap rate and played first 20 offensive snaps; Johnson was backup, Scott third back. With Monangai missing previous three games, much of his workload is ALREADY reflected in Swift's baseline; avoid double-counting injury opportunity. If OUT, verify Swift/Johnson last-4 snaps, carries, routes, targets, inside-5 usage and Scott's gameday status before changes.",
+      "week8_status": "OFFICIAL_THURSDAY_ESTIMATED_DNP_OCT29_THUMB_TOE_GAME_STATUS_PENDING",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "RJ Harvey",
+      "team": "DEN",
+      "position": "RB",
+      "week7_status": "PLAYED_WEEK7_16_OF_61_SNAPS_3_CARRIES_2_TARGETS",
+      "injury": "knee",
+      "source": "https://www.denverbroncos.com/news/injury-report-dl-zach-allen-wr-jaylen-waddle-return-to-practice-for-broncos-ahead-of-week-8",
+      "beneficiary_review": [
+        "Jonah Coleman",
+        "J.K. Dobbins",
+        "Tyler Badie (depth only)"
+      ],
+      "review_focus": "OCT 29 NEW OFFICIAL THURSDAY ADDITION: RJ Harvey added to Broncos practice report with knee injury, LIMITED; not ruled OUT. Week7 role already compressed by Jonah Coleman's return: PFF reported Coleman 30/61 snaps, Harvey 16/61, Dobbins 14/61; Coleman 9 carries/2 targets, Harvey 3 carries/2 targets, Dobbins 6 carries with goal-line TD. If Harvey OUT, evaluate Coleman's lead rushing share vs Dobbins goal-line and passing-down assignments; do not assume Harvey's full receiving role transfers to Coleman. Friday designation pending, no auto changes.",
+      "week8_status": "OFFICIAL_THURSDAY_NEW_ADDITION_LIMITED_OCT29_KNEE_GAME_STATUS_PENDING",
       "automatic_projection_adjustment": false
     }
   ]
