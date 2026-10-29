@@ -2,7 +2,7 @@
   "season": 2026,
   "week": 8,
   "source_url": "https://www.nfl.com/news/nfl-week-8-injury-report-2026-season",
-  "retrieved_at_utc": "2026-10-29T17:31:40.489860+00:00",
+  "retrieved_at_utc": "2026-10-29T17:33:11.144353+00:00",
   "verification_status": "official_source_text_unresolved_player_identity",
   "automatically_verified_outs": [],
   "out_text_observations": [
@@ -38,7 +38,7 @@
       "player_status_verified": false
     },
     {
-      "preceding_context": "\\\"static/chunks/7971-683ece46ea1ea2fc.js\\\",\\\"8969\\\",\\\"static/chunks/8969-8d50efd8fb181216.js\\\",\\\"2561\\\",\\\"static/chunks/2561-b81a0fdae026c704.js\\\",\\\"3950\\\",\\\"static/chunks/3950-391b89bf6369b4a7.js\\\",\\\"1605\\\",\\\"static/chunks/app/%5B%5B...pages%5D%5D/page-53463a7be7c38111.js\\\"],\\\"StoryClient\\\"]\\n5c:T5d9,\"])\nself.__next_f.push([1,\"### PANTHERS\\n\\n* **",
+      "preceding_context": "-f91cd9144cb5\\\",\\\"name\\\":\\\"Lumen Field\\\",\\\"city\\\":\\\"Seattle\\\",\\\"country\\\":\\\"USA\\\"}],\\\"analyticsProperties\\\":{\\\"linkModule\\\":\\\"Main Navigation\\\",\\\"linkName\\\":\\\"Seattle Seahawks\\\",\\\"linkPosition\\\":\\\"4:4\\\"},\\\"target\\\":\\\"_self\\\",\\\"url\\\":\\\"/teams/seattle-seahawks\\\"}]}]}]\\n\"])\nself.__next_f.push([1,\"5c:T5d9,\"])\nself.__next_f.push([1,\"### PANTHERS\\n\\n* **",
       "following_context": "** G \\u003cforge-entity title=\\\"Damien Lewis\\\" slug=\\\"damien-lewis\\\" code=\\\"player\\\"\\u003eDamien Lewis\\u003c/forge-entity\\u003e (knee), OL \\u003cforge-entity title=\\\"Torricelli Simpkins III\\\" slug=\\\"torricelli-simpkins-iii\\\" code=\\\"player\\\"\\u003eTorricelli Simpkins III\\u003c/forge-entity\\u003e (ankle), OLB \\u003cforge-entity title=\\\"Jaelan Phillips\\\" slug=\\\"jaelan-phillips\\\" code=\\\"player\\\"\\u003eJaelan Phillips\\u003c/forge-entity\\u003e (hamstring), CB \\u003cforge-entity title=\\\"Akayleb Evans\\\" slug=\\\"akayleb-evans\\\" code=\\\"player\\\"\\u003eAkayleb Evans\\u003c/forge-entity\\u003e (triceps/knee)\\n* **QUESTIONABLE:** DT \\u003cforge-entity title=\\\"Bobby Brown III\\\" slug=\\\"bobby-brown-iii\\\" code=\\\"player\\\"\\u003eBobby Brown III\\u003c/forge-entity\\u003e (hand)\\n\\n### PACKERS\\n\\n* **OUT:** OL \\u003cforge-entity title=\\\"Travis Glover\\\" slug=\\\"travis-glover\\\" code=\\\"player\\\"\\u003eTravis Glover\\u003c/forge-entity\\u003e (knee), OL \\u003cforge-entity title=\\\"Sean Rhyan\\\" slug=\\\"sean-rhyan\\\" code=\\\"play",
       "team_verified": false,
       "player_status_verified": false
