@@ -1,0 +1,19 @@
+name: Week 8 Jacobs J2 Sensitivity Audit
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas numpy
+      - name: Generate fresh read-only J2 features
+        run: |
+          python scripts/build_live_rb_j2_features.py
+      - name: Run Jacobs sensitivity scenarios
+        run: python scripts/audit_week8_jacobs_j2_sensitivity.py
