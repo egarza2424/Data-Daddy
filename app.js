@@ -7876,6 +7876,26 @@ players = Array.from(
   uniquePlayers.values()
 );
 
+// Restore a verified active/questionable Week 8 WR absent from the
+// Sleeper active-player response. Source identity/status comes from the
+// existing availability feed; model scores remain calculated normally.
+const mcconkeyAvailability = gamedayAvailability?.players?.["11635"];
+if (Number(document.documentElement.dataset.targetWeek) === 8 &&
+    mcconkeyAvailability?.name === "Ladd McConkey" &&
+    mcconkeyAvailability.team === "LAC" &&
+    mcconkeyAvailability.position === "WR" &&
+    mcconkeyAvailability.roster_status === "ACTIVE" &&
+    mcconkeyAvailability.injury_status === "QUESTIONABLE" &&
+    !players.some(p => String(p.id) === "11635" ||
+      (p.name === "Ladd McConkey" && p.team === "LAC"))) {
+  players.push({
+    id: "11635", nflId: null, name: "Ladd McConkey",
+    position: "WR", team: "LAC", status: "Active",
+    injuryStatus: "QUESTIONABLE", depthChartOrder: null,
+    depthChartPosition: null, backendAdded: true
+  });
+}
+
 /*
  * Match Sleeper records to the authoritative
  * NFL/GSIS IDs produced by our backend.
@@ -9378,7 +9398,15 @@ const depthOrder =
   }
 
   if (position === "WR") {
+    const verifiedMcconkey =
+      displayedWeek === 8 &&
+      String(player.id) === "11635" &&
+      player.name === "Ladd McConkey" &&
+      playerTeam === "LAC" &&
+      gamedayAvailability?.players?.["11635"]?.roster_status === "ACTIVE" &&
+      gamedayAvailability?.players?.["11635"]?.injury_status === "QUESTIONABLE";
     return (
+      verifiedMcconkey ||
       (depthOrder >= 1 &&
         depthOrder <= 3) ||
       hasStats
