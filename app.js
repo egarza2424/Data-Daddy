@@ -7798,7 +7798,7 @@ function setupPlayerSearch(input, resultsBox, selectElement) {
 
 async function loadPlayers() {
   try {
-    const positions = ["QB", "RB", "WR", "TE", "CB"];
+    const positions = ["QB", "RB", "WR", "TE", "DB"];
 
     const requests = positions.map((position) =>
       fetch(`https://api.sleeper.app/v1/players/nfl?position=${position}&active=true`)
@@ -7814,7 +7814,7 @@ async function loadPlayers() {
     // A missing CB endpoint must not break the four fantasy position feeds.
     const responses = await Promise.all(requests.map((request, index) =>
       index === 4 ? request.catch((error) => {
-        console.warn("Supplemental CB feed unavailable:", error.message);
+        console.warn("Supplemental DB feed unavailable:", error.message);
         return {};
       }) : request
     ));
@@ -7832,14 +7832,14 @@ async function loadPlayers() {
         player.last_name &&
         player.team &&
         (["QB", "RB", "WR", "TE"].includes(player.position) ||
-          (player.position === "CB" && player.first_name === "Travis" &&
+          (player.position === "DB" && player.first_name === "Travis" &&
            player.last_name === "Hunter" && player.team === "JAX"))
       ) {
         uniquePlayers.set(player.player_id, {
           id: player.player_id,
           nflId: player.gsis_id || null,
           name: `${player.first_name} ${player.last_name}`,
-          position: player.position === "CB" && player.first_name === "Travis" &&
+          position: player.position === "DB" && player.first_name === "Travis" &&
             player.last_name === "Hunter" && player.team === "JAX" ? "WR" : player.position,
           team: player.team,
           status: player.status || "Unknown",
