@@ -876,6 +876,43 @@
       "review_focus": "NEW Oct 28: official Buccaneers Wednesday DNP (hip); no Week 8 game designation. Secondary season usage summary: Bucky Irving ~66.9% of RB weighted opportunities, Gainwell ~27%, Tucker ~6% through Week 7. If Gainwell is OUT, evaluate Irving/Tucker routes, receiving, pass protection and goal-line shares rather than blindly transferring carries; also check Egbuka return and overall pass volume. No automatic PPR/AI changes.",
       "week8_status": "OFFICIAL_WEDNESDAY_DNP_OCT28_HIP_GAME_STATUS_PENDING",
       "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Derwin James Jr.",
+      "team": "LAC",
+      "position": "S",
+      "week7_status": "MISSED_PRIOR_GAMES_HAMSTRING_RETURN_UNCONFIRMED",
+      "injury": "hamstring",
+      "source": "https://www.chargers.com/news/chargers-vs-rams-injury-report-mcconkey-full-james-awosika-don-t-practice-wednesday",
+      "beneficiary_review": [
+        "Puka Nacua",
+        "Tyler Higbee",
+        "Davis Allen",
+        "Colby Parkinson (ribs; DNP)",
+        "Rams passing offense"
+      ],
+      "review_focus": "NEW REVIEW Oct 28 evening: Chargers official Week 8 Wednesday report lists James DNP (hamstring); coach Jim Harbaugh said setback in rehab and potential injured reserve, NOT a confirmed IR move or Week 8 OUT designation. Chargers DB Deane Leonard also DNP (concussion), CB Donte Jackson LIMITED (hamstring). Against Rams, review safety/coverage matchups and Puka Nacua route/target role plus Higbee/Allen/Parkinson TE route and red-zone usage, conditioned on Parkinson rib status and actual Chargers DB absences. No automatic matchup, AI or PPR change until official game status and evidence.",
+      "week8_status": "OFFICIAL_WEDNESDAY_DNP_OCT28_HAMSTRING_SETBACK_IR_POSSIBLE_NOT_CONFIRMED",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Pat Surtain II",
+      "team": "DEN",
+      "position": "CB",
+      "week7_status": "INACTIVE_WEEK7_ANKLE",
+      "injury": "ankle",
+      "source": "https://www.denverbroncos.com/news/injury-report-pat-surtain-ii-improves-to-full-participant-3-broncos-do-not-practice-ahead-of-week-8-game-vs-chiefs",
+      "beneficiary_review": [
+        "Rashee Rice (KC; hamstring/knee limited)",
+        "Xavier Worthy",
+        "Travis Kelce",
+        "Kansas City WR coverage matchups"
+      ],
+      "review_focus": "NEW REVIEW Oct 28 evening: Broncos official report confirms Surtain FULL practice Wednesday after three LIMITED practices and Week 7 inactive. No official Week 8 game clearance yet. If active against Chiefs, review actual projected coverage assignments and KC receiver route/target shares, with Rice's hamstring/knee limited status and possible workload ramp; do not assign an automatic coverage penalty to Rice/Worthy/Kelce or change rankings/PPR without verified matchup evidence.",
+      "week8_status": "OFFICIAL_WEDNESDAY_FULL_OCT28_ANKLE_GAME_STATUS_PENDING",
+      "automatic_projection_adjustment": false
     }
   ]
 }
