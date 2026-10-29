@@ -9716,7 +9716,7 @@ const depthOrder =
   // Preserve underlying AI scores and PPR projections, including missing values.
   if (position === "RB" && !snapshotWeek &&
       Number(document.documentElement.dataset.targetWeek) === 8) {
-    const approved = ["Jahmyr Gibbs","Kenneth Walker III","Bijan Robinson","Javonte Williams","Bucky Irving","James Cook III","D'Andre Swift","Derrick Henry","Kyren Williams","Jonathan Taylor","Ashton Jeanty","Jaylen Warren","Ollie Gordon II","Chuba Hubbard","Breece Hall","Bhayshul Tuten","Josh Jacobs","Aaron Jones Sr.","Saquon Barkley","Chase Brown","Zach Charbonnet","Tony Pollard","Jeremiyah Love","Jonah Coleman","Rachaad White","Quinshon Judkins","Rhamondre Stevenson","Blake Corum","Braelon Allen","Dameon Pierce","Kyle Monangai","Tyler Allgeier","Jordan Mason","Emanuel Wilson","Omarion Hampton","Rico Dowdle"];
+    const approved = ["Jahmyr Gibbs","Kenneth Walker III","Bijan Robinson","Javonte Williams","Bucky Irving","James Cook III","D'Andre Swift","Derrick Henry","Kyren Williams","Josh Jacobs","Jaylen Warren","Ashton Jeanty","Jonathan Taylor","Ollie Gordon II","Chuba Hubbard","Breece Hall","Bhayshul Tuten","Aaron Jones Sr.","Saquon Barkley","Chase Brown","Zach Charbonnet","Tony Pollard","Jeremiyah Love","Jonah Coleman","Rachaad White","Quinshon Judkins","Rhamondre Stevenson","Blake Corum","Braelon Allen","Dameon Pierce","Kyle Monangai","Tyler Allgeier","Jordan Mason","Emanuel Wilson","Omarion Hampton","Rico Dowdle"];
     const priority = new Map(approved.map((name, i) => [normalizeName(name), i]));
     const eligibleMissing = players.filter(player =>
       player.position === "RB" &&
@@ -11391,4 +11391,3 @@ async function initializeApp() {
 }
 
 initializeApp();
-
