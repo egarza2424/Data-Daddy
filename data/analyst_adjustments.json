@@ -12,6 +12,17 @@
       "reason": "Analyst adjustment to target AI Score 44.30 and projected PPR 9.51",
       "source": "Analyst Week 7 review",
       "author": "egarza2424"
+    },
+    {
+      "season": 2026,
+      "week": 8,
+      "player_id": "5850",
+      "player_name": "Josh Jacobs",
+      "ai_score_delta": "0.00",
+      "projected_ppr_delta": "-1.47",
+      "reason": "Approved Week 8 analyst PPR adjustment: J2 baseline 19.18 to 17.71; read-only rushing/receiving sensitivity with 2025 rushing baseline and moderate receiving scenario. Preserve original J2 for accuracy audit.",
+      "source": "scripts/audit_week8_jacobs_full_workload.py; Week 8 analyst approval",
+      "author": "egarza2424"
     }
   ],
   "example_not_applied": {
