@@ -233,8 +233,15 @@ jobs:
                   .toISOString()
                   .slice(0, 10);
 
-              const filename =
-                `${snapshotDate}-pregame-model-snapshot.csv`;
+              // Manual reruns preserve the original immutable pregame file.
+              // Corrections are separately timestamped and never replace it.
+              const isManualCorrection = process.env.GITHUB_EVENT_NAME === "workflow_dispatch";
+              const correctionStamp = new Date().toISOString()
+                .replace(/[-:]/g, "")
+                .replace(/\\.\\d{3}Z$/, "Z");
+              const filename = isManualCorrection
+                ? `${snapshotDate}-pregame-model-snapshot-correction-${correctionStamp}.csv`
+                : `${snapshotDate}-pregame-model-snapshot.csv`;
 
               const destination =
                 path.join(
@@ -975,7 +982,7 @@ jobs:
 
       - name: Freeze PPR projections with immutable dated snapshot
         id: freeze_ppr
-        if: steps.capture.outputs.captured == 'true'
+        if: steps.capture.outputs.captured == 'true' && github.event_name != 'workflow_dispatch'
         run: |
           python - <<'PY'
           import csv
