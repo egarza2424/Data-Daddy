@@ -9445,7 +9445,10 @@ const depthOrder =
   // Do not invent a live AI rank for a WR absent from the weekly model.
   // Players with verified rookie/injury opportunity remain eligible when
   // the weekly builder includes them. Historical snapshots stay unchanged.
+  // Snapshot export must include eligible WRs not yet in the PPR CSV,
+  // so the weekly model can generate their first projection.
   if (position === "WR" && !snapshotWeek &&
+      !window.__dataDaddyExportingModelSnapshot &&
       weeklyPprProjections.some(row =>
         Number(row.snapshot_week) ===
         Number(document.documentElement.dataset.targetWeek) &&
@@ -10450,6 +10453,8 @@ function exportModelSnapshot() {
 
   const snapshot = [];
 
+  // Bypass only the published-PPR membership filter during snapshot export.
+  window.__dataDaddyExportingModelSnapshot = true;
   positions.forEach((position) => {
     const rankings =
       getPositionRankings(position, profile);
@@ -10548,6 +10553,8 @@ function exportModelSnapshot() {
       });
     });
   });
+
+  window.__dataDaddyExportingModelSnapshot = false;
 
   const header = [
     "snapshot_week",
