@@ -716,7 +716,7 @@ jobs:
               if (deployedWeek === 8) {
                 const hasMcConkey = lines.slice(1).some(line =>
                   line.split(",")[1] === "11635" &&
-                  line.includes('"Ladd McConkey"')
+                  line.split(",")[2].replace(/^"|"$/g, "") === "Ladd McConkey"
                 );
                 if (!hasMcConkey) {
                   throw new Error(
