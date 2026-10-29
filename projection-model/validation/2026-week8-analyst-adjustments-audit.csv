@@ -1,0 +1,2 @@
+season,week,player_id,player_name,original_ai_score,ai_delta,adjusted_ai_score,original_ppr,ppr_delta,adjusted_ppr,reason,source,author
+2026,8,5850,Josh Jacobs,67.4,0.00,67.40,19.18,-1.47,17.71,Approved Week 8 analyst PPR adjustment: J2 baseline 19.18 to 17.71; read-only rushing/receiving sensitivity with 2025 rushing baseline and moderate receiving scenario. Preserve original J2 for accuracy audit.,scripts/audit_week8_jacobs_full_workload.py; Week 8 analyst approval,egarza2424
