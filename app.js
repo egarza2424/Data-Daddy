@@ -534,6 +534,19 @@ const response = await fetch(
     const data = await response.json();
 
 weeklyStats = data.players || [];
+const hunterStatRows = weeklyStats.filter(row =>
+  /travis\\s+hunter/i.test(String(row.player_display_name || row.player_name || "")) ||
+  String(row.player_id || row.gsis_id || "") === "12530"
+);
+console.warn("DATA DADDY Hunter weekly stats source:", JSON.stringify(
+  hunterStatRows.map(row => ({
+    name: row.player_display_name || row.player_name,
+    id: row.player_id || row.gsis_id,
+    team: row.team, position: row.position, season: row.season, week: row.week,
+    targets: row.targets, receptions: row.receptions,
+    receiving_yards: row.receiving_yards, rushing_yards: row.rushing_yards
+  }))
+));
 await loadActualPprResults();
 fantasyAiScores = data.fantasy_ai_scores || {};
 nflPlayerLookup = data.player_lookup || {};
