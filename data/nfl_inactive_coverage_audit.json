@@ -1,21 +1,13 @@
 {
-  "generated_at_utc": "2026-10-30T01:52:36.301129+00:00",
+  "generated_at_utc": "2026-10-30T08:05:07.611568+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 1,
+    "missing_near_kickoff": 0,
     "pending": 14
   },
   "games": [
-    {
-      "game_id": "2026_08_CAR_GB",
-      "week": 8,
-      "kickoff_utc": "2026-10-30T00:15:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
     {
       "game_id": "2026_08_BAL_BUF",
       "week": 8,
