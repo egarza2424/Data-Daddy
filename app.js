@@ -1981,7 +1981,7 @@ async function loadWaiverWire() {
               Number.isFinite(Number(matchupScore));
             matchup.textContent = "Week " + matchupWeek + " matchup: " +
               matchupText + " • Matchup Score: " +
-              (validScore ? Number(matchupScore).toFixed(0) + "/100" : "Not available");
+              (validScore ? Number(matchupScore).toFixed(0) + "/80" : "Not available");
             const allowed = matchupData?.fantasy_points_allowed;
             if (validScore && allowed !== null && allowed !== undefined &&
                 Number.isFinite(Number(allowed))) {
