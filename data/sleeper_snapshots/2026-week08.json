@@ -1,0 +1,131 @@
+{
+  "season": 2026,
+  "target_week": 8,
+  "displayed_week": 8,
+  "picks": [
+    {
+      "rank": 1,
+      "player_name": "Brenton Strange",
+      "position": "TE",
+      "team": "JAX",
+      "sleeper_score": 100,
+      "projected_ppr": 10.1,
+      "model_rank": 8,
+      "ppr_rank": 15,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-01T18:00:00+00:00"
+    },
+    {
+      "rank": 2,
+      "player_name": "Jacoby Brissett",
+      "position": "QB",
+      "team": "ARI",
+      "sleeper_score": 80,
+      "projected_ppr": 19.24,
+      "model_rank": 10,
+      "ppr_rank": 11,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-01T18:00:00+00:00"
+    },
+    {
+      "rank": 3,
+      "player_name": "Luther Burden III",
+      "position": "WR",
+      "team": "CHI",
+      "sleeper_score": 79.74,
+      "projected_ppr": 12.57,
+      "model_rank": 21,
+      "ppr_rank": 26,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-03T01:15:00+00:00"
+    },
+    {
+      "rank": 4,
+      "player_name": "Ollie Gordon II",
+      "position": "RB",
+      "team": "MIA",
+      "sleeper_score": 79.043,
+      "projected_ppr": 12.67,
+      "model_rank": 14,
+      "ppr_rank": 19,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-01T21:25:00+00:00"
+    },
+    {
+      "rank": 5,
+      "player_name": "Germie Bernard",
+      "position": "WR",
+      "team": "PIT",
+      "sleeper_score": 73.386,
+      "projected_ppr": 11.06,
+      "model_rank": 30,
+      "ppr_rank": 32,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-01T18:00:00+00:00"
+    },
+    {
+      "rank": 6,
+      "player_name": "Tony Pollard",
+      "position": "RB",
+      "team": "TEN",
+      "sleeper_score": 73.324,
+      "projected_ppr": 11.69,
+      "model_rank": 22,
+      "ppr_rank": 23,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-01T18:00:00+00:00"
+    },
+    {
+      "rank": 7,
+      "player_name": "Braelon Allen",
+      "position": "RB",
+      "team": "NYJ",
+      "sleeper_score": 69.798,
+      "projected_ppr": 8.8,
+      "model_rank": 29,
+      "ppr_rank": 32,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-01T18:00:00+00:00"
+    },
+    {
+      "rank": 8,
+      "player_name": "Keon Coleman",
+      "position": "WR",
+      "team": "BUF",
+      "sleeper_score": 69.098,
+      "projected_ppr": 10.34,
+      "model_rank": 32,
+      "ppr_rank": 38,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-01T18:00:00+00:00"
+    },
+    {
+      "rank": 9,
+      "player_name": "Jeremiyah Love",
+      "position": "RB",
+      "team": "ARI",
+      "sleeper_score": 68.656,
+      "projected_ppr": 11.11,
+      "model_rank": 23,
+      "ppr_rank": 25,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-01T18:00:00+00:00"
+    },
+    {
+      "rank": 10,
+      "player_name": "Keenan Allen",
+      "position": "WR",
+      "team": "IND",
+      "sleeper_score": 66.795,
+      "projected_ppr": 10.13,
+      "model_rank": 25,
+      "ppr_rank": 41,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-01T18:00:00+00:00"
+    }
+  ],
+  "captured_utc": "2026-10-30T17:38:47.272Z",
+  "timing_status": "verified_pregame",
+  "kickoff_source": "https://github.com/nflverse/nfldata/raw/refs/heads/master/data/games.csv",
+  "excluded_at_capture": []
+}
