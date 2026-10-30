@@ -5710,7 +5710,7 @@ function optimizeLineup(mode = "best") {
           allowed?.fantasy_points_allowed != null
             ? `Matchup: ${opponent} | Score: ${
                 calculateMatchupScore(player)
-              }/100`
+              }/80`
             : "Matchup: Unavailable";
 
         card.appendChild(matchup);
