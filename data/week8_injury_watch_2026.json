@@ -3,7 +3,7 @@
   "season": 2026,
   "injury_event_week": 7,
   "review_week": 8,
-  "verified_date": "2026-10-29",
+  "verified_date": "2026-10-30",
   "description": "Review-only verified Week 7 injury events and Oct 26 Week 8 updates; Panthers Moton IR and Monday estimates; Packers Golden newly listed foot/shoulder estimated DNP, Rhyan estimated DNP. No Week 8 PPR projection changes absent official absences and measured usage. Oct 26 MNF: Barkley reported questionable to return with new back injury; review-only, no automatic Week 8 projections. Oct 27 review: Brooks self-reported season-ending wrist surgery (newly tracked, announced Oct 26); Pierce reported in-game injury, unconfirmed Week 8 status; Barkley postgame says hamstring fine and back not expected to keep him out. All review-only; no automatic projection changes. Oct 27 official Bengals IR: Erick All Jr. out Week 8; Giants GM Tracy IR after Week 7 (Giants Week 8 bye); Ravens starting G Ioane MCL sprain expected to miss time. Review-only; live projections unchanged. Oct 27 Tuesday Panthers projected walk-through: Coker upgraded to FULL; starting G Damien Lewis and G Torricelli Simpkins III remain DNP. Oct 27 Seattle/Indianapolis Quenton Nelson trade agreement pending physical changes line context, not a confirmed Week 8 starting assignment. No live PPR changes. Oct 27 Packers official Tuesday estimates: Matthew Golden (WR shoulder/foot), Sean Rhyan (C ankle), Zaire Franklin (LB shin) remained DNP for a second day; Wednesday final statuses pending. No new Week 8 OUT designation or projection adjustment. Oct 27 later coach report: LaFleur ruled Sean Rhyan and Zaire Franklin out for Thursday Oct 29, per Packers beat coverage; Wednesday official game designations still pending. Both recorded as coach-reported OUT (not final official injury-report statuses), with no projection changes. Oct 27 evening review: Raiders officially activated WR Dont'e Thornton Jr. from IR; game-day WR role unknown. NFL Network expects QB Lamar Jackson back Week 8, but no official clearance. Both review-only; no projection changes. Oct 28 coach updates (NFL roundup): Jets Hall and Allen both expected limited Wednesday (Allen new ankle); Titans Carnell Tate shoulder DNP; Commanders Stefon Diggs DNP with reason not yet specified. All review-only, no Week 8 OUT status or automatic ranking/PPR changes. Oct 28 midday follow-up: Andy Reid expects Rashee Rice to resume practice after two missed games (official Wednesday participation and Week 8 clearance pending); Dan Quinn clarified Stefon Diggs Wednesday DNP is scheduled rest, expected FULL Thursday, not an injury-based absence; Lamar Jackson observed at start of practice, participation designation pending; Washington formally moved previously season-out McLaurin to IR and promoted Van Jefferson. All review-only; no AI/PPR/model changes. Oct 28 Wednesday final GB-CAR designations: GB Sean Rhyan, Travis Glover, Zaire Franklin OUT; Matthew Golden upgraded to estimated LIMITED but QUESTIONABLE. CAR Damien Lewis, Torricelli Simpkins III, Jaelan Phillips, Akayleb Evans OUT; Jalen Coker and Bryce Young no game designations. Official sources recorded; all review-only, no AI/PPR/model changes. Oct 28 Wednesday late practice and transactions: NFL confirms Eagles RB Dameon Pierce IR, Texans WR Jaylin Noel IR (Houston Week 8 bye), Ravens QB Lamar Jackson FULL, Vikings RB Aaron Jones DNP, Broncos WR Jaylen Waddle DNP, Chiefs WR Rashee Rice LIMITED, Jets Hall/Allen LIMITED, Titans WR Carnell Tate DNP and RB Tyjae Spears DNP, Lions Gibbs/St. Brown DNP, Falcons Brian Robinson DNP, Bills DJ Moore LIMITED, Raiders Brock Bowers LIMITED, Chargers McConkey in concussion protocol. All review-only; no PPR/AI/model changes. Oct 28 evening official reports: Eagles Barkley, DeVonta Smith and Wicks estimated DNP (walkthrough); Rams Parkinson ribs DNP; Buccaneers Egbuka LIMITED and Gainwell DNP; Colts Warren estimated LIMITED; Chargers McConkey FULL (concussion clearance not established); Cardinals Allgeier DNP and Love LIMITED. All remain review-only, no automatic projections or eligibility changes. Oct 29 verified review-only updates: Seattle officially designated Jadarian Price to return to practice (not active); Packers CB Keisean Nixon newly questionable late (shoulder); Patriots WR A.J. Brown Thursday DNP per NFL Network (knee flare-up), Sunday game status unknown. All automatic projection adjustments remain disabled. Oct 29 Thursday official updates: Detroit Gibbs and St. Brown upgraded from Wednesday DNP to FULL practice; New England TreVeyon Henderson newly DNP with illness. Review-only; no model/projection changes. Oct 29 later Thursday review: Vikings official report Jones upgraded DNP-to-LIMITED (knee); Raiders beat report Bowers upgraded LIMITED-to-FULL (calf). Both remain review-only pending Friday final game status; no automatic projection or ranking changes. Oct 29 late official game-day inactives: GB Golden and Nixon ACTIVE; Jonnu Smith INACTIVE (reason not specified); CAR starting DT Bobby Brown III INACTIVE (hand). Seattle first Monday-game practice: Shaheed, Velus Jones Jr and Charles Cross DNP; Charbonnet FULL, Price LIMITED; JSN DNP for rest only. All review-only; no AI/PPR/model changes. Oct 29 TNF live-game review (10:15 PM ET): Watson chest injury sent for precautionary hospital testing, later cleared/returning to stadium but still QUESTIONABLE to return; Panthers starting CB Will Lee III ruled OUT (hamstring); GB TE Josh Whyle ruled OUT (concussion). All review-only, frozen Week8 pregame rankings and projections unchanged. Oct 29 late TNF update: AP confirms Watson RETURNED TO GAME in third quarter after hospital evaluation; earlier questionable-to-return is superseded. No injury-based projection/rank changes. Oct 29 postgame verified update: Watson self-reported CT-confirmed fractured rib after Week8 chest injury; no internal bleeding, returned to finish game, Week9 status unknown. Panthers coach confirmed Will Lee III hamstring injury with secondary already depleted; no recovery timetable. Review-only, no automatic AI/PPR/matchup changes.",
   "events": [
     {
@@ -500,14 +500,14 @@
       "position": "WR",
       "week7_status": "PLAYED_WEEK7_WITH_SHOULDER_CONCERN",
       "injury": "shoulder (Week 7, Wednesday Oct 28 practice absence)",
-      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-oct-28",
+      "source": "https://www.bengals.com/news/bengals-titans-week-8-2026-injury-report",
       "beneficiary_review": [
         "Wan'Dale Robinson",
         "Elic Ayomanor",
         "Tennessee active receiver rotation"
       ],
-      "review_focus": "NEW Oct 28 coach Robert Saleh says Tate will NOT practice Wednesday because of shoulder injury. Tate recorded 7 Week 7 targets, 5 catches for 69 yards; 51 targets through seven games per Oct 28 reporting. No official Week 8 OUT designation. If ruled out, evaluate Robinson and Ayomanor verified route participation, target share, red-zone work, and any other WR absences before numerical target redistribution. Do not auto-mark OUT or alter PPR/AI. OCT 28 WEDNESDAY VERIFIED UPDATE: Titans official Wednesday report confirms DNP. Review Wan'Dale Robinson and Elic Ayomanor routes, targets and red-zone work only if Tate's absence confirmed; Calvin Ridley was LIMITED (hip). No automatic projection or AI ranking change.",
-      "week8_status": "OFFICIAL_WEDNESDAY_DNP_OCT28_SHOULDER_NO_GAME_DESIGNATION",
+      "review_focus": "NEW Oct 28 coach Robert Saleh says Tate will NOT practice Wednesday because of shoulder injury. Tate recorded 7 Week 7 targets, 5 catches for 69 yards; 51 targets through seven games per Oct 28 reporting. No official Week 8 OUT designation. If ruled out, evaluate Robinson and Ayomanor verified route participation, target share, red-zone work, and any other WR absences before numerical target redistribution. Do not auto-mark OUT or alter PPR/AI. OCT 28 WEDNESDAY VERIFIED UPDATE: Titans official Wednesday report confirms DNP. Review Wan'Dale Robinson and Elic Ayomanor routes, targets and red-zone work only if Tate's absence confirmed; Calvin Ridley was LIMITED (hip). No automatic projection or AI ranking change. OCT 29 VERIFIED TEAM UPDATE: Tate remained DNP Thursday (shoulder); Calvin Ridley remained LIMITED (hip). Friday game designation pending. Do not redistribute targets without confirmed absence and verified receiver routes.",
+      "week8_status": "OFFICIAL_THURSDAY_DNP_OCT29_SHOULDER_SECOND_CONSECUTIVE_GAME_STATUS_PENDING",
       "automatic_projection_adjustment": false
     },
     {
@@ -517,15 +517,15 @@
       "position": "WR",
       "week7_status": "BYE_WEEK7_LAST_PLAYED_WEEK6",
       "injury": "Wednesday Oct 28 non-injury rest day per coach Dan Quinn; not related to apparent Week 6 hand concern",
-      "source": "https://www.fantasyguru.com/commanders-diggs-held-out-wednesday-rest-day-likely-weekly-going-forward",
+      "source": "https://www.commanders.com/news/commanders-vs-eagles-week-8-injury-report-2026",
       "beneficiary_review": [
         "Antonio Williams",
         "Chig Okonkwo",
         "Treylon Burks",
         "Van Jefferson (role unverified)"
       ],
-      "review_focus": "NEW Oct 28 coach Dan Quinn says Diggs will NOT practice Wednesday; no injury reason or final game status specified in NFL roundup. Terry McLaurin's season-ending injury is already known and in watch. If Diggs is also ruled out, examine Week 6 without-McLaurin evidence: Antonio Williams 45/67 snaps and 4 targets, Chig Okonkwo 51 snaps/7 targets, Treylon Burks 37 snaps/6 targets. Washington promoted Van Jefferson from practice squad Oct 28 but game-day role not verified. Await formal practice report and Thurs/Fri trend; no speculative numerical boost. CLARIFICATION Oct 28: Coach Dan Quinn says Wednesday DNP is a scheduled rest day, not related to hand concern, and expects Diggs FULL Thursday; may repeat weekly. This supersedes earlier unspecified-injury concern. Do not treat Diggs as an injury absence or give Antonio Williams, Chig Okonkwo, Treylon Burks a Diggs-absence boost. Recheck official Thursday practice; McLaurin's confirmed season-ending absence remains separate.",
-      "week8_status": "COACH_REST_DAY_WEDNESDAY_EXPECTED_FULL_THURSDAY_NOT_RULED_OUT",
+      "review_focus": "NEW Oct 28 coach Dan Quinn says Diggs will NOT practice Wednesday; no injury reason or final game status specified in NFL roundup. Terry McLaurin's season-ending injury is already known and in watch. If Diggs is also ruled out, examine Week 6 without-McLaurin evidence: Antonio Williams 45/67 snaps and 4 targets, Chig Okonkwo 51 snaps/7 targets, Treylon Burks 37 snaps/6 targets. Washington promoted Van Jefferson from practice squad Oct 28 but game-day role not verified. Await formal practice report and Thurs/Fri trend; no speculative numerical boost. CLARIFICATION Oct 28: Coach Dan Quinn says Wednesday DNP is a scheduled rest day, not related to hand concern, and expects Diggs FULL Thursday; may repeat weekly. This supersedes earlier unspecified-injury concern. Do not treat Diggs as an injury absence or give Antonio Williams, Chig Okonkwo, Treylon Burks a Diggs-absence boost. Recheck official Thursday practice; McLaurin's confirmed season-ending absence remains separate. OCT 29 VERIFIED TEAM UPDATE: Diggs was FULL Thursday after Wednesday DNP attributed to rest/hand/hamstring. Do not assign a Diggs-absence target boost. Friday final status pending; Terry McLaurin remains on IR.",
+      "week8_status": "OFFICIAL_THURSDAY_FULL_OCT29_HAND_HAMSTRING_REST_FRIDAY_GAME_STATUS_PENDING",
       "automatic_projection_adjustment": false
     },
     {
@@ -743,15 +743,15 @@
       "position": "TE",
       "week7_status": "WEEK7_5_RECEPTIONS_6_TARGETS_48_YARDS",
       "injury": "ribs",
-      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-oct-28",
+      "source": "https://www.therams.com/team/injury-report/week/hof-0",
       "beneficiary_review": [
         "Tyler Higbee",
         "Davis Allen",
         "Max Klare (only if elevated/active)",
         "Rams 13-personnel usage"
       ],
-      "review_focus": "NEW Oct 28: NFL Wednesday roundup confirms Parkinson DNP (ribs) after 5 catches on 6 targets for 48 yards Week 7. Rams used heavy 13 personnel with Davante Adams on IR; Terrance Ferguson remains on IR and coach says not returning to practice this week. Week 7 reported TE routes: Higbee 18, Parkinson 16, Davis Allen 12; Allen had two red-zone TDs on five targets. If Parkinson is ruled out, verify Higbee/Allen actual routes, red-zone target shares, Max Klare active status, and possible 13-to-12/11 personnel shift. Do not automatically transfer all six targets or assign Allen two expected TDs. No automatic PPR or AI changes.",
-      "week8_status": "OFFICIAL_WEDNESDAY_DNP_OCT28_RIBS_GAME_STATUS_PENDING",
+      "review_focus": "NEW Oct 28: NFL Wednesday roundup confirms Parkinson DNP (ribs) after 5 catches on 6 targets for 48 yards Week 7. Rams used heavy 13 personnel with Davante Adams on IR; Terrance Ferguson remains on IR and coach says not returning to practice this week. Week 7 reported TE routes: Higbee 18, Parkinson 16, Davis Allen 12; Allen had two red-zone TDs on five targets. If Parkinson is ruled out, verify Higbee/Allen actual routes, red-zone target shares, Max Klare active status, and possible 13-to-12/11 personnel shift. Do not automatically transfer all six targets or assign Allen two expected TDs. No automatic PPR or AI changes. OCT 29 VERIFIED TEAM UPDATE: Parkinson was DNP for a second consecutive practice (rib). Terrance Ferguson remains on IR. If ruled OUT Friday, review Higbee and Davis Allen routes, red-zone work, and 13-personnel shifts; no automatic PPR/AI change.",
+      "week8_status": "OFFICIAL_THURSDAY_DNP_OCT29_RIB_SECOND_CONSECUTIVE_GAME_STATUS_PENDING",
       "automatic_projection_adjustment": false
     },
     {
@@ -1102,6 +1102,23 @@
       ],
       "review_focus": "NEW OCT 29 TNF: Packers TE Whyle ruled OUT during Carolina game with concussion per NBC Sports 10:15 PM ET. Jonnu Smith already a healthy inactive. Evaluate remaining active TEs (Kraft and other verified gameday TEs) by actual routes, pass-blocking responsibilities, targets and red-zone use; concussion protocol and Week9 status unknown. No retroactive Week8 projection/ranking edits, no automatic redistribution. Record in-game injury for subsequent misses audit if applicable.",
       "week8_status": "OFFICIAL_IN_GAME_RULED_OUT_OCT29_CONCUSSION",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Treylon Burks",
+      "team": "WAS",
+      "position": "WR",
+      "week7_status": "BYE_WEEK7_LAST_PLAYED_WEEK6",
+      "injury": "foot",
+      "source": "https://www.commanders.com/news/commanders-vs-eagles-week-8-injury-report-2026",
+      "beneficiary_review": [
+        "Antonio Williams",
+        "Van Jefferson (active status and role unverified)",
+        "Chig Okonkwo"
+      ],
+      "review_focus": "OCT 29 VERIFIED TEAM UPDATE: Burks downgraded from LIMITED Wednesday to DNP Thursday (foot). Terry McLaurin is already on IR, while Stefon Diggs was FULL Thursday. Week 6 without-McLaurin evidence already documented in Diggs watch: Burks 37 snaps/6 targets, Antonio Williams 45/67 snaps/4 targets, Chig Okonkwo 51 snaps/7 targets. If Burks ruled OUT, review Antonio Williams and Van Jefferson actual route shares and target distribution; do not assume automatic redistribution or boost Diggs. Friday final game status pending; no PPR, AI, or model-weight change.",
+      "week8_status": "OFFICIAL_THURSDAY_DNP_OCT29_FOOT_AFTER_WEDNESDAY_LIMITED_FRIDAY_GAME_STATUS_PENDING",
       "automatic_projection_adjustment": false
     }
   ]
