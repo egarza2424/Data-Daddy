@@ -8,7 +8,7 @@ source = sys.argv[1] if len(sys.argv) > 1 else "https://github.com/nflverse/nflv
 con = duckdb.connect()
 try:
     rows = con.execute("""
-        SELECT COALESCE(game_type, 'UNKNOWN') AS game_type_label,
+        SELECT CASE WHEN week BETWEEN 1 AND 18 THEN 'REG' WHEN week > 18 THEN 'POST' ELSE 'UNKNOWN' END AS game_type_label,
                COUNT(DISTINCT game_id) AS games,
                COUNT(DISTINCT game_id || ':' || defteam) AS defense_team_games,
                COUNT(DISTINCT defteam) AS teams,
@@ -19,11 +19,11 @@ try:
     """, [source]).fetchall()
     duplicates = con.execute("""
         SELECT game_id, defteam, COUNT(DISTINCT week) AS distinct_weeks,
-               COUNT(DISTINCT game_type) AS distinct_game_types
+               COUNT(DISTINCT CASE WHEN week BETWEEN 1 AND 18 THEN 'REG' WHEN week > 18 THEN 'POST' ELSE 'UNKNOWN' END) AS distinct_game_types
         FROM read_parquet(?)
         WHERE season = 2025 AND game_id IS NOT NULL AND defteam IS NOT NULL
         GROUP BY 1,2
-        HAVING COUNT(DISTINCT week) > 1 OR COUNT(DISTINCT game_type) > 1
+        HAVING COUNT(DISTINCT week) > 1 OR COUNT(DISTINCT CASE WHEN week BETWEEN 1 AND 18 THEN 'REG' WHEN week > 18 THEN 'POST' ELSE 'UNKNOWN' END) > 1
         ORDER BY game_id, defteam
     """, [source]).fetchall()
 except Exception as exc:
