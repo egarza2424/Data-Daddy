@@ -799,15 +799,15 @@
       "position": "WR",
       "week7_status": "INACTIVE_WEEK7",
       "injury": "concussion/foot",
-      "source": "https://www.buccaneers.com/news/buccaneers-falcons-injury-report-oct-29-week-8-2026",
+      "source": "https://www.buccaneers.com/news/october-2026-updates",
       "beneficiary_review": [
         "Chris Godwin Jr.",
         "Tez Johnson",
         "Ted Hurst III",
         "Cade Otton"
       ],
-      "review_focus": "Oct 29 OFFICIAL Bucs: LIMITED Wednesday and Thursday (concussion/foot), no Week 8 game status published as of Oct 30 10:15am PT. Oct 30 RotoWire headline reports Egbuka OUT vs ATL due to foot, citing team reporter Scott Smith, but team official injury page and NFL report still have Friday designation blank at review time; SECONDARY-REPORTED, NOT INDEPENDENTLY OFFICIAL-CONFIRMED. Recheck team Friday final report before applying inactive status or any PPR/AI changes. If OUT, prioritize Tez Johnson (Week 7 replacement starter, 41 snaps, 2 targets, 33 receiving yards and TD plus 14-yard rush), Chris Godwin Jr. (46 snaps, 5 of 11 team targets Week 7), Ted Hurst III (35 snaps, 1 target), Cade Otton (56 snaps, 1 target). Routes/target shares and red-zone roles require review; Week 7 had only 11 TB pass attempts, so do not extrapolate targets mechanically. Sources: https://www.rotowire.com/football/headlines/emeka-egbuka-injury-ruled-out-for-week-8-645070 ; https://www.buccaneers.com/news/bucs-release-week-eight-depth-chart-tez-johnson-ramps-up-playtime . Review-only; automatic projection adjustment false.",
-      "week8_status": "OFFICIAL_THURSDAY_LIMITED_OCT29_CONCUSSION_FOOT_FRIDAY_OUT_REPORTED_BY_ROTO_WIRE_TEAM_CONFIRMATION_PENDING",
+      "review_focus": "OCT 30 OFFICIAL BUCCANEERS UPDATE (12:00pm ET): Head coach Todd Bowles explicitly confirmed Emeka Egbuka OUT for Sunday Nov 1 vs Atlanta. Concussion protocol cleared, but lingering FOOT injury prevents play. Supersedes Oct 30 earlier secondary-reported OUT/official confirmation pending. He also missed Week 7 vs Carolina. Team official Week 8 depth chart lists Tez Johnson behind Egbuka; Johnson started Week 7 with Egbuka absent and played 41 offensive snaps, producing 2 catches for 33 yards and a TD plus a 14-yard rush. Chris Godwin played 46 snaps and drew 5 of 11 team pass attempts/targets; Ted Hurst III played 35 snaps and drew 1 target; Cade Otton played 56 snaps and drew 1 target. Egbuka leads TB with 28 catches and 2 receiving TDs through Week 7. Review replacement WR routes, target share over multiple competitive games, red-zone usage and active personnel before proposing Tez Johnson/Godwin/Hurst/Otton numerical increases. Week 7 43-13 blowout featured only 11 TB pass attempts; do not mechanically extrapolate targets or imply automatic PPR/AI boost. Coach-confirmed OUT is official; no automatic projections, weights or rankings changed. Sources: https://www.buccaneers.com/news/october-2026-updates ; https://www.buccaneers.com/news/bucs-release-week-eight-depth-chart-tez-johnson-ramps-up-playtime",
+      "week8_status": "OFFICIAL_COACH_CONFIRMED_OUT_OCT30_WEEK8_VS_ATL_FOOT_CONCUSSION_PROTOCOL_CLEARED",
       "automatic_projection_adjustment": false
     },
     {
