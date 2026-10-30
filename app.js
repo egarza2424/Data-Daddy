@@ -5655,6 +5655,17 @@ function optimizeLineup(mode = "best") {
   header.append(title, closeButton);
   dialog.appendChild(header);
 
+  const matchupGuide = document.createElement("p");
+  matchupGuide.textContent = "Matchup Score Guide: 20 = Worst Matchup | 80 = Best Matchup";
+  Object.assign(matchupGuide.style, {
+    color: "#f5d37a",
+    fontSize: "13px",
+    fontWeight: "600",
+    margin: "0 0 16px",
+    lineHeight: "1.5"
+  });
+  dialog.appendChild(matchupGuide);
+
   const existingInsights = result.querySelector(
     ".start-sit-insights"
   );
