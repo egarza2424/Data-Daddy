@@ -2201,7 +2201,7 @@ async function loadWaiverWire() {
           Number.isFinite(Number(defensivePpr));
 
         const defensiveLabel = hasDefensiveMatchup
-          ? ` • Matchup: ${Number(defensiveScore).toFixed(0)}/100` +
+          ? ` • Matchup: ${Number(defensiveScore).toFixed(0)}/80` +
             ` • Defense allows: ${Number(defensivePpr).toFixed(1)} PPR/game` +
             ` (${Number(defensiveSample) || 0} games)`
           : " • Defensive matchup: N/A";
@@ -4827,7 +4827,7 @@ function renderStartSitInsights(slots, bench) {
       usageLabel,
       redZoneLabel,
       matchupLabel: matchupAvailable
-        ? `${matchup.opponent} • Matchup score ${matchupScore}/100`
+        ? `${matchup.opponent} • Matchup score ${matchupScore}/80`
         : "Matchup data unavailable"
     };
   }
@@ -10036,7 +10036,7 @@ const signalDetailsHtml =
           </button>
         </span>
 
-        <strong>${value}/100</strong>
+        <strong>${value}/${label === "Matchup" ? 80 : 100}</strong>
       </div>
 
       <div class="metric-track">
