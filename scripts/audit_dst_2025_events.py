@@ -18,7 +18,7 @@ def main():
     con = duckdb.connect()
     source = sys.argv[1] if len(sys.argv) > 1 else URL
     try:
-        con.execute("CREATE VIEW pbp AS SELECT * FROM read_parquet(?)", [source])
+        con.execute("CREATE VIEW pbp AS SELECT * FROM read_parquet('" + source.replace("'", "''") + "')")
         cols = {r[0] for r in con.execute("DESCRIBE pbp").fetchall()}
         required = {"season", "week", "game_id", "defteam", "posteam", "sack", "interception", "fumble_lost", "safety"}
         missing = sorted(required - cols)
