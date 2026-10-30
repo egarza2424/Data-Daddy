@@ -799,15 +799,15 @@
       "position": "WR",
       "week7_status": "INACTIVE_WEEK7",
       "injury": "concussion/foot",
-      "source": "https://www.buccaneers.com/news/buccaneers-falcons-injury-report-oct-28-week-8-2026",
+      "source": "https://www.buccaneers.com/news/buccaneers-falcons-injury-report-oct-29-week-8-2026",
       "beneficiary_review": [
         "Chris Godwin Jr.",
         "Tez Johnson",
         "Ted Hurst III",
         "Cade Otton"
       ],
-      "review_focus": "NEW Oct 28: official Buccaneers Wednesday LIMITED practice (concussion/foot) after missing Week 7; not independently cleared concussion protocol or confirmed active Week 8. In Week 7 without Egbuka, Godwin 46 offensive snaps/5 of 11 team targets, Tez Johnson 41 snaps/2 targets, Hurst 35 snaps/1 target, Otton 56 snaps/1 target (secondary box/snap aggregation). If Egbuka returns, evaluate prior Egbuka route/target/red-zone share and Week 7 replacement roles before reducing others; do not presume full snap workload. No automatic PPR/AI changes.",
-      "week8_status": "OFFICIAL_WEDNESDAY_LIMITED_OCT28_CONCUSSION_FOOT_CLEARANCE_PENDING",
+      "review_focus": "Oct 29 OFFICIAL Bucs: LIMITED Wednesday and Thursday (concussion/foot), no Week 8 game status published as of Oct 30 10:15am PT. Oct 30 RotoWire headline reports Egbuka OUT vs ATL due to foot, citing team reporter Scott Smith, but team official injury page and NFL report still have Friday designation blank at review time; SECONDARY-REPORTED, NOT INDEPENDENTLY OFFICIAL-CONFIRMED. Recheck team Friday final report before applying inactive status or any PPR/AI changes. If OUT, prioritize Tez Johnson (Week 7 replacement starter, 41 snaps, 2 targets, 33 receiving yards and TD plus 14-yard rush), Chris Godwin Jr. (46 snaps, 5 of 11 team targets Week 7), Ted Hurst III (35 snaps, 1 target), Cade Otton (56 snaps, 1 target). Routes/target shares and red-zone roles require review; Week 7 had only 11 TB pass attempts, so do not extrapolate targets mechanically. Sources: https://www.rotowire.com/football/headlines/emeka-egbuka-injury-ruled-out-for-week-8-645070 ; https://www.buccaneers.com/news/bucs-release-week-eight-depth-chart-tez-johnson-ramps-up-playtime . Review-only; automatic projection adjustment false.",
+      "week8_status": "OFFICIAL_THURSDAY_LIMITED_OCT29_CONCUSSION_FOOT_FRIDAY_OUT_REPORTED_BY_ROTO_WIRE_TEAM_CONFIRMATION_PENDING",
       "automatic_projection_adjustment": false
     },
     {
@@ -869,13 +869,13 @@
       "position": "RB",
       "week7_status": "PLAYED_PRIOR_WEEK_STATUS_UNVERIFIED",
       "injury": "hip",
-      "source": "https://www.buccaneers.com/news/buccaneers-falcons-injury-report-oct-28-week-8-2026",
+      "source": "https://www.buccaneers.com/news/buccaneers-falcons-injury-report-oct-29-week-8-2026",
       "beneficiary_review": [
         "Bucky Irving",
         "Sean Tucker"
       ],
-      "review_focus": "NEW Oct 28: official Buccaneers Wednesday DNP (hip); no Week 8 game designation. Secondary season usage summary: Bucky Irving ~66.9% of RB weighted opportunities, Gainwell ~27%, Tucker ~6% through Week 7. If Gainwell is OUT, evaluate Irving/Tucker routes, receiving, pass protection and goal-line shares rather than blindly transferring carries; also check Egbuka return and overall pass volume. No automatic PPR/AI changes.",
-      "week8_status": "OFFICIAL_WEDNESDAY_DNP_OCT28_HIP_GAME_STATUS_PENDING",
+      "review_focus": "NEW Oct 28: official Buccaneers Wednesday DNP (hip); no Week 8 game designation. Secondary season usage summary: Bucky Irving ~66.9% of RB weighted opportunities, Gainwell ~27%, Tucker ~6% through Week 7. If Gainwell is OUT, evaluate Irving/Tucker routes, receiving, pass protection and goal-line shares rather than blindly transferring carries; also check Egbuka return and overall pass volume. No automatic PPR/AI changes. OCT 29 OFFICIAL UPDATE: Gainwell upgraded to LIMITED (hip) after Wednesday DNP; Friday designation not published as of Oct 30 10:15am PT. Week 7 official Bucs depth chart: Gainwell 19 snaps, 14 carries, 88 yards; Sean Tucker 9 snaps, 7 carries, 52 yards, TD; Bucky Irving remains lead back. Do not presume OUT or redistribute carries/targets until final designation. No automatic model changes.",
+      "week8_status": "OFFICIAL_THURSDAY_LIMITED_OCT29_HIP_AFTER_WEDNESDAY_DNP_GAME_STATUS_PENDING",
       "automatic_projection_adjustment": false
     },
     {
