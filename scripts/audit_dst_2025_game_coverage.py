@@ -8,7 +8,7 @@ source = sys.argv[1] if len(sys.argv) > 1 else "https://github.com/nflverse/nflv
 con = duckdb.connect()
 try:
     rows = con.execute("""
-        SELECT COALESCE(game_type, 'UNKNOWN') AS game_type,
+        SELECT COALESCE(game_type, 'UNKNOWN') AS game_type_label,
                COUNT(DISTINCT game_id) AS games,
                COUNT(DISTINCT game_id || ':' || defteam) AS defense_team_games,
                COUNT(DISTINCT defteam) AS teams,
