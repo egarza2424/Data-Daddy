@@ -10042,7 +10042,7 @@ const signalDetailsHtml =
       <div class="metric-track">
         <div
           class="metric-fill"
-          style="width:${value}%"
+          style="width:${label === "Matchup" ? Math.max(0, Math.min(100, (Number(value) / 80) * 100)) : value}%"
         ></div>
       </div>
 
