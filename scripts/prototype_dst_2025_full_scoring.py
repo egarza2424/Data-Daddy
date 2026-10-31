@@ -37,7 +37,8 @@ for game,week,pid,home,away,off,defteam,typ,desc,sack,interception,fumble,r1,r2,
    s["defensive_td" if typ in ("pass","run") else "special_teams_td"]+=1
   elif pts==2:
    s["safeties" if "SAFETY" in d else "defensive_two_point_conversions"]+=1
- elif typ=="kickoff" and pts==6:
+ elif typ=="kickoff" and pts==6 and scorer==off:
+  # nflverse records the receiving team as posteam on these kickoff returns.
   stats[(week,game,scorer)]["special_teams_td"]+=1
  else:
   exceptions.append({"game_id":game,"play_id":pid,"points":pts,"play_type":typ,"scorer":scorer,"posteam":off,"defteam":defteam})
@@ -58,6 +59,6 @@ for (week,game,team),s in sorted(stats.items()):
  out.append({"week":week,"game_id":game,"defense":team,"provisional_dst_points":score,
  "provisional_points_allowed":pa,**dict(s)})
 print(json.dumps({"team_games":len(out),"scoring_rules":{"sack":1,"interception":2,"confirmed_fumble_recovery":2,"blocked_punt_or_fg_candidate":2,"defensive_or_special_teams_td":6,"safety":2,"defensive_two_point_conversion":2,"points_allowed_tiers":"0:+5, 1-6:+4, 7-13:+3, 14-17:+1, 18-27:0, 28-34:-1, 35+:-4"},
-"totals":{"sacks":sum(s["sacks"] for s in stats.values()),"interceptions":sum(s["interceptions"] for s in stats.values()),"confirmed_defensive_fumble_recoveries":sum(s["confirmed_defensive_fumble_recoveries"] for s in stats.values()),"blocked_punt_or_fg_candidates":sum(s["blocked_punt_or_fg_candidates"] for s in stats.values()),"defensive_td":sum(s["defensive_td"] for s in stats.values()),"special_teams_td":sum(s["special_teams_td"] for s in stats.values()),"safeties":sum(s["safeties"] for s in stats.values()),"defensive_two_point_conversions":sum(s["defensive_two_point_conversions"] for s in stats.values())},
+"totals":{"sacks":sum(s["sacks"] for s in stats.values()),"interceptions":sum(s["interceptions"] for s in stats.values()),"confirmed_defensive_fumble_recoveries":sum(s["confirmed_defensive_fumble_recoveries"] for s in stats.values()),"blocked_punt_or_fg_candidates":sum(s["blocked_punt_or_fg_candidates"] for s in stats.values()),"defensive_td":sum(s["defensive_td"] for s in stats.values()),"special_teams_td":sum(s["special_teams_td"] for s in stats.values()),"kickoff_return_td_expected_extra":5,"safeties":sum(s["safeties"] for s in stats.values()),"defensive_two_point_conversions":sum(s["defensive_two_point_conversions"] for s in stats.values())},
 "unresolved_scoring_events":exceptions[:30],"unresolved_event_count":len(exceptions),
 "sample_team_games":out[:12],"cautions":["PROVISIONAL: not ESPN-validated; points allowed on special teams and conversion plays require review.","Do not use these fantasy scores for production projections or accuracy claims.","No outputs saved; no live site, rankings, projections or model weights changed."]},indent=2))
