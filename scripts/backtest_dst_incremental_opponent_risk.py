@@ -24,6 +24,13 @@ for season,path in FILES.items():
  FROM read_parquet(?) WHERE season=? AND week BETWEEN 1 AND 18
  AND game_id IS NOT NULL AND play_id IS NOT NULL AND posteam IS NOT NULL
  AND (COALESCE(qb_dropback,0)=1 OR COALESCE(pass_attempt,0)=1 OR COALESCE(sack,0)=1 OR COALESCE(interception,0)=1)""",[url,season]).fetchall()
+ schedule_rows=db.execute("SELECT DISTINCT week,home_team,away_team FROM read_parquet(?) WHERE season=? AND week BETWEEN 1 AND 18 AND game_id IS NOT NULL",[url,season]).fetchall()
+ opponents={}
+ for w,home,away in schedule_rows:
+  for defense,opponent in ((home,away),(away,home)):
+   key=(int(w),defense)
+   if key in opponents and opponents[key]!=opponent:raise SystemExit(f"Conflicting schedule: {key}")
+   opponents[key]=opponent
  grouped=collections.defaultdict(lambda:collections.Counter())
  seen=set()
  for w,g,p,t,drop,pa,sack,inter in plays:
@@ -46,7 +53,9 @@ for season,path in FILES.items():
   global_sack=league["sacks"]/league["dropbacks"] if league["dropbacks"] else 0.
   global_int=league["ints"]/league["dropbacks"] if league["dropbacks"] else 0.
   for r in predictions[week]:
-   opp=r["opponent"];c=history[opp]
+   opp=opponents.get((week,r["defense"]))
+   if not opp:raise SystemExit(f"Missing schedule opponent: {season} W{week} {r[\"defense\"]}")
+   c=history[opp]
    if c["dropbacks"]<100 or league["dropbacks"]<1000:
     raise SystemExit(f"Insufficient prior-week offense history: {season} W{week} {opp}")
    # Shrink opponent sack and INT rates toward historical league averages;
