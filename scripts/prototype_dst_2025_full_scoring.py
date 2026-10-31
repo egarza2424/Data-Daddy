@@ -19,7 +19,7 @@ for game,week,pid,home,away,off,defteam,typ,desc,sack,interception,fumble,r1,r2,
   s["interceptions"]+=int(interception==1)
   s["confirmed_defensive_fumble_recoveries"]+=int(fumble==1 and defteam in (r1,r2))
   d=(desc or "").upper()
-  if typ in ("punt","field_goal") and "BLOCKED" in d:s["blocked_punt_or_fg_candidates"]+=1
+  if typ in ("punt","field_goal","extra_point") and "BLOCKED" in d:s["blocked_kick_candidates"]+=1
  if hs is None or aws is None:continue
  old=prev.get(game,(hs,aws));prev[game]=(hs,aws)
  dh=hs-old[0];da=aws-old[1]
@@ -40,6 +40,8 @@ for game,week,pid,home,away,off,defteam,typ,desc,sack,interception,fumble,r1,r2,
  elif typ=="kickoff" and pts==6 and scorer==off:
   # nflverse records the receiving team as posteam on these kickoff returns.
   stats[(week,game,scorer)]["special_teams_td"]+=1
+  # A kickoff return TD is special-teams points allowed by the kicking team.
+  stats[(week,game,opponent)]["provisional_points_allowed"]+=pts
  else:
   exceptions.append({"game_id":game,"play_id":pid,"points":pts,"play_type":typ,"scorer":scorer,"posteam":off,"defteam":defteam})
 def pa_score(p):
@@ -49,16 +51,17 @@ def pa_score(p):
  if p<=17:return 1
  if p<=27:return 0
  if p<=34:return -1
- return -4
+ if p<=45:return -3
+ return -5
 out=[]
 for (week,game,team),s in sorted(stats.items()):
  pa=s["provisional_points_allowed"]
  score=(s["sacks"]+2*s["interceptions"]+2*s["confirmed_defensive_fumble_recoveries"]
- +2*s["blocked_punt_or_fg_candidates"]+6*(s["defensive_td"]+s["special_teams_td"])
+ +2*s["blocked_kick_candidates"]+6*(s["defensive_td"]+s["special_teams_td"])
  +2*(s["safeties"]+s["defensive_two_point_conversions"])+pa_score(pa))
  out.append({"week":week,"game_id":game,"defense":team,"provisional_dst_points":score,
  "provisional_points_allowed":pa,**dict(s)})
-print(json.dumps({"team_games":len(out),"scoring_rules":{"sack":1,"interception":2,"confirmed_fumble_recovery":2,"blocked_punt_or_fg_candidate":2,"defensive_or_special_teams_td":6,"safety":2,"defensive_two_point_conversion":2,"points_allowed_tiers":"0:+5, 1-6:+4, 7-13:+3, 14-17:+1, 18-27:0, 28-34:-1, 35+:-4"},
+print(json.dumps({"team_games":len(out),"scoring_rules":{"sack":1,"interception":2,"confirmed_fumble_recovery":2,"blocked_punt_or_fg_candidate":2,"defensive_or_special_teams_td":6,"safety":2,"defensive_two_point_conversion":2,"points_allowed_tiers":"0:+5, 1-6:+4, 7-13:+3, 14-17:+1, 18-27:0, 28-34:-1, 35-45:-3, 46+:-5"},
 "totals":{"sacks":sum(s["sacks"] for s in stats.values()),"interceptions":sum(s["interceptions"] for s in stats.values()),"confirmed_defensive_fumble_recoveries":sum(s["confirmed_defensive_fumble_recoveries"] for s in stats.values()),"blocked_punt_or_fg_candidates":sum(s["blocked_punt_or_fg_candidates"] for s in stats.values()),"defensive_td":sum(s["defensive_td"] for s in stats.values()),"special_teams_td":sum(s["special_teams_td"] for s in stats.values()),"kickoff_return_td_expected_extra":5,"safeties":sum(s["safeties"] for s in stats.values()),"defensive_two_point_conversions":sum(s["defensive_two_point_conversions"] for s in stats.values())},
 "unresolved_scoring_events":exceptions[:30],"unresolved_event_count":len(exceptions),
-"sample_team_games":out[:12],"cautions":["PROVISIONAL: not ESPN-validated; points allowed on special teams and conversion plays require review.","Do not use these fantasy scores for production projections or accuracy claims.","No outputs saved; no live site, rankings, projections or model weights changed."]},indent=2))
+"sample_team_games":out[:12],"cautions":["PROVISIONAL: not ESPN-validated; points allowed on conversions following defensive/special teams scores and other ESPN-specific exceptions require review.","Do not use these fantasy scores for production projections or accuracy claims.","No outputs saved; no live site, rankings, projections or model weights changed."]},indent=2))
