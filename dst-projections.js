@@ -17,15 +17,15 @@ function draw(){
  table.replaceChildren();cards.replaceChildren();
  for(const r of list){
   const tr=document.createElement("tr");
-  for(const v of [data.indexOf(r)+1,r[0],r[3].toFixed(2),"D/ST",r[1],r[2],"Experimental"]){
+  for(const v of [data.indexOf(r)+1,r[0],r[3].toFixed(2),"D/ST",r[1],r[2],"Pending","Experimental"]){
    const td=document.createElement("td");td.textContent=String(v);tr.appendChild(td);
   }table.appendChild(tr);
   const card=document.createElement("div");card.className="projection-mobile-card";
   const heading=document.createElement("strong");heading.textContent="#"+(data.indexOf(r)+1)+" "+r[0];
-  const details=document.createElement("p");details.textContent="D/ST · "+r[1]+" vs "+r[2]+" · "+r[3].toFixed(2)+" projected pts";
+  const details=document.createElement("p");details.textContent="D/ST · "+r[1]+" vs "+r[2]+" · "+r[3].toFixed(2)+" projected pts · Actual PPR: Pending";
   card.append(heading,details);cards.appendChild(card);
  }
- if(!list.length){const tr=document.createElement("tr");const td=document.createElement("td");td.colSpan=7;td.textContent="No matching D/ST projections.";tr.appendChild(td);table.appendChild(tr);}
+ if(!list.length){const tr=document.createElement("tr");const td=document.createElement("td");td.colSpan=8;td.textContent="No matching D/ST projections.";tr.appendChild(td);table.appendChild(tr);}
 }
 function setDst(active){
  selected=active;dstPanel.hidden=!active;playerWrapper.hidden=active;pagination.hidden=active;
