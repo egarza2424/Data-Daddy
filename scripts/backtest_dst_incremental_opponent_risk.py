@@ -54,7 +54,7 @@ for season,path in FILES.items():
   global_int=league["ints"]/league["dropbacks"] if league["dropbacks"] else 0.
   for r in predictions[week]:
    opp=opponents.get((week,r["defense"]))
-   if not opp:raise SystemExit(f"Missing schedule opponent: {season} W{week} {r[\"defense\"]}")
+   if not opp:raise SystemExit(f"Missing schedule opponent: {season} W{week} {r['defense']}")
    c=history[opp]
    if c["dropbacks"]<100 or league["dropbacks"]<1000:
     raise SystemExit(f"Insufficient prior-week offense history: {season} W{week} {opp}")
