@@ -27,10 +27,10 @@ for node in tree.body:
  if isinstance(node,ast.Assign) and any(isinstance(t,ast.Name) and t.id=="games" for t in node.targets):
   planned=ast.literal_eval(node.value)
 if planned is None:raise SystemExit("RED: Could not inspect preview matchups")
-planned=set(map(tuple,planned));official=set(official)
+planned=set(map(tuple,planned));official=set(official);remaining=official-set(completed)
 teams={x for pair in official for x in pair}
 all_teams=set("ARI ATL BAL BUF CAR CHI CIN CLE DAL DEN DET GB HOU IND JAX KC LV LAC LA MIA MIN NE NO NYG NYJ PHI PIT SF SEA TB TEN WAS".split())
-result={"week":week,"espn_events":len(events),"planned_matchups":len(planned),"schedule_matches":planned==official,"missing_from_preview":[list(x) for x in sorted(official-planned)],"extra_in_preview":[list(x) for x in sorted(planned-official)],"espn_completed_games":[list(x) for x in sorted(completed)],"espn_bye_teams":sorted(all_teams-teams),"official_matchups":[{"away":a,"home":h} for a,h in sorted(official)],"production_changed":False}
+result={"week":week,"espn_events":len(events),"planned_matchups":len(planned),"schedule_matches":planned==remaining,"missing_from_preview":[list(x) for x in sorted(remaining-planned)],"extra_in_preview":[list(x) for x in sorted(planned-remaining)],"espn_completed_games":[list(x) for x in sorted(completed)],"espn_bye_teams":sorted(all_teams-teams),"official_matchups":[{"away":a,"home":h} for a,h in sorted(official)],"production_changed":False}
 print(json.dumps(result,indent=2))
-if planned!=official:sys.exit("RED: Schedule mismatch. Do not publish preview until corrected.")
-print("GREEN: Preview matchups and home/away match ESPN. Review completed games before publishing.")
+if planned!=remaining:sys.exit("RED: Schedule mismatch. Do not publish preview until corrected.")
+print("GREEN: Preview matchups and home/away match all remaining ESPN games; completed games excluded.")
