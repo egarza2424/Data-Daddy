@@ -3,7 +3,7 @@
 import duckdb,collections,json,sys
 src=sys.argv[1] if len(sys.argv)>1 else "https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2025.parquet"
 db=duckdb.connect()
-rows=db.execute("""SELECT game_id,week,play_id,home_team,away_team,posteam,defteam,play_type,desc,total_home_score,total_away_score
+rows=db.execute("""SELECT game_id,week,play_id,home_team,away_team,posteam,defteam,play_type,"desc",total_home_score,total_away_score
 FROM read_parquet(?) WHERE season=2025 AND week BETWEEN 1 AND 18
 AND game_id IS NOT NULL AND play_id IS NOT NULL
 AND COALESCE(play_type,'') <> 'GAME' AND (posteam IS NOT NULL OR defteam IS NOT NULL)
