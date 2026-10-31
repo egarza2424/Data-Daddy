@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-10-31T15:15:01.489337+00:00",
+  "generated_at_utc": "2026-10-31T19:22:32.617027+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
     "missing_near_kickoff": 0,
-    "pending": 15
+    "pending": 22
   },
   "games": [
     {
@@ -124,6 +124,62 @@
       "game_id": "2026_09_CIN_ATL",
       "week": 9,
       "kickoff_utc": "2026-11-08T14:30:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_09_DEN_CAR",
+      "week": 9,
+      "kickoff_utc": "2026-11-08T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_09_DAL_IND",
+      "week": 9,
+      "kickoff_utc": "2026-11-08T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_09_NYJ_KC",
+      "week": 9,
+      "kickoff_utc": "2026-11-08T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_09_DET_MIA",
+      "week": 9,
+      "kickoff_utc": "2026-11-08T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_09_CLE_NO",
+      "week": 9,
+      "kickoff_utc": "2026-11-08T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_09_NYG_PHI",
+      "week": 9,
+      "kickoff_utc": "2026-11-08T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_09_LA_WAS",
+      "week": 9,
+      "kickoff_utc": "2026-11-08T18:00:00+00:00",
       "status": "pending",
       "official_inactives_verified": false,
       "source_url": null
