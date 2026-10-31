@@ -1,0 +1,7 @@
+{
+  "snapshot_utc": "2026-10-31T22:23:15.986930+00:00",
+  "week": 8,
+  "source": "projection-model/2026-week8-ppr-projections.csv",
+  "rows": 354,
+  "audit_status": "requires per-game kickoff verification"
+}
