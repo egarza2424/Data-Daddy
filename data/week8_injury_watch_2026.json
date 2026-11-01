@@ -1620,8 +1620,8 @@
         "Keon Coleman (review route role with DJ Moore active)",
         "Dalton Kincaid (active; review middle-field target role)"
       ],
-      "review_focus": "NOV 1 NEW NFL IN-GAME: Bills WR Josh Palmer hamstring injury vs BAL; NFL lists DOUBTFUL to return. Do not label officially OUT or assume full target transfer. With DJ Moore and Kincaid both active, assess Palmer's prior routes and target share, then Shakir/Coleman/Moore/Kincaid actual route participation and red-zone opportunities before Week9 projections. No automatic numerical changes; frozen Week8 projection preserved. Source: https://www.nfl.com/news/notable-injuries-news-sunday-week-8-games-2026",
-      "week8_status": "NFL_NOV1_IN_GAME_DOUBTFUL_HAMSTRING_WEEK8_VS_BAL",
+      "review_focus": "NOV 1 NEW NFL IN-GAME: Bills WR Josh Palmer hamstring injury vs BAL; NFL lists DOUBTFUL to return. Do not label officially OUT or assume full target transfer. With DJ Moore and Kincaid both active, assess Palmer's prior routes and target share, then Shakir/Coleman/Moore/Kincaid actual route participation and red-zone opportunities before Week9 projections. No automatic numerical changes; frozen Week8 projection preserved. Source: https://www.nfl.com/news/notable-injuries-news-sunday-week-8-games-2026 NOV 1 NFL OFFICIAL ROUNDUP UPDATE: Palmer was subsequently RULED OUT vs Baltimore (hamstring), superseding previous DOUBTFUL-to-return. Review Week9 practice, actual target/route distribution among Shakir, DJ Moore, Keon Coleman and Dalton Kincaid; do not add a second injury opportunity boost or change frozen Week8 projections. Source: https://www.nfl.com/news/notable-injuries-news-sunday-week-8-games-2026",
+      "week8_status": "NFL_NOV1_RULED_OUT_IN_GAME_HAMSTRING_WEEK8_VS_BAL",
       "automatic_projection_adjustment": false
     },
     {
@@ -1656,6 +1656,172 @@
       ],
       "review_focus": "NOV 1 NEW NFL IN-GAME: Arizona WR Kendrick Bourne ruled OUT vs DAL with ankle injury (Arizona Sports specifies sprain). He had 1 catch on 2 targets for 29 yards before exit per beat reporting; assess his prior expanded route share following Marvin Harrison Jr. departure, and actual replacement Wilson/Fehoko/Virgil routes/targets/red-zone roles. QB Jacoby Brissett was BENCHED for Gardner Minshew in third quarter (non-injury), so avoid assigning replacement target shares without considering QB/game context. No Week9 prognosis or automatic projection/rank change; frozen Week8 PPR and in-game injury tag preserved. Sources: https://fantasy-www.nfl.com/news/notable-injuries-news-sunday-week-8-games-2026 ; https://arizonasports.com/nfl/arizona-cardinals/cardinals-gardner-minshew-ii-replaces-jacoby-brissett-during-2nd-half-vs-cowboys",
       "week8_status": "NFL_NOV1_RULED_OUT_IN_GAME_ANKLE_WEEK8_VS_DAL",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Donte Jackson",
+      "team": "LAC",
+      "position": "CB",
+      "week7_status": "NOT_PREVIOUSLY_TRACKED_AS_WEEK8_INJURY",
+      "injury": "hamstring",
+      "source": "https://www.chargers.com/news/rams-inactives-week-8-2026",
+      "beneficiary_review": [
+        "Puka Nacua (LAR; verify route alignments and actual target volume)",
+        "Tyler Higbee (LAR; TE coverage; Parkinson inactive)",
+        "Davis Allen (LAR; 12/13-personnel routes and red-zone usage)"
+      ],
+      "review_focus": "NOV 1 NEW OFFICIAL CHARGERS INACTIVES: Jackson inactive vs Rams after Friday QUESTIONABLE (hamstring). Rodney Shelley also inactive; Deane Leonard OUT and Derwin James on IR already. Chargers elevated Kaiir Elam; replacement coverage assignments unverified. With Davante Adams and Colby Parkinson absent, review Puka Nacua route/target share, Higbee/Allen routes (Week7 Higbee 18, Allen 12, Parkinson 16), red-zone work and Chargers actual CB alignments before changing Rams matchup scores or PPR. Avoid stacking independent boosts for same depleted secondary or automatically assigning Parkinson's 6 targets. Review-only; preserve frozen Week8 projections.",
+      "week8_status": "OFFICIAL_NOV1_INACTIVE_HAMSTRING_VS_LAR",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Rodney Shelley",
+      "team": "LAC",
+      "position": "CB",
+      "week7_status": "NOT_PREVIOUSLY_TRACKED_AS_WEEK8_INJURY",
+      "injury": "hamstring",
+      "source": "https://www.chargers.com/news/rams-inactives-week-8-2026",
+      "beneficiary_review": [
+        "Puka Nacua (LAR; conditional favorable coverage)",
+        "Tyler Higbee (LAR; conditional underneath targets)",
+        "Davis Allen (LAR; conditional red-zone routes)"
+      ],
+      "review_focus": "NOV 1 NEW OFFICIAL CHARGERS INACTIVES: Shelley inactive after Friday QUESTIONABLE hamstring. Donte Jackson also inactive; Deane Leonard and Derwin James already unavailable. Evaluate combined coverage personnel, including practice-squad elevation Kaiir Elam, rather than counting each defensive absence as separate additive PPR or matchup boost. Parkinson inactive and Adams on IR for Rams; verify Rams TE personnel, route shares, Puka target concentration and red-zone distribution. Review-only, no numerical change.",
+      "week8_status": "OFFICIAL_NOV1_INACTIVE_HAMSTRING_VS_LAR",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Brian Branch",
+      "team": "DET",
+      "position": "S",
+      "week7_status": "NOT_PREVIOUSLY_TRACKED_AS_WEEK8_INJURY",
+      "injury": "concussion (new Week8 in-game)",
+      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-8-games-2026",
+      "beneficiary_review": [
+        "Minnesota receiving game (remaining Week8; verify actual matchups)",
+        "Detroit D/ST Week9 opponent (conditional if protocol not cleared)",
+        "Keith Abney II (replacement defensive snaps; not fantasy PPR)"
+      ],
+      "review_focus": "NOV 1 NEW NFL IN-GAME: Branch ruled OUT vs Minnesota with concussion after collision with teammate D.J. Wonnum, who was separately ruled OUT. Rookie Keith Abney II replaced Branch per Detroit beat coverage. Review Lions Week9 D/ST coverage personnel, coverage shells, pressure and opponent target/route matchups if Branch fails protocol; do not assume Week9 absence or auto-adjust D/ST matchup or PPR.",
+      "week8_status": "NFL_NOV1_RULED_OUT_IN_GAME_CONCUSSION_VS_MIN",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "D.J. Wonnum",
+      "team": "DET",
+      "position": "EDGE",
+      "week7_status": "NOT_PREVIOUSLY_TRACKED_AS_WEEK8_INJURY",
+      "injury": "concussion (new Week8 in-game)",
+      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-8-games-2026",
+      "beneficiary_review": [
+        "Minnesota pass protection (remaining Week8)",
+        "Detroit D/ST pass rush and sack projection (Week9 conditional)",
+        "Tyler Lacy (replacement defensive rotation; verify snaps)"
+      ],
+      "review_focus": "NOV 1 NEW NFL IN-GAME: Wonnum ruled OUT vs Minnesota with concussion after collision with Brian Branch; carted off. Wonnum was tied for team lead with 5 sacks per Detroit reporting. Check concussion protocol status, replacement edge rush snaps, pressure rate and Detroit Week9 matchup before adjusting D/ST sacks or opponent QB projection. Do not presume extended absence.",
+      "week8_status": "NFL_NOV1_RULED_OUT_IN_GAME_CONCUSSION_VS_MIN",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Jack Campbell",
+      "team": "DET",
+      "position": "LB",
+      "week7_status": "NOT_PREVIOUSLY_TRACKED_AS_WEEK8_INJURY",
+      "injury": "neck injury (new Week8 in-game; hospital evaluation)",
+      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-8-games-2026",
+      "beneficiary_review": [
+        "Detroit D/ST linebacker and coverage unit (Week9 conditional)",
+        "Minnesota short-area receiving/rushing efficiency (remaining Week8; conditional)"
+      ],
+      "review_focus": "NOV 1 NEW NFL IN-GAME: Lions linebacker Campbell left field on stretcher and was transported to local hospital for evaluation of neck injury. Diagnosis, prognosis and Week9 status UNVERIFIED; do not assert spinal injury or duration. If absent, audit replacement LB snaps, tackle/run fit, blitz and TE/RB coverage and combined Lions Branch/Wonnum absences before future D/ST/matchup adjustment. Review-only.",
+      "week8_status": "NFL_NOV1_TRANSPORTED_TO_HOSPITAL_NECK_EVALUATION_VS_MIN",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Cade Mays",
+      "team": "DET",
+      "position": "C",
+      "week7_status": "NOT_PREVIOUSLY_TRACKED_AS_WEEK8_INJURY",
+      "injury": "ankle (new Week8 in-game)",
+      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-8-games-2026",
+      "beneficiary_review": [
+        "Jared Goff (pass protection conditional)",
+        "Jahmyr Gibbs (interior rushing lanes conditional)",
+        "Juice Scruggs (replacement center; five prior starts)"
+      ],
+      "review_focus": "NOV 1 NEW NFL IN-GAME: Detroit center Mays ruled OUT with ankle injury vs Minnesota. Juice Scruggs, who started Detroit's first five games, replaced him. Compare protection calls, pressures allowed, rush success and Scruggs' earlier 2026 starts before changing Goff or Gibbs Week9 projection. No verified Week9 absence; preserve frozen Week8 projections.",
+      "week8_status": "NFL_NOV1_RULED_OUT_IN_GAME_ANKLE_VS_MIN",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "D.J. Reed",
+      "team": "DET",
+      "position": "CB",
+      "week7_status": "NOT_PREVIOUSLY_TRACKED_AS_WEEK8_INJURY",
+      "injury": "hip (new Week8 in-game)",
+      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-8-games-2026",
+      "beneficiary_review": [
+        "Detroit D/ST secondary coverage (Week9 conditional)",
+        "Detroit next opponent outside receivers (route/target matchup if Reed unavailable)"
+      ],
+      "review_focus": "NOV 1 NEW NFL ROUNDUP: Detroit corner D.J. Reed did not return against Minnesota due to hip injury. Not yet confirmed out for Week9. Combined with Brian Branch concussion, review remaining CB/safety alignments and opponent WR route/deep-target shares before any future defensive matchup adjustment. Do not double-count secondary injuries or alter frozen Week8 data.",
+      "week8_status": "NFL_NOV1_DID_NOT_RETURN_IN_GAME_HIP_VS_MIN",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "DJ Turner II",
+      "team": "CIN",
+      "position": "CB",
+      "week7_status": "NOT_PREVIOUSLY_TRACKED_AS_WEEK8_INJURY",
+      "injury": "ankle (new Week8 in-game)",
+      "source": "https://www.nbcsports.com/fantasy/football/player-news/2026-11-01/dj-turner-ankle-ruled-out-vs-titans",
+      "beneficiary_review": [
+        "Drake London (ATL Week9; conditional coverage benefit if Turner absent)",
+        "Atlanta other receiving options (routes and target share conditional)",
+        "Josh Newton (CIN replacement CB; verify coverage snaps)"
+      ],
+      "review_focus": "NOV 1 ROTOWORLD/NBC: Bengals CB Turner ruled OUT in fourth quarter vs Titans with ankle injury; Josh Newton entered. Bengals face Atlanta Week9 per schedule. If Turner cannot practice/clear, review Drake London's recent routes, target share and red-zone looks, Atlanta alignments, Cincinnati CB coverage assignments and replacement pressure rates before any Week9 matchup boost. Do not assume Turner will miss Week9 or automatically boost London.",
+      "week8_status": "CREDIBLE_NOV1_RULED_OUT_IN_GAME_ANKLE_VS_TEN",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Caleb Downs",
+      "team": "DAL",
+      "position": "S",
+      "week7_status": "NOT_PREVIOUSLY_TRACKED_AS_WEEK8_INJURY",
+      "injury": "concussion evaluation (new Week8 in-game)",
+      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-8-games-2026",
+      "beneficiary_review": [
+        "Dallas D/ST secondary (Week9 conditional)",
+        "Next Dallas opponent receiving routes and TE/RB middle-of-field usage (conditional)"
+      ],
+      "review_focus": "NOV 1 NFL ROUNDUP: Cowboys safety Downs evaluated for concussion and ruled OUT vs Arizona. Do not assert confirmed diagnosis or Week9 absence without follow-up. Monitor Cowboys replacement safety snap/coverage duties, Joey Porter Jr ankle questionable, and opponent TE/slot routes/targets before adjusting Week9 D/ST or fantasy receiving matchups.",
+      "week8_status": "NFL_NOV1_RULED_OUT_IN_GAME_CONCUSSION_EVALUATION_VS_ARI",
+      "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Cashius Howell",
+      "team": "CIN",
+      "position": "EDGE",
+      "week7_status": "NOT_PREVIOUSLY_TRACKED_AS_WEEK8_INJURY",
+      "injury": "right wrist (new Week8 in-game)",
+      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-8-games-2026",
+      "beneficiary_review": [
+        "Atlanta Week9 passing game (conditional if Howell absent)",
+        "Cincinnati D/ST sack/pressure projection (conditional)"
+      ],
+      "review_focus": "NOV 1 NFL ROUNDUP: Bengals defensive end Howell ruled OUT vs Tennessee with right wrist injury. Cedric Johnson separately questionable with left ankle. Alongside DJ Turner II ankle exit, review Cincinnati Week9 defensive pressure and coverage personnel before considering Drake London or Atlanta QB matchup changes. Do not assume fracture or Week9 OUT; no automatic scoring change.",
+      "week8_status": "NFL_NOV1_RULED_OUT_IN_GAME_WRIST_VS_TEN",
       "automatic_projection_adjustment": false
     }
   ]
