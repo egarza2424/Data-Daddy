@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-11-01T19:37:04.564154+00:00",
+  "generated_at_utc": "2026-11-01T23:05:48.597786+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 11,
-    "pending": 16
+    "missing_near_kickoff": 12,
+    "pending": 15
   },
   "games": [
     {
@@ -100,7 +100,7 @@
       "game_id": "2026_08_PHI_WAS",
       "week": 8,
       "kickoff_utc": "2026-11-02T01:20:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
