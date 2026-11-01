@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-10-31T22:41:00.884103+00:00",
+  "generated_at_utc": "2026-11-01T01:30:14.533660+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
     "missing_near_kickoff": 0,
-    "pending": 26
+    "pending": 27
   },
   "games": [
     {
@@ -212,6 +212,14 @@
       "game_id": "2026_09_ARI_SEA",
       "week": 9,
       "kickoff_utc": "2026-11-08T21:25:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_09_TB_CHI",
+      "week": 9,
+      "kickoff_utc": "2026-11-09T01:20:00+00:00",
       "status": "pending",
       "official_inactives_verified": false,
       "source_url": null
