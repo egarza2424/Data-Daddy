@@ -1521,6 +1521,23 @@
       "review_focus": "OFFICIAL Oct31 DOUBTFUL, not OUT, after missing all practices. Wait for Monday inactives and review replacement pass rush before numeric changes.",
       "week8_status": "OFFICIAL_OCT31_DOUBTFUL_ANKLE_WEEK8",
       "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Jack Bech",
+      "team": "LV",
+      "position": "WR",
+      "week7_status": "INJURED_RESERVE_SINCE_WEEK3",
+      "injury": "left forearm fracture",
+      "source": "https://www.raiders.com/news/raiders-activate-wr-jack-bech-from-the-reserve-injured-list",
+      "beneficiary_review": [
+        "Tre Tucker: compare existing target share and routes with returning Bech and Dont'e Thornton Jr.",
+        "Brock Bowers and Michael Mayer: monitor tight-end routes/target distribution as WR depth returns",
+        "Ashton Jeanty: review running-back target share without assuming immediate displacement"
+      ],
+      "review_focus": "OFFICIAL OCT31 RAIDERS TRANSACTION: Bech activated from injured reserve after Week3 broken forearm; 5 catches, 48 yards, 1 TD in three 2026 games. Friday report had Bech QUESTIONABLE despite three full practices. Activation makes him roster-eligible but does NOT establish Sunday game-day active status, routes or snap share. Raiders receiving usage has centered on Tre Tucker (29 catches, 474 yards, 4 TD), Brock Bowers, Michael Mayer and Jeanty; Thornton also returning from IR. Verify Sunday inactives and pre-injury route/target splits before changing Tucker/TE/Bech PPR or ranks. Review only; no automatic injury adjustment.",
+      "week8_status": "OFFICIAL_OCT31_ACTIVATED_FROM_IR_FOREARM_GAME_DAY_ACTIVE_UNCONFIRMED",
+      "automatic_projection_adjustment": false
     }
   ]
 }
