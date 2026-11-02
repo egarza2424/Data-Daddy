@@ -25,11 +25,11 @@ if len(finished)<20:raise SystemExit("Too few final-game teams: "+str(len(finish
 try:
  import duckdb
  db=duckdb.connect()
- source="https://github.com/nflverse/nflverse-data/releases/download/player_stats/player_stats_2026.parquet"
+ source="https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.parquet"
  cols={r[0] for r in db.execute("DESCRIBE SELECT * FROM read_parquet(?)",[source]).fetchall()}
- required={"season","week","player_display_name","recent_team","position","fantasy_points_ppr"}
+ required={"season","week","player_display_name","team","position","fantasy_points_ppr"}
  if not required.issubset(cols):raise RuntimeError("Missing columns: "+str(required-cols))
- records=db.execute("SELECT season,week,player_display_name,recent_team,position,fantasy_points_ppr FROM read_parquet(?) WHERE season=? AND week=?",[source,YEAR,WEEK]).fetchall()
+ records=db.execute("SELECT season,week,player_display_name,team,position,fantasy_points_ppr FROM read_parquet(?) WHERE season=? AND week=?",[source,YEAR,WEEK]).fetchall()
 except Exception as e:raise SystemExit("Unable to retrieve nflverse completed player stats: "+str(e))
 def key(row):
  return (int(row["season"]),int(row["week"]),str(row["player_display_name"]).strip().casefold(),str(row["team"]).upper(),str(row["position"]).upper())
