@@ -133,7 +133,7 @@
         if(chart){
           chart.removeAttribute("role");
           chart.setAttribute("aria-label","Week "+latest+" accuracy pending final game results");
-          chart.innerHTML='<div class="tracker-audit-pending"><strong>Week '+esc(latest)+' · Audit pending</strong><p>Ranking accuracy will be posted after tonight\'s game and verification of the complete Week 7 results.</p></div>';
+          chart.innerHTML='<div class="tracker-audit-pending"><strong>Week '+esc(latest)+' · Audit pending</strong><p>Ranking accuracy will be posted after the remaining games are final and the complete Week '+esc(latest)+' results are verified.</p></div>';
         }
         root.querySelector("#trackerCards").innerHTML="<p>Week "+latest+" player ranking results will be available after the final game and validation.</p>";
         root.querySelectorAll("[data-tracker-category]").forEach(b=>{b.disabled=true;b.setAttribute("aria-pressed","false");});
