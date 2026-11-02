@@ -2193,6 +2193,24 @@
       "review_focus": "NOV 1 RotoWire/CBS citing Falcons team reporter Tori McElhaney: Ebukam was downgraded to DOUBTFUL TO RETURN in game vs TB with hamstring injury; he entered Week8 QUESTIONABLE after three LIMITED practices, and previously missed Week3 with hamstring issue. Doubtful in Week8 is NOT a Week9 OUT designation. Atlanta plays Cincinnati in Madrid Nov8; verify injury follow-up, replacement edge routes/snaps/pressures and Bengals offensive-line context before any Week9 matchup or D/ST numerical changes.",
       "week8_status": "CREDIBLE_NOV1_DOUBTFUL_TO_RETURN_HAMSTRING_VS_TB",
       "automatic_projection_adjustment": false
+    },
+    {
+      "player_id": null,
+      "player_name": "Hunter Henry",
+      "team": "NE",
+      "position": "TE",
+      "week7_status": "NOT_PREVIOUSLY_TRACKED_AS_WEEK8_INJURY",
+      "injury": "foot (Week8 in-game vs MIA; ruled out remainder; Week9 status not yet established)",
+      "source": "https://www.patriots.com/news/game-observations-8-takeaways-from-the-patriots-comeback-win-over-the-dolphins-in-week-8",
+      "beneficiary_review": [
+        "Eli Raridon: immediate replacement top TE; reported 55 Week8 snaps; verify routes, targets, target share and red-zone participation before conditional Week9 TE projection",
+        "Tanner Arkin and Cameron Latu: active reserve TE depth; verify Week8 snap/route allocation and protection usage; no assumed high target share",
+        "DeMario Douglas (slot), Kyle Williams (outside) and Efton Chism III (outside): verify existing Week8 routes/targets before assigning any conditional Henry vacated targets; A.J. Brown and Romeo Doubs/Mack Hollins absences already tracked to avoid duplicate injury boosts",
+        "Drake Maye and New England scoring environment: review missing offensive line starters and pass-catching options if Henry cannot practice, without automatically changing projections"
+      ],
+      "review_focus": "NOV 2 NEWLY INDEXED, NOT NEW WEEK9 OUT: Patriots official Nov1 postgame confirms starting TE Hunter Henry sustained a foot injury and did not finish Week8 at Miami. Pats Pulpit reports Henry was ruled OUT for the rest of that game after brief attempts to test foot; 3 catches on 3 targets for 30 yards. Nov2 Patriots beat report quotes coach Mike Vrabel saying he has no prognosis yet; Week9 availability vs Green Bay Sunday Nov8 is UNKNOWN. Raridon played reported career-high 55 snaps, but routes, target shares and red-zone usage still require independent verification. With A.J. Brown out Week8 and Doubs/Hollins unavailable, assess replacement role carefully and prevent duplicate target boosts. This is game-specific Week8 OUT, NOT confirmed Week9 OUT or IR. Preserve frozen Week8 PPR and injury-tagged misses; no automatic AI/PPR/DST/matchup/model changes. Sources: https://www.patriots.com/news/game-observations-8-takeaways-from-the-patriots-comeback-win-over-the-dolphins-in-week-8 ; https://www.si.com/nfl/patriots/onsi/patriots-don-t-have-immediate-update-on-hunter-henry-s-status ; https://www.patspulpit.com/new-england-patriots-injuries/142539/hunter-henry-injury-patriots-te-leaves-dolphins-game-in-first-half",
+      "week8_status": "PATRIOTS_NOV1_RULED_OUT_IN_GAME_FOOT_WEEK8_VS_MIA_WEEK9_UNKNOWN",
+      "automatic_projection_adjustment": false
     }
   ]
 }
