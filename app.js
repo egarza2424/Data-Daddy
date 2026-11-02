@@ -2986,7 +2986,7 @@ function renderProjectionBoard() {
         player?.injuryStatus ||
         "Available";
 
-      const actualPpr = player ? getActualPprForRanking(player) : null;
+      const actualPpr = getActualPprForProjection(projection);
       const row =
         document.createElement("tr");
 
@@ -10797,6 +10797,25 @@ function exportModelSnapshot() {
       : `Live model snapshot exported: ${snapshot.length} players`
   );
 }
+function getActualPprForProjection(projection) {
+  if (!projection) return null;
+  const week = Number(projection.snapshot_week);
+  const aliases = {LA: "LAR", JAC: "JAX", WSH: "WAS"};
+  const team = value => aliases[String(value || "").toUpperCase()] || String(value || "").toUpperCase();
+  const matches = actualPprResults.filter(game =>
+    Number(game.season) === 2026 &&
+    Number(game.week) === week &&
+    normalizeName(game.player_display_name) === normalizeName(projection.player_name) &&
+    String(game.position || "").toUpperCase() === String(projection.position || "").toUpperCase() &&
+    team(game.team) === team(projection.team)
+  );
+  if (matches.length !== 1) return null;
+  const value = matches[0].fantasy_points_ppr;
+  if (value === null || value === undefined || value === "") return null;
+  const points = Number(value);
+  return Number.isFinite(points) ? points : null;
+}
+
 function getActualPprForRanking(player) {
   const week = Number(snapshotWeek || document.documentElement.dataset.targetWeek);
   if (!Number.isInteger(week) || week < 1 || !player) return null;
