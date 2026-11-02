@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Read-only readiness check for a leakage-safe RB injury-opportunity challenger."""
+"""Read-only readiness check for a leakage-safe RB injury-opportunity challenger.
+Uses only Python standard library; no dependencies required.
+"""
+import csv
 from pathlib import Path
-import pandas as pd
 root=Path("projection-model")
 val=root/"validation"
 need=["season","week","player_id"]
@@ -10,10 +12,14 @@ for season in (2024,2025):
  print("\nSEASON",season)
  for label,path in [("history",root/f"{season}-historical-ppr-dataset.csv"),("J2 predictions",val/f"{season}-rb-model-j2-predictions.csv")]:
   if not path.exists():
-   print(label,"MISSING",path);continue
-  d=pd.read_csv(path,nrows=5)
-  print(label,"path",path,"columns",len(d.columns))
-  print(" join keys present:",[c for c in need if c in d.columns])
-  print(" candidate columns:",[c for c in d.columns if any(k in c.lower() for k in keywords)])
-  print(" sample rows:",len(d))
+   print(label,"MISSING",path)
+   continue
+  with path.open(newline="",encoding="utf-8-sig") as f:
+   reader=csv.DictReader(f)
+   columns=reader.fieldnames or []
+   sample=next(reader,None)
+  print(label,"path",path,"columns",len(columns))
+  print(" join keys present:",[c for c in need if c in columns])
+  print(" candidate columns:",[c for c in columns if any(k in c.lower() for k in keywords)])
+  print(" sample rows:",int(sample is not None))
 print("\nNo training, scoring, live files or weights modified.")
