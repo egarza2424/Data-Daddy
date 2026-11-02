@@ -1117,15 +1117,15 @@
       "position": "WR",
       "week7_status": "BYE_WEEK7_LAST_PLAYED_WEEK6",
       "injury": "foot",
-      "source": "https://www.commanders.com/news/game-status-commanders-eagles-week-8",
+      "source": "https://www.nfl.com/news/nfl-week-8-inactives-players-ruled-out-sunday-2026-season",
       "beneficiary_review": [
         "Antonio Williams",
         "Dyami Brown",
         "Van Jefferson (Week 8 activation and role unverified)",
         "Chig Okonkwo (prior target share; not automatic)"
       ],
-      "review_focus": "OCT 29 VERIFIED TEAM UPDATE: Burks downgraded from LIMITED Wednesday to DNP Thursday (foot). Terry McLaurin is already on IR, while Stefon Diggs was FULL Thursday. Week 6 without-McLaurin evidence already documented in Diggs watch: Burks 37 snaps/6 targets, Antonio Williams 45/67 snaps/4 targets, Chig Okonkwo 51 snaps/7 targets. If Burks ruled OUT, review Antonio Williams and Van Jefferson actual route shares and target distribution; do not assume automatic redistribution or boost Diggs. Friday final game status pending; no PPR, AI, or model-weight change. OCT 30 FRIDAY OFFICIAL FINAL: Burks LIMITED Friday after Thursday DNP and is QUESTIONABLE (foot), not ruled out. With McLaurin already IR and Diggs cleared, review Antonio Williams (Week6 45/67 snaps, 4/35 targets), Dyami Brown (33/67 snaps, 1 target), and promoted Van Jefferson (Week8 role unverified) only if Burks inactive. Burks had 37/67 snaps and 6/35 targets in Week6. Confirm Sunday actives and route participation before any redistribution; do not double count McLaurin injury. NOV 1 ~9:00 AM ET PREGAME REPORT: ESPN Adam Schefter says Burks EXPECTED TO PLAY vs PHI (foot); official status remains QUESTIONABLE until Sunday-night inactives. Maintain previously documented McLaurin-absence target opportunity for Burks/Diggs/Antonio Williams/Chig Okonkwo without assigning additional Burks-absence targets. Source: https://www.nfl.com/news/week-8-injuries-sunday-pregame-2026-nfl-season",
-      "week8_status": "OFFICIAL_FRIDAY_QUESTIONABLE_OCT30_FOOT_LIMITED_WEEK8_VS_PHI",
+      "review_focus": "OCT 29 VERIFIED TEAM UPDATE: Burks downgraded from LIMITED Wednesday to DNP Thursday (foot). Terry McLaurin is already on IR, while Stefon Diggs was FULL Thursday. Week 6 without-McLaurin evidence already documented in Diggs watch: Burks 37 snaps/6 targets, Antonio Williams 45/67 snaps/4 targets, Chig Okonkwo 51 snaps/7 targets. If Burks ruled OUT, review Antonio Williams and Van Jefferson actual route shares and target distribution; do not assume automatic redistribution or boost Diggs. Friday final game status pending; no PPR, AI, or model-weight change. OCT 30 FRIDAY OFFICIAL FINAL: Burks LIMITED Friday after Thursday DNP and is QUESTIONABLE (foot), not ruled out. With McLaurin already IR and Diggs cleared, review Antonio Williams (Week6 45/67 snaps, 4/35 targets), Dyami Brown (33/67 snaps, 1 target), and promoted Van Jefferson (Week8 role unverified) only if Burks inactive. Burks had 37/67 snaps and 6/35 targets in Week6. Confirm Sunday actives and route participation before any redistribution; do not double count McLaurin injury. NOV 1 ~9:00 AM ET PREGAME REPORT: ESPN Adam Schefter says Burks EXPECTED TO PLAY vs PHI (foot); official status remains QUESTIONABLE until Sunday-night inactives. Maintain previously documented McLaurin-absence target opportunity for Burks/Diggs/Antonio Williams/Chig Okonkwo without assigning additional Burks-absence targets. Source: https://www.nfl.com/news/week-8-injuries-sunday-pregame-2026-nfl-season NOV 1 OFFICIAL GAME-DAY: Burks is not on Washington's NFL inactive list vs Philadelphia and was separately confirmed active by game-day coverage after Friday QUESTIONABLE (foot). This confirms the earlier expected-to-play report, NOT a new injury opportunity. Maintain Burks' existing Terry McLaurin-absence role, but do not give Antonio Williams, Chig Okonkwo, Van Jefferson or Dyami Brown a speculative Burks-absence target boost. Week6 without McLaurin: Burks 37/67 snaps and 6/35 targets; Williams 45/67 and 4/35; Okonkwo 51/67 and 7/35. Preserve frozen Week8 scores; re-evaluate routes and targets after game. Source: https://www.nfl.com/news/nfl-week-8-inactives-players-ruled-out-sunday-2026-season",
+      "week8_status": "OFFICIAL_NOV1_ACTIVE_VS_PHI_FOOT",
       "automatic_projection_adjustment": false
     },
     {
@@ -1171,14 +1171,14 @@
       "position": "TE",
       "week7_status": "BYE_WEEK7_LAST_PLAYED_WEEK6",
       "injury": "shoulder",
-      "source": "https://www.commanders.com/news/game-status-commanders-eagles-week-8",
+      "source": "https://www.nfl.com/news/nfl-week-8-inactives-players-ruled-out-sunday-2026-season",
       "beneficiary_review": [
         "Chig Okonkwo (routes and target share; not automatic)",
         "Ben Sinnott (blocking/route role)",
         "Colson Yankoff (personnel rotation)"
       ],
-      "review_focus": "OCT 30 FRIDAY OFFICIAL FINAL: Bates LIMITED Friday after DNP Wednesday/Thursday; QUESTIONABLE for Week8 vs PHI, not OUT. Washington Week6: Bates 25/67 snaps (37%) and 1/35 targets (2.9%); Chig Okonkwo 51/67 snaps (76%) and 7/35 targets (20%). If Bates inactive, review TE personnel and pass-blocking substitution before projecting any additional routes for Okonkwo or Sinnott; a blocking TE absence does not imply a 1:1 target transfer. McLaurin IR and Burks QUESTIONABLE already separately tracked. Review-only, no automatic ranking/PPR/model changes.",
-      "week8_status": "OFFICIAL_FRIDAY_QUESTIONABLE_OCT30_SHOULDER_LIMITED_WEEK8_VS_PHI",
+      "review_focus": "OCT 30 FRIDAY OFFICIAL FINAL: Bates LIMITED Friday after DNP Wednesday/Thursday; QUESTIONABLE for Week8 vs PHI, not OUT. Washington Week6: Bates 25/67 snaps (37%) and 1/35 targets (2.9%); Chig Okonkwo 51/67 snaps (76%) and 7/35 targets (20%). If Bates inactive, review TE personnel and pass-blocking substitution before projecting any additional routes for Okonkwo or Sinnott; a blocking TE absence does not imply a 1:1 target transfer. McLaurin IR and Burks QUESTIONABLE already separately tracked. Review-only, no automatic ranking/PPR/model changes. NOV 1 OFFICIAL GAME-DAY: Bates is not on Washington's NFL inactive list and game-day coverage confirms he is ACTIVE after Friday QUESTIONABLE (shoulder). No extra Bates-absence TE snaps/routes should be allocated to Chig Okonkwo, Ben Sinnott or Colson Yankoff. Week6 Bates 25/67 snaps and 1/35 targets vs Okonkwo 51/67 and 7/35; a blocking TE's availability chiefly affects personnel usage, not automatic target redistribution. Preserve frozen Week8 scores; evaluate actual personnel/route distribution postgame. Source: https://www.nfl.com/news/nfl-week-8-inactives-players-ruled-out-sunday-2026-season",
+      "week8_status": "OFFICIAL_NOV1_ACTIVE_VS_PHI_SHOULDER",
       "automatic_projection_adjustment": false
     },
     {
@@ -1736,13 +1736,13 @@
       "position": "LB",
       "week7_status": "NOT_PREVIOUSLY_TRACKED_AS_WEEK8_INJURY",
       "injury": "neck injury (new Week8 in-game; hospital evaluation)",
-      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-8-games-2026",
+      "source": "https://www.prideofdetroit.com/detroit-lions-injuries/179179/jack-campbell-injury-updates-detroit-lions-lb-carted-off",
       "beneficiary_review": [
         "Detroit D/ST linebacker and coverage unit (Week9 conditional)",
         "Minnesota short-area receiving/rushing efficiency (remaining Week8; conditional)"
       ],
-      "review_focus": "NOV 1 NEW NFL IN-GAME: Lions linebacker Campbell left field on stretcher and was transported to local hospital for evaluation of neck injury. Diagnosis, prognosis and Week9 status UNVERIFIED; do not assert spinal injury or duration. If absent, audit replacement LB snaps, tackle/run fit, blitz and TE/RB coverage and combined Lions Branch/Wonnum absences before future D/ST/matchup adjustment. Review-only.",
-      "week8_status": "NFL_NOV1_TRANSPORTED_TO_HOSPITAL_NECK_EVALUATION_VS_MIN",
+      "review_focus": "NOV 1 NEW NFL IN-GAME: Lions linebacker Campbell left field on stretcher and was transported to local hospital for evaluation of neck injury. Diagnosis, prognosis and Week9 status UNVERIFIED; do not assert spinal injury or duration. If absent, audit replacement LB snaps, tackle/run fit, blitz and TE/RB coverage and combined Lions Branch/Wonnum absences before future D/ST/matchup adjustment. Review-only. NOV 1 SUNDAY NIGHT TEAM UPDATE (reported by Pride of Detroit): Lions announced Campbell is resting at a local hospital and will remain overnight for continued evaluation and monitoring following in-game neck injury. No diagnosis, Week9 OUT designation, or recovery timeline was provided. Preserve conditional Detroit Week9 D/ST/linebacker-depth review; do not infer season-ending injury or make numeric matchup/PPR changes. Source: https://www.prideofdetroit.com/detroit-lions-injuries/179179/jack-campbell-injury-updates-detroit-lions-lb-carted-off",
+      "week8_status": "TEAM_NOV1_RESTING_HOSPITAL_OVERNIGHT_NECK_EVALUATION_NO_DIAGNOSIS",
       "automatic_projection_adjustment": false
     },
     {
