@@ -1833,13 +1833,16 @@
       "team": "JAX",
       "position": "DT",
       "week7_status": "NOT_PREVIOUSLY_TRACKED_AS_WEEK8_INJURY",
-      "injury": "knee (new Week8 in-game; carted off)",
-      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-8-games-2026",
+      "injury": "torn quadriceps (reported Nov 2 by NFL Network; additional tests pending; expected to miss remainder of 2026 season)",
+      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-monday-nov-2",
       "beneficiary_review": [
-        "Derrick Henry (BAL Week9, conditional rush-matchup review)",
-        "Jacksonville D/ST interior run-stop and replacement defensive snaps"
+        "Matt Dickerson (listed backup nose tackle; confirm Week8 post-injury and Week9 early-down snaps)",
+        "Ruke Orhorhoro (interior defensive rotation; check run-stop snaps and availability)",
+        "Arik Armstead (interior run-defense and snap-share reallocation)",
+        "Derrick Henry (BAL Week9; conditional rushing matchup only, QB injuries could offset)",
+        "Jacksonville D/ST (interior run defense, opponent rushing efficiency; no automatic fantasy scoring change)"
       ],
-      "review_focus": "NOV 1 NFL/Jaguars team report: Jaguars defensive tackle Hamilton ruled OUT of Colts game with a knee injury after being helped off and taken away on a cart. Jacksonville plays Baltimore Thursday Nov 5. Verify Week9 practice/game status and replacement snaps for Armstead, Orhorhoro and Dickerson; assess Henry's prior rushing share and red-zone carries, but do not assume Hamilton misses Week9 or boost Henry automatically, especially given Ravens QB uncertainty. Frozen Week8 scores unchanged.",
+      "review_focus": "NOV 1 NFL/Jaguars team report: Jaguars defensive tackle Hamilton ruled OUT of Colts game with a knee injury after being helped off and taken away on a cart. Jacksonville plays Baltimore Thursday Nov 5. Verify Week9 practice/game status and replacement snaps for Armstead, Orhorhoro and Dickerson; assess Henry's prior rushing share and red-zone carries, but do not assume Hamilton misses Week9 or boost Henry automatically, especially given Ravens QB uncertainty. Frozen Week8 scores unchanged. NOV 2 NEW SEVERITY [RAPOPORT_NOV2_TORN_QUAD_EXPECTED_SEASON_END]: NFL.com Monday roundup citing NFL Network Ian Rapoport reports Hamilton suffered a TORN QUADRICEPS against Indianapolis and is EXPECTED TO MISS THE REST OF 2026; further tests pending. This supersedes knee-only in-game injury information but is NOT an official IR transaction or final team-confirmed Week9 OUT designation. Jacksonville faces Baltimore Thursday Nov5. Ourlads lists Matt Dickerson as backup NT; Ruke Orhorhoro and Arik Armstead are interior rotation alternatives. Review replacement snaps and run-stop rates and Derrick Henry's historical carries, rush share and red-zone usage, while accounting for Baltimore QB uncertainty. Keep all numerical PPR, AI, D/ST and matchup adjustments DISABLED pending verified data. Source: https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-monday-nov-2",
       "week8_status": "NFL_NOV1_RULED_OUT_IN_GAME_KNEE_VS_IND",
       "automatic_projection_adjustment": false
     },
