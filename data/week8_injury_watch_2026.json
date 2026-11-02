@@ -1588,7 +1588,7 @@
         "Zay Flowers and Ravens receiving efficiency (QB downgrade; no automatic target boost)",
         "Derrick Henry rushing share and red-zone usage (review, not automatic uplift)"
       ],
-      "review_focus": "NOV 1 NEW OFFICIAL NFL IN-GAME: Backup Tyler Huntley suffered a TOE injury after replacing Lamar Jackson, and was RULED OUT after halftime vs BUF. Rookie Joe Fagnano entered as emergency third QB; do not assume Fagnano will start Week9, since Jackson and Huntley recovery not established. Compare Fagnano/Huntley dropbacks, target distribution, Flowers routes and Henry carries/red-zone usage before Week9 QB/WR/TE/RB projections. Preserve frozen Week8 pregame projections and actual PPR; tag in-game injury in Biggest Misses if applicable. No automatic numerical changes. Source: https://www.nfl.com/news/ravens-qb-lamar-jackson-suffers-right-thumb-injury-bills NOV 1 LATE UPDATE (NFL roundup citing ESPN Adam Schefter): toe injury thought to be turf toe; MRI expected Monday Nov2 to determine severity and absence. This is NOT an MRI-confirmed diagnosis and does not establish Week9 OUT. Baltimore plays Thursday Nov5 vs JAX; Joe Fagnano is a conditional starter candidate only. Review QB-specific passing efficiency, Flowers/Andrews routes and targets, Henry rushing share and Jacksonville D/ST before any Week9 projections. Source: https://www.nfl.com/news/notable-injuries-news-sunday-week-8-games-2026 NOV 2 RAPPAPORT REPORTED STATUS: NFL Network Ian Rapoport reports turf toe and expected extended absence, unlikely to play Thursday Nov5 vs Jacksonville; Monday tests were still pending when reported. This supersedes earlier merely suspected turf toe but is NOT an official Week9 OUT designation or confirmed MRI severity. With Lamar Jackson's surgery/IR plan, rookie Joe Fagnano is leading conditional starter scenario, but he played through foot injury and no team starting designation confirmed. Review Fagnano's 10/21, 91 pass yards, INT vs BUF, Zay Flowers/Mark Andrews routes and target share, Derrick Henry rush/red-zone share, Jacksonville D/ST; do not activate numerical changes or double-count QB injury impact.",
+      "review_focus": "NOV 1 NEW OFFICIAL NFL IN-GAME: Backup Tyler Huntley suffered a TOE injury after replacing Lamar Jackson, and was RULED OUT after halftime vs BUF. Rookie Joe Fagnano entered as emergency third QB; do not assume Fagnano will start Week9, since Jackson and Huntley recovery not established. Compare Fagnano/Huntley dropbacks, target distribution, Flowers routes and Henry carries/red-zone usage before Week9 QB/WR/TE/RB projections. Preserve frozen Week8 pregame projections and actual PPR; tag in-game injury in Biggest Misses if applicable. No automatic numerical changes. Source: https://www.nfl.com/news/ravens-qb-lamar-jackson-suffers-right-thumb-injury-bills NOV 1 LATE UPDATE (NFL roundup citing ESPN Adam Schefter): toe injury thought to be turf toe; MRI expected Monday Nov2 to determine severity and absence. This is NOT an MRI-confirmed diagnosis and does not establish Week9 OUT. Baltimore plays Thursday Nov5 vs JAX; Joe Fagnano is a conditional starter candidate only. Review QB-specific passing efficiency, Flowers/Andrews routes and targets, Henry rushing share and Jacksonville D/ST before any Week9 projections. Source: https://www.nfl.com/news/notable-injuries-news-sunday-week-8-games-2026 NOV 2 RAPPAPORT REPORTED STATUS: NFL Network Ian Rapoport reports turf toe and expected extended absence, unlikely to play Thursday Nov5 vs Jacksonville; Monday tests were still pending when reported. This supersedes earlier merely suspected turf toe but is NOT an official Week9 OUT designation or confirmed MRI severity. With Lamar Jackson's surgery/IR plan, rookie Joe Fagnano is leading conditional starter scenario, but he played through foot injury and no team starting designation confirmed. Review Fagnano's 10/21, 91 pass yards, INT vs BUF, Zay Flowers/Mark Andrews routes and target share, Derrick Henry rush/red-zone share, Jacksonville D/ST; do not activate numerical changes or double-count QB injury impact. NOV 2 4:01 PM ET TEAM-VERIFIED QB DEPTH CHANGE: Ravens signed Austin Reed to PRACTICE SQUAD, waiving FB Lucas Scott; team says Reed will likely back up Joe Fagnano if needed. Reed appeared in all three preseason games (6/12, 59 yards, one pass TD, one INT, 14-yard rush TD). Signing is NOT an official Week9 starting-QB announcement, Fagnano medical clearance, or a Huntley Week9 OUT designation. Do not assign Reed a starting projection; prepare Fagnano scenario for Zay Flowers, Mark Andrews, Derrick Henry and Jaguars D/ST only after team QB decision. Source: https://www.baltimoreravens.com/news/ravens-sign-quarterback-austin-reed-lamar-jackson-tyler-huntley",
       "week8_status": "OFFICIAL_NFL_NOV1_RULED_OUT_IN_GAME_TOE_WEEK8_VS_BUF",
       "automatic_projection_adjustment": false
     },
@@ -1751,15 +1751,15 @@
       "team": "DET",
       "position": "C",
       "week7_status": "NOT_PREVIOUSLY_TRACKED_AS_WEEK8_INJURY",
-      "injury": "ankle (new Week8 in-game)",
-      "source": "https://www.nfl.com/news/notable-injuries-news-sunday-week-8-games-2026",
+      "injury": "low ankle sprain (Nov 1 in-game; Nov 2 coach says will miss start of Week9 practices)",
+      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-monday-nov-2",
       "beneficiary_review": [
         "Jared Goff (pass protection conditional)",
         "Jahmyr Gibbs (interior rushing lanes conditional)",
         "Juice Scruggs (replacement center; five prior starts)"
       ],
-      "review_focus": "NOV 1 NEW NFL IN-GAME: Detroit center Mays ruled OUT with ankle injury vs Minnesota. Juice Scruggs, who started Detroit's first five games, replaced him. Compare protection calls, pressures allowed, rush success and Scruggs' earlier 2026 starts before changing Goff or Gibbs Week9 projection. No verified Week9 absence; preserve frozen Week8 projections.",
-      "week8_status": "NFL_NOV1_RULED_OUT_IN_GAME_ANKLE_VS_MIN",
+      "review_focus": "NOV 1 NEW NFL IN-GAME: Detroit center Mays ruled OUT with ankle injury vs Minnesota. Juice Scruggs, who started Detroit's first five games, replaced him. Compare protection calls, pressures allowed, rush success and Scruggs' earlier 2026 starts before changing Goff or Gibbs Week9 projection. No verified Week9 absence; preserve frozen Week8 projections. NOV 2 NEW DIAGNOSIS: ESPN Jeremy Fowler reports low ankle sprain; Dan Campbell says Mays will be out of practice to begin week. NOT officially ruled out Week9 at Miami. Juice Scruggs is confirmed replacement center from Week8 and previously started first five 2026 games. Compare pressures and interior run success with Scruggs before any Jared Goff/Jahmyr Gibbs PPR change. Source: https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-monday-nov-2",
+      "week8_status": "COACH_NOV2_LOW_ANKLE_SPRIAN_WEEK9_NOT_RULED_OUT",
       "automatic_projection_adjustment": false
     },
     {
@@ -2064,15 +2064,15 @@
       "team": "WAS",
       "position": "RB",
       "week7_status": "NOT_PREVIOUSLY_TRACKED_AS_WEEK8_INJURY",
-      "injury": "left foot (new Week8 in-game; did not return)",
-      "source": "https://www.reuters.com/sports/nfl-injury-roundup-ravens-qb-peril-after-lamar-jackson-tyler-huntley-hurt--flm-2026-11-02/",
+      "injury": "left mid-foot (Nov 1 in-game; coach Dan Quinn described as believed serious Nov 2; imaging pending)",
+      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-monday-nov-2",
       "beneficiary_review": [
         "Rachaad White and Austin Ekeler rushing/routes/third-down share conditional",
         "Washington backfield depth with Jacory Croskey-Merritt already on IR",
         "Rams Week9 run-defense matchup"
       ],
-      "review_focus": "NOV 1 Sunday night McNichols left vs Philadelphia with left-foot injury and did not return; 5 carries for 21 yards and 1 catch on 1 target for 7 yards before exit, rotational role with White/Ekeler and Croskey-Merritt on IR. Washington hosts Rams Nov8. If McNichols absent, consider small conditional consolidation only after route/snap/target review; no automatic boost or Week9 OUT assumption.",
-      "week8_status": "REUTERS_NOV2_DID_NOT_RETURN_LEFT_FOOT_VS_PHI",
+      "review_focus": "NOV 1 Sunday night McNichols left vs Philadelphia with left-foot injury and did not return; 5 carries for 21 yards and 1 catch on 1 target for 7 yards before exit, rotational role with White/Ekeler and Croskey-Merritt on IR. Washington hosts Rams Nov8. If McNichols absent, consider small conditional consolidation only after route/snap/target review; no automatic boost or Week9 OUT assumption. NOV 2 NEW COACH SEVERITY UPDATE: Dan Quinn says McNichols has a mid-foot injury believed serious; further scans pending, NO official Week9 OUT or IR confirmed. With Jacory Croskey-Merritt on IR for at least two more games, assess Rachaad White and Austin Ekeler recent routes, target shares, early-down and goal-line carries, and any new RB signing before Week9 Rams game. Week8 McNichols 5 carries, one target are small sample; no numerical transfer or automatic boost. Source: https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-monday-nov-2",
+      "week8_status": "COACH_NOV2_SERIOUS_MIDFOOT_WEEK9_NOT_RULED_OUT",
       "automatic_projection_adjustment": false
     },
     {
@@ -2115,15 +2115,15 @@
       "team": "DET",
       "position": "LB",
       "week7_status": "NOT_PREVIOUSLY_TRACKED_AS_WEEK8_INJURY",
-      "injury": "hamstring (new Week8 in-game; did not return)",
-      "source": "https://www.reuters.com/sports/nfl-injury-roundup-ravens-qb-peril-after-lamar-jackson-tyler-huntley-hurt--flm-2026-11-02/",
+      "injury": "hamstring (Nov 1 in-game; coach Dan Campbell confirmed Nov 2 season-ending)",
+      "source": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-monday-nov-2",
       "beneficiary_review": [
-        "Detroit linebacker depth with Jack Campbell hospitalized for neck evaluation",
-        "Miami Week9 short-area receiving and run matchup conditional",
-        "Detroit D/ST personnel and tackle/coverage replacement snaps"
+        "Derrick Barnes (existing starter, already heavy workload; verify role not automatic boost)",
+        "Trevor Nowaske and Malcolm Rodriguez (conditional backup linebacker snaps, with Jack Campbell status unknown)",
+        "Detroit D/ST vs Miami (linebacker coverage and run-fit depth; no automatic downgrade)"
       ],
-      "review_focus": "NOV 1 Lions backup LB Rolder did not return with hamstring injury, while starting LB Jack Campbell suffered neck injury; both Week9 statuses unknown. Detroit at Miami Nov8. Review linebacker replacements, defensive snaps, coverage assignments and practice reports before any D/ST or Miami RB/TE adjustments.",
-      "week8_status": "CREDIBLE_NOV1_DID_NOT_RETURN_HAMSTRING_VS_MIN",
+      "review_focus": "NOV 1 Lions backup LB Rolder did not return with hamstring injury, while starting LB Jack Campbell suffered neck injury; both Week9 statuses unknown. Detroit at Miami Nov8. Review linebacker replacements, defensive snaps, coverage assignments and practice reports before any D/ST or Miami RB/TE adjustments. NOV 2 COACH-CONFIRMED CHANGE: Dan Campbell says Rolder will MISS REST OF 2026 SEASON with hamstring injury. This is a confirmed upgrade from Week8 in-game exit; IR transaction not verified. With Jack Campbell still hospitalized after neck injury and no Week9 OUT designation, compare Barnes/Nowaske/Rodriguez snaps and coverage roles before any Lions D/ST or Miami offensive matchup changes. Source: https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-monday-nov-2",
+      "week8_status": "COACH_NOV2_SEASON_ENDING_HAMSTRING",
       "automatic_projection_adjustment": false
     },
     {
