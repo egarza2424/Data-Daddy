@@ -9,7 +9,8 @@ quality=json.loads((base/"week8_sunday_actuals_quality_gate_review.json").read_t
 evidence=[
  {"player":"Lamar Jackson","position":"QB","team":"BAL","status":"IN_GAME_INJURY","detail":"Exited after one play with thumb injury","source":"https://www.nbcsports.com/fantasy/football/player-news/2026-11-01/flowers-unable-to-overcome-qb-disaster-vs-bills"},
  {"player":"Zay Flowers","position":"WR","team":"BAL","status":"ACTIVE_ZERO_CONFIRMED","detail":"0 receptions on 5 targets; QB injuries disrupted game","source":"https://www.nbcsports.com/fantasy/football/player-news/2026-11-01/flowers-unable-to-overcome-qb-disaster-vs-bills"},
- {"player":"Tre Tucker","position":"WR","team":"LV","status":"NOT_INACTIVE_SNAP_CHECK_PENDING","detail":"Not on official inactive list; snaps and targets not yet verified","source":"https://www.raiders.com/news/las-vegas-raiders-week-8-inactives-vs-new-york-jets"},
+ {"player":"Tre Tucker","position":"WR","team":"LV","status":"ACTIVE_ZERO_CONFIRMED","detail":"One target, zero receptions in Week 8; genuine zero PPR","source":"https://www.fantasypros.com/nfl/news/617016/tre-tucker-held-without-catch-week-8-win.php"},
+ {"player":"Evan Engram","position":"TE","team":"DEN","status":"ACTIVE_ZERO_CONFIRMED","detail":"Three targets, zero receptions in Week 8; genuine zero PPR","source":"https://www.nbcsports.com/fantasy/football/player-news/2026-11-01/engram-goose-egged-in-week-8-win"},
  {"player":"Breece Hall","position":"RB","team":"NYJ","status":"INACTIVE_CONFIRMED","detail":"Officially inactive with quadriceps injury","source":"https://www.newyorkjets.com/news/jets-vs-raiders-nfl-game-inactives-11-1-2026"},
 ]
 lookup={(r["player"],r["position"],r["team"]):r for r in rows}
