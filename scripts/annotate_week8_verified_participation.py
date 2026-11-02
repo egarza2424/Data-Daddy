@@ -11,6 +11,8 @@ evidence=[
  {"player":"Zay Flowers","position":"WR","team":"BAL","status":"ACTIVE_ZERO_CONFIRMED","detail":"0 receptions on 5 targets; QB injuries disrupted game","source":"https://www.nbcsports.com/fantasy/football/player-news/2026-11-01/flowers-unable-to-overcome-qb-disaster-vs-bills"},
  {"player":"Tre Tucker","position":"WR","team":"LV","status":"ACTIVE_ZERO_CONFIRMED","detail":"One target, zero receptions in Week 8; genuine zero PPR","source":"https://www.fantasypros.com/nfl/news/617016/tre-tucker-held-without-catch-week-8-win.php"},
  {"player":"Evan Engram","position":"TE","team":"DEN","status":"ACTIVE_ZERO_CONFIRMED","detail":"Three targets, zero receptions in Week 8; genuine zero PPR","source":"https://www.nbcsports.com/fantasy/football/player-news/2026-11-01/engram-goose-egged-in-week-8-win"},
+ {"player":"Chris Godwin Jr.","position":"WR","team":"TB","status":"ACTIVE_ZERO_CONFIRMED","detail":"49 offensive snaps (82%), one target, zero receptions; TB attempted only three passes","source":"https://www.nbcsports.com/fantasy/football/player-news/2026-11-01/godwin-blanked-in-week-8-win-vs-atlanta"},
+ {"player":"Jerry Jeudy","position":"WR","team":"CLE","status":"ACTIVE_ZERO_CONFIRMED","detail":"One target, zero receptions, zero receiving yards in Week 8","source":"https://covertheslate.com/nfl-usage-tracker/cleveland-browns/"},
  {"player":"Breece Hall","position":"RB","team":"NYJ","status":"INACTIVE_CONFIRMED","detail":"Officially inactive with quadriceps injury","source":"https://www.newyorkjets.com/news/jets-vs-raiders-nfl-game-inactives-11-1-2026"},
 ]
 lookup={(r["player"],r["position"],r["team"]):r for r in rows}
