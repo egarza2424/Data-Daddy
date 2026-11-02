@@ -1,28 +1,29 @@
 {
   "snapshot_files": 4,
   "recommendation_rows": 40,
-  "recorded_game_rows": 18,
-  "missing_or_unavailable_rows": 22,
+  "recorded_game_rows": 26,
+  "missing_or_unavailable_rows": 14,
   "conflicting_stat_records": 0,
   "verified_pregame_rows": 38,
   "post_kickoff_rows": 0,
   "timing_unavailable_rows": 2,
-  "predictive_accuracy_eligible_rows": 18,
-  "eligible_average_ppr": 8.3,
+  "predictive_accuracy_eligible_rows": 26,
+  "eligible_average_ppr": 7.81,
   "eligible_average_ppr_by_position": {
-    "QB": 11.78,
-    "RB": 4.55,
-    "TE": 5.03,
-    "WR": 12.92
+    "QB": 9.89,
+    "RB": 7.3,
+    "TE": 4.9,
+    "WR": 10.7
   },
-  "eligible_spearman_rank_correlation": 0.395,
+  "eligible_spearman_rank_correlation": 0.406,
   "eligible_spearman_by_week": {
     "2026_week_06": 0.262,
-    "2026_week_07": 0.527
+    "2026_week_07": 0.527,
+    "2026_week_08": 0.429
   },
-  "eligible_top_five_recommendations": 9,
-  "eligible_top_five_hits": 4,
-  "eligible_top_five_hit_rate_pct": 44.44,
+  "eligible_top_five_recommendations": 13,
+  "eligible_top_five_hits": 5,
+  "eligible_top_five_hit_rate_pct": 38.46,
   "eligible_top_five_by_week": {
     "2026_week_06": {
       "eligible_recommendations": 4,
@@ -33,6 +34,11 @@
       "eligible_recommendations": 5,
       "hits": 2,
       "hit_rate_pct": 40.0
+    },
+    "2026_week_08": {
+      "eligible_recommendations": 4,
+      "hits": 1,
+      "hit_rate_pct": 25.0
     }
   },
   "note": "Only player-level verified pregame recommendations count toward predictive accuracy; absent game records are not zeroes. PPR is calculated from full weekly player stats and cross-checked against recent performance records."
