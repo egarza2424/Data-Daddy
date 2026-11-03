@@ -7,3 +7,13 @@ season,target_week,player_name,position,team,rank,sleeper_score,projected_ppr,ac
 2026,7,Jameson Williams,WR,DET,7,71.337,9.31,26.1,180.3,verified_pregame,recorded_game,True,True
 2026,7,Justin Jefferson,WR,MIN,9,68.359,9.78,8.4,-14.1,verified_pregame,recorded_game,False,False
 2026,7,DeMario Douglas,WR,NE,10,67.922,10.08,5.3,-47.4,verified_pregame,recorded_game,False,False
+2026,8,Brenton Strange,TE,JAX,1,100,10.1,7.5,-25.7,verified_pregame,recorded_game,False,False
+2026,8,Jacoby Brissett,QB,ARI,2,80,19.24,3.46,-82.0,verified_pregame,recorded_game,False,False
+2026,8,Luther Burden III,WR,CHI,3,79.74,12.57,18.6,48.0,verified_pregame,recorded_game,True,True
+2026,8,Ollie Gordon II,RB,MIA,4,79.043,12.67,6.9,-45.5,verified_pregame,recorded_game,False,False
+2026,8,Germie Bernard,WR,PIT,5,73.386,11.06,8.0,-27.7,verified_pregame,recorded_game,False,False
+2026,8,Tony Pollard,RB,TEN,6,73.324,11.69,28.7,145.5,verified_pregame,recorded_game,True,True
+2026,8,Braelon Allen,RB,NYJ,7,69.798,8.8,23.3,164.8,verified_pregame,recorded_game,True,True
+2026,8,Keon Coleman,WR,BUF,8,69.098,10.34,1.4,-86.5,verified_pregame,recorded_game,False,False
+2026,8,Jeremiyah Love,RB,ARI,9,68.656,11.11,2.3,-79.3,verified_pregame,recorded_game,False,False
+2026,8,Keenan Allen,WR,IND,10,66.795,10.13,13.7,35.2,verified_pregame,recorded_game,True,True
