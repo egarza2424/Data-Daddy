@@ -25,10 +25,10 @@
 
     <nav class="main-nav" aria-label="Main navigation">
       <a href="#home">Home</a>
-      <a href="#rankings">Rankings</a>
-      <a href="#projections">Projections</a>
       <a href="#lineup-optimizer">Lineup Optimizer</a>
       <a href="#compare">Compare</a>
+      <a href="#rankings">Rankings</a>
+      <a href="#projections">Projections</a>
       <a href="#sleepers">Sleepers</a>
       <a href="#waiver-wire">Waiver Wire</a>
       <a href="#team-offensive-trends">Team Trends</a>
@@ -100,36 +100,8 @@
 
   <div class="launch-tool-grid">
 
-    <a class="launch-tool-card" href="#rankings">
-      <span class="launch-tool-number">01</span>
-      <div>
-        <strong>Data-Driven Player Rankings</strong>
-        <p>
-          Explore weekly analyst-informed rankings backed by
-          AI analysis of 11 player signals and an AI Score.
-        </p>
-      </div>
-      <span class="launch-tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    
-    
-    <a class="launch-tool-card" href="#projections">
-      <span class="launch-tool-number">02</span>
-
-
-      <div>
-        <strong>Weekly PPR Projections</strong>
-        <p>
-          Explore statistically modeled PPR estimates informed by
-          NFL data and historical performance to guide lineup decisions.
-        </p>
-      </div>
-      <span class="launch-tool-arrow" aria-hidden="true">→</span>
-    </a>
-
     <a class="launch-tool-card" href="#lineup-optimizer">
-      <span class="launch-tool-number">03</span>
+      <span class="launch-tool-number">01</span>
 
       <div>
         <strong>Lineup Optimizer</strong>
@@ -142,7 +114,7 @@
     </a>
 
     <a class="launch-tool-card" href="#compare">
-      <span class="launch-tool-number">04</span>
+      <span class="launch-tool-number">02</span>
       <div>
         <strong>Compare Players</strong>
         <p>
@@ -153,7 +125,32 @@
       <span class="launch-tool-arrow" aria-hidden="true">→</span>
     </a>
 
-    
+    <a class="launch-tool-card" href="#rankings">
+      <span class="launch-tool-number">03</span>
+      <div>
+        <strong>Data-Driven Player Rankings</strong>
+        <p>
+          Explore weekly analyst-informed rankings backed by
+          AI analysis of 11 player signals and an AI Score.
+        </p>
+      </div>
+      <span class="launch-tool-arrow" aria-hidden="true">→</span>
+    </a>
+
+    <a class="launch-tool-card" href="#projections">
+      <span class="launch-tool-number">04</span>
+
+
+      <div>
+        <strong>Weekly PPR Projections</strong>
+        <p>
+          Explore statistically modeled PPR estimates informed by
+          NFL data and historical performance to guide lineup decisions.
+        </p>
+      </div>
+      <span class="launch-tool-arrow" aria-hidden="true">→</span>
+    </a>
+
     <a class="launch-tool-card" href="#sleepers">
       <span class="launch-tool-number">05</span>
       <div>
@@ -177,309 +174,12 @@
       </div>
       <span class="launch-tool-arrow" aria-hidden="true">→</span>
     </a>
-
   </div>
 
 </section>
 
 
 
-<section class="panel position-rankings" id="rankings">
-
-  <div class="eyebrow">
-    WEEKLY DATA-DRIVEN RANKINGS
-  </div>
-
-  <h3>
-    Position Rankings
-  </h3>
-
-  <p>
-    DATA DADDY uses AI to collect and analyze 11 data-driven fantasy football signals, generating an AI Score for each player. These insights help inform our weekly positional rankings alongside analyst evaluation and adjustments. Players ruled out are excluded from active rankings.
-  </p>
-
-
-  <div class="ranking-controls">
-
-    <div class="ranking-control">
-
-      <label for="rankingPosition">
-        Position
-      </label>
-
-      <select id="rankingPosition">
-        <option value="QB">
-          Quarterbacks
-        </option>
-
-        <option value="RB">
-          Running Backs
-        </option>
-
-        <option value="WR" selected>
-          Wide Receivers
-        </option>
-
-        <option value="TE">
-          Tight Ends
-        </option>
-      </select>
-
-    </div>
-
-
-    <div class="ranking-control">
-
-      <label for="rankingSearch">
-        Find a player
-      </label>
-
-      <input
-        id="rankingSearch"
-        type="search"
-        placeholder="Search rankings..."
-      >
-
-    </div>
-
-  </div>
-
-
-  <div
-    id="rankingWeek"
-    aria-live="polite"
-  ></div>
-
-
-  <div class="ranking-table-wrapper">
-
-    <table class="ranking-table">
-
-      <thead>
-        <tr>
-          <th>Rank</th>
-          <th>Player</th>
-          <th>AI Score</th>
-          <th>Opp</th>
-          <th>Projected PPR</th>
-          <th>PPR Rank</th>
-          <th>Actual PPR</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-
-      <tbody id="rankingTableBody">
-        <tr>
-          <td colspan="8">
-            Loading rankings...
-          </td>
-        </tr>
-      </tbody>
-
-    </table>
-
-  </div>
-
-
-  <div
-    id="rankingPagination"
-    class="ranking-pagination"
-    aria-label="Ranking pages"
-  ></div>
-
-
-
-</section>
-
-<section class="panel model-explainer" id="model-explainer" hidden style="display:none">
-
-  <div class="eyebrow">
-    UNDERSTANDING THE MODELS
-  </div>
-
-  <h3>AI Score vs. Projected PPR</h3>
-
-  <p>
-    DATA DADDY combines AI-assisted analysis of 11 player signals, statistical
-    PPR projections, and analyst judgment. Here's how to interpret the
-    scores, projected points, and rankings separately.
-  </p>
-
-  <div class="model-comparison-chart" aria-labelledby="modelComparisonHeading">
-    <h4 id="modelComparisonHeading">AI Rankings vs. PPR Rankings — Weekly Accuracy</h4>
-    <p>Which ranking model correctly identified more top players? QB and TE use top 24; RB and WR use top 36. Only matched players with recorded game results count.</p>
-    <div id="modelComparisonChart" aria-live="polite"><p class="model-comparison-week">Week 6 · completed postgame results</p><div class="model-comparison-position"><strong>QB · Top 24</strong><div class="model-comparison-bar-row"><span>AI Rank</span><div class="model-comparison-track"><div class="model-comparison-fill model-comparison-ai" style="width:95.8%"></div></div><b>95.8%</b><small>23/24</small></div><div class="model-comparison-bar-row"><span>PPR Rank</span><div class="model-comparison-track"><div class="model-comparison-fill model-comparison-ppr" style="width:95.8%"></div></div><b>95.8%</b><small>23/24</small></div></div><div class="model-comparison-position"><strong>RB · Top 36</strong><div class="model-comparison-bar-row"><span>AI Rank</span><div class="model-comparison-track"><div class="model-comparison-fill model-comparison-ai" style="width:75.0%"></div></div><b>75.0%</b><small>27/36</small></div><div class="model-comparison-bar-row"><span>PPR Rank</span><div class="model-comparison-track"><div class="model-comparison-fill model-comparison-ppr" style="width:80.6%"></div></div><b>80.6%</b><small>29/36</small></div></div><div class="model-comparison-position"><strong>WR · Top 36</strong><div class="model-comparison-bar-row"><span>AI Rank</span><div class="model-comparison-track"><div class="model-comparison-fill model-comparison-ai" style="width:72.2%"></div></div><b>72.2%</b><small>26/36</small></div><div class="model-comparison-bar-row"><span>PPR Rank</span><div class="model-comparison-track"><div class="model-comparison-fill model-comparison-ppr" style="width:69.4%"></div></div><b>69.4%</b><small>25/36</small></div></div><div class="model-comparison-position"><strong>TE · Top 24</strong><div class="model-comparison-bar-row"><span>AI Rank</span><div class="model-comparison-track"><div class="model-comparison-fill model-comparison-ai" style="width:58.3%"></div></div><b>58.3%</b><small>14/24</small></div><div class="model-comparison-bar-row"><span>PPR Rank</span><div class="model-comparison-track"><div class="model-comparison-fill model-comparison-ppr" style="width:62.5%"></div></div><b>62.5%</b><small>15/24</small></div></div><p class="model-comparison-summary">Overall: AI Rankings 75.0% (90/120) · PPR Rankings 76.7% (92/120)</p></div>
-  </div>
-
-  <h4>AI Score — Evaluate the Player</h4>
-  <p>
-    AI helps analyze 11 explainable data signals, including
-    performance, opportunity, matchup conditions and
-    game environment, to generate a comparative player score.
-    A higher score indicates a stronger overall model
-    evaluation. It is not a fantasy-point prediction.
-  </p>
-
-  <h4>Projected PPR — Estimate Weekly Production</h4>
-  <p>
-    Model F estimates how many PPR fantasy points a
-    player could produce in the upcoming week.
-    PPR Rank orders players by projected fantasy
-    production, separately from the analyst-informed positional ranking.
-  </p>
-
-  <h4>How Should You Use Both?</h4>
-  <p>
-    Start with Projected PPR when setting your lineup.
-    Then compare AI Score and the positional ranking to understand
-    whether the broader player signals and analyst assessment support that
-    projection. When the models disagree, investigate
-    opportunity, matchup and injury status before
-    making your final roster decision.
-  </p>
-
-</section>
-
-<section class="panel projections-panel" id="projections">
-
-
-  <div class="eyebrow">
-    WEEK 8 PPR PROJECTIONS — LIVE
-  </div>
-
-
-  <div class="projections-heading">
-    <div>
-      <h3>Weekly PPR Projections</h3>
-
-      <p>
-        Week 8 full-PPR projections are published, including approved analyst adjustments.
-      </p>
-    </div>
-
-    <div
-      id="projectionWeekBadge"
-      class="projection-week-badge"
-    >
-      WEEK —
-    </div>
-  </div>
-
-  <div class="projection-controls">
-
-    <div class="projection-position-filter">
-      <span>Position</span>
-
-      <button
-        type="button"
-        class="projection-filter-btn active"
-        data-projection-position="ALL"
-      >
-        ALL
-      </button>
-
-      <button
-        type="button"
-        class="projection-filter-btn"
-        data-projection-position="QB"
-      >
-        QB
-      </button>
-
-      <button
-        type="button"
-        class="projection-filter-btn"
-        data-projection-position="RB"
-      >
-        RB
-      </button>
-
-      <button
-        type="button"
-        class="projection-filter-btn"
-        data-projection-position="WR"
-      >
-        WR
-      </button>
-
-      <button
-        type="button"
-        class="projection-filter-btn"
-        data-projection-position="TE"
-      >
-        TE
-      </button>
-      <button type="button" class="projection-filter-btn" data-dst-projection="true" aria-pressed="false">D/ST</button>
-    </div>
-
-    <div class="projection-search-control">
-      <label for="projectionSearch">
-        Find a player
-      </label>
-
-      <input
-        id="projectionSearch"
-        type="search"
-        placeholder="Search projections..."
-      >
-    </div>
-
-  </div>
-
-  
-  <div class="projection-table-wrapper" id="playerProjectionWrapper">
-    <div class="projection-mobile-cards" id="projectionMobileCards" aria-live="polite"></div>
-
-    <table class="projection-table">
-
-
-<thead>
-  <tr>
-    <th>PPR Rank</th>
-    <th>Player</th>
-    <th>Projected PPR</th>
-    <th>Pos</th>
-    <th>Team</th>
-    <th>Opp</th>
-    <th>AI Score</th>
-    <th>AI Rank</th>
-    <th>Actual PPR</th>
-    <th>Status</th>
-  </tr>
-</thead>
-      
-      <tbody id="projectionTableBody">
-        <tr>
-          <td colspan="10">
-            Loading weekly projections...
-          </td>
-        </tr>
-      </tbody>
-
-    </table>
-
-  </div>
-
-  
-  <div id="dstProjectionPanel" hidden>
-    <p class="dst-projection-note">Week 8 · Experimental V2 D/ST projections · ESPN-standard defense scoring. Injury reports are context only, not scoring adjustments.</p>
-    <div class="projection-table-wrapper">
-      <div id="dstProjectionMobileCards" class="projection-mobile-cards"></div>
-      <table class="projection-table">
-        <thead><tr><th>PPR Rank</th><th>Defense</th><th>Projected PPR</th><th>Pos</th><th>Team</th><th>Opp</th><th>Actual PPR</th><th>Status</th></tr></thead>
-        <tbody id="dstProjectionTableBody"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <div
-    id="projectionPagination"
-    class="ranking-pagination"
-    aria-label="Projection pages"
-  >
-  </div>
-
-</section>
 <section class="panel lineup-optimizer-panel">
 
   <div class="lineup-analyzer" id="lineup-optimizer">
@@ -848,6 +548,303 @@
   aria-live="polite">
 </section>
   
+
+<section class="panel position-rankings" id="rankings">
+
+  <div class="eyebrow">
+    WEEKLY DATA-DRIVEN RANKINGS
+  </div>
+
+  <h3>
+    Position Rankings
+  </h3>
+
+  <p>
+    DATA DADDY uses AI to collect and analyze 11 data-driven fantasy football signals, generating an AI Score for each player. These insights help inform our weekly positional rankings alongside analyst evaluation and adjustments. Players ruled out are excluded from active rankings.
+  </p>
+
+
+  <div class="ranking-controls">
+
+    <div class="ranking-control">
+
+      <label for="rankingPosition">
+        Position
+      </label>
+
+      <select id="rankingPosition">
+        <option value="QB">
+          Quarterbacks
+        </option>
+
+        <option value="RB">
+          Running Backs
+        </option>
+
+        <option value="WR" selected>
+          Wide Receivers
+        </option>
+
+        <option value="TE">
+          Tight Ends
+        </option>
+      </select>
+
+    </div>
+
+
+    <div class="ranking-control">
+
+      <label for="rankingSearch">
+        Find a player
+      </label>
+
+      <input
+        id="rankingSearch"
+        type="search"
+        placeholder="Search rankings..."
+      >
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="rankingWeek"
+    aria-live="polite"
+  ></div>
+
+
+  <div class="ranking-table-wrapper">
+
+    <table class="ranking-table">
+
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Player</th>
+          <th>AI Score</th>
+          <th>Opp</th>
+          <th>Projected PPR</th>
+          <th>PPR Rank</th>
+          <th>Actual PPR</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody id="rankingTableBody">
+        <tr>
+          <td colspan="8">
+            Loading rankings...
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+  <div
+    id="rankingPagination"
+    class="ranking-pagination"
+    aria-label="Ranking pages"
+  ></div>
+
+
+
+</section>
+
+<section class="panel model-explainer" id="model-explainer" hidden style="display:none">
+
+  <div class="eyebrow">
+    UNDERSTANDING THE MODELS
+  </div>
+
+  <h3>AI Score vs. Projected PPR</h3>
+
+  <p>
+    DATA DADDY combines AI-assisted analysis of 11 player signals, statistical
+    PPR projections, and analyst judgment. Here's how to interpret the
+    scores, projected points, and rankings separately.
+  </p>
+
+  <div class="model-comparison-chart" aria-labelledby="modelComparisonHeading">
+    <h4 id="modelComparisonHeading">AI Rankings vs. PPR Rankings — Weekly Accuracy</h4>
+    <p>Which ranking model correctly identified more top players? QB and TE use top 24; RB and WR use top 36. Only matched players with recorded game results count.</p>
+    <div id="modelComparisonChart" aria-live="polite"><p class="model-comparison-week">Week 6 · completed postgame results</p><div class="model-comparison-position"><strong>QB · Top 24</strong><div class="model-comparison-bar-row"><span>AI Rank</span><div class="model-comparison-track"><div class="model-comparison-fill model-comparison-ai" style="width:95.8%"></div></div><b>95.8%</b><small>23/24</small></div><div class="model-comparison-bar-row"><span>PPR Rank</span><div class="model-comparison-track"><div class="model-comparison-fill model-comparison-ppr" style="width:95.8%"></div></div><b>95.8%</b><small>23/24</small></div></div><div class="model-comparison-position"><strong>RB · Top 36</strong><div class="model-comparison-bar-row"><span>AI Rank</span><div class="model-comparison-track"><div class="model-comparison-fill model-comparison-ai" style="width:75.0%"></div></div><b>75.0%</b><small>27/36</small></div><div class="model-comparison-bar-row"><span>PPR Rank</span><div class="model-comparison-track"><div class="model-comparison-fill model-comparison-ppr" style="width:80.6%"></div></div><b>80.6%</b><small>29/36</small></div></div><div class="model-comparison-position"><strong>WR · Top 36</strong><div class="model-comparison-bar-row"><span>AI Rank</span><div class="model-comparison-track"><div class="model-comparison-fill model-comparison-ai" style="width:72.2%"></div></div><b>72.2%</b><small>26/36</small></div><div class="model-comparison-bar-row"><span>PPR Rank</span><div class="model-comparison-track"><div class="model-comparison-fill model-comparison-ppr" style="width:69.4%"></div></div><b>69.4%</b><small>25/36</small></div></div><div class="model-comparison-position"><strong>TE · Top 24</strong><div class="model-comparison-bar-row"><span>AI Rank</span><div class="model-comparison-track"><div class="model-comparison-fill model-comparison-ai" style="width:58.3%"></div></div><b>58.3%</b><small>14/24</small></div><div class="model-comparison-bar-row"><span>PPR Rank</span><div class="model-comparison-track"><div class="model-comparison-fill model-comparison-ppr" style="width:62.5%"></div></div><b>62.5%</b><small>15/24</small></div></div><p class="model-comparison-summary">Overall: AI Rankings 75.0% (90/120) · PPR Rankings 76.7% (92/120)</p></div>
+  </div>
+
+  <h4>AI Score — Evaluate the Player</h4>
+  <p>
+    AI helps analyze 11 explainable data signals, including
+    performance, opportunity, matchup conditions and
+    game environment, to generate a comparative player score.
+    A higher score indicates a stronger overall model
+    evaluation. It is not a fantasy-point prediction.
+  </p>
+
+  <h4>Projected PPR — Estimate Weekly Production</h4>
+  <p>
+    Model F estimates how many PPR fantasy points a
+    player could produce in the upcoming week.
+    PPR Rank orders players by projected fantasy
+    production, separately from the analyst-informed positional ranking.
+  </p>
+
+  <h4>How Should You Use Both?</h4>
+  <p>
+    Start with Projected PPR when setting your lineup.
+    Then compare AI Score and the positional ranking to understand
+    whether the broader player signals and analyst assessment support that
+    projection. When the models disagree, investigate
+    opportunity, matchup and injury status before
+    making your final roster decision.
+  </p>
+
+</section>
+
+<section class="panel projections-panel" id="projections">
+
+
+  <div class="eyebrow">
+    WEEK 8 PPR PROJECTIONS — LIVE
+  </div>
+
+
+  <div class="projections-heading">
+    <div>
+      <h3>Weekly PPR Projections</h3>
+
+      <p>
+        Week 8 full-PPR projections are published, including approved analyst adjustments.
+      </p>
+    </div>
+
+    <div
+      id="projectionWeekBadge"
+      class="projection-week-badge"
+    >
+      WEEK —
+    </div>
+  </div>
+
+  <div class="projection-controls">
+
+    <div class="projection-position-filter">
+      <span>Position</span>
+
+      <button
+        type="button"
+        class="projection-filter-btn active"
+        data-projection-position="ALL"
+      >
+        ALL
+      </button>
+
+      <button
+        type="button"
+        class="projection-filter-btn"
+        data-projection-position="QB"
+      >
+        QB
+      </button>
+
+      <button
+        type="button"
+        class="projection-filter-btn"
+        data-projection-position="RB"
+      >
+        RB
+      </button>
+
+      <button
+        type="button"
+        class="projection-filter-btn"
+        data-projection-position="WR"
+      >
+        WR
+      </button>
+
+      <button
+        type="button"
+        class="projection-filter-btn"
+        data-projection-position="TE"
+      >
+        TE
+      </button>
+      <button type="button" class="projection-filter-btn" data-dst-projection="true" aria-pressed="false">D/ST</button>
+    </div>
+
+    <div class="projection-search-control">
+      <label for="projectionSearch">
+        Find a player
+      </label>
+
+      <input
+        id="projectionSearch"
+        type="search"
+        placeholder="Search projections..."
+      >
+    </div>
+
+  </div>
+
+  
+  <div class="projection-table-wrapper" id="playerProjectionWrapper">
+    <div class="projection-mobile-cards" id="projectionMobileCards" aria-live="polite"></div>
+
+    <table class="projection-table">
+
+
+<thead>
+  <tr>
+    <th>PPR Rank</th>
+    <th>Player</th>
+    <th>Projected PPR</th>
+    <th>Pos</th>
+    <th>Team</th>
+    <th>Opp</th>
+    <th>AI Score</th>
+    <th>AI Rank</th>
+    <th>Actual PPR</th>
+    <th>Status</th>
+  </tr>
+</thead>
+      
+      <tbody id="projectionTableBody">
+        <tr>
+          <td colspan="10">
+            Loading weekly projections...
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+
+  
+  <div id="dstProjectionPanel" hidden>
+    <p class="dst-projection-note">Week 8 · Experimental V2 D/ST projections · ESPN-standard defense scoring. Injury reports are context only, not scoring adjustments.</p>
+    <div class="projection-table-wrapper">
+      <div id="dstProjectionMobileCards" class="projection-mobile-cards"></div>
+      <table class="projection-table">
+        <thead><tr><th>PPR Rank</th><th>Defense</th><th>Projected PPR</th><th>Pos</th><th>Team</th><th>Opp</th><th>Actual PPR</th><th>Status</th></tr></thead>
+        <tbody id="dstProjectionTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div
+    id="projectionPagination"
+    class="ranking-pagination"
+    aria-label="Projection pages"
+  >
+  </div>
+
+</section>
     <section
       class="panel sleepers-panel"
       id="sleepers"
