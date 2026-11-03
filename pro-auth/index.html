@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DATA DADDY Pro | Account Preview</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,sans-serif}*{box-sizing:border-box}body{margin:0;background:#080e1b;color:#f5f7ff;min-height:100vh;display:grid;place-items:center;padding:24px}.shell{width:min(100%,440px)}.brand{text-align:center;margin-bottom:25px}.brand h1{font-size:2rem;letter-spacing:.07em;margin:0}.brand p{color:#a9b8d1;margin:8px 0 0}.panel{background:#141f32;border:1px solid #31415b;border-radius:18px;padding:28px;box-shadow:0 15px 60px #0005}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}.tabs button{background:#233149;color:#d7e5fa;border:0;padding:12px;border-radius:9px;cursor:pointer}.tabs button[aria-selected=true]{background:#397bff;color:white}h2{font-size:1.35rem;margin:0 0 16px}label{display:block;margin:15px 0 6px;font-size:.9rem}input{width:100%;padding:13px;border:1px solid #64738c;background:#0b1526;color:white;border-radius:8px;font:inherit}input:focus,button:focus-visible{outline:3px solid #7caaff;outline-offset:2px}.primary{width:100%;padding:13px;margin-top:20px;border:0;border-radius:9px;background:#4b86ff;color:#fff;font:inherit;font-weight:700;cursor:pointer}.primary:disabled{opacity:.6;cursor:wait}.link{border:0;background:none;color:#a8c7ff;text-decoration:underline;cursor:pointer;padding:0;font:inherit}.below{margin-top:18px;text-align:center;color:#b6c3d6;font-size:.9rem}.message{margin-top:18px;padding:12px;border-radius:8px;background:#243450;line-height:1.45;overflow-wrap:anywhere}.message.error{background:#542731}.hidden{display:none}.note{font-size:.85rem;color:#a9b8d1;line-height:1.5;margin-top:20px}
+</style></head><body><main class="shell"><header class="brand"><h1>DATA DADDY <span style="color:#78a7ff">PRO</span></h1><p>Fantasy AI Player Lab · Account preview</p></header>
+<section class="panel" aria-label="Account">
+<div class="tabs" id="tabs"><button type="button" id="tab-login" aria-selected="true">Log in</button><button type="button" id="tab-signup" aria-selected="false">Create account</button></div>
+<h2 id="heading">Welcome back</h2>
+<form id="account-form"><div id="email-row"><label for="email">Email address</label><input id="email" type="email" autocomplete="email" required></div>
+<div id="password-row"><label for="password">Password</label><input id="password" type="password" minlength="12" autocomplete="current-password" required></div>
+<button class="primary" id="submit" type="submit">Log in</button></form>
+<div class="below"><button type="button" class="link" id="forgot">Forgot password?</button> <button type="button" class="link hidden" id="back">Back to login</button></div>
+<div id="message" class="message hidden" role="status" aria-live="polite"></div>
+<div id="signed-in" class="hidden"><p id="account-name"></p><button type="button" class="primary" id="logout">Log out</button></div>
+<p class="note">Development preview only. No subscriptions or usage limits are active. Existing DATA DADDY tools remain free.</p></section></main>
+<script type="module" src="./account-ui.js"></script></body></html>
