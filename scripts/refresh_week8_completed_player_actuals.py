@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Refresh completed Week 8 player actual PPR from nflverse weekly stats.
-Never changes projections, rankings, or unfinished Monday CHI/SEA scores.
+Includes all final Week 8 games, preserves verified scores and never changes projections or rankings.
 Run in Codespaces; review console summary before committing JSON.
 """
 import collections,json,pathlib,urllib.request
@@ -19,7 +19,6 @@ for event in board.get("events",[]):
  comps=(event.get("competitions") or [{}])[0].get("competitors",[])
  if len(comps)!=2:continue
  teams=[aliases.get(c.get("team",{}).get("abbreviation"),c.get("team",{}).get("abbreviation")) for c in comps]
- if set(teams)=={"CHI","SEA"}:continue
  finished.update(teams)
 if len(finished)<20:raise SystemExit("Too few final-game teams: "+str(len(finished)))
 try:
@@ -47,8 +46,11 @@ for season,week,name,team,pos,points in records:
    raise SystemExit("Conflicting existing score for "+str(k)+": "+str(old.get("fantasy_points_ppr"))+" vs "+str(item["fantasy_points_ppr"]))
  else:
   index[k]=len(existing);existing.append(item);added+=1
-if added<100:raise SystemExit("Expected many Sunday player scores, found only "+str(added)+"; file unchanged")
+if len(finished)<26:raise SystemExit("Not all Week 8 games are final; file unchanged")
+if not {"CHI","SEA"}.issubset(finished):raise SystemExit("Monday CHI/SEA not confirmed final; file unchanged")
 payload["players"]=existing
 path.write_text(json.dumps(payload,separators=(",",":"))+"\n")
 counts=collections.Counter(row.get("week") for row in existing)
-print(json.dumps({"status":"GREEN","final_teams":sorted(finished),"week8_rows":counts[WEEK],"new_rows":added,"saved":str(path),"notes":["No Monday CHI/SEA scores","No projections or model changes","Review and commit updated data file to publish"]},indent=2))
+week8_by_team=collections.Counter(str(row.get("team")) for row in existing if row.get("week")==WEEK)
+missing_final_teams=sorted(t for t in finished if week8_by_team[t]==0)
+print(json.dumps({"status":"GREEN","final_teams":sorted(finished),"week8_rows":counts[WEEK],"new_rows":added,"missing_final_teams":missing_final_teams,"chi_rows":week8_by_team["CHI"],"sea_rows":week8_by_team["SEA"],"saved":str(path),"notes":["All completed Week 8 games included","No projections or model changes","Review and commit updated data file to publish"]},indent=2))
