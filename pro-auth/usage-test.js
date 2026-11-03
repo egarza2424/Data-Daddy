@@ -25,6 +25,7 @@ async function refresh() {
     .select("tool,used_count");
   if (error) { say("Could not read usage: " + error.message); return; }
   render(data ?? []);
+  buttons.forEach(b => b.disabled = false);
   say("Signed in. Each test button permanently consumes one free use in the development database.");
 }
 buttons.forEach(button => button.addEventListener("click", async () => {
