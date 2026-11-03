@@ -5519,7 +5519,10 @@ function getSaferLineupGroups(groups) {
   ]));
 }
 
-function optimizeLineup(mode = "best") {
+let proLineupAuthorizedSignature = null;
+let proLineupPending = false;
+async function optimizeLineup(mode = "best") {
+  if (typeof mode !== "string") mode = "best";
   const result = document.getElementById(
     "lineupAnalyzerResult"
   );
@@ -5563,6 +5566,35 @@ function optimizeLineup(mode = "best") {
     return;
   }
 
+  const signature = JSON.stringify({
+    roster: lineupRoster.map(p => JSON.stringify(p)).sort(),
+    rules
+  });
+  if (proLineupAuthorizedSignature !== signature) {
+    if (proLineupPending) return;
+    proLineupPending = true;
+    const button = document.getElementById("optimizeLineupBtn");
+    if (button) button.disabled = true;
+    let access;
+    try {
+      const { consumeLineupAllowance } = await import("./pro-auth/lineup-access.js");
+      access = await consumeLineupAllowance();
+    } catch (error) {
+      access = { allowed: false, message: "Could not check Pro access. Please try again." };
+    } finally {
+      proLineupPending = false;
+      if (button) button.disabled = false;
+    }
+    if (!access.allowed) {
+      result.replaceChildren();
+      const notice = document.createElement("div");
+      notice.className = "lineup-validation-message";
+      notice.textContent = access.message;
+      result.appendChild(notice);
+      return;
+    }
+    proLineupAuthorizedSignature = signature;
+  }
   renderOptimizedLineup(bestLineup, rules, useSafer ? "safe" : "best");
   if (maximumLineup) {
     const choices = document.createElement("div");
