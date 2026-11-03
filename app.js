@@ -10493,13 +10493,43 @@ function renderPlayerCard(
   `;
 } 
 
-function comparePlayers() {
-  
+let proComparisonAuthorizedSignature = null;
+let proComparisonPending = false;
+async function comparePlayers() {
   const playerA = getPlayer(playerASelect.value);
   const playerB = getPlayer(playerBSelect.value);
   const playerC = getPlayer(playerCSelect.value);
 
   if (!playerA || !playerB || !playerC) return;
+
+  const signature = JSON.stringify({
+    players: [playerASelect.value, playerBSelect.value, playerCSelect.value],
+    profile: riskSelect.value
+  });
+  if (proComparisonAuthorizedSignature !== signature) {
+    if (proComparisonPending) return;
+    proComparisonPending = true;
+    compareButton.disabled = true;
+    let access;
+    try {
+      const { consumeComparisonAllowance } = await import("./pro-auth/comparison-access.js");
+      access = await consumeComparisonAllowance();
+    } catch (error) {
+      access = { allowed: false, message: "Could not check Pro access. Please try again." };
+    } finally {
+      proComparisonPending = false;
+      compareButton.disabled = false;
+    }
+    if (!access.allowed) {
+      resultsContainer.replaceChildren();
+      const notice = document.createElement("div");
+      notice.className = "lineup-validation-message";
+      notice.textContent = access.message;
+      resultsContainer.appendChild(notice);
+      return;
+    }
+    proComparisonAuthorizedSignature = signature;
+  }
 
 
 
