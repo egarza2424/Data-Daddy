@@ -94,7 +94,7 @@
         list.innerHTML=verified.sort((a,b)=>number(b.actual_ppr)-number(a.actual_ppr)).slice(0,12).map(r=>card(r.player_name+" · "+r.position,"Sleeper pick #"+r.rank+" · Sleeper Score "+r.sleeper_score,number(r.actual_ppr).toFixed(1)+" actual PPR · "+number(r.ppr_lift_pct).toFixed(1)+"% over projection"+(r.breakout_hit==="True"?" · Breakout":""))).join("")||'<p>No verified sleeper hits are published for this week. This is unavailable data, not zero successful picks.</p>';
         return;
       }
-      note.textContent="Week "+week+" · matched-player cohort only. Predicted and actual ranks are recalculated among matched players by position. This is ranking agreement, not PPR projection accuracy.";
+      note.textContent="Week "+week+(week===8?" · PROVISIONAL: 268 matched players; 86 unmatched pending participation/injury verification.":"")+" · matched-player cohort only. Predicted and actual ranks are recalculated among matched players by position. This is ranking agreement, not PPR projection accuracy.";
       list.innerHTML=items.map(r=>card(r.player_name+" · "+r.position,
         "Predicted #"+r.predicted+" → actual #"+r.actual,
         number(r.actual_ppr).toFixed(1)+" actual PPR"+(r.projectedPpr===null?"": " vs "+r.projectedPpr.toFixed(1)+" projected ("+(r.pprError>=0?"+":"")+r.pprError.toFixed(1)+")")+" · "+r.delta+"-rank difference"+(category==="misses" && (reports.injuries||[]).some(i=>Number(i.week)===week && i.player_name===r.player_name && i.position===r.position && i.in_game_injury_verified==="True") ? " · Injured During Game" : ""))).join("")||"<p>No qualifying examples.</p>";
@@ -149,6 +149,9 @@
       }
       if(!latest) throw new Error("No completed ranking audit found.");
       state.week=latest;state.reports.ranking=ranking;
+      if(latest===8){
+        status.textContent="Week 8 provisional audit — 268 matched players; 86 unmatched players pending participation and injury verification.";
+      }
       if(state.provisional){const label="PRELIMINARY — completed games only; Monday players excluded. ";root.querySelector("#trackerNote").setAttribute("data-audit-status",label);}
       try {state.reports.projections=await load("projection-model/2026-week"+latest+"-ppr-projections.csv");}catch(e){state.reports.projections=[];}
       try {state.reports.comparison=await load("model-validation/ai-vs-ppr-ranking-audit.csv");}catch(e){state.reports.comparison=[];}
