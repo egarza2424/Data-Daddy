@@ -12,5 +12,5 @@ export async function consumeComparisonAllowance() {
   if (error) return { allowed: false, message: "Access check failed. Please try again." };
   const decision = data?.[0];
   if (decision?.allowed) return { allowed: true };
-  return { allowed: false, message: "Your free Player Comparison use has been used. Pro subscriptions are not available yet." };
+  return { allowed: false, message: "Your free Player Comparison use has been used. Upgrade to DATA DADDY Pro for $3.99/month for unlimited access to the Lineup Optimizer and Player Comparison. Sign in to your account to manage your subscription." };
 }
