@@ -1,0 +1,60 @@
+name: Import Pro Week 8 Draft to Supabase
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: 'Type IMPORT-2026-W8-V1 to authorize database writes'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pro-week8-v1-import
+  cancel-in-progress: false
+
+jobs:
+  import-draft:
+    if: ${{ github.ref == 'refs/heads/feature/data-daddy-pro-auth' && inputs.confirmation == 'IMPORT-2026-W8-V1' }}
+    runs-on: ubuntu-latest
+    environment: pro-import
+    timeout-minutes: 10
+    steps:
+      - name: Check out development branch
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Generate Week 8 draft
+        run: |
+          python scripts/prepare_pro_projection_import.py \
+            --csv projection-model/2026-week8-ppr-projections.csv \
+            --season 2026 --week 8 --version 1 \
+            --output /tmp/pro-week8-import-draft.json
+      - name: Verify draft before network access
+        run: |
+          python scripts/import_pro_projection_draft.py --draft /tmp/pro-week8-import-draft.json
+          python - <<'PY'
+          import json
+          with open('/tmp/pro-week8-import-draft.json', encoding='utf-8') as f:
+              data = json.load(f)
+          assert (data['snapshot']['season'], data['snapshot']['week'], data['snapshot']['version'], data['snapshot']['status']) == (2026, 8, 1, 'draft')
+          assert len(data['players']) == len(data['availability']) == 354
+          assert len({p['player_id'] for p in data['players']}) == 354
+          assert {a['player_id'] for a in data['availability']} == {p['player_id'] for p in data['players']}
+          print('Validated exact Week 8 draft import scope')
+          PY
+      - name: Import private draft to Supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          test -n "$SUPABASE_URL"
+          test -n "$SUPABASE_SERVICE_ROLE_KEY"
+          python scripts/import_pro_projection_draft.py \
+            --draft /tmp/pro-week8-import-draft.json \
+            --source-commit "$GITHUB_SHA" \
+            --apply
