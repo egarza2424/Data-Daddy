@@ -15,7 +15,6 @@ import hashlib
 import json
 import math
 from collections import Counter
-from datetime import datetime, timezone
 from pathlib import Path
 
 REQUIRED = {
@@ -25,7 +24,9 @@ REQUIRED = {
 POSITIONS = {"QB", "RB", "WR", "TE"}
 
 
-def prepare(source: Path, season: int, week: int):
+def prepare(source: Path, season: int, week: int, version: int):
+    if version < 1:
+        raise ValueError("Snapshot version must be a positive integer")
     raw = source.read_bytes()
     digest = hashlib.sha256(raw).hexdigest()
     with source.open("r", encoding="utf-8-sig", newline="") as stream:
@@ -82,13 +83,14 @@ def prepare(source: Path, season: int, week: int):
 
     return {
         "snapshot": {
-            "season": season, "week": week, "status": "draft",
+            "season": season, "week": week, "version": version, "status": "draft",
             "source_csv_sha256": digest,
             "source_file": str(source),
         },
         "players": players,
         "availability": availability,
         "validation": {
+            "schema_note": "snapshot.source_csv_sha256 and snapshot.source_file are audit metadata, not columns in the current SQL schema; map source_commit separately on import.",
             "player_count": len(players),
             "availability_count": len(availability),
             "positions": dict(sorted(Counter(p["position"] for p in players).items())),
@@ -102,9 +104,10 @@ def main():
     parser.add_argument("--csv", required=True, type=Path)
     parser.add_argument("--season", required=True, type=int)
     parser.add_argument("--week", required=True, type=int)
+    parser.add_argument("--version", required=True, type=int)
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
-    result = prepare(args.csv, args.season, args.week)
+    result = prepare(args.csv, args.season, args.week, args.version)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(result["validation"], indent=2))
