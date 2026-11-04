@@ -1814,6 +1814,57 @@ async function loadWaiverWire() {
       ? data.provisional_top_10
       : [];
 
+    // Week 9 approved editorial waiver priorities, independent of model projections.
+    // Preserve exact analyst order even when a candidate lacks ownership data.
+    if (Number(data.target_week) === 9) {
+      const editorial = {
+        overall: ["Mike Washington Jr.","Jonah Coleman","Keenan Allen","Tyler Allgeier","Ryan Flournoy","Kenny Gainwell","Elijah Mitchell","Eli Raridon","Antonio Williams","Adonai Mitchell"],
+        QB: ["Kirk Cousins","Malik Willis","Geno Smith","J.J. McCarthy","Cam Ward","Deshaun Watson","Bo Nix","Kyler Murray","Justin Herbert","Sam Darnold"],
+        RB: ["Mike Washington Jr.","Jonah Coleman","Tyler Allgeier","Kenny Gainwell","Elijah Mitchell","Kaelon Black","Emmett Johnson","Seth McGowan","Alvin Kamara","Justice Hill","Dylan Sampson","Sione Vaki"],
+        WR: ["Keenan Allen","Ryan Flournoy","Antonio Williams","Adonai Mitchell","Makai Lemon","Jordan Watkins","Caleb Douglas","Khalil Shakir","Chimere Dike","Xavier Hutchinson","Wan'Dale Robinson"],
+        TE: ["Eli Raridon","Mike Gesicki","Terrance Ferguson","Michael Mayer","Darnell Washington","Eli Stowers","Gunnar Helm","Greg Dulcich","Dalton Schultz","Brevyn Spann-Ford","Mason Taylor","Daniel Bellinger"]
+      };
+      const teams = {
+        "Mike Washington Jr.":"LV","Jonah Coleman":"DEN","Keenan Allen":"IND","Tyler Allgeier":"ARI",
+        "Ryan Flournoy":"DAL","Kenny Gainwell":"TB","Elijah Mitchell":"PHI","Eli Raridon":"NE",
+        "Antonio Williams":"WAS","Adonai Mitchell":"NYJ"
+      };
+      container.replaceChildren();
+      const title = document.createElement("h3");
+      title.textContent = "DATA DADDY — WEEK 9 WAIVER WIRE";
+      container.appendChild(title);
+      const intro = document.createElement("p");
+      intro.textContent = "Approved editorial waiver priorities, not projected PPR rankings. Automated ownership and injury evidence may be preliminary.";
+      container.appendChild(intro);
+      const positions = Object.fromEntries(["QB","RB","WR","TE"].flatMap(pos => editorial[pos].map(name => [name,pos])));
+      [["TOP 10 OVERALL",editorial.overall],["TOP 10 QUARTERBACKS",editorial.QB],
+       ["RUNNING BACKS",editorial.RB],["WIDE RECEIVERS",editorial.WR],
+       ["TIGHT ENDS",editorial.TE]].forEach(([label,names]) => {
+        const section = document.createElement("section");
+        section.className = "waiver-editorial-section";
+        const heading = document.createElement("h4");
+        heading.textContent = label;
+        section.appendChild(heading);
+        names.forEach((name,index) => {
+          const candidate = candidates.find(p => normalizeName(p.name) === normalizeName(name));
+          const row = document.createElement("div");
+          row.className = "waiver-player";
+          const header = document.createElement("strong");
+          header.textContent = "#" + (index + 1) + " " + name + " (" + positions[name] + " • " + (teams[name] || candidate?.team || "Team pending") + ")";
+          row.appendChild(header);
+          const detail = document.createElement("p");
+          const ownership = candidate?.average_rostered;
+          const pct = ownership !== null && ownership !== undefined && Number.isFinite(Number(ownership))
+            ? Number(ownership).toFixed(1) + "%" : "Not verified";
+          detail.textContent = "Rostered: " + pct + " • Editorial priority; verify role and injury status before adding";
+          row.appendChild(detail);
+          section.appendChild(row);
+        });
+        container.appendChild(section);
+      });
+      return;
+    }
+
     // Week 8 approved editorial waiver order; independent of model weights.
     // Deliberately render all approved names even if the automated candidate
     // pool omits a player. This prevents refreshes from silently reordering picks.
