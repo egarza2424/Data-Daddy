@@ -1,0 +1,24 @@
+name: Launch Pro Lineup Optimizer Tests
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-optimizer-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out pinned development test code
+        uses: actions/checkout@v4
+        with:
+          ref: 8548fda8b4ce71f2ef8e5f4d820ff1ce6f96ea80
+          persist-credentials: false
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Run eight offline optimizer tests
+        run: deno test --no-check --cached-only supabase/functions/optimize-lineup/logic_test.ts
