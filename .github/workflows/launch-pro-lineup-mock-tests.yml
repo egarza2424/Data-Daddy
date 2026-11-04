@@ -1,0 +1,24 @@
+name: Launch Pro Lineup Mock Integration Tests
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mocked-integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out pinned development test code
+        uses: actions/checkout@v4
+        with:
+          ref: e4e937292c5a9aa6a1a08ac0cdc04d0c9530fc17
+          persist-credentials: false
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Run seven mocked subscription and authorization tests
+        run: deno test --no-check supabase/functions/optimize-lineup/protected_flow_test.ts
