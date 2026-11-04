@@ -1,0 +1,43 @@
+name: Validate Pro Week 8 Import Draft
+
+on:
+  push:
+    branches:
+      - feature/data-daddy-pro-auth
+    paths:
+      - '.github/workflows/validate-pro-week8-import.yml'
+      - 'scripts/prepare_pro_projection_import.py'
+      - 'projection-model/2026-week8-ppr-projections.csv'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prepare draft (no database access)
+        run: |
+          python scripts/prepare_pro_projection_import.py \
+            --csv projection-model/2026-week8-ppr-projections.csv \
+            --season 2026 --week 8 --version 1 \
+            --output /tmp/pro-week8-import-draft.json
+      - name: Assert snapshot and record counts
+        run: |
+          python - <<'PY'
+          import json
+          with open('/tmp/pro-week8-import-draft.json', encoding='utf-8') as f:
+              data = json.load(f)
+          snapshot = data['snapshot']
+          assert (snapshot['season'], snapshot['week'], snapshot['version'], snapshot['status']) == (2026, 8, 1, 'draft')
+          assert len(data['players']) == 354, len(data['players'])
+          assert len(data['availability']) == 354, len(data['availability'])
+          assert data['validation']['positions'] == {'QB': 28, 'RB': 108, 'TE': 46, 'WR': 172}
+          assert len({p['player_id'] for p in data['players']}) == 354
+          print('PASS: 354 players, 354 availability records, version 1 draft')
+          PY
