@@ -24,7 +24,9 @@ export function rulesFor(body: Record<string, unknown>): Rules {
     if (!Number.isInteger(n) || (n as number) < 0 || (n as number) > 8) throw new Error("Custom slot counts must be integers from 0 to 8");
     result[key] = n as number;
   }
-  if (Object.values(result).reduce((a,b)=>a+b,0) > 20) throw new Error("Too many starters");
+  const starters = Object.values(result).reduce((a,b)=>a+b,0);
+  if (starters === 0) throw new Error("Invalid lineup: at least one starter required");
+  if (starters > 20) throw new Error("Too many starters");
   return result;
 }
 function allocations(n: number, positions: Position[]): Record<Position, number>[] {
