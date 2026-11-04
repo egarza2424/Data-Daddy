@@ -43,6 +43,15 @@ jobs:
           assert all(a['availability'] is None and a['observed_at'] is None for a in data['availability'])
           print('PASS: 354 players and 354 matching availability records; draft only')
           PY
+      - name: Verify importer dry-run without database access
+        env:
+          SUPABASE_URL: ''
+          SUPABASE_SERVICE_ROLE_KEY: ''
+        run: |
+          python scripts/import_pro_projection_draft.py \
+            --draft /tmp/pro-week8-import-draft.json | tee /tmp/pro-week8-import-dryrun.log
+          grep -F 'Validated season=2026 week=8 version=1: 354 players and 354 availability rows' /tmp/pro-week8-import-dryrun.log
+          grep -F 'DRY RUN: no network request or database changes.' /tmp/pro-week8-import-dryrun.log
       - name: Upload draft JSON as private workflow artifact
         uses: actions/upload-artifact@v4
         with:
