@@ -1,0 +1,30 @@
+name: Test Pro Projection Importer
+
+on:
+  push:
+    branches:
+      - feature/data-daddy-pro-auth
+    paths:
+      - '.github/workflows/test-pro-projection-importer.yml'
+      - 'scripts/import_pro_projection_draft.py'
+      - 'tests/test_pro_projection_import.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-importer-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out development branch
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run nine offline importer tests
+        env:
+          SUPABASE_URL: ''
+          SUPABASE_SERVICE_ROLE_KEY: ''
+        run: python -m unittest discover -s tests -p 'test_pro_projection_import.py' -v
