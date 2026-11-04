@@ -1,0 +1,37 @@
+name: Pro Optimizer Full Offline Validation
+
+on:
+  push:
+    branches: [feature/data-daddy-pro-auth]
+    paths:
+      - 'supabase/functions/optimize-lineup/**'
+      - '.github/workflows/pro-optimizer-full-validation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Run all 31 offline tests
+        run: |
+          deno test --no-check --allow-read \
+            supabase/functions/optimize-lineup/logic_test.ts \
+            supabase/functions/optimize-lineup/protected_flow_test.ts \
+            supabase/functions/optimize-lineup/security_contract_test.ts \
+            supabase/functions/optimize-lineup/availability_test.ts
+      - name: Type-check pure optimizer and authorization modules
+        run: |
+          deno check \
+            supabase/functions/optimize-lineup/logic.ts \
+            supabase/functions/optimize-lineup/protected_flow.ts \
+            supabase/functions/optimize-lineup/availability.ts
