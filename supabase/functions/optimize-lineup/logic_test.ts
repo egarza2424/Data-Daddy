@@ -58,3 +58,10 @@ Deno.test("deterministic tie break by player ID", () => {
   const result=optimize([player("z","QB",20),player("a","QB",20)],rules);
   check(result?.selected.QB[0].player_id==="a","Tie-break not deterministic");
 });
+
+Deno.test("empty custom lineup rejected without generating billable result", () => {
+  let rejected=false;
+  try { rulesFor({format:"custom",rules:{QB:0,RB:0,WR:0,TE:0,FLEX:0,SUPERFLEX:0}}); }
+  catch { rejected=true; }
+  check(rejected,"Empty custom lineup must be rejected");
+});
