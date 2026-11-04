@@ -4,8 +4,7 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 
 import { rulesFor, optimize, type Player } from "./logic.ts";
 import { executeProtectedOptimization } from "./protected_flow.ts";
-const UNAVAILABLE = new Set(["OUT", "IR", "INJURED_RESERVE", "INJURY_RESERVE", "PUP", "INACTIVE", "SUSPENDED", "EXEMPT", "EXEMPT_LIST", "RESERVE/EXEMPT", "RESERVE_EXEMPT"]);
-const RISKY = new Set(["QUESTIONABLE", "DOUBTFUL", "Q", "D"]);
+import { eligibility } from "./availability.ts";
 const POSITIONS = ["QB", "RB", "WR", "TE"] as const;
 const reply = (status: number, body: unknown) => new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
 
@@ -58,11 +57,7 @@ Deno.serve(async request => {
         for (const p of projections||[]) {
           const status=availability.get(p.player_id);
           if (!status) throw new Error("Invalid roster: missing player availability");
-          if (!status.observed_at || !["available_reported", "unavailable_reported"].includes(String(status.availability||""))) throw new Error("Player availability unverified");
-          const injury=String(status.injury_status||"").trim().toUpperCase();
-          const roster=String(status.roster_status||"").trim().toUpperCase();
-          if (UNAVAILABLE.has(injury)||UNAVAILABLE.has(roster)||status.availability==="unavailable_reported") continue;
-          if (input.strategy==="safe" && RISKY.has(injury)) continue;
+          if (eligibility(status, input.strategy as "best" | "safe")==="excluded") continue;
           const points=Number(p.projected_ppr);
           if (!Number.isFinite(points)||!POSITIONS.includes(p.position)) throw new Error("Invalid stored projection");
           eligible.push({player_id:p.player_id,player_name:p.player_name,position:p.position,team:p.team,projected_ppr:points});
