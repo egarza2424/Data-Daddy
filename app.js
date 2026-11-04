@@ -9871,6 +9871,39 @@ const depthOrder =
     if (absent.length) console.warn("Week 9 approved WR players missing from live roster:", absent);
   }
 
+  // Week 9 approved QB Top 24: analyst editorial order only.
+  // Preserve original AI scores, 11 signals and PPR projections.
+  if (position === "QB" && !snapshotWeek &&
+      Number(document.documentElement.dataset.targetWeek) === 9) {
+    const approved = ["Joe Burrow","Brock Purdy","Trevor Lawrence","Josh Allen","Jared Goff","Dak Prescott","Drake Maye","Patrick Mahomes","Matthew Stafford","Kirk Cousins","Malik Willis","Jordan Love","Caleb Williams","Jayden Daniels","Tyler Shough","C.J. Stroud","Jacoby Brissett","Michael Penix Jr.","Geno Smith","J.J. McCarthy","Bryce Young","Bo Nix","Deshaun Watson","Kyler Murray"];
+    const priority = new Map(approved.map((name, i) => [normalizeName(name), i]));
+    const missing = players.filter(player =>
+      player.position === "QB" &&
+      priority.has(normalizeName(player.name)) &&
+      !rankings.some(entry => String(entry.player.id) === String(player.id)) &&
+      !verifiedInjuryOutIds.has(String(player.id)) &&
+      !verifiedInjuryOutIds.has(String(player.nflId)) &&
+      !verifiedInjuryOutKeys.has(String(player.name).trim().toLowerCase() + "|" + String(player.team).trim().toUpperCase()) &&
+      !["OUT","IR","INJURED_RESERVE","PUP"].includes(String(player.injuryStatus || "").trim().toUpperCase()) &&
+      !["INACTIVE","IR","INJURED_RESERVE","SUSPENDED","PUP"].includes(String(player.status || "").trim().toUpperCase())
+    );
+    for (const player of missing) {
+      const score = getDisplayedAiScore(player, profile);
+      if (Number.isFinite(score)) rankings.push({player, score});
+    }
+    rankings.sort((a, b) => {
+      const ai = priority.get(normalizeName(a.player.name));
+      const bi = priority.get(normalizeName(b.player.name));
+      if (ai !== undefined && bi !== undefined) return ai - bi;
+      if (ai !== undefined) return -1;
+      if (bi !== undefined) return 1;
+      return (Number(b.score) || 0) - (Number(a.score) || 0) || a.player.name.localeCompare(b.player.name);
+    });
+    const absent = approved.filter(name =>
+      !rankings.some(({player}) => normalizeName(player.name) === normalizeName(name)));
+    if (absent.length) console.warn("Week 9 approved QB players missing from live roster:", absent);
+  }
+
   rankingCache[cacheKey] = rankings;
  
   return rankings;
