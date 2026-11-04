@@ -22,7 +22,7 @@ jobs:
       - uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
-      - name: Run all 31 offline tests
+      - name: Run all 32 offline tests
         run: |
           deno test --no-check --allow-read \
             supabase/functions/optimize-lineup/logic_test.ts \
@@ -35,3 +35,5 @@ jobs:
             supabase/functions/optimize-lineup/logic.ts \
             supabase/functions/optimize-lineup/protected_flow.ts \
             supabase/functions/optimize-lineup/availability.ts
+      - name: Type-check actual Edge Function handler
+        run: deno check supabase/functions/optimize-lineup/index.ts
