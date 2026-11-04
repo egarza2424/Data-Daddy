@@ -1,0 +1,24 @@
+name: Launch Pro Lineup Security Checks
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-security-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out pinned development security checks
+        uses: actions/checkout@v4
+        with:
+          ref: 00801c5be8d026e122cce86158dcebc1627a3218
+          persist-credentials: false
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Run eight offline security contract checks
+        run: deno test --no-check --allow-read supabase/functions/optimize-lineup/security_contract_test.ts
