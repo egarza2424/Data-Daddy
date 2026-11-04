@@ -14,7 +14,7 @@ jobs:
       - name: Check out pinned development security checks
         uses: actions/checkout@v4
         with:
-          ref: 00801c5be8d026e122cce86158dcebc1627a3218
+          ref: 3c90238abfc36a98b09478fa59b3d9d35c2406e1
           persist-credentials: false
       - name: Install Deno
         uses: denoland/setup-deno@v2
