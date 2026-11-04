@@ -9807,6 +9807,37 @@ const depthOrder =
     if (absent.length) console.warn("Week 8 approved RB players missing from live roster:", absent);
   }
 
+  // Week 9 approved analyst RB Top 48: editorial display order only.
+  // Preserve live AI scores, all 11 signals, and projected PPR unchanged.
+  if (position === "RB" && !snapshotWeek &&
+      Number(document.documentElement.dataset.targetWeek) === 9) {
+    const approved = ["Jahmyr Gibbs","Kenneth Walker III","Christian McCaffrey","Bijan Robinson","James Cook III","D'Andre Swift","Jonathan Taylor","Javonte Williams","Chuba Hubbard","Bucky Irving","Bhayshul Tuten","Chase Brown","Jonah Coleman","Kyren Williams","Josh Jacobs","Woody Marks","Derrick Henry","Ollie Gordon II","Quinshon Judkins","Tyler Allgeier","Breece Hall","Braelon Allen","Rhamondre Stevenson","Blake Corum","Cam Skattebo","Mike Washington Jr.","Kyle Monangai","Ashton Jeanty","Saquon Barkley","Bam Knight","Rachaad White","Kendre Miller","Elijah Mitchell","Kaelon Black","Alvin Kamara","Aaron Jones Sr.","Zach Charbonnet","Jadarian Price","Samaje Perine","Omarion Hampton","J.K. Dobbins","Chris Rodriguez Jr.","Kenny Gainwell","Emmett Johnson","Seth McGowan","Kimani Vidal","Austin Ekeler","Justice Hill"];
+    const priority = new Map(approved.map((name, i) => [normalizeName(name), i]));
+    const missing = players.filter(player =>
+      player.position === "RB" &&
+      priority.has(normalizeName(player.name)) &&
+      !rankings.some(entry => String(entry.player.id) === String(player.id)) &&
+      !verifiedInjuryOutIds.has(String(player.id)) &&
+      !verifiedInjuryOutIds.has(String(player.nflId)) &&
+      !verifiedInjuryOutKeys.has(String(player.name).trim().toLowerCase() + "|" + String(player.team).trim().toUpperCase())
+    );
+    for (const player of missing) {
+      const score = getDisplayedAiScore(player, profile);
+      if (Number.isFinite(score)) rankings.push({player, score});
+    }
+    rankings.sort((a, b) => {
+      const ai = priority.get(normalizeName(a.player.name));
+      const bi = priority.get(normalizeName(b.player.name));
+      if (ai !== undefined && bi !== undefined) return ai - bi;
+      if (ai !== undefined) return -1;
+      if (bi !== undefined) return 1;
+      return (Number(b.score) || 0) - (Number(a.score) || 0) || a.player.name.localeCompare(b.player.name);
+    });
+    const absent = approved.filter(name =>
+      !rankings.some(({player}) => normalizeName(player.name) === normalizeName(name)));
+    if (absent.length) console.warn("Week 9 approved RB players missing from live roster:", absent);
+  }
+
   rankingCache[cacheKey] = rankings;
  
   return rankings;
