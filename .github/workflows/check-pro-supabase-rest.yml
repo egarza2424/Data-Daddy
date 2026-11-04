@@ -1,0 +1,64 @@
+name: Check Pro Supabase REST Access (Read Only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-rest-access:
+    runs-on: ubuntu-latest
+    environment: pro-import
+    timeout-minutes: 5
+    steps:
+      - name: Read-only Supabase snapshot access check
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+
+          base = os.environ.get("SUPABASE_URL", "").strip().rstrip("/")
+          key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "").strip()
+          if not base.startswith("https://") or not key:
+              raise SystemExit("Missing or invalid Supabase environment secrets")
+          params = urllib.parse.urlencode({
+              "select": "id,status",
+              "season": "eq.2026",
+              "week": "eq.8",
+              "version": "eq.1",
+              "limit": "2",
+          })
+          request = urllib.request.Request(
+              base + "/rest/v1/pro_projection_snapshots?" + params,
+              headers={
+                  "apikey": key,
+                  "Authorization": "Bearer " + key,
+                  "Accept": "application/json",
+              },
+              method="GET",
+          )
+          try:
+              with urllib.request.urlopen(request, timeout=20) as response:
+                  data = json.load(response)
+          except urllib.error.HTTPError as exc:
+              raise SystemExit(f"READ-ONLY CHECK FAILED: HTTP {exc.code}") from None
+          except urllib.error.URLError:
+              raise SystemExit("READ-ONLY CHECK FAILED: connection error") from None
+          if not isinstance(data, list):
+              raise SystemExit("READ-ONLY CHECK FAILED: unexpected response shape")
+          print("READ-ONLY CHECK PASSED: Supabase REST API accessible")
+          if data:
+              print("WARNING: Week 8 Version 1 snapshot already exists; do not run import")
+              for row in data:
+                  print("Existing snapshot status:", row.get("status", "unknown"))
+          else:
+              print("Week 8 Version 1 snapshot absent; import precondition satisfied")
+          print("No database writes performed")
+          PY
