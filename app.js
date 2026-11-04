@@ -9842,7 +9842,7 @@ const depthOrder =
   // Preserve original AI scores, 11 signals and PPR projections.
   if (position === "WR" && !snapshotWeek &&
       Number(document.documentElement.dataset.targetWeek) === 9) {
-    const approved = ["Jaxon Smith-Njigba","Puka Nacua","CeeDee Lamb","Amon-Ra St. Brown","Malik Nabers","Ja'Marr Chase","Christian Watson","Zay Flowers","Mike Evans","Tee Higgins","Matthew Golden","Drake London","Chris Olave","Luther Burden III","Justin Jefferson","Nico Collins","Rashee Rice","Jameson Williams","Parker Washington","George Pickens","Michael Wilson","DeVonta Smith","Emeka Egbuka","Tetairoa McMillan","DeMario Douglas","Tre Tucker","Stefon Diggs","Keenan Allen","DJ Moore","Ryan Flournoy","Denzel Boston","Adonai Mitchell","KC Concepcion Jr.","Jaylen Waddle","Jalen Coker","Makai Lemon","Malik Washington","Josh Downs","Rome Odunze","Devaughn Vele","Omar Cooper Jr.","Jordan Addison","Jakobi Meyers","Deebo Samuel Sr.","A.J. Brown","Jahan Dotson","Khalil Shakir","Xavier Worthy"];
+    const approved = ["Jaxon Smith-Njigba","Puka Nacua","CeeDee Lamb","Amon-Ra St. Brown","Malik Nabers","Ja'Marr Chase","Christian Watson","Mike Evans","Tee Higgins","Matthew Golden","Drake London","Chris Olave","Luther Burden III","Justin Jefferson","Nico Collins","Rashee Rice","Jameson Williams","Parker Washington","George Pickens","Michael Wilson","DeVonta Smith","Emeka Egbuka","Tetairoa McMillan","Zay Flowers","DeMario Douglas","Tre Tucker","Stefon Diggs","Keenan Allen","DJ Moore","Ryan Flournoy","Denzel Boston","Adonai Mitchell","KC Concepcion Jr.","Jaylen Waddle","Jalen Coker","Makai Lemon","Malik Washington","Josh Downs","Rome Odunze","Devaughn Vele","Omar Cooper Jr.","Jordan Addison","Jakobi Meyers","Deebo Samuel Sr.","A.J. Brown","Jahan Dotson","Khalil Shakir","Xavier Worthy"];
     const priority = new Map(approved.map((name, i) => [normalizeName(name), i]));
     const missing = players.filter(player =>
       player.position === "WR" &&
@@ -9875,7 +9875,9 @@ const depthOrder =
   // Preserve original AI scores, 11 signals and PPR projections.
   if (position === "QB" && !snapshotWeek &&
       Number(document.documentElement.dataset.targetWeek) === 9) {
-    const approved = ["Joe Burrow","Brock Purdy","Trevor Lawrence","Josh Allen","Jared Goff","Dak Prescott","Drake Maye","Patrick Mahomes","Matthew Stafford","Kirk Cousins","Malik Willis","Jordan Love","Caleb Williams","Jayden Daniels","Tyler Shough","C.J. Stroud","Jacoby Brissett","Michael Penix Jr.","Geno Smith","J.J. McCarthy","Bryce Young","Bo Nix","Deshaun Watson","Kyler Murray"];
+    const approved = ["Joe Burrow","Brock Purdy","Trevor Lawrence","Josh Allen","Jared Goff","Dak Prescott","Drake Maye","Patrick Mahomes","Matthew Stafford","Kirk Cousins","Malik Willis","Jordan Love","Caleb Williams","Jayden Daniels","Tyler Shough","C.J. Stroud","Michael Penix Jr.","Geno Smith","J.J. McCarthy","Bryce Young","Bo Nix","Deshaun Watson","Kyler Murray"];
+    // Week 9 only: Brissett is not available for the Thursday Ravens game.
+    rankings.splice(0, rankings.length, ...rankings.filter(({player}) => normalizeName(player.name) !== normalizeName("Jacoby Brissett")));
     const priority = new Map(approved.map((name, i) => [normalizeName(name), i]));
     const missing = players.filter(player =>
       player.position === "QB" &&
