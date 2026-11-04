@@ -49,7 +49,7 @@ Deno.serve(async request => {
       validateAndOptimize: async (snapshot) => {
         const [{data:projections,error:projError},{data:statuses,error:statusError}]=await Promise.all([
           db.from("pro_projection_players").select("player_id,player_name,position,team,projected_ppr").eq("snapshot_id",snapshot.id).in("player_id",ids),
-          db.from("pro_player_availability").select("player_id,injury_status,roster_status,availability").eq("snapshot_id",snapshot.id).in("player_id",ids)
+          db.from("pro_player_availability").select("player_id,injury_status,roster_status,availability,observed_at").eq("snapshot_id",snapshot.id).in("player_id",ids)
         ]);
         if (projError || statusError) throw new Error("Projection data unavailable");
         if (projections?.length!==ids.length || statuses?.length!==ids.length) throw new Error("Invalid roster: unknown or incomplete players");
@@ -58,6 +58,7 @@ Deno.serve(async request => {
         for (const p of projections||[]) {
           const status=availability.get(p.player_id);
           if (!status) throw new Error("Invalid roster: missing player availability");
+          if (!status.observed_at || !["available_reported", "unavailable_reported"].includes(String(status.availability||""))) throw new Error("Player availability unverified");
           const injury=String(status.injury_status||"").trim().toUpperCase();
           const roster=String(status.roster_status||"").trim().toUpperCase();
           if (UNAVAILABLE.has(injury)||UNAVAILABLE.has(roster)||status.availability==="unavailable_reported") continue;
@@ -80,7 +81,7 @@ Deno.serve(async request => {
   } catch (error) {
     if (error instanceof SyntaxError || error instanceof Error && /Invalid|Custom|Unknown|Too many/.test(error.message))
       return reply(400,{error:error.message});
-    if (error instanceof Error && /unavailable/.test(error.message)) return reply(503,{error:error.message});
+    if (error instanceof Error && /unavailable|unverified/.test(error.message)) return reply(503,{error:error.message});
     return reply(500,{error:"Unable to optimize lineup"});
   }
 });
