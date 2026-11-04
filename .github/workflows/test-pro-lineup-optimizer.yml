@@ -1,0 +1,24 @@
+name: Test Pro Lineup Optimizer Logic
+
+on:
+  push:
+    branches:
+      - feature/data-daddy-pro-auth
+    paths:
+      - 'supabase/functions/optimize-lineup/**'
+      - '.github/workflows/test-pro-lineup-optimizer.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-optimizer-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Run eight pure optimizer tests (no network or database)
+        run: deno test --no-check supabase/functions/optimize-lineup/logic_test.ts
