@@ -1,0 +1,52 @@
+name: Prepare Pro Week 8 Draft Artifact
+
+on:
+  push:
+    branches:
+      - feature/data-daddy-pro-auth
+    paths:
+      - '.github/workflows/prepare-pro-week8-draft.yml'
+      - 'scripts/prepare_pro_projection_import.py'
+      - 'projection-model/2026-week8-ppr-projections.csv'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prepare-draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Generate offline draft JSON
+        run: |
+          python scripts/prepare_pro_projection_import.py \
+            --csv projection-model/2026-week8-ppr-projections.csv \
+            --season 2026 --week 8 --version 1 \
+            --output /tmp/pro-week8-import-draft.json
+      - name: Verify complete draft
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path('/tmp/pro-week8-import-draft.json').read_text())
+          s = data['snapshot']
+          assert (s['season'], s['week'], s['version'], s['status']) == (2026, 8, 1, 'draft')
+          assert len(data['players']) == 354
+          assert len(data['availability']) == 354
+          assert len({p['player_id'] for p in data['players']}) == 354
+          assert {a['player_id'] for a in data['availability']} == {p['player_id'] for p in data['players']}
+          assert data['validation']['positions'] == {'QB': 28, 'RB': 108, 'TE': 46, 'WR': 172}
+          assert all(a['availability'] is None and a['observed_at'] is None for a in data['availability'])
+          print('PASS: 354 players and 354 matching availability records; draft only')
+          PY
+      - name: Upload draft JSON as private workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pro-week8-import-draft
+          path: /tmp/pro-week8-import-draft.json
+          retention-days: 7
+          if-no-files-found: error
