@@ -1723,7 +1723,21 @@ function renderWeeklySleepers() {
             </strong>
 
             <small>
-              ESPN ${position}${espnRank} · PPR rank ${position}${pprRank}
+              DATA DADDY PPR ${position}${pprRank}
+            </small>
+          </div>
+
+          <div>
+            <span>
+              ESPN PPR RANK
+            </span>
+
+            <strong>
+              ${position}${espnRank}
+            </strong>
+
+            <small>
+              ESPN WEEK 9
             </small>
           </div>
 
