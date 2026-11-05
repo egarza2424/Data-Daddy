@@ -1191,6 +1191,24 @@ function hasReviewedInjurySleeperOpportunity(projection) {
            name === normalizeName("Zonovan Knight")));
 }
 
+// ESPN Week 9 PPR consensus rank order transcribed from user-provided screenshots.
+// This is a frozen editorial comparison, not a live ESPN API or model input.
+const ESPN_WEEK9_POSITION_RANKINGS = {
+  "QB": "Brock Purdy|Joe Burrow|Drake Maye|Josh Allen|Trevor Lawrence|Jared Goff|Dak Prescott|Jayden Daniels|Patrick Mahomes|Caleb Williams|Malik Willis|Matthew Stafford|Jordan Love|J.J. McCarthy|C.J. Stroud|Michael Penix Jr.|Tyler Shough|Bo Nix|Kirk Cousins|Drew Lock|Bryce Young|Kyler Murray|Carson Wentz|Shedeur Sanders|Geno Smith",
+  "RB": "Jahmyr Gibbs|Kenneth Walker III|Christian McCaffrey|Bijan Robinson|Jonathan Taylor|Javonte Williams|James Cook III|Chuba Hubbard|Kyren Williams|Bucky Irving|Chase Brown|Bhayshul Tuten|D'Andre Swift|Josh Jacobs|Jonah Coleman|Ollie Gordon II|Ashton Jeanty|Derrick Henry|Quinshon Judkins|Cam Skattebo|Saquon Barkley|Rhamondre Stevenson|Woody Marks|Zach Charbonnet|Breece Hall|Rachaad White|Blake Corum|Alvin Kamara|Braelon Allen|Tyler Allgeier|Jadarian Price|Elijah Mitchell|Kimani Vidal|Kenny Gainwell|Omarion Hampton|Aaron Jones Sr.|Devin Singletary|J.K. Dobbins|Dylan Sampson|Kendre Miller|Jordan Mason|Kaelon Black|Kyle Monangai|David Montgomery|Travis Etienne Jr.|Mike Washington Jr.|Emmett Johnson|Bam Knight|Keaton Mitchell|Austin Ekeler",
+  "WR": "Puka Nacua|Jaxon Smith-Njigba|Ja'Marr Chase|CeeDee Lamb|Amon-Ra St. Brown|Malik Nabers|Tee Higgins|Justin Jefferson|Drake London|Matthew Golden|Christian Watson|Chris Olave|Nico Collins|Rashee Rice|Jameson Williams|Luther Burden III|Tetairoa McMillan|George Pickens|Zay Flowers|Garrett Wilson|Parker Washington|Michael Wilson|D.J. Moore|Denzel Boston|Stefon Diggs|Jalen Coker|Emeka Egbuka|Jaylen Waddle|Mike Evans|KC Concepcion|Ladd McConkey|Jordan Addison|Jakobi Meyers|Keenan Allen|Deebo Samuel Sr.|Malik Washington|DeMario Douglas|Makai Lemon|Devaughn Vele|Treylon Burks|Adonai Mitchell|Rome Odunze|Caleb Douglas|Tre Tucker|Omar Cooper Jr.|Ryan Flournoy|Antonio Williams|Khalil Shakir|Xavier Worthy|A.J. Brown|Jahan Dotson|Courtland Sutton|Josh Downs",
+  "TE": "Brock Bowers|George Kittle|Trey McBride|Isaiah Likely|Sam LaPorta|Colston Loveland|Tyler Warren|Tucker Kraft|Harold Fannin Jr.|T.J. Hockenson|Travis Kelce|Kyle Pitts Sr.|Brenton Strange|Greg Dulcich|Dallas Goedert|Hunter Henry|Chig Okonkwo|Dalton Kincaid|Dalton Schultz|Mike Gesicki|Mason Taylor|AJ Barner|Michael Mayer|Juwan Johnson|Eli Raridon"
+};
+const ESPN_WEEK9_UNAVAILABLE = new Set(["Mike Evans","Deebo Samuel Sr.","Deebo Samuel","Lamar Jackson","Kyler Murray"].map(normalizeName));
+function getEspnWeek9PositionRank(position, name) {
+  const names = (ESPN_WEEK9_POSITION_RANKINGS[position] || "").split("|");
+  const normalized = normalizeName(name || "");
+  const aliases = {"kc concepcion jr.":"kc concepcion","dj moore":"d.j. moore","demario douglas":"demario douglas"};
+  const lookup = normalizeName(aliases[normalized] || normalized);
+  const index = names.findIndex(n => normalizeName(n) === lookup);
+  return index >= 0 ? index + 1 : null;
+}
+
 function getWeeklySleeperCandidates() {
   const candidates =
     weeklyPprProjections
@@ -1332,34 +1350,24 @@ function getWeeklySleeperCandidates() {
 
         if (
           Number.isFinite(eliteCutoff) &&
-          pprRank <= eliteCutoff
+          aiRank <= eliteCutoff
         ) {
           return null;
         }
 
-        const rankAdvantage =
-          pprRank - aiRank;
-
-        /*
-         * A model-derived sleeper must be
-         * ranked higher by the Model Score
-         * than by the PPR projection model.
-         *
-         * Example:
-         * Model RB26 vs PPR RB32 = +6
-         * qualifies.
-         *
-         * Model RB45 vs PPR RB22 = -23
-         * does not qualify.
-         */
-        const injuryOpportunityEligible =
-          hasReviewedInjurySleeperOpportunity(projection);
-        if (rankAdvantage <= 0 && !injuryOpportunityEligible) {
-          return null;
-        }
+        // Week 9 sleepers must outperform independent ESPN rankings.
+        // Never compare DATA DADDY AI rank against DATA DADDY PPR rank.
+        const espnRank = getEspnWeek9PositionRank(position, projection.player_name);
+        if (Number(projection.snapshot_week) !== 9 || !espnRank ||
+            ESPN_WEEK9_UNAVAILABLE.has(normalizeName(projection.player_name))) return null;
+        const rankAdvantage = espnRank - aiRank;
+        const injuryOpportunityEligible = hasReviewedInjurySleeperOpportunity(projection);
+        // Conditional opportunities remain in the separate roster watch.
+        if (rankAdvantage <= 0) return null;
 
         return {
           injuryOpportunityEligible,
+          espnRank,
           projection,
           player,
           position,
@@ -1376,133 +1384,23 @@ function getWeeklySleeperCandidates() {
     return [];
   }
 
-  /*
-   * Compare each candidate only with other
-   * sleeper-eligible players at his position.
-   *
-   * This prevents raw QB/RB/WR/TE scoring
-   * differences from distorting Sleeper Score.
-   */
-  const positionGroups = {
-    QB: [],
-    RB: [],
-    WR: [],
-    TE: []
-  };
-
-  candidates.forEach(
-    candidate => {
-      positionGroups[
-        candidate.position
-      ].push(candidate);
+  // ESPN advantage drives discovery. AI score is a secondary confidence
+  // signal; PPR projections are displayed but never used as a comparator.
+  const groups = {QB:[],RB:[],WR:[],TE:[]};
+  candidates.forEach(c => groups[c.position].push(c));
+  for (const group of Object.values(groups)) {
+    if (!group.length) continue;
+    const advantages = group.map(c => c.rankAdvantage);
+    const scores = group.map(c => c.aiScore);
+    for (const c of group) {
+      const advantageComponent = normalizeSleeperMetric(c.rankAdvantage,Math.min(...advantages),Math.max(...advantages));
+      const aiComponent = normalizeSleeperMetric(c.aiScore,Math.min(...scores),Math.max(...scores));
+      c.sleeperScore = (advantageComponent * 0.75 + aiComponent * 0.25) * 100;
     }
-  );
+  }
+  return candidates.filter(c => Number.isFinite(c.sleeperScore))
+    .sort((a,b) => b.rankAdvantage - a.rankAdvantage || b.sleeperScore - a.sleeperScore);
 
-  Object.values(
-    positionGroups
-  ).forEach(
-    group => {
-      if (group.length === 0) {
-        return;
-      }
-
-      const aiScores =
-        group.map(
-          candidate =>
-            candidate.aiScore
-        );
-
-      const pprValues =
-        group.map(
-          candidate =>
-            candidate.projectedPpr
-        );
-
-      const rankAdvantages =
-        group.map(
-          candidate =>
-            Math.max(0, candidate.rankAdvantage)
-        );
-
-      const minAi =
-        Math.min(...aiScores);
-
-      const maxAi =
-        Math.max(...aiScores);
-
-      const minPpr =
-        Math.min(...pprValues);
-
-      const maxPpr =
-        Math.max(...pprValues);
-
-      const minRankAdvantage =
-        Math.min(
-          ...rankAdvantages
-        );
-
-      const maxRankAdvantage =
-        Math.max(
-          ...rankAdvantages
-        );
-
-      group.forEach(
-        candidate => {
-          const aiComponent =
-            normalizeSleeperMetric(
-              candidate.aiScore,
-              minAi,
-              maxAi
-            );
-
-          const pprComponent =
-            normalizeSleeperMetric(
-              candidate.projectedPpr,
-              minPpr,
-              maxPpr
-            );
-
-          const disagreementComponent =
-            normalizeSleeperMetric(
-              Math.max(0, candidate.rankAdvantage),
-              minRankAdvantage,
-              maxRankAdvantage
-            );
-
-          /*
-           * Sleeper Score
-           *
-           * 45% AI conviction
-           * 35% weekly PPR projection
-           * 20% AI-vs-PPR rank disagreement
-           *
-           * This is a standalone model-derived
-           * discovery score.
-           */
-          candidate.sleeperScore =
-            (
-              aiComponent * 0.45 +
-              pprComponent * 0.35 +
-              disagreementComponent *
-                0.20
-            ) * 100;
-        }
-      );
-    }
-  );
-
-  return candidates
-    .filter(
-      candidate =>
-        Number.isFinite(
-          candidate.sleeperScore
-        )
-    )
-    .sort(
-      (a, b) =>
-        b.sleeperScore -
-        a.sleeperScore
-    );
 }
 
 
@@ -1538,55 +1436,8 @@ function normalizeSleeperMetric(
 }
 
 
-function getSleeperReason(
-  sleeper
-) {
-  const {
-    position,
-    aiRank,
-    pprRank,
-    rankAdvantage,
-    projectedPpr
-  } = sleeper;
-
-  if (rankAdvantage >= 10) {
-    return (
-      `The model ranks him ${position}${aiRank}, ` +
-      `${rankAdvantage} spots ahead of his ` +
-      `${position}${pprRank} PPR projection rank. ` +
-      `That is one of the stronger model ` +
-      `disagreements at the position this week.`
-    );
-  }
-
-  if (rankAdvantage >= 5) {
-    return (
-      `His underlying model signals place him at ` +
-      `${position}${aiRank}, ${rankAdvantage} spots ` +
-      `ahead of his ${position}${pprRank} projected ` +
-      `PPR rank, creating an under-the-radar ` +
-      `weekly opportunity.`
-    );
-  }
-
-  if (rankAdvantage > 0) {
-    return (
-      `The model is slightly more optimistic ` +
-      `than the PPR model, ranking him ` +
-      `${position}${aiRank} compared with ` +
-      `${position}${pprRank} by projected PPR. ` +
-      `He still carries ${projectedPpr.toFixed(2)} ` +
-      `projected PPR this week.`
-    );
-  }
-
-  return (
-    `He remains outside the elite weekly tier, ` +
-    `but his combination of AI Score and ` +
-    `${projectedPpr.toFixed(2)} projected PPR ` +
-    `gives him one of the stronger profiles ` +
-    `among the remaining ${position} options.`
-  );
+function getSleeperReason(sleeper) {
+  return `DATA DADDY ranks him ${sleeper.position}${sleeper.aiRank}, ${sleeper.rankAdvantage} spots higher than ESPN's Week 9 ${sleeper.position}${sleeper.espnRank}. This is an external ranking disagreement, not a guarantee of production. Verify game-day role and availability.`;
 }
 
 
@@ -1775,6 +1626,7 @@ function renderWeeklySleepers() {
         position,
         projectedPpr,
         pprRank,
+        espnRank,
         aiScore,
         aiRank,
         rankAdvantage,
@@ -1803,9 +1655,9 @@ function renderWeeklySleepers() {
 
       const rankDifferenceText =
         rankAdvantage > 0
-          ? `Model +${rankAdvantage} spots`
+          ? `DATA DADDY +${rankAdvantage} spots`
           : rankAdvantage < 0
-            ? `PPR +${Math.abs(
+            ? `ESPN +${Math.abs(
                 rankAdvantage
               )} spots`
             : "Ranks aligned";
@@ -1869,13 +1721,13 @@ function renderWeeklySleepers() {
             </strong>
 
             <small>
-              ${position}${pprRank}
+              ESPN ${position}${espnRank}
             </small>
           </div>
 
           <div>
             <span>
-              MODEL SCORE VS PPR
+              DATA DADDY VS ESPN
             </span>
             <strong>
               ${
@@ -1893,7 +1745,7 @@ function renderWeeklySleepers() {
 
         <div class="sleeper-reason">
           <span>
-            WHY THE MODEL LIKES HIM
+            WHY DATA DADDY RANKS HIM HIGHER
           </span>
 
           <p>
