@@ -2011,7 +2011,7 @@ async function loadWaiverWire() {
     if (Number(data.target_week) === 9) {
       const editorial = {
         overall: ["Mike Washington Jr.","Jonah Coleman","Keenan Allen","Tyler Allgeier","Ryan Flournoy","Kenny Gainwell","Elijah Mitchell","Eli Raridon","Antonio Williams","Adonai Mitchell"],
-        QB: ["Kirk Cousins","Malik Willis","Geno Smith","J.J. McCarthy","Cam Ward","Deshaun Watson","Bo Nix","Kyler Murray","Justin Herbert","Sam Darnold"],
+        QB: ["Kirk Cousins","Malik Willis","Geno Smith","J.J. McCarthy","Cam Ward","Bo Nix","Justin Herbert"],
         RB: ["Mike Washington Jr.","Jonah Coleman","Tyler Allgeier","Kenny Gainwell","Elijah Mitchell","Kaelon Black","Emmett Johnson","Seth McGowan","Alvin Kamara","Justice Hill","Dylan Sampson","Sione Vaki"],
         WR: ["Keenan Allen","Ryan Flournoy","Antonio Williams","Adonai Mitchell","Makai Lemon","Jordan Watkins","Caleb Douglas","Khalil Shakir","Chimere Dike","Xavier Hutchinson","Wan'Dale Robinson"],
         TE: ["Eli Raridon","Mike Gesicki","Terrance Ferguson","Michael Mayer","Darnell Washington","Eli Stowers","Gunnar Helm","Greg Dulcich","Dalton Schultz","Brevyn Spann-Ford","Mason Taylor","Daniel Bellinger"]
@@ -2029,7 +2029,7 @@ async function loadWaiverWire() {
       intro.textContent = "Approved editorial waiver priorities, not projected PPR rankings. Automated ownership and injury evidence may be preliminary.";
       container.appendChild(intro);
       const positions = Object.fromEntries(["QB","RB","WR","TE"].flatMap(pos => editorial[pos].map(name => [name,pos])));
-      [["TOP 10 OVERALL",editorial.overall],["TOP 10 QUARTERBACKS",editorial.QB],
+      [["TOP 10 OVERALL",editorial.overall],["QUARTERBACK WAIVER OPTIONS",editorial.QB],
        ["RUNNING BACKS",editorial.RB],["WIDE RECEIVERS",editorial.WR],
        ["TIGHT ENDS",editorial.TE]].forEach(([label,names]) => {
         const section = document.createElement("section");
