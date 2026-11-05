@@ -1511,19 +1511,59 @@ function renderWeeklySleepers() {
   if (currentSleeperPosition === "DST") {
     if (weekBadge) weekBadge.textContent = "WEEK 9";
     grid.replaceChildren();
+    // ESPN Week 9 D/ST PPR consensus positions from supplied screenshots.
+    const espnDstRanks = {JAX:1, NO:7, TB:20};
     for (const pick of dstSleeperPicks) {
+      const espnRank = espnDstRanks[pick.team];
+      const gap = espnRank - pick.rank;
       const card = document.createElement("article");
-      card.className = "sleeper-card";
+      card.className = "sleeper-card dst-sleeper-card";
+      const top = document.createElement("div");
+      top.className = "sleeper-card-top";
+      const tag = document.createElement("span");
+      tag.className = "sleeper-position";
+      tag.textContent = "D/ST · MATCHUP PICK";
+      const source = document.createElement("span");
+      source.className = "dst-sleeper-source";
+      source.textContent = "EDITORIAL";
+      top.append(tag,source);
+
+      const playerHeading = document.createElement("div");
+      playerHeading.className = "sleeper-player-heading";
       const heading = document.createElement("h3");
       heading.textContent = pick.name + " D/ST";
-      const meta = document.createElement("p");
-      meta.textContent = pick.team + " vs " + pick.opponent + " · Editorial D/ST" + pick.rank +
-        " · Original V1 projection: " + pick.points.toFixed(2) + " pts";
+      const matchup = document.createElement("p");
+      matchup.textContent = pick.team + " vs " + pick.opponent + " · Week 9";
+      playerHeading.append(heading,matchup);
+
+      const metrics = document.createElement("div");
+      metrics.className = "sleeper-metrics dst-sleeper-metrics";
+      const values = [
+        ["DATA DADDY RANK", "D/ST" + pick.rank, "Editorial rank"],
+        ["ESPN PPR RANK", "D/ST" + espnRank, "ESPN Week 9"],
+        ["PROJECTED POINTS", pick.points.toFixed(2), "Original V1"],
+        ["RANK ADVANTAGE", (gap > 0 ? "+" : "") + gap, "ESPN minus DATA DADDY"]
+      ];
+      for (const [label,value,detail] of values) {
+        const metric = document.createElement("div");
+        const labelEl = document.createElement("span");
+        labelEl.textContent = label;
+        const valueEl = document.createElement("strong");
+        valueEl.textContent = value;
+        const detailEl = document.createElement("small");
+        detailEl.textContent = detail;
+        metric.append(labelEl,valueEl,detailEl);
+        metrics.appendChild(metric);
+      }
+
+      const explanation = document.createElement("div");
+      explanation.className = "sleeper-reason";
+      const label = document.createElement("span");
+      label.textContent = "WHY THIS MATCHUP";
       const note = document.createElement("p");
       note.textContent = pick.reason;
-      const label = document.createElement("strong");
-      label.textContent = "MATCHUP SLEEPER · EDITORIAL";
-      card.append(label,heading,meta,note);
+      explanation.append(label,note);
+      card.append(top,playerHeading,metrics,explanation);
       grid.appendChild(card);
     }
     return;
