@@ -1204,6 +1204,13 @@ function getWeeklySleeperCandidates() {
           return null;
         }
 
+        // Week 9 editorial exclusion: McKee is not an actionable sleeper.
+        // Preserve his frozen projections and historical audit records.
+        if (Number(projection.snapshot_week) === 9 &&
+            normalizeName(projection.player_name || "") === normalizeName("Tanner McKee")) {
+          return null;
+        }
+
         // Historical PPR rows are for prediction-vs-actual audits only.
         // Never reintroduce a player removed from the current live
         // projection pool as an actionable sleeper.
@@ -1585,6 +1592,12 @@ function getSleeperReason(
 
 // Conditional editorial role alerts. These are not confirmed game-day statuses.
 function getRoleCompetitionWatch(projection) {
+  if (projection &&
+      Number(projection.snapshot_week) === 9 &&
+      String(projection.position).toUpperCase() === "WR" &&
+      normalizeName(projection.player_name || "") === normalizeName("Devaughn Vele")) {
+    return "ROSTER WATCH: Monitor Jordyn Tyson's game-day availability. Vele's potential target opportunity depends on whether Tyson plays and on the resulting receiver rotation. Do not assume Tyson is out.";
+  }
   if (!projection || String(projection.position).toUpperCase() !== "RB") {
     return null;
   }
@@ -1635,6 +1648,34 @@ function renderWeeklySleepers() {
   const allSleepers =
     getWeeklySleeperCandidates();
 
+  // D/ST sleeper picks are separate editorial matchup recommendations.
+  // The offensive Sleeper Score is not applicable to defenses.
+  const dstSleeperPicks = [
+    {team:"NO",name:"New Orleans Saints",opponent:"CLE",points:6.33,rank:2,reason:"Cleveland has allowed 4.12 sacks per game; New Orleans recorded 10 sacks across its last three games."},
+    {team:"JAX",name:"Jacksonville Jaguars",opponent:"BAL",points:6.04,rank:5,reason:"Matchup opportunity against Baltimore; verify starting QB and game-day status before relying on this pick."},
+    {team:"TB",name:"Tampa Bay Buccaneers",opponent:"CHI",points:5.83,rank:6,reason:"Seven interceptions and 10 sacks over its last three games, although that turnover pace may not persist."}
+  ];
+  if (currentSleeperPosition === "DST") {
+    if (weekBadge) weekBadge.textContent = "WEEK 9";
+    grid.replaceChildren();
+    for (const pick of dstSleeperPicks) {
+      const card = document.createElement("article");
+      card.className = "sleeper-card";
+      const heading = document.createElement("h3");
+      heading.textContent = pick.name + " D/ST";
+      const meta = document.createElement("p");
+      meta.textContent = pick.team + " vs " + pick.opponent + " · Editorial D/ST" + pick.rank +
+        " · Original V1 projection: " + pick.points.toFixed(2) + " pts";
+      const note = document.createElement("p");
+      note.textContent = pick.reason;
+      const label = document.createElement("strong");
+      label.textContent = "MATCHUP SLEEPER · EDITORIAL";
+      card.append(label,heading,meta,note);
+      grid.appendChild(card);
+    }
+    return;
+  }
+
   const filteredSleepers =
     allSleepers.filter(
       sleeper =>
@@ -1656,6 +1697,13 @@ function renderWeeklySleepers() {
       sleeper.injuryOpportunityEligible &&
       !topTenSleepers.includes(sleeper)
   );
+  // Vele is a conditional roster watch even if his rank-based sleeper
+  // score does not qualify. Do not invent a Sleeper Score or PPR boost.
+  const veleProjection = weeklyPprProjections.find(p =>
+    Number(p.snapshot_week) === 9 &&
+    normalizeName(p.player_name || "") === normalizeName("Devaughn Vele"));
+  const includeVeleWatch = veleProjection &&
+    (currentSleeperPosition === "ALL" || currentSleeperPosition === "WR");
   const sleepers = [...topTenSleepers, ...additionalInjuryWatch];
 
   const projectionWeek =
@@ -1873,6 +1921,20 @@ function renderWeeklySleepers() {
       grid.appendChild(card);
     }
   );
+  if (includeVeleWatch && !sleepers.some(s =>
+      normalizeName(s.projection.player_name || "") === normalizeName("Devaughn Vele"))) {
+    const card = document.createElement("article");
+    card.className = "sleeper-card";
+    const title = document.createElement("h3");
+    title.textContent = "Devaughn Vele · WR · ROSTER WATCH";
+    const meta = document.createElement("p");
+    meta.textContent = "Week 9 · " + (veleProjection.team || "—") +
+      " vs " + (veleProjection.opponent || "TBD") + " · Conditional opportunity";
+    const note = document.createElement("p");
+    note.textContent = getRoleCompetitionWatch(veleProjection);
+    card.append(title,meta,note);
+    grid.appendChild(card);
+  }
 }
 
 async function loadWaiverWire() {
