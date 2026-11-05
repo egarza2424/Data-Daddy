@@ -901,6 +901,36 @@ async function loadWeeklyPprProjections() {
     // Current live ranks also remain as published; never renumber after results.
 
 
+    // Apply the analyst-approved Week 9 RB PPR rank order only.
+    // Keep original model rank and projected PPR intact for auditing.
+    if (targetWeek === 9) {
+      try {
+        const editorialResponse = await fetch(
+          "./projection-model/2026-week9-rb-editorial-ppr-rankings.csv?v=1",
+          { cache: "no-store" }
+        );
+        if (editorialResponse.ok) {
+          const editorialLines = (await editorialResponse.text()).trim().split(/\r?\n/);
+          const approvedRanks = new Map();
+          for (const line of editorialLines.slice(1)) {
+            const match = line.match(/^9,RB,(\d+),"([^"]+)"$/);
+            if (match) approvedRanks.set(normalizeName(match[2]), Number(match[1]));
+          }
+          for (const projection of weeklyPprProjections) {
+            if (projection.position !== "RB") continue;
+            const editorialRank = approvedRanks.get(normalizeName(projection.player_name));
+            if (editorialRank === undefined) continue;
+            projection.original_projected_position_rank = projection.projected_position_rank;
+            projection.projected_position_rank = editorialRank;
+            projection.analyst_editorial_rank = true;
+          }
+          console.log("Week 9 analyst RB PPR ranks applied:", approvedRanks.size);
+        }
+      } catch (error) {
+        console.warn("Week 9 RB editorial ranks unavailable:", error);
+      }
+    }
+
     pprProjectionByPlayerId.clear();
     pprProjectionByPlayerKey.clear();
 
