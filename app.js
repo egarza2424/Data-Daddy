@@ -2019,7 +2019,7 @@ async function loadWaiverWire() {
       const teams = {
         "Mike Washington Jr.":"LV","Jonah Coleman":"DEN","Keenan Allen":"IND","Tyler Allgeier":"ARI",
         "Ryan Flournoy":"DAL","Kenny Gainwell":"TB","Elijah Mitchell":"PHI","Eli Raridon":"NE",
-        "Antonio Williams":"WAS","Adonai Mitchell":"NYJ"
+        "Antonio Williams":"WAS","Adonai Mitchell":"NYJ","Terrance Ferguson":"LA"
       };
       container.replaceChildren();
       const title = document.createElement("h3");
