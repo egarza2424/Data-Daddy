@@ -1,28 +1,10 @@
 name: Run Weekly PPR Projections
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "data/verified_injury_outs.json"
-      - "data/verified_roster_activations.json"
-      - "scripts/build_gameday_availability.py"
-      - "data/starter_absence_opportunities.json"
-      - "scripts/build_weekly_ppr_projections.py"
-      - "data/analyst_adjustments.json"
-  schedule:
-    # Hourly injury-feed refresh and projection recalculation, all week.
-    - cron: "0 * * * *"
   workflow_dispatch:
 
-  workflow_run:
-    workflows:
-      - "Pregame Model Snapshot"
-    types:
-      - completed
-
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   project:
@@ -53,21 +35,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas numpy
 
-      - name: Guard Week 8 projection inputs against stale Week 7 data
+      - name: Guard Week 9 projection inputs against stale Week 7 data
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
 
-          expected_week = 8
+          expected_week = 9
           stats_path = Path("nfl-stats.json")
           if not stats_path.exists():
-              raise SystemExit("Missing nfl-stats.json; refusing to publish unverified Week 8 projections.")
+              raise SystemExit("Missing nfl-stats.json; refusing to publish unverified Week 9 projections.")
           stats = json.loads(stats_path.read_text(encoding="utf-8"))
           actual_week = int(stats.get("target_week") or 0)
           if actual_week != expected_week:
               raise SystemExit(
-                  f"Week 8 projection refresh blocked: nfl-stats.json target_week={actual_week}. "
+                  f"Week 9 projection refresh blocked: nfl-stats.json target_week={actual_week}. "
                   "Update the weekly snapshot and Week 7-specific workflow steps before publishing."
               )
           import csv
@@ -77,12 +59,12 @@ jobs:
               snapshot_weeks = {
                   row["snapshot_week"] for row in csv.DictReader(handle)
               }
-          if snapshot_weeks != {"8"}:
+          if snapshot_weeks != {"9"}:
               raise SystemExit(
-                  f"Week 8 refresh blocked: live model snapshot weeks={sorted(snapshot_weeks)}. "
-                  "Generate and verify the Week 8 snapshot before publishing."
+                  f"Week 9 refresh blocked: live model snapshot weeks={sorted(snapshot_weeks)}. "
+                  "Generate and verify the Week 9 snapshot before publishing."
               )
-          print("Week 8 target week and live snapshot verified.")
+          print("Week 9 target week and live snapshot verified.")
           PY
 
       - name: Audit actual PPR feed for displayed week
@@ -130,7 +112,7 @@ jobs:
         continue-on-error: true
         run: |
           python -m py_compile scripts/collect_official_injury_report.py
-          python scripts/collect_official_injury_report.py --season 2026 --week 8
+          python scripts/collect_official_injury_report.py --season 2026 --week 9
 
       - name: Generate weekly RB J2 projections
         run: |
@@ -153,7 +135,7 @@ jobs:
           python scripts/build_starter_absence_evidence.py \
             --stats historical-data/player_stats_2026.csv \
             --pbp historical-data/play_by_play_2026.csv.gz \
-            --season 2026 --week 8 \
+            --season 2026 --week 9 \
             --output projection-model/validation/starter-absence-evidence.csv
 
       - name: Audit injury-created sleeper opportunities
@@ -161,7 +143,7 @@ jobs:
           python -m py_compile scripts/build_injury_opportunity_candidates.py
           python scripts/build_injury_opportunity_candidates.py \
             --stats historical-data/player_stats_2026.csv \
-            --season 2026 --week 8 \
+            --season 2026 --week 9 \
             --evidence projection-model/validation/starter-absence-evidence.csv \
             --output projection-model/validation/injury-opportunity-candidates.csv
 
@@ -635,44 +617,7 @@ jobs:
           )
           PY
 
-      - name: Commit weekly PPR projections
+      - name: Preserve draft only (no website publication)
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add projection-model/
-          git add data/gameday_availability.json
-          git add data/actual-ppr-2026.json
-          git add data/official_injury_report_observations.json 2>/dev/null || true
-          git add -f projection-model/validation/*-analyst-adjustments-audit.csv 2>/dev/null || true
-          git add -f projection-model/validation/starter-absence-evidence.csv 2>/dev/null || true
-          git add -f projection-model/validation/injury-opportunity-candidates.csv 2>/dev/null || true
-          git add -f projection-model/validation/*-pending-injury-verification.csv 2>/dev/null || true
-          git add -f projection-model/validation/2026-week7-rb-injury-rushing-scenarios.csv 2>/dev/null || true
-          git add -f projection-model/validation/2025-rb-absence-retention-backtest.csv 2>/dev/null || true
-          git add -f projection-model/validation/2023-rb-absence-retention-backtest.csv 2>/dev/null || true
-          git add -f projection-model/validation/2024-rb-absence-retention-backtest.csv 2>/dev/null || true
-
-          if git diff --cached --quiet; then
-            echo "No projection changes to commit."
-            exit 0
-          fi
-
-          git commit -m "Update weekly PPR projections"
-          # Concurrent runs and code commits can advance main during this job.
-          # Replay this generated-output commit on the latest main, then push.
-          for attempt in 1 2 3 4 5; do
-            git fetch origin main
-            git -c merge.renormalize=true -c merge.default=ort rebase -X ours origin/main || {
-              git rebase --abort || true
-              echo "Generated outputs could not be reconciled with newer main."
-              exit 1
-            }
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            echo "Main advanced during push; retrying ($attempt/5)."
-            sleep 2
-          done
-          echo "Could not publish projections after 5 attempts."
-          exit 1
+          echo "Week 9 projection validation complete; draft artifacts remain in this workflow run."
+          echo "No commits, pushes, or live website changes are performed."
