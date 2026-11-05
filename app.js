@@ -2978,13 +2978,13 @@ function renderProjectionBoard() {
           return false;
         }
 
-        // The Week 9 QB PPR board is an approved editorial shortlist.
-        // Players omitted from that list must not reappear at their old
-        // model ranks (including McKee, Murray, and Watson).
+        // Week 9 positional PPR boards use approved editorial shortlists
+        // for every position. Never allow omitted model-only rows to
+        // reappear at their old ranks, including in the ALL view.
+        // Frozen model projections remain available for accuracy audits.
         if (
           Number(document.documentElement.dataset.targetWeek) === 9 &&
-          currentProjectionPosition === "QB" &&
-          position === "QB" &&
+          ["QB", "RB", "WR", "TE"].includes(position) &&
           !projection.analyst_editorial_rank
         ) {
           return false;
