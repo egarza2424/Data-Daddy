@@ -5113,3 +5113,14 @@ section:has(#waiverWireList) {
 #ranking-hits .tracker-chart-label{min-width:0;white-space:normal;overflow-wrap:normal;line-height:1.3;}
 #ranking-hits .tracker-chart-row>strong:first-child{grid-column:1/-1;white-space:normal;line-height:1.35;}
 @media(max-width:600px){#ranking-hits .tracker-chart-row{grid-template-columns:minmax(82px,105px) minmax(0,1fr) 58px 36px;gap:8px;}#ranking-hits .tracker-audit-pending{padding:18px 12px;}}
+
+/* Week 9 D/ST sleeper cards: consistent with offensive sleeper layout. */
+.dst-sleeper-card .sleeper-card-top { margin-bottom: 12px; }
+.dst-sleeper-card .sleeper-position { margin-bottom: 0; }
+.dst-sleeper-source { font-size: 10px; font-weight: 800; letter-spacing: .08em; color: #f7c651; }
+.dst-sleeper-card .sleeper-player-heading { margin-bottom: 16px; }
+.dst-sleeper-metrics { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+.dst-sleeper-metrics > div { padding: 14px 12px; }
+.dst-sleeper-metrics small { white-space: normal; overflow: visible; }
+.dst-sleeper-card .sleeper-reason { margin-top: auto; }
+@media (max-width: 430px) { .dst-sleeper-metrics { grid-template-columns: repeat(2,minmax(0,1fr)); } }
