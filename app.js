@@ -1235,6 +1235,8 @@ function getWeeklySleeperCandidates() {
         if (projection.pregame_archived) {
           return null;
         }
+        if (["OUT","IR","INJURED_RESERVE","PUP","INACTIVE","SUSPENDED"].includes(String(player.injuryStatus || player.injury_status || "").toUpperCase()) ||
+            ["OUT","IR","INJURED_RESERVE","PUP","INACTIVE","SUSPENDED"].includes(String(player.status || "").toUpperCase())) return null;
 
         // Sleepers are actionable pregame recommendations, not a
         // postgame leaderboard. Keep completed players in Rankings
@@ -1721,7 +1723,7 @@ function renderWeeklySleepers() {
             </strong>
 
             <small>
-              ESPN ${position}${espnRank}
+              ESPN ${position}${espnRank} · PPR rank ${position}${pprRank}
             </small>
           </div>
 
