@@ -1,21 +1,13 @@
 {
-  "generated_at_utc": "2026-11-03T02:13:58.261286+00:00",
+  "generated_at_utc": "2026-11-05T06:02:02.418401+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 1,
-    "pending": 15
+    "missing_near_kickoff": 0,
+    "pending": 16
   },
   "games": [
-    {
-      "game_id": "2026_08_CHI_SEA",
-      "week": 8,
-      "kickoff_utc": "2026-11-03T01:15:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
     {
       "game_id": "2026_09_JAX_BAL",
       "week": 9,
@@ -132,6 +124,14 @@
       "game_id": "2026_09_BUF_MIN",
       "week": 9,
       "kickoff_utc": "2026-11-10T01:15:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_10_WAS_NYG",
+      "week": 10,
+      "kickoff_utc": "2026-11-13T01:15:00+00:00",
       "status": "pending",
       "official_inactives_verified": false,
       "source_url": null
