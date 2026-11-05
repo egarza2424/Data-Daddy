@@ -1,0 +1,25 @@
+week,position,editorial_rank,player_name,projection_status
+9,QB,1,"Joe Burrow",MODEL
+9,QB,2,"Jared Goff",MODEL
+9,QB,3,"Brock Purdy",MODEL
+9,QB,4,"Trevor Lawrence",MODEL
+9,QB,5,"Josh Allen",MODEL
+9,QB,6,"Dak Prescott",MODEL
+9,QB,7,"Drake Maye",MODEL
+9,QB,8,"Caleb Williams",MODEL
+9,QB,9,"Jordan Love",MODEL
+9,QB,10,"Kirk Cousins",MODEL
+9,QB,11,"Patrick Mahomes",MODEL
+9,QB,12,"Jayden Daniels",MODEL
+9,QB,13,"Malik Willis",MODEL
+9,QB,14,"Matthew Stafford",MODEL
+9,QB,15,"Tyler Shough",MODEL
+9,QB,16,"C.J. Stroud",MODEL
+9,QB,17,"Bo Nix",MODEL
+9,QB,18,"Michael Penix Jr.",MODEL
+9,QB,19,"Geno Smith",MODEL
+9,QB,20,"Drew Lock",PPR_PENDING
+9,QB,21,"J.J. McCarthy",MODEL
+9,QB,22,"Bryce Young",MODEL
+9,QB,23,"Justin Herbert",MODEL
+9,QB,24,"Daniel Jones",MODEL
