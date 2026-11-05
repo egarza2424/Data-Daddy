@@ -621,3 +621,12 @@ jobs:
         run: |
           echo "Week 9 projection validation complete; draft artifacts remain in this workflow run."
           echo "No commits, pushes, or live website changes are performed."
+
+      - name: Upload Week 9 PPR draft for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: week9-ppr-draft
+          path: |
+            projection-model/2026-week9-ppr-projections.csv
+            projection-model/2026-week9-ppr-model-coefficients.csv
+          if-no-files-found: error
