@@ -10150,7 +10150,8 @@ const depthOrder =
     const week9Unavailable = new Set([
       "Mike Evans", "Deebo Samuel", "Deebo Samuel Sr.", "Lamar Jackson"
     ].map(normalizeName));
-    rankings = rankings.filter(({player}) => !week9Unavailable.has(normalizeName(player.name)));
+    rankings.splice(0, rankings.length, ...rankings.filter(({player}) =>
+      !week9Unavailable.has(normalizeName(player.name))));
   }
 
   rankingCache[cacheKey] = rankings;
