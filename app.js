@@ -2013,7 +2013,7 @@ async function loadWaiverWire() {
         overall: ["Mike Washington Jr.","Jonah Coleman","Keenan Allen","Tyler Allgeier","Ryan Flournoy","Kenny Gainwell","Elijah Mitchell","Eli Raridon","Antonio Williams","Adonai Mitchell"],
         QB: ["Kirk Cousins","Malik Willis","Geno Smith","J.J. McCarthy","Cam Ward","Bo Nix","Justin Herbert"],
         RB: ["Mike Washington Jr.","Jonah Coleman","Tyler Allgeier","Kenny Gainwell","Elijah Mitchell","Kaelon Black","Emmett Johnson","Seth McGowan","Alvin Kamara","Justice Hill","Dylan Sampson","Sione Vaki"],
-        WR: ["Keenan Allen","Ryan Flournoy","Antonio Williams","Adonai Mitchell","Makai Lemon","Jordan Watkins","Caleb Douglas","Khalil Shakir","Chimere Dike","Xavier Hutchinson","Wan'Dale Robinson"],
+        WR: ["Keenan Allen","Ryan Flournoy","Antonio Williams","Adonai Mitchell","Makai Lemon","Demarcus Robinson","Jordan Watkins","Caleb Douglas","Khalil Shakir","Chimere Dike","Xavier Hutchinson","Wan'Dale Robinson"],
         TE: ["Eli Raridon","Mike Gesicki","Terrance Ferguson","Michael Mayer","Darnell Washington","Eli Stowers","Gunnar Helm","Greg Dulcich","Dalton Schultz","Brevyn Spann-Ford","Mason Taylor","Daniel Bellinger"]
       };
       const teams = {
