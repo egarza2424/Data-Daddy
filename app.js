@@ -1386,22 +1386,26 @@ function getWeeklySleeperCandidates() {
     return [];
   }
 
-  // ESPN advantage drives discovery. AI score is a secondary confidence
-  // signal; PPR projections are displayed but never used as a comparator.
+  // Eligibility: DATA DADDY AI rank must beat ESPN's external rank.
+  // Score: 50% ESPN rank advantage, 25% 11-signal AI score,
+  // 25% DATA DADDY's projected full-PPR points. Normalize within
+  // position to avoid comparing raw QB/RB/WR/TE PPR values directly.
   const groups = {QB:[],RB:[],WR:[],TE:[]};
   candidates.forEach(c => groups[c.position].push(c));
   for (const group of Object.values(groups)) {
     if (!group.length) continue;
     const advantages = group.map(c => c.rankAdvantage);
     const scores = group.map(c => c.aiScore);
+    const pprValues = group.map(c => c.projectedPpr);
     for (const c of group) {
-      const advantageComponent = normalizeSleeperMetric(c.rankAdvantage,Math.min(...advantages),Math.max(...advantages));
-      const aiComponent = normalizeSleeperMetric(c.aiScore,Math.min(...scores),Math.max(...scores));
-      c.sleeperScore = (advantageComponent * 0.75 + aiComponent * 0.25) * 100;
+      const advantageComponent = normalizeSleeperMetric(c.rankAdvantage, Math.min(...advantages), Math.max(...advantages));
+      const aiComponent = normalizeSleeperMetric(c.aiScore, Math.min(...scores), Math.max(...scores));
+      const pprComponent = normalizeSleeperMetric(c.projectedPpr, Math.min(...pprValues), Math.max(...pprValues));
+      c.sleeperScore = (advantageComponent * 0.50 + aiComponent * 0.25 + pprComponent * 0.25) * 100;
     }
   }
   return candidates.filter(c => Number.isFinite(c.sleeperScore))
-    .sort((a,b) => b.rankAdvantage - a.rankAdvantage || b.sleeperScore - a.sleeperScore);
+    .sort((a,b) => b.sleeperScore - a.sleeperScore || b.rankAdvantage - a.rankAdvantage);
 
 }
 
