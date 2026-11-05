@@ -931,6 +931,35 @@ async function loadWeeklyPprProjections() {
       }
     }
 
+    // Week 9 approved WR editorial order. Pending players are not assigned
+    // invented PPR values; they will appear after a valid model projection exists.
+    if (targetWeek === 9) {
+      try {
+        const response = await fetch(
+          "./projection-model/2026-week9-wr-editorial-ppr-rankings.csv?v=1",
+          { cache: "no-store" }
+        );
+        if (response.ok) {
+          const approved = new Map();
+          for (const line of (await response.text()).trim().split(/\r?\n/).slice(1)) {
+            const match = line.match(/^9,WR,(\d+),"([^"]+)",(MODEL|PPR_PENDING)$/);
+            if (match) approved.set(normalizeName(match[2]), Number(match[1]));
+          }
+          for (const projection of weeklyPprProjections) {
+            if (projection.position !== "WR") continue;
+            const rank = approved.get(normalizeName(projection.player_name));
+            if (rank === undefined) continue;
+            projection.original_projected_position_rank = projection.projected_position_rank;
+            projection.projected_position_rank = rank;
+            projection.analyst_editorial_rank = true;
+          }
+          console.log("Week 9 WR editorial ranks loaded:", approved.size);
+        }
+      } catch (error) {
+        console.warn("Week 9 WR editorial ranks unavailable:", error);
+      }
+    }
+
     pprProjectionByPlayerId.clear();
     pprProjectionByPlayerKey.clear();
 
