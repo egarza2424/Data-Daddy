@@ -10143,6 +10143,16 @@ const depthOrder =
     if (absent.length) console.warn("Week 9 approved TE players missing from live roster:", absent);
   }
 
+  // Week 9 availability override: remove confirmed OUT players and the
+  // two 49ers WRs the GM expects to miss Week 9. Display-only; do not
+  // modify frozen AI scores, source projections, or historical snapshots.
+  if (!snapshotWeek && Number(document.documentElement.dataset.targetWeek) === 9) {
+    const week9Unavailable = new Set([
+      "Mike Evans", "Deebo Samuel", "Deebo Samuel Sr.", "Lamar Jackson"
+    ].map(normalizeName));
+    rankings = rankings.filter(({player}) => !week9Unavailable.has(normalizeName(player.name)));
+  }
+
   rankingCache[cacheKey] = rankings;
  
   return rankings;
