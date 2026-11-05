@@ -90,7 +90,17 @@ def main():
         raise ValueError('Duplicate player IDs in audit output')
     resolved = output.loc[output['j2_stats_player_id'].ne('')]
     if resolved['j2_stats_player_id'].duplicated().any():
-        raise ValueError('Same nflverse player matched to multiple live RBs')
+        duplicate_ids = resolved.loc[resolved['j2_stats_player_id'].duplicated(keep=False), 'j2_stats_player_id'].unique()
+        # Never assign the same nflverse history to two live RB identities.
+        # Quarantine both records so downstream J2 can use only verified history
+        # or its existing provisional fallback; do not guess which is correct.
+        collision_mask = output['j2_stats_player_id'].isin(duplicate_ids)
+        print('QUARANTINED duplicate nflverse-to-live RB identity matches:')
+        print(output.loc[collision_mask, ['player_id', 'player_name', 'team', 'j2_stats_player_id']].to_string(index=False))
+        output.loc[collision_mask, 'j2_stats_player_id'] = ''
+        output.loc[collision_mask, 'j2_match_status'] = 'ambiguous_duplicate_identity'
+        feature_columns = [c for c in output.columns if c.startswith('rb_')]
+        output.loc[collision_mask, feature_columns] = float('nan')
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     output.to_csv(OUTPUT, index=False)
     print(f'Wrote {OUTPUT}; target week={target_week}; stats cutoff week<{target_week}')
