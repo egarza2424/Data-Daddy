@@ -733,7 +733,7 @@ async function loadWeeklyPprProjections() {
 
   try {
     const response = await fetch(
-      `${projectionFile}?v=1`,
+      `${projectionFile}?v=week9-analyst-ppr-27`,
       { cache: "no-store" }
     );
 
