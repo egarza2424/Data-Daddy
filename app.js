@@ -1451,6 +1451,12 @@ function getSleeperReason(sleeper) {
 function getRoleCompetitionWatch(projection) {
   if (projection &&
       Number(projection.snapshot_week) === 9 &&
+      String(projection.position).toUpperCase() === "TE" &&
+      normalizeName(projection.player_name || "") === normalizeName("Eli Raridon")) {
+    return "ROSTER WATCH: Monitor Hunter Henry's injury report and game-day active status. Raridon's opportunity for additional snaps, routes and targets depends on Henry's availability and the Patriots' tight end rotation. Do not assume Henry is out.";
+  }
+  if (projection &&
+      Number(projection.snapshot_week) === 9 &&
       String(projection.position).toUpperCase() === "WR" &&
       normalizeName(projection.player_name || "") === normalizeName("Devaughn Vele")) {
     return "ROSTER WATCH: Monitor Jordyn Tyson's game-day availability. Vele's potential target opportunity depends on whether Tyson plays and on the resulting receiver rotation. Do not assume Tyson is out.";
@@ -1957,6 +1963,7 @@ async function loadWaiverWire() {
       // Editorial roster-watch notes: conditional roles, not injury confirmations.
       // Keep rankings stable while clearly separating pickups from start decisions.
       const rosterWatch = {
+        "Eli Raridon": "Monitor Hunter Henry’s injury report and game-day status. Raridon’s expanded opportunity depends on Henry’s availability; do not assume Henry is out.",
         "Keon Coleman": "Monitor DJ Moore’s availability. Coleman’s expanded opportunity depends on Moore being ruled out or limited.",
         "Elijah Mitchell": "Monitor Eagles RB injuries, game-day elevation and active status before relying on an expanded role.",
         "Seth McGowan": "ROSTER WATCH: Potential role expansion if Jonathan Taylor is traded. Monitor trade developments; no trade is assumed.",
