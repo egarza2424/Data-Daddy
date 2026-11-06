@@ -8594,8 +8594,13 @@ function getScoringEnvironment(player) {
   const gameTotal =
     Number(record.game_total);
 
-  const spread =
-    Number(record.spread_line);
+  // Market feed spread_line is game-level, not team-relative.
+  // Derive the team's spread from its implied points so underdogs are
+  // positive and favorites negative, regardless of home/away ordering.
+  const teamSpread =
+    Number.isFinite(gameTotal) && Number.isFinite(impliedTeamTotal)
+      ? Math.round((gameTotal - 2 * impliedTeamTotal) * 100) / 100
+      : null;
 
   if (!Number.isFinite(score)) {
     return null;
@@ -8617,10 +8622,7 @@ function getScoringEnvironment(player) {
         ? gameTotal
         : null,
 
-    spread:
-      Number.isFinite(spread)
-        ? spread
-        : null,
+    spread: teamSpread,
 
     opponent:
       record.opponent || null,
