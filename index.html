@@ -214,15 +214,15 @@
       <select id="lineupFormat">
 
         <option value="standard">
-          Standard Flex — 1 QB, 2 RB, 2 WR, 1 TE, 1 FLEX
+          Standard Flex — 1 QB, 2 RB, 2 WR, 1 TE, 1 FLEX, 1 D/ST
         </option>
 
         <option value="threeWR">
-          3-WR Flex — 1 QB, 2 RB, 3 WR, 1 TE, 1 FLEX
+          3-WR Flex — 1 QB, 2 RB, 3 WR, 1 TE, 1 FLEX, 1 D/ST
         </option>
 
         <option value="superflex">
-          Superflex — 1 QB, 2 RB, 2 WR, 1 TE, 1 FLEX, 1 SUPERFLEX
+          Superflex — 1 QB, 2 RB, 2 WR, 1 TE, 1 FLEX, 1 SUPERFLEX, 1 D/ST
         </option>
 
         <option value="custom">
@@ -299,6 +299,11 @@
         >
       </div>
 
+
+      <div class="custom-lineup-field">
+        <label for="customDST">D/ST</label>
+        <input id="customDST" type="number" min="0" max="2" value="1">
+      </div>
 
       <div class="custom-lineup-field">
         <label for="customFlex">
@@ -1224,7 +1229,7 @@ Players qualify when their average verified roster percentage is below 65%, usin
 
 
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>  
-<script src="app.js?v=week9-actuals-inline-14"></script>
+<script src="app.js?v=week9-lineup-dst-15"></script>
 
 <style>
 /* DATA DADDY — HOMEPAGE BUTTONS */
@@ -1363,6 +1368,6 @@ Players qualify when their average verified roster percentage is below 65%, usin
 #dstProjectionPanel .projection-table{width:100%}
 #dstProjectionPanel .projection-mobile-cards{margin-bottom:12px}
 </style>
-<script src="dst-projections.js?v=week9-editorial-top30-1" defer></script>
+<script src="dst-projections.js?v=week9-lineup-dst-2" defer></script>
 </body>
 </html>
