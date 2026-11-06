@@ -1,0 +1,43 @@
+name: Refresh Actual PPR Results
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Refresh frequently after Thursday, Sunday and Monday games.
+    - cron: "17 * * * 5,6,0,1,2"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actual-ppr-results-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh-actuals:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Refresh verified source actual PPR rows
+        run: python scripts/refresh_actual_ppr_2026.py
+      - name: Validate results JSON
+        run: python -m json.tool data/actual-ppr-2026.json > /dev/null
+      - name: Commit actual results only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/actual-ppr-2026.json
+          if git diff --cached --quiet; then
+            echo "Actual PPR data unchanged."
+          else
+            git commit -m "Refresh completed 2026 actual PPR results"
+            git pull --rebase origin main
+            git push origin main
+          fi
