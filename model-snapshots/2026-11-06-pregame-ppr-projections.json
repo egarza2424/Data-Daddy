@@ -1,0 +1,9 @@
+{
+  "snapshot_utc": "2026-11-06T00:48:58.255165+00:00",
+  "week": 9,
+  "source": "projection-model/2026-week9-ppr-projections.csv",
+  "rows": 373,
+  "audit_status": "kickoff_verified",
+  "schedule_source": "https://github.com/nflverse/nfldata/raw/refs/heads/master/data/games.csv",
+  "verified_at_utc": "2026-11-06T00:48:58.449221+00:00"
+}
