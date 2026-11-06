@@ -1,21 +1,13 @@
 {
-  "generated_at_utc": "2026-11-06T01:36:42.980662+00:00",
+  "generated_at_utc": "2026-11-06T08:30:13.236600+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 1,
+    "missing_near_kickoff": 0,
     "pending": 15
   },
   "games": [
-    {
-      "game_id": "2026_09_JAX_BAL",
-      "week": 9,
-      "kickoff_utc": "2026-11-06T01:15:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
     {
       "game_id": "2026_09_CIN_ATL",
       "week": 9,
