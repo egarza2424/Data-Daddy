@@ -4436,7 +4436,7 @@ function findBestLegalLineup(
               required
             ).every(
               ([position, count]) =>
-                groups[position].length >=
+                (groups[position] || []).length >=
                 count
             );
 
@@ -4468,7 +4468,7 @@ function findBestLegalLineup(
                 0,
                 required.TE
               ),
-            DST: groups.DST.slice(0, required.DST)
+            DST: (groups.DST || []).slice(0, required.DST)
           };
 
           const starters =
