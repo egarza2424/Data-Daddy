@@ -3619,10 +3619,12 @@ function renderLineupPlayerResults() {
   const matches =
     [...weeklyPprProjections, ...(Number(document.documentElement.dataset.targetWeek) === 9 ? (window.DATA_DADDY_DST_WEEK9 || []) : [])]
       .filter((projection) => {
+        const isDefense = String(projection.position).toUpperCase() === "DST";
         const searchableText = [
           projection.player_name,
           projection.position,
-          projection.team
+          projection.team,
+          ...(isDefense ? ["def", "defense", "defence", "d/st", "dst", "team defense"] : [])
         ]
           .join(" ")
           .toLowerCase();
