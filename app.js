@@ -2874,69 +2874,7 @@ async function loadWaiverWire() {
 }
 
 
-// Show completed games independently of the editorial Top 10/24/48 boards.
-// The frozen projected PPR values remain unchanged; actuals come only from
-// the published completed-game feed, and unmatched players are not fabricated.
-function renderCompletedGameActuals() {
-  const host = document.getElementById("completedGameActuals");
-  if (!host) return;
-  host.replaceChildren();
-  const week = Number(document.documentElement.dataset.targetWeek);
-  const rows = actualPprResults.filter(row =>
-    Number(row.season) === 2026 && Number(row.week) === week &&
-    ["QB", "RB", "WR", "TE"].includes(String(row.position).toUpperCase())
-  );
-  if (!rows.length) return;
-  const heading = document.createElement("h4");
-  heading.textContent = `Week ${week} — Completed-game actual PPR (${rows.length} players)`;
-  host.appendChild(heading);
-  const description = document.createElement("p");
-  description.textContent = "Verified actual scores from completed games. Pregame projections are preserved for comparison; other games are still pending.";
-  host.appendChild(description);
-  const table = document.createElement("table");
-  table.className = "projection-table";
-  const thead = document.createElement("thead");
-  const headRow = document.createElement("tr");
-  ["Player", "Team", "Pos", "Projected PPR", "Actual PPR"].forEach(label => {
-    const th = document.createElement("th");
-    th.textContent = label;
-    headRow.appendChild(th);
-  });
-  thead.appendChild(headRow);
-  table.appendChild(thead);
-  const tbody = document.createElement("tbody");
-  const ordered = [...rows].sort((a,b) =>
-    Number(b.fantasy_points_ppr) - Number(a.fantasy_points_ppr)
-  );
-  for (const actual of ordered) {
-    const matching = weeklyPprProjections.filter(projection =>
-      Number(projection.snapshot_week) === week &&
-      normalizeName(projection.player_name) === normalizeName(actual.player_display_name) &&
-      String(projection.position).toUpperCase() === String(actual.position).toUpperCase() &&
-      ({LA:"LAR",JAC:"JAX",WSH:"WAS"}[String(projection.team).toUpperCase()] || String(projection.team).toUpperCase()) ===
-      ({LA:"LAR",JAC:"JAX",WSH:"WAS"}[String(actual.team).toUpperCase()] || String(actual.team).toUpperCase())
-    );
-    const projected = matching.length === 1 ? Number(matching[0].projected_ppr) : NaN;
-    const tr = document.createElement("tr");
-    [actual.player_display_name, actual.team, actual.position,
-      Number.isFinite(projected) ? projected.toFixed(2) : "—",
-      Number(actual.fantasy_points_ppr).toFixed(2)].forEach(value => {
-      const td = document.createElement("td");
-      td.textContent = value;
-      tr.appendChild(td);
-    });
-    tbody.appendChild(tr);
-  }
-  table.appendChild(tbody);
-  const wrapper = document.createElement("div");
-  wrapper.className = "projection-table-wrapper";
-  wrapper.style.overflowX = "auto";
-  wrapper.appendChild(table);
-  host.appendChild(wrapper);
-}
-
 function renderProjectionBoard() {
-  renderCompletedGameActuals();
   const tableBody =
     document.getElementById(
       "projectionTableBody"
