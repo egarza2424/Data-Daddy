@@ -309,6 +309,17 @@
       "status": "OUT",
       "verified_date": "2026-10-25",
       "source": "https://www.nfl.com/news/nfl-week-7-inactives-players-ruled-out-sunday-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 9,
+      "player_id": "7525",
+      "player_name": "DeVonta Smith",
+      "position": "WR",
+      "team": "PHI",
+      "status": "OUT",
+      "verified_date": "2026-11-06",
+      "source": "https://www.nfl.com/injuries/league/2026/reg8"
     }
   ]
 }
