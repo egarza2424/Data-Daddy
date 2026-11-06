@@ -1,0 +1,131 @@
+{
+  "season": 2026,
+  "target_week": 9,
+  "displayed_week": 9,
+  "picks": [
+    {
+      "rank": 1,
+      "player_name": "Dalton Kincaid",
+      "position": "TE",
+      "team": "BUF",
+      "sleeper_score": 100,
+      "projected_ppr": 11.95,
+      "model_rank": 11,
+      "ppr_rank": 12,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-10T01:15:00+00:00"
+    },
+    {
+      "rank": 2,
+      "player_name": "Tre Tucker",
+      "position": "WR",
+      "team": "LV",
+      "sleeper_score": 84.053,
+      "projected_ppr": 10.28,
+      "model_rank": 25,
+      "ppr_rank": 39,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-08T21:05:00+00:00"
+    },
+    {
+      "rank": 3,
+      "player_name": "Mike Washington Jr.",
+      "position": "RB",
+      "team": "LV",
+      "sleeper_score": 78.599,
+      "projected_ppr": 12.65,
+      "model_rank": 26,
+      "ppr_rank": 24,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-08T21:05:00+00:00"
+    },
+    {
+      "rank": 4,
+      "player_name": "Kyle Monangai",
+      "position": "RB",
+      "team": "CHI",
+      "sleeper_score": 76.808,
+      "projected_ppr": 13.82,
+      "model_rank": 27,
+      "ppr_rank": 28,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-09T01:20:00+00:00"
+    },
+    {
+      "rank": 5,
+      "player_name": "Mike Gesicki",
+      "position": "TE",
+      "team": "CIN",
+      "sleeper_score": 73.448,
+      "projected_ppr": 8.59,
+      "model_rank": 13,
+      "ppr_rank": 14,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-08T14:30:00+00:00"
+    },
+    {
+      "rank": 6,
+      "player_name": "Ryan Flournoy",
+      "position": "WR",
+      "team": "DAL",
+      "sleeper_score": 72.045,
+      "projected_ppr": 9.74,
+      "model_rank": 29,
+      "ppr_rank": 44,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-08T18:00:00+00:00"
+    },
+    {
+      "rank": 7,
+      "player_name": "Adonai Mitchell",
+      "position": "WR",
+      "team": "NYJ",
+      "sleeper_score": 71.875,
+      "projected_ppr": 11.34,
+      "model_rank": 31,
+      "ppr_rank": 29,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-08T18:00:00+00:00"
+    },
+    {
+      "rank": 8,
+      "player_name": "Eli Raridon",
+      "position": "TE",
+      "team": "NE",
+      "sleeper_score": 66.87,
+      "projected_ppr": 10.75,
+      "model_rank": 18,
+      "ppr_rank": 18,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-08T21:25:00+00:00"
+    },
+    {
+      "rank": 9,
+      "player_name": "Geno Smith",
+      "position": "QB",
+      "team": "NYJ",
+      "sleeper_score": 61.623,
+      "projected_ppr": 13.1,
+      "model_rank": 18,
+      "ppr_rank": 19,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-08T18:00:00+00:00"
+    },
+    {
+      "rank": 10,
+      "player_name": "Braelon Allen",
+      "position": "RB",
+      "team": "NYJ",
+      "sleeper_score": 58.609,
+      "projected_ppr": 13.26,
+      "model_rank": 22,
+      "ppr_rank": 29,
+      "timing_status": "verified_pregame",
+      "kickoff_utc": "2026-11-08T18:00:00+00:00"
+    }
+  ],
+  "captured_utc": "2026-11-06T18:47:08.407Z",
+  "timing_status": "verified_pregame",
+  "kickoff_source": "https://github.com/nflverse/nfldata/raw/refs/heads/master/data/games.csv",
+  "excluded_at_capture": []
+}
