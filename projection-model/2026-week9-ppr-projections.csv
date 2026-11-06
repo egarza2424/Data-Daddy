@@ -191,7 +191,7 @@ snapshot_week,player_id,player_name,position,team,opponent,roster_status,injury_
 9,11632,Malik Nabers,WR,NYG,PHI,Active,,67.1,67.1,5,18.99,18.99,2,100,94,36,23,82,66,52,F_position_specific,2025
 9,6786,CeeDee Lamb,WR,DAL,IND,Active,,60.8,60.8,3,17.57,17.57,3,93,66,40,29,80,25,87,F_position_specific,2025
 9,9493,Puka Nacua,WR,LA,WAS,Active,,61.6,61.6,2,16.96,16.96,4,70,76,37,29,79,34,78,F_position_specific,2025
-9,7525,DeVonta Smith,WR,PHI,NYG,Active,Questionable,54.1,54.1,21,16.5,16.5,5,80,75,34,10,76,42,36,F_position_specific,2025
+9,7525,DeVonta Smith,WR,PHI,NYG,Active,Out,54.1,54.1,21,16.5,16.5,5,80,75,34,10,76,42,36,F_position_specific,2025
 9,7564,Ja'Marr Chase,WR,CIN,ATL,Active,,59.0,59.0,6,16.16,16.16,6,75,84,30,23,77,20,84,F_position_specific,2025
 9,7547,Amon-Ra St. Brown,WR,DET,MIA,Active,Questionable,55.4,55.4,4,16.02,16.02,7,73,62,37,21,79,45,88,F_position_specific,2025
 9,12501,Matthew Golden,WR,GB,NE,Active,,58.6,58.6,10,15.47,15.47,8,86,66,31,31,84,59,55,F_position_specific,2025
