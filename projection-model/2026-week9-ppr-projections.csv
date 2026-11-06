@@ -205,7 +205,7 @@ snapshot_week,player_id,player_name,position,team,opponent,roster_status,injury_
 9,8148,Jameson Williams,WR,DET,MIA,Active,,53.1,53.1,17,14.84,12.96,16,43,77,22,23,76,45,88,F_position_specific,2025
 9,10229,Rashee Rice,WR,KC,NYJ,Active,Questionable,49.4,49.4,16,12.48,12.48,17,52,58,25,10,76,43,88,F_position_specific,2025
 9,8112,Drake London,WR,ATL,CIN,Active,,48.8,48.8,11,12.05,12.05,18,59,39,29,15,67,60,70,F_position_specific,2025
-9,13298,KC Concepcion Jr.,WR,CLE,NO,Active,,44.0,44.0,33,12.0,12.0,19,57,47,27,6,55,46,46,F_position_specific,2025
+9,13298,KC Concepcion Jr.,WR,CLE,NO,Active,,44.0,44.0,33,10.20,12.0,19,57,47,27,6,55,46,46,F_position_specific,2025
 9,12526,Tetairoa McMillan,WR,CAR,DEN,Active,,46.5,46.5,23,11.86,11.86,20,59,43,26,12,80,48,52,F_position_specific,2025
 9,9487,Parker Washington,WR,JAX,BAL,Active,,48.9,48.9,18,13.55,11.55,21,52,55,23,13,53,51,72,F_position_specific,2025
 9,8144,Chris Olave,WR,NO,CLE,Active,,44.6,44.6,12,15.85,11.5,22,52,43,25,10,85,22,60,F_position_specific,2025
