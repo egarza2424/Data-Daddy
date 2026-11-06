@@ -3617,7 +3617,7 @@ function renderLineupPlayerResults() {
     );
 
   const matches =
-    weeklyPprProjections
+    [...weeklyPprProjections, ...(Number(document.documentElement.dataset.targetWeek) === 9 ? (window.DATA_DADDY_DST_WEEK9 || []) : [])]
       .filter((projection) => {
         const searchableText = [
           projection.player_name,
@@ -4062,6 +4062,7 @@ function getLineupRules() {
       RB: 2,
       WR: 2,
       TE: 1,
+      DST: 1,
       FLEX: 1,
       SUPERFLEX: 0
     },
@@ -4071,6 +4072,7 @@ function getLineupRules() {
       RB: 2,
       WR: 3,
       TE: 1,
+      DST: 1,
       FLEX: 1,
       SUPERFLEX: 0
     },
@@ -4080,6 +4082,7 @@ function getLineupRules() {
       RB: 2,
       WR: 2,
       TE: 1,
+      DST: 1,
       FLEX: 1,
       SUPERFLEX: 1
     }
@@ -4111,6 +4114,7 @@ function getLineupRules() {
     RB: readCount("customRB"),
     WR: readCount("customWR"),
     TE: readCount("customTE"),
+    DST: readCount("customDST"),
     FLEX: readCount("customFlex"),
     SUPERFLEX:
       readCount("customSuperflex")
@@ -4225,7 +4229,8 @@ function getLineupPlayersByPosition() {
     QB: [],
     RB: [],
     WR: [],
-    TE: []
+    TE: [],
+    DST: []
   };
 
   const unavailableStatuses = new Set([
@@ -4248,6 +4253,11 @@ function getLineupPlayersByPosition() {
     ).toUpperCase();
 
     if (!groups[position]) {
+      return;
+    }
+
+    if (position === "DST") {
+      groups.DST.push(projection);
       return;
     }
 
@@ -4415,7 +4425,8 @@ function findBestLegalLineup(
               (
                 superflexAllocation.TE ||
                 0
-              )
+              ),
+            DST: rules.DST || 0
           };
 
           const legal =
@@ -4454,7 +4465,8 @@ function findBestLegalLineup(
               groups.TE.slice(
                 0,
                 required.TE
-              )
+              ),
+            DST: groups.DST.slice(0, required.DST)
           };
 
           const starters =
@@ -4504,7 +4516,8 @@ function buildLineupSlots(
     QB: [...lineup.selected.QB],
     RB: [...lineup.selected.RB],
     WR: [...lineup.selected.WR],
-    TE: [...lineup.selected.TE]
+    TE: [...lineup.selected.TE],
+    DST: [...lineup.selected.DST]
   };
 
   function takePlayer(
@@ -4524,11 +4537,11 @@ function buildLineupSlots(
     });
   }
 
-  ["QB", "RB", "WR", "TE"].forEach(
+  ["QB", "RB", "WR", "TE", "DST"].forEach(
     (position) => {
       for (
         let index = 0;
-        index < rules[position];
+        index < (rules[position] || 0);
         index += 1
       ) {
         takePlayer(
@@ -4589,10 +4602,10 @@ function getMissingLineupNeeds(
 ) {
   const missing = [];
 
-  ["QB", "RB", "WR", "TE"].forEach(
+  ["QB", "RB", "WR", "TE", "DST"].forEach(
     (position) => {
       const required =
-        rules[position];
+        rules[position] || 0;
 
       const available =
         groups[position].length;
@@ -4611,7 +4624,8 @@ function getMissingLineupNeeds(
     rules.QB +
     rules.RB +
     rules.WR +
-    rules.TE;
+    rules.TE +
+    (rules.DST || 0);
 
   const totalRequired =
     baseRequired +
@@ -4670,7 +4684,7 @@ function isPlayerEligibleForSlot(
     ).toUpperCase();
 
   if (
-    ["QB", "RB", "WR", "TE"].includes(
+    ["QB", "RB", "WR", "TE", "DST"].includes(
       slot
     )
   ) {
