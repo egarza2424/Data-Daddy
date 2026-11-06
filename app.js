@@ -1594,13 +1594,6 @@ function renderWeeklySleepers() {
       sleeper.injuryOpportunityEligible &&
       !topTenSleepers.includes(sleeper)
   );
-  // Vele is a conditional roster watch even if his rank-based sleeper
-  // score does not qualify. Do not invent a Sleeper Score or PPR boost.
-  const veleProjection = weeklyPprProjections.find(p =>
-    Number(p.snapshot_week) === 9 &&
-    normalizeName(p.player_name || "") === normalizeName("Devaughn Vele"));
-  const includeVeleWatch = veleProjection &&
-    (currentSleeperPosition === "ALL" || currentSleeperPosition === "WR");
   const sleepers = [...topTenSleepers, ...additionalInjuryWatch];
 
   const projectionWeek =
@@ -1833,35 +1826,7 @@ function renderWeeklySleepers() {
       grid.appendChild(card);
     }
   );
-  // Roster-watch entries are not ranked sleepers. Display in a separate
-  // subsection only, never as an unlabeled continuation of the Top 10.
-  if (includeVeleWatch) {
-    const section = document.createElement("section");
-    section.className = "sleeper-roster-watch-section";
-    section.style.gridColumn = "1 / -1";
-    section.style.marginTop = "24px";
-    section.style.borderTop = "1px solid #526071";
-    section.style.paddingTop = "20px";
-    const heading = document.createElement("h3");
-    heading.textContent = "ROSTER WATCH — CONDITIONAL OPPORTUNITIES";
-    heading.style.margin = "0 0 12px";
-    const explanation = document.createElement("p");
-    explanation.textContent = "Separate from the ranked Top 10. Monitor these players only if the required roster situation develops.";
-    explanation.style.margin = "0 0 16px";
-    section.append(heading, explanation);
-    const card = document.createElement("article");
-    card.className = "sleeper-card";
-    const title = document.createElement("h3");
-    title.textContent = "Devaughn Vele · WR";
-    const meta = document.createElement("p");
-    meta.textContent = "Week 9 · " + (veleProjection.team || "—") +
-      " vs " + (veleProjection.opponent || "TBD") + " · ROSTER WATCH";
-    const note = document.createElement("p");
-    note.textContent = getRoleCompetitionWatch(veleProjection);
-    card.append(title,meta,note);
-    section.appendChild(card);
-    grid.appendChild(section);
-  }
+
 }
 
 async function loadWaiverWire() {
