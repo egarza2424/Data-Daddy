@@ -733,7 +733,7 @@ async function loadWeeklyPprProjections() {
 
   try {
     const response = await fetch(
-      `${projectionFile}?v=week9-analyst-ppr-27`,
+      `${projectionFile}?v=week9-analyst-ppr-28`,
       { cache: "no-store" }
     );
 
@@ -9948,7 +9948,7 @@ const depthOrder =
   // Preserve original AI scores, 11 signals and PPR projections.
   if (position === "WR" && !snapshotWeek &&
       Number(document.documentElement.dataset.targetWeek) === 9) {
-    const approved = ["Jaxon Smith-Njigba","Puka Nacua","CeeDee Lamb","Amon-Ra St. Brown","Malik Nabers","Ja'Marr Chase","Christian Watson","Mike Evans","Tee Higgins","Matthew Golden","Drake London","Chris Olave","Luther Burden III","Justin Jefferson","Nico Collins","Rashee Rice","Jameson Williams","Parker Washington","George Pickens","Michael Wilson","DeVonta Smith","Emeka Egbuka","Tetairoa McMillan","Zay Flowers","DeMario Douglas","Tre Tucker","Stefon Diggs","Keenan Allen","DJ Moore","Ryan Flournoy","Denzel Boston","Adonai Mitchell","KC Concepcion Jr.","Jaylen Waddle","Jalen Coker","Makai Lemon","Malik Washington","Josh Downs","Rome Odunze","Devaughn Vele","Omar Cooper Jr.","Jordan Addison","Jakobi Meyers","Deebo Samuel Sr.","A.J. Brown","Jahan Dotson","Khalil Shakir","Xavier Worthy"];
+    const approved = ["Jaxon Smith-Njigba","Puka Nacua","CeeDee Lamb","Amon-Ra St. Brown","Malik Nabers","Ja'Marr Chase","Christian Watson","Mike Evans","Tee Higgins","Matthew Golden","Drake London","Chris Olave","Luther Burden III","Justin Jefferson","Nico Collins","Rashee Rice","Jameson Williams","Parker Washington","George Pickens","Michael Wilson","DeVonta Smith","Emeka Egbuka","Adonai Mitchell","Tetairoa McMillan","Zay Flowers","DeMario Douglas","Tre Tucker","Stefon Diggs","Keenan Allen","DJ Moore","Ryan Flournoy","Denzel Boston","KC Concepcion Jr.","Jaylen Waddle","Jalen Coker","Makai Lemon","Malik Washington","Josh Downs","Rome Odunze","Devaughn Vele","Omar Cooper Jr.","Jordan Addison","Jakobi Meyers","Deebo Samuel Sr.","A.J. Brown","Jahan Dotson","Khalil Shakir","Xavier Worthy"];
     const priority = new Map(approved.map((name, i) => [normalizeName(name), i]));
     const missing = players.filter(player =>
       player.position === "WR" &&
