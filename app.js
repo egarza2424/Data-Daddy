@@ -936,7 +936,7 @@ async function loadWeeklyPprProjections() {
     if (targetWeek === 9) {
       try {
         const response = await fetch(
-          "./projection-model/2026-week9-wr-editorial-ppr-rankings.csv?v=1",
+          "./projection-model/2026-week9-wr-editorial-ppr-rankings.csv?v=2",
           { cache: "no-store" }
         );
         if (response.ok) {
