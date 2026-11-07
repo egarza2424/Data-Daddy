@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-11-07T14:12:09.766145+00:00",
+  "generated_at_utc": "2026-11-07T18:50:09.214505+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
     "missing_near_kickoff": 0,
-    "pending": 15
+    "pending": 23
   },
   "games": [
     {
@@ -124,6 +124,70 @@
       "game_id": "2026_10_WAS_NYG",
       "week": 10,
       "kickoff_utc": "2026-11-13T01:15:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_10_NE_DET",
+      "week": 10,
+      "kickoff_utc": "2026-11-15T14:30:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_10_KC_ATL",
+      "week": 10,
+      "kickoff_utc": "2026-11-15T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_10_HOU_CLE",
+      "week": 10,
+      "kickoff_utc": "2026-11-15T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_10_MIN_GB",
+      "week": 10,
+      "kickoff_utc": "2026-11-15T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_10_MIA_IND",
+      "week": 10,
+      "kickoff_utc": "2026-11-15T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_10_CAR_NO",
+      "week": 10,
+      "kickoff_utc": "2026-11-15T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_10_BUF_NYJ",
+      "week": 10,
+      "kickoff_utc": "2026-11-15T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_10_JAX_TEN",
+      "week": 10,
+      "kickoff_utc": "2026-11-15T18:00:00+00:00",
       "status": "pending",
       "official_inactives_verified": false,
       "source_url": null
