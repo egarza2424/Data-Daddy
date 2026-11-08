@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-11-08T15:07:17.543665+00:00",
+  "generated_at_utc": "2026-11-08T19:40:51.517343+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 8,
-    "pending": 19
+    "missing_near_kickoff": 12,
+    "pending": 15
   },
   "games": [
     {
@@ -76,7 +76,7 @@
       "game_id": "2026_09_HOU_LAC",
       "week": 9,
       "kickoff_utc": "2026-11-08T21:05:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -84,7 +84,7 @@
       "game_id": "2026_09_LV_SF",
       "week": 9,
       "kickoff_utc": "2026-11-08T21:05:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -92,7 +92,7 @@
       "game_id": "2026_09_GB_NE",
       "week": 9,
       "kickoff_utc": "2026-11-08T21:25:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -100,7 +100,7 @@
       "game_id": "2026_09_ARI_SEA",
       "week": 9,
       "kickoff_utc": "2026-11-08T21:25:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
