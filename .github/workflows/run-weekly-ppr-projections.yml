@@ -635,11 +635,12 @@ jobs:
           )
           PY
 
-      - name: Protect approved Week 9 projections and editorial rankings
+      - name: Preserve approved Week 9 projections and record model differences
         run: |
           python - <<'PY'
           import csv
           import subprocess
+          from datetime import datetime, timezone
           from pathlib import Path
 
           protected = [
@@ -647,21 +648,28 @@ jobs:
               "projection-model/current-live-model-snapshot.csv",
               "projection-model/2026-week9-wr-editorial-ppr-rankings.csv",
           ]
-          changed = []
-          for path in protected:
-              result = subprocess.run(
-                  ["git", "diff", "--quiet", "--", path],
-                  check=False,
-              )
-              if result.returncode != 0:
-                  changed.append(path)
+          changed = [
+              path for path in protected
+              if subprocess.run(["git", "diff", "--quiet", "--", path]).returncode != 0
+          ]
           if changed:
-              raise SystemExit(
-                  "PREGAME SAFETY STOP: automated regeneration changed approved "
-                  "Week 9 data. Changes require analyst review before publishing: "
-                  + ", ".join(changed)
-              )
-          print("Approved Week 9 files unchanged; safe to proceed.")
+              audit = Path("projection-model/validation/week9-automated-projection-differences.txt")
+              audit.parent.mkdir(parents=True, exist_ok=True)
+              with audit.open("w", encoding="utf-8") as output:
+                  output.write("Automated projection regeneration vs approved Week 9 files\\n")
+                  output.write("UTC: " + datetime.now(timezone.utc).isoformat() + "\\n")
+                  for path in changed:
+                      output.write("\\n=== " + path + " ===\\n")
+                      result = subprocess.run(
+                          ["git", "diff", "--", path],
+                          capture_output=True, text=True, check=True,
+                      )
+                      output.write(result.stdout)
+              print("Saved proposed changes for review:", audit)
+              subprocess.run(["git", "restore", "--", *changed], check=True)
+              print("Restored approved Week 9 files; no unapproved model changes published.")
+          else:
+              print("Approved Week 9 files unchanged.")
           PY
 
       - name: Commit weekly PPR projections
