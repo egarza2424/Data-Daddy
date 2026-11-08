@@ -1,21 +1,13 @@
 {
-  "generated_at_utc": "2026-11-08T19:40:51.517343+00:00",
+  "generated_at_utc": "2026-11-08T23:11:13.645470+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
     "missing_near_kickoff": 12,
-    "pending": 15
+    "pending": 14
   },
   "games": [
-    {
-      "game_id": "2026_09_CIN_ATL",
-      "week": 9,
-      "kickoff_utc": "2026-11-08T14:30:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
     {
       "game_id": "2026_09_DEN_CAR",
       "week": 9,
@@ -108,7 +100,7 @@
       "game_id": "2026_09_TB_CHI",
       "week": 9,
       "kickoff_utc": "2026-11-09T01:20:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
