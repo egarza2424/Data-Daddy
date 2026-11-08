@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-11-07T22:26:52.364846+00:00",
+  "generated_at_utc": "2026-11-08T01:45:25.765232+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
     "missing_near_kickoff": 0,
-    "pending": 26
+    "pending": 27
   },
   "games": [
     {
@@ -212,6 +212,14 @@
       "game_id": "2026_10_SF_DAL",
       "week": 10,
       "kickoff_utc": "2026-11-15T21:25:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_10_PIT_CIN",
+      "week": 10,
+      "kickoff_utc": "2026-11-16T01:20:00+00:00",
       "status": "pending",
       "official_inactives_verified": false,
       "source_url": null
