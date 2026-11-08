@@ -419,8 +419,22 @@ jobs:
               print(f"Trying player stats: {stats_url}")
 
               try:
-                  with urllib.request.urlopen(stats_url) as response:
-                      content = response.read().decode("utf-8")
+                  # GitHub release downloads can intermittently return 504.
+                  # Retry transient HTTP failures before attempting prior season.
+                  import time
+                  from urllib.error import HTTPError, URLError
+                  content = None
+                  for attempt in range(1, 5):
+                      try:
+                          with urllib.request.urlopen(stats_url, timeout=90) as response:
+                              content = response.read().decode("utf-8")
+                          break
+                      except (HTTPError, URLError, TimeoutError) as download_error:
+                          if attempt == 4:
+                              raise
+                          delay = attempt * 8
+                          print(f"Stats download attempt {attempt}/4 failed: {download_error}; retrying in {delay}s")
+                          time.sleep(delay)
 
                   reader = csv.DictReader(io.StringIO(content))
 
