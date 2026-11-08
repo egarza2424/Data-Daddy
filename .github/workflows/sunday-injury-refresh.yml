@@ -1,0 +1,58 @@
+name: Sunday Injury Refresh (30 Minutes)
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Every 30 minutes on Sundays (GitHub Actions cron uses UTC).
+    - cron: "*/30 * * * 0"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sunday-injury-refresh
+  cancel-in-progress: false
+
+jobs:
+  injury-refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh player availability from Sleeper
+        run: |
+          python -m py_compile scripts/build_gameday_availability.py
+          python scripts/build_gameday_availability.py
+
+      - name: Collect official NFL injury observations
+        continue-on-error: true
+        run: |
+          python -m py_compile scripts/collect_official_injury_report.py
+          python scripts/collect_official_injury_report.py --season 2026 --week 9
+
+      - name: Commit injury observations only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/gameday_availability.json
+          git add data/official_injury_report_observations.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No new injury availability changes."
+            exit 0
+          fi
+          git commit -m "Refresh Sunday injury availability"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort || true; exit 1; }
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 3
+          done
+          exit 1
