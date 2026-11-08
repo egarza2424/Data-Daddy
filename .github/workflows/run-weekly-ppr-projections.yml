@@ -77,10 +77,10 @@ jobs:
               snapshot_weeks = {
                   row["snapshot_week"] for row in csv.DictReader(handle)
               }
-          if snapshot_weeks != {"8"}:
+          if snapshot_weeks != {str(expected_week)}:
               raise SystemExit(
-                  f"Week 9 refresh blocked: live model snapshot weeks={sorted(snapshot_weeks)}. "
-                  "Generate and verify the Week 8 snapshot before publishing."
+                  f"Week {expected_week} refresh blocked: live model snapshot weeks={sorted(snapshot_weeks)}. "
+                  f"Generate and verify the Week {expected_week} snapshot before publishing."
               )
           print("Week 9 target week and live snapshot verified.")
           PY
