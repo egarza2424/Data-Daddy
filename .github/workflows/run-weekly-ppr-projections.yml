@@ -53,22 +53,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas numpy
 
-      - name: Guard Week 8 projection inputs against stale Week 7 data
+      - name: Guard Week 9 projection inputs against stale snapshots
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
 
-          expected_week = 8
+          expected_week = 9
           stats_path = Path("nfl-stats.json")
           if not stats_path.exists():
-              raise SystemExit("Missing nfl-stats.json; refusing to publish unverified Week 8 projections.")
+              raise SystemExit("Missing nfl-stats.json; refusing to publish unverified Week 9 projections.")
           stats = json.loads(stats_path.read_text(encoding="utf-8"))
           actual_week = int(stats.get("target_week") or 0)
           if actual_week != expected_week:
               raise SystemExit(
-                  f"Week 8 projection refresh blocked: nfl-stats.json target_week={actual_week}. "
-                  "Update the weekly snapshot and Week 7-specific workflow steps before publishing."
+                  f"Week 9 projection refresh blocked: nfl-stats.json target_week={actual_week}. "
+                  "Update the weekly snapshot before publishing."
               )
           import csv
           with Path("projection-model/current-live-model-snapshot.csv").open(
@@ -79,10 +79,10 @@ jobs:
               }
           if snapshot_weeks != {"8"}:
               raise SystemExit(
-                  f"Week 8 refresh blocked: live model snapshot weeks={sorted(snapshot_weeks)}. "
+                  f"Week 9 refresh blocked: live model snapshot weeks={sorted(snapshot_weeks)}. "
                   "Generate and verify the Week 8 snapshot before publishing."
               )
-          print("Week 8 target week and live snapshot verified.")
+          print("Week 9 target week and live snapshot verified.")
           PY
 
       - name: Audit actual PPR feed for displayed week
@@ -130,7 +130,7 @@ jobs:
         continue-on-error: true
         run: |
           python -m py_compile scripts/collect_official_injury_report.py
-          python scripts/collect_official_injury_report.py --season 2026 --week 8
+          python scripts/collect_official_injury_report.py --season 2026 --week 9
 
       - name: Generate weekly RB J2 projections
         run: |
@@ -153,7 +153,7 @@ jobs:
           python scripts/build_starter_absence_evidence.py \
             --stats historical-data/player_stats_2026.csv \
             --pbp historical-data/play_by_play_2026.csv.gz \
-            --season 2026 --week 8 \
+            --season 2026 --week 9 \
             --output projection-model/validation/starter-absence-evidence.csv
 
       - name: Audit injury-created sleeper opportunities
@@ -161,7 +161,7 @@ jobs:
           python -m py_compile scripts/build_injury_opportunity_candidates.py
           python scripts/build_injury_opportunity_candidates.py \
             --stats historical-data/player_stats_2026.csv \
-            --season 2026 --week 8 \
+            --season 2026 --week 9 \
             --evidence projection-model/validation/starter-absence-evidence.csv \
             --output projection-model/validation/injury-opportunity-candidates.csv
 
@@ -633,6 +633,35 @@ jobs:
               .round(2)
               .to_string()
           )
+          PY
+
+      - name: Protect approved Week 9 projections and editorial rankings
+        run: |
+          python - <<'PY'
+          import csv
+          import subprocess
+          from pathlib import Path
+
+          protected = [
+              "projection-model/2026-week9-ppr-projections.csv",
+              "projection-model/current-live-model-snapshot.csv",
+              "projection-model/2026-week9-wr-editorial-ppr-rankings.csv",
+          ]
+          changed = []
+          for path in protected:
+              result = subprocess.run(
+                  ["git", "diff", "--quiet", "--", path],
+                  check=False,
+              )
+              if result.returncode != 0:
+                  changed.append(path)
+          if changed:
+              raise SystemExit(
+                  "PREGAME SAFETY STOP: automated regeneration changed approved "
+                  "Week 9 data. Changes require analyst review before publishing: "
+                  + ", ".join(changed)
+              )
+          print("Approved Week 9 files unchanged; safe to proceed.")
           PY
 
       - name: Commit weekly PPR projections
