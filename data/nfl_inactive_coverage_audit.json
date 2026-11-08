@@ -1,18 +1,18 @@
 {
-  "generated_at_utc": "2026-11-08T08:03:43.248068+00:00",
+  "generated_at_utc": "2026-11-08T15:07:17.543665+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 0,
-    "pending": 27
+    "missing_near_kickoff": 8,
+    "pending": 19
   },
   "games": [
     {
       "game_id": "2026_09_CIN_ATL",
       "week": 9,
       "kickoff_utc": "2026-11-08T14:30:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -20,7 +20,7 @@
       "game_id": "2026_09_DEN_CAR",
       "week": 9,
       "kickoff_utc": "2026-11-08T18:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -28,7 +28,7 @@
       "game_id": "2026_09_DAL_IND",
       "week": 9,
       "kickoff_utc": "2026-11-08T18:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -36,7 +36,7 @@
       "game_id": "2026_09_NYJ_KC",
       "week": 9,
       "kickoff_utc": "2026-11-08T18:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -44,7 +44,7 @@
       "game_id": "2026_09_DET_MIA",
       "week": 9,
       "kickoff_utc": "2026-11-08T18:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -52,7 +52,7 @@
       "game_id": "2026_09_CLE_NO",
       "week": 9,
       "kickoff_utc": "2026-11-08T18:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -60,7 +60,7 @@
       "game_id": "2026_09_NYG_PHI",
       "week": 9,
       "kickoff_utc": "2026-11-08T18:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -68,7 +68,7 @@
       "game_id": "2026_09_LA_WAS",
       "week": 9,
       "kickoff_utc": "2026-11-08T18:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
