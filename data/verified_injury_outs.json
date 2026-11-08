@@ -320,6 +320,127 @@
       "status": "OUT",
       "verified_date": "2026-11-06",
       "source": "https://www.nfl.com/injuries/league/2026/reg8"
+    },
+    {
+      "season": 2026,
+      "week": 9,
+      "player_id": "2216",
+      "player_name": "Mike Evans",
+      "position": "WR",
+      "team": "SF",
+      "status": "OUT",
+      "verified_date": "2026-11-08",
+      "source": "https://www.nfl.com/news/nfl-week-9-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 9,
+      "player_id": "4950",
+      "player_name": "Christian Kirk",
+      "position": "WR",
+      "team": "SF",
+      "status": "OUT",
+      "verified_date": "2026-11-08",
+      "source": "https://www.nfl.com/news/nfl-week-9-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 9,
+      "player_id": "5859",
+      "player_name": "A.J. Brown",
+      "position": "WR",
+      "team": "NE",
+      "status": "OUT",
+      "verified_date": "2026-11-08",
+      "source": "https://www.nfl.com/news/nfl-week-9-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 9,
+      "player_id": "12529",
+      "player_name": "TreVeyon Henderson",
+      "position": "RB",
+      "team": "NE",
+      "status": "OUT",
+      "verified_date": "2026-11-08",
+      "source": "https://www.nfl.com/news/nfl-week-9-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 9,
+      "player_id": "8146",
+      "player_name": "Garrett Wilson",
+      "position": "WR",
+      "team": "NYJ",
+      "status": "OUT",
+      "verified_date": "2026-11-08",
+      "source": "https://www.nfl.com/news/nfl-week-9-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 9,
+      "player_id": "8676",
+      "player_name": "Rashid Shaheed",
+      "position": "WR",
+      "team": "SEA",
+      "status": "OUT",
+      "verified_date": "2026-11-08",
+      "source": "https://www.nfl.com/news/nfl-week-9-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 9,
+      "player_id": "7587",
+      "player_name": "Dyami Brown",
+      "position": "WR",
+      "team": "WAS",
+      "status": "OUT",
+      "verified_date": "2026-11-08",
+      "source": "https://www.nfl.com/news/nfl-week-9-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 9,
+      "player_id": "8135",
+      "player_name": "Treylon Burks",
+      "position": "WR",
+      "team": "WAS",
+      "status": "OUT",
+      "verified_date": "2026-11-08",
+      "source": "https://www.nfl.com/news/nfl-week-9-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 9,
+      "player_id": "13277",
+      "player_name": "CJ Donaldson",
+      "position": "RB",
+      "team": "NO",
+      "status": "OUT",
+      "verified_date": "2026-11-08",
+      "source": "https://www.nfl.com/news/nfl-week-9-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 9,
+      "player_id": "8414",
+      "player_name": "Britain Covey",
+      "position": "WR",
+      "team": "PHI",
+      "status": "OUT",
+      "verified_date": "2026-11-08",
+      "source": "https://www.nfl.com/news/nfl-week-9-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 9,
+      "player_id": "9486",
+      "player_name": "Dontayvion Wicks",
+      "position": "WR",
+      "team": "PHI",
+      "status": "OUT",
+      "verified_date": "2026-11-08",
+      "source": "https://www.nfl.com/news/nfl-week-9-injury-report-2026-season"
     }
   ]
 }
