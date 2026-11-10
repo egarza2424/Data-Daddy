@@ -17,3 +17,13 @@ season,target_week,player_name,position,team,rank,sleeper_score,projected_ppr,ac
 2026,8,Keon Coleman,WR,BUF,8,69.098,10.34,1.4,-86.5,verified_pregame,recorded_game,False,False
 2026,8,Jeremiyah Love,RB,ARI,9,68.656,11.11,2.3,-79.3,verified_pregame,recorded_game,False,False
 2026,8,Keenan Allen,WR,IND,10,66.795,10.13,13.7,35.2,verified_pregame,recorded_game,True,True
+2026,9,Dalton Kincaid,TE,BUF,1,100,11.95,5.8,-51.5,verified_pregame,recorded_game,False,False
+2026,9,Tre Tucker,WR,LV,2,84.053,10.28,9.5,-7.6,verified_pregame,recorded_game,False,False
+2026,9,Mike Washington Jr.,RB,LV,3,78.599,12.65,-0.3,-102.4,verified_pregame,recorded_game,False,False
+2026,9,Kyle Monangai,RB,CHI,4,76.808,13.82,,,verified_pregame,unmatched_or_ambiguous,False,False
+2026,9,Mike Gesicki,TE,CIN,5,73.448,8.59,3.1,-63.9,verified_pregame,recorded_game,False,False
+2026,9,Ryan Flournoy,WR,DAL,6,72.045,9.74,7.3,-25.1,verified_pregame,recorded_game,False,False
+2026,9,Adonai Mitchell,WR,NYJ,7,71.875,11.34,0.0,-100.0,verified_pregame,recorded_game,False,False
+2026,9,Eli Raridon,TE,NE,8,66.87,10.75,8.2,-23.7,verified_pregame,recorded_game,False,False
+2026,9,Geno Smith,QB,NYJ,9,61.623,13.1,7.3999999999999995,-43.5,verified_pregame,recorded_game,False,False
+2026,9,Braelon Allen,RB,NYJ,10,58.609,13.26,7.4,-44.2,verified_pregame,recorded_game,False,False
