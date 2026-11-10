@@ -1860,13 +1860,13 @@ async function loadWaiverWire() {
     ["Antonio Williams","WR","WAS"],
     ["Tank Dell","WR","HOU"],
     ["Seth McGowan","RB","IND"],
+    ["Pat Bryant","WR","DEN"],
     ["Emmett Johnson","RB","KC"],
     ["Jordan Watkins","WR","SF"],
     ["Chig Okonkwo","TE","WAS"],
     ["Tyler Goodson","RB","DAL"],
-    ["Makai Lemon","WR","PHI"],
-    ["Pat Bryant","WR","DEN"]
-  ];  if (weekBadge) weekBadge.textContent = "WEEK 10";
+    ["Makai Lemon","WR","PHI"]
+  ]; if (weekBadge) weekBadge.textContent = "WEEK 10";
   container.replaceChildren();
   const heading10 = document.createElement("h3");
   heading10.textContent = "DATA DADDY — WEEK 10 WAIVER WIRE";
