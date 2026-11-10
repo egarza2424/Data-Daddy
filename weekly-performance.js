@@ -94,7 +94,7 @@
         const allPicks=(reports.sleepers||[]).filter(r=>Number(r.target_week)===week&&r.timing_status==="verified_pregame"&&(position==="ALL"||r.position===position));
         const scored=allPicks.filter(r=>r.result_status==="recorded_game"&&r.actual_ppr!==""&&Number.isFinite(number(r.actual_ppr)));
         const pending=allPicks.length-scored.length;
-        note.textContent="Week "+week+" · "+verified.length+" verified sleeper hits from "+scored.length+" scored picks"+(pending?" · "+pending+" unmatched or unverified picks":"")+". Hit requires the position PPR threshold and 20% above frozen projected PPR.";
+        note.textContent="Sleeper picks are under-the-radar, high-risk/high-reward players with the upside to significantly swing a fantasy matchup—not simply safe projections. Week "+week+" results: "+verified.length+" verified hits from "+scored.length+" scored picks"+(pending?" · "+pending+" unmatched or unverified picks":"")+". Current retrospective hit test requires the position PPR threshold and 20% above frozen projected PPR; it does not measure under-the-radar status or breakout upside.";
         list.innerHTML=verified.sort((a,b)=>number(b.actual_ppr)-number(a.actual_ppr)).slice(0,12).map(r=>card(r.player_name+" · "+r.position,"Sleeper pick #"+r.rank+" · Sleeper Score "+r.sleeper_score,number(r.actual_ppr).toFixed(1)+" actual PPR · "+number(r.ppr_lift_pct).toFixed(1)+"% over projection"+(r.breakout_hit==="True"?" · Breakout":""))).join("")||(scored.length?'<p>No sleeper picks met both hit thresholds among the '+scored.length+' scored picks.'+(pending?' '+pending+' pick(s) remain unmatched or unverified.':'')+'</p>':'<p>No scored sleeper picks are available for this week; results remain unverified.</p>');
         return;
       }
