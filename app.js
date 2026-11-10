@@ -1843,6 +1843,38 @@ async function loadWaiverWire() {
     return;
   }
 
+  // Week 10 approved editorial priorities. Independent of automated candidate availability.
+  // Do not infer ownership, matchup scores, or injury availability from prior weeks.
+  const week10Editorial = [
+    ["Corey Kiner","RB","NE"],["DeMario Douglas","WR","NE"],
+    ["Audric Estimé","RB","NO"],["Jordyn Tyson","WR","NO"],
+    ["Konata Mumpfield","WR","LA"],["Caleb Douglas","WR","MIA"],
+    ["Kaleb Johnson","RB","GB"],["Tutu Atwell","WR","LA"],
+    ["Tank Dell","WR","HOU"],["Seth McGowan","RB","IND"],
+    ["Emmett Johnson","RB","KC"],["Jordan Watkins","WR","SF"],
+    ["Chig Okonkwo","TE","WAS"]
+  ];
+  if (weekBadge) weekBadge.textContent = "WEEK 10";
+  container.replaceChildren();
+  const heading10 = document.createElement("h3");
+  heading10.textContent = "DATA DADDY — WEEK 10 WAIVER WIRE";
+  container.appendChild(heading10);
+  const intro10 = document.createElement("p");
+  intro10.textContent = "Approved editorial priority order. Player availability, roster percentage, current team and matchup should be verified before making a claim.";
+  container.appendChild(intro10);
+  const list10 = document.createElement("section");
+  list10.className = "waiver-editorial-section";
+  week10Editorial.forEach(([name,pos,team],i) => {
+    const row = document.createElement("div");
+    row.className = "waiver-player";
+    const label = document.createElement("strong");
+    label.textContent = "#" + (i+1) + " " + name + " (" + pos + " • " + team + ")";
+    row.appendChild(label);
+    list10.appendChild(row);
+  });
+  container.appendChild(list10);
+  return;
+
   const showMessage = (message) => {
     container.replaceChildren();
     const paragraph = document.createElement("p");
