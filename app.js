@@ -1848,6 +1848,7 @@ async function loadWaiverWire() {
   const week10Editorial = [
     ["Corey Kiner","RB","NE"],["DeMario Douglas","WR","NE"],
     ["Audric Estimé","RB","NO"],["Jordyn Tyson","WR","NO"],
+    ["Keenan Allen","WR","SF"],
     ["Konata Mumpfield","WR","LA"],["Caleb Douglas","WR","MIA"],
     ["Kaleb Johnson","RB","GB"],["Tutu Atwell","WR","LA"],
     ["Tank Dell","WR","HOU"],["Seth McGowan","RB","IND"],
