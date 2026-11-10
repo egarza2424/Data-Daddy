@@ -1846,22 +1846,33 @@ async function loadWaiverWire() {
   // Week 10 approved editorial priorities. Independent of automated candidate availability.
   // Do not infer ownership, matchup scores, or injury availability from prior weeks.
   const week10Editorial = [
-    ["Corey Kiner","RB","NE"],["DeMario Douglas","WR","NE"],
-    ["Audric Estimé","RB","NO"],["Jordyn Tyson","WR","NO"],
+    ["Corey Kiner","RB","NE"],
+    ["DeMario Douglas","WR","NE"],
+    ["Audric Estimé","RB","NO"],
+    ["Jordyn Tyson","WR","NO"],
     ["Keenan Allen","WR","SF"],
-    ["Konata Mumpfield","WR","LA"],["Caleb Douglas","WR","MIA"],
-    ["Kaleb Johnson","RB","GB"],["Tutu Atwell","WR","LA"],
-    ["Tank Dell","WR","HOU"],["Seth McGowan","RB","IND"],
-    ["Emmett Johnson","RB","KC"],["Jordan Watkins","WR","SF"],
-    ["Chig Okonkwo","TE","WAS"]
-  ];
-  if (weekBadge) weekBadge.textContent = "WEEK 10";
+    ["Konata Mumpfield","WR","LA"],
+    ["Caleb Douglas","WR","MIA"],
+    ["Kaleb Johnson","RB","GB"],
+    ["Omar Cooper Jr.","WR","NYJ"],
+    ["Tutu Atwell","WR","LA"],
+    ["Kaelon Black","RB","SF"],
+    ["Antonio Williams","WR","WAS"],
+    ["Tank Dell","WR","HOU"],
+    ["Seth McGowan","RB","IND"],
+    ["Emmett Johnson","RB","KC"],
+    ["Jordan Watkins","WR","SF"],
+    ["Chig Okonkwo","TE","WAS"],
+    ["Tyler Goodson","RB","DAL"],
+    ["Makai Lemon","WR","PHI"],
+    ["Pat Bryant","WR","DEN"]
+  ];  if (weekBadge) weekBadge.textContent = "WEEK 10";
   container.replaceChildren();
   const heading10 = document.createElement("h3");
   heading10.textContent = "DATA DADDY — WEEK 10 WAIVER WIRE";
   container.appendChild(heading10);
   const intro10 = document.createElement("p");
-  intro10.textContent = "Approved editorial priority order. Player availability, roster percentage, current team and matchup should be verified before making a claim.";
+  intro10.textContent = "Editorial priority order. ESPN roster eligibility (<65%), player availability, current team and matchup remain pending verification; placement does not confirm eligibility.";
   container.appendChild(intro10);
   const list10 = document.createElement("section");
   list10.className = "waiver-editorial-section";
