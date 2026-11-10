@@ -1,18 +1,18 @@
 {
-  "generated_at_utc": "2026-11-09T20:58:54.654625+00:00",
+  "generated_at_utc": "2026-11-10T03:26:23.757860+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 0,
-    "pending": 15
+    "missing_near_kickoff": 1,
+    "pending": 14
   },
   "games": [
     {
       "game_id": "2026_09_BUF_MIN",
       "week": 9,
       "kickoff_utc": "2026-11-10T01:15:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
