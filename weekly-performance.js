@@ -149,6 +149,14 @@
       }
       if(!latest) throw new Error("No completed ranking audit found.");
       state.week=latest;state.reports.ranking=ranking;
+      // Show the latest verified week, and clearly label the next completed week's missing audit.
+      if (latest === 8) {
+        const pending = document.createElement("p");
+        pending.className = "tracker-audit-pending";
+        pending.setAttribute("role", "status");
+        pending.textContent = "Week 9 performance audit pending verification. Week 8 is the latest published completed ranking audit. Week 9 analyst-attribution and final ranking metrics are not yet verified.";
+        root.insertBefore(pending, root.firstChild);
+      }
       if(latest===8){
         status.textContent="Week 8 provisional audit — 268 matched players; 86 unmatched players pending participation and injury verification.";
       }
