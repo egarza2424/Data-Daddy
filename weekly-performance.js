@@ -162,7 +162,7 @@
         summary.setAttribute("aria-label", "Week 9 PPR accuracy audit");
         summary.innerHTML = '<strong>Week 9 · Frozen PPR projection accuracy</strong>' +
           '<p>242 of 335 frozen projections matched the published Week 9 validation outcomes; 93 unmatched (excluded, not scored as zero). Original MAE: <strong>4.585 PPR</strong>; adjusted MAE: <strong>4.584 PPR</strong>. Difference: 0.001 PPR — not meaningful.</p>' +
-          '<p>12 observable PPR changes: baseline MAE 4.383, adjusted MAE 4.360 (matched changes only). Week 9 analyst-adjustment audit not found; analyst attribution unverified. Ranking results below use the separate 260-player ranking-validation cohort.</p>';
+          '<p>12 observable PPR changes: baseline MAE 4.383, adjusted MAE 4.360 (matched changes only). Week 9 analyst-adjustment audit not found; analyst attribution unverified. Ranking results below use the separate 260-player ranking-validation cohort. Missing-data reconciliation is ongoing: 12 frozen players absent from the ranking report have Week 9 results in the repository actual-PPR file. These are not added to scored outcomes until the sources agree.</p>';
         const chartHost = document.getElementById("trackerAccuracyChart");
         if (chartHost) chartHost.parentNode.insertBefore(summary, chartHost);
         else root.insertBefore(summary, root.firstChild);
