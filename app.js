@@ -1869,14 +1869,14 @@ async function loadWaiverWire() {
   ]; if (weekBadge) weekBadge.textContent = "WEEK 10";
   container.replaceChildren();
   const heading10 = document.createElement("h3");
-  heading10.textContent = "DATA DADDY — WEEK 10 WAIVER WIRE";
+  heading10.textContent = "DATA DADDY — WEEK 10 TOP 10 WAIVER WIRE";
   container.appendChild(heading10);
   const intro10 = document.createElement("p");
   intro10.textContent = "Editorial priority order. ESPN roster eligibility (<65%), player availability, current team and matchup remain pending verification; placement does not confirm eligibility.";
   container.appendChild(intro10);
   const list10 = document.createElement("section");
   list10.className = "waiver-editorial-section";
-  week10Editorial.forEach(([name,pos,team],i) => {
+  week10Editorial.slice(0,10).forEach(([name,pos,team],i) => {
     const row = document.createElement("div");
     row.className = "waiver-player";
     const label = document.createElement("strong");
@@ -1885,6 +1885,17 @@ async function loadWaiverWire() {
     list10.appendChild(row);
   });
   container.appendChild(list10);
+  const more = document.createElement("details");
+  const moreHeading = document.createElement("summary");
+  moreHeading.textContent = "Additional waiver watchlist (#11–20)";
+  more.appendChild(moreHeading);
+  week10Editorial.slice(10).forEach(([name,pos,team],i) => {
+    const row = document.createElement("div");
+    row.className = "waiver-player";
+    row.textContent = "#" + (i+11) + " " + name + " (" + pos + " • " + team + ")";
+    more.appendChild(row);
+  });
+  container.appendChild(more);
   return;
 
   const showMessage = (message) => {
