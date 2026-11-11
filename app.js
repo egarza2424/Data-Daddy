@@ -11474,12 +11474,20 @@ const WEEK10_WR_EDITORIAL = [
     39.2
   ],
   [
+    "Garrett Wilson",
+    null
+  ],
+  [
     "Rashee Rice",
     48.2
   ],
   [
     "Tetairoa McMillan",
     45.7
+  ],
+  [
+    "George Pickens",
+    null
   ],
   [
     "DJ Moore",
@@ -11562,6 +11570,10 @@ const WEEK10_WR_EDITORIAL = [
     40.6
   ],
   [
+    "Jordan Addison",
+    null
+  ],
+  [
     "Devaughn Vele",
     40.4
   ],
@@ -11592,18 +11604,6 @@ const WEEK10_WR_EDITORIAL = [
   [
     "Keon Coleman",
     38.2
-  ],
-  [
-    "Xavier Hutchinson",
-    38.9
-  ],
-  [
-    "Demarcus Robinson",
-    40.4
-  ],
-  [
-    "Travis Hunter",
-    42.7
   ]
 ];
 function isWeek10WrEditorial(position) {
