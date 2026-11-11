@@ -10113,8 +10113,8 @@ const depthOrder =
 
   // Keep other website rank consumers aligned with the approved Week 10 RB/WR order.
   // The pregame snapshot exporter bypasses this override.
-  if (isWeek10RbEditorial(position) || isWeek10WrEditorial(position) || isWeek10TeEditorial(position)) {
-    const editorialOrder = position === "WR" ? WEEK10_WR_EDITORIAL : position === "TE" ? WEEK10_TE_EDITORIAL : WEEK10_RB_EDITORIAL;
+  if (isWeek10RbEditorial(position) || isWeek10WrEditorial(position) || isWeek10TeEditorial(position) || isWeek10QbEditorial(position)) {
+    const editorialOrder = position === "QB" ? WEEK10_QB_EDITORIAL : position === "WR" ? WEEK10_WR_EDITORIAL : position === "TE" ? WEEK10_TE_EDITORIAL : WEEK10_RB_EDITORIAL;
     const byName = new Map(rankings.map(entry => [normalizeName(entry.player.name), entry]));
     const editorial = editorialOrder.map(([name]) => byName.get(normalizeName(name))).filter(Boolean);
     const used = new Set(editorial.map(entry => String(entry.player.id)));
@@ -11607,6 +11607,109 @@ const WEEK10_WR_EDITORIAL = [
   ]
 ];
 // Approved Week 10 TE editorial ranking; AI scores and model inputs remain unchanged.
+const WEEK10_QB_EDITORIAL = [
+  [
+    "Joe Burrow",
+    74.2
+  ],
+  [
+    "Josh Allen",
+    72.5
+  ],
+  [
+    "Drake Maye",
+    63.5
+  ],
+  [
+    "Brock Purdy",
+    66.5
+  ],
+  [
+    "Dak Prescott",
+    64.3
+  ],
+  [
+    "Jared Goff",
+    58.5
+  ],
+  [
+    "Trevor Lawrence",
+    62.7
+  ],
+  [
+    "Jayden Daniels",
+    61.8
+  ],
+  [
+    "Tyler Shough",
+    71.7
+  ],
+  [
+    "Patrick Mahomes",
+    57
+  ],
+  [
+    "C.J. Stroud",
+    60.8
+  ],
+  [
+    "Jordan Love",
+    59
+  ],
+  [
+    "Bryce Young",
+    55.3
+  ],
+  [
+    "Matthew Stafford",
+    56.5
+  ],
+  [
+    "Geno Smith",
+    54.2
+  ],
+  [
+    "Drew Lock",
+    52.8
+  ],
+  [
+    "Aaron Rodgers",
+    56.5
+  ],
+  [
+    "J.J. McCarthy",
+    45.1
+  ],
+  [
+    "Justin Herbert",
+    53.7
+  ],
+  [
+    "Michael Penix Jr.",
+    58.4
+  ],
+  [
+    "Fernando Mendoza",
+    40.6
+  ],
+  [
+    "Daniel Jones",
+    50.8
+  ],
+  [
+    "Cam Ward",
+    57.4
+  ],
+  [
+    "Carson Wentz",
+    46.1
+  ]
+];
+function isWeek10QbEditorial(position) {
+  return position === "QB" && !snapshotWeek &&
+    !window.__dataDaddyExportingModelSnapshot &&
+    Number(document.documentElement.dataset.targetWeek) === 10;
+}
 const WEEK10_TE_EDITORIAL = [
   [
     "Brock Bowers",
@@ -11769,9 +11872,9 @@ function renderPositionRankings() {
     `${profile}-${position}`
   ];
 
-  if (isWeek10RbEditorial(position) || isWeek10WrEditorial(position) || isWeek10TeEditorial(position)) {
+  if (isWeek10RbEditorial(position) || isWeek10WrEditorial(position) || isWeek10TeEditorial(position) || isWeek10QbEditorial(position)) {
     const editorialPosition = position;
-    const editorialOrder = position === "WR" ? WEEK10_WR_EDITORIAL : position === "TE" ? WEEK10_TE_EDITORIAL : WEEK10_RB_EDITORIAL;
+    const editorialOrder = position === "QB" ? WEEK10_QB_EDITORIAL : position === "WR" ? WEEK10_WR_EDITORIAL : position === "TE" ? WEEK10_TE_EDITORIAL : WEEK10_RB_EDITORIAL;
     tableBody.replaceChildren();
     const filtered = editorialOrder.map(([name, ai], index) => ({name, ai, rank:index+1}))
       .filter(entry => entry.name.toLowerCase().includes(query));
