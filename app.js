@@ -11645,8 +11645,8 @@ const WEEK10_TE_EDITORIAL = [
     39.6
   ],
   [
-    "AJ Barner",
-    49.7
+    "Darnell Washington",
+    45.1
   ],
   [
     "Harold Fannin Jr.",
@@ -11681,8 +11681,8 @@ const WEEK10_TE_EDITORIAL = [
     33.7
   ],
   [
-    "Colby Parkinson",
-    48.1
+    "Tyler Higbee",
+    40.2
   ],
   [
     "Mike Gesicki",
@@ -11703,6 +11703,14 @@ const WEEK10_TE_EDITORIAL = [
   [
     "Mark Andrews",
     36.9
+  ],
+  [
+    "AJ Barner",
+    49.7
+  ],
+  [
+    "Colby Parkinson",
+    48.1
   ]
 ];
 function isWeek10TeEditorial(position) {
