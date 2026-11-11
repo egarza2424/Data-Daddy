@@ -11673,12 +11673,20 @@ const WEEK10_QB_EDITORIAL = [
     52.8
   ],
   [
+    "Kirk Cousins",
+    36.6
+  ],
+  [
     "Aaron Rodgers",
     56.5
   ],
   [
     "J.J. McCarthy",
     45.1
+  ],
+  [
+    "Jacoby Brissett",
+    38.3
   ],
   [
     "Justin Herbert",
