@@ -11641,6 +11641,10 @@ const WEEK10_TE_EDITORIAL = [
     41.1
   ],
   [
+    "Hunter Henry",
+    39.6
+  ],
+  [
     "AJ Barner",
     49.7
   ],
@@ -11661,48 +11665,44 @@ const WEEK10_TE_EDITORIAL = [
     42.2
   ],
   [
+    "Brenton Strange",
+    39.4
+  ],
+  [
     "Darren Waller",
     44.9
+  ],
+  [
+    "Pat Freiermuth",
+    38.7
+  ],
+  [
+    "Juwan Johnson",
+    33.7
   ],
   [
     "Colby Parkinson",
     48.1
   ],
   [
+    "Mike Gesicki",
+    37.3
+  ],
+  [
     "Chig Okonkwo",
     41.2
   ],
   [
-    "Darnell Washington",
-    45.1
+    "Michael Mayer",
+    37.1
   ],
   [
     "Dalton Schultz",
     41.7
   ],
   [
-    "Tyler Higbee",
-    40.2
-  ],
-  [
-    "Brevyn Spann-Ford",
-    41.3
-  ],
-  [
-    "Greg Dulcich",
-    40.5
-  ],
-  [
-    "Eli Raridon",
-    41
-  ],
-  [
-    "Nate Boerkircher",
-    40.5
-  ],
-  [
-    "Mason Taylor",
-    40.3
+    "Mark Andrews",
+    36.9
   ]
 ];
 function isWeek10TeEditorial(position) {
