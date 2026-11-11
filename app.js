@@ -11669,6 +11669,10 @@ const WEEK10_TE_EDITORIAL = [
     44.9
   ],
   [
+    "Chig Okonkwo",
+    41.2
+  ],
+  [
     "Pat Freiermuth",
     38.7
   ],
@@ -11683,10 +11687,6 @@ const WEEK10_TE_EDITORIAL = [
   [
     "Mike Gesicki",
     37.3
-  ],
-  [
-    "Chig Okonkwo",
-    41.2
   ],
   [
     "Michael Mayer",
