@@ -10111,11 +10111,12 @@ const depthOrder =
       !week9Unavailable.has(normalizeName(player.name))));
   }
 
-  // Keep other website rank consumers aligned with the approved Week 10 RB order.
+  // Keep other website rank consumers aligned with the approved Week 10 RB/WR order.
   // The pregame snapshot exporter bypasses this override.
-  if (isWeek10RbEditorial(position)) {
+  if (isWeek10RbEditorial(position) || isWeek10WrEditorial(position)) {
+    const editorialOrder = position === "WR" ? WEEK10_WR_EDITORIAL : WEEK10_RB_EDITORIAL;
     const byName = new Map(rankings.map(entry => [normalizeName(entry.player.name), entry]));
-    const editorial = WEEK10_RB_EDITORIAL.map(([name]) => byName.get(normalizeName(name))).filter(Boolean);
+    const editorial = editorialOrder.map(([name]) => byName.get(normalizeName(name))).filter(Boolean);
     const used = new Set(editorial.map(entry => String(entry.player.id)));
     rankings.splice(0, rankings.length, ...editorial,
       ...rankings.filter(entry => !used.has(String(entry.player.id))));
@@ -11410,6 +11411,206 @@ const WEEK10_RB_EDITORIAL = [
     null
   ]
 ];
+// Approved Week 10 WR editorial order; display-only, no model mutations.
+const WEEK10_WR_EDITORIAL = [
+  [
+    "Jaxon Smith-Njigba",
+    60.4
+  ],
+  [
+    "CeeDee Lamb",
+    69.1
+  ],
+  [
+    "Ja'Marr Chase",
+    64.7
+  ],
+  [
+    "Amon-Ra St. Brown",
+    60
+  ],
+  [
+    "Tee Higgins",
+    59.4
+  ],
+  [
+    "Malik Nabers",
+    55.2
+  ],
+  [
+    "Chris Olave",
+    52.8
+  ],
+  [
+    "Christian Watson",
+    50.8
+  ],
+  [
+    "Parker Washington",
+    47.5
+  ],
+  [
+    "Matthew Golden",
+    57.1
+  ],
+  [
+    "Drake London",
+    44.1
+  ],
+  [
+    "Justin Jefferson",
+    48.2
+  ],
+  [
+    "Zay Flowers",
+    47.4
+  ],
+  [
+    "Jameson Williams",
+    50.5
+  ],
+  [
+    "Nico Collins",
+    39.2
+  ],
+  [
+    "Rashee Rice",
+    48.2
+  ],
+  [
+    "Tetairoa McMillan",
+    45.7
+  ],
+  [
+    "DJ Moore",
+    43.7
+  ],
+  [
+    "DK Metcalf",
+    46.6
+  ],
+  [
+    "Denzel Boston",
+    44.1
+  ],
+  [
+    "DeMario Douglas",
+    41.4
+  ],
+  [
+    "Jalen Coker",
+    37.4
+  ],
+  [
+    "Germie Bernard",
+    45.2
+  ],
+  [
+    "Jakobi Meyers",
+    47.3
+  ],
+  [
+    "KC Concepcion Jr.",
+    42.7
+  ],
+  [
+    "Caleb Douglas",
+    41.3
+  ],
+  [
+    "Keenan Allen",
+    36.6
+  ],
+  [
+    "Konata Mumpfield",
+    36.7
+  ],
+  [
+    "Adonai Mitchell",
+    41.3
+  ],
+  [
+    "Omar Cooper Jr.",
+    49.7
+  ],
+  [
+    "Stefon Diggs",
+    41.9
+  ],
+  [
+    "Ryan Flournoy",
+    43.7
+  ],
+  [
+    "Tank Dell",
+    38.5
+  ],
+  [
+    "Tre Tucker",
+    38.5
+  ],
+  [
+    "Jordyn Tyson",
+    47.4
+  ],
+  [
+    "Tutu Atwell",
+    37.4
+  ],
+  [
+    "Wan'Dale Robinson",
+    40.6
+  ],
+  [
+    "Devaughn Vele",
+    40.4
+  ],
+  [
+    "Mack Hollins",
+    42.3
+  ],
+  [
+    "Josh Downs",
+    37.5
+  ],
+  [
+    "Jordan Watkins",
+    38.8
+  ],
+  [
+    "Khalil Shakir",
+    43.6
+  ],
+  [
+    "Malachi Fields",
+    37.9
+  ],
+  [
+    "Malik Washington",
+    37.9
+  ],
+  [
+    "Keon Coleman",
+    38.2
+  ],
+  [
+    "Xavier Hutchinson",
+    38.9
+  ],
+  [
+    "Demarcus Robinson",
+    40.4
+  ],
+  [
+    "Travis Hunter",
+    42.7
+  ]
+];
+function isWeek10WrEditorial(position) {
+  return position === "WR" && !snapshotWeek &&
+    !window.__dataDaddyExportingModelSnapshot &&
+    Number(document.documentElement.dataset.targetWeek) === 10;
+}
 function isWeek10RbEditorial(position) {
   return position === "RB" && !snapshotWeek &&
     !window.__dataDaddyExportingModelSnapshot &&
@@ -11452,25 +11653,27 @@ function renderPositionRankings() {
     `${profile}-${position}`
   ];
 
-  if (isWeek10RbEditorial(position)) {
+  if (isWeek10RbEditorial(position) || isWeek10WrEditorial(position)) {
+    const editorialPosition = position;
+    const editorialOrder = position === "WR" ? WEEK10_WR_EDITORIAL : WEEK10_RB_EDITORIAL;
     tableBody.replaceChildren();
-    const filtered = WEEK10_RB_EDITORIAL.map(([name, ai], index) => ({name, ai, rank:index+1}))
+    const filtered = editorialOrder.map(([name, ai], index) => ({name, ai, rank:index+1}))
       .filter(entry => entry.name.toLowerCase().includes(query));
     const totalPages = Math.max(1, Math.ceil(filtered.length / RANKINGS_PER_PAGE));
     currentRankingPage = Math.max(1, Math.min(currentRankingPage, totalPages));
     const start = (currentRankingPage-1)*RANKINGS_PER_PAGE;
     filtered.slice(start,start+RANKINGS_PER_PAGE).forEach(entry => {
       const row = document.createElement("tr");
-      const player = players.find(p => p.position === "RB" &&
+      const player = players.find(p => p.position === editorialPosition &&
         normalizeName(p.name) === normalizeName(entry.name));
       const projection = player ? getPlayerPprProjection(player) : null;
       const matchup = player ? teamNextOpponent[player.team] : null;
       const cells = [
-        "RB"+entry.rank, entry.name,
+        editorialPosition+entry.rank, entry.name,
         entry.ai === null ? "—" : entry.ai.toFixed(1),
         projection?.opponent || matchup?.opponent || "TBD",
         Number.isFinite(projection?.projected_ppr) ? projection.projected_ppr.toFixed(2) : "—",
-        Number.isFinite(projection?.projected_position_rank) ? "RB"+projection.projected_position_rank : "—",
+        Number.isFinite(projection?.projected_position_rank) ? editorialPosition+projection.projected_position_rank : "—",
         player ? (getActualPprForRanking(player)?.toFixed(2) ?? "—") : "—",
         player?.injuryStatus || "Unverified"
       ];
@@ -11488,7 +11691,7 @@ function renderPositionRankings() {
         pagination.append(prev,label,next);
       }
     }
-    if (weekLabel) weekLabel.textContent="2026 Week 10 · Approved RB editorial rankings";
+    if (weekLabel) weekLabel.textContent="2026 Week 10 · Approved "+editorialPosition+" editorial rankings";
     return;
   }
 
