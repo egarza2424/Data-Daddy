@@ -11645,10 +11645,6 @@ const WEEK10_TE_EDITORIAL = [
     39.6
   ],
   [
-    "Darnell Washington",
-    45.1
-  ],
-  [
     "Harold Fannin Jr.",
     48.9
   ],
@@ -11711,6 +11707,10 @@ const WEEK10_TE_EDITORIAL = [
   [
     "Colby Parkinson",
     48.1
+  ],
+  [
+    "Darnell Washington",
+    45.1
   ]
 ];
 function isWeek10TeEditorial(position) {
