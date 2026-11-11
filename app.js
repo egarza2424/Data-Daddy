@@ -10113,8 +10113,8 @@ const depthOrder =
 
   // Keep other website rank consumers aligned with the approved Week 10 RB/WR order.
   // The pregame snapshot exporter bypasses this override.
-  if (isWeek10RbEditorial(position) || isWeek10WrEditorial(position)) {
-    const editorialOrder = position === "WR" ? WEEK10_WR_EDITORIAL : WEEK10_RB_EDITORIAL;
+  if (isWeek10RbEditorial(position) || isWeek10WrEditorial(position) || isWeek10TeEditorial(position)) {
+    const editorialOrder = position === "WR" ? WEEK10_WR_EDITORIAL : position === "TE" ? WEEK10_TE_EDITORIAL : WEEK10_RB_EDITORIAL;
     const byName = new Map(rankings.map(entry => [normalizeName(entry.player.name), entry]));
     const editorial = editorialOrder.map(([name]) => byName.get(normalizeName(name))).filter(Boolean);
     const used = new Set(editorial.map(entry => String(entry.player.id)));
@@ -11606,6 +11606,110 @@ const WEEK10_WR_EDITORIAL = [
     38.2
   ]
 ];
+// Approved Week 10 TE editorial ranking; AI scores and model inputs remain unchanged.
+const WEEK10_TE_EDITORIAL = [
+  [
+    "Brock Bowers",
+    63.1
+  ],
+  [
+    "Trey McBride",
+    62.2
+  ],
+  [
+    "George Kittle",
+    58.3
+  ],
+  [
+    "Isaiah Likely",
+    51.8
+  ],
+  [
+    "Travis Kelce",
+    51.8
+  ],
+  [
+    "Tyler Warren",
+    50.2
+  ],
+  [
+    "Dalton Kincaid",
+    50.5
+  ],
+  [
+    "Sam LaPorta",
+    41.1
+  ],
+  [
+    "AJ Barner",
+    49.7
+  ],
+  [
+    "Harold Fannin Jr.",
+    48.9
+  ],
+  [
+    "Tucker Kraft",
+    43.2
+  ],
+  [
+    "T.J. Hockenson",
+    45.3
+  ],
+  [
+    "Kyle Pitts Sr.",
+    42.2
+  ],
+  [
+    "Darren Waller",
+    44.9
+  ],
+  [
+    "Colby Parkinson",
+    48.1
+  ],
+  [
+    "Chig Okonkwo",
+    41.2
+  ],
+  [
+    "Darnell Washington",
+    45.1
+  ],
+  [
+    "Dalton Schultz",
+    41.7
+  ],
+  [
+    "Tyler Higbee",
+    40.2
+  ],
+  [
+    "Brevyn Spann-Ford",
+    41.3
+  ],
+  [
+    "Greg Dulcich",
+    40.5
+  ],
+  [
+    "Eli Raridon",
+    41
+  ],
+  [
+    "Nate Boerkircher",
+    40.5
+  ],
+  [
+    "Mason Taylor",
+    40.3
+  ]
+];
+function isWeek10TeEditorial(position) {
+  return position === "TE" && !snapshotWeek &&
+    !window.__dataDaddyExportingModelSnapshot &&
+    Number(document.documentElement.dataset.targetWeek) === 10;
+}
 function isWeek10WrEditorial(position) {
   return position === "WR" && !snapshotWeek &&
     !window.__dataDaddyExportingModelSnapshot &&
@@ -11653,9 +11757,9 @@ function renderPositionRankings() {
     `${profile}-${position}`
   ];
 
-  if (isWeek10RbEditorial(position) || isWeek10WrEditorial(position)) {
+  if (isWeek10RbEditorial(position) || isWeek10WrEditorial(position) || isWeek10TeEditorial(position)) {
     const editorialPosition = position;
-    const editorialOrder = position === "WR" ? WEEK10_WR_EDITORIAL : WEEK10_RB_EDITORIAL;
+    const editorialOrder = position === "WR" ? WEEK10_WR_EDITORIAL : position === "TE" ? WEEK10_TE_EDITORIAL : WEEK10_RB_EDITORIAL;
     tableBody.replaceChildren();
     const filtered = editorialOrder.map(([name, ai], index) => ({name, ai, rank:index+1}))
       .filter(entry => entry.name.toLowerCase().includes(query));
