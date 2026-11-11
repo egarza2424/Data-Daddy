@@ -11286,10 +11286,6 @@ const WEEK10_RB_EDITORIAL = [
     54.1
   ],
   [
-    "Audric Estimé",
-    57.6
-  ],
-  [
     "Chase Brown",
     55.8
   ],
@@ -11312,6 +11308,10 @@ const WEEK10_RB_EDITORIAL = [
   [
     "Braelon Allen",
     59.2
+  ],
+  [
+    "Audric Estimé",
+    57.6
   ],
   [
     "Tyler Allgeier",
