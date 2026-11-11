@@ -11689,6 +11689,10 @@ const WEEK10_TE_EDITORIAL = [
     37.3
   ],
   [
+    "Greg Dulcich",
+    40.5
+  ],
+  [
     "Michael Mayer",
     37.1
   ],
