@@ -11571,7 +11571,7 @@ const WEEK10_WR_EDITORIAL = [
   ],
   [
     "Jordan Addison",
-    null
+    36.4
   ],
   [
     "Devaughn Vele",
