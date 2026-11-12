@@ -11895,9 +11895,34 @@ function renderPositionRankings() {
         normalizeName(p.name) === normalizeName(entry.name));
       const projection = player ? getPlayerPprProjection(player) : null;
       const matchup = player ? teamNextOpponent[player.team] : null;
+      // Recover missing Week 10 editorial scores from the existing live
+      // signal calculator only when historical data and eligibility allow.
+      let displayedAi = entry.ai;
+      if (editorialPosition === "WR" &&
+          ["Garrett Wilson", "George Pickens"].includes(entry.name) &&
+          displayedAi === null && player) {
+        const injury = String(player.injuryStatus || "").toUpperCase();
+        const roster = String(player.status || "").toUpperCase();
+        const confirmedOut = verifiedInjuryOutIds.has(String(player.id)) ||
+          verifiedInjuryOutIds.has(String(player.nflId)) ||
+          verifiedInjuryOutKeys.has(
+            String(player.name).trim().toLowerCase() + "|" +
+            String(player.team).trim().toUpperCase()
+          ) ||
+          ["OUT", "IR", "INJURED_RESERVE", "PUP", "INACTIVE", "SUSPENDED"].includes(injury) ||
+          ["OUT", "IR", "INJURED_RESERVE", "PUP", "INACTIVE", "SUSPENDED"].includes(roster);
+        const has2026History = getPlayerWeeklyStats(player).some(
+          game => Number(game.season) === 2026 &&
+            Number(game.week) < 10
+        );
+        if (!confirmedOut && has2026History) {
+          const calculated = calculateScore(player, profile);
+          if (Number.isFinite(calculated)) displayedAi = Number(calculated.toFixed(1));
+        }
+      }
       const cells = [
         editorialPosition+entry.rank, entry.name,
-        entry.ai === null ? "—" : entry.ai.toFixed(1),
+        displayedAi === null ? "—" : displayedAi.toFixed(1),
         projection?.opponent || matchup?.opponent || "TBD",
         Number.isFinite(projection?.projected_ppr) ? projection.projected_ppr.toFixed(2) : "—",
         Number.isFinite(projection?.projected_position_rank) ? editorialPosition+projection.projected_position_rank : "—",
