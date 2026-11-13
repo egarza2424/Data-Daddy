@@ -479,13 +479,17 @@ jobs:
               ].sort_values("projected_position_rank").head(24)
               if wr_top24["projected_position_rank"].astype(int).tolist() != list(range(1, 25)):
                   raise SystemExit("Week 7 available WR Top 24 must remain contiguous.")
-              import json
-              from pathlib import Path
-              verified_outs = json.loads(Path("data/verified_injury_outs.json").read_text())
-              for item in verified_outs["out"]:
-                  if item["season"] == 2026 and item["week"] == 7:
-                      if projections["player_id"].astype(str).eq(str(item["player_id"])).any():
-                          raise SystemExit("Officially OUT player still projected: " + item["player_name"])
+          # Enforce officially verified OUT exclusions for every projected week.
+          import json
+          from pathlib import Path
+          verified_outs = json.loads(Path("data/verified_injury_outs.json").read_text())
+          projected_ids = set(projections["player_id"].astype(str))
+          for item in verified_outs["out"]:
+              if int(item["season"]) == 2026 and int(item["week"]) == week:
+                  if str(item["player_id"]) in projected_ids:
+                      raise SystemExit(
+                          "Officially OUT player still projected: " + item["player_name"]
+                      )
 
           if week == 7:
               te_editorial = projections.loc[
