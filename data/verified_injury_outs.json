@@ -441,6 +441,17 @@
       "status": "OUT",
       "verified_date": "2026-11-08",
       "source": "https://www.nfl.com/news/nfl-week-9-injury-report-2026-season"
+    },
+    {
+      "season": 2026,
+      "week": 10,
+      "player_id": "12529",
+      "player_name": "TreVeyon Henderson",
+      "position": "RB",
+      "team": "NE",
+      "status": "OUT",
+      "verified_date": "2026-11-13",
+      "source": "https://www.nfl.com/news/nfl-week-10-injury-report-2026-season"
     }
   ]
 }
