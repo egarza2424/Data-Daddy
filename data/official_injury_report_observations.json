@@ -2,34 +2,50 @@
   "season": 2026,
   "week": 10,
   "source_url": "https://www.nfl.com/news/nfl-week-10-injury-report-2026-season",
-  "retrieved_at_utc": "2026-11-13T17:41:29.486936+00:00",
+  "retrieved_at_utc": "2026-11-13T18:58:11.261603+00:00",
   "verification_status": "official_source_text_unresolved_player_identity",
   "automatically_verified_outs": [],
   "out_text_observations": [
     "OUT:",
     "OUT:** RB \\u003cforge-entity title=\\\"TreVeyon Henderson\\\" slug=\\\"treveyon-henderson\\\" code=\\\"player\\\"\\u003eTreVeyon Henderson\\u003c/forge-entity\\u003e (illness), OL \\u003cforge-entity title=\\\"Ben Brown\\\" slug=\\\"ben-brown-2\\\" code=\\\"player\\\"\\u003eBen Brown\\u003c/forge-entity\\u003e (knee), CB \\u003cforge-entity title=\\\"Carlton Davis\\\" slug=\\\"carlton-",
     "OUT:** S \\u003cforge-entity title=\\\"Kerby Joseph\\\" slug=\\\"kerby-joseph\\\" code=\\\"player\\\"\\u003eKerby Joseph\\u003c/forge-entity\\u003e (knee), C \\u003cforge-entity title=\\\"Cade Mays\\\" slug=\\\"cade-mays\\\" code=\\\"player\\\"\\u003eCade Mays\\u003c/forge-entity\\u003e (ankle), CB \\u003cforge-entity title=\\\"D.J. Reed\\\" slug=\\\"d-j-reed\\\" code=\\\"player\\\"\\u003eD.J.",
+    "OUT:** WR \\u003cforge-entity title=\\\\\\\"Zachariah Branch\\\\\\\" slug=\\\\\\\"zachariah-branch\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eZachariah Branch\\u003c/forge-entity\\u003e (hamstring)\\\\n* **DOUBTFUL:** LB \\u003cforge-entity title=\\\\\\\"Divine Deablo\\\\\\\" slug=\\\\\\\"divine-deablo\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eDivine Deablo\\u003c/forge-entity\\u003e (forearm)\\\\n* **QUESTI",
+    "OUT:** LB \\u003cforge-entity title=\\\\\\\"Bobby Okereke\\\\\\\" slug=\\\\\\\"bobby-okereke\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eBobby Okereke\\u003c/forge-entity\\u003e (foot)\\\\n* **DOUBTFUL:** RB \\u003cforge-entity title=\\\\\\\"Jonathon Brooks\\\\\\\" slug=\\\\\\\"jonathon-brooks\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJonathon Brooks\\u003c/forge-entity\\u003e (groin), CB \\u003cforge-entity",
     "OUT:** TE \\u003cforge-entity title=\\\\\\\"Colson Yankoff\\\\\\\" slug=\\\\\\\"colson-yankoff\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eColson Yankoff\\u003c/forge-entity\\u003e (knee), C \\u003cforge-entity title=\\\\\\\"Lucas Patrick\\\\\\\" slug=\\\\\\\"lucas-patrick\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eLucas Patrick\\u003c/forge-entity\\u003e (concussion)\\\\n\\\\n### GIANTS\\\\n\\\\n* **QUESTIONABLE:",
     "OUT:\\\"}],\\\" RB \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/treveyon-henderson\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"TreVeyon Henderson\\\"}],\\\" (illness), OL \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"",
     "OUT:\\\"}],\\\" S \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/kerby-joseph\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Kerby Joseph\\\"}],\\\" (knee), C \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferr",
+    "OUT:\\\"}],\\\" WR \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/zachariah-branch\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Zachariah Branch\\\"}],\\\" (hamstring)\\\"]}],\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-1\\\",{\\\"children\\\":[[\\\"$\\\"",
+    "OUT:\\\"}],\\\" LB \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/bobby-okereke\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Bobby Okereke\\\"}],\\\" (foot)\\\"]}],\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-1\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\"",
     "OUT:\\\"}],\\\" TE \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/colson-yankoff\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Colson Yankoff\\\"}],\\\" (knee), C \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener nor"
   ],
   "out_section_context_unverified": [
     {
       "preceding_context": "FL.com\nShare Facebook\nShare Twitter\nNFL.com tracks player statuses for all 14 games in Week 10 of the 2026 NFL season.\nFans can stream live local and primetime games on mobile with\nNFL+\n.\nSUNDAY, NOV. 15\nNew England Patriots\n5-4\nVS.\nDetroit Lions\n6-2\nWHERE:\nFC Bayern Munich Stadium (Munich, Germany)\nWHEN:\n9:30 a.m. ET\n|\nFOX, FOX One, NFL+\nPATRIOTS\n",
-      "following_context": "\nRB\nTreVeyon Henderson\n(illness), OL\nBen Brown\n(knee), CB\nCarlton Davis\n(knee)\nQUESTIONABLE:\nRB\nRhamondre Stevenson\n(knee), FB\nReggie Gilliam\n(knee), WR\nA.J. Brown\n(ankle/knee), TE\nCameron Latu\n(back), OL\nWalter Rouse\n(concussion), OL\nGreg Van Roten\n(hamstring), CB\nCharles Woods\n(hamstring), S\nKevin Byard\n(chest), S\nBrenden Schooler\n(hamstring)\nLIONS\nOUT:\nS\nKerby Joseph\n(knee), C\nCade Mays\n(ankle), CB\nD.J. Reed\n(hip)\nQUESTIONABLE:\nRB\nSione Vaki\n(ankle), WR\nAmon-Ra St. Brown\n(rib)\nKansas City Chiefs\n6-2\nAT\nAtlanta Falcons\n3-6\nWHERE:\nMercedes-Benz Stadium (Atlanta)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nHouston Texans\n3-5\nAT\nCleveland Browns\n5-4\nWHERE:\nHuntington Bank Field (Cleveland)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nMinnesota Vikings\n6-2\nAT\nGreen Bay Packers\n6-3\nWHERE:\nLambeau Field (Green Bay, Wis.)\nWHEN:\n1:00 p.m. ET\n|\nFOX, FOX One, NFL+\nMiami Dolphins\n1-7\nAT\nIndianapolis Colts\n2-7\nWHERE:\nLucas Oil Stadium (Indianapolis)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nCarolina Panthers\n3-5\nAT\nNew Orleans Saints\n3-5\nWHERE:\nCaesa",
+      "following_context": "\nRB\nTreVeyon Henderson\n(illness), OL\nBen Brown\n(knee), CB\nCarlton Davis\n(knee)\nQUESTIONABLE:\nRB\nRhamondre Stevenson\n(knee), FB\nReggie Gilliam\n(knee), WR\nA.J. Brown\n(ankle/knee), TE\nCameron Latu\n(back), OL\nWalter Rouse\n(concussion), OL\nGreg Van Roten\n(hamstring), CB\nCharles Woods\n(hamstring), S\nKevin Byard\n(chest), S\nBrenden Schooler\n(hamstring)\nLIONS\nOUT:\nS\nKerby Joseph\n(knee), C\nCade Mays\n(ankle), CB\nD.J. Reed\n(hip)\nQUESTIONABLE:\nRB\nSione Vaki\n(ankle), WR\nAmon-Ra St. Brown\n(rib)\nKansas City Chiefs\n6-2\nAT\nAtlanta Falcons\n3-6\nWHERE:\nMercedes-Benz Stadium (Atlanta)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nFALCONS\nOUT:\nWR\nZachariah Branch\n(hamstring)\nDOUBTFUL:\nLB\nDivine Deablo\n(forearm)\nQUESTIONABLE:\nDE\nJames Pearce Jr.\n(back), DT\nGervon Dexter\n(illness), LB\nJosh Woods\n(ankle)\nHouston Texans\n3-5\nAT\nCleveland Browns\n5-4\nWHERE:\nHuntington Bank Field (Cleveland)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nMinnesota Vikings\n6-2\nAT\nGreen Bay Packers\n6-3\nWHERE:\nLambeau Field (Green Bay, Wis.)\nWHEN:\n1:00 p.m. ET\n|\nFOX, FOX One, N",
       "team_verified": false,
       "player_status_verified": false
     },
     {
       "preceding_context": "\nTreVeyon Henderson\n(illness), OL\nBen Brown\n(knee), CB\nCarlton Davis\n(knee)\nQUESTIONABLE:\nRB\nRhamondre Stevenson\n(knee), FB\nReggie Gilliam\n(knee), WR\nA.J. Brown\n(ankle/knee), TE\nCameron Latu\n(back), OL\nWalter Rouse\n(concussion), OL\nGreg Van Roten\n(hamstring), CB\nCharles Woods\n(hamstring), S\nKevin Byard\n(chest), S\nBrenden Schooler\n(hamstring)\nLIONS\n",
-      "following_context": "\nS\nKerby Joseph\n(knee), C\nCade Mays\n(ankle), CB\nD.J. Reed\n(hip)\nQUESTIONABLE:\nRB\nSione Vaki\n(ankle), WR\nAmon-Ra St. Brown\n(rib)\nKansas City Chiefs\n6-2\nAT\nAtlanta Falcons\n3-6\nWHERE:\nMercedes-Benz Stadium (Atlanta)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nHouston Texans\n3-5\nAT\nCleveland Browns\n5-4\nWHERE:\nHuntington Bank Field (Cleveland)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nMinnesota Vikings\n6-2\nAT\nGreen Bay Packers\n6-3\nWHERE:\nLambeau Field (Green Bay, Wis.)\nWHEN:\n1:00 p.m. ET\n|\nFOX, FOX One, NFL+\nMiami Dolphins\n1-7\nAT\nIndianapolis Colts\n2-7\nWHERE:\nLucas Oil Stadium (Indianapolis)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nCarolina Panthers\n3-5\nAT\nNew Orleans Saints\n3-5\nWHERE:\nCaesars Superdome (New Orleans)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nBuffalo Bills\n7-1\nAT\nNew York Jets\n2-7\nWHERE:\nMetLife Stadium (East Rutherford, N.J.)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nJacksonville Jaguars\n6-2\nAT\nTennessee Titans\n1-7\nWHERE:\nNissan Stadium (Nashville, Tenn.)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nLos Angeles Rams\n5-4\nAT\nArizona Cardinals\n3-6\nWHERE:\nState Farm Stadium (Glenda",
+      "following_context": "\nS\nKerby Joseph\n(knee), C\nCade Mays\n(ankle), CB\nD.J. Reed\n(hip)\nQUESTIONABLE:\nRB\nSione Vaki\n(ankle), WR\nAmon-Ra St. Brown\n(rib)\nKansas City Chiefs\n6-2\nAT\nAtlanta Falcons\n3-6\nWHERE:\nMercedes-Benz Stadium (Atlanta)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nFALCONS\nOUT:\nWR\nZachariah Branch\n(hamstring)\nDOUBTFUL:\nLB\nDivine Deablo\n(forearm)\nQUESTIONABLE:\nDE\nJames Pearce Jr.\n(back), DT\nGervon Dexter\n(illness), LB\nJosh Woods\n(ankle)\nHouston Texans\n3-5\nAT\nCleveland Browns\n5-4\nWHERE:\nHuntington Bank Field (Cleveland)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nMinnesota Vikings\n6-2\nAT\nGreen Bay Packers\n6-3\nWHERE:\nLambeau Field (Green Bay, Wis.)\nWHEN:\n1:00 p.m. ET\n|\nFOX, FOX One, NFL+\nMiami Dolphins\n1-7\nAT\nIndianapolis Colts\n2-7\nWHERE:\nLucas Oil Stadium (Indianapolis)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nCarolina Panthers\n3-5\nAT\nNew Orleans Saints\n3-5\nWHERE:\nCaesars Superdome (New Orleans)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nPANTHERS\nOUT:\nLB\nBobby Okereke\n(foot)\nDOUBTFUL:\nRB\nJonathon Brooks\n(groin), CB\nMike Jackson\n(groin)\nQUESTIONABLE:\nWR\nXavier Legette",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "mstring), CB\nCharles Woods\n(hamstring), S\nKevin Byard\n(chest), S\nBrenden Schooler\n(hamstring)\nLIONS\nOUT:\nS\nKerby Joseph\n(knee), C\nCade Mays\n(ankle), CB\nD.J. Reed\n(hip)\nQUESTIONABLE:\nRB\nSione Vaki\n(ankle), WR\nAmon-Ra St. Brown\n(rib)\nKansas City Chiefs\n6-2\nAT\nAtlanta Falcons\n3-6\nWHERE:\nMercedes-Benz Stadium (Atlanta)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nFALCONS\n",
+      "following_context": "\nWR\nZachariah Branch\n(hamstring)\nDOUBTFUL:\nLB\nDivine Deablo\n(forearm)\nQUESTIONABLE:\nDE\nJames Pearce Jr.\n(back), DT\nGervon Dexter\n(illness), LB\nJosh Woods\n(ankle)\nHouston Texans\n3-5\nAT\nCleveland Browns\n5-4\nWHERE:\nHuntington Bank Field (Cleveland)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nMinnesota Vikings\n6-2\nAT\nGreen Bay Packers\n6-3\nWHERE:\nLambeau Field (Green Bay, Wis.)\nWHEN:\n1:00 p.m. ET\n|\nFOX, FOX One, NFL+\nMiami Dolphins\n1-7\nAT\nIndianapolis Colts\n2-7\nWHERE:\nLucas Oil Stadium (Indianapolis)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nCarolina Panthers\n3-5\nAT\nNew Orleans Saints\n3-5\nWHERE:\nCaesars Superdome (New Orleans)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nPANTHERS\nOUT:\nLB\nBobby Okereke\n(foot)\nDOUBTFUL:\nRB\nJonathon Brooks\n(groin), CB\nMike Jackson\n(groin)\nQUESTIONABLE:\nWR\nXavier Legette\n(knee), OL\nBrady Christensen\n(hamstring), OLB\nJaelan Phillips\n(hamstring), CB\nWill Lee III\n(hamstring)\nBuffalo Bills\n7-1\nAT\nNew York Jets\n2-7\nWHERE:\nMetLife Stadium (East Rutherford, N.J.)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nJacksonville Jaguars\n6-2\nAT\nTenness",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "ta Vikings\n6-2\nAT\nGreen Bay Packers\n6-3\nWHERE:\nLambeau Field (Green Bay, Wis.)\nWHEN:\n1:00 p.m. ET\n|\nFOX, FOX One, NFL+\nMiami Dolphins\n1-7\nAT\nIndianapolis Colts\n2-7\nWHERE:\nLucas Oil Stadium (Indianapolis)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nCarolina Panthers\n3-5\nAT\nNew Orleans Saints\n3-5\nWHERE:\nCaesars Superdome (New Orleans)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nPANTHERS\n",
+      "following_context": "\nLB\nBobby Okereke\n(foot)\nDOUBTFUL:\nRB\nJonathon Brooks\n(groin), CB\nMike Jackson\n(groin)\nQUESTIONABLE:\nWR\nXavier Legette\n(knee), OL\nBrady Christensen\n(hamstring), OLB\nJaelan Phillips\n(hamstring), CB\nWill Lee III\n(hamstring)\nBuffalo Bills\n7-1\nAT\nNew York Jets\n2-7\nWHERE:\nMetLife Stadium (East Rutherford, N.J.)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nJacksonville Jaguars\n6-2\nAT\nTennessee Titans\n1-7\nWHERE:\nNissan Stadium (Nashville, Tenn.)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nLos Angeles Rams\n5-4\nAT\nArizona Cardinals\n3-6\nWHERE:\nState Farm Stadium (Glendale, Ariz.)\nWHEN:\n4:05 p.m. ET\n|\nCBS, Paramount+, NFL+\nSeattle Seahawks\n5-4\nAT\nLas Vegas Raiders\n4-5\nWHERE:\nAllegiant Stadium (Las Vegas)\nWHEN:\n4:05 p.m. ET\n|\nCBS\nSan Francisco 49ers\n7-1\nAT\nDallas Cowboys\n4-5\nWHERE:\nAT&T Stadium (Arlington, Texas)\nWHEN:\n4:25 p.m. ET\n|\nFOX, FOX One, NFL+\nPittsburgh Steelers\n6-2\nAT\nCincinnati Bengals\n6-2\nWHERE:\nPaycor Stadium (Cincinnati)\nWHEN:\n8:20 p.m. ET\n|\nNBC, Peacock, NFL+\nMONDAY, NOV. 16\nLos Angeles Chargers\n0-8\nAT\nBaltimore Ravens\n",
       "team_verified": false,
       "player_status_verified": false
     },
     {
       "preceding_context": "ti)\nWHEN:\n8:20 p.m. ET\n|\nNBC, Peacock, NFL+\nMONDAY, NOV. 16\nLos Angeles Chargers\n0-8\nAT\nBaltimore Ravens\n4-5\nWHERE:\nM&T Bank Stadium (Baltimore)\nWHEN:\n8:15 p.m. ET\n|\nABC, ESPN, NFL+\nTHURSDAY, NOV. 12\nWashington Commanders\n2-5-1\nAT\nNew York Giants\n5-2-1\nWHERE:\nMetLife Stadium (East Rutherford, N.J.)\nWHEN:\n8:15 p.m. ET\n|\nPrime Video, NFL+\nCOMMANDERS\n",
-      "following_context": "\nTE\nColson Yankoff\n(knee), C\nLucas Patrick\n(concussion)\nGIANTS\nQUESTIONABLE:\nLB\nMalik Harrison\n(groin)\nRelated Content\n1 of 4\nNEWS\nCowboys CB Porter: Recent absences are due to injury, not contract-related\nNEWS\nBrowns' Verse 'upset' with his play, seeing psychiatrist over 'mental block'\nNEWS\nRoundup: Lamar out 6-10 weeks; Pats RB, WR, Lions WR iffy for Munich game\nNEWS\nQuinn: Commanders 'needed every bit' of season-saving victory over NYG\n{\"@context\":\"https://schema.org\",\"@type\":\"NewsArticle\",\"articleBody\":\"NFL.com tracks player statuses for all 14 games in Week 10 of the 2026 NFL season.\\n\\nFans can stream live local and primetime games on mobile with NFL+.\\n\\nSUNDAY, NOV. 15\\n\\nPATRIOTS\\n\\nOUT: RB TreVeyon Henderson (illness), OL Ben Brown (knee), CB Carlton Davis (knee)\\nQUESTIONABLE: RB Rhamondre Stevenson (knee), FB Reggie Gilliam (knee), WR A.J. Brown (ankle/knee), TE Cameron Latu (back), OL Walter Rouse (concussion), OL Greg Van Roten (hamstring), CB Charles Woods (hamstring), S",
+      "following_context": "\nTE\nColson Yankoff\n(knee), C\nLucas Patrick\n(concussion)\nGIANTS\nQUESTIONABLE:\nLB\nMalik Harrison\n(groin)\nRelated Content\n1 of 4\nNEWS\nPatriots vs. Lions: Three must-know storylines for Sunday's juicy matchup in Munich\nNEWS\nCowboys CB Porter: Recent absences are due to injury, not contract-related\nNEWS\nBrowns' Verse 'upset' with his play, seeing psychiatrist over 'mental block'\nNEWS\nRoundup: Lamar out 6-10 weeks; Pats RB, WR, Lions WR iffy for Munich game\n{\"@context\":\"https://schema.org\",\"@type\":\"NewsArticle\",\"articleBody\":\"NFL.com tracks player statuses for all 14 games in Week 10 of the 2026 NFL season.\\n\\nFans can stream live local and primetime games on mobile with NFL+.\\n\\nSUNDAY, NOV. 15\\n\\nPATRIOTS\\n\\nOUT: RB TreVeyon Henderson (illness), OL Ben Brown (knee), CB Carlton Davis (knee)\\nQUESTIONABLE: RB Rhamondre Stevenson (knee), FB Reggie Gilliam (knee), WR A.J. Brown (ankle/knee), TE Cameron Latu (back), OL Walter Rouse (concussion), OL Greg Van Roten (hamstring), CB Charles Woods (",
       "team_verified": false,
       "player_status_verified": false
     },
@@ -42,6 +58,18 @@
     {
       "preceding_context": "arles Woods\\u003c/forge-entity\\u003e (hamstring), S \\u003cforge-entity title=\\\"Kevin Byard\\\" slug=\\\"kevin-byard\\\" code=\\\"player\\\"\\u003eKevin Byard\\u003c/forge-entity\\u003e (chest), S \\u003cforge-entity title=\\\"Brenden Schooler\\\" slug=\\\"brenden-schooler\\\" code=\\\"player\\\"\\u003eBrenden Schooler\\u003c/forge-entity\\u003e (hamstring)\\n\\n### LIONS\\n\\n* **",
       "following_context": "** S \\u003cforge-entity title=\\\"Kerby Joseph\\\" slug=\\\"kerby-joseph\\\" code=\\\"player\\\"\\u003eKerby Joseph\\u003c/forge-entity\\u003e (knee), C \\u003cforge-entity title=\\\"Cade Mays\\\" slug=\\\"cade-mays\\\" code=\\\"player\\\"\\u003eCade Mays\\u003c/forge-entity\\u003e (ankle), CB \\u003cforge-entity title=\\\"D.J. Reed\\\" slug=\\\"d-j-reed\\\" code=\\\"player\\\"\\u003eD.J. Reed\\u003c/forge-entity\\u003e (hip)\\n* **QUESTIONABLE:** RB \\u003cforge-entity title=\\\"Sione Vaki\\\" slug=\\\"sione-vaki\\\" code=\\\"player\\\"\\u003eSione Vaki\\u003c/forge-entity\\u003e (ankle), WR \\u003cforge-entity title=\\\"Amon-Ra St. Brown\\\" slug=\\\"amon-ra-st-brown\\\" code=\\\"player\\\"\\u003eAmon-Ra St. Brown\\u003c/forge-entity\\u003e (rib)\"])\nself.__next_f.push([1,\"5:[[\\\"$\\\",\\\"$L15\\\",null,{\\\"moduleIds\\\":[\\\"utils/renderHandlers/renderTemplate.tsx -\\u003e ../../components/templates/AdTemplate/AdTemplateContainer\\\"]}],[\\\"$\\\",\\\"div\\\",null,{\\\"className\\\":\\\"bg-(--bg-color)\\\",\\\"data-mode\\\":\\\"light\\\",\\\"style\\\":{\\\"--bg-color\\\":\\\"#FFF\\\"},\\\"children\\\":[[\\\"$\\\",\\\"$L16",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "e1:00 p.m. ET\\u003c/a\\u003e | \\u003ca href=\\\\\\\"https://www.nfl.com/ways-to-watch/by-week/week-10#chiefs-at-falcons-2026-reg-10\\\\\\\" rel=\\\\\\\"noopener noreferrer\\\\\\\" target=\\\\\\\"_blank\\\\\\\"\\u003eCBS\\u003c/a\\u003e\\u003c/li\\u003e\\u003c/ul\\u003e\\\",\\\"storyParts\\\":[],\\\"trending\\\":{}}},{\\\"storyPartId\\\":\\\"text\\\",\\\"content\\\":{\\\"content\\\":\\\"### FALCONS\\\\n\\\\n* **",
+      "following_context": "** WR \\u003cforge-entity title=\\\\\\\"Zachariah Branch\\\\\\\" slug=\\\\\\\"zachariah-branch\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eZachariah Branch\\u003c/forge-entity\\u003e (hamstring)\\\\n* **DOUBTFUL:** LB \\u003cforge-entity title=\\\\\\\"Divine Deablo\\\\\\\" slug=\\\\\\\"divine-deablo\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eDivine Deablo\\u003c/forge-entity\\u003e (forearm)\\\\n* **QUESTIONABLE:** DE \\u003cforge-entity title=\\\\\\\"James Pearce Jr.\\\\\\\" slug=\\\\\\\"james-pearce-jr\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJames Pearce Jr.\\u003c/forge-entity\\u003e (back), DT \\u003cforge-entity title=\\\\\\\"Gervon Dexter\\\\\\\" slug=\\\\\\\"gervon-dexter\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eGervon Dexter\\u003c/forge-entity\\u003e (illness), LB \\u003cforge-entity title=\\\\\\\"Josh Woods\\\\\\\" slug=\\\\\\\"josh-woods\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJosh Woods\\u003c/forge-entity\\u003e (ankle)\\\"}},{\\\"storyPartId\\\":\\\"rankedCards\\\",\\\"content\\\":{\\\"template\\\":\\\"team-team\\\",\\\"team\\\":{\\\"displayName\\\":\\\"Houston Texans\\\",\\\"teamLogo\\\":{\\\"title\\\":\\\"Houston Texans\\\",\\\"thumbnailUrl\\\":\\\"https://sta",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": ":00 p.m. ET\\u003c/a\\u003e | \\u003ca href=\\\\\\\"https://www.nfl.com/ways-to-watch/by-week/week-10#panthers-at-saints-2026-reg-10\\\\\\\" rel=\\\\\\\"noopener noreferrer\\\\\\\" target=\\\\\\\"_blank\\\\\\\"\\u003eFOX\\u003c/a\\u003e\\u003c/li\\u003e\\u003c/ul\\u003e\\\",\\\"storyParts\\\":[],\\\"trending\\\":{}}},{\\\"storyPartId\\\":\\\"text\\\",\\\"content\\\":{\\\"content\\\":\\\"### PANTHERS\\\\n\\\\n* **",
+      "following_context": "** LB \\u003cforge-entity title=\\\\\\\"Bobby Okereke\\\\\\\" slug=\\\\\\\"bobby-okereke\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eBobby Okereke\\u003c/forge-entity\\u003e (foot)\\\\n* **DOUBTFUL:** RB \\u003cforge-entity title=\\\\\\\"Jonathon Brooks\\\\\\\" slug=\\\\\\\"jonathon-brooks\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJonathon Brooks\\u003c/forge-entity\\u003e (groin), CB \\u003cforge-entity title=\\\\\\\"Mike Jackson\\\\\\\" slug=\\\\\\\"mike-jackson\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eMike Jackson\\u003c/forge-entity\\u003e (groin)\\\\n* **QUESTIONABLE:** WR \\u003cforge-entity title=\\\\\\\"Xavier Legette\\\\\\\" slug=\\\\\\\"xavier-legette\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eXavier Legette\\u003c/forge-entity\\u003e (knee), OL \\u003cforge-entity title=\\\\\\\"Brady Christensen\\\\\\\" slug=\\\\\\\"brady-christensen\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eBrady Christensen\\u003c/forge-entity\\u003e (hamstring), OLB \\u003cforge-entity title=\\\\\\\"Jaelan Phillips\\\\\\\" slug=\\\\\\\"jaelan-phillips\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJaelan Phillips\\u003c/forge-entity\\u003e (hamstring), CB \\u003cforge-entity title=",
       "team_verified": false,
       "player_status_verified": false
     },
@@ -64,6 +92,18 @@
       "player_status_verified": false
     },
     {
+      "preceding_context": "e1:00 p.m. ET\\u003c/a\\u003e | \\u003ca href=\\\\\\\"https://www.nfl.com/ways-to-watch/by-week/week-10#chiefs-at-falcons-2026-reg-10\\\\\\\" rel=\\\\\\\"noopener noreferrer\\\\\\\" target=\\\\\\\"_blank\\\\\\\"\\u003eCBS\\u003c/a\\u003e\\u003c/li\\u003e\\u003c/ul\\u003e\\\",\\\"storyParts\\\":[],\\\"trending\\\":{}}},{\\\"storyPartId\\\":\\\"text\\\",\\\"content\\\":{\\\"content\\\":\\\"### FALCONS\\\\n\\\\n* **",
+      "following_context": "** WR \\u003cforge-entity title=\\\\\\\"Zachariah Branch\\\\\\\" slug=\\\\\\\"zachariah-branch\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eZachariah Branch\\u003c/forge-entity\\u003e (hamstring)\\\\n* **DOUBTFUL:** LB \\u003cforge-entity title=\\\\\\\"Divine Deablo\\\\\\\" slug=\\\\\\\"divine-deablo\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eDivine Deablo\\u003c/forge-entity\\u003e (forearm)\\\\n* **QUESTIONABLE:** DE \\u003cforge-entity title=\\\\\\\"James Pearce Jr.\\\\\\\" slug=\\\\\\\"james-pearce-jr\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJames Pearce Jr.\\u003c/forge-entity\\u003e (back), DT \\u003cforge-entity title=\\\\\\\"Gervon Dexter\\\\\\\" slug=\\\\\\\"gervon-dexter\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eGervon Dexter\\u003c/forge-entity\\u003e (illness), LB \\u003cforge-entity title=\\\\\\\"Josh Woods\\\\\\\" slug=\\\\\\\"josh-woods\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJosh Woods\\u003c/forge-entity\\u003e (ankle)\\\"}},{\\\"storyPartId\\\":\\\"rankedCards\\\",\\\"content\\\":{\\\"template\\\":\\\"team-team\\\",\\\"team\\\":{\\\"displayName\\\":\\\"Houston Texans\\\",\\\"teamLogo\\\":{\\\"title\\\":\\\"Houston Texans\\\",\\\"thumbnailUrl\\\":\\\"https://sta",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": ":00 p.m. ET\\u003c/a\\u003e | \\u003ca href=\\\\\\\"https://www.nfl.com/ways-to-watch/by-week/week-10#panthers-at-saints-2026-reg-10\\\\\\\" rel=\\\\\\\"noopener noreferrer\\\\\\\" target=\\\\\\\"_blank\\\\\\\"\\u003eFOX\\u003c/a\\u003e\\u003c/li\\u003e\\u003c/ul\\u003e\\\",\\\"storyParts\\\":[],\\\"trending\\\":{}}},{\\\"storyPartId\\\":\\\"text\\\",\\\"content\\\":{\\\"content\\\":\\\"### PANTHERS\\\\n\\\\n* **",
+      "following_context": "** LB \\u003cforge-entity title=\\\\\\\"Bobby Okereke\\\\\\\" slug=\\\\\\\"bobby-okereke\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eBobby Okereke\\u003c/forge-entity\\u003e (foot)\\\\n* **DOUBTFUL:** RB \\u003cforge-entity title=\\\\\\\"Jonathon Brooks\\\\\\\" slug=\\\\\\\"jonathon-brooks\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJonathon Brooks\\u003c/forge-entity\\u003e (groin), CB \\u003cforge-entity title=\\\\\\\"Mike Jackson\\\\\\\" slug=\\\\\\\"mike-jackson\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eMike Jackson\\u003c/forge-entity\\u003e (groin)\\\\n* **QUESTIONABLE:** WR \\u003cforge-entity title=\\\\\\\"Xavier Legette\\\\\\\" slug=\\\\\\\"xavier-legette\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eXavier Legette\\u003c/forge-entity\\u003e (knee), OL \\u003cforge-entity title=\\\\\\\"Brady Christensen\\\\\\\" slug=\\\\\\\"brady-christensen\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eBrady Christensen\\u003c/forge-entity\\u003e (hamstring), OLB \\u003cforge-entity title=\\\\\\\"Jaelan Phillips\\\\\\\" slug=\\\\\\\"jaelan-phillips\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJaelan Phillips\\u003c/forge-entity\\u003e (hamstring), CB \\u003cforge-entity title=",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
       "preceding_context": "a\\u003e | \\u003ca href=\\\\\\\"https://www.nfl.com/ways-to-watch/by-week/week-10#commanders-at-giants-2026-reg-10\\\\\\\" rel=\\\\\\\"noopener noreferrer\\\\\\\" target=\\\\\\\"_blank\\\\\\\"\\u003ePrime Video, NFL+\\u003c/a\\u003e\\u003c/li\\u003e\\u003c/ul\\u003e\\\",\\\"storyParts\\\":[],\\\"trending\\\":{}}},{\\\"storyPartId\\\":\\\"text\\\",\\\"content\\\":{\\\"content\\\":\\\"### COMMANDERS\\\\n\\\\n* **",
       "following_context": "** TE \\u003cforge-entity title=\\\\\\\"Colson Yankoff\\\\\\\" slug=\\\\\\\"colson-yankoff\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eColson Yankoff\\u003c/forge-entity\\u003e (knee), C \\u003cforge-entity title=\\\\\\\"Lucas Patrick\\\\\\\" slug=\\\\\\\"lucas-patrick\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eLucas Patrick\\u003c/forge-entity\\u003e (concussion)\\\\n\\\\n### GIANTS\\\\n\\\\n* **QUESTIONABLE:** LB \\u003cforge-entity title=\\\\\\\"Malik Harrison\\\\\\\" slug=\\\\\\\"malik-harrison\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eMalik Harrison\\u003c/forge-entity\\u003e (groin)\\\"}},{\\\"storyPartId\\\":\\\"author\\\",\\\"content\\\":{\\\"entityId\\\":\\\"7d9af702-f7c9-4575-9ad5-f0801e814b59\\\",\\\"title\\\":\\\"Around the NFL Staff\\\",\\\"slug\\\":\\\"around-the-nfl-staff\\\",\\\"thumbnailUrl\\\":\\\"https://static.www.nfl.com/image/private/{formatInstructions}/league/zy6u1v6ha5cvjjb3kamw\\\",\\\"fields\\\":{\\\"description\\\":\\\"NFL.com\\\"}}}]},\\\"utagData\\\":{\\\"articleID\\\":\\\"fa6a46b1-15da-46ea-bee5-f77115811990\\\",\\\"articleLayout\\\":\\\"standard\\\",\\\"articleName\\\":\\\"NFL Week 10 injury report: Player statuses for all 14 gam",
       "team_verified": false,
@@ -78,6 +118,18 @@
     {
       "preceding_context": "50 underline\\\",\\\"href\\\":\\\"/players/brenden-schooler\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Brenden Schooler\\\"}]\\n69:[\\\"$\\\",\\\"h3\\\",\\\"h3-1\\\",{\\\"children\\\":\\\"LIONS\\\"}]\\n\"])\nself.__next_f.push([1,\"6a:[\\\"$\\\",\\\"ul\\\",\\\"ul-1\\\",{\\\"children\\\":[\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-0\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"",
       "following_context": "\\\"}],\\\" S \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/kerby-joseph\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Kerby Joseph\\\"}],\\\" (knee), C \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/cade-mays\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Cade Mays\\\"}],\\\" (ankle), CB \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-2\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/d-j-reed\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"D.J. Reed\\\"}],\\\" (hip)\\\"]}],\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-1\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"QUESTIONABLE:\\\"}],\\\" RB \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"clas",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "{\\\"className\\\":\\\"rounded-2xl mb-5\\\",\\\"id\\\":\\\"$undefined\\\",\\\"children\\\":[\\\"$\\\",\\\"div\\\",null,{\\\"className\\\":\\\"story-part-rich-text-editor-wrapper\\\",\\\"children\\\":[[\\\"$\\\",\\\"h3\\\",\\\"h3-0\\\",{\\\"children\\\":\\\"FALCONS\\\"}],\\\"\\\\n\\\",[\\\"$\\\",\\\"ul\\\",\\\"ul-0\\\",{\\\"children\\\":[\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-0\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"",
+      "following_context": "\\\"}],\\\" WR \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/zachariah-branch\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Zachariah Branch\\\"}],\\\" (hamstring)\\\"]}],\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-1\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"DOUBTFUL:\\\"}],\\\" LB \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/divine-deablo\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Divine Deablo\\\"}],\\\" (forearm)\\\"]}],\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-2\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"QUESTIONABLE:\\\"}],\\\" DE \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/james-pearce-jr\\\",\\\"target\\\":\\\"_blank\\",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "\\\"className\\\":\\\"rounded-2xl mb-5\\\",\\\"id\\\":\\\"$undefined\\\",\\\"children\\\":[\\\"$\\\",\\\"div\\\",null,{\\\"className\\\":\\\"story-part-rich-text-editor-wrapper\\\",\\\"children\\\":[[\\\"$\\\",\\\"h3\\\",\\\"h3-0\\\",{\\\"children\\\":\\\"PANTHERS\\\"}],\\\"\\\\n\\\",[\\\"$\\\",\\\"ul\\\",\\\"ul-0\\\",{\\\"children\\\":[\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-0\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"",
+      "following_context": "\\\"}],\\\" LB \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/bobby-okereke\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Bobby Okereke\\\"}],\\\" (foot)\\\"]}],\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-1\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"DOUBTFUL:\\\"}],\\\" RB \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/jonathon-brooks\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Jonathon Brooks\\\"}],\\\" (groin), CB \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/mike-jackson\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Mike Jackson\\\"}],\\\" (groin)\\\"]}],\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-2\\\",{\\\"children\\\":[[\\\"$\\\",\\\"st",
       "team_verified": false,
       "player_status_verified": false
     },
@@ -104,11 +156,61 @@
       "eligible_for_projection_adjustment": false
     },
     {
+      "team_heading_unverified": "FALCONS",
+      "fantasy_player_names_unverified": [
+        "Zachariah Branch"
+      ],
+      "section_boundary_detected": true,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": "PANTHERS",
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": true,
+      "eligible_for_projection_adjustment": false
+    },
+    {
       "team_heading_unverified": "COMMANDERS",
       "fantasy_player_names_unverified": [
         "Colson Yankoff"
       ],
       "section_boundary_detected": true,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
       "eligible_for_projection_adjustment": false
     },
     {
@@ -180,6 +282,14 @@
           "position": "RB"
         }
       ],
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Zachariah Branch",
+      "official_team_heading": "FALCONS",
+      "expected_team": "ATL",
+      "match_status": "unmatched",
+      "matches": [],
       "eligible_for_projection_adjustment": false
     },
     {
