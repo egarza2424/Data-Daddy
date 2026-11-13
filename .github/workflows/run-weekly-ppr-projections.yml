@@ -53,21 +53,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas numpy
 
-      - name: Guard Week 9 projection inputs against stale snapshots
+      - name: Guard Week 10 projection inputs against stale snapshots
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
 
-          expected_week = 9
+          expected_week = 10
           stats_path = Path("nfl-stats.json")
           if not stats_path.exists():
-              raise SystemExit("Missing nfl-stats.json; refusing to publish unverified Week 9 projections.")
+              raise SystemExit("Missing nfl-stats.json; refusing to publish unverified Week 10 projections.")
           stats = json.loads(stats_path.read_text(encoding="utf-8"))
           actual_week = int(stats.get("target_week") or 0)
           if actual_week != expected_week:
               raise SystemExit(
-                  f"Week 9 projection refresh blocked: nfl-stats.json target_week={actual_week}. "
+                  f"Week 10 projection refresh blocked: nfl-stats.json target_week={actual_week}. "
                   "Update the weekly snapshot before publishing."
               )
           import csv
@@ -82,7 +82,7 @@ jobs:
                   f"Week {expected_week} refresh blocked: live model snapshot weeks={sorted(snapshot_weeks)}. "
                   f"Generate and verify the Week {expected_week} snapshot before publishing."
               )
-          print("Week 9 target week and live snapshot verified.")
+          print("Week 10 target week and live snapshot verified.")
           PY
 
       - name: Audit actual PPR feed for displayed week
@@ -130,7 +130,7 @@ jobs:
         continue-on-error: true
         run: |
           python -m py_compile scripts/collect_official_injury_report.py
-          python scripts/collect_official_injury_report.py --season 2026 --week 9
+          python scripts/collect_official_injury_report.py --season 2026 --week 10
 
       - name: Generate weekly RB J2 projections
         run: |
@@ -153,7 +153,7 @@ jobs:
           python scripts/build_starter_absence_evidence.py \
             --stats historical-data/player_stats_2026.csv \
             --pbp historical-data/play_by_play_2026.csv.gz \
-            --season 2026 --week 9 \
+            --season 2026 --week 10 \
             --output projection-model/validation/starter-absence-evidence.csv
 
       - name: Audit injury-created sleeper opportunities
@@ -161,7 +161,7 @@ jobs:
           python -m py_compile scripts/build_injury_opportunity_candidates.py
           python scripts/build_injury_opportunity_candidates.py \
             --stats historical-data/player_stats_2026.csv \
-            --season 2026 --week 9 \
+            --season 2026 --week 10 \
             --evidence projection-model/validation/starter-absence-evidence.csv \
             --output projection-model/validation/injury-opportunity-candidates.csv
 
@@ -645,7 +645,7 @@ jobs:
 
           protected = [
               "projection-model/2026-week9-ppr-projections.csv",
-              "projection-model/current-live-model-snapshot.csv",
+              # Current Week 10 live snapshot must remain untouched by this workflow.
               "projection-model/2026-week9-wr-editorial-ppr-rankings.csv",
           ]
           changed = [
