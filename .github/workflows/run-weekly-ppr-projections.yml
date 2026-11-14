@@ -203,8 +203,11 @@ jobs:
           if path.exists():
               overrides = {
               "Chuba Hubbard": 17.94,
+              "Corey Kiner": 12.91,
               "Ashton Jeanty": 8.67,
+              "Kaleb Johnson": 8.05,
               "Jonathan Taylor": 16.50,
+              "Seth McGowan": 5.33,
               "Javonte Williams": 16.91,
               "Kyren Williams": 17.91,
               "Breece Hall": 14.04,
