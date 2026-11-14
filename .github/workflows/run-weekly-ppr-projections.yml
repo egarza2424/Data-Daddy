@@ -333,6 +333,12 @@ jobs:
               "Nate Boerkircher": 0.00,
               "Hunter Henry": 10.11,
               "Charlie Kolar": 6.20,
+              "Brenton Strange": 8.15,
+              "Tyler Higbee": 8.05,
+              "Pat Freiermuth": 7.79,
+              "Juwan Johnson": 7.47,
+              "Mike Gesicki": 7.45,
+              "Michael Mayer": 6.59,
               }
               df = pd.read_csv(path)
               te = df["position"].eq("TE")
