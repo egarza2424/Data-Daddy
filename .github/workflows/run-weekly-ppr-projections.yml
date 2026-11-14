@@ -309,6 +309,44 @@ jobs:
               print(f"Preserved {len(overrides)} approved WR overrides")
           PY
 
+      - name: Preserve approved Week 10 TE manual PPR overrides
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import pandas as pd
+
+          path = Path("projection-model/2026-week10-ppr-projections.csv")
+          if path.exists():
+              overrides = {
+              "Darnell Washington": 7.50,
+              "AJ Barner": 7.36,
+              "Darren Waller": 9.03,
+              "Eli Raridon": 5.77,
+              "Harold Fannin Jr.": 10.65,
+              "Kyle Pitts Sr.": 10.27,
+              "Sam LaPorta": 10.01,
+              "Gunnar Helm": 0.00,
+              "Tommy Tremble": 6.67,
+              "Colby Parkinson": 6.82,
+              "Greg Dulcich": 6.80,
+              "Dawson Knox": 0.00,
+              "Nate Boerkircher": 0.00,
+              "Hunter Henry": 10.11,
+              "Charlie Kolar": 6.20,
+              }
+              df = pd.read_csv(path)
+              te = df["position"].eq("TE")
+              for player, points in overrides.items():
+                  mask = te & df["player_name"].eq(player)
+                  if mask.sum() != 1:
+                      raise SystemExit(f"Missing/duplicate approved TE: {player}")
+                  df.loc[mask, "projected_ppr"] = points
+              ranked = df.loc[te].sort_values("projected_ppr", ascending=False, kind="stable")
+              df.loc[ranked.index, "projected_position_rank"] = range(1, len(ranked) + 1)
+              df.to_csv(path, index=False, float_format="%.2f")
+              print(f"Preserved {len(overrides)} approved TE overrides")
+          PY
+
       - name: Guard AI Score consistency across website sections
         run: python scripts/test_ai_score_display_consistency.py
 
