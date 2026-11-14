@@ -1502,6 +1502,86 @@ function getRoleCompetitionWatch(projection) {
   return null;
 }
 
+// Week 10 analyst-approved sleeper order. ESPN ranks come from the supplied
+// Week 10 consensus screenshots; AI ranks are resolved from the live editorial
+// arrays, never the raw model snapshot. This does not change projections.
+const WEEK10_PUBLISHED_SLEEPERS = [
+  ["Audric Estimé","RB",41],
+  ["Konata Mumpfield","WR",47],
+  ["Keenan Allen","WR",37],
+  ["Kaleb Johnson","RB",45],
+  ["Woody Marks","RB",23],
+  ["Emmett Johnson","RB",38],
+  ["Mike Washington Jr.","RB",42],
+  ["Ryan Flournoy","WR",45],
+  ["Jameson Williams","WR",20],
+  ["Caleb Douglas","WR",34]
+];
+function renderWeek10PublishedSleepers(grid, weekBadge) {
+  if (weekBadge) weekBadge.textContent = "WEEK 10";
+  grid.replaceChildren();
+  const editorials = {RB:WEEK10_RB_EDITORIAL, WR:WEEK10_WR_EDITORIAL,
+    QB:WEEK10_QB_EDITORIAL, TE:WEEK10_TE_EDITORIAL};
+  const picks = WEEK10_PUBLISHED_SLEEPERS.filter(([name, position]) =>
+    currentSleeperPosition === "ALL" || currentSleeperPosition === position);
+  for (const [name, position, espnRank] of picks) {
+    const editorial = editorials[position];
+    const editorialIndex = editorial.findIndex(([n]) => normalizeName(n) === normalizeName(name));
+    if (editorialIndex < 0) continue;
+    const aiRank = editorialIndex + 1;
+    const aiScore = editorial[editorialIndex][1];
+    const projection = weeklyPprProjections.find(p =>
+      p.position === position && normalizeName(p.player_name) === normalizeName(name));
+    const player = projection ? getProjectionPlayer(projection) : null;
+    const unavailable = (player && (
+      ["OUT","IR","INJURED_RESERVE","PUP","INACTIVE","SUSPENDED"].includes(String(player.injuryStatus || "").toUpperCase()) ||
+      ["OUT","IR","INJURED_RESERVE","PUP","INACTIVE","SUSPENDED"].includes(String(player.status || "").toUpperCase()))) ||
+      verifiedInjuryOutKeys.has(name.toLowerCase() + "|" + String(projection?.team || "").toUpperCase());
+    if (unavailable) continue;
+    const pprRank = projection ? Number(projection.projected_position_rank) : NaN;
+    const projectedPpr = projection ? Number(projection.projected_ppr) : NaN;
+    const aiEdge = espnRank - aiRank;
+    const pprEdge = Number.isFinite(pprRank) ? espnRank - pprRank : null;
+    const card = document.createElement("article");
+    card.className = "sleeper-card";
+    const heading = document.createElement("h3");
+    heading.textContent = name;
+    const subtitle = document.createElement("p");
+    subtitle.textContent = position + " • " + (projection?.team || "Team unverified") +
+      " • " + (projection?.opponent || "Matchup TBD");
+    const title = document.createElement("div");
+    title.className = "sleeper-card-top";
+    const number = document.createElement("strong");
+    number.textContent = "#" + (WEEK10_PUBLISHED_SLEEPERS.findIndex(p => p[0] === name) + 1) + " • WEEK 10 SLEEPER";
+    title.appendChild(number);
+    const metrics = document.createElement("div");
+    metrics.className = "sleeper-metrics";
+    const values = [
+      ["ESPN RANK",position + espnRank],
+      ["DD AI RANK",position + aiRank],
+      ["DD PPR RANK",Number.isFinite(pprRank) ? position + pprRank : "—"],
+      ["AI EDGE", (aiEdge > 0 ? "+" : "") + aiEdge],
+      ["PPR EDGE",pprEdge === null ? "—" : (pprEdge > 0 ? "+" : "") + pprEdge],
+      ["PROJECTED PPR",Number.isFinite(projectedPpr) ? projectedPpr.toFixed(2) : "—"]
+    ];
+    for (const [label, value] of values) {
+      const metric = document.createElement("div");
+      const lbl = document.createElement("span"); lbl.textContent = label;
+      const val = document.createElement("strong"); val.textContent = value;
+      metric.append(lbl,val); metrics.appendChild(metric);
+    }
+    const note = document.createElement("p");
+    note.textContent = "Editorial sleeper based on the gap between DATA DADDY's published rankings and ESPN Week 10. Monitor role and game-day availability; a ranking edge does not guarantee production.";
+    card.append(title,heading,subtitle,metrics,note);
+    grid.appendChild(card);
+  }
+  if (!grid.childElementCount) {
+    const empty = document.createElement("p");
+    empty.textContent = "No available Week 10 editorial sleepers for this position.";
+    grid.appendChild(empty);
+  }
+}
+
 function renderWeeklySleepers() {
   const grid =
     document.getElementById(
@@ -1516,6 +1596,12 @@ function renderWeeklySleepers() {
     document.getElementById(
       "sleepersWeekBadge"
     );
+
+  if (!snapshotWeek && Number(document.documentElement.dataset.targetWeek) === 10 &&
+      currentSleeperPosition !== "DST") {
+    renderWeek10PublishedSleepers(grid, weekBadge);
+    return;
+  }
 
   const allSleepers =
     getWeeklySleeperCandidates();
