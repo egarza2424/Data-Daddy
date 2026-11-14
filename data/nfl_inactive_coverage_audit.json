@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-11-14T16:27:44.571454+00:00",
+  "generated_at_utc": "2026-11-14T20:53:39.511702+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
     "missing_near_kickoff": 0,
-    "pending": 14
+    "pending": 21
   },
   "games": [
     {
@@ -116,6 +116,62 @@
       "game_id": "2026_11_IND_HOU",
       "week": 11,
       "kickoff_utc": "2026-11-20T01:15:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_11_MIA_BUF",
+      "week": 11,
+      "kickoff_utc": "2026-11-22T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_11_BAL_CAR",
+      "week": 11,
+      "kickoff_utc": "2026-11-22T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_11_NO_CHI",
+      "week": 11,
+      "kickoff_utc": "2026-11-22T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_11_TEN_DAL",
+      "week": 11,
+      "kickoff_utc": "2026-11-22T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_11_TB_DET",
+      "week": 11,
+      "kickoff_utc": "2026-11-22T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_11_ARI_KC",
+      "week": 11,
+      "kickoff_utc": "2026-11-22T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_11_JAX_NYG",
+      "week": 11,
+      "kickoff_utc": "2026-11-22T18:00:00+00:00",
       "status": "pending",
       "official_inactives_verified": false,
       "source_url": null
