@@ -733,7 +733,7 @@ async function loadWeeklyPprProjections() {
 
   try {
     const response = await fetch(
-      `${projectionFile}?v=week10-manual-rb32-wr33`,
+      `${projectionFile}?v=week10-manual-rb32-wr39`,
       { cache: "no-store" }
     );
 
