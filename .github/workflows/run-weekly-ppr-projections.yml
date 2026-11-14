@@ -248,6 +248,62 @@ jobs:
               print(f"Preserved {len(overrides)} approved RB overrides")
           PY
 
+      - name: Preserve approved Week 10 WR manual PPR overrides
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import pandas as pd
+
+          path = Path("projection-model/2026-week10-ppr-projections.csv")
+          if path.exists():
+              overrides = {
+              "Matthew Golden": 14.24,
+              "Christian Watson": 14.66,
+              "Omar Cooper Jr.": 8.39,
+              "Chris Olave": 15.29,
+              "Justin Jefferson": 14.19,
+              "Rashee Rice": 13.81,
+              "Zay Flowers": 14.92,
+              "KC Concepcion Jr.": 11.10,
+              "DK Metcalf": 10.41,
+              "Jameson Williams": 12.18,
+              "Caleb Douglas": 10.14,
+              "Denzel Boston": 12.07,
+              "Germie Bernard": 13.91,
+              "Tetairoa McMillan": 14.84,
+              "Drake London": 11.78,
+              "DeMario Douglas": 11.25,
+              "Mack Hollins": 11.13,
+              "Parker Washington": 11.13,
+              "Wan'Dale Robinson": 10.91,
+              "Jakobi Meyers": 10.81,
+              "George Pickens": 12.80,
+              "Garrett Wilson": 10.73,
+              "Deebo Samuel Sr.": 10.73,
+              "Khalil Shakir": 10.15,
+              "Adonai Mitchell": 10.14,
+              "A.J. Brown": 11.97,
+              "DJ Moore": 13.47,
+              "Dylan Drummond": 0.00,
+              "Dominic Lovett": 0.00,
+              "Austin Trammell": 0.00,
+              "Tim Jones": 0.00,
+              "Xavier Hutchinson": 0.00,
+              "Nico Collins": 14.17,
+              }
+              df = pd.read_csv(path)
+              wr = df["position"].eq("WR")
+              for player, points in overrides.items():
+                  mask = wr & df["player_name"].eq(player)
+                  if mask.sum() != 1:
+                      raise SystemExit(f"Missing/duplicate approved WR: {player}")
+                  df.loc[mask, "projected_ppr"] = points
+              ranked = df.loc[wr].sort_values("projected_ppr", ascending=False, kind="stable")
+              df.loc[ranked.index, "projected_position_rank"] = range(1, len(ranked) + 1)
+              df.to_csv(path, index=False, float_format="%.2f")
+              print(f"Preserved {len(overrides)} approved WR overrides")
+          PY
+
       - name: Guard AI Score consistency across website sections
         run: python scripts/test_ai_score_display_consistency.py
 
