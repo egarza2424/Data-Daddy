@@ -353,6 +353,44 @@ jobs:
               print(f"Preserved {len(overrides)} approved TE overrides")
           PY
 
+      - name: Preserve approved Week 10 QB manual PPR overrides
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import pandas as pd
+
+          path = Path("projection-model/2026-week10-ppr-projections.csv")
+          if path.exists():
+              overrides = {
+              "Dak Prescott": 17.43,
+              "Tyler Shough": 17.71,
+              "Jared Goff": 16.88,
+              "Jordan Love": 15.80,
+              "Bryce Young": 15.70,
+              "Matthew Stafford": 15.43,
+              "C.J. Stroud": 16.43,
+              "Aaron Rodgers": 15.23,
+              "Deshaun Watson": 14.14,
+              "Justin Herbert": 13.86,
+              "Drew Lock": 14.36,
+              "Cam Ward": 12.86,
+              "Michael Penix Jr.": 14.19,
+              "Jacoby Brissett": 14.01,
+              "Kirk Cousins": 14.73,
+              }
+              df = pd.read_csv(path)
+              qb = df["position"].eq("QB")
+              for player, points in overrides.items():
+                  mask = qb & df["player_name"].eq(player)
+                  if mask.sum() != 1:
+                      raise SystemExit(f"Missing/duplicate approved QB: {player}")
+                  df.loc[mask, "projected_ppr"] = points
+              ranked = df.loc[qb].sort_values("projected_ppr", ascending=False, kind="stable")
+              df.loc[ranked.index, "projected_position_rank"] = range(1, len(ranked) + 1)
+              df.to_csv(path, index=False, float_format="%.2f")
+              print(f"Preserved {len(overrides)} approved QB overrides")
+          PY
+
       - name: Guard AI Score consistency across website sections
         run: python scripts/test_ai_score_display_consistency.py
 
