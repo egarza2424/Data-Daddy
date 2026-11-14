@@ -172,33 +172,33 @@ snapshot_week,player_id,player_name,position,team,opponent,roster_status,injury_
 10,7547,Amon-Ra St. Brown,WR,DET,NE,Active,Questionable,58.2,58.2,5,16.2,16.2,4,69,63,38,23,80,80,83.0,F_position_specific,2025
 10,6801,Tee Higgins,WR,CIN,PIT,Active,,59.4,59.4,4,15.21,15.21,6,53,100,23,23,80,45,84.0,F_position_specific,2025
 10,8167,Christian Watson,WR,GB,MIN,Active,,51.0,51.0,9,14.66,13.66,9,58,71,25,0,79,30,65.0,F_position_specific,2025
-10,13276,Omar Cooper Jr.,WR,NYJ,BUF,Active,Questionable,45.4,45.4,18,8.39,13.39,36,51,69,26,9,69,20,56.0,F_position_specific,2025
+10,13276,Omar Cooper Jr.,WR,NYJ,BUF,Active,Questionable,45.4,45.4,18,8.39,13.39,42,51,69,26,9,69,20,56.0,F_position_specific,2025
 10,8144,Chris Olave,WR,NO,CAR,Active,,53.0,53.0,7,15.29,13.29,5,64,51,29,9,84,53,79.0,F_position_specific,2025
 10,6794,Justin Jefferson,WR,MIN,GB,Active,,51.6,51.6,8,14.19,12.99,11,60,37,33,13,83,63,50.0,F_position_specific,2025
 10,10229,Rashee Rice,WR,KC,ATL,Active,,48.5,48.5,11,13.81,12.81,14,53,52,28,9,83,37,78.0,F_position_specific,2025
 10,9997,Zay Flowers,WR,BAL,LAC,Active,,47.4,47.4,14,14.92,12.72,7,56,39,33,6,58,70,59.0,F_position_specific,2025
-10,13298,KC Concepcion Jr.,WR,CLE,HOU,Active,,44.6,44.6,23,11.10,12.1,24,53,58,24,9,60,41,41.0,F_position_specific,2025
-10,5846,DK Metcalf,WR,PIT,CIN,Active,,46.7,46.7,16,10.41,11.41,29,60,35,28,19,54,50,66.0,F_position_specific,2025
+10,13298,KC Concepcion Jr.,WR,CLE,HOU,Active,,44.6,44.6,23,11.10,12.1,25,53,58,24,9,60,41,41.0,F_position_specific,2025
+10,5846,DK Metcalf,WR,PIT,CIN,Active,,46.7,46.7,16,10.41,11.41,33,60,35,28,19,54,50,66.0,F_position_specific,2025
 10,8148,Jameson Williams,WR,DET,NE,Active,,50.2,50.2,10,12.18,11.18,17,40,57,22,23,58,80,83.0,F_position_specific,2025
-10,13296,Caleb Douglas,WR,MIA,IND,Active,,41.4,41.4,29,10.14,11.14,31,38,50,24,6,66,38,38.0,F_position_specific,2025
+10,13296,Caleb Douglas,WR,MIA,IND,Active,,41.4,41.4,29,10.14,11.14,35,38,50,24,6,66,38,38.0,F_position_specific,2025
 10,13346,Denzel Boston,WR,CLE,HOU,Active,Questionable,42.9,42.9,26,12.07,11.07,18,58,37,25,28,72,41,41.0,F_position_specific,2025
 10,13274,Germie Bernard,WR,PIT,CIN,Active,,45.2,45.2,19,13.91,10.91,13,49,47,23,13,56,50,66.0,F_position_specific,2025
 10,12526,Tetairoa McMillan,WR,CAR,NO,Active,,45.6,45.6,17,14.84,10.84,8,51,42,23,15,75,50,66.0,F_position_specific,2025
 10,8112,Drake London,WR,ATL,KC,Active,,44.7,44.7,21,11.78,10.78,20,47,39,25,17,63,38,62.0,F_position_specific,2025
-10,9487,Parker Washington,WR,JAX,TEN,Active,,47.5,47.5,13,11.13,10.13,23,47,33,24,15,63,75,95.0,F_position_specific,2025
-10,8126,Wan'Dale Robinson,WR,TEN,JAX,Active,,40.8,40.8,30,10.91,9.91,25,44,33,23,13,70,40,41.0,F_position_specific,2025
-10,5947,Jakobi Meyers,WR,JAX,TEN,Active,,47.3,47.3,15,10.81,9.81,26,42,33,23,26,67,75,95.0,F_position_specific,2025
+10,9487,Parker Washington,WR,JAX,TEN,Active,,47.5,47.5,13,11.13,10.13,24,47,33,24,15,63,75,95.0,F_position_specific,2025
+10,8126,Wan'Dale Robinson,WR,TEN,JAX,Active,,40.8,40.8,30,10.91,9.91,26,44,33,23,13,70,40,41.0,F_position_specific,2025
+10,5947,Jakobi Meyers,WR,JAX,TEN,Active,,47.3,47.3,15,10.81,9.81,27,42,33,23,26,67,75,95.0,F_position_specific,2025
 10,8137,George Pickens,WR,DAL,SF,Active,,44.7,44.7,22,12.80,9.8,16,47,42,19,13,70,37,82.0,F_position_specific,2025
-10,8146,Garrett Wilson,WR,NYJ,BUF,Active,Questionable,37.9,37.9,45,10.73,9.73,27,47,32,23,15,54,20,56.0,F_position_specific,2025
-10,5872,Deebo Samuel Sr.,WR,SF,DAL,Active,,44.8,44.8,20,10.73,9.67,28,36,45,20,11,51,47,100.0,F_position_specific,2025
-10,4177,Mack Hollins,WR,NE,DET,Active,,41.6,41.6,28,11.13,9.65,22,42,42,19,13,70,35,68.0,StarterAbsence_Receiving_25pct_retention,2025
-10,9501,DeMario Douglas,WR,NE,DET,Active,,40.5,40.5,32,11.25,9.32,21,36,44,18,4,63,35,68.0,StarterAbsence_Receiving_25pct_retention,2025
-10,8134,Khalil Shakir,WR,BUF,NYJ,Active,,43.6,43.6,25,10.15,9.15,30,36,41,17,11,85,32,100.0,F_position_specific,2025
-10,11625,Adonai Mitchell,WR,NYJ,BUF,Active,Questionable,36.0,36.0,53,10.14,9.04,32,42,32,21,19,45,20,56.0,F_position_specific,2025
-10,10213,Tre Tucker,WR,LV,SEA,Active,,38.6,38.6,40,9.0,9.0,33,47,36,19,11,41,31,35.0,F_position_specific,2025
+10,8146,Garrett Wilson,WR,NYJ,BUF,Active,Questionable,37.9,37.9,45,10.73,9.73,29,47,32,23,15,54,20,56.0,F_position_specific,2025
+10,5872,Deebo Samuel Sr.,WR,SF,DAL,Active,,44.8,44.8,20,10.73,9.67,30,36,45,20,11,51,47,100.0,F_position_specific,2025
+10,4177,Mack Hollins,WR,NE,DET,Active,,41.6,41.6,28,11.13,9.65,23,42,42,19,13,70,35,68.0,StarterAbsence_Receiving_25pct_retention,2025
+10,9501,DeMario Douglas,WR,NE,DET,Active,,40.5,40.5,32,11.25,9.32,22,36,44,18,4,63,35,68.0,StarterAbsence_Receiving_25pct_retention,2025
+10,8134,Khalil Shakir,WR,BUF,NYJ,Active,,43.6,43.6,25,10.15,9.15,34,36,41,17,11,85,32,100.0,F_position_specific,2025
+10,11625,Adonai Mitchell,WR,NYJ,BUF,Active,Questionable,36.0,36.0,53,10.14,9.04,36,42,32,21,19,45,20,56.0,F_position_specific,2025
+10,10213,Tre Tucker,WR,LV,SEA,Active,,38.6,38.6,40,9.0,9.0,39,47,36,19,11,41,31,35.0,F_position_specific,2025
 10,5859,A.J. Brown,WR,NE,DET,Active,Questionable,38.4,38.4,41,11.97,8.97,19,44,23,22,11,71,35,68.0,F_position_specific,2025
-10,9502,Tank Dell,WR,HOU,CLE,Active,,39.6,39.6,34,8.83,8.83,34,37,46,16,4,44,31,64.0,F_position_specific,2025
-10,11610,Malik Washington,WR,MIA,IND,Active,,37.0,37.0,48,8.51,8.51,35,33,30,19,15,71,38,38.0,F_position_specific,2025
+10,9502,Tank Dell,WR,HOU,CLE,Active,,39.6,39.6,34,8.83,8.83,40,37,46,16,4,44,31,64.0,F_position_specific,2025
+10,11610,Malik Washington,WR,MIA,IND,Active,,37.0,37.0,48,8.51,8.51,41,33,30,19,15,71,38,38.0,F_position_specific,2025
 10,4983,DJ Moore,WR,BUF,NYJ,Active,,43.7,43.7,24,13.47,8.47,15,38,33,18,21,55,32,100.0,F_position_specific,2025
 10,7746,Austin Trammell,WR,JAX,TEN,Active,,47.4,47.4,152,0.00,8.23,154,50,20,20,50,50,75,95.0,F_position_specific,2025
 10,12732,Dominic Lovett,WR,DET,NE,Active,,46.6,46.6,154,0.00,8.23,153,50,20,20,50,50,80,83.0,F_position_specific,2025
@@ -206,58 +206,58 @@ snapshot_week,player_id,player_name,position,team,opponent,roster_status,injury_
 10,8013,Tim Jones,WR,JAX,TEN,Active,,47.4,47.4,153,0.00,8.23,155,50,20,20,50,50,75,95.0,F_position_specific,2025
 10,10218,Xavier Hutchinson,WR,HOU,CLE,Active,,39.2,39.2,37,0.00,8.2,151,36,32,17,23,62,31,64.0,F_position_specific,2025
 10,7569,Nico Collins,WR,HOU,CLE,Active,,39.4,39.4,36,14.17,8.17,12,33,34,16,13,72,31,64.0,F_position_specific,2025
-10,11624,Xavier Worthy,WR,KC,ATL,Active,,39.1,39.1,39,8.07,8.07,37,40,23,18,13,77,37,78.0,F_position_specific,2025
-10,12482,Savion Williams,WR,GB,MIN,Active,,36.2,36.2,51,7.87,7.87,39,33,29,17,9,60,30,65.0,F_position_specific,2025
-10,11783,Ryan Flournoy,WR,DAL,SF,Active,,40.3,40.3,33,7.85,7.85,40,27,37,14,17,78,37,82.0,F_position_specific,2025
-10,11834,Devaughn Vele,WR,NO,CAR,Active,,40.6,40.6,31,7.76,7.76,41,33,32,15,6,68,53,79.0,F_position_specific,2025
-10,11637,Keon Coleman,WR,BUF,NYJ,Active,,38.2,38.2,43,7.58,7.58,42,33,26,17,11,54,32,100.0,F_position_specific,2025
-10,9756,Jordan Addison,WR,MIN,GB,Active,Questionable,38.3,38.3,42,7.55,7.55,43,33,22,18,6,58,63,50.0,F_position_specific,2025
-10,11646,Jalen Coker,WR,CAR,NO,Active,,37.3,37.3,46,7.44,7.44,44,33,24,16,4,72,50,66.0,F_position_specific,2025
-10,9500,Josh Downs,WR,KC,ATL,Active,,34.5,34.5,59,7.35,7.35,46,20,20,20,11,50,37,78.0,F_position_specific,2025
-10,1479,Keenan Allen,WR,SF,DAL,Active,,36.2,36.2,50,7.35,7.35,45,20,20,20,4,50,47,100.0,F_position_specific,2025
-10,13270,CJ Daniels,WR,LA,ARI,Active,,35.5,35.5,55,7.34,7.34,48,20,20,20,50,50,38,74.0,F_position_specific,2025
-10,9754,Quentin Johnston,WR,LAC,BAL,Active,,35.9,35.9,54,7.34,7.34,49,27,33,13,0,77,51,35.0,F_position_specific,2025
-10,12530,Travis Hunter,WR,JAX,TEN,Active,,42.7,42.7,27,7.34,7.34,47,20,20,20,50,50,75,95.0,F_position_specific,2025
-10,13281,Jordyn Tyson,WR,NO,CAR,Active,,47.6,47.6,12,7.24,7.24,50,33,25,16,9,50,53,79.0,F_position_specific,2025
-10,12542,Efton Chism III,WR,NE,DET,Active,,34.9,34.9,58,7.94,7.22,38,24,32,15,13,46,35,68.0,StarterAbsence_Receiving_25pct_retention,2025
-10,8676,Rashid Shaheed,WR,SEA,LV,Active,,39.1,39.1,38,7.18,7.18,51,36,22,16,17,56,53,69.0,F_position_specific,2025
-10,12634,Jordan Watkins,WR,SF,DAL,Active,,38.0,38.0,44,7.09,7.09,52,24,36,13,0,46,47,100.0,F_position_specific,2025
-10,5086,Marquez Valdes-Scantling,WR,PIT,CIN,Active,,33.1,33.1,69,7.08,7.08,53,11,20,20,0,50,50,66.0,F_position_specific,2025
-10,3286,Demarcus Robinson,WR,SF,DAL,Active,,39.4,39.4,35,7.05,7.05,54,22,29,14,14,72,47,100.0,F_position_specific,2025
-10,12509,Tre' Harris,WR,LAC,BAL,Active,,33.3,33.3,66,6.99,6.99,55,31,16,17,4,70,51,35.0,F_position_specific,2025
-10,9504,Kayshon Boutte,WR,HOU,CLE,Active,,35.4,35.4,56,6.88,6.88,56,22,42,10,4,51,31,64.0,F_position_specific,2025
-10,8180,Jalen Nailor,WR,LV,SEA,Active,,33.6,33.6,62,6.6,6.6,57,29,24,13,17,66,31,35.0,F_position_specific,2025
-10,12499,Elic Ayomanor,WR,TEN,JAX,Active,,33.4,33.4,63,6.55,6.55,58,31,18,15,13,58,40,41.0,F_position_specific,2025
-10,8119,Jahan Dotson,WR,ATL,KC,Active,,33.4,33.4,64,5.9,5.9,59,22,20,13,9,50,38,62.0,F_position_specific,2025
-10,13311,Chris Bell,WR,MIA,IND,Active,Doubtful,25.5,25.5,122,5.83,5.83,60,24,15,15,0,34,38,38.0,F_position_specific,2025
-10,12670,KeAndre Lambert-Smith,WR,LAC,BAL,Active,,30.3,30.3,80,5.63,5.63,61,29,17,13,6,29,51,35.0,F_position_specific,2025
-10,4039,Cooper Kupp,WR,SEA,LV,Active,,35.3,35.3,57,5.55,5.55,62,20,21,10,11,73,53,69.0,F_position_specific,2025
-10,7571,Rashod Bateman,WR,BAL,LAC,Active,,34.0,34.0,60,5.34,5.34,63,20,12,12,2,74,70,59.0,F_position_specific,2025
-10,4351,Tim Patrick,WR,NYJ,BUF,Active,,28.6,28.6,91,5.1,5.1,64,20,13,10,0,84,20,56.0,F_position_specific,2025
-10,8147,John Metchie III,WR,CAR,NO,Active,,33.0,33.0,70,5.07,5.07,65,20,17,9,9,75,50,66.0,F_position_specific,2025
-10,12483,Jack Bech,WR,LV,SEA,Active,,29.3,29.3,86,5.06,5.06,66,18,21,9,6,55,31,35.0,F_position_specific,2025
-10,13264,Dohnte Meyers,WR,CIN,PIT,Active,,33.3,33.3,65,4.86,4.86,67,20,17,9,9,58,45,84.0,F_position_specific,2025
-10,7562,Tutu Atwell,WR,LA,ARI,Active,,37.3,37.3,47,4.82,4.82,68,22,14,10,0,50,38,74.0,F_position_specific,2025
-10,11635,Ladd McConkey,WR,LAC,BAL,Active,Questionable,28.3,28.3,95,4.81,4.81,69,20,18,10,0,30,51,35.0,F_position_specific,2025
-10,12497,Tory Horton,WR,SEA,LV,Active,,31.9,31.9,73,4.76,4.76,70,22,12,11,9,40,53,69.0,F_position_specific,2025
-10,13380,Brenen Thompson,WR,LAC,BAL,Active,Questionable,28.0,28.0,97,4.75,4.75,71,20,8,12,0,50,51,35.0,F_position_specific,2025
-10,13297,Reggie Virgil,WR,ARI,LAR,Active,,32.0,32.0,72,4.64,4.64,72,24,10,10,11,55,41,25.0,F_position_specific,2025
-10,3269,Chris Moore,WR,BAL,LAC,Active,,33.6,33.6,61,4.57,4.57,73,13,18,8,9,63,70,59.0,F_position_specific,2025
-10,6783,Jerry Jeudy,WR,CLE,HOU,Active,,27.9,27.9,98,4.51,4.51,74,20,14,9,2,47,41,41.0,F_position_specific,2025
-10,6271,Olamide Zaccheaus,WR,ATL,KC,Active,,29.4,29.4,84,4.3,4.3,75,20,3,11,4,61,38,62.0,F_position_specific,2025
-10,2197,Brandin Cooks,WR,SF,DAL,Active,,33.2,33.2,67,4.29,4.29,76,16,11,8,6,75,47,100.0,F_position_specific,2025
-10,11631,Brian Thomas Jr.,WR,JAX,TEN,Active,,36.1,36.1,52,4.2,4.2,77,16,10,9,23,56,75,95.0,F_position_specific,2025
-10,11629,Devontez Walker,WR,BAL,LAC,Active,,31.7,31.7,75,4.11,4.11,78,13,14,7,4,67,70,59.0,F_position_specific,2025
-10,4981,Calvin Ridley,WR,TEN,JAX,Active,,27.6,27.6,99,4.02,4.02,79,18,9,8,4,60,40,41.0,F_position_specific,2025
-10,7039,Cody White,WR,LV,SEA,Active,,27.6,27.6,100,3.99,3.99,80,20,9,8,15,53,31,35.0,F_position_specific,2025
-10,12860,Theo Wease Jr.,WR,LAC,BAL,Active,,28.3,28.3,96,3.96,3.96,81,13,12,7,9,67,51,35.0,F_position_specific,2025
-10,13338,Kevin Coleman Jr.,WR,MIA,IND,Active,,27.0,27.0,107,3.95,3.95,82,11,18,7,11,35,38,38.0,F_position_specific,2025
-10,13420,Bryce Lance,WR,NO,CAR,Active,,31.7,31.7,74,3.84,3.84,84,16,14,7,9,38,53,79.0,F_position_specific,2025
-10,00-0038839,Mitchell Tinsley,WR,CIN,PIT,UNKNOWN,,32.7,32.7,71,3.84,3.84,83,20,13,7,14,34,45,84.0,F_position_specific,2025
-10,13533,Barion Brown,WR,NO,CAR,Active,,31.4,31.4,76,3.77,3.77,85,11,19,5,0,49,53,79.0,F_position_specific,2025
-10,11616,Jacob Cowing,WR,SF,DAL,Active,,30.6,30.6,78,3.72,3.72,86,16,11,8,0,28,47,100.0,F_position_specific,2025
-10,12540,Chimere Dike,WR,TEN,JAX,Active,,27.0,27.0,106,3.71,3.71,87,13,21,5,2,28,40,41.0,F_position_specific,2025
-10,12718,Konata Mumpfield,WR,LA,ARI,Active,,36.6,36.6,49,3.7,3.7,88,13,8,7,6,69,38,74.0,F_position_specific,2025
+10,11624,Xavier Worthy,WR,KC,ATL,Active,,39.1,39.1,39,8.07,8.07,43,40,23,18,13,77,37,78.0,F_position_specific,2025
+10,12482,Savion Williams,WR,GB,MIN,Active,,36.2,36.2,51,7.87,7.87,45,33,29,17,9,60,30,65.0,F_position_specific,2025
+10,11783,Ryan Flournoy,WR,DAL,SF,Active,,40.3,40.3,33,7.85,7.85,46,27,37,14,17,78,37,82.0,F_position_specific,2025
+10,11834,Devaughn Vele,WR,NO,CAR,Active,,40.6,40.6,31,7.76,7.76,47,33,32,15,6,68,53,79.0,F_position_specific,2025
+10,11637,Keon Coleman,WR,BUF,NYJ,Active,,38.2,38.2,43,7.58,7.58,48,33,26,17,11,54,32,100.0,F_position_specific,2025
+10,9756,Jordan Addison,WR,MIN,GB,Active,Questionable,38.3,38.3,42,7.55,7.55,49,33,22,18,6,58,63,50.0,F_position_specific,2025
+10,11646,Jalen Coker,WR,CAR,NO,Active,,37.3,37.3,46,10.56,7.44,32,33,24,16,4,72,50,66.0,F_position_specific,2025
+10,9500,Josh Downs,WR,KC,ATL,Active,,34.5,34.5,59,9.83,7.35,38,20,20,20,11,50,37,78.0,F_position_specific,2025
+10,1479,Keenan Allen,WR,SF,DAL,Active,,36.2,36.2,50,11.32,7.35,21,20,20,20,4,50,47,100.0,F_position_specific,2025
+10,13270,CJ Daniels,WR,LA,ARI,Active,,35.5,35.5,55,7.34,7.34,51,20,20,20,50,50,38,74.0,F_position_specific,2025
+10,9754,Quentin Johnston,WR,LAC,BAL,Active,,35.9,35.9,54,7.34,7.34,52,27,33,13,0,77,51,35.0,F_position_specific,2025
+10,12530,Travis Hunter,WR,JAX,TEN,Active,,42.7,42.7,27,7.34,7.34,50,20,20,20,50,50,75,95.0,F_position_specific,2025
+10,13281,Jordyn Tyson,WR,NO,CAR,Active,,47.6,47.6,12,7.24,7.24,53,33,25,16,9,50,53,79.0,F_position_specific,2025
+10,12542,Efton Chism III,WR,NE,DET,Active,,34.9,34.9,58,7.94,7.22,44,24,32,15,13,46,35,68.0,StarterAbsence_Receiving_25pct_retention,2025
+10,8676,Rashid Shaheed,WR,SEA,LV,Active,,39.1,39.1,38,7.18,7.18,54,36,22,16,17,56,53,69.0,F_position_specific,2025
+10,12634,Jordan Watkins,WR,SF,DAL,Active,,38.0,38.0,44,7.09,7.09,55,24,36,13,0,46,47,100.0,F_position_specific,2025
+10,5086,Marquez Valdes-Scantling,WR,PIT,CIN,Active,,33.1,33.1,69,7.08,7.08,56,11,20,20,0,50,50,66.0,F_position_specific,2025
+10,3286,Demarcus Robinson,WR,SF,DAL,Active,,39.4,39.4,35,10.78,7.05,28,22,29,14,14,72,47,100.0,F_position_specific,2025
+10,12509,Tre' Harris,WR,LAC,BAL,Active,,33.3,33.3,66,6.99,6.99,57,31,16,17,4,70,51,35.0,F_position_specific,2025
+10,9504,Kayshon Boutte,WR,HOU,CLE,Active,,35.4,35.4,56,6.88,6.88,58,22,42,10,4,51,31,64.0,F_position_specific,2025
+10,8180,Jalen Nailor,WR,LV,SEA,Active,,33.6,33.6,62,6.6,6.6,59,29,24,13,17,66,31,35.0,F_position_specific,2025
+10,12499,Elic Ayomanor,WR,TEN,JAX,Active,,33.4,33.4,63,6.55,6.55,60,31,18,15,13,58,40,41.0,F_position_specific,2025
+10,8119,Jahan Dotson,WR,ATL,KC,Active,,33.4,33.4,64,5.9,5.9,61,22,20,13,9,50,38,62.0,F_position_specific,2025
+10,13311,Chris Bell,WR,MIA,IND,Active,Doubtful,25.5,25.5,122,5.83,5.83,62,24,15,15,0,34,38,38.0,F_position_specific,2025
+10,12670,KeAndre Lambert-Smith,WR,LAC,BAL,Active,,30.3,30.3,80,5.63,5.63,63,29,17,13,6,29,51,35.0,F_position_specific,2025
+10,4039,Cooper Kupp,WR,SEA,LV,Active,,35.3,35.3,57,5.55,5.55,64,20,21,10,11,73,53,69.0,F_position_specific,2025
+10,7571,Rashod Bateman,WR,BAL,LAC,Active,,34.0,34.0,60,5.34,5.34,65,20,12,12,2,74,70,59.0,F_position_specific,2025
+10,4351,Tim Patrick,WR,NYJ,BUF,Active,,28.6,28.6,91,5.1,5.1,66,20,13,10,0,84,20,56.0,F_position_specific,2025
+10,8147,John Metchie III,WR,CAR,NO,Active,,33.0,33.0,70,5.07,5.07,67,20,17,9,9,75,50,66.0,F_position_specific,2025
+10,12483,Jack Bech,WR,LV,SEA,Active,,29.3,29.3,86,5.06,5.06,68,18,21,9,6,55,31,35.0,F_position_specific,2025
+10,13264,Dohnte Meyers,WR,CIN,PIT,Active,,33.3,33.3,65,4.86,4.86,69,20,17,9,9,58,45,84.0,F_position_specific,2025
+10,7562,Tutu Atwell,WR,LA,ARI,Active,,37.3,37.3,47,10.11,4.82,37,22,14,10,0,50,38,74.0,F_position_specific,2025
+10,11635,Ladd McConkey,WR,LAC,BAL,Active,Questionable,28.3,28.3,95,4.81,4.81,70,20,18,10,0,30,51,35.0,F_position_specific,2025
+10,12497,Tory Horton,WR,SEA,LV,Active,,31.9,31.9,73,4.76,4.76,71,22,12,11,9,40,53,69.0,F_position_specific,2025
+10,13380,Brenen Thompson,WR,LAC,BAL,Active,Questionable,28.0,28.0,97,4.75,4.75,72,20,8,12,0,50,51,35.0,F_position_specific,2025
+10,13297,Reggie Virgil,WR,ARI,LAR,Active,,32.0,32.0,72,4.64,4.64,73,24,10,10,11,55,41,25.0,F_position_specific,2025
+10,3269,Chris Moore,WR,BAL,LAC,Active,,33.6,33.6,61,4.57,4.57,74,13,18,8,9,63,70,59.0,F_position_specific,2025
+10,6783,Jerry Jeudy,WR,CLE,HOU,Active,,27.9,27.9,98,4.51,4.51,75,20,14,9,2,47,41,41.0,F_position_specific,2025
+10,6271,Olamide Zaccheaus,WR,ATL,KC,Active,,29.4,29.4,84,4.3,4.3,76,20,3,11,4,61,38,62.0,F_position_specific,2025
+10,2197,Brandin Cooks,WR,SF,DAL,Active,,33.2,33.2,67,4.29,4.29,77,16,11,8,6,75,47,100.0,F_position_specific,2025
+10,11631,Brian Thomas Jr.,WR,JAX,TEN,Active,,36.1,36.1,52,4.2,4.2,78,16,10,9,23,56,75,95.0,F_position_specific,2025
+10,11629,Devontez Walker,WR,BAL,LAC,Active,,31.7,31.7,75,4.11,4.11,79,13,14,7,4,67,70,59.0,F_position_specific,2025
+10,4981,Calvin Ridley,WR,TEN,JAX,Active,,27.6,27.6,99,4.02,4.02,80,18,9,8,4,60,40,41.0,F_position_specific,2025
+10,7039,Cody White,WR,LV,SEA,Active,,27.6,27.6,100,3.99,3.99,81,20,9,8,15,53,31,35.0,F_position_specific,2025
+10,12860,Theo Wease Jr.,WR,LAC,BAL,Active,,28.3,28.3,96,3.96,3.96,82,13,12,7,9,67,51,35.0,F_position_specific,2025
+10,13338,Kevin Coleman Jr.,WR,MIA,IND,Active,,27.0,27.0,107,3.95,3.95,83,11,18,7,11,35,38,38.0,F_position_specific,2025
+10,13420,Bryce Lance,WR,NO,CAR,Active,,31.7,31.7,74,3.84,3.84,85,16,14,7,9,38,53,79.0,F_position_specific,2025
+10,00-0038839,Mitchell Tinsley,WR,CIN,PIT,UNKNOWN,,32.7,32.7,71,3.84,3.84,84,20,13,7,14,34,45,84.0,F_position_specific,2025
+10,13533,Barion Brown,WR,NO,CAR,Active,,31.4,31.4,76,3.77,3.77,86,11,19,5,0,49,53,79.0,F_position_specific,2025
+10,11616,Jacob Cowing,WR,SF,DAL,Active,,30.6,30.6,78,3.72,3.72,87,16,11,8,0,28,47,100.0,F_position_specific,2025
+10,12540,Chimere Dike,WR,TEN,JAX,Active,,27.0,27.0,106,3.71,3.71,88,13,21,5,2,28,40,41.0,F_position_specific,2025
+10,12718,Konata Mumpfield,WR,LA,ARI,Active,,36.6,36.6,49,10.64,3.7,31,13,8,7,6,69,38,74.0,F_position_specific,2025
 10,12503,Isaiah Bond,WR,CLE,HOU,Active,,24.9,24.9,128,3.56,3.56,89,16,12,7,0,27,41,41.0,F_position_specific,2025
 10,12535,Isaac TeSlaa,WR,DET,NE,Active,,33.1,33.1,68,3.49,3.49,90,13,5,7,9,70,80,83.0,F_position_specific,2025
 10,13268,Elijah Sarratt,WR,BAL,LAC,Active,,30.3,30.3,79,3.46,3.46,91,13,8,7,0,50,70,59.0,F_position_specific,2025
