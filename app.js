@@ -897,6 +897,15 @@ async function loadWeeklyPprProjections() {
       }
     }
 
+    // User-confirmed Week 10 inactive: exclude from current projections and sleepers.
+    // Preserve frozen pregame files and all other model projections.
+    if (targetWeek === 10 && !snapshotWeek) {
+      weeklyPprProjections = weeklyPprProjections.filter(row =>
+        !(String(row.position).toUpperCase() === "TE" &&
+          normalizeName(row.player_name) === normalizeName("T.J. Hockenson"))
+      );
+    }
+
     // Keep archived ranks unchanged: these are historical pregame predictions.
     // Current live ranks also remain as published; never renumber after results.
 
@@ -10115,6 +10124,10 @@ const depthOrder =
   // The pregame snapshot exporter bypasses this override.
   if (isWeek10RbEditorial(position) || isWeek10WrEditorial(position) || isWeek10TeEditorial(position) || isWeek10QbEditorial(position)) {
     const editorialOrder = position === "QB" ? WEEK10_QB_EDITORIAL : position === "WR" ? WEEK10_WR_EDITORIAL : position === "TE" ? WEEK10_TE_EDITORIAL : WEEK10_RB_EDITORIAL;
+    if (Number(document.documentElement.dataset.targetWeek) === 10 && !snapshotWeek) {
+      rankings.splice(0, rankings.length, ...rankings.filter(entry =>
+        !(entry.player.position === "TE" && normalizeName(entry.player.name) === normalizeName("T.J. Hockenson"))));
+    }
     const byName = new Map(rankings.map(entry => [normalizeName(entry.player.name), entry]));
     const editorial = editorialOrder.map(([name]) => byName.get(normalizeName(name))).filter(Boolean);
     const used = new Set(editorial.map(entry => String(entry.player.id)));
@@ -11762,10 +11775,6 @@ const WEEK10_TE_EDITORIAL = [
   [
     "Tucker Kraft",
     43.2
-  ],
-  [
-    "T.J. Hockenson",
-    45.3
   ],
   [
     "Kyle Pitts Sr.",
