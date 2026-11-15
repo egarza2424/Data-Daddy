@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-11-14T20:53:39.511702+00:00",
+  "generated_at_utc": "2026-11-15T00:49:49.837086+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
     "missing_near_kickoff": 0,
-    "pending": 21
+    "pending": 24
   },
   "games": [
     {
@@ -172,6 +172,30 @@
       "game_id": "2026_11_JAX_NYG",
       "week": 11,
       "kickoff_utc": "2026-11-22T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_11_NYJ_LAC",
+      "week": 11,
+      "kickoff_utc": "2026-11-22T21:05:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_11_LV_DEN",
+      "week": 11,
+      "kickoff_utc": "2026-11-22T21:25:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_11_PIT_PHI",
+      "week": 11,
+      "kickoff_utc": "2026-11-22T21:25:00+00:00",
       "status": "pending",
       "official_inactives_verified": false,
       "source_url": null
