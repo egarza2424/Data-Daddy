@@ -1,37 +1,13 @@
 {
-  "generated_at_utc": "2026-11-16T00:00:06.521904+00:00",
+  "generated_at_utc": "2026-11-16T06:13:11.642265+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 4,
-    "pending": 13
+    "missing_near_kickoff": 1,
+    "pending": 14
   },
   "games": [
-    {
-      "game_id": "2026_10_LA_ARI",
-      "week": 10,
-      "kickoff_utc": "2026-11-15T21:05:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
-    {
-      "game_id": "2026_10_SEA_LV",
-      "week": 10,
-      "kickoff_utc": "2026-11-15T21:05:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
-    {
-      "game_id": "2026_10_SF_DAL",
-      "week": 10,
-      "kickoff_utc": "2026-11-15T21:25:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
     {
       "game_id": "2026_10_PIT_CIN",
       "week": 10,
@@ -140,6 +116,14 @@
       "game_id": "2026_11_MIN_SF",
       "week": 11,
       "kickoff_utc": "2026-11-23T01:20:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_11_CIN_WAS",
+      "week": 11,
+      "kickoff_utc": "2026-11-24T01:15:00+00:00",
       "status": "pending",
       "official_inactives_verified": false,
       "source_url": null
