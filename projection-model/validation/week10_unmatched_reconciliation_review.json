@@ -5,7 +5,7 @@
   "total_projections": 321,
   "exact_matches": 242,
   "alias_matches": 7,
-  "remaining_unmatched": 54,
+  "remaining_unmatched": 57,
   "ambiguous": [],
   "methodology": "Same-position exact name, then same-team suffix normalization and explicitly mapped nickname. Missing actual records are not assumed to be zero or DNP. Team mismatches are not auto-joined.",
   "resolved": [
@@ -559,6 +559,33 @@
       "roster_status": "Active",
       "injury_status": "",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Ladd McConkey",
+      "team": "LAC",
+      "position": "WR",
+      "projected_ppr": 4.81,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "INACTIVE_STATUS_NOT_YET_CONFIRMED_FROM_OFFICIAL_SOURCE"
+    },
+    {
+      "player": "Brenen Thompson",
+      "team": "LAC",
+      "position": "WR",
+      "projected_ppr": 4.75,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "INACTIVE_STATUS_NOT_YET_CONFIRMED_FROM_OFFICIAL_SOURCE"
+    },
+    {
+      "player": "Elijah Sarratt",
+      "team": "BAL",
+      "position": "WR",
+      "projected_ppr": 3.46,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "INACTIVE_STATUS_NOT_YET_CONFIRMED_FROM_OFFICIAL_SOURCE"
     }
   ],
   "participation_policy": {
@@ -571,7 +598,8 @@
   "notes": [
     "Some unmatched projections may be inactive or OUT; projected roster_status Active does not establish game participation.",
     "No player-specific DNP classifications made without verified game participation evidence.",
-    "Verified inactive names checked against week 10 game-day inactive lists, including Monday night. Remaining missing records require box score or snap verification; active status is not equivalent to participation."
+    "Verified inactive names checked against week 10 game-day inactive lists, including Monday night. Remaining missing records require box score or snap verification; active status is not equivalent to participation.",
+    "2026-11-17 verification correction: only 15 Sunday inactive classifications supported by NFL.com; 3 previously classified without adequate source returned to pending (Ladd McConkey, Brenen Thompson, Elijah Sarratt). Monday game requires separate official inactives."
   ],
   "verified_inactive": [
     {
@@ -583,8 +611,9 @@
       "injury_status": "Questionable",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
       "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
+      "source": "https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season",
+      "source_week": 10,
+      "verification": "NFL official Week 10 Sunday inactive list"
     },
     {
       "player": "Emanuel Wilson",
@@ -595,8 +624,9 @@
       "injury_status": "",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
       "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
+      "source": "https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season",
+      "source_week": 10,
+      "verification": "NFL official Week 10 Sunday inactive list"
     },
     {
       "player": "Pierre Strong Jr.",
@@ -607,8 +637,9 @@
       "injury_status": "",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
       "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
+      "source": "https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season",
+      "source_week": 10,
+      "verification": "NFL official Week 10 Sunday inactive list"
     },
     {
       "player": "David Montgomery",
@@ -619,8 +650,9 @@
       "injury_status": "Questionable",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
       "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
+      "source": "https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season",
+      "source_week": 10,
+      "verification": "NFL official Week 10 Sunday inactive list"
     },
     {
       "player": "AJ Dillon",
@@ -631,8 +663,9 @@
       "injury_status": "",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
       "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
+      "source": "https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season",
+      "source_week": 10,
+      "verification": "NFL official Week 10 Sunday inactive list"
     },
     {
       "player": "Nicholas Singleton",
@@ -643,8 +676,9 @@
       "injury_status": "",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
       "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
+      "source": "https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season",
+      "source_week": 10,
+      "verification": "NFL official Week 10 Sunday inactive list"
     },
     {
       "player": "Jaydn Ott",
@@ -655,8 +689,9 @@
       "injury_status": "Questionable",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
       "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
+      "source": "https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season",
+      "source_week": 10,
+      "verification": "NFL official Week 10 Sunday inactive list"
     },
     {
       "player": "Ben VanSumeren",
@@ -667,8 +702,9 @@
       "injury_status": "",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
       "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
+      "source": "https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season",
+      "source_week": 10,
+      "verification": "NFL official Week 10 Sunday inactive list"
     },
     {
       "player": "Eli Heidenreich",
@@ -679,8 +715,9 @@
       "injury_status": "",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
       "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
+      "source": "https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season",
+      "source_week": 10,
+      "verification": "NFL official Week 10 Sunday inactive list"
     },
     {
       "player": "Will Mallory",
@@ -691,8 +728,9 @@
       "injury_status": "Questionable",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
       "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
+      "source": "https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season",
+      "source_week": 10,
+      "verification": "NFL official Week 10 Sunday inactive list"
     },
     {
       "player": "Jordan Addison",
@@ -703,8 +741,9 @@
       "injury_status": "Questionable",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
       "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
+      "source": "https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season",
+      "source_week": 10,
+      "verification": "NFL official Week 10 Sunday inactive list"
     },
     {
       "player": "Chris Bell",
@@ -715,8 +754,9 @@
       "injury_status": "Doubtful",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
       "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
+      "source": "https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season",
+      "source_week": 10,
+      "verification": "NFL official Week 10 Sunday inactive list"
     },
     {
       "player": "Tim Patrick",
@@ -727,32 +767,9 @@
       "injury_status": "",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
       "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
-    },
-    {
-      "player": "Ladd McConkey",
-      "team": "LAC",
-      "position": "WR",
-      "projected_ppr": 4.81,
-      "roster_status": "Active",
-      "injury_status": "Questionable",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
-      "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
-    },
-    {
-      "player": "Brenen Thompson",
-      "team": "LAC",
-      "position": "WR",
-      "projected_ppr": 4.75,
-      "roster_status": "Active",
-      "injury_status": "Questionable",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
-      "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
+      "source": "https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season",
+      "source_week": 10,
+      "verification": "NFL official Week 10 Sunday inactive list"
     },
     {
       "player": "Brandin Cooks",
@@ -763,20 +780,9 @@
       "injury_status": "",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
       "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
-    },
-    {
-      "player": "Elijah Sarratt",
-      "team": "BAL",
-      "position": "WR",
-      "projected_ppr": 3.46,
-      "roster_status": "Active",
-      "injury_status": "",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
-      "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
+      "source": "https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season",
+      "source_week": 10,
+      "verification": "NFL official Week 10 Sunday inactive list"
     },
     {
       "player": "Malik Benson",
@@ -787,10 +793,11 @@
       "injury_status": "",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
       "classification": "INACTIVE_DNP_EXCLUDE",
-      "source": "https://gocheckmysports.com/fantasy/inactives",
-      "source_week": 10
+      "source": "https://www.nfl.com/news/nfl-week-10-inactives-players-ruled-out-sunday-2026-season",
+      "source_week": 10,
+      "verification": "NFL official Week 10 Sunday inactive list"
     }
   ],
   "verified_bye": [],
-  "verified_exclusions": 18
+  "verified_exclusions": 15
 }
