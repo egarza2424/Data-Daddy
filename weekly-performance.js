@@ -199,5 +199,23 @@
       if(state.provisional){const note=root.querySelector("#trackerNote");note.textContent="PRELIMINARY · Monday players excluded · "+note.textContent;}
     }catch(e){status.textContent="Weekly audit data is not available yet.";const chart=document.getElementById("trackerAccuracyChart");if(chart)chart.textContent="No completed weekly accuracy audit available yet.";root.querySelector("#trackerCards").innerHTML="";}
   }
+  // Week 10 exploratory audit status. Never label unverified comparisons as final accuracy.
+  (async function showWeek10AuditStatus(){
+    try {
+      const response=await fetch("projection-model/validation/week10_exploratory_accuracy_review.json?t="+Date.now(),{cache:"no-store"});
+      if(!response.ok)return;
+      const audit=await response.json();
+      if(audit.week!==10 || audit.status!=="REVIEW_ONLY_NOT_KICKOFF_VERIFIED")return;
+      const banner=document.createElement("div");
+      banner.className="tracker-audit-pending";
+      banner.setAttribute("role","status");
+      const heading=document.createElement("strong");
+      heading.textContent="Week 10 · Preliminary accuracy audit";
+      const detail=document.createElement("p");
+      detail.textContent=audit.matched+" of "+audit.projection_rows+" projections matched; exploratory PPR MAE "+Number(audit.overall_mae).toFixed(2)+". "+audit.unmatched+" unmatched. Kickoff snapshot, injury status, and actuals reconciliation pending. Not final predictive accuracy.";
+      banner.append(heading,detail);
+      root.prepend(banner);
+    }catch(e){ /* Historical tracker remains usable when review file is unavailable. */ }
+  })();
   initialize();
 })();
