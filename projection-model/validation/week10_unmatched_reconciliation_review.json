@@ -1,0 +1,726 @@
+{
+  "season": 2026,
+  "week": 10,
+  "status": "RECONCILIATION_REVIEW_ONLY",
+  "total_projections": 321,
+  "exact_matches": 242,
+  "alias_matches": 7,
+  "remaining_unmatched": 72,
+  "ambiguous": [],
+  "methodology": "Same-position exact name, then same-team suffix normalization and explicitly mapped nickname. Missing actual records are not assumed to be zero or DNP. Team mismatches are not auto-joined.",
+  "resolved": [
+    {
+      "projected_name": "James Cook III",
+      "actual_name": "James Cook",
+      "team": "BUF",
+      "position": "RB",
+      "projected_ppr": 18.63,
+      "actual_ppr": 21.7,
+      "method": "suffix_normalization_same_team"
+    },
+    {
+      "projected_name": "Aaron Jones Sr.",
+      "actual_name": "Aaron Jones",
+      "team": "MIN",
+      "position": "RB",
+      "projected_ppr": 7.58,
+      "actual_ppr": 12.5,
+      "method": "suffix_normalization_same_team"
+    },
+    {
+      "projected_name": "Zonovan Knight",
+      "actual_name": "Bam Knight",
+      "team": "ARI",
+      "position": "RB",
+      "projected_ppr": 5.95,
+      "actual_ppr": 1.9,
+      "method": "known_nickname_same_team"
+    },
+    {
+      "projected_name": "Lew Nichols",
+      "actual_name": "Lew Nichols III",
+      "team": "PIT",
+      "position": "RB",
+      "projected_ppr": 1.15,
+      "actual_ppr": 5.5,
+      "method": "suffix_normalization_same_team"
+    },
+    {
+      "projected_name": "Kyle Pitts Sr.",
+      "actual_name": "Kyle Pitts",
+      "team": "ATL",
+      "position": "TE",
+      "projected_ppr": 10.27,
+      "actual_ppr": 7,
+      "method": "suffix_normalization_same_team"
+    },
+    {
+      "projected_name": "Oronde Gadsden",
+      "actual_name": "Oronde Gadsden II",
+      "team": "LAC",
+      "position": "TE",
+      "projected_ppr": 6.73,
+      "actual_ppr": 1.7,
+      "method": "suffix_normalization_same_team"
+    },
+    {
+      "projected_name": "KC Concepcion Jr.",
+      "actual_name": "KC Concepcion",
+      "team": "CLE",
+      "position": "WR",
+      "projected_ppr": 11.1,
+      "actual_ppr": 11.7,
+      "method": "suffix_normalization_same_team"
+    }
+  ],
+  "pending": [
+    {
+      "player": "Kenneth Walker III",
+      "team": "KC",
+      "position": "RB",
+      "projected_ppr": 19.5,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Emanuel Wilson",
+      "team": "SEA",
+      "position": "RB",
+      "projected_ppr": 3.57,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Pierre Strong Jr.",
+      "team": "GB",
+      "position": "RB",
+      "projected_ppr": 5.22,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "David Montgomery",
+      "team": "HOU",
+      "position": "RB",
+      "projected_ppr": 5.39,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Connor Heyward",
+      "team": "LV",
+      "position": "RB",
+      "projected_ppr": 0,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Amar Johnson",
+      "team": "LAC",
+      "position": "RB",
+      "projected_ppr": 5.52,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Kendall Milton",
+      "team": "CIN",
+      "position": "RB",
+      "projected_ppr": 5.52,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Terrell Jennings",
+      "team": "NE",
+      "position": "RB",
+      "projected_ppr": 5.52,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "George Holani",
+      "team": "SEA",
+      "position": "RB",
+      "projected_ppr": 5.48,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "DJ Giddens",
+      "team": "IND",
+      "position": "RB",
+      "projected_ppr": 5.34,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Ameer Abdullah",
+      "team": "JAX",
+      "position": "RB",
+      "projected_ppr": 4.37,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "AJ Dillon",
+      "team": "CAR",
+      "position": "RB",
+      "projected_ppr": 3.67,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Michael Carter",
+      "team": "TEN",
+      "position": "RB",
+      "projected_ppr": 3.61,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Nicholas Singleton",
+      "team": "TEN",
+      "position": "RB",
+      "projected_ppr": 3.07,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Jaleel McLaughlin",
+      "team": "CLE",
+      "position": "RB",
+      "projected_ppr": 2.96,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Carlos Washington Jr.",
+      "team": "MIA",
+      "position": "RB",
+      "projected_ppr": 2.38,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Jaydn Ott",
+      "team": "KC",
+      "position": "RB",
+      "projected_ppr": 2.16,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Kalel Mullings",
+      "team": "TEN",
+      "position": "RB",
+      "projected_ppr": 2.05,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Frank Gore Jr.",
+      "team": "BUF",
+      "position": "RB",
+      "projected_ppr": 1.92,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Zamir White",
+      "team": "NO",
+      "position": "RB",
+      "projected_ppr": 1.72,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Brady Russell",
+      "team": "SEA",
+      "position": "RB",
+      "projected_ppr": 1.59,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Evan Hull",
+      "team": "ARI",
+      "position": "RB",
+      "projected_ppr": 1.57,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Jabari Small",
+      "team": "DET",
+      "position": "RB",
+      "projected_ppr": 1.22,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Ben VanSumeren",
+      "team": "KC",
+      "position": "RB",
+      "projected_ppr": 1.21,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Eli Heidenreich",
+      "team": "PIT",
+      "position": "RB",
+      "projected_ppr": 1.21,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Scott Matlock",
+      "team": "LAC",
+      "position": "RB",
+      "projected_ppr": 1.21,
+      "roster_status": "UNKNOWN",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Rasheen Ali",
+      "team": "BAL",
+      "position": "RB",
+      "projected_ppr": 0.89,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Julius Chestnut",
+      "team": "TEN",
+      "position": "RB",
+      "projected_ppr": 0.12,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Will Mallory",
+      "team": "IND",
+      "position": "TE",
+      "projected_ppr": 6.12,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Elijah Higgins",
+      "team": "ARI",
+      "position": "TE",
+      "projected_ppr": 4.86,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Foster Moreau",
+      "team": "HOU",
+      "position": "TE",
+      "projected_ppr": 4.73,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Omar Cooper Jr.",
+      "team": "NYJ",
+      "position": "WR",
+      "projected_ppr": 8.39,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Austin Trammell",
+      "team": "JAX",
+      "position": "WR",
+      "projected_ppr": 0,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Dominic Lovett",
+      "team": "DET",
+      "position": "WR",
+      "projected_ppr": 0,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Dylan Drummond",
+      "team": "ATL",
+      "position": "WR",
+      "projected_ppr": 0,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Tim Jones",
+      "team": "JAX",
+      "position": "WR",
+      "projected_ppr": 0,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Jordan Addison",
+      "team": "MIN",
+      "position": "WR",
+      "projected_ppr": 7.55,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Travis Hunter",
+      "team": "JAX",
+      "position": "WR",
+      "projected_ppr": 7.34,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Marquez Valdes-Scantling",
+      "team": "PIT",
+      "position": "WR",
+      "projected_ppr": 7.08,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Demarcus Robinson",
+      "team": "SF",
+      "position": "WR",
+      "projected_ppr": 7.05,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Chris Bell",
+      "team": "MIA",
+      "position": "WR",
+      "projected_ppr": 5.83,
+      "roster_status": "Active",
+      "injury_status": "Doubtful",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "KeAndre Lambert-Smith",
+      "team": "LAC",
+      "position": "WR",
+      "projected_ppr": 5.63,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Tim Patrick",
+      "team": "NYJ",
+      "position": "WR",
+      "projected_ppr": 5.1,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Ladd McConkey",
+      "team": "LAC",
+      "position": "WR",
+      "projected_ppr": 4.81,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Tory Horton",
+      "team": "SEA",
+      "position": "WR",
+      "projected_ppr": 4.76,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Brenen Thompson",
+      "team": "LAC",
+      "position": "WR",
+      "projected_ppr": 4.75,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Reggie Virgil",
+      "team": "ARI",
+      "position": "WR",
+      "projected_ppr": 4.64,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Brandin Cooks",
+      "team": "SF",
+      "position": "WR",
+      "projected_ppr": 4.29,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Devontez Walker",
+      "team": "BAL",
+      "position": "WR",
+      "projected_ppr": 4.11,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Calvin Ridley",
+      "team": "TEN",
+      "position": "WR",
+      "projected_ppr": 4.02,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Mitchell Tinsley",
+      "team": "CIN",
+      "position": "WR",
+      "projected_ppr": 3.84,
+      "roster_status": "UNKNOWN",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Elijah Sarratt",
+      "team": "BAL",
+      "position": "WR",
+      "projected_ppr": 3.46,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Skyler Bell",
+      "team": "BUF",
+      "position": "WR",
+      "projected_ppr": 2.86,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Brandon Johnson",
+      "team": "PIT",
+      "position": "WR",
+      "projected_ppr": 2.78,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Colbie Young",
+      "team": "CIN",
+      "position": "WR",
+      "projected_ppr": 2.66,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Sterling Shepard",
+      "team": "NYJ",
+      "position": "WR",
+      "projected_ppr": 2.56,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Deven Thompkins",
+      "team": "LV",
+      "position": "WR",
+      "projected_ppr": 2.28,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Justin Watson",
+      "team": "KC",
+      "position": "WR",
+      "projected_ppr": 2.28,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Kevin Austin Jr.",
+      "team": "NO",
+      "position": "WR",
+      "projected_ppr": 2.28,
+      "roster_status": "UNKNOWN",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "KhaDarel Hodge",
+      "team": "SF",
+      "position": "WR",
+      "projected_ppr": 2.11,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Lewis Bond",
+      "team": "HOU",
+      "position": "WR",
+      "projected_ppr": 2.05,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Malik Benson",
+      "team": "LV",
+      "position": "WR",
+      "projected_ppr": 2.02,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Jordan Hudson",
+      "team": "DAL",
+      "position": "WR",
+      "projected_ppr": 1.84,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Ja'seem Reed",
+      "team": "CAR",
+      "position": "WR",
+      "projected_ppr": 1.83,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "David Moore",
+      "team": "CAR",
+      "position": "WR",
+      "projected_ppr": 1.15,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Alex Bachman",
+      "team": "LA",
+      "position": "WR",
+      "projected_ppr": 1.06,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Coleman Owen",
+      "team": "GB",
+      "position": "WR",
+      "projected_ppr": 1.01,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Jalen Cropper",
+      "team": "NO",
+      "position": "WR",
+      "projected_ppr": 0.98,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Jamaal Pritchett",
+      "team": "NYJ",
+      "position": "WR",
+      "projected_ppr": 0.98,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Ke'Shawn Williams",
+      "team": "CIN",
+      "position": "WR",
+      "projected_ppr": 0.98,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Montorie Foster Jr.",
+      "team": "SEA",
+      "position": "WR",
+      "projected_ppr": 0.98,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    },
+    {
+      "player": "Trent Sherfield",
+      "team": "BUF",
+      "position": "WR",
+      "projected_ppr": 0.98,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
+    }
+  ]
+}
