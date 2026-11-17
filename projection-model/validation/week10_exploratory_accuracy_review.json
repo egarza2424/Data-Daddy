@@ -1,0 +1,187 @@
+{
+  "status": "REVIEW_ONLY_NOT_KICKOFF_VERIFIED",
+  "season": 2026,
+  "week": 10,
+  "actual_records": 319,
+  "projection_rows": 321,
+  "matched": 242,
+  "unmatched": 79,
+  "ambiguous": 0,
+  "changed_snapshot_rows_index_based": 318,
+  "overall_mae": 5.226,
+  "by_position": {
+    "QB": {
+      "matched": 26,
+      "mae": 6.713,
+      "bias": -1.8
+    },
+    "RB": {
+      "matched": 66,
+      "mae": 5.133,
+      "bias": -1.164
+    },
+    "WR": {
+      "matched": 113,
+      "mae": 5.256,
+      "bias": -0.963
+    },
+    "TE": {
+      "matched": 37,
+      "mae": 4.255,
+      "bias": 1.901
+    }
+  },
+  "largest_over": [
+    {
+      "player": "Drake Maye",
+      "position": "QB",
+      "projected": 16.73,
+      "actual": 3.02,
+      "error": 13.71
+    },
+    {
+      "player": "Germie Bernard",
+      "position": "WR",
+      "projected": 13.91,
+      "actual": 1,
+      "error": 12.91
+    },
+    {
+      "player": "Kyren Williams",
+      "position": "RB",
+      "projected": 17.91,
+      "actual": 5.2,
+      "error": 12.71
+    },
+    {
+      "player": "Brock Bowers",
+      "position": "TE",
+      "projected": 15.3,
+      "actual": 3.8,
+      "error": 11.5
+    },
+    {
+      "player": "Corey Kiner",
+      "position": "RB",
+      "projected": 12.91,
+      "actual": 2.5,
+      "error": 10.41
+    },
+    {
+      "player": "Jalen Coker",
+      "position": "WR",
+      "projected": 10.56,
+      "actual": 0.3,
+      "error": 10.26
+    },
+    {
+      "player": "DeMario Douglas",
+      "position": "WR",
+      "projected": 11.25,
+      "actual": 1.4,
+      "error": 9.85
+    },
+    {
+      "player": "Audric Estime",
+      "position": "RB",
+      "projected": 11.83,
+      "actual": 2.1,
+      "error": 9.73
+    }
+  ],
+  "largest_under": [
+    {
+      "player": "George Pickens",
+      "position": "WR",
+      "projected": 12.8,
+      "actual": 43.5,
+      "error": -30.7
+    },
+    {
+      "player": "Emmett Johnson",
+      "position": "RB",
+      "projected": 8.09,
+      "actual": 35.1,
+      "error": -27.01
+    },
+    {
+      "player": "Christian McCaffrey",
+      "position": "RB",
+      "projected": 19.6,
+      "actual": 46.3,
+      "error": -26.7
+    },
+    {
+      "player": "Jahmyr Gibbs",
+      "position": "RB",
+      "projected": 23.11,
+      "actual": 44.2,
+      "error": -21.09
+    },
+    {
+      "player": "Patrick Mahomes",
+      "position": "QB",
+      "projected": 16.42,
+      "actual": 35.42,
+      "error": -19
+    },
+    {
+      "player": "Parker Washington",
+      "position": "WR",
+      "projected": 11.13,
+      "actual": 28.2,
+      "error": -17.07
+    },
+    {
+      "player": "Dak Prescott",
+      "position": "QB",
+      "projected": 17.43,
+      "actual": 34.42,
+      "error": -16.99
+    },
+    {
+      "player": "Chuba Hubbard",
+      "position": "RB",
+      "projected": 17.94,
+      "actual": 34.2,
+      "error": -16.26
+    }
+  ],
+  "unmatched_examples": [
+    "Kenneth Walker III",
+    "James Cook III",
+    "Aaron Jones Sr.",
+    "Emanuel Wilson",
+    "Pierre Strong Jr.",
+    "David Montgomery",
+    "Connor Heyward",
+    "Zonovan Knight",
+    "Amar Johnson",
+    "Kendall Milton",
+    "Terrell Jennings",
+    "George Holani",
+    "DJ Giddens",
+    "Ameer Abdullah",
+    "AJ Dillon",
+    "Michael Carter",
+    "Nicholas Singleton",
+    "Jaleel McLaughlin",
+    "Carlos Washington Jr.",
+    "Jaydn Ott",
+    "Kalel Mullings",
+    "Frank Gore Jr.",
+    "Zamir White",
+    "Brady Russell",
+    "Evan Hull",
+    "Jabari Small",
+    "Ben VanSumeren",
+    "Eli Heidenreich",
+    "Scott Matlock",
+    "Lew Nichols"
+  ],
+  "notes": [
+    "Current manually adjusted projections used for exploratory comparison only; not certified frozen at each kickoff.",
+    "Player matches require participation and injury verification; matched cohort includes zero-PPR records.",
+    "Do not publish these as validated predictive accuracy."
+  ]
+}
