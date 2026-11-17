@@ -1,7 +1,7 @@
 {
   "season": 2026,
   "week": 10,
-  "status": "RECONCILIATION_REVIEW_ONLY",
+  "status": "PENDING_PARTICIPATION_CLASSIFICATION",
   "total_projections": 321,
   "exact_matches": 242,
   "alias_matches": 7,
@@ -722,5 +722,16 @@
       "injury_status": "",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
     }
+  ],
+  "participation_policy": {
+    "inactive_out_bye": "exclude_from_accuracy_with_verified_reason",
+    "played_zero": "include_if_verified_actual_zero",
+    "injured_in_game": "include_actual_and_flag_injury",
+    "played_missing_feed": "backfill_verified_actual_before_scoring",
+    "unknown": "exclude_pending_verification_not_assume_zero"
+  },
+  "notes": [
+    "Some unmatched projections may be inactive or OUT; projected roster_status Active does not establish game participation.",
+    "No player-specific DNP classifications made without verified game participation evidence."
   ]
 }
