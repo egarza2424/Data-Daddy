@@ -1,11 +1,11 @@
 {
   "season": 2026,
   "week": 10,
-  "status": "PENDING_PARTICIPATION_CLASSIFICATION",
+  "status": "PARTIAL_VERIFIED_INACTIVES_REMAINING_NEED_PARTICIPATION",
   "total_projections": 321,
   "exact_matches": 242,
   "alias_matches": 7,
-  "remaining_unmatched": 72,
+  "remaining_unmatched": 54,
   "ambiguous": [],
   "methodology": "Same-position exact name, then same-team suffix normalization and explicitly mapped nickname. Missing actual records are not assumed to be zero or DNP. Team mismatches are not auto-joined.",
   "resolved": [
@@ -75,42 +75,6 @@
   ],
   "pending": [
     {
-      "player": "Kenneth Walker III",
-      "team": "KC",
-      "position": "RB",
-      "projected_ppr": 19.5,
-      "roster_status": "Active",
-      "injury_status": "Questionable",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
-      "player": "Emanuel Wilson",
-      "team": "SEA",
-      "position": "RB",
-      "projected_ppr": 3.57,
-      "roster_status": "Active",
-      "injury_status": "",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
-      "player": "Pierre Strong Jr.",
-      "team": "GB",
-      "position": "RB",
-      "projected_ppr": 5.22,
-      "roster_status": "Active",
-      "injury_status": "",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
-      "player": "David Montgomery",
-      "team": "HOU",
-      "position": "RB",
-      "projected_ppr": 5.39,
-      "roster_status": "Active",
-      "injury_status": "Questionable",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
       "player": "Connor Heyward",
       "team": "LV",
       "position": "RB",
@@ -174,28 +138,10 @@
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
     },
     {
-      "player": "AJ Dillon",
-      "team": "CAR",
-      "position": "RB",
-      "projected_ppr": 3.67,
-      "roster_status": "Active",
-      "injury_status": "",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
       "player": "Michael Carter",
       "team": "TEN",
       "position": "RB",
       "projected_ppr": 3.61,
-      "roster_status": "Active",
-      "injury_status": "",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
-      "player": "Nicholas Singleton",
-      "team": "TEN",
-      "position": "RB",
-      "projected_ppr": 3.07,
       "roster_status": "Active",
       "injury_status": "",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
@@ -216,15 +162,6 @@
       "projected_ppr": 2.38,
       "roster_status": "Active",
       "injury_status": "",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
-      "player": "Jaydn Ott",
-      "team": "KC",
-      "position": "RB",
-      "projected_ppr": 2.16,
-      "roster_status": "Active",
-      "injury_status": "Questionable",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
     },
     {
@@ -282,24 +219,6 @@
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
     },
     {
-      "player": "Ben VanSumeren",
-      "team": "KC",
-      "position": "RB",
-      "projected_ppr": 1.21,
-      "roster_status": "Active",
-      "injury_status": "",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
-      "player": "Eli Heidenreich",
-      "team": "PIT",
-      "position": "RB",
-      "projected_ppr": 1.21,
-      "roster_status": "Active",
-      "injury_status": "",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
       "player": "Scott Matlock",
       "team": "LAC",
       "position": "RB",
@@ -324,15 +243,6 @@
       "projected_ppr": 0.12,
       "roster_status": "Active",
       "injury_status": "",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
-      "player": "Will Mallory",
-      "team": "IND",
-      "position": "TE",
-      "projected_ppr": 6.12,
-      "roster_status": "Active",
-      "injury_status": "Questionable",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
     },
     {
@@ -399,15 +309,6 @@
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
     },
     {
-      "player": "Jordan Addison",
-      "team": "MIN",
-      "position": "WR",
-      "projected_ppr": 7.55,
-      "roster_status": "Active",
-      "injury_status": "Questionable",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
       "player": "Travis Hunter",
       "team": "JAX",
       "position": "WR",
@@ -435,39 +336,12 @@
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
     },
     {
-      "player": "Chris Bell",
-      "team": "MIA",
-      "position": "WR",
-      "projected_ppr": 5.83,
-      "roster_status": "Active",
-      "injury_status": "Doubtful",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
       "player": "KeAndre Lambert-Smith",
       "team": "LAC",
       "position": "WR",
       "projected_ppr": 5.63,
       "roster_status": "Active",
       "injury_status": "",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
-      "player": "Tim Patrick",
-      "team": "NYJ",
-      "position": "WR",
-      "projected_ppr": 5.1,
-      "roster_status": "Active",
-      "injury_status": "",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
-      "player": "Ladd McConkey",
-      "team": "LAC",
-      "position": "WR",
-      "projected_ppr": 4.81,
-      "roster_status": "Active",
-      "injury_status": "Questionable",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
     },
     {
@@ -480,28 +354,10 @@
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
     },
     {
-      "player": "Brenen Thompson",
-      "team": "LAC",
-      "position": "WR",
-      "projected_ppr": 4.75,
-      "roster_status": "Active",
-      "injury_status": "Questionable",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
       "player": "Reggie Virgil",
       "team": "ARI",
       "position": "WR",
       "projected_ppr": 4.64,
-      "roster_status": "Active",
-      "injury_status": "",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
-      "player": "Brandin Cooks",
-      "team": "SF",
-      "position": "WR",
-      "projected_ppr": 4.29,
       "roster_status": "Active",
       "injury_status": "",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
@@ -530,15 +386,6 @@
       "position": "WR",
       "projected_ppr": 3.84,
       "roster_status": "UNKNOWN",
-      "injury_status": "",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
-      "player": "Elijah Sarratt",
-      "team": "BAL",
-      "position": "WR",
-      "projected_ppr": 3.46,
-      "roster_status": "Active",
       "injury_status": "",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
     },
@@ -619,15 +466,6 @@
       "team": "HOU",
       "position": "WR",
       "projected_ppr": 2.05,
-      "roster_status": "Active",
-      "injury_status": "",
-      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
-    },
-    {
-      "player": "Malik Benson",
-      "team": "LV",
-      "position": "WR",
-      "projected_ppr": 2.02,
       "roster_status": "Active",
       "injury_status": "",
       "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD"
@@ -732,6 +570,227 @@
   },
   "notes": [
     "Some unmatched projections may be inactive or OUT; projected roster_status Active does not establish game participation.",
-    "No player-specific DNP classifications made without verified game participation evidence."
-  ]
+    "No player-specific DNP classifications made without verified game participation evidence.",
+    "Verified inactive names checked against week 10 game-day inactive lists, including Monday night. Remaining missing records require box score or snap verification; active status is not equivalent to participation."
+  ],
+  "verified_inactive": [
+    {
+      "player": "Kenneth Walker III",
+      "team": "KC",
+      "position": "RB",
+      "projected_ppr": 19.5,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "Emanuel Wilson",
+      "team": "SEA",
+      "position": "RB",
+      "projected_ppr": 3.57,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "Pierre Strong Jr.",
+      "team": "GB",
+      "position": "RB",
+      "projected_ppr": 5.22,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "David Montgomery",
+      "team": "HOU",
+      "position": "RB",
+      "projected_ppr": 5.39,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "AJ Dillon",
+      "team": "CAR",
+      "position": "RB",
+      "projected_ppr": 3.67,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "Nicholas Singleton",
+      "team": "TEN",
+      "position": "RB",
+      "projected_ppr": 3.07,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "Jaydn Ott",
+      "team": "KC",
+      "position": "RB",
+      "projected_ppr": 2.16,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "Ben VanSumeren",
+      "team": "KC",
+      "position": "RB",
+      "projected_ppr": 1.21,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "Eli Heidenreich",
+      "team": "PIT",
+      "position": "RB",
+      "projected_ppr": 1.21,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "Will Mallory",
+      "team": "IND",
+      "position": "TE",
+      "projected_ppr": 6.12,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "Jordan Addison",
+      "team": "MIN",
+      "position": "WR",
+      "projected_ppr": 7.55,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "Chris Bell",
+      "team": "MIA",
+      "position": "WR",
+      "projected_ppr": 5.83,
+      "roster_status": "Active",
+      "injury_status": "Doubtful",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "Tim Patrick",
+      "team": "NYJ",
+      "position": "WR",
+      "projected_ppr": 5.1,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "Ladd McConkey",
+      "team": "LAC",
+      "position": "WR",
+      "projected_ppr": 4.81,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "Brenen Thompson",
+      "team": "LAC",
+      "position": "WR",
+      "projected_ppr": 4.75,
+      "roster_status": "Active",
+      "injury_status": "Questionable",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "Brandin Cooks",
+      "team": "SF",
+      "position": "WR",
+      "projected_ppr": 4.29,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "Elijah Sarratt",
+      "team": "BAL",
+      "position": "WR",
+      "projected_ppr": 3.46,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    },
+    {
+      "player": "Malik Benson",
+      "team": "LV",
+      "position": "WR",
+      "projected_ppr": 2.02,
+      "roster_status": "Active",
+      "injury_status": "",
+      "reason": "NO_VERIFIED_WEEK10_ACTUAL_RECORD",
+      "classification": "INACTIVE_DNP_EXCLUDE",
+      "source": "https://gocheckmysports.com/fantasy/inactives",
+      "source_week": 10
+    }
+  ],
+  "verified_bye": [],
+  "verified_exclusions": 18
 }
