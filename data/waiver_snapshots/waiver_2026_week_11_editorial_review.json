@@ -1,7 +1,7 @@
 {
   "season": 2026,
   "target_week": 11,
-  "status": "EDITORIAL_REVIEW_NOT_PUBLISHED",
+  "status": "EDITORIAL_ORDER_APPROVED_VERIFICATION_PENDING",
   "ownership_cutoff": 65,
   "lists": {
     "overall": [
@@ -31,7 +31,8 @@
       "Elijah Mitchell",
       "Mike Washington Jr.",
       "J.K. Dobbins",
-      "Kaleb Johnson"
+      "Kaleb Johnson",
+      "Justice Hill"
     ],
     "WR": [
       "Jordyn Tyson",
@@ -41,9 +42,9 @@
       "Makai Lemon",
       "Courtland Sutton",
       "Xavier Hutchinson",
+      "Antonio Williams",
       "Elic Ayomanor",
-      "Tre' Harris",
-      "Ja'Kobi Lane"
+      "Tre' Harris"
     ],
     "QB": [
       "Bo Nix",
@@ -522,9 +523,19 @@
       "matchup_score_raw": null,
       "matchup_score_display": null,
       "editorial_note": null
+    },
+    {
+      "name": "Justice Hill",
+      "team": "BAL",
+      "opponent": "CAR",
+      "espn_rostered": null,
+      "historical_ownership": null,
+      "injury_status": null,
+      "roster_status": "ACTIVE",
+      "editorial_note": "Ownership and matchup pending current verification"
     }
   ],
-  "alignment_proposal": "Insert Antonio Williams WR8 and shift Elic Ayomanor, Tre' Harris, Ja'Kobi Lane down; yields 11 WRs. Preserve submitted order pending final approval.",
+  "alignment_proposal": "Approved and applied: Antonio Williams WR8, Ja'Kobi Lane honorable mention, Justice Hill RB10.",
   "source_urls": [
     "https://www.nfl.com/news/week-11-schedule-change",
     "https://www.nfl.com/news/2026-nfl-fantasy-football-waiver-wire-week-11-wr-keenan-allen-rb-seth-mcgowan-among-top-targets",
@@ -534,5 +545,8 @@
     "No missing ESPN ownership inferred from other platforms.",
     "Matchup raw score 94 is outside 20–80; withheld pending scale audit.",
     "Sleeper availability is not official game-day clearance."
+  ],
+  "honorable_mentions": [
+    "Ja'Kobi Lane"
   ]
 }
