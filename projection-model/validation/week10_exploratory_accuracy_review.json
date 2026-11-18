@@ -40,5 +40,27 @@
   "pending_participation": 57,
   "alias_matches": 7,
   "overall_bias": -0.653,
-  "reconciliation_note": "249 matches by same team and position, including seven documented aliases; 15 verified inactive and 57 unresolved. Current projection file comparison only, not kickoff verified. Prior hit/miss examples removed pending recalculation."
+  "reconciliation_note": "249 matches by same team and position, including seven documented aliases; 15 verified inactive and 57 unresolved. Current projection file comparison only, not kickoff verified. Prior hit/miss examples removed pending recalculation.",
+  "ranking_overlap": {
+    "QB": {
+      "cutoff": 24,
+      "ai_hits": 22,
+      "ppr_hits": 23
+    },
+    "RB": {
+      "cutoff": 36,
+      "ai_hits": 28,
+      "ppr_hits": 28
+    },
+    "WR": {
+      "cutoff": 36,
+      "ai_hits": 20,
+      "ppr_hits": 20
+    },
+    "TE": {
+      "cutoff": 24,
+      "ai_hits": 15,
+      "ppr_hits": 16
+    }
+  }
 }
