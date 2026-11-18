@@ -214,6 +214,15 @@
       const detail=document.createElement("p");
       detail.textContent=audit.matched+" of "+audit.projection_rows+" projections matched; exploratory PPR MAE "+Number(audit.overall_mae).toFixed(2)+". "+audit.unmatched+" unmatched. Kickoff snapshot, injury status, and actuals reconciliation pending. Not final predictive accuracy.";
       banner.append(heading,detail);
+      if(audit.ranking_overlap){
+        const table=document.createElement("p");
+        table.textContent="Preliminary matched-cohort top-group hits (AI / PPR): "+["QB","RB","WR","TE"].map(pos=>{const r=audit.ranking_overlap[pos];return pos+" "+r.ai_hits+"/"+r.cutoff+" vs "+r.ppr_hits+"/"+r.cutoff;}).join(" · ")+". Not kickoff-verified.";
+        banner.append(table);
+        const link=document.createElement("a");
+        link.href="projection-model/validation/week10_exploratory_player_level.csv";
+        link.textContent="Full preliminary player-level audit";
+        banner.append(link);
+      }
       root.prepend(banner);
     }catch(e){ /* Historical tracker remains usable when review file is unavailable. */ }
   })();
