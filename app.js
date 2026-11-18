@@ -2396,7 +2396,18 @@ async function loadWaiverWire() {
       row.appendChild(header);
       const detail = document.createElement("p");
       const ownership = typeof p.ownership === "number" ? p.ownership.toFixed(1) + "%" : typeof p.upper === "number" ? "Reported ≤" + p.upper + "%" : "Pending verification";
-      const matchup = typeof p.matchup === "number" && p.matchup >= 20 && p.matchup <= 80 ? p.matchup + "/80" : "Pending";
+      const pos = positions11[name] || "WR";
+      const canonicalTeam = t => t === "LAR" ? "LA" : t;
+      const lookupTeam = t => defensePositionAllowed[t] ? t : t === "LA" ? "LAR" : t === "LAR" ? "LA" : t;
+      const schedule = teamNextOpponent[p.team] || teamNextOpponent[p.team === "LA" ? "LAR" : p.team === "LAR" ? "LA" : p.team];
+      const allowed = defensePositionAllowed[lookupTeam(schedule?.opponent)]?.[pos]?.fantasy_points_allowed;
+      const values = Object.values(defensePositionAllowed).map(d => d[pos]?.fantasy_points_allowed).filter(v => v != null && Number.isFinite(Number(v))).map(Number);
+      const verified = Number(trenchSignalWeek) === 11 && canonicalTeam(schedule?.opponent) === canonicalTeam(p.opponent) && allowed != null && Number.isFinite(Number(allowed)) && values.length >= 2;
+      const low = verified ? Math.min(...values) : 0;
+      const high = verified ? Math.max(...values) : 0;
+      // Same 20–80 positional min-max display scale as calculateMatchupScore.
+      const score = verified ? high === low ? 50 : Math.max(20, Math.min(80, Math.round(20 + (Number(allowed)-low)/(high-low)*60))) : null;
+      const matchup = p.opponent === "BYE" ? "Bye" : pos === "DST" ? "Not applicable" : score == null ? "Pending" : score + "/80";
       detail.textContent = "ESPN rostered: " + ownership + " • Opponent: " + (p.opponent || "Pending") + " • Matchup: " + matchup;
       if (p.injury) detail.textContent += " • Feed status: " + p.injury;
       if (p.note) detail.textContent += " • " + p.note;
