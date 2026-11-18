@@ -2040,8 +2040,8 @@ async function loadWaiverWire() {
       "name": "Jacory Croskey-Merritt",
       "team": "WAS",
       "opponent": "CIN",
-      "ownership": null,
-      "upper": 40,
+      "ownership": 38.8,
+      "upper": null,
       "matchup": null,
       "injury": "IR",
       "note": "IR practice window opened Nov 17; activation pending"
