@@ -307,14 +307,15 @@
       "name": "Mike Washington Jr.",
       "team": "LV",
       "opponent": "DEN",
-      "espn_rostered": null,
+      "espn_rostered": 20.4,
       "espn_ownership_upper_bound": null,
-      "ownership_source": null,
+      "ownership_source": "Fortified Fantasy ESPN roster percentage, checked Nov 17",
       "injury_status": null,
       "roster_status": "ACTIVE",
       "matchup_score_raw": null,
       "matchup_score_display": null,
-      "editorial_note": null
+      "editorial_note": null,
+      "ownership_source_url": "https://fortifiedfantasy.com/start-sit/add-drop/this-week/std/mike-washington-jr-for-juwan-johnson/"
     },
     {
       "name": "J.K. Dobbins",
@@ -489,14 +490,15 @@
       "name": "Chicago Bears",
       "team": "CHI",
       "opponent": "NO",
-      "espn_rostered": null,
+      "espn_rostered": 40.1,
       "espn_ownership_upper_bound": null,
-      "ownership_source": null,
+      "ownership_source": "Fortified Fantasy ESPN roster percentage, checked Nov 17",
       "injury_status": null,
       "roster_status": null,
       "matchup_score_raw": null,
       "matchup_score_display": null,
-      "editorial_note": null
+      "editorial_note": null,
+      "ownership_source_url": "https://fortifiedfantasy.com/start-sit/add-drop/this-week/standard/san-francisco-49ers-for-chicago-bears/"
     },
     {
       "name": "New York Jets",
@@ -515,14 +517,15 @@
       "name": "San Francisco 49ers",
       "team": "SF",
       "opponent": "MIN",
-      "espn_rostered": null,
+      "espn_rostered": 42.5,
       "espn_ownership_upper_bound": null,
-      "ownership_source": null,
+      "ownership_source": "Fortified Fantasy ESPN roster percentage, checked Nov 17",
       "injury_status": null,
       "roster_status": null,
       "matchup_score_raw": null,
       "matchup_score_display": null,
-      "editorial_note": null
+      "editorial_note": null,
+      "ownership_source_url": "https://fortifiedfantasy.com/start-sit/add-drop/this-week/standard/san-francisco-49ers-for-chicago-bears/"
     },
     {
       "name": "Justice Hill",
