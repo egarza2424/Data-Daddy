@@ -112,14 +112,15 @@
       "name": "Jacory Croskey-Merritt",
       "team": "WAS",
       "opponent": "CIN",
-      "espn_rostered": null,
-      "espn_ownership_upper_bound": 40,
-      "ownership_source": "Sharp Football Nov 17 eligibility",
+      "espn_rostered": 38.8,
+      "espn_ownership_upper_bound": null,
+      "ownership_source": "The Game Haus, Nov 16 2026, ESPN rostered percentage",
       "injury_status": "IR",
       "roster_status": "INACTIVE",
       "matchup_score_raw": null,
       "matchup_score_display": null,
-      "editorial_note": "IR practice window opened Nov 17; activation pending"
+      "editorial_note": "IR practice window opened Nov 17; activation pending",
+      "ownership_source_url": "https://thegamehaus.com/fantasy-football/fantasy-football-players-to-add-week-11/2026/11/16/"
     },
     {
       "name": "Kenny Gainwell",
