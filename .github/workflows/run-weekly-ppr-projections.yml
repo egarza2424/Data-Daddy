@@ -59,13 +59,13 @@ jobs:
           import json
           from pathlib import Path
 
-          expected_week = int(json.loads(Path('nfl-stats.json').read_text(encoding='utf-8')).get('target_week') or 0)
-          if expected_week < 1:
-              raise SystemExit('Missing valid target_week; refusing projection refresh.')
           stats_path = Path("nfl-stats.json")
           if not stats_path.exists():
               raise SystemExit("Missing nfl-stats.json; refusing to generate unverified projections.")
           stats = json.loads(stats_path.read_text(encoding="utf-8"))
+          expected_week = int(stats.get("target_week") or 0)
+          if expected_week < 1:
+              raise SystemExit("Missing valid target_week; refusing projection refresh.")
           actual_week = int(stats.get("target_week") or 0)
           if actual_week != expected_week:
               raise SystemExit(
