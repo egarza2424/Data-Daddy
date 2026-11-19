@@ -14,6 +14,9 @@ on:
     # Hourly injury-feed refresh and projection recalculation, all week.
     - cron: "0 * * * *"
   workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/run-weekly-ppr-projections.yml'
 
   workflow_run:
     workflows:
@@ -29,6 +32,7 @@ jobs:
     if: >-
       ${{
         github.event_name == 'push' ||
+        github.event_name == 'pull_request' ||
         github.event_name == 'workflow_dispatch' ||
         github.event_name == 'schedule' ||
         (
@@ -38,10 +42,10 @@ jobs:
       }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout latest main
+      - name: Checkout selected revision
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.head_ref || github.ref_name }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -877,6 +881,7 @@ jobs:
           PY
 
       - name: Commit weekly PPR projections
+        if: github.event_name != 'pull_request' && github.ref_name == 'main'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
