@@ -1,10 +1,10 @@
 player_id,player_name,position,team,status,source,week
 13295,Behren Morton,QB,NE,OUT,"Sleeper (preliminary, not NFL-verified)",11
-8116,Pierre Strong Jr.,RB,GB,OUT,"Sleeper (preliminary, not NFL-verified)",11
 4943,Sam Darnold,QB,SEA,OUT,"Sleeper (preliminary, not NFL-verified)",11
 829,Andy Dalton,QB,ATL,OUT,"Sleeper (preliminary, not NFL-verified)",11
 13047,Jacardia Wright,RB,SEA,OUT,"Sleeper (preliminary, not NFL-verified)",11
 8110,Jake Ferguson,TE,DAL,OUT,"Sleeper (preliminary, not NFL-verified)",11
+11608,Isaiah Williams,WR,NYJ,OUT,"Sleeper (preliminary, not NFL-verified)",11
 13424,Seth McGowan,RB,IND,OUT,"Sleeper (preliminary, not NFL-verified)",11
 5859,A.J. Brown,WR,NE,OUT,"Sleeper (preliminary, not NFL-verified)",11
 12048,George Holani,RB,SEA,OUT,"Sleeper (preliminary, not NFL-verified)",11
@@ -12,6 +12,7 @@ player_id,player_name,position,team,status,source,week
 13275,Ty Simpson,QB,LAR,OUT,"Sleeper (preliminary, not NFL-verified)",11
 13320,Zachariah Branch,WR,ATL,OUT,"Sleeper (preliminary, not NFL-verified)",11
 7597,Kenny Yeboah,TE,ARI,OUT,"Sleeper (preliminary, not NFL-verified)",11
+13276,Omar Cooper Jr.,WR,NYJ,OUT,"Sleeper (preliminary, not NFL-verified)",11
 8583,Stone Smartt,TE,NO,OUT,"Sleeper (preliminary, not NFL-verified)",11
 13890,Michael Briscoe,WR,MIN,OUT,"Sleeper (preliminary, not NFL-verified)",11
 12486,Dillon Gabriel,QB,CLE,OUT,"Sleeper (preliminary, not NFL-verified)",11
