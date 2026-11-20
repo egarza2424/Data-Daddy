@@ -1,21 +1,13 @@
 {
-  "generated_at_utc": "2026-11-20T03:58:16.945332+00:00",
+  "generated_at_utc": "2026-11-20T12:43:40.454843+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 1,
+    "missing_near_kickoff": 0,
     "pending": 17
   },
   "games": [
-    {
-      "game_id": "2026_11_IND_HOU",
-      "week": 11,
-      "kickoff_utc": "2026-11-20T01:15:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
     {
       "game_id": "2026_11_MIA_BUF",
       "week": 11,
