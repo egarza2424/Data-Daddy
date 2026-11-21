@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-11-21T16:43:49.249827+00:00",
+  "generated_at_utc": "2026-11-21T21:56:06.535865+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
     "missing_near_kickoff": 0,
-    "pending": 17
+    "pending": 26
   },
   "games": [
     {
@@ -140,6 +140,78 @@
       "game_id": "2026_12_DEN_PIT",
       "week": 12,
       "kickoff_utc": "2026-11-27T20:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_12_NO_CIN",
+      "week": 12,
+      "kickoff_utc": "2026-11-29T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_12_BAL_HOU",
+      "week": 12,
+      "kickoff_utc": "2026-11-29T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_12_NYG_IND",
+      "week": 12,
+      "kickoff_utc": "2026-11-29T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_12_TEN_JAX",
+      "week": 12,
+      "kickoff_utc": "2026-11-29T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_12_NYJ_MIA",
+      "week": 12,
+      "kickoff_utc": "2026-11-29T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_12_ATL_MIN",
+      "week": 12,
+      "kickoff_utc": "2026-11-29T18:00:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_12_NE_LAC",
+      "week": 12,
+      "kickoff_utc": "2026-11-29T21:05:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_12_WAS_ARI",
+      "week": 12,
+      "kickoff_utc": "2026-11-29T21:25:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_12_SEA_SF",
+      "week": 12,
+      "kickoff_utc": "2026-11-29T21:25:00+00:00",
       "status": "pending",
       "official_inactives_verified": false,
       "source_url": null
