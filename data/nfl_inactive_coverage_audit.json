@@ -1,18 +1,18 @@
 {
-  "generated_at_utc": "2026-11-22T09:41:45.310735+00:00",
+  "generated_at_utc": "2026-11-22T17:25:42.158932+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 0,
-    "pending": 27
+    "missing_near_kickoff": 7,
+    "pending": 20
   },
   "games": [
     {
       "game_id": "2026_11_MIA_BUF",
       "week": 11,
       "kickoff_utc": "2026-11-22T18:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -20,7 +20,7 @@
       "game_id": "2026_11_BAL_CAR",
       "week": 11,
       "kickoff_utc": "2026-11-22T18:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -28,7 +28,7 @@
       "game_id": "2026_11_NO_CHI",
       "week": 11,
       "kickoff_utc": "2026-11-22T18:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -36,7 +36,7 @@
       "game_id": "2026_11_TEN_DAL",
       "week": 11,
       "kickoff_utc": "2026-11-22T18:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -44,7 +44,7 @@
       "game_id": "2026_11_TB_DET",
       "week": 11,
       "kickoff_utc": "2026-11-22T18:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -52,7 +52,7 @@
       "game_id": "2026_11_ARI_KC",
       "week": 11,
       "kickoff_utc": "2026-11-22T18:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
@@ -60,7 +60,7 @@
       "game_id": "2026_11_JAX_NYG",
       "week": 11,
       "kickoff_utc": "2026-11-22T18:00:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
