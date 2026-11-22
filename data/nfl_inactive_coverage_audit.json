@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-11-21T21:56:06.535865+00:00",
+  "generated_at_utc": "2026-11-22T02:02:21.003623+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
     "missing_near_kickoff": 0,
-    "pending": 26
+    "pending": 27
   },
   "games": [
     {
@@ -212,6 +212,14 @@
       "game_id": "2026_12_SEA_SF",
       "week": 12,
       "kickoff_utc": "2026-11-29T21:25:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_12_LV_CLE",
+      "week": 12,
+      "kickoff_utc": "2026-11-30T01:20:00+00:00",
       "status": "pending",
       "official_inactives_verified": false,
       "source_url": null
