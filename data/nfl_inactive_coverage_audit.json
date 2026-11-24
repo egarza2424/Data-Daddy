@@ -1,18 +1,18 @@
 {
-  "generated_at_utc": "2026-11-23T13:12:39.745426+00:00",
+  "generated_at_utc": "2026-11-24T00:59:51.320094+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 0,
-    "pending": 17
+    "missing_near_kickoff": 1,
+    "pending": 16
   },
   "games": [
     {
       "game_id": "2026_11_CIN_WAS",
       "week": 11,
       "kickoff_utc": "2026-11-24T01:15:00+00:00",
-      "status": "pending",
+      "status": "missing_near_kickoff",
       "official_inactives_verified": false,
       "source_url": null
     },
