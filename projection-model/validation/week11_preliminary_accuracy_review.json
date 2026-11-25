@@ -1,0 +1,795 @@
+{
+  "week": 11,
+  "status": "PRELIMINARY_MATCHED_COHORT",
+  "baseline": "projection-model/2026-week11-ppr-pregame-frozen.csv",
+  "actual_source": "data/actual-ppr-2026.json",
+  "projection_rows": 344,
+  "matched": 249,
+  "unmatched": 95,
+  "reported_inactive": 16,
+  "unresolved": 79,
+  "overall": {
+    "n": 249,
+    "mae": 4.599277108433736,
+    "rmse": 5.969175506290596,
+    "bias": 0.1735742971887552
+  },
+  "positions": {
+    "QB": {
+      "n": 25,
+      "mae": 5.527199999999999,
+      "rmse": 6.447169301329072,
+      "bias": -0.43920000000000026
+    },
+    "RB": {
+      "n": 72,
+      "mae": 4.044027777777778,
+      "rmse": 5.644535828765923,
+      "bias": 0.7823611111111113
+    },
+    "WR": {
+      "n": 114,
+      "mae": 4.881228070175438,
+      "rmse": 6.28754449602336,
+      "bias": -0.659824561403509
+    },
+    "TE": {
+      "n": 38,
+      "mae": 4.195000000000001,
+      "rmse": 5.211879396350731,
+      "bias": 1.9234210526315787
+    }
+  },
+  "overlap": [
+    {
+      "position": "QB",
+      "cutoff": 24,
+      "ai_hits": 23,
+      "ppr_hits": 23
+    },
+    {
+      "position": "RB",
+      "cutoff": 36,
+      "ai_hits": 31,
+      "ppr_hits": 31
+    },
+    {
+      "position": "WR",
+      "cutoff": 36,
+      "ai_hits": 18,
+      "ppr_hits": 18
+    },
+    {
+      "position": "TE",
+      "cutoff": 24,
+      "ai_hits": 16,
+      "ppr_hits": 17
+    }
+  ],
+  "unmatched_players": [
+    {
+      "name": "Carson Beck",
+      "position": "QB",
+      "team": "ARI",
+      "status": "reported_inactive"
+    },
+    {
+      "name": "Kenneth Walker III",
+      "position": "RB",
+      "team": "KC",
+      "status": "reported_inactive"
+    },
+    {
+      "name": "Dameon Pierce",
+      "position": "RB",
+      "team": "PHI",
+      "status": "unresolved"
+    },
+    {
+      "name": "Elijah Mitchell",
+      "position": "RB",
+      "team": "PHI",
+      "status": "unresolved"
+    },
+    {
+      "name": "Roschon Johnson",
+      "position": "RB",
+      "team": "CHI",
+      "status": "unresolved"
+    },
+    {
+      "name": "Tyjae Spears",
+      "position": "RB",
+      "team": "TEN",
+      "status": "unresolved"
+    },
+    {
+      "name": "Audric Estime",
+      "position": "RB",
+      "team": "NO",
+      "status": "reported_inactive"
+    },
+    {
+      "name": "Connor Heyward",
+      "position": "RB",
+      "team": "LV",
+      "status": "unresolved"
+    },
+    {
+      "name": "Zonovan Knight",
+      "position": "RB",
+      "team": "ARI",
+      "status": "unresolved"
+    },
+    {
+      "name": "Amar Johnson",
+      "position": "RB",
+      "team": "LAC",
+      "status": "unresolved"
+    },
+    {
+      "name": "Kendall Milton",
+      "position": "RB",
+      "team": "CIN",
+      "status": "unresolved"
+    },
+    {
+      "name": "Najee Harris",
+      "position": "RB",
+      "team": "NYG",
+      "status": "unresolved"
+    },
+    {
+      "name": "AJ Dillon",
+      "position": "RB",
+      "team": "CAR",
+      "status": "unresolved"
+    },
+    {
+      "name": "Dare Ogunbowale",
+      "position": "RB",
+      "team": "HOU",
+      "status": "unresolved"
+    },
+    {
+      "name": "Nicholas Singleton",
+      "position": "RB",
+      "team": "TEN",
+      "status": "unresolved"
+    },
+    {
+      "name": "Israel Abanikanda",
+      "position": "RB",
+      "team": "DAL",
+      "status": "unresolved"
+    },
+    {
+      "name": "Craig Reynolds",
+      "position": "RB",
+      "team": "WAS",
+      "status": "unresolved"
+    },
+    {
+      "name": "Carlos Washington Jr.",
+      "position": "RB",
+      "team": "MIA",
+      "status": "unresolved"
+    },
+    {
+      "name": "Gregory Desrosiers",
+      "position": "RB",
+      "team": "NYG",
+      "status": "reported_inactive"
+    },
+    {
+      "name": "Kalel Mullings",
+      "position": "RB",
+      "team": "TEN",
+      "status": "unresolved"
+    },
+    {
+      "name": "Robert Henry Jr.",
+      "position": "RB",
+      "team": "WAS",
+      "status": "unresolved"
+    },
+    {
+      "name": "Patrick Ricard",
+      "position": "RB",
+      "team": "NYG",
+      "status": "unresolved"
+    },
+    {
+      "name": "Frank Gore Jr.",
+      "position": "RB",
+      "team": "BUF",
+      "status": "unresolved"
+    },
+    {
+      "name": "Sean Tucker",
+      "position": "RB",
+      "team": "TB",
+      "status": "unresolved"
+    },
+    {
+      "name": "Zamir White",
+      "position": "RB",
+      "team": "NO",
+      "status": "unresolved"
+    },
+    {
+      "name": "Carson Steele",
+      "position": "RB",
+      "team": "PHI",
+      "status": "unresolved"
+    },
+    {
+      "name": "Max Bredeson",
+      "position": "RB",
+      "team": "MIN",
+      "status": "unresolved"
+    },
+    {
+      "name": "Evan Hull",
+      "position": "RB",
+      "team": "ARI",
+      "status": "unresolved"
+    },
+    {
+      "name": "Jabari Small",
+      "position": "RB",
+      "team": "DET",
+      "status": "unresolved"
+    },
+    {
+      "name": "Josh Williams",
+      "position": "RB",
+      "team": "TB",
+      "status": "unresolved"
+    },
+    {
+      "name": "Ben VanSumeren",
+      "position": "RB",
+      "team": "KC",
+      "status": "unresolved"
+    },
+    {
+      "name": "Eli Heidenreich",
+      "position": "RB",
+      "team": "PIT",
+      "status": "unresolved"
+    },
+    {
+      "name": "Scott Matlock",
+      "position": "RB",
+      "team": "LAC",
+      "status": "unresolved"
+    },
+    {
+      "name": "Travis Homer",
+      "position": "RB",
+      "team": "PIT",
+      "status": "unresolved"
+    },
+    {
+      "name": "Rasheen Ali",
+      "position": "RB",
+      "team": "BAL",
+      "status": "unresolved"
+    },
+    {
+      "name": "Brock Bowers",
+      "position": "TE",
+      "team": "LV",
+      "status": "reported_inactive"
+    },
+    {
+      "name": "Dalton Kincaid",
+      "position": "TE",
+      "team": "BUF",
+      "status": "reported_inactive"
+    },
+    {
+      "name": "Oronde Gadsden",
+      "position": "TE",
+      "team": "LAC",
+      "status": "unresolved"
+    },
+    {
+      "name": "Nate Boerkircher",
+      "position": "TE",
+      "team": "JAX",
+      "status": "unresolved"
+    },
+    {
+      "name": "Zach Ertz",
+      "position": "TE",
+      "team": "PHI",
+      "status": "unresolved"
+    },
+    {
+      "name": "Omar Cooper Jr.",
+      "position": "WR",
+      "team": "NYJ",
+      "status": "reported_inactive"
+    },
+    {
+      "name": "Austin Trammell",
+      "position": "WR",
+      "team": "JAX",
+      "status": "unresolved"
+    },
+    {
+      "name": "Dominic Lovett",
+      "position": "WR",
+      "team": "DET",
+      "status": "unresolved"
+    },
+    {
+      "name": "Michael Bandy",
+      "position": "WR",
+      "team": "DEN",
+      "status": "unresolved"
+    },
+    {
+      "name": "Tim Jones",
+      "position": "WR",
+      "team": "JAX",
+      "status": "unresolved"
+    },
+    {
+      "name": "Dontayvion Wicks",
+      "position": "WR",
+      "team": "PHI",
+      "status": "unresolved"
+    },
+    {
+      "name": "Travis Hunter",
+      "position": "WR",
+      "team": "JAX",
+      "status": "unresolved"
+    },
+    {
+      "name": "Marquez Valdes-Scantling",
+      "position": "WR",
+      "team": "PIT",
+      "status": "unresolved"
+    },
+    {
+      "name": "Demarcus Robinson",
+      "position": "WR",
+      "team": "SF",
+      "status": "reported_inactive"
+    },
+    {
+      "name": "KeAndre Lambert-Smith",
+      "position": "WR",
+      "team": "LAC",
+      "status": "reported_inactive"
+    },
+    {
+      "name": "Brenen Thompson",
+      "position": "WR",
+      "team": "LAC",
+      "status": "reported_inactive"
+    },
+    {
+      "name": "Reggie Virgil",
+      "position": "WR",
+      "team": "ARI",
+      "status": "unresolved"
+    },
+    {
+      "name": "Xavier Legette",
+      "position": "WR",
+      "team": "CAR",
+      "status": "unresolved"
+    },
+    {
+      "name": "Ja'Kobi Lane",
+      "position": "WR",
+      "team": "BAL",
+      "status": "unresolved"
+    },
+    {
+      "name": "Marquise Brown",
+      "position": "WR",
+      "team": "PHI",
+      "status": "unresolved"
+    },
+    {
+      "name": "Isaiah Williams",
+      "position": "WR",
+      "team": "NYJ",
+      "status": "reported_inactive"
+    },
+    {
+      "name": "Brandin Cooks",
+      "position": "WR",
+      "team": "SF",
+      "status": "unresolved"
+    },
+    {
+      "name": "Mitchell Tinsley",
+      "position": "WR",
+      "team": "CIN",
+      "status": "unresolved"
+    },
+    {
+      "name": "Elijah Sarratt",
+      "position": "WR",
+      "team": "BAL",
+      "status": "reported_inactive"
+    },
+    {
+      "name": "Elijah Moore",
+      "position": "WR",
+      "team": "PHI",
+      "status": "unresolved"
+    },
+    {
+      "name": "Lil'Jordan Humphrey",
+      "position": "WR",
+      "team": "DEN",
+      "status": "reported_inactive"
+    },
+    {
+      "name": "Chris Moore",
+      "position": "WR",
+      "team": "BAL",
+      "status": "unresolved"
+    },
+    {
+      "name": "Theo Wease Jr.",
+      "position": "WR",
+      "team": "LAC",
+      "status": "unresolved"
+    },
+    {
+      "name": "Brandon Smith",
+      "position": "WR",
+      "team": "PIT",
+      "status": "unresolved"
+    },
+    {
+      "name": "Skyler Bell",
+      "position": "WR",
+      "team": "BUF",
+      "status": "reported_inactive"
+    },
+    {
+      "name": "Brandon Johnson",
+      "position": "WR",
+      "team": "PIT",
+      "status": "unresolved"
+    },
+    {
+      "name": "Jaden Bradley",
+      "position": "WR",
+      "team": "WAS",
+      "status": "unresolved"
+    },
+    {
+      "name": "Deven Thompkins",
+      "position": "WR",
+      "team": "LV",
+      "status": "unresolved"
+    },
+    {
+      "name": "Justin Watson",
+      "position": "WR",
+      "team": "KC",
+      "status": "unresolved"
+    },
+    {
+      "name": "Kevin Austin Jr.",
+      "position": "WR",
+      "team": "NO",
+      "status": "unresolved"
+    },
+    {
+      "name": "Lewis Bond",
+      "position": "WR",
+      "team": "HOU",
+      "status": "unresolved"
+    },
+    {
+      "name": "KhaDarel Hodge",
+      "position": "WR",
+      "team": "SF",
+      "status": "unresolved"
+    },
+    {
+      "name": "Malik Benson",
+      "position": "WR",
+      "team": "LV",
+      "status": "reported_inactive"
+    },
+    {
+      "name": "Jonathan Mingo",
+      "position": "WR",
+      "team": "DAL",
+      "status": "unresolved"
+    },
+    {
+      "name": "Jalen Reagor",
+      "position": "WR",
+      "team": "MIA",
+      "status": "unresolved"
+    },
+    {
+      "name": "Jordan Hudson",
+      "position": "WR",
+      "team": "DAL",
+      "status": "unresolved"
+    },
+    {
+      "name": "Ja'seem Reed",
+      "position": "WR",
+      "team": "CAR",
+      "status": "unresolved"
+    },
+    {
+      "name": "Nick Westbrook-Ikhine",
+      "position": "WR",
+      "team": "IND",
+      "status": "unresolved"
+    },
+    {
+      "name": "Jared Wayne",
+      "position": "WR",
+      "team": "MIA",
+      "status": "reported_inactive"
+    },
+    {
+      "name": "David Moore",
+      "position": "WR",
+      "team": "CAR",
+      "status": "unresolved"
+    },
+    {
+      "name": "Tay Martin",
+      "position": "WR",
+      "team": "DET",
+      "status": "unresolved"
+    },
+    {
+      "name": "Charlie Jones",
+      "position": "WR",
+      "team": "NYG",
+      "status": "unresolved"
+    },
+    {
+      "name": "David Sills V",
+      "position": "WR",
+      "team": "TB",
+      "status": "unresolved"
+    },
+    {
+      "name": "Dareke Young",
+      "position": "WR",
+      "team": "LV",
+      "status": "unresolved"
+    },
+    {
+      "name": "Camden Brown",
+      "position": "WR",
+      "team": "DAL",
+      "status": "unresolved"
+    },
+    {
+      "name": "Kaden Wetjen",
+      "position": "WR",
+      "team": "PIT",
+      "status": "unresolved"
+    },
+    {
+      "name": "Malik McClain",
+      "position": "WR",
+      "team": "NYJ",
+      "status": "unresolved"
+    },
+    {
+      "name": "Dalen Cambre",
+      "position": "WR",
+      "team": "NYG",
+      "status": "unresolved"
+    },
+    {
+      "name": "Jacob De Jesus",
+      "position": "WR",
+      "team": "KC",
+      "status": "unresolved"
+    },
+    {
+      "name": "Jalen Cropper",
+      "position": "WR",
+      "team": "NO",
+      "status": "unresolved"
+    },
+    {
+      "name": "Jamaal Pritchett",
+      "position": "WR",
+      "team": "NYJ",
+      "status": "unresolved"
+    },
+    {
+      "name": "Kaden Davis",
+      "position": "WR",
+      "team": "CHI",
+      "status": "unresolved"
+    },
+    {
+      "name": "Ke'Shawn Williams",
+      "position": "WR",
+      "team": "CIN",
+      "status": "unresolved"
+    },
+    {
+      "name": "Kolbe Katsis",
+      "position": "WR",
+      "team": "DEN",
+      "status": "unresolved"
+    },
+    {
+      "name": "Trent Sherfield",
+      "position": "WR",
+      "team": "BUF",
+      "status": "unresolved"
+    }
+  ],
+  "match_method": "unique normalized name + position + team",
+  "limitations": "Final editorial kickoff verification, actuals completeness, in-game injuries, sleepers and waivers pending. Inactive claims based on NFL and theScore reports.",
+  "sources": [
+    "https://www.nfl.com/news/nfl-week-11-inactives-players-ruled-out-sunday-2026-season",
+    "https://www.thescore.com/news/3659995/nfl-week-11-inactives-see-whos-in-and-out"
+  ],
+  "hits": [
+    {
+      "name": "Tee Higgins",
+      "position": "WR",
+      "projected": 12.3,
+      "actual": 12.3
+    },
+    {
+      "name": "DJ Herman",
+      "position": "RB",
+      "projected": 1.68,
+      "actual": 1.7
+    },
+    {
+      "name": "Omarion Hampton",
+      "position": "RB",
+      "projected": 10.22,
+      "actual": 10.3
+    },
+    {
+      "name": "T.J. Hockenson",
+      "position": "TE",
+      "projected": 11.62,
+      "actual": 11.5
+    },
+    {
+      "name": "Brycen Tremayne",
+      "position": "WR",
+      "projected": 1.46,
+      "actual": 1.6
+    },
+    {
+      "name": "Marvin Mims Jr.",
+      "position": "WR",
+      "projected": 5.91,
+      "actual": 5.7
+    },
+    {
+      "name": "Myles Price",
+      "position": "WR",
+      "projected": 4.83,
+      "actual": 4.6
+    },
+    {
+      "name": "Noah Gray",
+      "position": "TE",
+      "projected": 5.36,
+      "actual": 5.1
+    },
+    {
+      "name": "DeeJay Dallas",
+      "position": "RB",
+      "projected": 1.71,
+      "actual": 2
+    },
+    {
+      "name": "Aaron Jones Sr.",
+      "position": "RB",
+      "projected": 11.61,
+      "actual": 11.3
+    },
+    {
+      "name": "Kene Nwangwu",
+      "position": "RB",
+      "projected": 0.33,
+      "actual": 0
+    },
+    {
+      "name": "Austin Ekeler",
+      "position": "RB",
+      "projected": 6.75,
+      "actual": 6.4
+    }
+  ],
+  "misses": [
+    {
+      "name": "Jonah Coleman",
+      "position": "RB",
+      "projected": 12.66,
+      "actual": 34.9
+    },
+    {
+      "name": "Ted Hurst III",
+      "position": "WR",
+      "projected": 4.55,
+      "actual": 22.6
+    },
+    {
+      "name": "Jack Bech",
+      "position": "WR",
+      "projected": 5.44,
+      "actual": 22.8
+    },
+    {
+      "name": "Travis Kelce",
+      "position": "TE",
+      "projected": 9.21,
+      "actual": 25.4
+    },
+    {
+      "name": "Ladd McConkey",
+      "position": "WR",
+      "projected": 4.66,
+      "actual": 20.7
+    },
+    {
+      "name": "Calvin Ridley",
+      "position": "WR",
+      "projected": 3.95,
+      "actual": 17.8
+    },
+    {
+      "name": "Sterling Shepard",
+      "position": "WR",
+      "projected": 2.56,
+      "actual": 16.4
+    },
+    {
+      "name": "Antonio Williams",
+      "position": "WR",
+      "projected": 7.92,
+      "actual": 21.2
+    },
+    {
+      "name": "Emmett Johnson",
+      "position": "RB",
+      "projected": 11.14,
+      "actual": 24.3
+    },
+    {
+      "name": "CeeDee Lamb",
+      "position": "WR",
+      "projected": 17.34,
+      "actual": 30.2
+    },
+    {
+      "name": "Kyle Monangai",
+      "position": "RB",
+      "projected": 14.37,
+      "actual": 1.8
+    },
+    {
+      "name": "Dak Prescott",
+      "position": "QB",
+      "projected": 23.5,
+      "actual": 35.9
+    }
+  ]
+}
