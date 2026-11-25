@@ -52,7 +52,7 @@
     });
     chart.setAttribute("aria-label", "Week " + week + " position-specific ranking overlap: " +
       results.map(r => r.position + " top-" + r.cutoff + " " + (r.pct===null ? "unavailable" : r.pct.toFixed(0)+" percent")).join(", "));
-    chart.innerHTML = '<p class="tracker-chart-week">Week '+esc(week)+' · QB/TE top 24 · RB/WR top 36 · completed postgame audit</p>'+
+    chart.innerHTML = '<p class="tracker-chart-week">Week '+esc(week)+' · QB/TE top 24 · RB/WR top 36 · '+(state.preliminaryMatched?'preliminary matched-player audit':'completed postgame audit')+'</p>'+
       results.map(r => '<div class="tracker-chart-row"><span class="tracker-chart-label">'+r.position+' <small>Top '+r.cutoff+'</small></span>'+
         '<div class="tracker-chart-track"><div class="tracker-chart-fill" style="width:'+(r.pct??0).toFixed(1)+'%"></div></div>'+
         '<strong class="tracker-chart-value">'+(r.pct===null?'N/A':r.pct.toFixed(0)+'%')+'</strong>'+
@@ -98,7 +98,7 @@
         list.innerHTML=verified.sort((a,b)=>number(b.actual_ppr)-number(a.actual_ppr)).slice(0,12).map(r=>card(r.player_name+" · "+r.position,"Sleeper pick #"+r.rank+" · Sleeper Score "+r.sleeper_score,number(r.actual_ppr).toFixed(1)+" actual PPR · "+number(r.ppr_lift_pct).toFixed(1)+"% over projection"+(r.breakout_hit==="True"?" · Breakout":""))).join("")||(scored.length?'<p>No sleeper picks met both hit thresholds among the '+scored.length+' scored picks.'+(pending?' '+pending+' pick(s) remain unmatched or unverified.':'')+'</p>':'<p>No scored sleeper picks are available for this week; results remain unverified.</p>');
         return;
       }
-      note.textContent="Week "+week+(week===8?" · PROVISIONAL: 268 matched players; 86 unmatched pending participation/injury verification.":"")+" · matched-player cohort only. Predicted and actual ranks are recalculated among matched players by position. This is ranking agreement, not PPR projection accuracy.";
+      note.textContent="Week "+week+(state.preliminaryMatched?" · PRELIMINARY: 249 matched; 95 unmatched.":"")+(week===8?" · PROVISIONAL: 268 matched players; 86 unmatched pending participation/injury verification.":"")+" · matched-player cohort only. Predicted and actual ranks are recalculated among matched players by position. This is ranking agreement, not PPR projection accuracy.";
       list.innerHTML=items.map(r=>card(r.player_name+" · "+r.position,
         "Predicted #"+r.predicted+" → actual #"+r.actual,
         number(r.actual_ppr).toFixed(1)+" actual PPR"+(r.projectedPpr===null?"": " vs "+r.projectedPpr.toFixed(1)+" projected ("+(r.pprError>=0?"+":"")+r.pprError.toFixed(1)+")")+" · "+r.delta+"-rank difference"+(category==="misses" && (reports.injuries||[]).some(i=>Number(i.week)===week && i.player_name===r.player_name && i.position===r.position && i.in_game_injury_verified==="True") ? " · Injured During Game" : ""))).join("")||"<p>No qualifying examples.</p>";
@@ -128,7 +128,7 @@
       let latest=null, ranking=null;
       for(let week=22;week>=1;week--){
         try { let result; try { result=await load("model-validation/2026-week"+week+"-validation.csv"); } catch(e) { result=await load("model-validation/2026-week"+week+"-provisional-validation.csv"); state.provisional=true; } if(result.length){latest=week;ranking=result;break;} }
-        catch(e){continue;}
+        catch(e){if(week===11){try{const rows=await load("projection-model/validation/week11_preliminary_player_level.csv");if(rows.length){latest=11;ranking=rows;state.preliminaryMatched=true;break;}}catch(_){} }continue;}
       }
       if(state.provisional){
         state.week=latest;
@@ -157,13 +157,13 @@
         status.textContent="Week 8 provisional audit — 268 matched players; 86 unmatched players pending participation and injury verification.";
       }
       if(state.provisional){const label="PRELIMINARY — completed games only; Monday players excluded. ";root.querySelector("#trackerNote").setAttribute("data-audit-status",label);}
-      try {state.reports.projections=await load("projection-model/2026-week"+latest+"-ppr-projections.csv");}catch(e){state.reports.projections=[];}
+      try {state.reports.projections=state.preliminaryMatched?ranking:await load("projection-model/2026-week"+latest+"-ppr-pregame-frozen.csv");}catch(e){state.reports.projections=[];}
       try {state.reports.comparison=await load("model-validation/ai-vs-ppr-ranking-audit.csv");}catch(e){state.reports.comparison=[];}
       renderAccuracyChart(ranking, latest);
 
       const chart=document.getElementById("trackerAccuracyChart");
       let comparison=state.reports.comparison.filter(r=>Number(r.week)===latest);
-      if(!comparison.length&&state.provisional){
+      if(state.preliminaryMatched||(!comparison.length&&state.provisional)){
         const cutoffs={QB:24,RB:36,WR:36,TE:24};
         comparison=[];
         for(const pos of Object.keys(cutoffs)){
@@ -205,7 +205,7 @@
       if(!response.ok)return;
       const a=await response.json();
       if(a.week!==11 || a.status!=="PRELIMINARY_MATCHED_COHORT")return;
-      const banner=document.createElement("div"); banner.className="tracker-audit-pending"; banner.setAttribute("role","status");
+      const banner=document.createElement("div"); banner.className="tracker-audit-pending"; banner.setAttribute("data-week11-summary",""); banner.setAttribute("role","status");
       const add=(tag,value)=>{const el=document.createElement(tag);el.textContent=value;banner.append(el);};
       add("strong","Week 11 · Preliminary matched-player accuracy");
       add("p",a.matched+"/"+a.projection_rows+" matched · MAE "+a.overall.mae.toFixed(2)+" PPR · RMSE "+a.overall.rmse.toFixed(2)+" · "+a.reported_inactive+" reported inactive · "+a.unresolved+" unresolved. Not final predictive accuracy.");
@@ -240,7 +240,7 @@
         link.textContent="Full preliminary player-level audit";
         banner.append(link);
       }
-      root.prepend(banner);
+      const newer=root.querySelector("[data-week11-summary]"); if(newer)newer.after(banner);else root.prepend(banner);
     }catch(e){ /* Historical tracker remains usable when review file is unavailable. */ }
   })();
   initialize();
