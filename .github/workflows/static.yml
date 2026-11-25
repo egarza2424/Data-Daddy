@@ -66,6 +66,12 @@ jobs:
               html
           )
 
+          html = re.sub(
+              r'weekly-performance\.js\?v=[^"]+',
+              f'weekly-performance.js?v={version}',
+              html
+          )
+
           path.write_text(html, encoding="utf-8")
           print(f"Website asset version: {version}")
           PY
