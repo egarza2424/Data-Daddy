@@ -199,6 +199,23 @@
       if(state.provisional){const note=root.querySelector("#trackerNote");note.textContent="PRELIMINARY · Monday players excluded · "+note.textContent;}
     }catch(e){status.textContent="Weekly audit data is not available yet.";const chart=document.getElementById("trackerAccuracyChart");if(chart)chart.textContent="No completed weekly accuracy audit available yet.";root.querySelector("#trackerCards").innerHTML="";}
   }
+  (async function showWeek11Preliminary(){
+    try {
+      const response=await fetch("projection-model/validation/week11_preliminary_accuracy_review.json?t="+Date.now(),{cache:"no-store"});
+      if(!response.ok)return;
+      const a=await response.json();
+      if(a.week!==11 || a.status!=="PRELIMINARY_MATCHED_COHORT")return;
+      const banner=document.createElement("div"); banner.className="tracker-audit-pending"; banner.setAttribute("role","status");
+      const add=(tag,value)=>{const el=document.createElement(tag);el.textContent=value;banner.append(el);};
+      add("strong","Week 11 · Preliminary matched-player accuracy");
+      add("p",a.matched+"/"+a.projection_rows+" matched · MAE "+a.overall.mae.toFixed(2)+" PPR · RMSE "+a.overall.rmse.toFixed(2)+" · "+a.reported_inactive+" reported inactive · "+a.unresolved+" unresolved. Not final predictive accuracy.");
+      add("p","Position MAE: "+Object.entries(a.positions).map(([p,v])=>p+" "+v.mae.toFixed(2)).join(" · "));
+      add("p","Matched-cohort AI / PPR top-group hits: "+a.overlap.map(r=>r.position+" "+r.ai_hits+"/"+r.cutoff+" vs "+r.ppr_hits+"/"+r.cutoff).join(" · "));
+      add("p","Largest projection misses: "+a.misses.slice(0,5).map(r=>r.name+" "+r.projected.toFixed(2)+" projected / "+r.actual.toFixed(2)+" actual").join(" · "));
+      add("p","Final editorial, participation, injury, waiver and sleeper verification pending. Earlier finalized reports remain separate.");
+      root.prepend(banner);
+    } catch(e) { console.warn("Week 11 preliminary audit unavailable",e); }
+  })();
   // Week 10 exploratory audit status. Never label unverified comparisons as final accuracy.
   (async function showWeek10AuditStatus(){
     try {
