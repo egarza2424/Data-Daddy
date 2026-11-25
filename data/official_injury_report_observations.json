@@ -2,36 +2,192 @@
   "season": 2026,
   "week": 12,
   "source_url": "https://www.nfl.com/news/nfl-week-12-injury-report-2026-season",
-  "retrieved_at_utc": "2026-11-25T15:11:28.544128+00:00",
+  "retrieved_at_utc": "2026-11-25T23:54:53.332998+00:00",
   "verification_status": "official_source_text_unresolved_player_identity",
   "automatically_verified_outs": [],
   "out_text_observations": [
     "OUT:",
     "OUT:** OL \\u003cforge-entity title=\\\"Steve Avila\\\" slug=\\\"steve-avila\\\" code=\\\"player\\\"\\u003eSteve Avila\\u003c/forge-entity\\u003e (hamstring), OL \\u003cforge-entity title=\\\"Coleman Shelton\\\" slug=\\\"coleman-shelton\\\" code=\\\"player\\\"\\u003eColeman Shelton\\u003c/forge-entity\\u003e (hamstring), TE \\u003cforge-entity title=\\\"Terrance Ferguson\\\" slug=\\\"te",
-    "OUT:\\\"}],\\\" OL \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/steve-avila\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Steve Avila\\\"}],\\\" (hamstring), OL \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener nor"
+    "OUT:** RB \\u003cforge-entity title=\\\"Roschon Johnson\\\" slug=\\\"roschon-johnson\\\" code=\\\"player\\\"\\u003eRoschon Johnson\\u003c/forge-entity\\u003e (ankle), DB \\u003cforge-entity title=\\\"Kyler Gordon\\\" slug=\\\"kyler-gordon\\\" code=\\\"player\\\"\\u003eKyler Gordon\\u003c/forge-entity\\u003e (shoulder), DB \\u003cforge-entity title=\\\"Elijah Hicks\\\" slug=\\\"elijah-hi",
+    "OUT:** DL \\u003cforge-entity title=\\\"Skyler Gill-Howard\\\" slug=\\\"skyler-gill-howard\\\" code=\\\"player\\\"\\u003eSkyler Gill-Howard\\u003c/forge-entity\\u003e (knee), CB \\u003cforge-entity title=\\\"Ennis Rakestraw Jr.\\\" slug=\\\"ennis-rakestraw-jr\\\" code=\\\"player\\\"\\u003eEnnis Rakestraw Jr.\\u003c/forge-entity\\u003e (shoulder)\\n* **QUESTIONABLE:** EDGE \\u003cfo",
+    "OUT:** RB \\u003cforge-entity title=\\\"Kenneth Walker III\\\" slug=\\\"kenneth-walker-iii\\\" code=\\\"player\\\"\\u003eKenneth Walker III\\u003c/forge-entity\\u003e (groin), OL \\u003cforge-entity title=\\\"Jaylon Moore\\\" slug=\\\"jaylon-moore\\\" code=\\\"player\\\"\\u003eJaylon Moore\\u003c/forge-entity\\u003e (ankle), DT \\u003cforge-entity title=\\\"Omarr Norman-Lott\\\" slug=",
+    "OUT:** OLB \\u003cforge-entity title=\\\\\\\"Arnold Ebiketie\\\\\\\" slug=\\\\\\\"arnold-ebiketie\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eArnold Ebiketie\\u003c/forge-entity\\u003e (oblique), CB \\u003cforge-entity title=\\\\\\\"Jonathan Jones\\\\\\\" slug=\\\\\\\"jonathan-jones\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJonathan Jones\\u003c/forge-entity\\u003e (ankle)\\\\n\\\\n### COWBOYS\\\\n\\\\n* **OUT:**",
+    "OUT:** WR \\u003cforge-entity title=\\\\\\\"Jonathan Mingo\\\\\\\" slug=\\\\\\\"jonathan-mingo\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJonathan Mingo\\u003c/forge-entity\\u003e (ankle), TE \\u003cforge-entity title=\\\\\\\"Jake Ferguson\\\\\\\" slug=\\\\\\\"jake-ferguson\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJake Ferguson\\u003c/forge-entity\\u003e (knee/ankle), G \\u003cforge-entity title=\\\\\\\"Tyle",
+    "OUT:** S \\u003cforge-entity title=\\\\\\\"Taylor Rapp\\\\\\\" slug=\\\\\\\"taylor-rapp\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eTaylor Rapp\\u003c/forge-entity\\u003e (quadricep), DE \\u003cforge-entity title=\\\\\\\"Sai\\u0026#39;vion Jones\\\\\\\" slug=\\\\\\\"sai-vion-jones\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eSai\\u0026#39;vion Jones\\u003c/forge-entity\\u003e (hamstring)\\\"}},{\\\"storyPartId\\\":\\",
+    "OUT:\\\"}],\\\" OL \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/steve-avila\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Steve Avila\\\"}],\\\" (hamstring), OL \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener nor",
+    "OUT:\\\"}],\\\" RB \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/roschon-johnson\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Roschon Johnson\\\"}],\\\" (ankle), DB \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener",
+    "OUT:\\\"}],\\\" DL \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/skyler-gill-howard\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Skyler Gill-Howard\\\"}],\\\" (knee), CB \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noo",
+    "OUT:\\\"}],\\\" OLB \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/arnold-ebiketie\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Arnold Ebiketie\\\"}],\\\" (oblique), CB \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noope",
+    "OUT:\\\"}],\\\" WR \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/jonathan-mingo\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Jonathan Mingo\\\"}],\\\" (ankle), TE \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener n",
+    "OUT:\\\"}],\\\" RB \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/kenneth-walker-iii\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Kenneth Walker III\\\"}],\\\" (groin), OL \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"no",
+    "OUT:\\\"}],\\\" S \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/taylor-rapp\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Taylor Rapp\\\"}],\\\" (quadricep), DE \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener nore"
   ],
   "out_section_context_unverified": [
     {
       "preceding_context": "25\nGreen Bay Packers\n6-4\nAT\nLos Angeles Rams\n6-4\nWHERE:\nSoFi Stadium (Inglewood, Calif.)\nWHEN:\n8:00 p.m. ET\n|\nNetflix, NFL+\nPACKERS\nQUESTIONABLE:\nRB\nJosh Jacobs\n(finger), WR\nBo Melton\n(thigh), WR\nSkyy Moore\n(ankle), G\nKevin Zeitler\n(triceps), OL\nTravis Glover\n(shoulder), OL\nSean Rhyan\n(ankle), LB\nMicah Parsons\n(knee), LB\nZaire Franklin\n(shin)\nRAMS\n",
-      "following_context": "\nOL\nSteve Avila\n(hamstring), OL\nColeman Shelton\n(hamstring), TE\nTerrance Ferguson\n(ankle/hamstring)\nTHURSDAY, NOV. 26\nChicago Bears\n8-2\nAT\nDetroit Lions\n8-2\nWHERE:\nFord Field (Detroit)\nWHEN:\n1:00 p.m. ET\n|\nCBS, Paramount+, NFL+\nPhiladelphia Eagles\n3-7\nAT\nDallas Cowboys\n5-6\nWHERE:\nAT&T Stadium (Arlington, Texas)\nWHEN:\n4:30 p.m. ET\n|\nFOX, FOX One, NFL+\nKansas City Chiefs\n8-2\nAT\nBuffalo Bills\n9-1\nWHERE:\nHighmark Stadium (Orchard Park, N.Y.)\nWHEN:\n8:20 p.m. ET\n|\nNBC, Peacock, NFL+\nFRIDAY, NOV. 27\nDenver Broncos\n8-2\nAT\nPittsburgh Steelers\n6-4\nWHERE:\nAcrisure Stadium (Pittsburgh)\nWHEN:\n3:00 p.m. ET\n|\nPrime Video, NFL+\nSUNDAY, NOV. 29\nNew Orleans Saints\n3-7\nAT\nCincinnati Bengals\nX-X\nWHERE:\nPaycor Stadium (Cincinnati)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nBaltimore Ravens\n4-7\nAT\nHouston Texans\n4-6\nWHERE:\nReliant Stadium (Houston)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nNew York Giants\n6-3-1\nAT\nIndianapolis Colts\n3-8\nWHERE:\nLucas Oil Stadium (Indianapolis)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nNew York Jets\n3-8\nAT\nMiami Dolphins\n1-9\nW",
+      "following_context": "\nOL\nSteve Avila\n(hamstring), OL\nColeman Shelton\n(hamstring), TE\nTerrance Ferguson\n(ankle/hamstring)\nTHURSDAY, NOV. 26\nChicago Bears\n8-2\nAT\nDetroit Lions\n8-2\nWHERE:\nFord Field (Detroit)\nWHEN:\n1:00 p.m. ET\n|\nCBS, Paramount+, NFL+\nBEARS\nOUT:\nRB\nRoschon Johnson\n(ankle), DB\nKyler Gordon\n(shoulder), DB\nElijah Hicks\n(concussion)\nQUESTIONABLE:\nLB\nD'Marco Jackson\n(elbow), DB\nTyrique Stevenson\n(groin)\nLIONS\nOUT:\nDL\nSkyler Gill-Howard\n(knee), CB\nEnnis Rakestraw Jr.\n(shoulder)\nQUESTIONABLE:\nEDGE\nD.J. Wonnum\n(back), S\nChuck Clark\n(hamstring)\nPhiladelphia Eagles\n3-7\nAT\nDallas Cowboys\n5-6\nWHERE:\nAT&T Stadium (Arlington, Texas)\nWHEN:\n4:30 p.m. ET\n|\nFOX, FOX One, NFL+\nEAGLES\nOUT:\nOLB\nArnold Ebiketie\n(oblique), CB\nJonathan Jones\n(ankle)\nCOWBOYS\nOUT:\nWR\nJonathan Mingo\n(ankle), TE\nJake Ferguson\n(knee/ankle), G\nTyler Booker\n(ankle), S\nP.J. Locke\n(concussion)\nQUESTIONABLE:\nCB\nDevin Moore\n(hip), S\nJalen Thompson\n(hamstring)\nKansas City Chiefs\n8-2\nAT\nBuffalo Bills\n9-1\nWHERE:\nHighmark Stadium (Orchard Park, N.",
       "team_verified": false,
       "player_status_verified": false
     },
     {
-      "preceding_context": "l.com/players/sean-rhyan\\\" target=\\\"_blank\\\"\\u003eSean Rhyan\\u003c/a\\u003e (ankle), LB \\u003ca href=\\\"https://www.nfl.com/players/micah-parsons\\\" target=\\\"_blank\\\"\\u003eMicah Parsons\\u003c/a\\u003e (knee), LB \\u003ca href=\\\"https://www.nfl.com/players/zaire-franklin\\\" target=\\\"_blank\\\"\\u003eZaire Franklin\\u003c/a\\u003e (shin)\\n\\n### **RAMS**\\n\\n* **",
-      "following_context": "** OL \\u003cforge-entity title=\\\"Steve Avila\\\" slug=\\\"steve-avila\\\" code=\\\"player\\\"\\u003eSteve Avila\\u003c/forge-entity\\u003e (hamstring), OL \\u003cforge-entity title=\\\"Coleman Shelton\\\" slug=\\\"coleman-shelton\\\" code=\\\"player\\\"\\u003eColeman Shelton\\u003c/forge-entity\\u003e (hamstring), TE \\u003cforge-entity title=\\\"Terrance Ferguson\\\" slug=\\\"terrance-ferguson-2\\\" code=\\\"player\\\"\\u003eTerrance Ferguson\\u003c/forge-entity\\u003e (ankle/hamstring)\"])\nself.__next_f.push([1,\"5:[[\\\"$\\\",\\\"$L15\\\",null,{\\\"moduleIds\\\":[\\\"utils/renderHandlers/renderTemplate.tsx -\\u003e ../../components/templates/AdTemplate/AdTemplateContainer\\\"]}],[\\\"$\\\",\\\"div\\\",null,{\\\"className\\\":\\\"bg-(--bg-color)\\\",\\\"data-mode\\\":\\\"light\\\",\\\"style\\\":{\\\"--bg-color\\\":\\\"#FFF\\\"},\\\"children\\\":[[\\\"$\\\",\\\"$L16\\\",null,{\\\"metadata\\\":[{\\\"category\\\":\\\"defaults\\\",\\\"key\\\":\\\"articlesadfrequency\\\",\\\"value\\\":5,\\\"type\\\":\\\"number\\\"},{\\\"category\\\":\\\"seo\\\",\\\"key\\\":\\\"pagetitle\\\",\\\"value\\\":\\\"NFL Week 12 injury report: Player statuses for all 16 games ",
+      "preceding_context": "ps), OL\nTravis Glover\n(shoulder), OL\nSean Rhyan\n(ankle), LB\nMicah Parsons\n(knee), LB\nZaire Franklin\n(shin)\nRAMS\nOUT:\nOL\nSteve Avila\n(hamstring), OL\nColeman Shelton\n(hamstring), TE\nTerrance Ferguson\n(ankle/hamstring)\nTHURSDAY, NOV. 26\nChicago Bears\n8-2\nAT\nDetroit Lions\n8-2\nWHERE:\nFord Field (Detroit)\nWHEN:\n1:00 p.m. ET\n|\nCBS, Paramount+, NFL+\nBEARS\n",
+      "following_context": "\nRB\nRoschon Johnson\n(ankle), DB\nKyler Gordon\n(shoulder), DB\nElijah Hicks\n(concussion)\nQUESTIONABLE:\nLB\nD'Marco Jackson\n(elbow), DB\nTyrique Stevenson\n(groin)\nLIONS\nOUT:\nDL\nSkyler Gill-Howard\n(knee), CB\nEnnis Rakestraw Jr.\n(shoulder)\nQUESTIONABLE:\nEDGE\nD.J. Wonnum\n(back), S\nChuck Clark\n(hamstring)\nPhiladelphia Eagles\n3-7\nAT\nDallas Cowboys\n5-6\nWHERE:\nAT&T Stadium (Arlington, Texas)\nWHEN:\n4:30 p.m. ET\n|\nFOX, FOX One, NFL+\nEAGLES\nOUT:\nOLB\nArnold Ebiketie\n(oblique), CB\nJonathan Jones\n(ankle)\nCOWBOYS\nOUT:\nWR\nJonathan Mingo\n(ankle), TE\nJake Ferguson\n(knee/ankle), G\nTyler Booker\n(ankle), S\nP.J. Locke\n(concussion)\nQUESTIONABLE:\nCB\nDevin Moore\n(hip), S\nJalen Thompson\n(hamstring)\nKansas City Chiefs\n8-2\nAT\nBuffalo Bills\n9-1\nWHERE:\nHighmark Stadium (Orchard Park, N.Y.)\nWHEN:\n8:20 p.m. ET\n|\nNBC, Peacock, NFL+\nCHIEFS\nOUT:\nRB\nKenneth Walker III\n(groin), OL\nJaylon Moore\n(ankle), DT\nOmarr Norman-Lott\n(knee)\nQUESTIONABLE:\nTE\nNoah Gray\n(rib), DL\nPeter Woods\n(neck)\nBILLS\nQUESTIONABLE:\nTE\nDalton Kincaid\n(thu",
       "team_verified": false,
       "player_status_verified": false
     },
     {
-      "preceding_context": "l.com/players/sean-rhyan\\\" target=\\\"_blank\\\"\\u003eSean Rhyan\\u003c/a\\u003e (ankle), LB \\u003ca href=\\\"https://www.nfl.com/players/micah-parsons\\\" target=\\\"_blank\\\"\\u003eMicah Parsons\\u003c/a\\u003e (knee), LB \\u003ca href=\\\"https://www.nfl.com/players/zaire-franklin\\\" target=\\\"_blank\\\"\\u003eZaire Franklin\\u003c/a\\u003e (shin)\\n\\n### **RAMS**\\n\\n* **",
-      "following_context": "** OL \\u003cforge-entity title=\\\"Steve Avila\\\" slug=\\\"steve-avila\\\" code=\\\"player\\\"\\u003eSteve Avila\\u003c/forge-entity\\u003e (hamstring), OL \\u003cforge-entity title=\\\"Coleman Shelton\\\" slug=\\\"coleman-shelton\\\" code=\\\"player\\\"\\u003eColeman Shelton\\u003c/forge-entity\\u003e (hamstring), TE \\u003cforge-entity title=\\\"Terrance Ferguson\\\" slug=\\\"terrance-ferguson-2\\\" code=\\\"player\\\"\\u003eTerrance Ferguson\\u003c/forge-entity\\u003e (ankle/hamstring)\"])\nself.__next_f.push([1,\"2e:[\\\"$\\\",\\\"$L5b\\\",null,{\\\"articleAnalyticsProps\\\":{\\\"content\\\":{\\\"provider\\\":\\\"forge\\\",\\\"type\\\":\\\"article\\\",\\\"language\\\":null,\\\"advertiserId\\\":null,\\\"author\\\":null,\\\"authorizations\\\":{\\\"free\\\":[{\\\"FREE - ARTICLE\\\":{\\\"requirements\\\":null}}]},\\\"source\\\":\\\"League\\\",\\\"background\\\":{},\\\"cameraSource\\\":null,\\\"clipType\\\":null,\\\"ctas\\\":[],\\\"ctaLink\\\":null,\\\"ctaText\\\":null,\\\"ctaTarget\\\":null,\\\"description\\\":\\\"NFL.com tracks player statuses for all 16 games in Week 12 of the 2026 NFL season. Fans can stream live local and primeti",
+      "preceding_context": "mstring), TE\nTerrance Ferguson\n(ankle/hamstring)\nTHURSDAY, NOV. 26\nChicago Bears\n8-2\nAT\nDetroit Lions\n8-2\nWHERE:\nFord Field (Detroit)\nWHEN:\n1:00 p.m. ET\n|\nCBS, Paramount+, NFL+\nBEARS\nOUT:\nRB\nRoschon Johnson\n(ankle), DB\nKyler Gordon\n(shoulder), DB\nElijah Hicks\n(concussion)\nQUESTIONABLE:\nLB\nD'Marco Jackson\n(elbow), DB\nTyrique Stevenson\n(groin)\nLIONS\n",
+      "following_context": "\nDL\nSkyler Gill-Howard\n(knee), CB\nEnnis Rakestraw Jr.\n(shoulder)\nQUESTIONABLE:\nEDGE\nD.J. Wonnum\n(back), S\nChuck Clark\n(hamstring)\nPhiladelphia Eagles\n3-7\nAT\nDallas Cowboys\n5-6\nWHERE:\nAT&T Stadium (Arlington, Texas)\nWHEN:\n4:30 p.m. ET\n|\nFOX, FOX One, NFL+\nEAGLES\nOUT:\nOLB\nArnold Ebiketie\n(oblique), CB\nJonathan Jones\n(ankle)\nCOWBOYS\nOUT:\nWR\nJonathan Mingo\n(ankle), TE\nJake Ferguson\n(knee/ankle), G\nTyler Booker\n(ankle), S\nP.J. Locke\n(concussion)\nQUESTIONABLE:\nCB\nDevin Moore\n(hip), S\nJalen Thompson\n(hamstring)\nKansas City Chiefs\n8-2\nAT\nBuffalo Bills\n9-1\nWHERE:\nHighmark Stadium (Orchard Park, N.Y.)\nWHEN:\n8:20 p.m. ET\n|\nNBC, Peacock, NFL+\nCHIEFS\nOUT:\nRB\nKenneth Walker III\n(groin), OL\nJaylon Moore\n(ankle), DT\nOmarr Norman-Lott\n(knee)\nQUESTIONABLE:\nTE\nNoah Gray\n(rib), DL\nPeter Woods\n(neck)\nBILLS\nQUESTIONABLE:\nTE\nDalton Kincaid\n(thumb/ankle), G\nO'Cyrus Torrence\n(ankle), DL\nT.J. Sanders\n(shoulder), LB\nDorian Williams\n(calf), CB\nChristian Benford\n(groin)\nFRIDAY, NOV. 27\nDenver Broncos\n8-2\nAT\nPittsb",
       "team_verified": false,
       "player_status_verified": false
     },
     {
-      "preceding_context": "\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Zaire Franklin\\\"}],\\\" (shin)\\\"]}],\\\"\\\\n\\\"]}],\\\"\\\\n\\\",[\\\"$\\\",\\\"h3\\\",\\\"h3-1\\\",{\\\"children\\\":[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"RAMS\\\"}]}],\\\"\\\\n\\\",[\\\"$\\\",\\\"ul\\\",\\\"ul-1\\\",{\\\"children\\\":[\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-0\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"",
-      "following_context": "\\\"}],\\\" OL \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/steve-avila\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Steve Avila\\\"}],\\\" (hamstring), OL \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/coleman-shelton\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Coleman Shelton\\\"}],\\\" (hamstring), TE \\\",[\\\"$\\\",\\\"$L32\\\",\\\"a-2\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/terrance-ferguson-2\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Terrance Ferguson\\\"}],\\\" (ankle/hamstring)\\\"]}],\\\"\\\\n\\\"]}]]}]}]]}]\\n\"])\nself.__next_f.push([1,\"66:[\\\"$\\\",\\\"div\\\",\\\"4\\\",{\\\"children\\\":[[\\\"$\\\",\\\"$L15\\\",null,{\\\"moduleIds\\\":\\\"$5d:props:children:1",
+      "preceding_context": "ssion)\nQUESTIONABLE:\nLB\nD'Marco Jackson\n(elbow), DB\nTyrique Stevenson\n(groin)\nLIONS\nOUT:\nDL\nSkyler Gill-Howard\n(knee), CB\nEnnis Rakestraw Jr.\n(shoulder)\nQUESTIONABLE:\nEDGE\nD.J. Wonnum\n(back), S\nChuck Clark\n(hamstring)\nPhiladelphia Eagles\n3-7\nAT\nDallas Cowboys\n5-6\nWHERE:\nAT&T Stadium (Arlington, Texas)\nWHEN:\n4:30 p.m. ET\n|\nFOX, FOX One, NFL+\nEAGLES\n",
+      "following_context": "\nOLB\nArnold Ebiketie\n(oblique), CB\nJonathan Jones\n(ankle)\nCOWBOYS\nOUT:\nWR\nJonathan Mingo\n(ankle), TE\nJake Ferguson\n(knee/ankle), G\nTyler Booker\n(ankle), S\nP.J. Locke\n(concussion)\nQUESTIONABLE:\nCB\nDevin Moore\n(hip), S\nJalen Thompson\n(hamstring)\nKansas City Chiefs\n8-2\nAT\nBuffalo Bills\n9-1\nWHERE:\nHighmark Stadium (Orchard Park, N.Y.)\nWHEN:\n8:20 p.m. ET\n|\nNBC, Peacock, NFL+\nCHIEFS\nOUT:\nRB\nKenneth Walker III\n(groin), OL\nJaylon Moore\n(ankle), DT\nOmarr Norman-Lott\n(knee)\nQUESTIONABLE:\nTE\nNoah Gray\n(rib), DL\nPeter Woods\n(neck)\nBILLS\nQUESTIONABLE:\nTE\nDalton Kincaid\n(thumb/ankle), G\nO'Cyrus Torrence\n(ankle), DL\nT.J. Sanders\n(shoulder), LB\nDorian Williams\n(calf), CB\nChristian Benford\n(groin)\nFRIDAY, NOV. 27\nDenver Broncos\n8-2\nAT\nPittsburgh Steelers\n6-4\nWHERE:\nAcrisure Stadium (Pittsburgh)\nWHEN:\n3:00 p.m. ET\n|\nPrime Video, NFL+\nBRONCOS\nOUT:\nS\nTaylor Rapp\n(quadricep), DE\nSai'vion Jones\n(hamstring)\nSUNDAY, NOV. 29\nNew Orleans Saints\n3-7\nAT\nCincinnati Bengals\n7-3\nWHERE:\nPaycor Stadium (Cincinnati)\nWH",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "(groin)\nLIONS\nOUT:\nDL\nSkyler Gill-Howard\n(knee), CB\nEnnis Rakestraw Jr.\n(shoulder)\nQUESTIONABLE:\nEDGE\nD.J. Wonnum\n(back), S\nChuck Clark\n(hamstring)\nPhiladelphia Eagles\n3-7\nAT\nDallas Cowboys\n5-6\nWHERE:\nAT&T Stadium (Arlington, Texas)\nWHEN:\n4:30 p.m. ET\n|\nFOX, FOX One, NFL+\nEAGLES\nOUT:\nOLB\nArnold Ebiketie\n(oblique), CB\nJonathan Jones\n(ankle)\nCOWBOYS\n",
+      "following_context": "\nWR\nJonathan Mingo\n(ankle), TE\nJake Ferguson\n(knee/ankle), G\nTyler Booker\n(ankle), S\nP.J. Locke\n(concussion)\nQUESTIONABLE:\nCB\nDevin Moore\n(hip), S\nJalen Thompson\n(hamstring)\nKansas City Chiefs\n8-2\nAT\nBuffalo Bills\n9-1\nWHERE:\nHighmark Stadium (Orchard Park, N.Y.)\nWHEN:\n8:20 p.m. ET\n|\nNBC, Peacock, NFL+\nCHIEFS\nOUT:\nRB\nKenneth Walker III\n(groin), OL\nJaylon Moore\n(ankle), DT\nOmarr Norman-Lott\n(knee)\nQUESTIONABLE:\nTE\nNoah Gray\n(rib), DL\nPeter Woods\n(neck)\nBILLS\nQUESTIONABLE:\nTE\nDalton Kincaid\n(thumb/ankle), G\nO'Cyrus Torrence\n(ankle), DL\nT.J. Sanders\n(shoulder), LB\nDorian Williams\n(calf), CB\nChristian Benford\n(groin)\nFRIDAY, NOV. 27\nDenver Broncos\n8-2\nAT\nPittsburgh Steelers\n6-4\nWHERE:\nAcrisure Stadium (Pittsburgh)\nWHEN:\n3:00 p.m. ET\n|\nPrime Video, NFL+\nBRONCOS\nOUT:\nS\nTaylor Rapp\n(quadricep), DE\nSai'vion Jones\n(hamstring)\nSUNDAY, NOV. 29\nNew Orleans Saints\n3-7\nAT\nCincinnati Bengals\n7-3\nWHERE:\nPaycor Stadium (Cincinnati)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nBaltimore Ravens\n4-7\nAT\nHouston Texans\n4-6\nWHER",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": ", CB\nJonathan Jones\n(ankle)\nCOWBOYS\nOUT:\nWR\nJonathan Mingo\n(ankle), TE\nJake Ferguson\n(knee/ankle), G\nTyler Booker\n(ankle), S\nP.J. Locke\n(concussion)\nQUESTIONABLE:\nCB\nDevin Moore\n(hip), S\nJalen Thompson\n(hamstring)\nKansas City Chiefs\n8-2\nAT\nBuffalo Bills\n9-1\nWHERE:\nHighmark Stadium (Orchard Park, N.Y.)\nWHEN:\n8:20 p.m. ET\n|\nNBC, Peacock, NFL+\nCHIEFS\n",
+      "following_context": "\nRB\nKenneth Walker III\n(groin), OL\nJaylon Moore\n(ankle), DT\nOmarr Norman-Lott\n(knee)\nQUESTIONABLE:\nTE\nNoah Gray\n(rib), DL\nPeter Woods\n(neck)\nBILLS\nQUESTIONABLE:\nTE\nDalton Kincaid\n(thumb/ankle), G\nO'Cyrus Torrence\n(ankle), DL\nT.J. Sanders\n(shoulder), LB\nDorian Williams\n(calf), CB\nChristian Benford\n(groin)\nFRIDAY, NOV. 27\nDenver Broncos\n8-2\nAT\nPittsburgh Steelers\n6-4\nWHERE:\nAcrisure Stadium (Pittsburgh)\nWHEN:\n3:00 p.m. ET\n|\nPrime Video, NFL+\nBRONCOS\nOUT:\nS\nTaylor Rapp\n(quadricep), DE\nSai'vion Jones\n(hamstring)\nSUNDAY, NOV. 29\nNew Orleans Saints\n3-7\nAT\nCincinnati Bengals\n7-3\nWHERE:\nPaycor Stadium (Cincinnati)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nBaltimore Ravens\n4-7\nAT\nHouston Texans\n4-6\nWHERE:\nReliant Stadium (Houston)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nNew York Giants\n6-3-1\nAT\nIndianapolis Colts\n3-8\nWHERE:\nLucas Oil Stadium (Indianapolis)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nNew York Jets\n3-8\nAT\nMiami Dolphins\n1-9\nWHERE:\nHard Rock Stadium (Miami Gardens, Fla.)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nRELATED CONTENT\nArticle\nNFL Week 12",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "Noah Gray\n(rib), DL\nPeter Woods\n(neck)\nBILLS\nQUESTIONABLE:\nTE\nDalton Kincaid\n(thumb/ankle), G\nO'Cyrus Torrence\n(ankle), DL\nT.J. Sanders\n(shoulder), LB\nDorian Williams\n(calf), CB\nChristian Benford\n(groin)\nFRIDAY, NOV. 27\nDenver Broncos\n8-2\nAT\nPittsburgh Steelers\n6-4\nWHERE:\nAcrisure Stadium (Pittsburgh)\nWHEN:\n3:00 p.m. ET\n|\nPrime Video, NFL+\nBRONCOS\n",
+      "following_context": "\nS\nTaylor Rapp\n(quadricep), DE\nSai'vion Jones\n(hamstring)\nSUNDAY, NOV. 29\nNew Orleans Saints\n3-7\nAT\nCincinnati Bengals\n7-3\nWHERE:\nPaycor Stadium (Cincinnati)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nBaltimore Ravens\n4-7\nAT\nHouston Texans\n4-6\nWHERE:\nReliant Stadium (Houston)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nNew York Giants\n6-3-1\nAT\nIndianapolis Colts\n3-8\nWHERE:\nLucas Oil Stadium (Indianapolis)\nWHEN:\n1:00 p.m. ET\n|\nFOX\nNew York Jets\n3-8\nAT\nMiami Dolphins\n1-9\nWHERE:\nHard Rock Stadium (Miami Gardens, Fla.)\nWHEN:\n1:00 p.m. ET\n|\nCBS\nRELATED CONTENT\nArticle\nNFL Week 12 picks: Upset and score predictions, matchup breakdowns for every game\nabout 3 hours ago\nArticle\nWeek 12 NFL MVP tracker: Brock Purdy reclaims No. 1 spot; what is each candidate thankful for?\nNov 24, 2026\nArticle\nNFL playoff picture: Postseason probabilities entering Week 12 of the 2026 season\nNov 24, 2026\nAtlanta Falcons\n3-7\nAT\nMinnesota Vikings\n7-3\nWHERE:\nU.S. Bank Stadium (Minneapolis)\nWHEN:\n1:00 p.m. ET\n|\nFOX, FOX One, NFL+\nTennessee Titans\n1-9\nAT\n",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "w.nfl.com/players/sean-rhyan\\\" target=\\\"_blank\\\"\\u003eSean Rhyan\\u003c/a\\u003e (ankle), LB \\u003ca href=\\\"https://www.nfl.com/players/micah-parsons\\\" target=\\\"_blank\\\"\\u003eMicah Parsons\\u003c/a\\u003e (knee), LB \\u003ca href=\\\"https://www.nfl.com/players/zaire-franklin\\\" target=\\\"_blank\\\"\\u003eZaire Franklin\\u003c/a\\u003e (shin)\\n\\n### RAMS\\n\\n* **",
+      "following_context": "** OL \\u003cforge-entity title=\\\"Steve Avila\\\" slug=\\\"steve-avila\\\" code=\\\"player\\\"\\u003eSteve Avila\\u003c/forge-entity\\u003e (hamstring), OL \\u003cforge-entity title=\\\"Coleman Shelton\\\" slug=\\\"coleman-shelton\\\" code=\\\"player\\\"\\u003eColeman Shelton\\u003c/forge-entity\\u003e (hamstring), TE \\u003cforge-entity title=\\\"Terrance Ferguson\\\" slug=\\\"terrance-ferguson-2\\\" code=\\\"player\\\"\\u003eTerrance Ferguson\\u003c/forge-entity\\u003e (ankle/hamstring)19:T483,### BEARS\\n\\n* **OUT:** RB \\u003cforge-entity title=\\\"Roschon Johnson\\\" slug=\\\"roschon-johnson\\\" code=\\\"player\\\"\\u003eRoschon Johnson\\u003c/forge-entity\\u003e (ankle), DB \\u003cforge-entity title=\\\"Kyler Gordon\\\" slug=\\\"kyler-gordon\\\" code=\\\"player\\\"\\u003eKyler Gordon\\u003c/forge-entity\\u003e (shoulder), DB \\u003cforge-entity title=\\\"Elijah Hicks\\\" slug=\\\"elijah-hicks\\\" code=\\\"player\\\"\\u003eElijah Hicks\\u003c/forge-entity\\u003e (concussion)\\n* **QUESTIONABLE:** LB \\u003cforge-entity title=\\\"D\\u0026#39;Marco Jackson\\\" slug=\\\"d-marco-jackson",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "03e (hamstring), OL \\u003cforge-entity title=\\\"Coleman Shelton\\\" slug=\\\"coleman-shelton\\\" code=\\\"player\\\"\\u003eColeman Shelton\\u003c/forge-entity\\u003e (hamstring), TE \\u003cforge-entity title=\\\"Terrance Ferguson\\\" slug=\\\"terrance-ferguson-2\\\" code=\\\"player\\\"\\u003eTerrance Ferguson\\u003c/forge-entity\\u003e (ankle/hamstring)19:T483,### BEARS\\n\\n* **",
+      "following_context": "** RB \\u003cforge-entity title=\\\"Roschon Johnson\\\" slug=\\\"roschon-johnson\\\" code=\\\"player\\\"\\u003eRoschon Johnson\\u003c/forge-entity\\u003e (ankle), DB \\u003cforge-entity title=\\\"Kyler Gordon\\\" slug=\\\"kyler-gordon\\\" code=\\\"player\\\"\\u003eKyler Gordon\\u003c/forge-entity\\u003e (shoulder), DB \\u003cforge-entity title=\\\"Elijah Hicks\\\" slug=\\\"elijah-hicks\\\" code=\\\"player\\\"\\u003eElijah Hicks\\u003c/forge-entity\\u003e (concussion)\\n* **QUESTIONABLE:** LB \\u003cforge-entity title=\\\"D\\u0026#39;Marco Jackson\\\" slug=\\\"d-marco-jackson\\\" code=\\\"player\\\"\\u003eD\\u0026#39;Marco Jackson\\u003c/forge-entity\\u003e (elbow), DB \\u003cforge-entity title=\\\"Tyrique Stevenson\\\" slug=\\\"tyrique-stevenson\\\" code=\\\"player\\\"\\u003eTyrique Stevenson\\u003c/forge-entity\\u003e (groin)\\n\\n### LIONS\\n\\n* **OUT:** DL \\u003cforge-entity title=\\\"Skyler Gill-Howard\\\" slug=\\\"skyler-gill-howard\\\" code=\\\"player\\\"\\u003eSkyler Gill-Howard\\u003c/forge-entity\\u003e (knee), CB \\u003cforge-entity title=\\\"Ennis Rakestraw Jr.\\\" slug=\\\"ennis-",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": " **QUESTIONABLE:** LB \\u003cforge-entity title=\\\"D\\u0026#39;Marco Jackson\\\" slug=\\\"d-marco-jackson\\\" code=\\\"player\\\"\\u003eD\\u0026#39;Marco Jackson\\u003c/forge-entity\\u003e (elbow), DB \\u003cforge-entity title=\\\"Tyrique Stevenson\\\" slug=\\\"tyrique-stevenson\\\" code=\\\"player\\\"\\u003eTyrique Stevenson\\u003c/forge-entity\\u003e (groin)\\n\\n### LIONS\\n\\n* **",
+      "following_context": "** DL \\u003cforge-entity title=\\\"Skyler Gill-Howard\\\" slug=\\\"skyler-gill-howard\\\" code=\\\"player\\\"\\u003eSkyler Gill-Howard\\u003c/forge-entity\\u003e (knee), CB \\u003cforge-entity title=\\\"Ennis Rakestraw Jr.\\\" slug=\\\"ennis-rakestraw-jr\\\" code=\\\"player\\\"\\u003eEnnis Rakestraw Jr.\\u003c/forge-entity\\u003e (shoulder)\\n* **QUESTIONABLE:** EDGE \\u003cforge-entity title=\\\"D.J. Wonnum\\\" slug=\\\"d-j-wonnum\\\" code=\\\"player\\\"\\u003eD.J. Wonnum\\u003c/forge-entity\\u003e (back), S \\u003cforge-entity title=\\\"Chuck Clark\\\" slug=\\\"chuck-clark\\\" code=\\\"player\\\"\\u003eChuck Clark\\u003c/forge-entity\\u003e (hamstring)1a:T4d9,### CHIEFS\\n\\n* **OUT:** RB \\u003cforge-entity title=\\\"Kenneth Walker III\\\" slug=\\\"kenneth-walker-iii\\\" code=\\\"player\\\"\\u003eKenneth Walker III\\u003c/forge-entity\\u003e (groin), OL \\u003cforge-entity title=\\\"Jaylon Moore\\\" slug=\\\"jaylon-moore\\\" code=\\\"player\\\"\\u003eJaylon Moore\\u003c/forge-entity\\u003e (ankle), DT \\u003cforge-entity title=\\\"Omarr Norman-Lott\\\" slug=\\\"omarr-norman-lott\\\" code",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": ".\\u003c/forge-entity\\u003e (shoulder)\\n* **QUESTIONABLE:** EDGE \\u003cforge-entity title=\\\"D.J. Wonnum\\\" slug=\\\"d-j-wonnum\\\" code=\\\"player\\\"\\u003eD.J. Wonnum\\u003c/forge-entity\\u003e (back), S \\u003cforge-entity title=\\\"Chuck Clark\\\" slug=\\\"chuck-clark\\\" code=\\\"player\\\"\\u003eChuck Clark\\u003c/forge-entity\\u003e (hamstring)1a:T4d9,### CHIEFS\\n\\n* **",
+      "following_context": "** RB \\u003cforge-entity title=\\\"Kenneth Walker III\\\" slug=\\\"kenneth-walker-iii\\\" code=\\\"player\\\"\\u003eKenneth Walker III\\u003c/forge-entity\\u003e (groin), OL \\u003cforge-entity title=\\\"Jaylon Moore\\\" slug=\\\"jaylon-moore\\\" code=\\\"player\\\"\\u003eJaylon Moore\\u003c/forge-entity\\u003e (ankle), DT \\u003cforge-entity title=\\\"Omarr Norman-Lott\\\" slug=\\\"omarr-norman-lott\\\" code=\\\"player\\\"\\u003eOmarr Norman-Lott\\u003c/forge-entity\\u003e (knee)\\n* **QUESTIONABLE:** TE \\u003cforge-entity title=\\\"Noah Gray\\\" slug=\\\"noah-gray\\\" code=\\\"player\\\"\\u003eNoah Gray\\u003c/forge-entity\\u003e (rib), DL \\u003cforge-entity title=\\\"Peter Woods\\\" slug=\\\"peter-woods\\\" code=\\\"player\\\"\\u003ePeter Woods\\u003c/forge-entity\\u003e (neck)\\n\\n### BILLS\\n\\n* **QUESTIONABLE:** TE \\u003cforge-entity title=\\\"Dalton Kincaid\\\" slug=\\\"dalton-kincaid\\\" code=\\\"player\\\"\\u003eDalton Kincaid\\u003c/forge-entity\\u003e (thumb/ankle), G \\u003cforge-entity title=\\\"O\\u0026#39;Cyrus Torrence\\\" slug=\\\"o-cyrus-torrence\\\" code=\\\"player\\\"\\u003",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "u003c/a\\u003e | \\u003ca href=\\\\\\\"https://www.nfl.com/ways-to-watch/by-week/week-12#eagles-at-cowboys-2026-reg-12\\\\\\\" rel=\\\\\\\"noopener noreferrer\\\\\\\" target=\\\\\\\"_blank\\\\\\\"\\u003eFOX, FOX One, NFL+\\u003c/a\\u003e\\u003c/li\\u003e\\u003c/ul\\u003e\\\",\\\"storyParts\\\":[],\\\"trending\\\":{}}},{\\\"storyPartId\\\":\\\"text\\\",\\\"content\\\":{\\\"content\\\":\\\"### EAGLES\\\\n\\\\n* **",
+      "following_context": "** OLB \\u003cforge-entity title=\\\\\\\"Arnold Ebiketie\\\\\\\" slug=\\\\\\\"arnold-ebiketie\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eArnold Ebiketie\\u003c/forge-entity\\u003e (oblique), CB \\u003cforge-entity title=\\\\\\\"Jonathan Jones\\\\\\\" slug=\\\\\\\"jonathan-jones\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJonathan Jones\\u003c/forge-entity\\u003e (ankle)\\\\n\\\\n### COWBOYS\\\\n\\\\n* **OUT:** WR \\u003cforge-entity title=\\\\\\\"Jonathan Mingo\\\\\\\" slug=\\\\\\\"jonathan-mingo\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJonathan Mingo\\u003c/forge-entity\\u003e (ankle), TE \\u003cforge-entity title=\\\\\\\"Jake Ferguson\\\\\\\" slug=\\\\\\\"jake-ferguson\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJake Ferguson\\u003c/forge-entity\\u003e (knee/ankle), G \\u003cforge-entity title=\\\\\\\"Tyler Booker\\\\\\\" slug=\\\\\\\"tyler-booker\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eTyler Booker\\u003c/forge-entity\\u003e (ankle), S \\u003cforge-entity title=\\\\\\\"P.J. Locke\\\\\\\" slug=\\\\\\\"p-j-locke\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eP.J. Locke\\u003c/forge-entity\\u003e (concussion)\\\\n* **QUESTIONABLE:** CB \\u003cforge-entity title=\\\\\\\"De",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "\\n* **OUT:** OLB \\u003cforge-entity title=\\\\\\\"Arnold Ebiketie\\\\\\\" slug=\\\\\\\"arnold-ebiketie\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eArnold Ebiketie\\u003c/forge-entity\\u003e (oblique), CB \\u003cforge-entity title=\\\\\\\"Jonathan Jones\\\\\\\" slug=\\\\\\\"jonathan-jones\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJonathan Jones\\u003c/forge-entity\\u003e (ankle)\\\\n\\\\n### COWBOYS\\\\n\\\\n* **",
+      "following_context": "** WR \\u003cforge-entity title=\\\\\\\"Jonathan Mingo\\\\\\\" slug=\\\\\\\"jonathan-mingo\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJonathan Mingo\\u003c/forge-entity\\u003e (ankle), TE \\u003cforge-entity title=\\\\\\\"Jake Ferguson\\\\\\\" slug=\\\\\\\"jake-ferguson\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJake Ferguson\\u003c/forge-entity\\u003e (knee/ankle), G \\u003cforge-entity title=\\\\\\\"Tyler Booker\\\\\\\" slug=\\\\\\\"tyler-booker\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eTyler Booker\\u003c/forge-entity\\u003e (ankle), S \\u003cforge-entity title=\\\\\\\"P.J. Locke\\\\\\\" slug=\\\\\\\"p-j-locke\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eP.J. Locke\\u003c/forge-entity\\u003e (concussion)\\\\n* **QUESTIONABLE:** CB \\u003cforge-entity title=\\\\\\\"Devin Moore\\\\\\\" slug=\\\\\\\"devin-moore-2\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eDevin Moore\\u003c/forge-entity\\u003e (hip), S \\u003cforge-entity title=\\\\\\\"Jalen Thompson\\\\\\\" slug=\\\\\\\"jalen-thompson\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJalen Thompson\\u003c/forge-entity\\u003e (hamstring)\\\"}},{\\\"storyPartId\\\":\\\"rankedCards\\\",\\\"content\\\":{\\\"template\\\":\\\"team-team\\\",\\\"",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "03c/a\\u003e | \\u003ca href=\\\\\\\"https://www.nfl.com/ways-to-watch/by-week/week-12#broncos-at-steelers-2026-reg-12\\\\\\\" rel=\\\\\\\"noopener noreferrer\\\\\\\" target=\\\\\\\"_blank\\\\\\\"\\u003ePrime Video, NFL+\\u003c/a\\u003e\\u003c/li\\u003e\\u003c/ul\\u003e\\\",\\\"storyParts\\\":[],\\\"trending\\\":{}}},{\\\"storyPartId\\\":\\\"text\\\",\\\"content\\\":{\\\"content\\\":\\\"### BRONCOS\\\\n\\\\n* **",
+      "following_context": "** S \\u003cforge-entity title=\\\\\\\"Taylor Rapp\\\\\\\" slug=\\\\\\\"taylor-rapp\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eTaylor Rapp\\u003c/forge-entity\\u003e (quadricep), DE \\u003cforge-entity title=\\\\\\\"Sai\\u0026#39;vion Jones\\\\\\\" slug=\\\\\\\"sai-vion-jones\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eSai\\u0026#39;vion Jones\\u003c/forge-entity\\u003e (hamstring)\\\"}},{\\\"storyPartId\\\":\\\"text\\\",\\\"content\\\":{\\\"content\\\":\\\"## SUNDAY, NOV. 29\\\"}},{\\\"storyPartId\\\":\\\"rankedCards\\\",\\\"content\\\":{\\\"template\\\":\\\"team-team\\\",\\\"team\\\":{\\\"displayName\\\":\\\"New Orleans Saints\\\",\\\"teamLogo\\\":{\\\"title\\\":\\\"New Orleans Saints\\\",\\\"thumbnailUrl\\\":\\\"https://static.www.nfl.com/{formatInstructions}/league/api/clubs/logos/NO\\\"},\\\"teamColor\\\":\\\"#000000\\\",\\\"teamData\\\":\\\"3-7\\\",\\\"teamSeason\\\":\\\"\\\"},\\\"team2\\\":{\\\"displayName\\\":\\\"Cincinnati Bengals\\\",\\\"teamLogo\\\":{\\\"title\\\":\\\"Cincinnati Bengals\\\",\\\"thumbnailUrl\\\":\\\"https://static.www.nfl.com/{formatInstructions}/league/api/clubs/logos/CIN\\\"},\\\"teamColor\\\":\\\"#FB4F14\\\",\\\"teamData\\\":\\\"7-3\\\",\\\"teamSeason\\\":\\\"\\\"},\\",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "w.nfl.com/players/sean-rhyan\\\" target=\\\"_blank\\\"\\u003eSean Rhyan\\u003c/a\\u003e (ankle), LB \\u003ca href=\\\"https://www.nfl.com/players/micah-parsons\\\" target=\\\"_blank\\\"\\u003eMicah Parsons\\u003c/a\\u003e (knee), LB \\u003ca href=\\\"https://www.nfl.com/players/zaire-franklin\\\" target=\\\"_blank\\\"\\u003eZaire Franklin\\u003c/a\\u003e (shin)\\n\\n### RAMS\\n\\n* **",
+      "following_context": "** OL \\u003cforge-entity title=\\\"Steve Avila\\\" slug=\\\"steve-avila\\\" code=\\\"player\\\"\\u003eSteve Avila\\u003c/forge-entity\\u003e (hamstring), OL \\u003cforge-entity title=\\\"Coleman Shelton\\\" slug=\\\"coleman-shelton\\\" code=\\\"player\\\"\\u003eColeman Shelton\\u003c/forge-entity\\u003e (hamstring), TE \\u003cforge-entity title=\\\"Terrance Ferguson\\\" slug=\\\"terrance-ferguson-2\\\" code=\\\"player\\\"\\u003eTerrance Ferguson\\u003c/forge-entity\\u003e (ankle/hamstring)5f:T483,### BEARS\\n\\n* **OUT:** RB \\u003cforge-entity title=\\\"Roschon Johnson\\\" slug=\\\"roschon-johnson\\\" code=\\\"player\\\"\\u003eRoschon Johnson\\u003c/forge-entity\\u003e (ankle), DB \\u003cforge-entity title=\\\"Kyler Gordon\\\" slug=\\\"kyler-gordon\\\" code=\\\"player\\\"\\u003eKyler Gordon\\u003c/forge-entity\\u003e (shoulder), DB \\u003cforge-entity title=\\\"Elijah Hicks\\\" slug=\\\"elijah-hicks\\\" code=\\\"player\\\"\\u003eElijah Hicks\\u003c/forge-entity\\u003e (concussion)\\n* **QUESTIONABLE:** LB \\u003cforge-entity title=\\\"D\\u0026#39;Marco Jackson\\\" slug=\\\"d-marco-jackson",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "03e (hamstring), OL \\u003cforge-entity title=\\\"Coleman Shelton\\\" slug=\\\"coleman-shelton\\\" code=\\\"player\\\"\\u003eColeman Shelton\\u003c/forge-entity\\u003e (hamstring), TE \\u003cforge-entity title=\\\"Terrance Ferguson\\\" slug=\\\"terrance-ferguson-2\\\" code=\\\"player\\\"\\u003eTerrance Ferguson\\u003c/forge-entity\\u003e (ankle/hamstring)5f:T483,### BEARS\\n\\n* **",
+      "following_context": "** RB \\u003cforge-entity title=\\\"Roschon Johnson\\\" slug=\\\"roschon-johnson\\\" code=\\\"player\\\"\\u003eRoschon Johnson\\u003c/forge-entity\\u003e (ankle), DB \\u003cforge-entity title=\\\"Kyler Gordon\\\" slug=\\\"kyler-gordon\\\" code=\\\"player\\\"\\u003eKyler Gordon\\u003c/forge-entity\\u003e (shoulder), DB \\u003cforge-entity title=\\\"Elijah Hicks\\\" slug=\\\"elijah-hicks\\\" code=\\\"player\\\"\\u003eElijah Hicks\\u003c/forge-entity\\u003e (concussion)\\n* **QUESTIONABLE:** LB \\u003cforge-entity title=\\\"D\\u0026#39;Marco Jackson\\\" slug=\\\"d-marco-jackson\\\" code=\\\"player\\\"\\u003eD\\u0026#39;Marco Jackson\\u003c/forge-entity\\u003e (elbow), DB \\u003cforge-entity title=\\\"Tyrique Stevenson\\\" slug=\\\"tyrique-stevenson\\\" code=\\\"player\\\"\\u003eTyrique Stevenson\\u003c/forge-entity\\u003e (groin)\\n\\n### LIONS\\n\\n* **OUT:** DL \\u003cforge-entity title=\\\"Skyler Gill-Howard\\\" slug=\\\"skyler-gill-howard\\\" code=\\\"player\\\"\\u003eSkyler Gill-Howard\\u003c/forge-entity\\u003e (knee), CB \\u003cforge-entity title=\\\"Ennis Rakestraw Jr.\\\" slug=\\\"ennis-",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": " **QUESTIONABLE:** LB \\u003cforge-entity title=\\\"D\\u0026#39;Marco Jackson\\\" slug=\\\"d-marco-jackson\\\" code=\\\"player\\\"\\u003eD\\u0026#39;Marco Jackson\\u003c/forge-entity\\u003e (elbow), DB \\u003cforge-entity title=\\\"Tyrique Stevenson\\\" slug=\\\"tyrique-stevenson\\\" code=\\\"player\\\"\\u003eTyrique Stevenson\\u003c/forge-entity\\u003e (groin)\\n\\n### LIONS\\n\\n* **",
+      "following_context": "** DL \\u003cforge-entity title=\\\"Skyler Gill-Howard\\\" slug=\\\"skyler-gill-howard\\\" code=\\\"player\\\"\\u003eSkyler Gill-Howard\\u003c/forge-entity\\u003e (knee), CB \\u003cforge-entity title=\\\"Ennis Rakestraw Jr.\\\" slug=\\\"ennis-rakestraw-jr\\\" code=\\\"player\\\"\\u003eEnnis Rakestraw Jr.\\u003c/forge-entity\\u003e (shoulder)\\n* **QUESTIONABLE:** EDGE \\u003cforge-entity title=\\\"D.J. Wonnum\\\" slug=\\\"d-j-wonnum\\\" code=\\\"player\\\"\\u003eD.J. Wonnum\\u003c/forge-entity\\u003e (back), S \\u003cforge-entity title=\\\"Chuck Clark\\\" slug=\\\"chuck-clark\\\" code=\\\"player\\\"\\u003eChuck Clark\\u003c/forge-entity\\u003e (hamstring)60:T4d9,### CHIEFS\\n\\n* **OUT:** RB \\u003cforge-entity title=\\\"Kenneth Walker III\\\" slug=\\\"kenneth-walker-iii\\\" code=\\\"player\\\"\\u003eKenneth Walker III\\u003c/forge-entity\\u003e (groin), OL \\u003cforge-entity title=\\\"Jaylon Moore\\\" slug=\\\"jaylon-moore\\\" code=\\\"player\\\"\\u003eJaylon Moore\\u003c/forge-entity\\u003e (ankle), DT \\u003cforge-entity title=\\\"Omarr Norman-Lott\\\" slug=\\\"omarr-norman-lott\\\" code",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": ".\\u003c/forge-entity\\u003e (shoulder)\\n* **QUESTIONABLE:** EDGE \\u003cforge-entity title=\\\"D.J. Wonnum\\\" slug=\\\"d-j-wonnum\\\" code=\\\"player\\\"\\u003eD.J. Wonnum\\u003c/forge-entity\\u003e (back), S \\u003cforge-entity title=\\\"Chuck Clark\\\" slug=\\\"chuck-clark\\\" code=\\\"player\\\"\\u003eChuck Clark\\u003c/forge-entity\\u003e (hamstring)60:T4d9,### CHIEFS\\n\\n* **",
+      "following_context": "** RB \\u003cforge-entity title=\\\"Kenneth Walker III\\\" slug=\\\"kenneth-walker-iii\\\" code=\\\"player\\\"\\u003eKenneth Walker III\\u003c/forge-entity\\u003e (groin), OL \\u003cforge-entity title=\\\"Jaylon Moore\\\" slug=\\\"jaylon-moore\\\" code=\\\"player\\\"\\u003eJaylon Moore\\u003c/forge-entity\\u003e (ankle), DT \\u003cforge-entity title=\\\"Omarr Norman-Lott\\\" slug=\\\"omarr-norman-lott\\\" code=\\\"player\\\"\\u003eOmarr Norman-Lott\\u003c/forge-entity\\u003e (knee)\\n* **QUESTIONABLE:** TE \\u003cforge-entity title=\\\"Noah Gray\\\" slug=\\\"noah-gray\\\" code=\\\"player\\\"\\u003eNoah Gray\\u003c/forge-entity\\u003e (rib), DL \\u003cforge-entity title=\\\"Peter Woods\\\" slug=\\\"peter-woods\\\" code=\\\"player\\\"\\u003ePeter Woods\\u003c/forge-entity\\u003e (neck)\\n\\n### BILLS\\n\\n* **QUESTIONABLE:** TE \\u003cforge-entity title=\\\"Dalton Kincaid\\\" slug=\\\"dalton-kincaid\\\" code=\\\"player\\\"\\u003eDalton Kincaid\\u003c/forge-entity\\u003e (thumb/ankle), G \\u003cforge-entity title=\\\"O\\u0026#39;Cyrus Torrence\\\" slug=\\\"o-cyrus-torrence\\\" code=\\\"player\\\"\\u003",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "u003c/a\\u003e | \\u003ca href=\\\\\\\"https://www.nfl.com/ways-to-watch/by-week/week-12#eagles-at-cowboys-2026-reg-12\\\\\\\" rel=\\\\\\\"noopener noreferrer\\\\\\\" target=\\\\\\\"_blank\\\\\\\"\\u003eFOX, FOX One, NFL+\\u003c/a\\u003e\\u003c/li\\u003e\\u003c/ul\\u003e\\\",\\\"storyParts\\\":[],\\\"trending\\\":{}}},{\\\"storyPartId\\\":\\\"text\\\",\\\"content\\\":{\\\"content\\\":\\\"### EAGLES\\\\n\\\\n* **",
+      "following_context": "** OLB \\u003cforge-entity title=\\\\\\\"Arnold Ebiketie\\\\\\\" slug=\\\\\\\"arnold-ebiketie\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eArnold Ebiketie\\u003c/forge-entity\\u003e (oblique), CB \\u003cforge-entity title=\\\\\\\"Jonathan Jones\\\\\\\" slug=\\\\\\\"jonathan-jones\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJonathan Jones\\u003c/forge-entity\\u003e (ankle)\\\\n\\\\n### COWBOYS\\\\n\\\\n* **OUT:** WR \\u003cforge-entity title=\\\\\\\"Jonathan Mingo\\\\\\\" slug=\\\\\\\"jonathan-mingo\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJonathan Mingo\\u003c/forge-entity\\u003e (ankle), TE \\u003cforge-entity title=\\\\\\\"Jake Ferguson\\\\\\\" slug=\\\\\\\"jake-ferguson\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJake Ferguson\\u003c/forge-entity\\u003e (knee/ankle), G \\u003cforge-entity title=\\\\\\\"Tyler Booker\\\\\\\" slug=\\\\\\\"tyler-booker\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eTyler Booker\\u003c/forge-entity\\u003e (ankle), S \\u003cforge-entity title=\\\\\\\"P.J. Locke\\\\\\\" slug=\\\\\\\"p-j-locke\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eP.J. Locke\\u003c/forge-entity\\u003e (concussion)\\\\n* **QUESTIONABLE:** CB \\u003cforge-entity title=\\\\\\\"De",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "\\n* **OUT:** OLB \\u003cforge-entity title=\\\\\\\"Arnold Ebiketie\\\\\\\" slug=\\\\\\\"arnold-ebiketie\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eArnold Ebiketie\\u003c/forge-entity\\u003e (oblique), CB \\u003cforge-entity title=\\\\\\\"Jonathan Jones\\\\\\\" slug=\\\\\\\"jonathan-jones\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJonathan Jones\\u003c/forge-entity\\u003e (ankle)\\\\n\\\\n### COWBOYS\\\\n\\\\n* **",
+      "following_context": "** WR \\u003cforge-entity title=\\\\\\\"Jonathan Mingo\\\\\\\" slug=\\\\\\\"jonathan-mingo\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJonathan Mingo\\u003c/forge-entity\\u003e (ankle), TE \\u003cforge-entity title=\\\\\\\"Jake Ferguson\\\\\\\" slug=\\\\\\\"jake-ferguson\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJake Ferguson\\u003c/forge-entity\\u003e (knee/ankle), G \\u003cforge-entity title=\\\\\\\"Tyler Booker\\\\\\\" slug=\\\\\\\"tyler-booker\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eTyler Booker\\u003c/forge-entity\\u003e (ankle), S \\u003cforge-entity title=\\\\\\\"P.J. Locke\\\\\\\" slug=\\\\\\\"p-j-locke\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eP.J. Locke\\u003c/forge-entity\\u003e (concussion)\\\\n* **QUESTIONABLE:** CB \\u003cforge-entity title=\\\\\\\"Devin Moore\\\\\\\" slug=\\\\\\\"devin-moore-2\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eDevin Moore\\u003c/forge-entity\\u003e (hip), S \\u003cforge-entity title=\\\\\\\"Jalen Thompson\\\\\\\" slug=\\\\\\\"jalen-thompson\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eJalen Thompson\\u003c/forge-entity\\u003e (hamstring)\\\"}},{\\\"storyPartId\\\":\\\"rankedCards\\\",\\\"content\\\":{\\\"template\\\":\\\"team-team\\\",\\\"",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "03c/a\\u003e | \\u003ca href=\\\\\\\"https://www.nfl.com/ways-to-watch/by-week/week-12#broncos-at-steelers-2026-reg-12\\\\\\\" rel=\\\\\\\"noopener noreferrer\\\\\\\" target=\\\\\\\"_blank\\\\\\\"\\u003ePrime Video, NFL+\\u003c/a\\u003e\\u003c/li\\u003e\\u003c/ul\\u003e\\\",\\\"storyParts\\\":[],\\\"trending\\\":{}}},{\\\"storyPartId\\\":\\\"text\\\",\\\"content\\\":{\\\"content\\\":\\\"### BRONCOS\\\\n\\\\n* **",
+      "following_context": "** S \\u003cforge-entity title=\\\\\\\"Taylor Rapp\\\\\\\" slug=\\\\\\\"taylor-rapp\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eTaylor Rapp\\u003c/forge-entity\\u003e (quadricep), DE \\u003cforge-entity title=\\\\\\\"Sai\\u0026#39;vion Jones\\\\\\\" slug=\\\\\\\"sai-vion-jones\\\\\\\" code=\\\\\\\"player\\\\\\\"\\u003eSai\\u0026#39;vion Jones\\u003c/forge-entity\\u003e (hamstring)\\\"}},{\\\"storyPartId\\\":\\\"text\\\",\\\"content\\\":{\\\"content\\\":\\\"## SUNDAY, NOV. 29\\\"}},{\\\"storyPartId\\\":\\\"rankedCards\\\",\\\"content\\\":{\\\"template\\\":\\\"team-team\\\",\\\"team\\\":{\\\"displayName\\\":\\\"New Orleans Saints\\\",\\\"teamLogo\\\":{\\\"title\\\":\\\"New Orleans Saints\\\",\\\"thumbnailUrl\\\":\\\"https://static.www.nfl.com/{formatInstructions}/league/api/clubs/logos/NO\\\"},\\\"teamColor\\\":\\\"#000000\\\",\\\"teamData\\\":\\\"3-7\\\",\\\"teamSeason\\\":\\\"\\\"},\\\"team2\\\":{\\\"displayName\\\":\\\"Cincinnati Bengals\\\",\\\"teamLogo\\\":{\\\"title\\\":\\\"Cincinnati Bengals\\\",\\\"thumbnailUrl\\\":\\\"https://static.www.nfl.com/{formatInstructions}/league/api/clubs/logos/CIN\\\"},\\\"teamColor\\\":\\\"#FB4F14\\\",\\\"teamData\\\":\\\"7-3\\\",\\\"teamSeason\\\":\\\"\\\"},\\",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "\\\":\\\"https://www.nfl.com/players/zaire-franklin\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Zaire Franklin\\\"}],\\\" (shin)\\\"]}],\\\"\\\\n\\\"]}],\\\"\\\\n\\\",[\\\"$\\\",\\\"h3\\\",\\\"h3-1\\\",{\\\"children\\\":\\\"RAMS\\\"}],\\\"\\\\n\\\",[\\\"$\\\",\\\"ul\\\",\\\"ul-1\\\",{\\\"children\\\":[\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-0\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"",
+      "following_context": "\\\"}],\\\" OL \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/steve-avila\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Steve Avila\\\"}],\\\" (hamstring), OL \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/coleman-shelton\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Coleman Shelton\\\"}],\\\" (hamstring), TE \\\",\\\"$L6c\\\",\\\" (ankle/hamstring)\\\"]}],\\\"\\\\n\\\"]}]]}]}]]}],\\\"$L6d\\\",\\\"$L6e\\\",\\\"$L6f\\\",\\\"$L70\\\",\\\"$L71\\\",\\\"$L72\\\",\\\"$L73\\\",\\\"$L74\\\",\\\"$L75\\\",\\\"$L76\\\",\\\"$L77\\\",\\\"$L78\\\",\\\"$L79\\\",\\\"$L7a\\\",\\\"$L7b\\\",\\\"$L7c\\\",\\\"$L7d\\\",\\\"$L7e\\\",\\\"$L7f\\\",\\\"$L80\\\",\\\"$L81\\\",\\\"$L82\\\",\\\"$L83\\\",\\\"$L84\\\",\\\"$L85\\\",\\\"$L86\\\",\\\"$L87\\\",\\\"$L88\\\",\\\"$L89\\\"]}]}]\\n\"])\nself.__next_f.push([1,\"68:[\\\"$\\\",\\\"footer\\\",null,{\\\"className\\\":\\\"bg-white dark:bg-ds-level-2 w-full py-6 lg:",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "l,{\\\"className\\\":\\\"rounded-2xl mb-5\\\",\\\"id\\\":\\\"$undefined\\\",\\\"children\\\":[\\\"$\\\",\\\"div\\\",null,{\\\"className\\\":\\\"story-part-rich-text-editor-wrapper\\\",\\\"children\\\":[[\\\"$\\\",\\\"h3\\\",\\\"h3-0\\\",{\\\"children\\\":\\\"BEARS\\\"}],\\\"\\\\n\\\",[\\\"$\\\",\\\"ul\\\",\\\"ul-0\\\",{\\\"children\\\":[\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-0\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"",
+      "following_context": "\\\"}],\\\" RB \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/roschon-johnson\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Roschon Johnson\\\"}],\\\" (ankle), DB \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/kyler-gordon\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Kyler Gordon\\\"}],\\\" (shoulder), DB \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-2\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/elijah-hicks\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Elijah Hicks\\\"}],\\\" (concussion)\\\"]}],\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-1\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"QUESTIONABLE:\\\"}],\\\" LB \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "ne\\\",\\\"href\\\":\\\"/players/tyrique-stevenson\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Tyrique Stevenson\\\"}],\\\" (groin)\\\"]}],\\\"\\\\n\\\"]}],\\\"\\\\n\\\",[\\\"$\\\",\\\"h3\\\",\\\"h3-1\\\",{\\\"children\\\":\\\"LIONS\\\"}],\\\"\\\\n\\\",[\\\"$\\\",\\\"ul\\\",\\\"ul-1\\\",{\\\"children\\\":[\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-0\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"",
+      "following_context": "\\\"}],\\\" DL \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/skyler-gill-howard\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Skyler Gill-Howard\\\"}],\\\" (knee), CB \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/ennis-rakestraw-jr\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Ennis Rakestraw Jr.\\\"}],\\\" (shoulder)\\\"]}],\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-1\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"QUESTIONABLE:\\\"}],\\\" EDGE \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/d-j-wonnum\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"D.J. Wonnum\\\"}],\\\" (back), S \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-1\\\",{\\\"as\\\":\\\"",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": ",{\\\"className\\\":\\\"rounded-2xl mb-5\\\",\\\"id\\\":\\\"$undefined\\\",\\\"children\\\":[\\\"$\\\",\\\"div\\\",null,{\\\"className\\\":\\\"story-part-rich-text-editor-wrapper\\\",\\\"children\\\":[[\\\"$\\\",\\\"h3\\\",\\\"h3-0\\\",{\\\"children\\\":\\\"EAGLES\\\"}],\\\"\\\\n\\\",[\\\"$\\\",\\\"ul\\\",\\\"ul-0\\\",{\\\"children\\\":[\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-0\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"",
+      "following_context": "\\\"}],\\\" OLB \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/arnold-ebiketie\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Arnold Ebiketie\\\"}],\\\" (oblique), CB \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/jonathan-jones\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Jonathan Jones\\\"}],\\\" (ankle)\\\"]}],\\\"\\\\n\\\"]}],\\\"\\\\n\\\",[\\\"$\\\",\\\"h3\\\",\\\"h3-1\\\",{\\\"children\\\":\\\"COWBOYS\\\"}],\\\"\\\\n\\\",[\\\"$\\\",\\\"ul\\\",\\\"ul-1\\\",{\\\"children\\\":[\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-0\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"OUT:\\\"}],\\\" WR \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/jonathan-mingo\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "erline\\\",\\\"href\\\":\\\"/players/jonathan-jones\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Jonathan Jones\\\"}],\\\" (ankle)\\\"]}],\\\"\\\\n\\\"]}],\\\"\\\\n\\\",[\\\"$\\\",\\\"h3\\\",\\\"h3-1\\\",{\\\"children\\\":\\\"COWBOYS\\\"}],\\\"\\\\n\\\",[\\\"$\\\",\\\"ul\\\",\\\"ul-1\\\",{\\\"children\\\":[\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-0\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"",
+      "following_context": "\\\"}],\\\" WR \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/jonathan-mingo\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Jonathan Mingo\\\"}],\\\" (ankle), TE \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/jake-ferguson\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Jake Ferguson\\\"}],\\\" (knee/ankle), G \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-2\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/tyler-booker\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Tyler Booker\\\"}],\\\" (ankle), S \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-3\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/p-j-loc",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": ",{\\\"className\\\":\\\"rounded-2xl mb-5\\\",\\\"id\\\":\\\"$undefined\\\",\\\"children\\\":[\\\"$\\\",\\\"div\\\",null,{\\\"className\\\":\\\"story-part-rich-text-editor-wrapper\\\",\\\"children\\\":[[\\\"$\\\",\\\"h3\\\",\\\"h3-0\\\",{\\\"children\\\":\\\"CHIEFS\\\"}],\\\"\\\\n\\\",[\\\"$\\\",\\\"ul\\\",\\\"ul-0\\\",{\\\"children\\\":[\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-0\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"",
+      "following_context": "\\\"}],\\\" RB \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/kenneth-walker-iii\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Kenneth Walker III\\\"}],\\\" (groin), OL \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/jaylon-moore\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Jaylon Moore\\\"}],\\\" (ankle), DT \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-2\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/omarr-norman-lott\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Omarr Norman-Lott\\\"}],\\\" (knee)\\\"]}],\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-1\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"QUESTIONABLE:\\\"}],\\\" TE \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\"",
+      "team_verified": false,
+      "player_status_verified": false
+    },
+    {
+      "preceding_context": "{\\\"className\\\":\\\"rounded-2xl mb-5\\\",\\\"id\\\":\\\"$undefined\\\",\\\"children\\\":[\\\"$\\\",\\\"div\\\",null,{\\\"className\\\":\\\"story-part-rich-text-editor-wrapper\\\",\\\"children\\\":[[\\\"$\\\",\\\"h3\\\",\\\"h3-0\\\",{\\\"children\\\":\\\"BRONCOS\\\"}],\\\"\\\\n\\\",[\\\"$\\\",\\\"ul\\\",\\\"ul-0\\\",{\\\"children\\\":[\\\"\\\\n\\\",[\\\"$\\\",\\\"li\\\",\\\"li-0\\\",{\\\"children\\\":[[\\\"$\\\",\\\"strong\\\",\\\"strong-0\\\",{\\\"children\\\":\\\"",
+      "following_context": "\\\"}],\\\" S \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-0\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/taylor-rapp\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Taylor Rapp\\\"}],\\\" (quadricep), DE \\\",[\\\"$\\\",\\\"$L34\\\",\\\"a-1\\\",{\\\"as\\\":\\\"a\\\",\\\"rel\\\":\\\"noopener noreferrer\\\",\\\"className\\\":\\\"relative text-plus-650 dark:text-plus-350 underline\\\",\\\"href\\\":\\\"/players/sai-vion-jones\\\",\\\"target\\\":\\\"_blank\\\",\\\"ref\\\":\\\"$undefined\\\",\\\"children\\\":\\\"Sai'vion Jones\\\"}],\\\" (hamstring)\\\"]}],\\\"\\\\n\\\"]}]]}]}]]}]\\n79:[\\\"$\\\",\\\"div\\\",\\\"16\\\",{\\\"children\\\":[[\\\"$\\\",\\\"$L15\\\",null,{\\\"moduleIds\\\":\\\"$67:props:children:props:children:0:props:children:0:props:moduleIds\\\"}],[\\\"$\\\",\\\"div\\\",null,{\\\"className\\\":\\\"rounded-2xl mb-5\\\",\\\"id\\\":\\\"$undefined\\\",\\\"children\\\":[\\\"$\\\",\\\"div\\\",null,{\\\"className\\\":\\\"story-part-rich-text-editor-wrapper\\\",\\\"children\\\":[[\\\"$\\\",\\\"h2\\\",\\\"h2-0\\\",{\\\"children\\\":\\\"SUNDAY, NOV. 29\\\"}]]}]}]]}]\\n7a:[\\\"$\\\",\\\"div\\\",\\\"",
       "team_verified": false,
       "player_status_verified": false
     }
@@ -42,6 +198,157 @@
       "fantasy_player_names_unverified": [
         "Terrance Ferguson"
       ],
+      "section_boundary_detected": true,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": "BEARS",
+      "fantasy_player_names_unverified": [
+        "Roschon Johnson"
+      ],
+      "section_boundary_detected": true,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": "LIONS",
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": true,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": "EAGLES",
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": true,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": "COWBOYS",
+      "fantasy_player_names_unverified": [
+        "Jonathan Mingo",
+        "Jake Ferguson"
+      ],
+      "section_boundary_detected": true,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": "CHIEFS",
+      "fantasy_player_names_unverified": [
+        "Kenneth Walker III"
+      ],
+      "section_boundary_detected": true,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": "BRONCOS",
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
+      "section_boundary_detected": false,
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "team_heading_unverified": null,
+      "fantasy_player_names_unverified": [],
       "section_boundary_detected": false,
       "eligible_for_projection_adjustment": false
     },
@@ -72,12 +379,66 @@
       "match_status": "unmatched",
       "matches": [],
       "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Roschon Johnson",
+      "official_team_heading": "BEARS",
+      "expected_team": "CHI",
+      "match_status": "unique_name_and_team",
+      "matches": [
+        {
+          "player_id": "10235",
+          "player_name": "Roschon Johnson",
+          "team": "CHI",
+          "position": "RB"
+        }
+      ],
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Jonathan Mingo",
+      "official_team_heading": "COWBOYS",
+      "expected_team": null,
+      "match_status": "unmatched",
+      "matches": [],
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Jake Ferguson",
+      "official_team_heading": "COWBOYS",
+      "expected_team": null,
+      "match_status": "unmatched",
+      "matches": [],
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Kenneth Walker III",
+      "official_team_heading": "CHIEFS",
+      "expected_team": "KC",
+      "match_status": "unique_name_and_team",
+      "matches": [
+        {
+          "player_id": "8151",
+          "player_name": "Kenneth Walker III",
+          "team": "KC",
+          "position": "RB"
+        }
+      ],
+      "eligible_for_projection_adjustment": false
     }
   ],
   "unverified_name_candidates": [
     "Steve Avila",
     "Coleman Shelton",
-    "Terrance Ferguson"
+    "Terrance Ferguson",
+    "Roschon Johnson",
+    "Kyler Gordon",
+    "Elijah Hicks",
+    "Skyler Gill-Howard",
+    "Ennis Rakestraw Jr.",
+    "Kenneth Walker III",
+    "Jaylon Moore",
+    "Omarr Norman-Lott"
   ],
   "directory_name_matches_unverified": [
     {
@@ -107,6 +468,84 @@
           "position": "TE"
         }
       ],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Roschon Johnson",
+      "match_status": "unique_name_only",
+      "matches": [
+        {
+          "player_id": "10235",
+          "player_name": "Roschon Johnson",
+          "team": "CHI",
+          "position": "RB"
+        }
+      ],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Kyler Gordon",
+      "match_status": "unmatched",
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Elijah Hicks",
+      "match_status": "unmatched",
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Skyler Gill-Howard",
+      "match_status": "unmatched",
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Ennis Rakestraw Jr.",
+      "match_status": "unmatched",
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Kenneth Walker III",
+      "match_status": "unique_name_only",
+      "matches": [
+        {
+          "player_id": "8151",
+          "player_name": "Kenneth Walker III",
+          "team": "KC",
+          "position": "RB"
+        }
+      ],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Jaylon Moore",
+      "match_status": "unmatched",
+      "matches": [],
+      "status_verification": "not_verified",
+      "team_verification": "not_verified",
+      "eligible_for_projection_adjustment": false
+    },
+    {
+      "reported_name": "Omarr Norman-Lott",
+      "match_status": "unmatched",
+      "matches": [],
       "status_verification": "not_verified",
       "team_verification": "not_verified",
       "eligible_for_projection_adjustment": false
