@@ -82,6 +82,17 @@ jobs:
                           flags.append('peer_matchup_verified')
                       elif len(peer_scores)>1:
                           flags.append('conflicting_peer_scores')
+                  raw = data.get('defensive_matchup',{}).get(matches[0][0],{}) if len(matches)==1 else {}
+                  defense = data.get('defense_position_allowed',{})
+                  d = defense.get(teamcode(row['opponent']),{}).get(pos,{})
+                  value = d.get('fantasy_points_allowed')
+                  vals = [v.get(pos,{}).get('fantasy_points_allowed') for v in defense.values()]
+                  vals = [v for v in vals if isinstance(v,(int,float)) and math.isfinite(v)]
+                  row.update(raw_player_score=raw.get('score',''),raw_player_opponent=raw.get('opponent',''),raw_player_source=raw.get('score_source',''),defense_ppr_allowed=value if value is not None else '',position_min=min(vals) if vals else '',position_max=max(vals) if vals else '',recomputed_raw_score='',review_20_80_score='')
+                  if week_ok and isinstance(value,(int,float)) and vals and max(vals)>min(vals):
+                      ratio=(value-min(vals))/(max(vals)-min(vals))
+                      row['recomputed_raw_score']=round(25+75*ratio)
+                      row['review_20_80_score']=round(20+60*ratio)
                   row['flags']=';'.join(flags)
                   rows.append(row)
           assert len(rows)==31 and len({r['player'] for r in rows})==31
