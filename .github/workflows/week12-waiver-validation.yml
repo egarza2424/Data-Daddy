@@ -41,11 +41,17 @@ jobs:
           except Exception as e:
               print('Schedule retrieval failed:', e)
               opponents = {}
+          def teamcode(t):
+              return {'LA':'LAR','JAC':'JAX','WSH':'WAS'}.get(t,t)
+          def valid(m, pos, opp):
+              s=m.get('score')
+              return week_ok and opp and teamcode(m.get('opponent'))==teamcode(opp) and m.get('position')==pos and isinstance(s,(int,float)) and math.isfinite(s) and 20<=s<=80 and 'neutral' not in m.get('score_source','')
           rows = []
+          groups['WR'] += '|Rashod Bateman'
           for pos, names in groups.items():
               for rank, name in enumerate(names.split('|'), 1):
-                  matches = [(pid,p) for pid,p in players.items() if normalized_name(p.get('name')) == normalized_name(name) and p.get('position') == pos]
-                  row = dict(player=name, position=pos, position_rank=rank, overall_rank=overall.index(name)+1 if name in overall else '', team='', opponent='', espn_percent='', espn_checked_at=checked or '', eligibility='UNVERIFIED', matchup_score='', matchup_source='', injury_status='', flags='')
+                  matches = [(pid,p) for pid,p in players.items() if (normalized_name(p.get('name')) == normalized_name(name) or (name=='Kenneth Gainwell' and normalized_name(p.get('name'))=='kennygainwell')) and p.get('position') == pos]
+                  row = dict(player=name, position=pos, position_rank=rank if name!='Rashod Bateman' else '', overall_rank=overall.index(name)+1 if name in overall else '', team='', opponent='', espn_percent='', espn_checked_at=checked or '', eligibility='UNVERIFIED', matchup_score='', matchup_source='', injury_status='', flags='')
                   flags = []
                   if len(matches) != 1:
                       flags.append('missing_or_ambiguous_player')
@@ -62,17 +68,25 @@ jobs:
                           flags.append('espn_missing')
                       m = data.get('defensive_matchup',{}).get(pid,{})
                       score = m.get('score')
-                      if week_ok and opp and m.get('opponent')==opp and m.get('position')==pos and isinstance(score,(int,float)) and math.isfinite(score) and 20 <= score <= 80:
+                      if week_ok and opp and teamcode(m.get('opponent'))==teamcode(opp) and m.get('position')==pos and isinstance(score,(int,float)) and math.isfinite(score) and 20 <= score <= 80:
                           row.update(matchup_score=score, matchup_source=m.get('score_source',''))
                           if 'neutral' in row['matchup_source']:
                               flags.append('neutral_fallback')
                       else:
                           flags.append('matchup_missing_or_mismatch')
+                  if not row['matchup_score'] or 'neutral_fallback' in flags:
+                      peer_scores = {m['score'] for m in data.get('defensive_matchup',{}).values() if valid(m,pos,row['opponent'])}
+                      if len(peer_scores)==1:
+                          row.update(matchup_score=peer_scores.pop(), matchup_source='week12_opponent_position_consensus')
+                          flags=[f for f in flags if f not in ('matchup_missing_or_mismatch','neutral_fallback')]
+                          flags.append('peer_matchup_verified')
+                      elif len(peer_scores)>1:
+                          flags.append('conflicting_peer_scores')
                   row['flags']=';'.join(flags)
                   rows.append(row)
-          assert len(rows)==30 and len({r['player'] for r in rows})==30
+          assert len(rows)==31 and len({r['player'] for r in rows})==31
           assert sum(bool(r['overall_rank']) for r in rows)==22
-          rows.sort(key=lambda r: (not bool(r['overall_rank']), r['overall_rank'] or 99, r['position'], r['position_rank']))
+          rows.sort(key=lambda r: (not bool(r['overall_rank']), r['overall_rank'] or 99, r['position'], r['position_rank'] or 99))
           out=Path('waiver-review')
           out.mkdir(exist_ok=True)
           with (out/'week12-review.csv').open('w',newline='') as f:
