@@ -1938,478 +1938,371 @@ async function loadWaiverWire() {
     return;
   }
 
-  // Week 11 approved editorial waiver order; independent of all projection models.
-  const editorial11 = {
+  // Week 12 approved editorial waiver order; independent of all projection models.
+  const editorial12 = {
   "lists": {
     "overall": [
-      "Jordyn Tyson",
-      "Seth McGowan",
-      "Keenan Allen",
+      "Antonio Williams",
       "Jacory Croskey-Merritt",
-      "Kenny Gainwell",
-      "Kaelon Black",
+      "Konata Mumpfield",
+      "Chris Rodriguez Jr.",
+      "Kenneth Gainwell",
       "Caleb Douglas",
+      "Tre Tucker",
+      "Fernando Mendoza",
+      "Tyler Higbee",
+      "Kaelon Black",
+      "Justice Hill",
+      "Dylan Sampson",
       "Adonai Mitchell",
-      "Makai Lemon",
-      "Courtland Sutton",
+      "Will Shipley",
+      "Chimere Dike",
       "Xavier Hutchinson",
       "Chig Okonkwo",
-      "Antonio Williams",
-      "Michael Mayer",
-      "Elic Ayomanor",
-      "Bo Nix"
+      "Germie Bernard",
+      "Cam Ward",
+      "Ted Hurst III",
+      "Justin Herbert",
+      "Bam Knight"
     ],
     "RB": [
-      "Seth McGowan",
       "Jacory Croskey-Merritt",
-      "Kenny Gainwell",
+      "Chris Rodriguez Jr.",
+      "Kenneth Gainwell",
       "Kaelon Black",
-      "Austin Ekeler",
-      "Elijah Mitchell",
-      "Mike Washington Jr.",
-      "J.K. Dobbins",
+      "Justice Hill",
+      "Dylan Sampson",
+      "Will Shipley",
+      "Bam Knight",
       "Kaleb Johnson",
-      "Justice Hill"
+      "Samaje Perine"
     ],
     "WR": [
-      "Jordyn Tyson",
-      "Keenan Allen",
-      "Caleb Douglas",
-      "Adonai Mitchell",
-      "Makai Lemon",
-      "Courtland Sutton",
-      "Xavier Hutchinson",
       "Antonio Williams",
-      "Elic Ayomanor",
-      "Tre' Harris"
+      "Konata Mumpfield",
+      "Caleb Douglas",
+      "Tre Tucker",
+      "Adonai Mitchell",
+      "Chimere Dike",
+      "Xavier Hutchinson",
+      "Germie Bernard",
+      "Ted Hurst III",
+      "Rashod Bateman"
     ],
     "QB": [
-      "Bo Nix",
+      "Fernando Mendoza",
       "Cam Ward",
       "Justin Herbert",
-      "Aaron Rodgers",
-      "J.J. McCarthy"
+      "Deshaun Watson",
+      "Anthony Richardson Sr."
     ],
     "TE": [
+      "Tyler Higbee",
       "Chig Okonkwo",
-      "Michael Mayer",
       "Mike Gesicki",
-      "Cade Otton",
-      "Evan Engram"
-    ],
-    "DST": [
-      "Kansas City Chiefs",
-      "Detroit Lions",
-      "Chicago Bears",
-      "New York Jets",
-      "San Francisco 49ers"
+      "Pat Freiermuth",
+      "Darren Waller"
     ]
   },
   "players": [
     {
-      "name": "Jordyn Tyson",
-      "team": "NO",
-      "opponent": "CHI",
-      "ownership": 42,
-      "upper": null,
-      "matchup": null,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Seth McGowan",
-      "team": "IND",
-      "opponent": "HOU",
-      "ownership": 11,
-      "upper": null,
-      "matchup": null,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Keenan Allen",
-      "team": "SF",
-      "opponent": "MIN",
-      "ownership": 52,
-      "upper": null,
-      "matchup": null,
+      "name": "Antonio Williams",
+      "team": "WAS",
+      "opponent": "ARI",
+      "ownership": 22.1,
+      "matchup": 33,
       "injury": null,
       "note": null
     },
     {
       "name": "Jacory Croskey-Merritt",
       "team": "WAS",
-      "opponent": "CIN",
-      "ownership": 38.8,
-      "upper": null,
-      "matchup": null,
-      "injury": "IR",
-      "note": "IR practice window opened Nov 17; activation pending"
-    },
-    {
-      "name": "Kenny Gainwell",
-      "team": "TB",
-      "opponent": "DET",
-      "ownership": 49.42,
-      "upper": null,
-      "matchup": 38,
+      "opponent": "ARI",
+      "ownership": 45.55,
+      "matchup": 67,
       "injury": null,
       "note": null
     },
     {
-      "name": "Kaelon Black",
-      "team": "SF",
-      "opponent": "MIN",
-      "ownership": 35,
-      "upper": null,
-      "matchup": null,
+      "name": "Konata Mumpfield",
+      "team": "LAR",
+      "opponent": "GB",
+      "ownership": 10.06,
+      "matchup": 42,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Chris Rodriguez Jr.",
+      "team": "JAX",
+      "opponent": "TEN",
+      "ownership": 16.78,
+      "matchup": 57,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Kenneth Gainwell",
+      "team": "TB",
+      "opponent": "CAR",
+      "ownership": 59.7,
+      "matchup": 73,
       "injury": null,
       "note": null
     },
     {
       "name": "Caleb Douglas",
       "team": "MIA",
-      "opponent": "BUF",
-      "ownership": 30,
-      "upper": null,
-      "matchup": null,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Adonai Mitchell",
-      "team": "NYJ",
-      "opponent": "LAC",
-      "ownership": 39,
-      "upper": null,
-      "matchup": null,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Makai Lemon",
-      "team": "PHI",
-      "opponent": "PIT",
-      "ownership": 49.71,
-      "upper": null,
-      "matchup": 56,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Courtland Sutton",
-      "team": "DEN",
-      "opponent": "LV",
-      "ownership": 57.11,
-      "upper": null,
-      "matchup": 66,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Xavier Hutchinson",
-      "team": "HOU",
-      "opponent": "IND",
-      "ownership": 9,
-      "upper": null,
-      "matchup": null,
-      "injury": "QUESTIONABLE",
-      "note": null
-    },
-    {
-      "name": "Chig Okonkwo",
-      "team": "WAS",
-      "opponent": "CIN",
-      "ownership": 16.13,
-      "upper": null,
-      "matchup": 45,
-      "injury": "QUESTIONABLE",
-      "note": null
-    },
-    {
-      "name": "Antonio Williams",
-      "team": "WAS",
-      "opponent": "CIN",
-      "ownership": 17.7,
-      "upper": null,
-      "matchup": 62,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Michael Mayer",
-      "team": "LV",
-      "opponent": "DEN",
-      "ownership": null,
-      "upper": 60,
-      "matchup": null,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Elic Ayomanor",
-      "team": "TEN",
-      "opponent": "DAL",
-      "ownership": null,
-      "upper": 40,
-      "matchup": null,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Bo Nix",
-      "team": "DEN",
-      "opponent": "LV",
-      "ownership": 56.58,
-      "upper": null,
-      "matchup": 77,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Austin Ekeler",
-      "team": "WAS",
-      "opponent": "CIN",
-      "ownership": 7.08,
-      "upper": null,
-      "matchup": 68,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Elijah Mitchell",
-      "team": "PHI",
-      "opponent": "PIT",
-      "ownership": 5.85,
-      "upper": null,
-      "matchup": 39,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Mike Washington Jr.",
-      "team": "LV",
-      "opponent": "DEN",
-      "ownership": 20.4,
-      "upper": null,
-      "matchup": null,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "J.K. Dobbins",
-      "team": "DEN",
-      "opponent": "LV",
-      "ownership": 61.08,
-      "upper": null,
-      "matchup": null,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Kaleb Johnson",
-      "team": "GB",
-      "opponent": "BYE",
-      "ownership": 14,
-      "upper": null,
-      "matchup": null,
-      "injury": null,
-      "note": "Bye week stash"
-    },
-    {
-      "name": "Tre' Harris",
-      "team": "LAC",
       "opponent": "NYJ",
-      "ownership": null,
-      "upper": null,
-      "matchup": null,
+      "ownership": 36.17,
+      "matchup": 28,
       "injury": null,
       "note": null
     },
     {
-      "name": "Ja'Kobi Lane",
-      "team": "BAL",
-      "opponent": "CAR",
-      "ownership": null,
-      "upper": 40,
-      "matchup": null,
+      "name": "Tre Tucker",
+      "team": "LV",
+      "opponent": "CLE",
+      "ownership": 51.27,
+      "matchup": 32,
       "injury": null,
       "note": null
     },
     {
-      "name": "Cam Ward",
-      "team": "TEN",
-      "opponent": "DAL",
-      "ownership": 5,
-      "upper": null,
-      "matchup": null,
+      "name": "Fernando Mendoza",
+      "team": "LV",
+      "opponent": "CLE",
+      "ownership": 22.28,
+      "matchup": 37,
       "injury": null,
       "note": null
     },
     {
-      "name": "Justin Herbert",
-      "team": "LAC",
-      "opponent": "NYJ",
-      "ownership": 30,
-      "upper": null,
-      "matchup": null,
+      "name": "Tyler Higbee",
+      "team": "LAR",
+      "opponent": "GB",
+      "ownership": 7.09,
+      "matchup": 46,
       "injury": null,
       "note": null
     },
     {
-      "name": "Aaron Rodgers",
-      "team": "PIT",
-      "opponent": "PHI",
-      "ownership": null,
-      "upper": null,
-      "matchup": null,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "J.J. McCarthy",
-      "team": "NYG",
-      "opponent": "JAX",
-      "ownership": 27.56,
-      "upper": null,
-      "matchup": 40,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Mike Gesicki",
-      "team": "CIN",
-      "opponent": "WAS",
-      "ownership": null,
-      "upper": 60,
-      "matchup": null,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Cade Otton",
-      "team": "TB",
-      "opponent": "DET",
-      "ownership": 1.84,
-      "upper": null,
-      "matchup": 44,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Evan Engram",
-      "team": "DEN",
-      "opponent": "LV",
-      "ownership": 1.57,
-      "upper": null,
-      "matchup": 52,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Kansas City Chiefs",
-      "team": "KC",
-      "opponent": "ARI",
-      "ownership": null,
-      "upper": 60,
-      "matchup": null,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Detroit Lions",
-      "team": "DET",
-      "opponent": "TB",
-      "ownership": null,
-      "upper": 60,
-      "matchup": null,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "Chicago Bears",
-      "team": "CHI",
-      "opponent": "NO",
-      "ownership": 40.1,
-      "upper": null,
-      "matchup": null,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "New York Jets",
-      "team": "NYJ",
-      "opponent": "LAC",
-      "ownership": null,
-      "upper": 60,
-      "matchup": null,
-      "injury": null,
-      "note": null
-    },
-    {
-      "name": "San Francisco 49ers",
+      "name": "Kaelon Black",
       "team": "SF",
-      "opponent": "MIN",
-      "ownership": 42.5,
-      "upper": null,
-      "matchup": null,
+      "opponent": "SEA",
+      "ownership": 37.74,
+      "matchup": 39,
       "injury": null,
       "note": null
     },
     {
       "name": "Justice Hill",
       "team": "BAL",
-      "opponent": "CAR",
-      "ownership": null,
+      "opponent": "HOU",
+      "ownership": 25.61,
+      "matchup": 42,
       "injury": null,
-      "note": "Ownership and matchup pending current verification"
+      "note": null
+    },
+    {
+      "name": "Dylan Sampson",
+      "team": "CLE",
+      "opponent": "LV",
+      "ownership": 19.22,
+      "matchup": 72,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Adonai Mitchell",
+      "team": "NYJ",
+      "opponent": "MIA",
+      "ownership": 47.87,
+      "matchup": 32,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Will Shipley",
+      "team": "PHI",
+      "opponent": "DAL",
+      "ownership": 2.4,
+      "matchup": 80,
+      "injury": "QUESTIONABLE — availability not confirmed",
+      "note": null
+    },
+    {
+      "name": "Chimere Dike",
+      "team": "TEN",
+      "opponent": "JAX",
+      "ownership": 2.89,
+      "matchup": 20,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Xavier Hutchinson",
+      "team": "HOU",
+      "opponent": "BAL",
+      "ownership": 45.71,
+      "matchup": 25,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Chig Okonkwo",
+      "team": "WAS",
+      "opponent": "ARI",
+      "ownership": 60.74,
+      "matchup": 76,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Germie Bernard",
+      "team": "PIT",
+      "opponent": "DEN",
+      "ownership": 40.86,
+      "matchup": 32,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Cam Ward",
+      "team": "TEN",
+      "opponent": "JAX",
+      "ownership": 36.55,
+      "matchup": 35,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Ted Hurst III",
+      "team": "TB",
+      "opponent": "CAR",
+      "ownership": 1.84,
+      "matchup": 39,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Justin Herbert",
+      "team": "LAC",
+      "opponent": "NE",
+      "ownership": 36.44,
+      "matchup": 56,
+      "injury": "QUESTIONABLE — availability not confirmed",
+      "note": null
+    },
+    {
+      "name": "Bam Knight",
+      "team": "ARI",
+      "opponent": "WAS",
+      "ownership": 7.01,
+      "matchup": 57,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Deshaun Watson",
+      "team": "CLE",
+      "opponent": "LV",
+      "ownership": 11.24,
+      "matchup": 45,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Anthony Richardson Sr.",
+      "team": "IND",
+      "opponent": "NYG",
+      "ownership": 0.2,
+      "matchup": 41,
+      "injury": null,
+      "note": "ESPN ownership reported by PFF Nov 22; direct API match unavailable"
+    },
+    {
+      "name": "Kaleb Johnson",
+      "team": "GB",
+      "opponent": "LA",
+      "ownership": 6.91,
+      "matchup": 20,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Samaje Perine",
+      "team": "CIN",
+      "opponent": "NO",
+      "ownership": 16.91,
+      "matchup": 56,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Mike Gesicki",
+      "team": "CIN",
+      "opponent": "NO",
+      "ownership": 30.64,
+      "matchup": 48,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Pat Freiermuth",
+      "team": "PIT",
+      "opponent": "DEN",
+      "ownership": 44.04,
+      "matchup": 80,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Darren Waller",
+      "team": "CAR",
+      "opponent": "TB",
+      "ownership": 27.74,
+      "matchup": 44,
+      "injury": null,
+      "note": null
+    },
+    {
+      "name": "Rashod Bateman",
+      "team": "BAL",
+      "opponent": "HOU",
+      "ownership": 6.69,
+      "matchup": 28,
+      "injury": null,
+      "note": null
     }
-  ],
-  "honorable_mentions": [
-    "Ja'Kobi Lane"
   ]
 };
-  if (weekBadge) weekBadge.textContent = "WEEK 11";
+  if (weekBadge) weekBadge.textContent = "WEEK 12";
   container.replaceChildren();
-  const heading11 = document.createElement("h3");
-  heading11.textContent = "DATA DADDY — WEEK 11 WAIVER WIRE";
-  container.appendChild(heading11);
-  const intro11 = document.createElement("p");
-  intro11.textContent = "Approved editorial priorities. ESPN rostered cutoff: under 65%. Ownership estimates and injury reports may change. Unverified figures are marked pending; stash picks are not start recommendations.";
-  container.appendChild(intro11);
-  const positions11 = Object.fromEntries(["QB","RB","WR","TE","DST"].flatMap(pos => editorial11.lists[pos].map(name => [name,pos])));
-  const playerMap11 = new Map(editorial11.players.map(p => [p.name,p]));
-  const sections11 = [["TOP 16 OVERALL","overall"],["TOP 10 RUNNING BACKS","RB"],["TOP 10 WIDE RECEIVERS","WR"],["TOP 5 QUARTERBACKS","QB"],["TOP 5 TIGHT ENDS","TE"],["TOP 5 D/ST","DST"],["HONORABLE MENTIONS","honorable"]];
-  for (const [label,key] of sections11) {
+  const heading12 = document.createElement("h3");
+  heading12.textContent = "DATA DADDY — WEEK 12 WAIVER WIRE";
+  container.appendChild(heading12);
+  const intro12 = document.createElement("p");
+  intro12.textContent = "Approved editorial priorities. ESPN rostered cutoff: under 65%. Ownership and matchup snapshot: Nov 24, 2026 (Pacific). Matchups normalized 20–80 from defensive PPR allowed. Injury status may change; waiver picks are not start recommendations.";
+  container.appendChild(intro12);
+  const positions12 = Object.fromEntries(["QB","RB","WR","TE"].flatMap(pos => editorial12.lists[pos].map(name => [name,pos])));
+  const playerMap12 = new Map(editorial12.players.map(p => [p.name,p]));
+  for (const [label,key] of [["TOP 22 OVERALL","overall"],["TOP 10 RUNNING BACKS","RB"],["TOP 10 WIDE RECEIVERS","WR"],["TOP 5 QUARTERBACKS","QB"],["TOP 5 TIGHT ENDS","TE"]]) {
     const section = document.createElement("section");
     section.className = "waiver-editorial-section";
     const heading = document.createElement("h4");
     heading.textContent = label;
     section.appendChild(heading);
-    const names = key === "honorable" ? editorial11.honorable_mentions : editorial11.lists[key];
-    names.forEach((name,i) => {
-      const p = playerMap11.get(name) || {};
+    editorial12.lists[key].forEach((name,i) => {
+      const p = playerMap12.get(name);
       const row = document.createElement("div");
       row.className = "waiver-player";
       const header = document.createElement("strong");
-      header.textContent = (key === "honorable" ? "" : "#" + (i+1) + " ") + name + " (" + (positions11[name] || "WR") + " • " + (p.team || "Team pending") + ")";
+      header.textContent = "#" + (i+1) + " " + name + " (" + positions12[name] + " • " + p.team + ")";
       row.appendChild(header);
       const detail = document.createElement("p");
-      const ownership = typeof p.ownership === "number" ? p.ownership.toFixed(1) + "%" : typeof p.upper === "number" ? "Reported ≤" + p.upper + "%" : "Pending verification";
-      const pos = positions11[name] || "WR";
-      const canonicalTeam = t => t === "LAR" ? "LA" : t;
-      const lookupTeam = t => defensePositionAllowed[t] ? t : t === "LA" ? "LAR" : t === "LAR" ? "LA" : t;
-      const schedule = teamNextOpponent[p.team] || teamNextOpponent[p.team === "LA" ? "LAR" : p.team === "LAR" ? "LA" : p.team];
-      const allowed = defensePositionAllowed[lookupTeam(schedule?.opponent)]?.[pos]?.fantasy_points_allowed;
-      const values = Object.values(defensePositionAllowed).map(d => d[pos]?.fantasy_points_allowed).filter(v => v != null && Number.isFinite(Number(v))).map(Number);
-      const verified = Number(trenchSignalWeek) === 11 && canonicalTeam(schedule?.opponent) === canonicalTeam(p.opponent) && allowed != null && Number.isFinite(Number(allowed)) && values.length >= 2;
-      const low = verified ? Math.min(...values) : 0;
-      const high = verified ? Math.max(...values) : 0;
-      // Same 20–80 positional min-max display scale as calculateMatchupScore.
-      const score = verified ? high === low ? 50 : Math.max(20, Math.min(80, Math.round(20 + (Number(allowed)-low)/(high-low)*60))) : null;
-      const matchup = p.opponent === "BYE" ? "Bye" : pos === "DST" ? "Not applicable" : score == null ? "Pending" : score + "/80";
-      detail.textContent = "ESPN rostered: " + ownership + " • Opponent: " + (p.opponent || "Pending") + " • Matchup: " + matchup;
-      if (p.injury) detail.textContent += " • Feed status: " + p.injury;
+      detail.textContent = "ESPN rostered: " + p.ownership.toFixed(2) + "% • Opponent: " + p.opponent + " • Matchup: " + p.matchup + "/80";
+      if (p.injury) detail.textContent += " • " + p.injury;
       if (p.note) detail.textContent += " • " + p.note;
       row.appendChild(detail);
       section.appendChild(row);
