@@ -1,0 +1,87 @@
+name: Week 12 Waiver Validation (Read Only)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify approved candidates without writing production files
+        run: |
+          python - <<'PY'
+          import csv, json, math, sys
+          from pathlib import Path
+          sys.path.insert(0, 'scripts')
+          from build_waiver_wire import fetch_espn_ownership, fetch_nfl_schedule, normalized_name
+          groups = {
+              'RB': 'Jacory Croskey-Merritt|Chris Rodriguez Jr.|Kenneth Gainwell|Kaelon Black|Justice Hill|Dylan Sampson|Will Shipley|Kaleb Johnson|Bam Knight|Samaje Perine',
+              'WR': 'Antonio Williams|Konata Mumpfield|Caleb Douglas|Jakobi Meyers|Tre Tucker|Adonai Mitchell|Chimere Dike|Xavier Hutchinson|Germie Bernard|Ted Hurst III',
+              'QB': 'Fernando Mendoza|Cam Ward|Justin Herbert|Deshaun Watson|Anthony Richardson',
+              'TE': 'Tyler Higbee|Chig Okonkwo|Mike Gesicki|Pat Freiermuth|Darren Waller',
+          }
+          overall = 'Antonio Williams|Jacory Croskey-Merritt|Konata Mumpfield|Chris Rodriguez Jr.|Kenneth Gainwell|Caleb Douglas|Jakobi Meyers|Tre Tucker|Fernando Mendoza|Tyler Higbee|Kaelon Black|Justice Hill|Dylan Sampson|Adonai Mitchell|Will Shipley|Chimere Dike|Xavier Hutchinson|Chig Okonkwo|Germie Bernard|Cam Ward|Ted Hurst III|Justin Herbert'.split('|')
+          data = json.loads(Path('nfl-stats.json').read_text())
+          players = data['player_lookup']
+          week_ok = (int(data['season']), int(data['target_week'])) == (2026, 12)
+          print('Source season/week:', data['season'], data['target_week'])
+          try:
+              ownership, injuries, checked = fetch_espn_ownership(players)
+          except Exception as e:
+              print('ESPN retrieval failed:', e)
+              ownership, injuries, checked = {}, {}, None
+          try:
+              _, opponents, _, _ = fetch_nfl_schedule(2026)
+          except Exception as e:
+              print('Schedule retrieval failed:', e)
+              opponents = {}
+          rows = []
+          for pos, names in groups.items():
+              for rank, name in enumerate(names.split('|'), 1):
+                  matches = [(pid,p) for pid,p in players.items() if normalized_name(p.get('name')) == normalized_name(name) and p.get('position') == pos]
+                  row = dict(player=name, position=pos, position_rank=rank, overall_rank=overall.index(name)+1 if name in overall else '', team='', opponent='', espn_percent='', espn_checked_at=checked or '', eligibility='UNVERIFIED', matchup_score='', matchup_source='', injury_status='', flags='')
+                  flags = []
+                  if len(matches) != 1:
+                      flags.append('missing_or_ambiguous_player')
+                  else:
+                      pid,p = matches[0]
+                      team = p.get('team','')
+                      opp = opponents.get('LA' if team=='LAR' else team, {}).get(12)
+                      row.update(team=team, opponent=opp or '', injury_status=injuries.get(pid,{}).get('status',''))
+                      entry = ownership.get(pid,{}).get('espn',{})
+                      pct = entry.get('percent')
+                      if isinstance(pct,(int,float)) and math.isfinite(pct) and 0 <= pct <= 100 and checked:
+                          row.update(espn_percent=pct, eligibility='PASS' if pct < 65 else 'FAIL')
+                      else:
+                          flags.append('espn_missing')
+                      m = data.get('defensive_matchup',{}).get(pid,{})
+                      score = m.get('score')
+                      if week_ok and opp and m.get('opponent')==opp and m.get('position')==pos and isinstance(score,(int,float)) and math.isfinite(score) and 20 <= score <= 80:
+                          row.update(matchup_score=score, matchup_source=m.get('score_source',''))
+                          if 'neutral' in row['matchup_source']:
+                              flags.append('neutral_fallback')
+                      else:
+                          flags.append('matchup_missing_or_mismatch')
+                  row['flags']=';'.join(flags)
+                  rows.append(row)
+          assert len(rows)==30 and len({r['player'] for r in rows})==30
+          assert sum(bool(r['overall_rank']) for r in rows)==22
+          rows.sort(key=lambda r: (not bool(r['overall_rank']), r['overall_rank'] or 99, r['position'], r['position_rank']))
+          out=Path('waiver-review')
+          out.mkdir(exist_ok=True)
+          with (out/'week12-review.csv').open('w',newline='') as f:
+              w=csv.DictWriter(f,fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)
+          for r in rows:
+              print(r['player'], '| ESPN:', r['espn_percent'], r['eligibility'], '| opponent:',r['opponent'],'| matchup:',r['matchup_score'],'|',r['flags'])
+          print('Review only. No production files written. Unverified rows require review.')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: week12-waiver-review
+          path: waiver-review/week12-review.csv
