@@ -10526,14 +10526,15 @@ const depthOrder =
 
   // Keep other website rank consumers aligned with the approved Week 10 RB/WR order.
   // The pregame snapshot exporter bypasses this override.
-  if (isWeek11TeEditorial(position) || isWeek11QbEditorial(position) || isWeek11WrEditorial(position) || isWeek11RbEditorial(position) || isWeek10RbEditorial(position) || isWeek10WrEditorial(position) || isWeek10TeEditorial(position) || isWeek10QbEditorial(position)) {
-    const editorialOrder = isWeek11TeEditorial(position) ? WEEK11_TE_EDITORIAL : isWeek11QbEditorial(position) ? WEEK11_QB_EDITORIAL : isWeek11WrEditorial(position) ? WEEK11_WR_EDITORIAL : isWeek11RbEditorial(position) ? WEEK11_RB_EDITORIAL : position === "QB" ? WEEK10_QB_EDITORIAL : position === "WR" ? WEEK10_WR_EDITORIAL : position === "TE" ? WEEK10_TE_EDITORIAL : WEEK10_RB_EDITORIAL;
+  if (isWeek12RbEditorial(position) || isWeek11TeEditorial(position) || isWeek11QbEditorial(position) || isWeek11WrEditorial(position) || isWeek11RbEditorial(position) || isWeek10RbEditorial(position) || isWeek10WrEditorial(position) || isWeek10TeEditorial(position) || isWeek10QbEditorial(position)) {
+    const editorialOrder = isWeek12RbEditorial(position) ? WEEK12_RB_EDITORIAL : isWeek11TeEditorial(position) ? WEEK11_TE_EDITORIAL : isWeek11QbEditorial(position) ? WEEK11_QB_EDITORIAL : isWeek11WrEditorial(position) ? WEEK11_WR_EDITORIAL : isWeek11RbEditorial(position) ? WEEK11_RB_EDITORIAL : position === "QB" ? WEEK10_QB_EDITORIAL : position === "WR" ? WEEK10_WR_EDITORIAL : position === "TE" ? WEEK10_TE_EDITORIAL : WEEK10_RB_EDITORIAL;
     if (Number(document.documentElement.dataset.targetWeek) === 10 && !snapshotWeek) {
       rankings.splice(0, rankings.length, ...rankings.filter(entry =>
         !(entry.player.position === "TE" && normalizeName(entry.player.name) === normalizeName("T.J. Hockenson"))));
     }
-    const byName = new Map(rankings.map(entry => [normalizeName(entry.player.name), entry]));
-    const editorial = editorialOrder.map(([name]) => byName.get(normalizeName(name))).filter(Boolean);
+    const nameKey = isWeek12RbEditorial(position) ? week12RbName : normalizeName;
+    const byName = new Map(rankings.map(entry => [nameKey(entry.player.name), entry]));
+    const editorial = editorialOrder.map(([name]) => byName.get(nameKey(name))).filter(Boolean);
     const used = new Set(editorial.map(entry => String(entry.player.id)));
     rankings.splice(0, rankings.length, ...editorial,
       ...rankings.filter(entry => !used.has(String(entry.player.id))));
@@ -12251,6 +12252,10 @@ function isWeek10WrEditorial(position) {
     !window.__dataDaddyExportingModelSnapshot &&
     Number(document.documentElement.dataset.targetWeek) === 10;
 }
+const WEEK12_RB_EDITORIAL = [["Jahmyr Gibbs",81.2],["Emmett Johnson",64.5],["Christian McCaffrey",65.4],["Bijan Robinson",65.3],["James Cook III",67.8],["Bucky Irving",76.5],["Jonah Coleman",73.5],["Javonte Williams",71.2],["Chuba Hubbard",74.4],["Cam Skattebo",61.7],["D'Andre Swift",60.3],["Chase Brown",57.1],["Saquon Barkley",57.3],["Kyren Williams",53.7],["Breece Hall",60.4],["Blake Corum",55.7],["Tony Pollard",66.1],["Derrick Henry",54.4],["Jonathan Taylor",56.5],["Jaylen Warren",50.5],["Quinshon Judkins",54.3],["Ollie Gordon II",58.2],["Ashton Jeanty",52.1],["Aaron Jones Sr.",44.4],["David Montgomery",50.1],["Omarion Hampton",52.1],["Rhamondre Stevenson",48.5],["Bhayshul Tuten",59.3],["Chris Rodriguez Jr.",39.1],["Zach Charbonnet",45.5],["Travis Etienne Jr.",49.4],["Jacory Croskey-Merritt",52],["Kyle Monangai",51.2],["Braelon Allen",46.3],["Kenneth Gainwell",49.7],["Dylan Sampson",43.8],["Jordan Mason",46.9],["Justice Hill",46.7],["Alvin Kamara",39.5],["Samaje Perine",48.2],["Rico Dowdle",43],["Jadarian Price",41.8],["Woody Marks",59.5],["Kaleb Johnson",36],["Tyler Allgeier",49.9],["Kaelon Black",40],["Bam Knight",43.9],["Mike Washington Jr.",37.9]];
+const WEEK12_RB_WARNINGS = {"Derrick Henry":"Concussion — clearance pending","Bhayshul Tuten":"Ankle/foot injury — availability pending","Woody Marks":"Concussion — clearance pending","Emmett Johnson":"Lead RB; Kenneth Walker III out","Saquon Barkley":"Playing through injury; monitor","Kyren Williams":"Wednesday game completed","Blake Corum":"Wednesday game completed","Kaleb Johnson":"Wednesday game completed"};
+function isWeek12RbEditorial(position) { return position === 'RB' && !snapshotWeek && !window.__dataDaddyExportingModelSnapshot && Number(document.documentElement.dataset.targetWeek) === 12; }
+function week12RbName(name) { const n=normalizeName(name); return n===normalizeName('Kenny Gainwell')?normalizeName('Kenneth Gainwell'):n===normalizeName('Zonovan Knight')?normalizeName('Bam Knight'):n; }
 const WEEK11_RB_EDITORIAL = [["Jahmyr Gibbs",75.7],["Emmett Johnson",60.7],["D'Andre Swift",73.2],["James Cook III",69],["Chuba Hubbard",76.1],["Christian McCaffrey",69.7],["Tony Pollard",77.7],["Javonte Williams",70.4],["Bhayshul Tuten",63],["Bucky Irving",70.9],["Jaylen Warren",54.7],["Chase Brown",61.5],["Jonah Coleman",62.5],["Breece Hall",53.2],["Derrick Henry",54.2],["Jonathan Taylor",53],["Ollie Gordon II",58.8],["Cam Skattebo",57.4],["Saquon Barkley",51.6],["Rachaad White",51.5],["Ashton Jeanty",43.4],["Omarion Hampton",50.7],["Braelon Allen",49.2],["Rico Dowdle",44.7],["Tyler Allgeier",58.1],["David Montgomery",null],["Alvin Kamara",43],["Kyle Monangai",null],["Kaelon Black",47.9],["Aaron Jones Sr.",40.3],["Justice Hill",44.3],["Kenny Gainwell",46.1],["Travis Etienne Jr.",44.4],["Samaje Perine",43.1],["Seth McGowan",39],["Chris Rodriguez Jr.",38.4],["Emari Demercado",46.2],["Bam Knight",44.5],["Mike Washington Jr.",42.6],["Jordan Mason",40],["J.K. Dobbins",42.3],["Elijah Mitchell",41.4],["Devin Singletary",38.1],["Austin Ekeler",47.9],["Kimani Vidal",37.5],["Tyjae Spears",36.8],["Keaton Mitchell",35.7],["Dameon Pierce",57.4]];
 const WEEK11_WR_EDITORIAL = [["Ja'Marr Chase",68.4],["CeeDee Lamb",66.4],["Amon-Ra St. Brown",51.3],["George Pickens",56.7],["Malik Nabers",44.5],["Justin Jefferson",56.3],["Tee Higgins",52.9],["Parker Washington",45.8],["Nico Collins",47.6],["Zay Flowers",39.8],["Garrett Wilson",48.2],["Luther Burden III",49.4],["Chris Olave",43.4],["Tetairoa McMillan",43.7],["DJ Moore",49.4],["Rashee Rice",46],["Stefon Diggs",44.6],["Jameson Williams",41],["Carnell Tate",null],["DeVonta Smith",null],["Jordyn Tyson",47],["Deebo Samuel Sr.",47.2],["Rome Odunze",43.1],["Ryan Flournoy",46.4],["Caleb Douglas",38.4],["DK Metcalf",41.5],["Josh Downs",42.2],["Adonai Mitchell",45.5],["Elic Ayomanor",44.7],["Keenan Allen",42.7],["Mike Evans",null],["Xavier Hutchinson",46.4],["Jakobi Meyers",40.8],["Germie Bernard",35.3],["Malik Washington",34.1],["Courtland Sutton",46.9],["Tank Dell",38.9],["Khalil Shakir",41.8],["Tre Tucker",30.8],["Emeka Egbuka",47.8],["Jordan Watkins",38.8],["Jalen Coker",36.8],["Treylon Burks",36.7],["Antonio Williams",36.6],["Makai Lemon",48.6],["Xavier Worthy",36.2],["Pat Bryant",43.4],["Malachi Fields",35.8]];
 const WEEK11_QB_EDITORIAL = [["Joe Burrow",76],["Dak Prescott",74.1],["Josh Allen",64.7],["Patrick Mahomes",64.8],["Trevor Lawrence",56.9],["Jayden Daniels",62.9],["Caleb Williams",63.7],["C.J. Stroud",62.8],["Brock Purdy",60.2],["Jared Goff",54.5],["Tyler Shough",68.7],["Kirk Cousins",57.1],["Bo Nix",68.8],["Cam Ward",65],["Bryce Young",54.7],["Jacoby Brissett",60.4],["Aaron Rodgers",50.3],["J.J. McCarthy",48.9],["Geno Smith",null],["Jalon Daniels",null],["Justin Herbert",53.5],["Daniel Jones",50.5],["Joe Milton",60],["Fernando Mendoza",50]];
@@ -12310,9 +12315,9 @@ function renderPositionRankings() {
     `${profile}-${position}`
   ];
 
-  if (isWeek11TeEditorial(position) || isWeek11QbEditorial(position) || isWeek11WrEditorial(position) || isWeek11RbEditorial(position) || isWeek10RbEditorial(position) || isWeek10WrEditorial(position) || isWeek10TeEditorial(position) || isWeek10QbEditorial(position)) {
+  if (isWeek12RbEditorial(position) || isWeek11TeEditorial(position) || isWeek11QbEditorial(position) || isWeek11WrEditorial(position) || isWeek11RbEditorial(position) || isWeek10RbEditorial(position) || isWeek10WrEditorial(position) || isWeek10TeEditorial(position) || isWeek10QbEditorial(position)) {
     const editorialPosition = position;
-    const editorialOrder = isWeek11TeEditorial(position) ? WEEK11_TE_EDITORIAL : isWeek11QbEditorial(position) ? WEEK11_QB_EDITORIAL : isWeek11WrEditorial(position) ? WEEK11_WR_EDITORIAL : isWeek11RbEditorial(position) ? WEEK11_RB_EDITORIAL : position === "QB" ? WEEK10_QB_EDITORIAL : position === "WR" ? WEEK10_WR_EDITORIAL : position === "TE" ? WEEK10_TE_EDITORIAL : WEEK10_RB_EDITORIAL;
+    const editorialOrder = isWeek12RbEditorial(position) ? WEEK12_RB_EDITORIAL : isWeek11TeEditorial(position) ? WEEK11_TE_EDITORIAL : isWeek11QbEditorial(position) ? WEEK11_QB_EDITORIAL : isWeek11WrEditorial(position) ? WEEK11_WR_EDITORIAL : isWeek11RbEditorial(position) ? WEEK11_RB_EDITORIAL : position === "QB" ? WEEK10_QB_EDITORIAL : position === "WR" ? WEEK10_WR_EDITORIAL : position === "TE" ? WEEK10_TE_EDITORIAL : WEEK10_RB_EDITORIAL;
     tableBody.replaceChildren();
     const filtered = editorialOrder.map(([name, ai], index) => ({name, ai, rank:index+1})).filter(entry => {
       if (!isWeek11RbEditorial(position) && !isWeek11WrEditorial(position) && !isWeek11QbEditorial(position) && !isWeek11TeEditorial(position)) return true;
@@ -12326,7 +12331,7 @@ function renderPositionRankings() {
     filtered.slice(start,start+RANKINGS_PER_PAGE).forEach(entry => {
       const row = document.createElement("tr");
       const player = players.find(p => p.position === editorialPosition &&
-        normalizeName(p.name) === normalizeName(entry.name));
+        (isWeek12RbEditorial(position) ? week12RbName(p.name) === week12RbName(entry.name) : normalizeName(p.name) === normalizeName(entry.name)));
       const projection = player ? getPlayerPprProjection(player) : null;
       const matchup = player ? teamNextOpponent[player.team] : null;
       // Recover missing Week 10 editorial scores from the existing live
@@ -12361,7 +12366,7 @@ function renderPositionRankings() {
         Number.isFinite(projection?.projected_ppr) ? projection.projected_ppr.toFixed(2) : "—",
         Number.isFinite(projection?.projected_position_rank) ? editorialPosition+projection.projected_position_rank : "—",
         player ? (getActualPprForRanking(player)?.toFixed(2) ?? "—") : "—",
-        ((isWeek11RbEditorial(position) || isWeek11WrEditorial(position) || isWeek11QbEditorial(position) || isWeek11TeEditorial(position)) && entry.ai === null ? "Return pending / model data pending" : player?.injuryStatus || "Unverified")
+        (isWeek12RbEditorial(position) && WEEK12_RB_WARNINGS[entry.name] ? WEEK12_RB_WARNINGS[entry.name] : (isWeek11RbEditorial(position) || isWeek11WrEditorial(position) || isWeek11QbEditorial(position) || isWeek11TeEditorial(position)) && entry.ai === null ? "Return pending / model data pending" : player?.injuryStatus || "Unverified")
       ];
       cells.forEach(value => { const cell=document.createElement("td");cell.textContent=value;row.appendChild(cell);});
       tableBody.appendChild(row);
@@ -12377,7 +12382,7 @@ function renderPositionRankings() {
         pagination.append(prev,label,next);
       }
     }
-    if (weekLabel) weekLabel.textContent="2026 Week 10 · Approved "+editorialPosition+" editorial rankings";
+    if (weekLabel) weekLabel.textContent="2026 Week "+Number(document.documentElement.dataset.targetWeek)+" · Approved "+editorialPosition+" editorial rankings";
     return;
   }
 
