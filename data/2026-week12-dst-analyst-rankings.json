@@ -1,0 +1,224 @@
+{
+  "season": 2026,
+  "week": 12,
+  "position": "DST",
+  "status": "editorial only; original model output unavailable",
+  "rankings": [
+    {
+      "rank": 1,
+      "name": "Houston Texans",
+      "team": "HOU",
+      "opponent": "vs. BAL",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 2,
+      "name": "Minnesota Vikings",
+      "team": "MIN",
+      "opponent": "vs. ATL",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 3,
+      "name": "Jacksonville Jaguars",
+      "team": "JAC",
+      "opponent": "vs. TEN",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 4,
+      "name": "New York Giants",
+      "team": "NYG",
+      "opponent": "@ IND",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 5,
+      "name": "Denver Broncos",
+      "team": "DEN",
+      "opponent": "@ PIT",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 6,
+      "name": "Tampa Bay Buccaneers",
+      "team": "TB",
+      "opponent": "vs. CAR",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 7,
+      "name": "Washington Commanders",
+      "team": "WAS",
+      "opponent": "@ ARI",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 8,
+      "name": "New York Jets",
+      "team": "NYJ",
+      "opponent": "@ MIA",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 9,
+      "name": "Dallas Cowboys",
+      "team": "DAL",
+      "opponent": "vs. PHI",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 10,
+      "name": "Cleveland Browns",
+      "team": "CLE",
+      "opponent": "vs. LV",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 11,
+      "name": "Los Angeles Rams",
+      "team": "LAR",
+      "opponent": "vs. GB",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Completed — post-kickoff editorial; exclude from pregame audit"
+    },
+    {
+      "rank": 12,
+      "name": "New England Patriots",
+      "team": "NE",
+      "opponent": "@ LAC",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 13,
+      "name": "Los Angeles Chargers",
+      "team": "LAC",
+      "opponent": "vs. NE",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 14,
+      "name": "San Francisco 49ers",
+      "team": "SF",
+      "opponent": "vs. SEA",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 15,
+      "name": "Cincinnati Bengals",
+      "team": "CIN",
+      "opponent": "vs. NO",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 16,
+      "name": "Pittsburgh Steelers",
+      "team": "PIT",
+      "opponent": "vs. DEN",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 17,
+      "name": "Green Bay Packers",
+      "team": "GB",
+      "opponent": "@ LAR",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Completed — post-kickoff editorial; exclude from pregame audit"
+    },
+    {
+      "rank": 18,
+      "name": "Miami Dolphins",
+      "team": "MIA",
+      "opponent": "vs. NYJ",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 19,
+      "name": "Carolina Panthers",
+      "team": "CAR",
+      "opponent": "@ TB",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 20,
+      "name": "Las Vegas Raiders",
+      "team": "LV",
+      "opponent": "@ CLE",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 21,
+      "name": "Seattle Seahawks",
+      "team": "SEA",
+      "opponent": "@ SF",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 22,
+      "name": "Kansas City Chiefs",
+      "team": "KC",
+      "opponent": "@ BUF",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 23,
+      "name": "Buffalo Bills",
+      "team": "BUF",
+      "opponent": "vs. KC",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    },
+    {
+      "rank": 24,
+      "name": "Chicago Bears",
+      "team": "CHI",
+      "opponent": "@ DET",
+      "projected_ppr": null,
+      "model_score": null,
+      "status": "Editorial — kickoff status not independently confirmed"
+    }
+  ]
+}
