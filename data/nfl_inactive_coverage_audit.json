@@ -1,29 +1,13 @@
 {
-  "generated_at_utc": "2026-11-24T00:59:51.320094+00:00",
+  "generated_at_utc": "2026-11-26T07:46:17.579441+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 1,
+    "missing_near_kickoff": 0,
     "pending": 16
   },
   "games": [
-    {
-      "game_id": "2026_11_CIN_WAS",
-      "week": 11,
-      "kickoff_utc": "2026-11-24T01:15:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
-    {
-      "game_id": "2026_12_GB_LA",
-      "week": 12,
-      "kickoff_utc": "2026-11-26T01:00:00+00:00",
-      "status": "pending",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
     {
       "game_id": "2026_12_CHI_DET",
       "week": 12,
@@ -140,6 +124,14 @@
       "game_id": "2026_12_CAR_TB",
       "week": 12,
       "kickoff_utc": "2026-12-01T01:15:00+00:00",
+      "status": "pending",
+      "official_inactives_verified": false,
+      "source_url": null
+    },
+    {
+      "game_id": "2026_13_KC_LA",
+      "week": 13,
+      "kickoff_utc": "2026-12-04T01:15:00+00:00",
       "status": "pending",
       "official_inactives_verified": false,
       "source_url": null
