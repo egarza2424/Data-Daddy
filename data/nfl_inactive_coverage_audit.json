@@ -1,29 +1,13 @@
 {
-  "generated_at_utc": "2026-11-27T01:35:31.154643+00:00",
+  "generated_at_utc": "2026-11-27T10:07:51.930997+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 2,
+    "missing_near_kickoff": 0,
     "pending": 13
   },
   "games": [
-    {
-      "game_id": "2026_12_PHI_DAL",
-      "week": 12,
-      "kickoff_utc": "2026-11-26T21:30:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
-    {
-      "game_id": "2026_12_KC_BUF",
-      "week": 12,
-      "kickoff_utc": "2026-11-27T01:20:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
     {
       "game_id": "2026_12_DEN_PIT",
       "week": 12,
