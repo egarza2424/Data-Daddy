@@ -1,21 +1,13 @@
 {
-  "generated_at_utc": "2026-11-27T19:28:11.740999+00:00",
+  "generated_at_utc": "2026-11-28T02:07:42.674064+00:00",
   "window_days": 8,
   "summary": {
     "verified": 0,
     "unverified": 0,
-    "missing_near_kickoff": 1,
+    "missing_near_kickoff": 0,
     "pending": 12
   },
   "games": [
-    {
-      "game_id": "2026_12_DEN_PIT",
-      "week": 12,
-      "kickoff_utc": "2026-11-27T20:00:00+00:00",
-      "status": "missing_near_kickoff",
-      "official_inactives_verified": false,
-      "source_url": null
-    },
     {
       "game_id": "2026_12_NO_CIN",
       "week": 12,
