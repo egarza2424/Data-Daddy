@@ -1,0 +1,7 @@
+{
+  "snapshot_utc": "2026-11-28T01:50:17.081434+00:00",
+  "week": 12,
+  "source": "projection-model/2026-week12-ppr-projections.csv",
+  "rows": 374,
+  "audit_status": "requires per-game kickoff verification"
+}

@@ -1,0 +1,408 @@
+snapshot_week,player_id,player_name,position,team,roster_status,injury_status,opponent,offensive_play_caller,defensive_play_caller,play_caller_matchup_score,play_caller_historical_ppr,play_caller_sample_size,player_vs_defensive_caller_score,player_vs_defensive_caller_ppr,player_vs_defensive_caller_sample_size,opportunity_score,production_score,usage_score,matchup_score,redzone_score,expert_score,risk_score,trench_score,scoring_environment_score,implied_team_total,game_total,spread_line,model_score,position_rank,recommendation
+12,3294,"Dak Prescott",QB,DAL,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,98,100,48,50,100,84,10,,,,,,78.4,1,START
+12,7523,"Trevor Lawrence",QB,JAX,"Active","",TEN,"Liam Coen","Robert Saleh",58,28.78,1,58,28.78,1,89,64,43,80,86,80,2,53.28,100,31.2,48.5,-13.9,71.8,2,START
+12,11566,"Jayden Daniels",QB,WAS,"Active","",ARI,"David Blough","Nick Rallis",50,,0,56,24.02,1,95,64,100,44,39,91,2,50.73,65,24,41.5,-6.5,70.2,3,START
+12,6770,"Joe Burrow",QB,CIN,"Active","",NO,"Zac Taylor","Brandon Staley",50,,0,50,,0,91,90,42,36,71,88,2,43.79,89,29,48.5,-9.5,69.8,4,START
+12,4017,"Deshaun Watson",QB,CLE,"Active","",LV,"Todd Monken","Rob Leonard",50,,0,50,,0,98,62,87,45,57,87,6,41.96,55,22,39.5,-4.5,68.2,5,START
+12,12545,"Tyler Shough",QB,NO,"Active","",CIN,"Kellen Moore","Al Golden",50,,0,50,,0,100,54,95,36,64,92,6,44.17,43,19.5,48.5,9.5,67.5,6,START
+12,11563,"Bo Nix",QB,DEN,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,90,53,66,50,71,93,2,,,,,,67.3,7,START
+12,9758,"C.J. Stroud",QB,HOU,"Active","",BAL,"Nick Caley","Jesse Minter",52,17.76,1,54,17.76,1,85,90,48,36,36,87,2,50.58,79,27,47.5,-6.5,66.7,8,START
+12,12522,"Cam Ward",QB,TEN,"Active","",JAX,"Brian Daboll","Anthony Campanile",54,21.14,1,55,21.14,1,92,76,66,35,61,91,6,50.57,32,17.2,48.5,14.1,66.5,9,START
+12,4046,"Patrick Mahomes",QB,KC,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,83,86,18,50,64,87,6,,,,,,64.9,10,START
+12,4984,"Josh Allen",QB,BUF,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,82,60,39,50,64,83,6,,,,,,61.9,11,START
+12,11560,"Caleb Williams",QB,CHI,"Active","Questionable",Unknown,"Unknown","Unknown",50,,0,50,,0,80,56,54,50,57,83,32,,,,,,60.9,12,START
+12,11557,"Joe Milton",QB,PHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,79,32,100,50,21,79,2,,,,,,60,13,SIT
+12,11565,"J.J. McCarthy",QB,NYG,"Active","",IND,"Matt Nagy","Lou Anarumo",50,,0,50,,0,84,44,84,44,25,76,2,45.79,62,23.5,41.5,-5.5,59.8,14,SIT
+12,3163,"Jared Goff",QB,DET,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,72,57,46,50,57,82,6,,,,,,59.7,15,SIT
+12,6804,"Jordan Love",QB,GB,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,76,77,12,50,46,81,2,,,,,,58.8,16,SIT
+12,11559,"Michael Penix Jr.",QB,ATL,"Active","",MIN,"Tommy Rees","Brian Flores",50,,0,48,5.3,1,84,39,67,38,79,81,2,45.33,32,17.2,41.5,7.1,58.8,17,SIT
+12,4943,"Sam Darnold",QB,SEA,"Active","",SF,"Brian Fleury","Raheem Morris",49,12.3,1,51,12.3,1,91,51,31,47,54,88,2,49.8,55,22,42.5,-1.5,58.5,18,SIT
+12,3257,"Jacoby Brissett",QB,BAL,"Active","",HOU,"Declan Doyle","Matt Burke",50,,0,55,22.56,1,89,48,45,36,43,92,10,43.32,48,20.5,47.5,6.5,56.8,19,SIT
+12,1166,"Kirk Cousins",QB,MIN,"Active","",ATL,"Kevin O'Connell","Jeff Ulbrich",37,9.95,3,51,11.82,1,82,44,29,49,57,84,10,46.13,66,24.2,41.5,-6.9,55.2,20,SIT
+12,9228,"Bryce Young",QB,CAR,"Active","",TB,"Brad Idzik","Todd Bowles",50,14.8,1,51,11.42,1,79,55,18,36,64,82,2,49.68,47,20.2,43.5,3.1,54.9,21,SIT
+12,421,"Matthew Stafford",QB,LA,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,74,49,10,50,79,79,10,,,,,,54.7,22,SIT
+12,13269,"Fernando Mendoza",QB,LV,"Active","",CLE,"Klint Kubiak","Mike Rutenberg",50,,0,50,,0,65,45,63,37,57,50,10,42.89,33,17.5,39.5,4.5,52.6,23,SIT
+12,12494,"Kyle McCord",QB,MIA,"Active","",NYJ,"Bobby Slowik","Aaron Glenn",57,26.02,1,50,,0,79,32,35,48,43,81,6,38.99,31,17,39.5,5.5,50.2,24,SIT
+12,4892,"Baker Mayfield",QB,TB,"Active","",CAR,"Zac Robinson","Ejiro Evero",46,6.36,1,49,6.66,1,60,33,43,36,50,57,6,44.79,61,23.2,43.5,-2.9,48.6,25,SIT
+12,260,"Josh Johnson",QB,ARI,"Active","",WAS,"Mike LaFleur","Daronte Jones",50,,0,50,,0,76,35,38,39,21,50,10,44.76,33,17.5,41.5,6.5,46.4,26,SIT
+12,1373,"Geno Smith",QB,NYJ,"Active","",MIA,"Frank Reich","Jeff Hafley",55,23.48,1,56,23.48,1,58,36,9,26,36,67,10,42.82,58,22.5,39.5,-5.5,43.3,27,SIT
+12,11292,"Tommy DeVito",QB,NE,"Active","",LAC,"Josh McDaniels","Chris O'Leary",50,,0,50,,0,28,12,29,52,25,32,2,45.27,40,18.8,34.5,-3.1,34.8,28,SIT
+12,12773,"DJ Uiagalelei",QB,LAC,"Active","",NE,"Mike McDaniel","Zak Kuhr",50,,0,50,,0,16,16,0,56,32,50,6,34.33,25,15.8,34.5,2.9,29.9,29,SIT
+12,9229,"Anthony Richardson Sr.",QB,IND,"Active","",NYG,"Shane Steichen","Dennard Wilson",68,19.23,4,51,11.07,2,8,2,27,41,0,74,2,44.7,36,18,41.5,5.5,29.5,30,SIT
+12,7527,"Mac Jones",QB,SF,"Active","",SEA,"Kyle Shanahan","Mike Macdonald",51,16.16,1,55,21.94,1,7,0,35,27,0,66,2,43.43,48,20.5,42.5,1.5,28.3,31,SIT
+12,4972,"Mason Rudolph",QB,PIT,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,6,1,24,50,4,55,6,,,,,,25.3,32,SIT
+12,9221,"Jahmyr Gibbs",RB,DET,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,99,100,87,50,88,78,2,,,,,,83.3,1,START
+12,13345,"Jonah Coleman",RB,DEN,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,83,87,76,50,71,78,10,,,,,,76.8,2,START
+12,11584,"Bucky Irving",RB,TB,"Active","",CAR,"Zac Robinson","Ejiro Evero",58,44,1,54,24,1,93,83,71,73,100,88,2,39.03,61,23.2,43.5,-2.9,76.6,3,START
+12,7594,"Chuba Hubbard",RB,CAR,"Active","",TB,"Brad Idzik","Todd Bowles",50,22.8,1,49,10,1,100,84,91,32,94,82,2,42.6,47,20.2,43.5,3.1,74.6,4,START
+12,7588,"Javonte Williams",RB,DAL,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,79,63,70,50,71,79,2,,,,,,73.3,5,START
+12,8138,"James Cook III",RB,BUF,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,94,65,74,50,67,86,2,,,,,,71.1,6,START
+12,13337,"Emmett Johnson",RB,KC,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,78,81,69,50,35,58,10,,,,,,68.7,7,START
+12,5967,"Tony Pollard",RB,TEN,"Active","",JAX,"Brian Daboll","Anthony Campanile",52,27.7,1,54,23.9,1,83,74,81,48,51,80,2,50.98,32,17.2,48.5,14.1,66.3,8,START
+12,9509,"Bijan Robinson",RB,ATL,"Active","",MIN,"Tommy Rees","Brian Flores",50,,0,56,15.27,3,84,61,90,39,39,79,2,39.25,32,17.2,41.5,7.1,65.5,9,START
+12,4034,"Christian McCaffrey",RB,SF,"Active","",SEA,"Kyle Shanahan","Mike Macdonald",49,18.9,1,52,17.3,1,66,95,59,39,59,77,6,41.17,48,20.5,42.5,1.5,64.6,10,START
+12,12481,"Cam Skattebo",RB,NYG,"Active","",IND,"Matt Nagy","Lou Anarumo",50,,0,50,,0,76,63,69,58,33,79,6,40.28,62,23.5,41.5,-5.5,61.7,11,START
+12,12474,"Woody Marks",RB,HOU,"Active","",BAL,"Nick Caley","Jesse Minter",46,12.2,1,49,8.5,1,69,29,69,59,33,85,17,42.38,79,27,47.5,-6.5,61.2,12,START
+12,6790,"D'Andre Swift",RB,CHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,73,53,64,50,63,59,2,,,,,,61.1,13,START
+12,8155,"Breece Hall",RB,NYJ,"Active","",MIA,"Frank Reich","Jeff Hafley",52,27.8,1,50,,0,71,53,67,61,43,86,2,48.51,58,22.5,39.5,-5.5,60.9,14,START
+12,00-0037258,"Dameon Pierce",RB,PHI,"UNKNOWN","",Unknown,"Unknown","Unknown",50,,0,50,,0,60,35,79,50,49,76,5,,,,,,59.6,15,START
+12,12495,"Ollie Gordon II",RB,MIA,"Active","",NYJ,"Bobby Slowik","Aaron Glenn",48,18.1,1,52,17.3,1,70,37,79,76,16,77,6,40.1,31,17,39.5,5.5,58,16,START
+12,9224,"Chase Brown",RB,CIN,"Active","",NO,"Zac Taylor","Brandon Staley",50,,0,50,,0,56,56,61,56,27,72,2,36.31,89,29,48.5,-9.5,57,17,START
+12,6813,"Jonathan Taylor",RB,IND,"Active","",NYG,"Shane Steichen","Dennard Wilson",73,32.75,4,100,36.67,3,68,36,74,31,33,86,2,42.09,36,18,41.5,5.5,56.9,18,START
+12,3198,"Derrick Henry",RB,BAL,"Active","",HOU,"Declan Doyle","Matt Burke",50,,0,49,9.3,1,63,53,67,42,43,79,6,42.83,48,20.5,47.5,6.5,56.2,19,START
+12,11586,"Blake Corum",RB,LA,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,57,54,47,50,51,80,13,,,,,,55.4,20,START
+12,12512,"Quinshon Judkins",RB,CLE,"Active","",LV,"Todd Monken","Rob Leonard",50,,0,50,,0,55,33,61,72,57,74,6,43.35,55,22,39.5,-4.5,54.5,21,START
+12,4866,"Saquon Barkley",RB,PHI,"Active","Questionable",Unknown,"Unknown","Unknown",50,,0,50,,0,56,40,56,50,39,82,32,,,,,,54.5,22,START
+12,11435,"Emanuel Wilson",RB,SEA,"Active","",SF,"Brian Fleury","Raheem Morris",50,22.3,1,51,15.2,1,78,46,68,24,29,72,21,41.2,55,22,42.5,-1.5,54,23,START
+12,8150,"Kyren Williams",RB,LA,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,66,32,57,50,39,80,2,,,,,,53.1,24,START
+12,12527,"Ashton Jeanty",RB,LV,"Active","",CLE,"Klint Kubiak","Mike Rutenberg",50,,0,50,,0,56,53,61,55,24,70,6,42.34,33,17.5,39.5,4.5,52.3,25,FLEX
+12,12533,"Jacory Croskey-Merritt",RB,WAS,"Active","",ARI,"David Blough","Nick Rallis",50,,0,50,,0,50,43,49,67,24,81,6,46.15,65,24,41.5,-6.5,52,26,FLEX
+12,12507,"Omarion Hampton",RB,LAC,"Active","",NE,"Mike McDaniel","Zak Kuhr",50,,0,50,,0,65,40,57,63,31,72,6,47.33,25,15.8,34.5,2.9,51.9,27,FLEX
+12,8228,"Jaylen Warren",RB,PIT,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,55,41,55,50,27,69,2,,,,,,50.9,28,FLEX
+12,12534,"Kyle Monangai",RB,CHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,63,39,39,50,63,44,17,,,,,,50.9,29,FLEX
+12,5892,"David Montgomery",RB,HOU,"Active","",BAL,"Nick Caley","Jesse Minter",46,12.2,1,50,,0,56,24,52,59,18,41,2,42.38,79,27,47.5,-6.5,50.1,30,FLEX
+12,8132,"Tyler Allgeier",RB,ARI,"Active","",WAS,"Mike LaFleur","Daronte Jones",50,,0,50,,0,41,12,63,57,29,50,2,41.06,33,17.5,41.5,6.5,50.1,31,FLEX
+12,7567,"Kenny Gainwell",RB,TB,"Active","",CAR,"Zac Robinson","Ejiro Evero",58,44,1,49,8.8,1,54,40,45,73,16,64,13,39.03,61,23.2,43.5,-2.9,49.9,32,FLEX
+12,7543,"Travis Etienne Jr.",RB,NO,"Active","",CIN,"Kellen Moore","Al Golden",50,,0,52,16.9,1,54,27,56,58,33,88,2,44.12,43,19.5,48.5,9.5,49.5,33,FLEX
+12,7611,"Rhamondre Stevenson",RB,NE,"Active","",LAC,"Josh McDaniels","Chris O'Leary",50,,0,50,,0,49,35,49,56,16,57,2,44.65,40,18.8,34.5,-3.1,48.8,34,FLEX
+12,4147,"Samaje Perine",RB,CIN,"Active","",NO,"Zac Taylor","Brandon Staley",50,,0,50,,0,39,37,46,56,22,78,17,36.31,89,29,48.5,-9.5,48.1,35,FLEX
+12,8408,"Jordan Mason",RB,MIN,"Active","",ATL,"Kevin O'Connell","Jeff Ulbrich",35,16.23,3,51,14,2,48,20,57,73,8,87,2,43.49,66,24.2,41.5,-6.9,47.1,36,FLEX
+12,5995,"Justice Hill",RB,BAL,"Active","",HOU,"Declan Doyle","Matt Burke",50,,0,47,2.2,1,41,55,40,42,14,83,13,42.83,48,20.5,47.5,6.5,47,37,SIT
+12,11576,"Braelon Allen",RB,NYJ,"Active","",MIA,"Frank Reich","Jeff Hafley",52,27.8,1,52,19.4,1,45,26,42,61,31,79,13,48.51,58,22.5,39.5,-5.5,46.7,38,SIT
+12,9753,"Zach Charbonnet",RB,SEA,"Active","",SF,"Brian Fleury","Raheem Morris",50,22.3,1,46,7,2,60,29,52,24,19,80,2,41.2,55,22,42.5,-1.5,46,39,SIT
+12,4663,"Austin Ekeler",RB,WAS,"Active","",ARI,"David Blough","Nick Rallis",50,,0,50,,0,43,25,42,67,14,82,17,46.15,65,24,41.5,-6.5,45.4,40,SIT
+12,12412,"Terrell Jennings",RB,NE,"Active","",LAC,"Josh McDaniels","Chris O'Leary",50,,0,50,,0,50,20,20,56,50,50,5,44.65,40,18.8,34.5,-3.1,44.8,41,SIT
+12,11649,"Kendall Milton",RB,CIN,"Active","",NO,"Zac Taylor","Brandon Staley",50,,0,50,,0,50,20,20,56,50,50,5,36.31,89,29,48.5,-9.5,44.7,42,SIT
+12,4199,"Aaron Jones Sr.",RB,MIN,"Active","",ATL,"Kevin O'Connell","Jeff Ulbrich",35,16.23,3,36,5.33,3,34,31,41,73,31,72,17,43.49,66,24.2,41.5,-6.9,44.6,43,SIT
+12,8122,"Zonovan Knight",RB,ARI,"Active","",WAS,"Mike LaFleur","Daronte Jones",50,,0,50,,0,20,20,20,57,50,50,13,41.06,33,17.5,41.5,6.5,44.2,44,SIT
+12,00-0037157,"Bam Knight",RB,ARI,"UNKNOWN","",WAS,"Mike LaFleur","Daronte Jones",50,,0,50,,0,25,12,37,57,16,68,5,41.06,33,17.5,41.5,6.5,44,45,SIT
+12,12469,"Dylan Sampson",RB,CLE,"Active","",LV,"Todd Monken","Rob Leonard",50,,0,50,,0,41,33,34,72,6,74,17,43.35,55,22,39.5,-4.5,44,46,SIT
+12,12491,"Corey Kiner",RB,NE,"Active","",LAC,"Josh McDaniels","Chris O'Leary",50,,0,50,,0,31,21,38,56,6,63,17,44.65,40,18.8,34.5,-3.1,43.8,47,SIT
+12,11579,"Audric Estime",RB,NO,"Active","",CIN,"Kellen Moore","Al Golden",50,,0,50,,0,41,30,42,58,35,55,30,44.12,43,19.5,48.5,9.5,43.4,48,SIT
+12,10219,"Chris Rodriguez Jr.",RB,JAX,"Active","",TEN,"Liam Coen","Robert Saleh",49,20.8,1,46,0.5,1,26,20,26,57,14,49,2,40.93,100,31.2,48.5,-13.9,42.6,49,SIT
+12,13286,"Jadarian Price",RB,SEA,"Active","",SF,"Brian Fleury","Raheem Morris",50,22.3,1,50,,0,46,34,46,24,8,76,21,41.2,55,22,42.5,-1.5,42.3,50,SIT
+12,7021,"Rico Dowdle",RB,PIT,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,40,29,37,50,24,71,13,,,,,,42.1,51,SIT
+12,7561,"Elijah Mitchell",RB,PHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,39,23,35,50,5,69,5,,,,,,41.7,52,SIT
+12,12928,"Amar Johnson",RB,LAC,"Active","",NE,"Mike McDaniel","Zak Kuhr",50,,0,50,,0,50,20,20,63,50,50,9,47.33,25,15.8,34.5,2.9,41.4,53,SIT
+12,11199,"Emari Demercado",RB,HOU,"Active","",BAL,"Nick Caley","Jesse Minter",46,12.2,1,46,1.4,1,30,13,28,59,4,78,21,42.38,79,27,47.5,-6.5,40.6,54,SIT
+12,4035,"Alvin Kamara",RB,NO,"Active","",CIN,"Kellen Moore","Al Golden",50,,0,50,,0,24,37,21,58,29,59,17,44.12,43,19.5,48.5,9.5,39.6,55,SIT
+12,8116,"Pierre Strong Jr.",RB,GB,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,35,20,31,50,22,37,5,,,,,,39.5,56,SIT
+12,11581,"MarShawn Lloyd",RB,GB,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,24,18,28,50,4,70,13,,,,,,39.4,57,SIT
+12,13414,"Kaelon Black",RB,SF,"Active","",SEA,"Kyle Shanahan","Mike Macdonald",49,18.9,1,46,1.6,1,39,28,33,39,18,64,21,41.17,48,20.5,42.5,1.5,39.2,58,SIT
+12,11577,"Will Shipley",RB,PHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,22,13,25,50,22,58,13,,,,,,38.6,59,SIT
+12,12504,"Kaleb Johnson",RB,GB,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,31,20,35,50,8,39,6,,,,,,38.1,60,SIT
+12,13305,"Mike Washington Jr.",RB,LV,"Active","",CLE,"Klint Kubiak","Mike Rutenberg",50,,0,50,,0,30,9,38,55,49,62,21,42.34,33,17.5,39.5,4.5,38.1,61,SIT
+12,8136,"Rachaad White",RB,WAS,"Active","",ARI,"David Blough","Nick Rallis",50,,0,48,5.9,1,29,18,28,67,22,35,21,46.15,65,24,41.5,-6.5,38,62,SIT
+12,2359,"Ameer Abdullah",RB,JAX,"Active","",TEN,"Liam Coen","Robert Saleh",49,20.8,1,46,1.4,1,16,5,14,57,10,33,21,40.93,100,31.2,48.5,-13.9,37.7,63,SIT
+12,8194,"Jashaun Corbin",RB,DAL,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,22,17,20,50,8,50,5,,,,,,37.3,64,SIT
+12,11643,"Jaylen Wright",RB,MIA,"Active","",NYJ,"Bobby Slowik","Aaron Glenn",48,18.1,1,46,0.8,1,16,6,18,76,8,54,13,40.1,31,17,39.5,5.5,36.3,65,SIT
+12,00-0036893,"Najee Harris",RB,NYG,"UNKNOWN","",IND,"Matt Nagy","Lou Anarumo",50,,0,61,17.55,4,24,7,24,58,20,62,5,40.28,62,23.5,41.5,-5.5,36,66,SIT
+12,8181,"Connor Heyward",RB,LV,"Active","",CLE,"Klint Kubiak","Mike Rutenberg",50,,0,50,,0,20,20,20,55,50,50,21,42.34,33,17.5,39.5,4.5,35.8,67,SIT
+12,11647,"Kimani Vidal",RB,LAC,"Active","",NE,"Mike McDaniel","Zak Kuhr",50,,0,50,,0,29,18,28,63,4,67,13,47.33,25,15.8,34.5,2.9,35.6,68,SIT
+12,6130,"Devin Singletary",RB,NYG,"Active","",IND,"Matt Nagy","Lou Anarumo",50,,0,54,23.1,1,34,10,30,58,8,30,13,40.28,62,23.5,41.5,-5.5,35.4,69,SIT
+12,7608,"Khalil Herbert",RB,ATL,"Active","",MIN,"Tommy Rees","Brian Flores",50,,0,48,5.8,1,15,9,14,39,4,74,13,39.25,32,17.2,41.5,7.1,34,70,SIT
+12,13277,"CJ Donaldson",RB,NO,"Active","",CIN,"Kellen Moore","Al Golden",50,,0,50,,0,21,15,21,58,6,71,29,44.12,43,19.5,48.5,9.5,33.1,71,SIT
+12,7607,"Michael Carter",RB,TEN,"Active","",JAX,"Brian Daboll","Anthony Campanile",52,27.7,1,49,8.8,1,17,8,16,48,20,90,5,50.98,32,17.2,48.5,14.1,32.7,72,SIT
+12,6918,"Salvon Ahmed",RB,CHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,21,10,20,50,8,89,5,,,,,,31.9,73,SIT
+12,12969,"Lan Larison",RB,NE,"Active","",LAC,"Josh McDaniels","Chris O'Leary",50,,0,50,,0,10,13,10,56,4,55,25,44.65,40,18.8,34.5,-3.1,31.5,74,SIT
+12,11439,"Jaleel McLaughlin",RB,CLE,"Active","",LV,"Todd Monken","Rob Leonard",50,,0,50,,0,18,11,17,72,2,29,21,43.35,55,22,39.5,-4.5,31.2,75,SIT
+12,9220,"Evan Hull",RB,ARI,"Active","",WAS,"Mike LaFleur","Daronte Jones",50,,0,50,,0,4,0,3,57,0,50,21,41.06,33,17.5,41.5,6.5,31.1,76,SIT
+12,9227,"Israel Abanikanda",RB,DAL,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,11,7,10,50,0,50,5,,,,,,30.8,77,SIT
+12,8208,"Tyler Badie",RB,DEN,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,9,9,9,50,8,45,13,,,,,,30.8,78,SIT
+12,9506,"Sean Tucker",RB,TB,"Active","",CAR,"Zac Robinson","Ejiro Evero",58,44,1,50,11.2,1,9,13,5,73,12,29,21,39.03,61,23.2,43.5,-2.9,30.2,79,SIT
+12,6039,"Ty Johnson",RB,BUF,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,16,23,12,50,18,34,13,,,,,,29.9,80,SIT
+12,00-0033854,"Dare Ogunbowale",RB,HOU,"UNKNOWN","",BAL,"Nick Caley","Jesse Minter",46,12.2,1,50,,0,4,4,3,59,0,31,5,42.38,79,27,47.5,-6.5,29.8,81,SIT
+12,12544,"LeQuint Allen Jr.",RB,JAX,"Active","",TEN,"Liam Coen","Robert Saleh",49,20.8,1,46,0,1,4,1,3,57,0,34,25,40.93,100,31.2,48.5,-13.9,29.7,82,SIT
+12,13433,"Riley Nowakowski",RB,PIT,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,20,20,20,50,50,50,29,,,,,,29.7,83,SIT
+12,11186,"Carlos Washington Jr.",RB,MIA,"Active","",NYJ,"Bobby Slowik","Aaron Glenn",48,18.1,1,50,,0,4,6,5,76,0,50,5,40.1,31,17,39.5,5.5,29.5,84,SIT
+12,11370,"Chris Brooks",RB,GB,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,11,8,12,50,20,44,21,,,,,,29.1,85,SIT
+12,11729,"Sione Vaki",RB,DET,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,18,13,16,50,6,59,13,,,,,,29,86,SIT
+12,00-0035567,"Craig Reynolds",RB,WAS,"UNKNOWN","",ARI,"David Blough","Nick Rallis",50,,0,50,,0,8,1,9,67,0,50,5,46.15,65,24,41.5,-6.5,28.8,87,SIT
+12,12471,"DJ Giddens",RB,IND,"Active","",NYG,"Shane Steichen","Dennard Wilson",73,32.75,4,46,0.3,1,15,12,16,31,0,62,17,42.09,36,18,41.5,5.5,28.7,88,SIT
+12,12531,"Trevor Etienne",RB,CAR,"Active","",TB,"Brad Idzik","Todd Bowles",50,22.8,1,47,4.5,1,18,10,16,32,6,58,17,42.6,47,20.2,43.5,3.1,28.7,89,SIT
+12,8195,"Ronnie Rivers",RB,LA,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,26,13,18,50,5,29,21,,,,,,28.4,90,SIT
+12,6806,"J.K. Dobbins",RB,DEN,"Active","Sus",Unknown,"Unknown","Unknown",50,,0,50,,0,16,5,17,50,10,36,30,,,,,,28.2,91,SIT
+12,13419,"Jaydn Ott",RB,KC,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,10,4,9,50,0,32,21,,,,,,27.9,92,SIT
+12,13405,"Kaytron Allen",RB,MIA,"Active","",NYJ,"Bobby Slowik","Aaron Glenn",48,18.1,1,50,,0,5,7,5,76,0,32,29,40.1,31,17,39.5,5.5,27.9,93,SIT
+12,7204,"Reggie Gilliam",RB,NE,"Active","Questionable",LAC,"Josh McDaniels","Chris O'Leary",50,,0,50,,0,6,5,7,56,0,69,60,44.65,40,18.8,34.5,-3.1,27.8,94,SIT
+12,13288,"Nicholas Singleton",RB,TEN,"Active","",JAX,"Brian Daboll","Anthony Campanile",52,27.7,1,50,,0,13,2,13,48,8,66,29,50.98,32,17.2,48.5,14.1,27.5,95,SIT
+12,6828,"AJ Dillon",RB,CAR,"Active","",TB,"Brad Idzik","Todd Bowles",50,22.8,1,44,3.75,2,18,4,18,32,2,58,21,42.6,47,20.2,43.5,3.1,27.1,96,SIT
+12,13418,"Robert Henry Jr.",RB,WAS,"Active","",ARI,"David Blough","Nick Rallis",50,,0,50,,0,8,1,6,67,0,50,38,46.15,65,24,41.5,-6.5,27,97,SIT
+12,00-0033376,"Patrick Ricard",RB,NYG,"UNKNOWN","",IND,"Matt Nagy","Lou Anarumo",50,,0,46,0,1,6,2,5,58,0,51,5,40.28,62,23.5,41.5,-5.5,26.6,98,SIT
+12,14026,"DJ Herman",RB,MIA,"Active","",NYJ,"Bobby Slowik","Aaron Glenn",48,18.1,1,50,,0,3,4,2,76,0,38,38,40.1,31,17,39.5,5.5,26.5,99,SIT
+12,00-0038738,"Hunter Luepke",RB,DAL,"UNKNOWN","",Unknown,"Unknown","Unknown",50,,0,50,,0,3,3,2,50,4,31,5,,,,,,26.5,100,SIT
+12,12787,"Josh Williams",RB,TB,"Active","",CAR,"Zac Robinson","Ejiro Evero",58,44,1,50,,0,0,0,0,73,0,50,9,39.03,61,23.2,43.5,-2.9,26.3,101,SIT
+12,12897,"Nate Carter",RB,KC,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,6,2,5,50,0,69,9,,,,,,26,102,SIT
+12,6931,"DeeJay Dallas",RB,MIN,"Active","",ATL,"Kevin O'Connell","Jeff Ulbrich",35,16.23,3,46,6.9,2,3,4,2,73,2,39,21,43.49,66,24.2,41.5,-6.9,25.9,103,SIT
+12,12543,"Tahj Brooks",RB,CIN,"Active","",NO,"Zac Taylor","Brandon Staley",50,,0,50,,0,4,1,5,56,0,28,25,36.31,89,29,48.5,-9.5,25.7,104,SIT
+12,11571,"Isaiah Davis",RB,NYJ,"Active","",MIA,"Frank Reich","Jeff Hafley",52,27.8,1,49,8.4,1,0,0,0,61,4,54,21,48.51,58,22.5,39.5,-5.5,25.3,105,SIT
+12,13516,"Max Bredeson",RB,MIN,"Active","",ATL,"Kevin O'Connell","Jeff Ulbrich",35,16.23,3,50,,0,3,0,3,73,3,46,38,43.49,66,24.2,41.5,-6.9,25.2,106,SIT
+12,8139,"Zamir White",RB,NO,"Active","",CIN,"Kellen Moore","Al Golden",50,,0,50,,0,4,2,3,58,0,50,5,44.12,43,19.5,48.5,9.5,25.2,107,SIT
+12,13603,"Gregory Desrosiers Jr.",RB,NYG,"Active","",IND,"Matt Nagy","Lou Anarumo",50,,0,50,,0,6,4,5,58,0,28,29,40.28,62,23.5,41.5,-5.5,25,108,SIT
+12,7720,"Kene Nwangwu",RB,NYJ,"Active","",MIA,"Frank Reich","Jeff Hafley",52,27.8,1,50,,0,0,0,0,61,0,53,30,48.51,58,22.5,39.5,-5.5,24.6,109,SIT
+12,11575,"Ray Davis",RB,BUF,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,11,3,9,50,6,63,21,,,,,,24.3,110,SIT
+12,12516,"Kalel Mullings",RB,TEN,"Active","",JAX,"Brian Daboll","Anthony Campanile",52,27.7,1,50,,0,4,1,6,48,0,50,9,50.98,32,17.2,48.5,14.1,24.2,111,SIT
+12,11570,"Rasheen Ali",RB,BAL,"Active","",HOU,"Declan Doyle","Matt Burke",50,,0,46,0,1,8,3,8,42,0,30,21,42.83,48,20.5,47.5,6.5,23.5,112,SIT
+12,00-0038614,"Scott Matlock",RB,LAC,"UNKNOWN","",NE,"Mike McDaniel","Zak Kuhr",50,,0,50,,0,0,0,0,63,0,57,5,47.33,25,15.8,34.5,2.9,23.5,113,SIT
+12,00-0039325,"Carson Steele",RB,PHI,"UNKNOWN","",Unknown,"Unknown","Unknown",50,,0,50,,0,4,2,2,50,0,37,5,,,,,,23.4,114,SIT
+12,8254,"Julius Chestnut",RB,TEN,"Active","",JAX,"Brian Daboll","Anthony Campanile",52,27.7,1,41,0,2,0,0,0,48,0,56,13,50.98,32,17.2,48.5,14.1,22.2,115,SIT
+12,9510,"Lew Nichols",RB,PIT,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,9,6,10,50,4,28,30,,,,,,22,116,SIT
+12,11574,"Dylan Laube",RB,LV,"Active","",CLE,"Klint Kubiak","Mike Rutenberg",50,,0,50,,0,0,0,0,55,0,53,30,42.34,33,17.5,39.5,4.5,21.8,117,SIT
+12,12467,"Jordan James",RB,SF,"Active","",SEA,"Kyle Shanahan","Mike Macdonald",49,18.9,1,46,0,1,6,2,5,39,0,32,34,41.17,48,20.5,42.5,1.5,21.8,118,SIT
+12,12457,"Jaydon Blue",RB,PHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,1,2,1,50,0,34,25,,,,,,21.6,119,SIT
+12,11573,"Frank Gore Jr.",RB,BUF,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,4,1,5,50,0,50,5,,,,,,21.4,120,SIT
+12,12939,"Anthony Tyus III",RB,CAR,"Active","",TB,"Brad Idzik","Todd Bowles",50,22.8,1,49,8.3,1,0,0,0,32,0,52,34,42.6,47,20.2,43.5,3.1,20.5,121,SIT
+12,11644,"Cody Schrader",RB,DEN,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,1,0,1,50,0,28,30,,,,,,20.5,122,SIT
+12,11280,"Brady Russell",RB,SEA,"Active","",SF,"Brian Fleury","Raheem Morris",50,22.3,1,46,0,1,0,0,0,24,0,53,30,41.2,55,22,42.5,-1.5,20.3,123,SIT
+12,12356,"Jabari Small",RB,DET,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,0,0,0,50,0,50,5,,,,,,19.8,124,SIT
+12,11237,"Jacob Saylors",RB,DET,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,3,1,2,50,0,29,21,,,,,,18.8,125,SIT
+12,6012,"Travis Homer",RB,PIT,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,1,0,1,50,6,38,30,,,,,,18.7,126,SIT
+12,6786,"CeeDee Lamb",WR,DAL,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,91,100,37,50,31,84,2,,,,,,69,1,START
+12,12501,"Matthew Golden",WR,GB,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,71,76,34,50,20,78,17,,,,,,60.4,2,START
+12,7564,"Ja'Marr Chase",WR,CIN,"Active","",NO,"Zac Taylor","Brandon Staley",50,,0,50,,0,78,86,33,26,16,73,2,43.79,89,29,48.5,-9.5,59.5,3,START
+12,8137,"George Pickens",WR,DAL,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,73,86,28,50,31,54,13,,,,,,59,4,START
+12,9488,"Jaxon Smith-Njigba",WR,SEA,"Active","",SF,"Brian Fleury","Raheem Morris",51,30.6,1,56,22.8,1,69,78,42,53,8,80,2,49.8,55,22,42.5,-1.5,58.2,5,START
+12,5947,"Jakobi Meyers",WR,JAX,"Active","",TEN,"Liam Coen","Robert Saleh",58,56.2,1,49,6.4,1,51,34,23,80,20,81,6,53.28,100,31.2,48.5,-13.9,54.3,6,START
+12,7525,"DeVonta Smith",WR,PHI,"Active","Questionable",Unknown,"Unknown","Unknown",50,,0,50,,0,76,49,40,50,10,71,32,,,,,,54.1,7,START
+12,6794,"Justin Jefferson",WR,MIN,"Active","",ATL,"Kevin O'Connell","Jeff Ulbrich",45,25.4,3,65,14.97,3,76,48,35,43,22,82,2,46.13,66,24.2,41.5,-6.9,53.9,8,START
+12,4983,"DJ Moore",WR,BUF,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,51,57,25,50,31,74,2,,,,,,49.9,9,START
+12,7569,"Nico Collins",WR,HOU,"Active","",BAL,"Nick Caley","Jesse Minter",55,47.1,1,50,8.7,1,56,64,25,25,4,60,2,50.58,79,27,47.5,-6.5,49.2,10,START
+12,7547,"Amon-Ra St. Brown",WR,DET,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,47,66,26,50,8,74,2,,,,,,49,11,START
+12,12519,"Luther Burden III",WR,CHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,51,52,24,50,10,64,6,,,,,,48.8,12,START
+12,8146,"Garrett Wilson",WR,NYJ,"Active","",MIA,"Frank Reich","Jeff Hafley",50,27.1,1,48,4.6,1,69,45,33,32,18,73,2,42.82,58,22.5,39.5,-5.5,48.7,13,START
+12,2216,"Mike Evans",WR,SF,"Active","Questionable",SEA,"Kyle Shanahan","Mike Macdonald",53,38.4,1,56,24.3,1,49,69,28,22,27,71,40,43.43,48,20.5,42.5,1.5,47.7,14,START
+12,11632,"Malik Nabers",WR,NYG,"Active","",IND,"Matt Nagy","Lou Anarumo",50,,0,50,,0,60,43,27,46,10,77,2,45.79,62,23.5,41.5,-5.5,47.5,15,START
+12,12530,"Travis Hunter",WR,JAX,"Active","",TEN,"Liam Coen","Robert Saleh",58,56.2,1,50,,0,20,20,20,80,50,50,6,53.28,100,31.2,48.5,-13.9,47.5,16,START
+12,8144,"Chris Olave",WR,NO,"Active","",CIN,"Kellen Moore","Al Golden",50,,0,50,,0,69,49,29,24,8,63,2,44.17,43,19.5,48.5,9.5,46,17,START
+12,11631,"Brian Thomas Jr.",WR,JAX,"Active","",TEN,"Liam Coen","Robert Saleh",58,56.2,1,49,5.9,1,20,27,11,80,6,79,13,53.28,100,31.2,48.5,-13.9,45,18,START
+12,13200,"Max Hurleman",WR,PIT,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,47,63,16,50,16,50,34,,,,,,44.6,19,START
+12,11620,"Rome Odunze",WR,CHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,38,43,19,50,12,82,13,,,,,,44.6,20,START
+12,9997,"Zay Flowers",WR,BAL,"Active","",HOU,"Declan Doyle","Matt Burke",50,,0,51,12.2,1,62,41,32,28,4,72,2,43.32,48,20.5,47.5,6.5,44.6,21,START
+12,2449,"Stefon Diggs",WR,WAS,"Active","",ARI,"David Blough","Nick Rallis",50,,0,50,,0,47,43,21,33,16,67,6,50.73,65,24,41.5,-6.5,44,22,START
+12,12526,"Tetairoa McMillan",WR,CAR,"Active","Questionable",TB,"Brad Idzik","Todd Bowles",46,13.9,1,50,8,1,49,48,23,35,27,71,36,49.68,47,20.2,43.5,3.1,43.9,23,START
+12,13394,"Josh Cameron",WR,JAX,"Active","",TEN,"Liam Coen","Robert Saleh",58,56.2,1,53,15.7,1,24,29,10,80,6,41,29,53.28,100,31.2,48.5,-13.9,43.5,24,START
+12,12514,"Emeka Egbuka",WR,TB,"Active","",CAR,"Zac Robinson","Ejiro Evero",48,19.4,1,45,3.4,2,60,33,25,39,18,52,6,44.79,61,23.2,43.5,-2.9,43.4,25,FLEX
+12,10229,"Rashee Rice",WR,KC,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,42,40,20,50,6,90,2,,,,,,42.3,26,FLEX
+12,6801,"Tee Higgins",WR,CIN,"Active","Questionable",NO,"Zac Taylor","Brandon Staley",50,,0,50,,0,33,51,14,26,22,68,43,43.79,89,29,48.5,-9.5,42,27,FLEX
+12,13296,"Caleb Douglas",WR,MIA,"Active","",NYJ,"Bobby Slowik","Aaron Glenn",51,33,1,55,21,1,58,33,31,28,12,80,10,38.99,31,17,39.5,5.5,41.9,28,FLEX
+12,13279,"Carnell Tate",WR,TEN,"Active","",JAX,"Brian Daboll","Anthony Campanile",50,27.1,1,50,,0,42,52,24,20,10,82,10,50.57,32,17.2,48.5,14.1,41.9,29,FLEX
+12,13298,"KC Concepcion Jr.",WR,CLE,"Active","",LV,"Todd Monken","Rob Leonard",50,,0,50,,0,44,43,19,35,12,69,10,41.96,55,22,39.5,-4.5,41.7,30,FLEX
+12,8134,"Khalil Shakir",WR,BUF,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,47,38,22,50,10,71,13,,,,,,41.7,31,FLEX
+12,13294,"Makai Lemon",WR,PHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,47,29,23,50,10,58,21,,,,,,41.7,32,FLEX
+12,13301,"Antonio Williams",WR,WAS,"Active","",ARI,"David Blough","Nick Rallis",50,,0,50,,0,42,45,19,33,6,50,21,50.73,65,24,41.5,-6.5,40.9,33,FLEX
+12,10218,"Xavier Hutchinson",WR,HOU,"Active","",BAL,"Nick Caley","Jesse Minter",55,47.1,1,48,4.9,1,38,36,17,25,18,60,13,50.58,79,27,47.5,-6.5,40.7,34,FLEX
+12,9500,"Josh Downs",WR,KC,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,36,44,14,50,6,90,13,,,,,,40.6,35,FLEX
+12,8112,"Drake London",WR,ATL,"Active","",MIN,"Tommy Rees","Brian Flores",50,,0,51,9.95,2,51,36,24,35,6,62,2,45.33,32,17.2,41.5,7.1,40.2,36,FLEX
+12,4177,"Mack Hollins",WR,NE,"Active","",LAC,"Josh McDaniels","Chris O'Leary",50,,0,50,,0,36,36,17,54,14,80,21,45.27,40,18.8,34.5,-3.1,39.9,37,SIT
+12,5872,"Deebo Samuel Sr.",WR,SF,"Active","",SEA,"Kyle Shanahan","Mike Macdonald",53,38.4,1,48,4.5,1,38,44,22,22,12,65,17,43.43,48,20.5,42.5,1.5,39.4,38,SIT
+12,9502,"Tank Dell",WR,HOU,"Active","",BAL,"Nick Caley","Jesse Minter",55,47.1,1,50,,0,40,36,18,25,2,56,21,50.58,79,27,47.5,-6.5,39.3,39,SIT
+12,13150,"Darius Cooper",WR,PHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,42,21,22,50,0,73,25,,,,,,38.6,40,SIT
+12,11635,"Ladd McConkey",WR,LAC,"Active","",NE,"Mike McDaniel","Zak Kuhr",50,,0,50,,0,33,42,20,66,6,46,2,34.33,25,15.8,34.5,2.9,38.6,41,SIT
+12,9501,"DeMario Douglas",WR,NE,"Active","",LAC,"Josh McDaniels","Chris O'Leary",50,,0,50,,0,33,39,17,54,0,55,2,45.27,40,18.8,34.5,-3.1,38.4,42,SIT
+12,13346,"Denzel Boston",WR,CLE,"Active","Questionable",LV,"Todd Monken","Rob Leonard",50,,0,50,,0,44,33,19,35,31,45,51,41.96,55,22,39.5,-4.5,38.4,43,SIT
+12,8148,"Jameson Williams",WR,DET,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,31,39,16,50,12,61,13,,,,,,37.8,44,SIT
+12,1479,"Keenan Allen",WR,SF,"Active","",SEA,"Kyle Shanahan","Mike Macdonald",53,38.4,1,56,16.05,2,42,31,21,22,4,75,29,43.43,48,20.5,42.5,1.5,37.2,45,SIT
+12,11646,"Jalen Coker",WR,CAR,"Active","",TB,"Brad Idzik","Todd Bowles",46,13.9,1,47,1.9,1,40,18,20,35,22,64,13,49.68,47,20.2,43.5,3.1,36.5,46,SIT
+12,12540,"Chimere Dike",WR,TEN,"Active","",JAX,"Brian Daboll","Anthony Campanile",50,27.1,1,48,4.1,1,40,41,19,20,2,62,25,50.57,32,17.2,48.5,14.1,36.4,47,SIT
+12,13285,"Malachi Fields",WR,NYG,"Active","",IND,"Matt Nagy","Lou Anarumo",50,,0,50,,0,31,24,14,46,2,80,21,45.79,62,23.5,41.5,-5.5,36.4,48,SIT
+12,13281,"Jordyn Tyson",WR,NO,"Active","",CIN,"Kellen Moore","Al Golden",50,,0,50,,0,47,33,22,24,5,37,21,44.17,43,19.5,48.5,9.5,36.3,49,SIT
+12,3634,"Kalif Raymond",WR,CHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,33,20,17,50,4,67,25,,,,,,36.1,50,SIT
+12,12492,"Pat Bryant",WR,DEN,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,27,34,12,50,18,71,25,,,,,,36,51,SIT
+12,7562,"Tutu Atwell",WR,LA,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,24,17,12,50,0,70,21,,,,,,36,52,SIT
+12,13274,"Germie Bernard",WR,PIT,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,42,22,21,50,10,57,21,,,,,,35.9,53,SIT
+12,5846,"DK Metcalf",WR,PIT,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,36,19,20,50,16,58,2,,,,,,35.6,54,SIT
+12,12483,"Jack Bech",WR,LV,"Active","",CLE,"Klint Kubiak","Mike Rutenberg",50,,0,50,,0,40,32,20,32,8,45,17,42.89,33,17.5,39.5,4.5,35.5,55,SIT
+12,7526,"Jaylen Waddle",WR,DEN,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,29,29,14,50,16,55,2,,,,,,35.5,56,SIT
+12,11625,"Adonai Mitchell",WR,NYJ,"Active","",MIA,"Frank Reich","Jeff Hafley",50,27.1,1,46,0,1,40,16,19,32,14,56,13,42.82,58,22.5,39.5,-5.5,35.1,57,SIT
+12,4039,"Cooper Kupp",WR,SEA,"Active","",SF,"Brian Fleury","Raheem Morris",51,30.6,1,48,3.5,1,18,28,10,53,10,68,21,49.8,55,22,42.5,-1.5,35,58,SIT
+12,5045,"Courtland Sutton",WR,DEN,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,33,29,16,50,16,42,17,,,,,,35,59,SIT
+12,12499,"Elic Ayomanor",WR,TEN,"Active","",JAX,"Brian Daboll","Anthony Campanile",50,27.1,1,52,12.9,1,40,29,17,20,8,61,17,50.57,32,17.2,48.5,14.1,34.9,60,SIT
+12,12718,"Konata Mumpfield",WR,LA,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,18,18,9,50,6,51,6,,,,,,34.9,61,SIT
+12,11628,"Marvin Harrison Jr.",WR,HOU,"Active","",BAL,"Nick Caley","Jesse Minter",55,47.1,1,48,5.1,1,24,21,12,25,14,78,30,50.58,79,27,47.5,-6.5,34.9,62,SIT
+12,8676,"Rashid Shaheed",WR,SEA,"Active","",SF,"Brian Fleury","Raheem Morris",51,30.6,1,48,4.3,1,31,18,15,53,14,45,21,49.8,55,22,42.5,-1.5,34.9,63,SIT
+12,10213,"Tre Tucker",WR,LV,"Active","",CLE,"Klint Kubiak","Mike Rutenberg",50,,0,50,,0,44,21,20,32,2,58,2,42.89,33,17.5,39.5,4.5,34.8,64,SIT
+12,12509,"Tre' Harris",WR,LAC,"Active","",NE,"Mike McDaniel","Zak Kuhr",50,,0,50,,0,31,26,21,66,4,53,25,34.33,25,15.8,34.5,2.9,34.6,65,SIT
+12,12496,"Tai Felton",WR,MIN,"Active","",ATL,"Kevin O'Connell","Jeff Ulbrich",45,25.4,3,50,,0,40,19,16,43,4,35,25,46.13,66,24.2,41.5,-6.9,34.5,66,SIT
+12,12482,"Savion Williams",WR,GB,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,27,24,13,50,6,50,25,,,,,,34.4,67,SIT
+12,11610,"Malik Washington",WR,MIA,"Active","",NYJ,"Bobby Slowik","Aaron Glenn",51,33,1,49,6.5,1,33,29,19,28,8,63,13,38.99,31,17,39.5,5.5,34.1,68,SIT
+12,12542,"Efton Chism III",WR,NE,"Active","",LAC,"Josh McDaniels","Chris O'Leary",50,,0,50,,0,24,29,15,54,8,41,25,45.27,40,18.8,34.5,-3.1,33.8,69,SIT
+12,8135,"Treylon Burks",WR,WAS,"Active","",ARI,"David Blough","Nick Rallis",50,,0,50,,0,24,24,12,33,2,67,21,50.73,65,24,41.5,-6.5,33.8,70,SIT
+12,11624,"Xavier Worthy",WR,KC,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,29,26,14,50,14,56,21,,,,,,33.8,71,SIT
+12,7090,"Darnell Mooney",WR,NYG,"Active","",IND,"Matt Nagy","Lou Anarumo",50,,0,47,2.7,1,33,13,15,46,0,68,21,45.79,62,23.5,41.5,-5.5,33.7,72,SIT
+12,3286,"Demarcus Robinson",WR,SF,"Active","",SEA,"Kyle Shanahan","Mike Macdonald",53,38.4,1,63,14.15,4,22,29,14,22,14,71,34,43.43,48,20.5,42.5,1.5,33.7,73,SIT
+12,7049,"Jauan Jennings",WR,MIN,"Active","",ATL,"Kevin O'Connell","Jeff Ulbrich",45,25.4,3,50,9.25,2,24,16,11,43,4,71,13,46.13,66,24.2,41.5,-6.9,33.2,74,SIT
+12,13270,"CJ Daniels",WR,LA,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,13,11,8,50,16,50,21,,,,,,33.1,75,SIT
+12,11783,"Ryan Flournoy",WR,DAL,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,24,33,9,50,16,40,21,,,,,,32.9,76,SIT
+12,7571,"Rashod Bateman",WR,BAL,"Active","",HOU,"Declan Doyle","Matt Burke",50,,0,46,0,1,29,27,13,28,2,58,13,43.32,48,20.5,47.5,6.5,32.8,77,SIT
+12,13670,"Harrison Wallace III",WR,ARI,"Active","",WAS,"Mike LaFleur","Daronte Jones",50,,0,50,,0,27,20,14,34,0,39,21,44.76,33,17.5,41.5,6.5,32.6,78,SIT
+12,13075,"Myles Price",WR,MIN,"Active","",ATL,"Kevin O'Connell","Jeff Ulbrich",45,25.4,3,46,0,1,24,26,12,43,0,49,34,46.13,66,24.2,41.5,-6.9,32.6,79,SIT
+12,11630,"Roman Wilson",WR,PIT,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,29,28,11,50,8,43,21,,,,,,32.4,80,SIT
+12,13317,"Ted Hurst III",WR,TB,"Active","",CAR,"Zac Robinson","Ejiro Evero",48,19.4,1,46,0,1,20,26,20,39,14,30,38,44.79,61,23.2,43.5,-2.9,32.4,81,SIT
+12,7812,"Simi Fehoko",WR,ARI,"Active","",WAS,"Mike LaFleur","Daronte Jones",50,,0,50,,0,24,13,15,34,6,38,2,44.76,33,17.5,41.5,6.5,32.2,82,SIT
+12,13264,"Dohnte Meyers",WR,CIN,"Active","",NO,"Zac Taylor","Brandon Staley",50,,0,50,,0,18,23,8,26,4,57,29,43.79,89,29,48.5,-9.5,32.1,83,SIT
+12,11834,"Devaughn Vele",WR,NO,"Active","",CIN,"Kellen Moore","Al Golden",50,,0,50,,0,29,25,12,24,8,50,21,44.17,43,19.5,48.5,9.5,31.6,84,SIT
+12,6427,"Ashton Dulin",WR,IND,"Active","",NYG,"Shane Steichen","Dennard Wilson",62,34.85,4,26,0.05,4,20,25,12,39,4,64,13,44.7,36,18,41.5,5.5,31.1,85,SIT
+12,00-0038839,"Mitchell Tinsley",WR,CIN,"UNKNOWN","",NO,"Zac Taylor","Brandon Staley",50,,0,50,,0,20,13,7,26,14,34,5,43.79,89,29,48.5,-9.5,31.1,86,SIT
+12,13297,"Reggie Virgil",WR,ARI,"Active","",WAS,"Mike LaFleur","Daronte Jones",50,,0,50,,0,24,10,10,34,11,52,29,44.76,33,17.5,41.5,6.5,31,87,SIT
+12,11637,"Keon Coleman",WR,BUF,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,29,12,15,50,4,71,21,,,,,,30.7,88,SIT
+12,9754,"Quentin Johnston",WR,LAC,"Active","",NE,"Mike McDaniel","Zak Kuhr",50,,0,50,,0,20,20,12,66,2,48,13,34.33,25,15.8,34.5,2.9,30.7,89,SIT
+12,00-0035662,"Marquise Brown",WR,PHI,"UNKNOWN","",Unknown,"Unknown","Unknown",50,,0,50,,0,18,13,8,50,0,58,5,,,,,,30.5,90,SIT
+12,12497,"Tory Horton",WR,SEA,"Active","",SF,"Brian Fleury","Raheem Morris",51,30.6,1,50,,0,22,11,11,53,8,40,34,49.8,55,22,42.5,-1.5,30.5,91,SIT
+12,4037,"Chris Godwin Jr.",WR,TB,"Active","",CAR,"Zac Robinson","Ejiro Evero",48,19.4,1,49,6.7,1,18,11,19,39,6,46,17,44.79,61,23.2,43.5,-2.9,30.4,92,SIT
+12,6819,"Michael Pittman Jr.",WR,PIT,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,27,19,11,50,0,67,30,,,,,,30.2,93,SIT
+12,3200,"Sterling Shepard",WR,NYJ,"Active","",MIA,"Frank Reich","Jeff Hafley",50,27.1,1,50,,0,9,21,6,32,22,50,13,42.82,58,22.5,39.5,-5.5,30.2,94,SIT
+12,8180,"Jalen Nailor",WR,LV,"Active","",CLE,"Klint Kubiak","Mike Rutenberg",50,,0,50,,0,29,7,14,32,12,77,21,42.89,33,17.5,39.5,4.5,30.1,95,SIT
+12,13411,"Zavion Thomas",WR,CHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,20,17,11,50,0,51,38,,,,,,30.1,96,SIT
+12,12670,"KeAndre Lambert-Smith",WR,LAC,"Active","",NE,"Mike McDaniel","Zak Kuhr",50,,0,50,,0,29,17,13,66,5,29,34,34.33,25,15.8,34.5,2.9,30,97,SIT
+12,6783,"Jerry Jeudy",WR,CLE,"Active","",LV,"Todd Monken","Rob Leonard",50,,0,50,,0,20,18,9,35,2,45,21,41.96,55,22,39.5,-4.5,29.4,98,SIT
+12,6853,"Van Jefferson",WR,WAS,"Active","",ARI,"David Blough","Nick Rallis",50,,0,46,0,1,20,20,9,33,5,27,34,50.73,65,24,41.5,-6.5,29.4,99,SIT
+12,9494,"Marvin Mims Jr.",WR,DEN,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,24,14,13,50,4,66,30,,,,,,29.2,100,SIT
+12,4981,"Calvin Ridley",WR,TEN,"Active","",JAX,"Brian Daboll","Anthony Campanile",50,27.1,1,50,,0,24,23,13,20,6,44,34,50.57,32,17.2,48.5,14.1,28.9,101,SIT
+12,5086,"Marquez Valdes-Scantling",WR,PIT,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,11,20,20,50,0,50,9,,,,,,28.9,102,SIT
+12,12535,"Isaac TeSlaa",WR,DET,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,22,14,11,50,10,52,25,,,,,,28.6,103,SIT
+12,11608,"Isaiah Williams",WR,NYJ,"Active","",MIA,"Frank Reich","Jeff Hafley",50,27.1,1,46,0,1,20,18,8,32,4,33,21,42.82,58,22.5,39.5,-5.5,28.6,104,SIT
+12,11168,"Xavier Smith",WR,LA,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,7,14,4,50,4,28,30,,,,,,28.5,105,SIT
+12,2197,"Brandin Cooks",WR,SF,"Active","",SEA,"Kyle Shanahan","Mike Macdonald",53,38.4,1,49,7.7,1,16,11,8,22,6,79,13,43.43,48,20.5,42.5,1.5,28.4,106,SIT
+12,6271,"Olamide Zaccheaus",WR,ATL,"Active","",MIN,"Tommy Rees","Brian Flores",50,,0,50,8.2,1,20,8,10,35,8,71,13,45.33,32,17.2,41.5,7.1,28.4,107,SIT
+12,6927,"Quez Watkins",WR,IND,"Active","",NYG,"Shane Steichen","Dennard Wilson",62,34.85,4,50,,0,20,13,12,39,0,50,30,44.7,36,18,41.5,5.5,28.4,108,SIT
+12,11626,"Xavier Legette",WR,CAR,"Active","",TB,"Brad Idzik","Todd Bowles",46,13.9,1,42,6.12,4,20,15,9,35,4,50,30,49.68,47,20.2,43.5,3.1,28.1,109,SIT
+12,13293,"Ja'Kobi Lane",WR,BAL,"Active","",HOU,"Declan Doyle","Matt Burke",50,,0,50,,0,27,13,9,28,10,28,29,43.32,48,20.5,47.5,6.5,28,110,SIT
+12,13413,"Cyrus Allen",WR,KC,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,20,22,9,50,4,44,38,,,,,,27.9,111,SIT
+12,11762,"Anthony Gould",WR,IND,"Active","",NYG,"Shane Steichen","Dennard Wilson",62,34.85,4,26,0,3,18,17,11,39,0,57,30,44.7,36,18,41.5,5.5,27.7,112,SIT
+12,13477,"Colbie Young",WR,CIN,"Active","",NO,"Zac Taylor","Brandon Staley",50,,0,50,,0,9,12,4,26,8,50,38,43.79,89,29,48.5,-9.5,27.7,113,SIT
+12,7596,"Elijah Moore",WR,PHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,13,7,6,50,0,70,30,,,,,,27.5,114,SIT
+12,4351,"Tim Patrick",WR,NYJ,"Active","",MIA,"Frank Reich","Jeff Hafley",50,27.1,1,53,12.75,2,16,10,9,32,0,61,38,42.82,58,22.5,39.5,-5.5,27.4,115,SIT
+12,3155,"Laquon Treadwell",WR,IND,"Active","",NYG,"Shane Steichen","Dennard Wilson",62,34.85,4,50,,0,11,13,7,39,4,40,6,44.7,36,18,41.5,5.5,27.3,116,SIT
+12,12485,"Tez Johnson",WR,TB,"Active","Questionable",CAR,"Zac Robinson","Ejiro Evero",48,19.4,1,51,12.7,1,18,15,9,39,4,25,55,44.79,61,23.2,43.5,-2.9,27.1,117,SIT
+12,8147,"John Metchie III",WR,CAR,"Active","",TB,"Brad Idzik","Todd Bowles",46,13.9,1,48,4,1,13,12,6,35,2,56,21,49.68,47,20.2,43.5,3.1,27,118,SIT
+12,12547,"Kyle Williams",WR,NE,"Active","",LAC,"Josh McDaniels","Chris O'Leary",50,,0,50,,0,9,13,5,54,4,53,34,45.27,40,18.8,34.5,-3.1,27,119,SIT
+12,12860,"Theo Wease Jr.",WR,LAC,"Active","",NE,"Mike McDaniel","Zak Kuhr",50,,0,50,,0,11,8,6,66,8,50,9,34.33,25,15.8,34.5,2.9,27,120,SIT
+12,13380,"Brenen Thompson",WR,LAC,"Active","Doubtful",NE,"Mike McDaniel","Zak Kuhr",50,,0,50,,0,20,8,12,66,0,50,98,34.33,25,15.8,34.5,2.9,26.8,121,SIT
+12,13268,"Elijah Sarratt",WR,BAL,"Active","",HOU,"Declan Doyle","Matt Burke",50,,0,50,,0,13,8,7,28,0,50,38,43.32,48,20.5,47.5,6.5,26.6,122,SIT
+12,6847,"Devin Duvernay",WR,ARI,"Active","",WAS,"Mike LaFleur","Daronte Jones",50,,0,50,,0,11,10,8,34,0,29,30,44.76,33,17.5,41.5,6.5,26.5,123,SIT
+12,13760,"Jaden Bradley",WR,WAS,"Active","",ARI,"David Blough","Nick Rallis",50,,0,50,,0,7,8,3,33,0,50,13,50.73,65,24,41.5,-6.5,26.3,124,SIT
+12,13541,"Lewis Bond",WR,HOU,"Active","",BAL,"Nick Caley","Jesse Minter",55,47.1,1,50,,0,7,0,4,25,0,50,13,50.58,79,27,47.5,-6.5,26.3,125,SIT
+12,3269,"Chris Moore",WR,BAL,"Active","",HOU,"Declan Doyle","Matt Burke",50,,0,50,,0,11,10,6,28,12,41,13,43.32,48,20.5,47.5,6.5,26.1,126,SIT
+12,13770,"J. Michael Sturdivant",WR,GB,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,11,17,5,50,0,26,38,,,,,,26.1,127,SIT
+12,6386,"Alex Bachman",WR,LA,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,0,0,0,50,0,56,9,,,,,,25.9,128,SIT
+12,11629,"Devontez Walker",WR,BAL,"Active","",HOU,"Declan Doyle","Matt Burke",50,,0,46,0,1,11,15,5,28,4,53,30,43.32,48,20.5,47.5,6.5,25.9,129,SIT
+12,13311,"Chris Bell",WR,MIA,"Active","",NYJ,"Bobby Slowik","Aaron Glenn",51,33,1,48,5.5,1,24,10,13,28,0,42,29,38.99,31,17,39.5,5.5,25.8,130,SIT
+12,9497,"Jalin Hyatt",WR,NYG,"Active","",IND,"Matt Nagy","Lou Anarumo",50,,0,47,1.6,1,10,2,4,46,0,54,30,45.79,62,23.5,41.5,-5.5,25.6,131,SIT
+12,00-0036988,"Josh Palmer",WR,BUF,"UNKNOWN","",Unknown,"Unknown","Unknown",50,,0,50,,0,16,7,8,50,6,44,5,,,,,,25.6,132,SIT
+12,13011,"Brennan Presley",WR,LA,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,0,0,0,50,0,50,9,,,,,,25.5,133,SIT
+12,7595,"Tylan Wallace",WR,CLE,"Active","",LV,"Todd Monken","Rob Leonard",50,,0,50,,0,9,7,4,35,0,67,30,41.96,55,22,39.5,-4.5,25.5,134,SIT
+12,11627,"Troy Franklin",WR,DEN,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,18,9,8,50,2,51,30,,,,,,25.2,135,SIT
+12,8117,"Jalen Tolbert",WR,MIA,"Active","",NYJ,"Bobby Slowik","Aaron Glenn",51,33,1,46,5.1,2,9,20,4,28,2,50,30,38.99,31,17,39.5,5.5,24.6,136,SIT
+12,10228,"Charlie Jones",WR,NYG,"Active","",IND,"Matt Nagy","Lou Anarumo",50,,0,50,,0,0,0,0,46,0,57,5,45.79,62,23.5,41.5,-5.5,24.5,137,SIT
+12,13333,"Deion Burks",WR,IND,"Active","",NYG,"Shane Steichen","Dennard Wilson",62,34.85,4,50,,0,13,1,8,39,0,47,29,44.7,36,18,41.5,5.5,24.5,138,SIT
+12,13199,"Montorie Foster Jr.",WR,SEA,"Active","",SF,"Brian Fleury","Raheem Morris",51,30.6,1,50,,0,0,0,0,53,0,50,9,49.8,55,22,42.5,-1.5,24.5,139,SIT
+12,8917,"KaVontae Turpin",WR,DAL,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,16,15,7,50,0,29,34,,,,,,24.3,140,SIT
+12,13179,"Ja'seem Reed",WR,CAR,"Active","",TB,"Brad Idzik","Todd Bowles",46,13.9,1,50,,0,7,0,3,35,8,50,9,49.68,47,20.2,43.5,3.1,24.2,141,SIT
+12,11911,"Jeshaun Jones",WR,MIN,"Active","",ATL,"Kevin O'Connell","Jeff Ulbrich",45,25.4,3,50,,0,4,7,2,43,0,31,30,46.13,66,24.2,41.5,-6.9,24.1,142,SIT
+12,7521,"Chris Blair",WR,ATL,"Active","",MIN,"Tommy Rees","Brian Flores",50,,0,50,,0,13,4,5,35,10,37,21,45.33,32,17.2,41.5,7.1,24,143,SIT
+12,12888,"Dalen Cambre",WR,NYG,"Active","",IND,"Matt Nagy","Lou Anarumo",50,,0,50,,0,0,0,0,46,0,50,9,45.79,62,23.5,41.5,-5.5,24,144,SIT
+12,12971,"Ke'Shawn Williams",WR,CIN,"Active","",NO,"Zac Taylor","Brandon Staley",50,,0,50,,0,0,0,0,26,0,50,9,43.79,89,29,48.5,-9.5,24,145,SIT
+12,12889,"Beaux Collins",WR,ATL,"Active","",MIN,"Tommy Rees","Brian Flores",50,,0,50,,0,13,0,5,35,16,50,34,45.33,32,17.2,41.5,7.1,23.9,146,SIT
+12,7865,"Brandon Smith",WR,PIT,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,11,9,6,50,0,37,5,,,,,,23.8,147,SIT
+12,8861,"Irvin Charles",WR,SEA,"Active","",SF,"Brian Fleury","Raheem Morris",51,30.6,1,50,,0,0,0,0,53,0,53,30,49.8,55,22,42.5,-1.5,23.7,148,SIT
+12,11617,"Malachi Corley",WR,CLE,"Active","",LV,"Todd Monken","Rob Leonard",50,,0,50,,0,9,8,4,35,0,28,30,41.96,55,22,39.5,-4.5,23.7,149,SIT
+12,8168,"Skyy Moore",WR,GB,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,7,2,3,50,12,30,30,,,,,,23.6,150,SIT
+12,8200,"Kevin Austin Jr.",WR,NO,"Active","",CIN,"Kellen Moore","Al Golden",50,,0,50,,0,7,6,3,24,0,50,5,44.17,43,19.5,48.5,9.5,23.5,151,SIT
+12,8253,"Deven Thompkins",WR,LV,"Active","",CLE,"Klint Kubiak","Mike Rutenberg",50,,0,50,,0,7,6,3,32,0,50,5,42.89,33,17.5,39.5,4.5,23.4,152,SIT
+12,8756,"Brandon Johnson",WR,PIT,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,7,7,5,50,0,50,5,,,,,,23.3,153,SIT
+12,6154,"David Sills V",WR,TB,"Active","",CAR,"Zac Robinson","Ejiro Evero",48,19.4,1,46,0,1,0,0,0,39,0,56,9,44.79,61,23.2,43.5,-2.9,23.2,154,SIT
+12,10234,"Derius Davis",WR,LAC,"Active","",NE,"Mike McDaniel","Zak Kuhr",50,,0,50,,0,4,10,2,66,2,28,30,34.33,25,15.8,34.5,2.9,23.2,155,SIT
+12,12829,"Coleman Owen",WR,GB,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,0,0,0,50,0,56,9,,,,,,22.9,156,SIT
+12,8755,"Kaden Davis",WR,CHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,0,0,0,50,0,50,5,,,,,,22.8,157,SIT
+12,5374,"Justin Watson",WR,KC,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,7,6,3,50,0,50,9,,,,,,22.6,158,SIT
+12,13338,"Kevin Coleman Jr.",WR,MIA,"Active","",NYJ,"Bobby Slowik","Aaron Glenn",51,33,1,46,0,1,18,4,9,28,4,29,38,38.99,31,17,39.5,5.5,22.4,159,SIT
+12,12925,"Jamaal Pritchett",WR,NYJ,"Active","",MIA,"Frank Reich","Jeff Hafley",50,27.1,1,50,,0,0,0,0,32,0,50,9,42.82,58,22.5,39.5,-5.5,22.3,160,SIT
+12,5773,"KhaDarel Hodge",WR,SF,"Active","",SEA,"Kyle Shanahan","Mike Macdonald",53,38.4,1,46,0,1,4,6,3,22,0,38,9,43.43,48,20.5,42.5,1.5,22.3,161,SIT
+12,11994,"Kameron Johnson",WR,TB,"Active","",CAR,"Zac Robinson","Ejiro Evero",48,19.4,1,46,0,1,0,0,0,39,0,53,30,44.79,61,23.2,43.5,-2.9,22.2,162,SIT
+12,7039,"Cody White",WR,LV,"Active","",CLE,"Klint Kubiak","Mike Rutenberg",50,,0,50,,0,9,5,4,32,8,28,30,42.89,33,17.5,39.5,4.5,22.1,163,SIT
+12,11650,"Luke McCaffrey",WR,WAS,"Active","",ARI,"David Blough","Nick Rallis",50,,0,47,2.7,1,2,2,1,33,0,28,30,50.73,65,24,41.5,-6.5,22.1,164,SIT
+12,4274,"David Moore",WR,CAR,"Active","",TB,"Brad Idzik","Todd Bowles",46,13.9,1,46,0,1,2,0,1,35,0,41,9,49.68,47,20.2,43.5,3.1,21.8,165,SIT
+12,11320,"Nikko Remigio",WR,HOU,"Active","",BAL,"Nick Caley","Jesse Minter",55,47.1,1,26,0,3,0,0,0,25,0,53,30,50.58,79,27,47.5,-6.5,21.8,166,SIT
+12,8204,"Bo Melton",WR,GB,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,0,0,0,50,0,53,30,,,,,,21.7,167,SIT
+12,8414,"Britain Covey",WR,PHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,0,0,0,50,0,53,30,,,,,,21.7,168,SIT
+12,7496,"Nick Westbrook-Ikhine",WR,IND,"Active","",NYG,"Shane Steichen","Dennard Wilson",62,34.85,4,50,,0,4,0,2,39,0,41,30,44.7,36,18,41.5,5.5,21.7,169,SIT
+12,11377,"Tyrell Shavers",WR,BUF,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,13,0,5,50,0,50,30,,,,,,21.6,170,SIT
+12,13079,"Jahdae Walker",WR,CHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,0,0,0,50,0,52,34,,,,,,21.4,171,SIT
+12,00-0040075,"LaJohntay Wester",WR,BAL,"UNKNOWN","",HOU,"Declan Doyle","Matt Burke",50,,0,46,0,1,2,3,2,28,0,31,5,43.32,48,20.5,47.5,6.5,21.4,172,SIT
+12,13329,"Malik Benson",WR,LV,"Active","",CLE,"Klint Kubiak","Mike Rutenberg",50,,0,50,,0,11,2,4,32,8,26,38,42.89,33,17.5,39.5,4.5,21.4,173,SIT
+12,12503,"Isaiah Bond",WR,CLE,"Active","",LV,"Todd Monken","Rob Leonard",50,,0,50,,0,0,0,0,35,0,52,34,41.96,55,22,39.5,-4.5,21.3,174,SIT
+12,11157,"Brycen Tremayne",WR,CAR,"Active","",TB,"Brad Idzik","Todd Bowles",46,13.9,1,46,0,1,4,2,2,35,0,32,30,49.68,47,20.2,43.5,3.1,21.2,175,SIT
+12,13533,"Barion Brown",WR,NO,"Active","",CIN,"Kellen Moore","Al Golden",50,,0,50,,0,7,7,4,24,0,26,38,44.17,43,19.5,48.5,9.5,21.1,176,SIT
+12,13325,"Jordan Hudson",WR,DAL,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,7,0,3,50,0,50,13,,,,,,21.1,177,SIT
+12,12863,"Andrew Armstrong",WR,KC,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,4,13,2,50,0,31,34,,,,,,21,178,SIT
+12,6798,"Jalen Reagor",WR,MIA,"Active","",NYJ,"Bobby Slowik","Aaron Glenn",51,33,1,42,0.6,2,7,0,3,28,0,50,5,38.99,31,17,39.5,5.5,21,179,SIT
+12,11506,"Jalen Cropper",WR,NO,"Active","",CIN,"Kellen Moore","Al Golden",50,,0,50,,0,0,0,0,24,0,50,5,44.17,43,19.5,48.5,9.5,20.9,180,SIT
+12,13825,"Malik McClain",WR,NYJ,"Active","",MIA,"Frank Reich","Jeff Hafley",50,27.1,1,46,0,1,0,0,0,32,0,52,38,42.82,58,22.5,39.5,-5.5,20.9,181,SIT
+12,13420,"Bryce Lance",WR,NO,"Active","",CIN,"Kellen Moore","Al Golden",50,,0,50,,0,4,0,2,24,2,41,38,44.17,43,19.5,48.5,9.5,20,182,SIT
+12,8527,"Dareke Young",WR,LV,"Active","",CLE,"Klint Kubiak","Mike Rutenberg",50,,0,50,,0,0,0,0,32,0,53,30,42.89,33,17.5,39.5,4.5,19.8,183,SIT
+12,11616,"Jacob Cowing",WR,SF,"Active","",SEA,"Kyle Shanahan","Mike Macdonald",53,38.4,1,47,1.9,1,2,2,1,22,0,28,30,43.43,48,20.5,42.5,1.5,19.6,184,SIT
+12,5154,"Trent Sherfield",WR,BUF,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,0,0,0,50,0,50,9,,,,,,19.5,185,SIT
+12,13981,"Kolbe Katsis",WR,DEN,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,0,0,0,50,0,50,13,,,,,,19.3,186,SIT
+12,5970,"Greg Dortch",WR,BUF,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,2,0,2,50,0,38,30,,,,,,18.4,187,SIT
+12,13726,"Camden Brown",WR,DAL,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,0,0,0,50,0,52,38,,,,,,18.2,188,SIT
+12,8250,"Tay Martin",WR,DET,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,2,2,1,50,0,28,30,,,,,,18.1,189,SIT
+12,2750,"DeAndre Carter",WR,DET,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,2,2,1,50,0,26,38,,,,,,17.6,190,SIT
+12,7746,"Austin Trammell",WR,JAX,"Active","",TEN,"Liam Coen","Robert Saleh",58,56.2,1,50,,0,50,20,20,80,50,50,5,53.28,100,31.2,48.5,-13.9,52.2,191,SIT
+12,8013,"Tim Jones",WR,JAX,"Active","",TEN,"Liam Coen","Robert Saleh",58,56.2,1,50,,0,50,20,20,80,50,50,5,53.28,100,31.2,48.5,-13.9,52.2,192,SIT
+12,8076,"Michael Bandy",WR,DEN,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,50,20,20,50,50,50,5,,,,,,41.1,193,SIT
+12,12732,"Dominic Lovett",WR,DET,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,50,20,20,50,50,50,9,,,,,,40.9,194,SIT
+12,11474,"Dylan Drummond",WR,ATL,"Active","",MIN,"Tommy Rees","Brian Flores",50,,0,50,,0,50,20,20,35,50,50,5,45.33,32,17.2,41.5,7.1,39.5,195,SIT
+12,11306,"Xavier Gipson",WR,NYG,"Active","",IND,"Matt Nagy","Lou Anarumo",50,,0,50,,0,7,6,3,46,0,50,30,45.79,62,23.5,41.5,-5.5,25.7,196,SIT
+12,12520,"Xavier Restrepo",WR,TEN,"Active","",JAX,"Brian Daboll","Anthony Campanile",50,27.1,1,49,6.1,1,9,9,4,20,0,27,34,50.57,32,17.2,48.5,14.1,21.3,197,SIT
+12,8130,"Trey McBride",TE,ARI,"Active","",WAS,"Mike LaFleur","Daronte Jones",50,,0,50,,0,100,71,52,66,16,74,2,42.91,33,17.5,41.5,6.5,65,1,START
+12,12506,"Harold Fannin Jr.",TE,CLE,"Active","",LV,"Todd Monken","Rob Leonard",50,,0,50,,0,82,95,24,44,8,62,6,42.655,55,22,39.5,-4.5,58.3,2,START
+12,1466,"Travis Kelce",TE,KC,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,57,100,28,50,12,58,10,,,,,,57.6,3,START
+12,11604,"Brock Bowers",TE,LV,"Active","Questionable",CLE,"Klint Kubiak","Mike Rutenberg",50,,0,50,,0,75,84,23,53,22,49,32,42.615,33,17.5,39.5,4.5,53.7,4,START
+12,4217,"George Kittle",TE,SF,"Active","",SEA,"Kyle Shanahan","Mike Macdonald",50,7.4,1,50,7.4,1,68,86,15,48,10,71,10,42.3,48,20.5,42.5,1.5,53.6,5,START
+12,8131,"Isaiah Likely",TE,NYG,"Active","",IND,"Matt Nagy","Lou Anarumo",50,,0,54,9.1,4,71,78,11,39,14,55,2,43.035,62,23.5,41.5,-5.5,52.4,6,START
+12,8210,"Chig Okonkwo",TE,WAS,"Active","",ARI,"David Blough","Nick Rallis",50,,0,50,8.8,1,71,54,13,76,4,82,2,48.44,65,24,41.5,-6.5,52.2,7,START
+12,5844,"T.J. Hockenson",TE,MIN,"Active","",ATL,"Kevin O'Connell","Jeff Ulbrich",41,5.6,3,46,4.75,2,68,63,21,22,16,82,2,44.81,66,24.2,41.5,-6.9,49.9,8,START
+12,11603,"AJ Barner",TE,SEA,"Active","",SF,"Brian Fleury","Raheem Morris",48,5,1,49,5,1,54,44,22,57,24,66,2,45.5,55,22,42.5,-1.5,47,9,START
+12,7600,"Pat Freiermuth",TE,PIT,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,43,58,21,50,10,84,2,,,,,,46.6,10,START
+12,4066,"Evan Engram",TE,DEN,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,57,50,33,50,4,53,6,,,,,,46.5,11,START
+12,9480,"Brenton Strange",TE,JAX,"Active","",TEN,"Liam Coen","Robert Saleh",52,12.9,1,51,8.9,1,29,33,6,61,8,79,2,47.105000000000004,100,31.2,48.5,-13.9,45.2,12,START
+12,10859,"Sam LaPorta",TE,DET,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,54,39,29,50,10,75,2,,,,,,45.1,13,SIT
+12,10236,"Dalton Kincaid",TE,BUF,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,43,53,20,50,16,67,2,,,,,,44.9,14,SIT
+12,6865,"Colby Parkinson",TE,LA,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,43,29,11,50,14,62,2,,,,,,43.8,15,SIT
+12,9484,"Tucker Kraft",TE,GB,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,54,31,17,50,10,64,2,,,,,,43.8,16,SIT
+12,2505,"Darren Waller",TE,CAR,"Active","Questionable",TB,"Brad Idzik","Todd Bowles",55,19.7,1,52,12,1,61,54,13,44,4,44,40,46.14,47,20.2,43.5,3.1,43.3,17,SIT
+12,4993,"Mike Gesicki",TE,CIN,"Active","",NO,"Zac Taylor","Brandon Staley",50,,0,50,,0,36,43,18,48,6,44,6,40.05,89,29,48.5,-9.5,42,18,SIT
+12,13299,"Nate Boerkircher",TE,JAX,"Active","",TEN,"Liam Coen","Robert Saleh",52,12.9,1,47,2.2,1,21,31,5,61,14,61,21,47.105000000000004,100,31.2,48.5,-13.9,42,19,SIT
+12,7553,"Kyle Pitts Sr.",TE,ATL,"Active","",MIN,"Tommy Rees","Brian Flores",50,,0,46,6.57,3,54,37,9,57,10,78,2,42.29,32,17.2,41.5,7.1,41.5,20,SIT
+12,5012,"Mark Andrews",TE,BAL,"Active","",HOU,"Declan Doyle","Matt Burke",50,,0,48,4.2,1,54,42,15,37,6,54,6,43.075,48,20.5,47.5,6.5,41,21,SIT
+12,10214,"Davis Allen",TE,LA,"Active","Questionable",Unknown,"Unknown","Unknown",50,,0,50,,0,29,50,1,50,16,40,51,,,,,,40.8,22,SIT
+12,12502,"Gunnar Helm",TE,TEN,"Active","",JAX,"Brian Daboll","Anthony Campanile",53,14.9,1,49,6.3,1,57,35,15,37,6,58,6,50.775,32,17.2,48.5,14.1,40,23,SIT
+12,12518,"Tyler Warren",TE,IND,"Active","",NYG,"Shane Steichen","Dennard Wilson",48,7.78,4,50,8.05,2,57,23,20,43,2,69,6,43.395,36,18,41.5,5.5,38.7,24,SIT
+12,7694,"Tommy Tremble",TE,CAR,"Active","Questionable",TB,"Brad Idzik","Todd Bowles",55,19.7,1,47,1.8,1,43,37,8,44,18,50,43,46.14,47,20.2,43.5,3.1,37.7,25,SIT
+12,3214,"Hunter Henry",TE,NE,"Active","",LAC,"Josh McDaniels","Chris O'Leary",50,,0,50,,0,32,30,17,47,2,88,6,44.96,40,18.8,34.5,-3.1,37.6,26,SIT
+12,11593,"Brevyn Spann-Ford",TE,DAL,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,29,35,12,50,10,76,2,,,,,,37.2,27,SIT
+12,13330,"Kenyon Sadiq",TE,NYJ,"Active","",MIA,"Frank Reich","Jeff Hafley",58,25.7,1,47,1.6,1,32,29,23,28,12,61,21,45.665,58,22.5,39.5,-5.5,37,28,SIT
+12,6001,"Drew Sample",TE,CIN,"Active","",NO,"Zac Taylor","Brandon Staley",50,,0,50,,0,21,35,1,48,8,59,17,40.05,89,29,48.5,-9.5,36.5,29,SIT
+12,12473,"Mitchell Evans",TE,CAR,"Active","Questionable",TB,"Brad Idzik","Todd Bowles",55,19.7,1,49,5.9,1,29,48,19,44,4,31,55,46.14,47,20.2,43.5,3.1,36.5,30,SIT
+12,13282,"Jack Endries",TE,CIN,"Active","",NO,"Zac Taylor","Brandon Staley",50,,0,50,,0,29,25,15,48,12,37,29,40.05,89,29,48.5,-9.5,36.3,31,SIT
+12,5985,"Foster Moreau",TE,HOU,"Active","",BAL,"Nick Caley","Jesse Minter",48,4.9,1,46,0,1,21,33,2,54,10,51,13,46.480000000000004,79,27,47.5,-6.5,36.1,32,SIT
+12,9479,"Darnell Washington",TE,PIT,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,39,31,10,50,10,55,13,,,,,,36,33,SIT
+12,5001,"Dalton Schultz",TE,HOU,"Active","",BAL,"Nick Caley","Jesse Minter",48,4.9,1,49,4.9,1,25,27,3,54,2,58,6,46.480000000000004,79,27,47.5,-6.5,35.8,34,SIT
+12,9482,"Michael Mayer",TE,LV,"Active","",CLE,"Klint Kubiak","Mike Rutenberg",50,,0,50,,0,39,18,18,53,6,73,13,42.615,33,17.5,39.5,4.5,35.7,35,SIT
+12,8172,"Greg Dulcich",TE,MIA,"Active","",NYJ,"Bobby Slowik","Aaron Glenn",52,13.6,1,53,13.6,1,46,13,25,44,10,52,2,39.545,31,17,39.5,5.5,35.6,36,SIT
+12,12498,"Mason Taylor",TE,NYJ,"Active","",MIA,"Frank Reich","Jeff Hafley",58,25.7,1,58,23.2,1,29,25,11,28,2,72,6,45.665,58,22.5,39.5,-5.5,35.2,37,SIT
+12,5906,"Dawson Knox",TE,BUF,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,39,26,10,50,8,65,17,,,,,,35.1,38,SIT
+12,10231,"Elijah Higgins",TE,ARI,"Active","",WAS,"Mike LaFleur","Daronte Jones",50,,0,50,,0,25,13,2,66,4,63,13,42.91,33,17.5,41.5,6.5,33.9,39,SIT
+12,7828,"Noah Gray",TE,KC,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,32,20,22,50,8,54,13,,,,,,33.9,40,SIT
+12,4033,"David Njoku",TE,LAC,"Active","Questionable",NE,"Mike McDaniel","Zak Kuhr",50,,0,50,,0,43,27,26,23,5,59,47,40.83,25,15.8,34.5,2.9,33.5,41,SIT
+12,8111,"Cade Otton",TE,TB,"Active","",CAR,"Zac Robinson","Ejiro Evero",46,0,1,46,0,1,43,16,7,31,14,39,2,41.91,61,23.2,43.5,-2.9,33.4,42,SIT
+12,13421,"Eli Raridon",TE,NE,"Active","",LAC,"Josh McDaniels","Chris O'Leary",50,,0,50,,0,39,20,10,47,6,41,21,44.96,40,18.8,34.5,-3.1,33.1,43,SIT
+12,8225,"Daniel Bellinger",TE,TEN,"Active","",JAX,"Brian Daboll","Anthony Campanile",53,14.9,1,50,8.6,1,29,26,7,37,8,57,13,50.775,32,17.2,48.5,14.1,32.9,44,SIT
+12,12700,"Gavin Bartholomew",TE,MIN,"Active","",ATL,"Kevin O'Connell","Jeff Ulbrich",41,5.6,3,50,,0,29,29,6,22,10,46,17,44.81,66,24.2,41.5,-6.9,32.7,45,SIT
+12,6869,"Adam Trautman",TE,DEN,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,21,32,1,50,10,68,13,,,,,,32.4,46,SIT
+12,11597,"Theo Johnson",TE,NYG,"Active","",IND,"Matt Nagy","Lou Anarumo",50,,0,49,6,1,25,16,7,39,2,60,13,43.035,62,23.5,41.5,-5.5,31.5,47,SIT
+12,12493,"Oronde Gadsden",TE,LAC,"Active","",NE,"Mike McDaniel","Zak Kuhr",50,,0,50,,0,32,23,10,23,16,51,6,40.83,25,15.8,34.5,2.9,31.3,48,SIT
+12,5857,"Noah Fant",TE,NO,"Active","Questionable",CIN,"Kellen Moore","Al Golden",50,,0,50,,0,29,14,15,43,12,37,32,44.144999999999996,43,19.5,48.5,9.5,30.8,49,SIT
+12,1339,"Zach Ertz",TE,PHI,"Active","",Unknown,"Unknown","Unknown",50,,0,50,,0,29,8,3,50,3,50,21,,,,,,29.7,50,SIT
+12,13273,"Josh Cuevas",TE,BAL,"Active","",HOU,"Declan Doyle","Matt Burke",50,,0,50,,0,21,16,16,37,0,33,21,43.075,48,20.5,47.5,6.5,29,51,SIT
+12,8127,"Charlie Kolar",TE,LAC,"Active","",NE,"Mike McDaniel","Zak Kuhr",50,,0,50,,0,29,18,2,23,0,56,21,40.83,25,15.8,34.5,2.9,27,52,SIT
